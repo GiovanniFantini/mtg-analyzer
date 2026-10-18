@@ -25,4 +25,10 @@ I contenuti editoriali, le finestre statistiche e le fonti hanno date esplicite.
 
 Pool e carte osservate sono memorizzati nel browser del visitatore, senza account o sincronizzazione. Il passaggio dal file locale al sito HTTPS non trasferisce automaticamente questi salvataggi: per il pool usare le funzioni di esportazione e importazione.
 
+## Navigazione e layout
+
+La homepage propone accessi per obiettivo; `set-template.html` è la panoramica di Reality Fracture. `site_navigation.py`, `site.css` e `site.js` applicano a tutte le pagine il menu organizzato per attività, il percorso di navigazione e il menu mobile accessibile da tastiera. Gli strumenti si aprono come pagine complete, senza iframe. I vecchi link alla panoramica con `#draft`, `#discovery` e gli altri identificatori degli strumenti continuano a funzionare. I salvataggi esistenti mantengono le stesse chiavi e la stessa origine.
+
+Con il server locale avviato, `node verify-site.cjs` verifica le otto pagine a 360, 768 e 1440 pixel, menu mobile, navigazione, filtri, pool, anteprime e vecchi collegamenti. Richiede Playwright e Chrome; i percorsi si possono configurare con `MTG_PLAYWRIGHT_MODULE`, `MTG_BROWSER_CHANNEL` e `MTG_SITE_URL`.
+
 Progetto indipendente. Magic: The Gathering, le immagini e i testi delle carte appartengono ai rispettivi titolari. I collegamenti alle fonti sono inclusi nelle sezioni del sito.
