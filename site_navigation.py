@@ -61,7 +61,7 @@ def shell(content, key, root=False):
         content = content[:start] + toolbar + content[end:]
         content = content.replace('<title>Reality Fracture · Atlante Sealed completo</title>', '<title>Reality Fracture · Catalogo e pool Sealed</title>')
         redirects = ','.join(f"'{id_}':'{PAGES[id_][1]}'" for id_ in ['draft','analysis','simulator','combos','discovery'])
-        content = content.replace('function openWorkspace(hash){', f"function openWorkspace(hash){{if(hash==='#site-content')return;const pages={{{redirects}}};const destination=pages[(hash||'').slice(1)];if(destination){{location.replace(destination);return}}")
+        content = content.replace('function openWorkspace(hash){', f"function openWorkspace(hash){{if(hash==='#site-content'){{if(workspaceSections.some(x=>x.hidden))return;hash='#gallery'}}const pages={{{redirects}}};const destination=pages[(hash||'').slice(1)];if(destination){{location.replace(destination);return}}")
         content = re.sub(r'<section id="(?:draft|analysis|simulator|combos|discovery)" class="workspace-embed">.*?</section>', '', content, flags=re.S)
         content = content.replace("$('combos').querySelector('iframe').src='Reality-Fracture-Combo.html?card='+encodeURIComponent(b.dataset.combo)+'#catalogo';location.hash='combos';openWorkspace('#combos')", "location.href='Reality-Fracture-Combo.html?card='+encodeURIComponent(b.dataset.combo)+'#catalogo'")
         content = content.replace("$('combos').querySelector('iframe').src=a.getAttribute('href');$('zoom').close();location.hash='combos';openWorkspace('#combos')", "location.href=a.getAttribute('href')")

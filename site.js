@@ -37,6 +37,7 @@
   const advanced = document.querySelector('.site-catalog-filters');
   if (advanced && matchMedia('(max-width: 700px)').matches) advanced.open = false;
   const sync = () => {
+    if (location.hash === '#site-content') return;
     let active = null;
     const path = value => value.replace(/index\.html$/, '');
     const aliases = {proft:'strategy',updates:'strategy',sentiment:'gallery'};
