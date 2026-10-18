@@ -1,0 +1,16 @@
+<section id="draft-pool" class="report-section draft-pool">
+<div class="eyebrow">Dal pool al mazzo</div><h2>Le tue pick, un piano di gioco</h2>
+<p>Inserisci tutte le carte del draft, anche quelle fuori colore. Genera un prompt da incollare nella tua AI per scegliere le 40 carte, valutare le sinergie e motivare ogni taglio. L'analisi si svolge nella chat AI, dopo l'esportazione.</p>
+<div class="dp-columns"><div>
+<label for="dp-search">Cerca nel set e nelle Special Guests</label><input id="dp-search" type="search" placeholder="Nome inglese, anche parziale" autocomplete="off" aria-controls="dp-results">
+<p class="small">Apri il nome per vedere la carta. Premi + per aggiungere una copia.</p><div id="dp-results" class="dp-results"></div>
+<details><summary>Incolla una lista di carte</summary><label for="dp-import">Una carta per riga, con quantità facoltativa</label><textarea id="dp-import" rows="6" placeholder="2 Surveillance Phantasm&#10;1 Your Fate Ends Here"></textarea><p class="small">Nomi inglesi completi o della prima faccia. Supporta anche il formato Arena: quantità, nome, (SET), numero. L'importazione aggiunge al pool; i nomi non riconosciuti vanno corretti prima di importare.</p><button id="dp-import-button" type="button">Aggiungi la lista al pool</button></details>
+<h3>Il tuo pool <span id="dp-total">0 carte</span></h3><p id="dp-summary" class="small"></p><div id="dp-pool"></div><button id="dp-clear" type="button" disabled>Svuota pool Draft</button>
+<p id="dp-storage" class="small" role="status">Il pool Draft si salva in questo browser, separatamente dal pool Sealed. Scarica la lista per conservarne una copia.</p>
+</div><div class="dp-export">
+<h3>Prepara l'analisi AI</h3><label for="dp-mode">Tipo di partite</label><select id="dp-mode"><option value="bo1">BO1</option><option value="bo3">BO3 con sideboard</option></select>
+<label for="dp-notes">Preferenze o dubbi (facoltativi)</label><textarea id="dp-notes" rows="3" maxlength="4000" placeholder="Es. confronta due colori con uno splash; nessun colore obbligatorio."></textarea>
+<p class="small">L'export contiene tutte le quantità, i testi delle carte e i dati Draft disponibili nello snapshot del 16 ottobre 2026. Le terre base sono considerate disponibili a parte. I win rate sono un supporto, non una classifica delle sinergie.</p>
+<div class="dp-actions"><button id="dp-copy" type="button" disabled>Copia prompt AI</button><button id="dp-download" type="button" disabled>Scarica prompt .txt</button><button id="dp-list" type="button" disabled>Scarica lista pool .txt</button></div>
+<p id="dp-status" role="status" aria-live="polite"></p><details id="dp-preview"><summary>Leggi o copia manualmente il prompt</summary><label for="dp-prompt">Prompt completo, pronto da incollare</label><textarea id="dp-prompt" rows="16" readonly></textarea></details>
+</div></div></section>

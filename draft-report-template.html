@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Reality Fracture · Draft e pick</title><link rel="stylesheet" href="draft-report.css"></head><body>
+<header><a href="Reality-Fracture-Sealed.html#draft">← Il tavolo di Reality Fracture</a></header>
+<main>
+<div class="intro"><div class="eyebrow">Reality Fracture / risultati e decisioni / 16 ottobre 2026</div><h1>Draft e pick</h1><p>Le carte da scegliere, i motori da costruire e le minacce da fermare. Analizza tutte le dieci coppie, confronta le carte e adatta le priorità alla fase del draft.</p><a href="#pick-guide">Vai alla lista rapida: pick subito e counterpick ↓</a></div>
+<nav class="report-nav" aria-label="Indice del report"><a href="#pick-guide">Pick subito e counterpick</a><a href="#draft-pool">Il mio pool Draft / prompt AI</a><a href="#pick-baits">Rare e mitiche: i bait</a><a href="#draft-drilldown">Drilldown interattivo</a><a href="#pick-decisions">Come decidere: 20 situazioni</a>__REPORT_NAV__</nav>
+__DRAFT_POOL__
+__PICK_GUIDE__
+__PICK_BAITS__
+__DRILLDOWN_SECTION__
+<div class="report">__REPORT__</div>
+<section id="card-statistics" class="report-section"><h2>Esplora le statistiche delle carte</h2><p>Snapshot Premier Draft del 16 ottobre 2026. Ordine iniziale per GIH WR decrescente. I dati mancanti restano N/D. Il filtro sul campione evita di dare priorità a risultati basati su poche osservazioni.</p>
+<div class="controls"><label>Cerca carta<input id="draft-search" type="search" placeholder="Nome della carta"></label><label>Contiene il colore<select id="draft-color"><option value="">Tutti</option><option value="W">Bianco</option><option value="U">Blu</option><option value="B">Nero</option><option value="R">Rosso</option><option value="G">Verde</option><option value="C">Incolore</option></select></label><label>Rarità<select id="draft-rarity"><option value="">Tutte</option><option value="common">Comune</option><option value="uncommon">Non comune</option><option value="rare">Rara</option><option value="mythic">Mitica</option></select></label><label>Ordina<select id="draft-sort"><option value="gih">GIH WR decrescente</option><option value="gih-low">GIH WR più bassi</option><option value="alsa">Disponibilità tardiva</option><option value="name">Nome</option><option value="n">Campione più ampio</option></select></label><label class="check"><input id="draft-sample" type="checkbox" checked> Almeno 2.000 osservazioni GIH</label><button id="draft-reset" type="button">Azzera filtri</button></div>
+<p id="draft-count" role="status" aria-live="polite"></p><div class="tablewrap"><table><thead><tr><th scope="col">Carta</th><th scope="col">Colore</th><th scope="col">Rarità</th><th scope="col">GIH WR</th><th scope="col">Campione GIH</th><th scope="col">ALSA</th></tr></thead><tbody id="draft-rows"></tbody></table></div></section>
+<p class="attribution">Immagini delle carte: Wizards of the Coast tramite Scryfall. Dati: 17Lands. Snapshot statico, non aggiornato automaticamente.</p>
+</main>
+<dialog id="draft-dialog" aria-labelledby="draft-card-title"><button id="draft-close" type="button">Chiudi ×</button><div id="draft-detail"></div></dialog>
+<script>const DRAFT_DATA=__DRAFT_DATA__;</script><script src="draft-report.js"></script><script src="draft-pool.js"></script><script src="draft-drilldown.js"></script><script src="draft-pick-guide.js"></script><link rel="stylesheet" href="card-hover.css"><script src="card-hover.js"></script><link rel="stylesheet" href="metric-help.css"><script src="metric-help.js"></script></body></html>
