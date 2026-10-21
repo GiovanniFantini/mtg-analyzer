@@ -87,6 +87,9 @@
     else hide();
   });
   function onScroll(){
+    // A touch can focus a card and scroll it into view after the click.
+    // Keep a pinned preview open through that scroll until explicitly dismissed.
+    if(active&&pinned){position(active);return;}
     const trigger=active||resumeHover,restore=trigger&&!pinned;
     hide();
     if(restore){resumeHover=trigger;scrollTimer=setTimeout(()=>{resumeHover=null;if(trigger.isConnected&&(trigger.matches(':hover')||target(document.activeElement)===trigger))show(trigger);},160);}

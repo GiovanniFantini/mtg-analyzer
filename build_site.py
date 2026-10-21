@@ -21,7 +21,9 @@ def homepage(expansions):
         url=f'sets/{slug}/index.html'
         e=html.escape
         base=f'sets/{slug}/'
-        cards.append(f'''<article class="set" data-set="{e((item['name']+' '+item['code']).lower())}"><div class="set-head"><span>{e(item['code'])}</span><h3>{e(item['name'])}</h3></div><div class="set-body"><p>{e(item['description'])}</p><p class="small">Ultimo aggiornamento dei contenuti: {e(item['date'])}. Le singole sezioni riportano le proprie date.</p><div class="links"><a class="primary" href="{url}">Esplora il set →</a><a href="{base}Reality-Fracture-Discovery.html">Metagame e carte</a><a href="{base}Reality-Fracture-Draft.html">Guida Draft</a></div></div></article>''')
+        discovery=item.get('discovery', 'Reality-Fracture-Discovery.html')
+        draft=item.get('draft', 'Reality-Fracture-Draft.html')
+        cards.append(f'''<article class="set" data-set="{e((item['name']+' '+item['code']).lower())}"><div class="set-head"><span>{e(item['code'])}</span><h3>{e(item['name'])}</h3></div><div class="set-body"><p>{e(item['description'])}</p><p class="small">Ultimo aggiornamento dei contenuti: {e(item['date'])}. Le singole sezioni riportano le proprie date.</p><div class="links"><a class="primary" href="{url}">Esplora il set →</a><a href="{base}{discovery}">Metagame e carte</a><a href="{base}{draft}">Guida Draft</a></div></div></article>''')
     return shell((ROOT/'home-template.html').read_text(encoding='utf-8-sig').replace('__EXPANSIONS__',''.join(cards)), 'home', root=True)
 
 class Links(HTMLParser):
@@ -66,6 +68,10 @@ def build():
         shutil.copy2(ROOT/name,DIST/name)
     for expansion in expansions:
         dest=DIST/'sets'/expansion['slug'];dest.mkdir(parents=True)
+        if expansion['code']=='TRK':
+            from build_star_trek import build as build_star_trek
+            build_star_trek(dest)
+            continue
         if expansion['code']!='FRA':
             raise ValueError('Add the new expansion build and asset list before publishing it')
         for page in ROOT.glob('Reality-Fracture-*.html'):

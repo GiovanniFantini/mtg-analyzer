@@ -1,0 +1,128 @@
+{
+  "snapshot_date": "2026-10-21",
+  "source": "https://magic.wizards.com/en/news/feature/collecting-star-trek",
+  "main_pool_counts": {
+    "common": 81,
+    "uncommon": 110,
+    "rare": 80,
+    "mythic": 25,
+    "common_dual_land": 10,
+    "default_basic_land": 10
+  },
+  "variant_counts": {
+    "lcars": {
+      "U": 7,
+      "R": 14,
+      "M": 8
+    },
+    "lcars_shock": {
+      "R": 10
+    },
+    "classic": {
+      "U": 5,
+      "R": 13,
+      "M": 6
+    },
+    "scene": {
+      "U": 10,
+      "R": 8,
+      "M": 7
+    },
+    "klingon_frame": {
+      "C": 1,
+      "U": 6,
+      "R": 3
+    },
+    "borderless_land": {
+      "R": 5,
+      "M": 1
+    },
+    "stardates": {
+      "M": 30
+    }
+  },
+  "published_percentages": {
+    "wildcard": {
+      "main_C": 20.8,
+      "main_U": 54.1,
+      "main_R": 16.7,
+      "main_M": 2.6,
+      "klingon_C": null,
+      "klingon_U": 1,
+      "klingon_R": null,
+      "scene_U": 1.5,
+      "scene_R": null,
+      "scene_M": null,
+      "lcars_U": 1,
+      "lcars_R": null,
+      "lcars_M": null,
+      "classic_R": null,
+      "classic_M": null,
+      "borderless_land_R": null,
+      "borderless_land_M": null,
+      "lcars_shock_R": null
+    },
+    "rare_or_mythic": {
+      "main_R": 80.1,
+      "main_M": 12.4,
+      "klingon_R": null,
+      "scene_R": 1,
+      "scene_M": null,
+      "lcars_R": 1.8,
+      "lcars_M": null,
+      "classic_R": 1.5,
+      "classic_M": null,
+      "borderless_land_R": 1,
+      "borderless_land_M": null,
+      "lcars_shock_R": 1.4
+    },
+    "foil": {
+      "main_C": 51.2,
+      "main_U": 34.7,
+      "main_R": 6.3,
+      "main_M": 1,
+      "klingon_C": null,
+      "klingon_U": 1,
+      "klingon_R": null,
+      "scene_U": 1.6,
+      "scene_R": null,
+      "scene_M": null,
+      "lcars_U": 1.1,
+      "lcars_R": null,
+      "lcars_M": null,
+      "classic_R": null,
+      "classic_M": null,
+      "borderless_land_R": null,
+      "borderless_land_M": null,
+      "lcars_shock_R": null
+    },
+    "land": {
+      "dual_nonfoil": 40,
+      "dual_foil": 10,
+      "basic_default_nonfoil": 26.7,
+      "basic_default_foil": 6.7,
+      "basic_holodeck_nonfoil": 6.7,
+      "basic_holodeck_foil": 1.7,
+      "basic_away_team_nonfoil": 6.7,
+      "basic_away_team_foil": 1.7
+    }
+  },
+  "less_than_one_percent_encoding": null,
+  "null_meaning": "Limite <1%, non zero e non prezzo mancante",
+  "stardates_per_pack": 0.04,
+  "expected_stardates_per_box": 1.2,
+  "uncommon_special_percentages": {
+    "scene": 7.7,
+    "lcars": 4.6,
+    "classic": 4.6,
+    "klingon": 5
+  },
+  "common_klingon_published_percent": 2.9,
+  "interpretation_notes": [
+    "Le percentuali sono arrotondate; i limiti <1% non sono valori puntuali",
+    "Ambito per posizione o per busta delle percentuali dei gruppi comune/non comune da confermare prima di un modello eseguibile",
+    "Non assumere equiprobabilita entro i gruppi senza dichiararla",
+    "Classic Enterprise U ammesse negli slot non comuni ma non elencate negli slot wildcard/foil: non estendere le eleggibilita automaticamente",
+    "Away Team foil: contraddizione tra descrizione del trattamento, che le esclude dai Play, e slot terra che le include al 1.7%; tenere esplicita prima del modello definitivo"
+  ]
+}
