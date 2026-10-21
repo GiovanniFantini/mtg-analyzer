@@ -7,6 +7,7 @@ PAGES = {
     'gallery': ('Catalogo carte', 'Reality-Fracture-Sealed.html#gallery'),
     'analysis': ('Analisi del set', 'Reality-Fracture-Analisi.html'),
     'draft': ('Draft e pick', 'Reality-Fracture-Draft.html'),
+    'draft-engine': ('Tavolo Draft con bot', 'Reality-Fracture-Draft-Engine.html'),
     'pool': ('Il mio pool Sealed', 'Reality-Fracture-Sealed.html#pool'),
     'strategy': ('Guida Sealed', 'Reality-Fracture-Sealed.html#strategy'),
     'simulator': ('Simulatore Sealed', 'Reality-Fracture-Simulatore.html'),
@@ -15,11 +16,12 @@ PAGES = {
     'method': ('Fonti e metodo', 'Reality-Fracture-Sealed.html#method'),
 }
 GROUPS = [('Carte e set', ['set','gallery','analysis']),
-          ('Limited', ['draft','strategy','pool','simulator']),
+          ('Limited', ['draft','draft-engine','strategy','pool','simulator']),
           ('Sinergie', ['combos']), ('Constructed', ['discovery']),
           ('Approfondimenti', ['method'])]
 FILES = {'Sealed':'gallery','Draft':'draft','Analisi':'analysis',
-         'Simulatore':'simulator','Combo':'combos','Discovery':'discovery'}
+         'Simulatore':'simulator','Combo':'combos','Discovery':'discovery',
+         'Draft-Engine':'draft-engine'}
 
 
 def shell(content, key, root=False, expansion=None):

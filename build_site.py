@@ -53,6 +53,8 @@ def validate_site():
 
 def build():
     runpy.run_path(str(ROOT/'build_database.py'),run_name='__main__')
+    from build_draft_engine import build as build_draft_engine
+    (ROOT/'Reality-Fracture-Draft-Engine.html').write_text(build_draft_engine(),encoding='utf-8')
     expansions=json.loads((ROOT/'expansions.json').read_text(encoding='utf-8'))
     home=homepage(expansions)
     (ROOT/'index.html').write_text(home,encoding='utf-8')
