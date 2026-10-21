@@ -7,11 +7,30 @@
   const basicIds = basics.map(name => DATA.cards.find(c => c.name === name && c.type.startsWith('Basic Land'))?.id);
   const isBasic = id => basicIds.includes(id);
   const pageKey = document.body.dataset.page;
-  let mode = pageKey === 'draft' ? 'draft' : 'sealed';
+  const modes = ['sealed','draft','picktwo'];
+  const requestedMode = new URLSearchParams(location.search).get('mode');
+  let rememberedMode;
+  try { rememberedMode=sessionStorage.getItem('mtg-trk-mode-v1'); } catch {}
+  let mode = modes.includes(requestedMode) ? requestedMode : pageKey==='draft' ? 'draft' : modes.includes(rememberedMode) ? rememberedMode : 'sealed';
   let page = 0, state = empty(), storageError = '';
+  const memoryStates=new Map();
   let hand = [], library = [], fullDeck = [], bottom = [], mulligans = 0, kept = false;
   function empty() { return {pool:{},deck:{},basics:{}}; }
-  function key() { return 'mtg-trk-'+mode+'-v1'; }
+  function key(selectedMode=mode) { return 'mtg-trk-'+selectedMode+'-v1'; }
+  function status(message=storageError) {
+    let target=$('trk-storage-status');
+    if(!target){target=document.createElement('p');target.id='trk-storage-status';target.setAttribute('role','status');target.setAttribute('aria-live','polite');document.querySelector('main').prepend(target);}
+    target.textContent=message;
+  }
+  function modeLinks() {
+    try { sessionStorage.setItem('mtg-trk-mode-v1',mode); } catch {}
+    for(const link of document.querySelectorAll('a[href]')){
+      const url=new URL(link.href);
+      if(url.origin===location.origin&&url.pathname.startsWith(location.pathname.slice(0,location.pathname.lastIndexOf('/')+1))&&/\/(catalogo|sealed|simulatore|draft)\.html$/.test(url.pathname)){
+        url.searchParams.set('mode',mode);link.setAttribute('href',url.pathname+url.search+url.hash);
+      }
+    }
+  }
   function validCounts(obj) {
     if (!obj || typeof obj !== 'object' || Array.isArray(obj)) throw Error('Conteggi mancanti.');
     for (const [id, n] of Object.entries(obj)) if (!byId.has(id) || !Number.isInteger(n) || n<0 || n>999) throw Error('Carta o quantità non valida nel salvataggio.');
@@ -24,15 +43,65 @@
     for (const id of Object.keys(next.basics)) if (!isBasic(id)) throw Error('Le terre aggiunte devono essere terre base normali.');
     return next;
   }
+  function stored(storageKey,fallback=empty()) {
+    if(memoryStates.has(storageKey))return {value:structuredClone(memoryStates.get(storageKey)),persistent:false};
+    let raw;
+    try { raw=localStorage.getItem(storageKey); }
+    catch { return {value:fallback,persistent:false}; }
+    return {value:raw?validate(JSON.parse(raw)):empty(),persistent:true};
+  }
   function load() {
     storageError='';
-    try { const raw=localStorage.getItem(key()); state=raw?validate(JSON.parse(raw)):empty(); }
-    catch { state=empty();storageError='Salvataggio non leggibile o memoria non disponibile. Esporta il lavoro prima di chiudere la pagina.'; }
+    try { const result=stored(key());state=result.value;if(!result.persistent)storageError='Memoria non disponibile. Esporta il lavoro prima di chiudere la pagina.'; }
+    catch { state=empty();storageError='Salvataggio non leggibile: il contenuto originale è conservato e non verrà sovrascritto.'; }
+    status();
   }
-  function save() {
-    try { localStorage.setItem(key(),JSON.stringify(state));storageError=''; }
-    catch { storageError='Memoria del browser non disponibile. Il lavoro resta in questa pagina: esportalo per conservarlo.'; }
-    if ($('trk-storage-status')) $('trk-storage-status').textContent=storageError;
+  let writes=Promise.resolve();
+  function changeState(mutate,selectedMode=mode) {
+    const storageKey=key(selectedMode);
+    const apply=()=>{
+      const result=stored(storageKey,selectedMode===mode?state:empty());
+      mutate(result.value);
+      let message='';
+      try { localStorage.setItem(storageKey,JSON.stringify(result.value));memoryStates.delete(storageKey); }
+      catch { memoryStates.set(storageKey,result.value);message='Memoria del browser non disponibile. Il lavoro resta in questa pagina: esportalo per conservarlo.'; }
+      if(mode===selectedMode){state=result.value;storageError=message;refresh();}
+    };
+    // Serialize same-pool changes across tabs, and read the latest state inside the lock.
+    const task=writes.then(()=>navigator.locks?navigator.locks.request(storageKey,apply):apply());
+    writes=task.catch(()=>{storageError='Salvataggio non leggibile: il contenuto originale è conservato e non verrà sovrascritto.';status();});
+    return task;
+  }
+  function refresh() {
+    const focus=captureFocus();renderDeck();
+    if($('trk-cards')){
+      for(const row of $('trk-cards').querySelectorAll('.trk-actions')){
+        const id=row.querySelector('[data-id]')?.dataset.id;
+        if(byId.has(id))row.outerHTML=actions(byId.get(id));
+      }
+    }
+    restoreFocus(focus);status();
+    if($('trk-hand'))clearHand();
+  }
+  function sync() { load();refresh(); }
+  addEventListener('storage',event=>{if(event.key===key()||event.key===null)sync();});
+  addEventListener('pageshow',event=>{if(event.persisted)sync();});
+  function captureFocus() {
+    const active=document.activeElement;
+    return {active,area:active.closest?.('#trk-deck,#trk-cards,#trk-basics,#trk-hand')?.id,id:active.id,op:active.dataset?.op,card:active.dataset?.id,basic:active.dataset?.basic,bottom:active.dataset?.bottom};
+  }
+  function restoreFocus(focus) {
+    if(!focus||focus.active.isConnected&&!focus.active.disabled)return;
+    const area=$(focus.area);
+    let target=focus.id?$(focus.id):null;
+    if(area&&focus.card){
+      target=area.querySelector(`[data-id="${focus.card}"][data-op="${focus.op}"]`);
+      if(!target||target.disabled)target=area.querySelector(`.trk-actions button[data-id="${focus.card}"]:not(:disabled)`);
+    }
+    if(area&&focus.basic)target=area.querySelector(`[data-basic="${focus.basic}"]`);
+    if(area&&focus.bottom!==undefined)target=area.querySelector(`[data-bottom="${focus.bottom}"]`);
+    if(!target||target.disabled)target=area||$('trk-draw');
+    if(target&&!target.disabled){if(!target.matches('button,input,select,[tabindex]'))target.tabIndex=-1;target.focus({preventScroll:true});}
   }
   const ref = c => `<span class="card-reference" tabindex="0" role="button" data-card-preview="${esc(c.name)}" aria-label="Mostra ${esc(c.name)}">${esc(c.name)}</span>`;
   function actions(c) {
@@ -102,14 +171,17 @@
     library=shuffle(fullDeck);hand=library.splice(0,7);renderHand();
   }
   function renderHand() {
-    $('trk-hand').innerHTML=hand.map((id,i)=>`<div class="${bottom.includes(i)?'trk-hand-selected':''}">${card(byId.get(id))}${!kept?`<button type="button" data-bottom="${i}" aria-pressed="${bottom.includes(i)}">${bottom.includes(i)?'In fondo, posizione '+(bottom.indexOf(i)+1):'Metti in fondo'}</button>`:''}</div>`).join('');
+    const focus=captureFocus();
+    $('trk-hand').innerHTML=hand.map((id,i)=>`<div class="${bottom.includes(i)?'trk-hand-selected':''}">${card(byId.get(id))}${!kept&&mulligans>0?`<button type="button" data-bottom="${i}" aria-pressed="${bottom.includes(i)}">${bottom.includes(i)?'In fondo, posizione '+(bottom.indexOf(i)+1):'Metti in fondo'}</button>`:''}</div>`).join('');
     $('trk-hand-status').textContent=kept?`Mano tenuta: ${hand.length} carte. Biblioteca: ${library.length}.`:`Mulligan effettuati: ${mulligans}. Seleziona ${mulligans} carte da mettere in fondo. Selezionate: ${bottom.length}.`;
     $('trk-mulligan').disabled=kept||mulligans>=7;
     $('trk-keep').disabled=kept||bottom.length!==mulligans;
     $('trk-draw').disabled=!kept||!library.length;
+    restoreFocus(focus);
   }
   load();
-  if($('trk-mode')){$('trk-mode').value=mode;$('trk-mode').addEventListener('change',()=>{mode=$('trk-mode').value;load();page=0;clearHand();renderDeck();renderCards();});}
+  modeLinks();
+  if($('trk-mode')){$('trk-mode').value=mode;$('trk-mode').addEventListener('change',()=>{mode=$('trk-mode').value;const url=new URL(location.href);url.searchParams.set('mode',mode);history.replaceState(null,'',url);modeLinks();load();clearHand();refresh();});}
   for(const id of ['trk-search','trk-color','trk-rarity','trk-set','trk-order','trk-legality'])$(id)?.addEventListener(id==='trk-search'?'input':'change',()=>{page=0;renderCards();});
   $('trk-reset')?.addEventListener('click',()=>{for(const id of ['trk-search','trk-color','trk-rarity','trk-set','trk-legality'])if($(id))$(id).value='';$('trk-order').value='number';page=0;renderCards();});
   $('trk-prev')?.addEventListener('click',()=>{page--;renderCards();});$('trk-next')?.addEventListener('click',()=>{page++;renderCards();});
@@ -121,38 +193,39 @@
         try{const ids=new Set(JSON.parse(localStorage.getItem('mtg-trk-watch-v1')||'[]'));if(ids.has(id))ids.delete(id);else ids.add(id);localStorage.setItem('mtg-trk-watch-v1',JSON.stringify([...ids]));button.setAttribute('aria-pressed',String(ids.has(id)));button.textContent=ids.has(id)?'Osservata':'Segui carta';}catch{button.textContent='Memoria non disponibile';}return;
       }
       const group=op.startsWith('pool')?'pool':'deck',delta=op.endsWith('plus')?1:-1;
-      state[group][id]=Math.max(0,Math.min(999,(state[group][id]||0)+delta));
-      if(group==='pool')state.deck[id]=Math.min(state.deck[id]||0,state.pool[id]);
-      else state.deck[id]=Math.min(state.deck[id],state.pool[id]||0);
-      for(const kind of ['pool','deck'])if(!state[kind][id])delete state[kind][id];
-      save();renderDeck();
-      // Keep the active control in place for repeated keyboard or touch actions.
-      document.querySelectorAll(`.trk-actions button[data-id="${id}"]`).forEach(b=>{
-        const row=b.parentElement;row.outerHTML=actions(byId.get(id));
-      });
-      const replacement=document.querySelector(`#trk-cards button[data-id="${id}"][data-op="${op}"]`);
-      if(replacement&&!replacement.disabled)replacement.focus({preventScroll:true});
+      changeState(next=>{
+        next[group][id]=Math.max(0,Math.min(999,(next[group][id]||0)+delta));
+        if(group==='pool')next.deck[id]=Math.min(next.deck[id]||0,next.pool[id]);
+        else next.deck[id]=Math.min(next.deck[id],next.pool[id]||0);
+        for(const kind of ['pool','deck'])if(!next[kind][id])delete next[kind][id];
+      }).catch(()=>{});
     }
     const pick=event.target.closest('[data-bottom]');
-    if(pick&&!kept){const i=Number(pick.dataset.bottom);if(bottom.includes(i))bottom=bottom.filter(x=>x!==i);else if(bottom.length<mulligans)bottom.push(i);renderHand();}
+    if(pick&&!kept){const focus=captureFocus(),i=Number(pick.dataset.bottom);if(bottom.includes(i))bottom=bottom.filter(x=>x!==i);else if(bottom.length<mulligans)bottom.push(i);renderHand();restoreFocus(focus);}
   });
   $('trk-basics')?.addEventListener('change',event=>{
     const id=event.target.dataset.basic;if(!isBasic(id))return;
-    state.basics[id]=Math.max(0,Math.min(999,Math.floor(Number(event.target.value)||0)));save();renderDeck();
+    const n=Math.max(0,Math.min(999,Math.floor(Number(event.target.value)||0)));
+    changeState(next=>{next.basics[id]=n;}).catch(()=>{});
   });
-  $('trk-export')?.addEventListener('click',()=>{
+  $('trk-export')?.addEventListener('click',async()=>{
+    await writes;
+    try { state=stored(key(),state).value; }
+    catch { status('Salvataggio non leggibile: il contenuto originale è conservato e non verrà sovrascritto.');return; }
     const data={version:1,set:'TRK',mode,snapshot:DATA.date,...state};
     const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');
     a.href=url;a.download='star-trek-'+mode+'-pool.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
   });
   $('trk-import')?.addEventListener('change',async event=>{
     const file=event.target.files[0];if(!file)return;
+    const importMode=mode;
     try{
       if(file.size>1000000)throw Error('File troppo grande.');
       const imported=JSON.parse(await file.text());
-      if(imported.version!==1||imported.set!=='TRK'||imported.mode!==mode)throw Error('File di un altro set, formato o versione. Seleziona prima il pool corretto.');
-      const next=validate(imported);state=next;save();renderDeck();renderCards();
-      $('trk-storage-status').textContent=storageError||'Pool e mazzo importati.';
+      if(imported.version!==1||imported.set!=='TRK'||imported.mode!==importMode)throw Error('File di un altro set, formato o versione. Seleziona prima il pool corretto.');
+      const next=validate(imported);
+      await changeState(value=>{Object.assign(value,next);},importMode);
+      status(storageError||'Pool e mazzo importati.');
     }catch(error){$('trk-storage-status').textContent='Importazione non eseguita: '+error.message;}
     event.target.value='';
   });

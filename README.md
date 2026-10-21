@@ -29,6 +29,10 @@ Il catalogo è incompleto e i prezzi non sono disponibili. Non viene simulata l'
 
 I pool sono distinti per Sealed, Draft e Pick-Two, con chiavi `mtg-trk-<modalità>-v1`. Le osservate usano `mtg-trk-watch-v1`. Non vengono lette o modificate le chiavi di Reality Fracture. L'importazione JSON controlla versione, set, modalità, identità delle carte e quantità prima di sostituire lo stato.
 
+Le modifiche rileggono il salvataggio aggiornato; Web Locks, quando disponibili, serializzano le scritture dello stesso pool fra schede. Gli eventi `storage` e `pageshow` aggiornano le pagine già aperte. Un salvataggio non leggibile viene conservato e non sovrascritto. La modalità scelta segue i collegamenti fra catalogo, costruzione, Draft e simulatore.
+
+`node verify-star-trek-review.cjs` verifica le regressioni segnalate dalla review: aggiornamenti fra schede e simultanei, focus dei comandi e delle terre, mulligan da tastiera, modalità nei collegamenti, protezione dei dati non validi, chiusura delle anteprime fuori schermo, salvataggi FRA e memoria temporanea quando la scrittura nel browser fallisce.
+
 Per aggiornare i dati, conservare gli input datati e creare nuovi snapshot con provenienza e data; aggiornare i riferimenti e le date del builder e degli strumenti, verificare la collazione e le regole ufficiali prima di abilitare nuove stime. Il campo Scryfall `booster` non viene usato da solo per decidere l'idoneità durante l'anteprima.
 
 Con il server di `dist/` sulla porta 8871, `node verify-star-trek.cjs` controlla le dieci pagine a 360, 768 e 1440 pixel, navigazione, anteprime, separazione pool, quantità, import/export, mulligan e compatibilità del catalogo FRA. Il percorso Playwright e il browser si configurano con `MTG_PLAYWRIGHT_MODULE` e `MTG_BROWSER_CHANNEL`; `MTG_SITE_URL` cambia l'URL del server.

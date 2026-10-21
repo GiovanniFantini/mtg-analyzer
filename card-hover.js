@@ -88,8 +88,12 @@
   });
   function onScroll(){
     // A touch can focus a card and scroll it into view after the click.
-    // Keep a pinned preview open through that scroll until explicitly dismissed.
-    if(active&&pinned){position(active);return;}
+    // Keep it only while its reference is still on screen.
+    if(active&&pinned){
+      const rect=active.getBoundingClientRect();
+      if(!active.isConnected||rect.bottom<=0||rect.top>=innerHeight||rect.right<=0||rect.left>=innerWidth){hide();return;}
+      position(active);return;
+    }
     const trigger=active||resumeHover,restore=trigger&&!pinned;
     hide();
     if(restore){resumeHover=trigger;scrollTimer=setTimeout(()=>{resumeHover=null;if(trigger.isConnected&&(trigger.matches(':hover')||target(document.activeElement)===trigger))show(trigger);},160);}
