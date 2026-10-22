@@ -1,0 +1,196 @@
+{
+  "description": "Frozen using the pre-fix evaluator from HEAD, including full bot states, logs and RNG-dependent choices.",
+  "cases": [
+    {
+      "record": {
+        "version": 2,
+        "engineVersion": 2,
+        "format": "fra-play-draft",
+        "revision": "b8507e3f2b0065d879d9c570c3f321bd5c8ad90f64097d8b72967de38cf88bab",
+        "seed": "legacy-bots-full",
+        "configs": [
+          {
+            "strategy": "signals",
+            "target": null
+          },
+          {
+            "strategy": "bomb",
+            "target": null
+          },
+          {
+            "strategy": "synergy",
+            "target": null
+          },
+          {
+            "strategy": "aggro",
+            "target": null
+          },
+          {
+            "strategy": "control",
+            "target": null
+          },
+          {
+            "strategy": "fixing",
+            "target": null
+          },
+          {
+            "strategy": "denial",
+            "target": null
+          }
+        ],
+        "picks": [
+          0,
+          99,
+          86,
+          74,
+          61,
+          52,
+          39,
+          14,
+          4,
+          111,
+          94,
+          83,
+          57,
+          55,
+          112,
+          128,
+          144,
+          164,
+          178,
+          186,
+          203,
+          211,
+          124,
+          138,
+          140,
+          160,
+          171,
+          189,
+          225,
+          328,
+          317,
+          307,
+          286,
+          275,
+          256,
+          240,
+          226,
+          335,
+          322,
+          296,
+          292,
+          273
+        ]
+      },
+      "botDigest": "346dc7fd06085d0bf2903a6d0b080ace52ee272a776d638a3dec389b3f902298"
+    },
+    {
+      "record": {
+        "version": 2,
+        "engineVersion": 2,
+        "format": "fra-play-draft",
+        "revision": "b8507e3f2b0065d879d9c570c3f321bd5c8ad90f64097d8b72967de38cf88bab",
+        "seed": "legacy-bots-partial",
+        "configs": [
+          {
+            "strategy": "signals",
+            "target": null
+          },
+          {
+            "strategy": "bomb",
+            "target": null
+          },
+          {
+            "strategy": "synergy",
+            "target": null
+          },
+          {
+            "strategy": "aggro",
+            "target": null
+          },
+          {
+            "strategy": "control",
+            "target": null
+          },
+          {
+            "strategy": "fixing",
+            "target": null
+          },
+          {
+            "strategy": "denial",
+            "target": null
+          }
+        ],
+        "picks": [
+          0,
+          99,
+          86,
+          73,
+          62,
+          49,
+          40,
+          14,
+          6,
+          106,
+          91,
+          82,
+          60,
+          55,
+          112,
+          128,
+          146,
+          162,
+          180
+        ]
+      },
+      "botDigest": "7219f6c38abe2057d4232f43c74c66226d51c8a60708bdba211170dbd74855df"
+    },
+    {
+      "record": {
+        "version": 2,
+        "engineVersion": 2,
+        "format": "fra-play-draft",
+        "revision": "b8507e3f2b0065d879d9c570c3f321bd5c8ad90f64097d8b72967de38cf88bab",
+        "seed": "legacy-bots-opening",
+        "configs": [
+          {
+            "strategy": "signals",
+            "target": null
+          },
+          {
+            "strategy": "bomb",
+            "target": null
+          },
+          {
+            "strategy": "synergy",
+            "target": null
+          },
+          {
+            "strategy": "aggro",
+            "target": null
+          },
+          {
+            "strategy": "control",
+            "target": null
+          },
+          {
+            "strategy": "fixing",
+            "target": null
+          },
+          {
+            "strategy": "denial",
+            "target": null
+          }
+        ],
+        "picks": [
+          0,
+          99,
+          86,
+          73
+        ]
+      },
+      "botDigest": "131b308af85d768aca11fc96b0d42685f19509b375f601ce184928787159ffab"
+    }
+  ]
+}

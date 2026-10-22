@@ -1,0 +1,201 @@
+{
+  "date": "2026-10-22",
+  "engineSourceHash": "592d264dcdc39533d516618f42a16863784ea57d6dcb9acaf1cfa9266fdf83bd",
+  "method": "Identical seeds, source format revision, ratings and human signals-v2 policy. Only the bot policy changes from v2 to v3.",
+  "criterion": "A bot passes a rare or mythic rated >=4.5 within its logged colors for a nonland card rated at least one point lower. This flags a specific pattern, not all possible strategic mistakes.",
+  "results": [
+    {
+      "scenario": "mixed",
+      "tables": 200,
+      "botPicks": 58800,
+      "before": {
+        "suspectChoices": 108,
+        "byStrategy": {
+          "signals": {
+            "picks": 8400,
+            "highRatedRareAvailableInSameLane": 138,
+            "highRatedRarePassedForWeakerSameLane": 6
+          },
+          "bomb": {
+            "picks": 8400,
+            "highRatedRareAvailableInSameLane": 155,
+            "highRatedRarePassedForWeakerSameLane": 3
+          },
+          "synergy": {
+            "picks": 8400,
+            "highRatedRareAvailableInSameLane": 160,
+            "highRatedRarePassedForWeakerSameLane": 15
+          },
+          "aggro": {
+            "picks": 8400,
+            "highRatedRareAvailableInSameLane": 147,
+            "highRatedRarePassedForWeakerSameLane": 50
+          },
+          "control": {
+            "picks": 8400,
+            "highRatedRareAvailableInSameLane": 174,
+            "highRatedRarePassedForWeakerSameLane": 25
+          },
+          "fixing": {
+            "picks": 8400,
+            "highRatedRareAvailableInSameLane": 159,
+            "highRatedRarePassedForWeakerSameLane": 5
+          },
+          "denial": {
+            "picks": 8400,
+            "highRatedRareAvailableInSameLane": 146,
+            "highRatedRarePassedForWeakerSameLane": 4
+          }
+        },
+        "selection": {
+          "rare": {
+            "count": 661,
+            "averagePick": 2.252647503782148,
+            "afterPick7": 11
+          },
+          "mythic": {
+            "count": 577,
+            "averagePick": 3.3518197573656847,
+            "afterPick7": 69
+          }
+        }
+      },
+      "after": {
+        "suspectChoices": 0,
+        "byStrategy": {
+          "signals": {
+            "picks": 8400,
+            "highRatedRareAvailableInSameLane": 139,
+            "highRatedRarePassedForWeakerSameLane": 0
+          },
+          "bomb": {
+            "picks": 8400,
+            "highRatedRareAvailableInSameLane": 152,
+            "highRatedRarePassedForWeakerSameLane": 0
+          },
+          "synergy": {
+            "picks": 8400,
+            "highRatedRareAvailableInSameLane": 145,
+            "highRatedRarePassedForWeakerSameLane": 0
+          },
+          "aggro": {
+            "picks": 8400,
+            "highRatedRareAvailableInSameLane": 125,
+            "highRatedRarePassedForWeakerSameLane": 0
+          },
+          "control": {
+            "picks": 8400,
+            "highRatedRareAvailableInSameLane": 135,
+            "highRatedRarePassedForWeakerSameLane": 0
+          },
+          "fixing": {
+            "picks": 8400,
+            "highRatedRareAvailableInSameLane": 132,
+            "highRatedRarePassedForWeakerSameLane": 0
+          },
+          "denial": {
+            "picks": 8400,
+            "highRatedRareAvailableInSameLane": 137,
+            "highRatedRarePassedForWeakerSameLane": 0
+          }
+        },
+        "selection": {
+          "rare": {
+            "count": 671,
+            "averagePick": 1.9269746646795827,
+            "afterPick7": 2
+          },
+          "mythic": {
+            "count": 591,
+            "averagePick": 2.8849407783417935,
+            "afterPick7": 58
+          }
+        }
+      }
+    },
+    {
+      "scenario": "signals",
+      "tables": 100,
+      "botPicks": 29400,
+      "before": {
+        "suspectChoices": 24,
+        "byStrategy": {
+          "signals": {
+            "picks": 29400,
+            "highRatedRareAvailableInSameLane": 520,
+            "highRatedRarePassedForWeakerSameLane": 24
+          }
+        },
+        "selection": {
+          "rare": {
+            "count": 353,
+            "averagePick": 2.1841359773371103,
+            "afterPick7": 5
+          },
+          "mythic": {
+            "count": 267,
+            "averagePick": 2.8352059925093633,
+            "afterPick7": 16
+          }
+        }
+      },
+      "after": {
+        "suspectChoices": 0,
+        "byStrategy": {
+          "signals": {
+            "picks": 29400,
+            "highRatedRareAvailableInSameLane": 491,
+            "highRatedRarePassedForWeakerSameLane": 0
+          }
+        },
+        "selection": {
+          "rare": {
+            "count": 358,
+            "averagePick": 1.8519553072625698,
+            "afterPick7": 0
+          },
+          "mythic": {
+            "count": 257,
+            "averagePick": 2.8793774319066148,
+            "afterPick7": 20
+          }
+        }
+      }
+    }
+  ],
+  "checks": {
+    "build": "pass",
+    "cardAndReplayTests": "pass",
+    "historicalPacks": 3000,
+    "sampledPacks": 30000,
+    "browser": "pass: v2 continuation, v3 complete/reload/export, mouse/keyboard/touch previews",
+    "expansionReview": "pass",
+    "collationContract": "pass",
+    "pythonUnitTests": {
+      "passed": 28,
+      "errors": 2,
+      "unrelatedExistingFailures": [
+        "test_correlated_exclusions_are_not_rejected_by_upper_bounds",
+        "test_pair_unique_counts_use_actual_pair_members"
+      ],
+      "file": "expansion_data.py (pre-existing local changes, untouched in this fix)",
+      "scope": "Original working directory, including unrelated local changes excluded from the bot fix commit."
+    },
+    "isolatedCommitSnapshot": {
+      "build": "pass",
+      "pythonUnitTests": {
+        "passed": 30,
+        "errors": 0
+      },
+      "draftBots": "pass",
+      "draftEngine": "pass, 30000 packs",
+      "expansions": "pass, 3000 historical packs and legacy replay",
+      "collationContract": "pass"
+    }
+  },
+  "limitations": [
+    "Ratings remain the documented editorial grades; historical GIH rates were not converted automatically.",
+    "This verifies improved draft-choice behavior, not deck win rates.",
+    "Off-color and narrow multicolor rares may still wheel."
+  ]
+}

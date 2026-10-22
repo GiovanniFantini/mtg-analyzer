@@ -1,0 +1,7954 @@
+{
+  "expansion": "reality-fracture",
+  "event": "draft",
+  "scenario": "mixed",
+  "tables": 200,
+  "botPicks": 58800,
+  "formatRevision": "b8507e3f2b0065d879d9c570c3f321bd5c8ad90f64097d8b72967de38cf88bab",
+  "configs": [
+    {
+      "strategy": "signals",
+      "target": null
+    },
+    {
+      "strategy": "bomb",
+      "target": null
+    },
+    {
+      "strategy": "synergy",
+      "target": null
+    },
+    {
+      "strategy": "aggro",
+      "target": null
+    },
+    {
+      "strategy": "control",
+      "target": null
+    },
+    {
+      "strategy": "fixing",
+      "target": null
+    },
+    {
+      "strategy": "denial",
+      "target": null
+    }
+  ],
+  "humanPolicy": "signals, separate seeded RNG",
+  "ratingsDate": "21/09/2026",
+  "statisticsDate": "16 ottobre 2026",
+  "caveats": [
+    "Pick counts describe this simulation, not player results.",
+    "Passing a rare is not automatically a mistake. Same-lane rating gaps flag cases for review; curve, mana costs and synergy still matter.",
+    "GIH rates are historical observational data, not causal card grades.",
+    "First-pick color probe is synthetic; all draft examples use unmodified source data."
+  ],
+  "rareSelection": {
+    "mythic_scoreAtLeast4.5": {
+      "count": 577,
+      "pickSum": 1934,
+      "afterPick4": 151,
+      "afterPick7": 69,
+      "histogram": {
+        "1": 218,
+        "2": 98,
+        "3": 68,
+        "4": 42,
+        "5": 32,
+        "6": 27,
+        "7": 23,
+        "8": 22,
+        "9": 12,
+        "10": 16,
+        "11": 10,
+        "12": 7,
+        "13": 1,
+        "14": 1
+      },
+      "averagePick": 3.3518197573656847
+    },
+    "rare_scoreBelow4": {
+      "count": 3001,
+      "pickSum": 25970,
+      "afterPick4": 2408,
+      "afterPick7": 1891,
+      "histogram": {
+        "1": 145,
+        "2": 125,
+        "3": 148,
+        "4": 175,
+        "5": 163,
+        "6": 186,
+        "7": 168,
+        "8": 194,
+        "9": 241,
+        "10": 243,
+        "11": 281,
+        "12": 298,
+        "13": 370,
+        "14": 264
+      },
+      "averagePick": 8.653782072642452
+    },
+    "rare_score4": {
+      "count": 1036,
+      "pickSum": 4467,
+      "afterPick4": 370,
+      "afterPick7": 197,
+      "histogram": {
+        "1": 224,
+        "2": 179,
+        "3": 149,
+        "4": 114,
+        "5": 71,
+        "6": 60,
+        "7": 42,
+        "8": 53,
+        "9": 37,
+        "10": 33,
+        "11": 27,
+        "12": 28,
+        "13": 13,
+        "14": 6
+      },
+      "averagePick": 4.311776061776062
+    },
+    "mythic_scoreBelow4": {
+      "count": 385,
+      "pickSum": 2864,
+      "afterPick4": 270,
+      "afterPick7": 189,
+      "histogram": {
+        "1": 21,
+        "2": 26,
+        "3": 38,
+        "4": 30,
+        "5": 30,
+        "6": 29,
+        "7": 22,
+        "8": 35,
+        "9": 26,
+        "10": 14,
+        "11": 28,
+        "12": 25,
+        "13": 37,
+        "14": 24
+      },
+      "averagePick": 7.438961038961039
+    },
+    "rare_scoreAtLeast4.5": {
+      "count": 661,
+      "pickSum": 1489,
+      "afterPick4": 66,
+      "afterPick7": 11,
+      "histogram": {
+        "1": 311,
+        "2": 144,
+        "3": 84,
+        "4": 56,
+        "5": 24,
+        "6": 18,
+        "7": 13,
+        "8": 8,
+        "10": 2,
+        "11": 1
+      },
+      "averagePick": 2.252647503782148
+    },
+    "mythic_score4": {
+      "count": 190,
+      "pickSum": 656,
+      "afterPick4": 50,
+      "afterPick7": 18,
+      "histogram": {
+        "1": 48,
+        "2": 39,
+        "3": 34,
+        "4": 19,
+        "5": 15,
+        "6": 10,
+        "7": 7,
+        "8": 6,
+        "9": 5,
+        "10": 4,
+        "11": 1,
+        "12": 2
+      },
+      "averagePick": 3.4526315789473685
+    }
+  },
+  "byStrategy": {
+    "signals": {
+      "picks": 8400,
+      "highRatedRareAvailableInSameLane": 138,
+      "highRatedRarePassedForWeakerSameLane": 6
+    },
+    "bomb": {
+      "picks": 8400,
+      "highRatedRareAvailableInSameLane": 155,
+      "highRatedRarePassedForWeakerSameLane": 3
+    },
+    "synergy": {
+      "picks": 8400,
+      "highRatedRareAvailableInSameLane": 160,
+      "highRatedRarePassedForWeakerSameLane": 15
+    },
+    "aggro": {
+      "picks": 8400,
+      "highRatedRareAvailableInSameLane": 147,
+      "highRatedRarePassedForWeakerSameLane": 50
+    },
+    "control": {
+      "picks": 8400,
+      "highRatedRareAvailableInSameLane": 174,
+      "highRatedRarePassedForWeakerSameLane": 25
+    },
+    "fixing": {
+      "picks": 8400,
+      "highRatedRareAvailableInSameLane": 159,
+      "highRatedRarePassedForWeakerSameLane": 5
+    },
+    "denial": {
+      "picks": 8400,
+      "highRatedRareAvailableInSameLane": 146,
+      "highRatedRarePassedForWeakerSameLane": 4
+    }
+  },
+  "firstPickColorProbe": {
+    "lane": "WU",
+    "scores": [
+      {
+        "color": "W",
+        "score": 3.56,
+        "components": {
+          "potenza": 3,
+          "colori": 0,
+          "sinergia": 0,
+          "curva": 0.5599999999999999,
+          "segnali": 0,
+          "mana": 0
+        }
+      },
+      {
+        "color": "U",
+        "score": 3.56,
+        "components": {
+          "potenza": 3,
+          "colori": 0,
+          "sinergia": 0,
+          "curva": 0.5599999999999999,
+          "segnali": 0,
+          "mana": 0
+        }
+      },
+      {
+        "color": "B",
+        "score": 3,
+        "components": {
+          "potenza": 3,
+          "colori": 0,
+          "sinergia": 0,
+          "curva": 0,
+          "segnali": 0,
+          "mana": 0
+        }
+      },
+      {
+        "color": "R",
+        "score": 3,
+        "components": {
+          "potenza": 3,
+          "colori": 0,
+          "sinergia": 0,
+          "curva": 0,
+          "segnali": 0,
+          "mana": 0
+        }
+      },
+      {
+        "color": "G",
+        "score": 3,
+        "components": {
+          "potenza": 3,
+          "colori": 0,
+          "sinergia": 0,
+          "curva": 0,
+          "segnali": 0,
+          "mana": 0
+        }
+      }
+    ]
+  },
+  "suspiciousExamples": [
+    {
+      "seed": "bot-audit-6",
+      "strategy": "aggro",
+      "round": 2,
+      "pick": 1,
+      "phase": "orienta",
+      "lane": "BR",
+      "pool": {
+        "cards": 14,
+        "inLaneCreatures": 8,
+        "inLaneCreaturesAtMost2Mana": 5
+      },
+      "chosen": {
+        "id": "fra-166",
+        "name": "Afterthought Sentry",
+        "rarity": "common",
+        "colors": [],
+        "cost": "{2}",
+        "base": 2.5,
+        "gih": 0.5278324,
+        "sample": 13222
+      },
+      "passed": {
+        "id": "fra-79",
+        "name": "Curse-Marred Demon",
+        "rarity": "rare",
+        "colors": [
+          "R"
+        ],
+        "cost": "{2}{R}{R}",
+        "base": 4.5,
+        "gih": 0.56397433,
+        "sample": 10598
+      },
+      "chosenTotal": 5.98,
+      "passedTotal": null,
+      "components": {
+        "potenza": 2.5,
+        "colori": 0.78,
+        "sinergia": 0,
+        "curva": 2.7,
+        "segnali": 0,
+        "mana": 0
+      },
+      "gap": 2
+    },
+    {
+      "seed": "bot-audit-39",
+      "strategy": "aggro",
+      "round": 2,
+      "pick": 1,
+      "phase": "orienta",
+      "lane": "WR",
+      "pool": {
+        "cards": 14,
+        "inLaneCreatures": 7,
+        "inLaneCreaturesAtMost2Mana": 4
+      },
+      "chosen": {
+        "id": "fra-85",
+        "name": "Hallway Heckler",
+        "rarity": "common",
+        "colors": [
+          "R"
+        ],
+        "cost": "{2}{R}",
+        "base": 3,
+        "gih": 0.5214749,
+        "sample": 22049
+      },
+      "passed": {
+        "id": "fra-309",
+        "name": "Chandra, Torch of Defiance",
+        "rarity": "mythic",
+        "colors": [
+          "R"
+        ],
+        "cost": "{2}{R}{R}",
+        "base": 5,
+        "gih": 0.60350762,
+        "sample": 6101
+      },
+      "chosenTotal": 5.28,
+      "passedTotal": 5.78,
+      "components": {
+        "potenza": 3,
+        "colori": 0.78,
+        "sinergia": 0,
+        "curva": 1.5,
+        "segnali": 0,
+        "mana": 0
+      },
+      "gap": 2
+    },
+    {
+      "seed": "bot-audit-74",
+      "strategy": "aggro",
+      "round": 2,
+      "pick": 1,
+      "phase": "orienta",
+      "lane": "BR",
+      "pool": {
+        "cards": 14,
+        "inLaneCreatures": 7,
+        "inLaneCreaturesAtMost2Mana": 3
+      },
+      "chosen": {
+        "id": "fra-166",
+        "name": "Afterthought Sentry",
+        "rarity": "common",
+        "colors": [],
+        "cost": "{2}",
+        "base": 2.5,
+        "gih": 0.5278324,
+        "sample": 13222
+      },
+      "passed": {
+        "id": "fra-328",
+        "name": "Curse-Marred Demon",
+        "rarity": "rare",
+        "colors": [
+          "R"
+        ],
+        "cost": "{2}{R}{R}",
+        "base": 4.5,
+        "gih": 0.56397433,
+        "sample": 10598
+      },
+      "chosenTotal": 5.98,
+      "passedTotal": 5.28,
+      "components": {
+        "potenza": 2.5,
+        "colori": 0.78,
+        "sinergia": 0,
+        "curva": 2.7,
+        "segnali": 0,
+        "mana": 0
+      },
+      "gap": 2
+    },
+    {
+      "seed": "bot-audit-85",
+      "strategy": "aggro",
+      "round": 3,
+      "pick": 1,
+      "phase": "completa",
+      "lane": "WR",
+      "pool": {
+        "cards": 28,
+        "inLaneCreatures": 14,
+        "inLaneCreaturesAtMost2Mana": 8
+      },
+      "chosen": {
+        "id": "fra-10",
+        "name": "Graft Surgeon",
+        "rarity": "common",
+        "colors": [
+          "W"
+        ],
+        "cost": "{2}{W}",
+        "base": 2.5,
+        "gih": 0.51600529,
+        "sample": 15120
+      },
+      "passed": {
+        "id": "fra-308",
+        "name": "Ajani Unrelenting",
+        "rarity": "mythic",
+        "colors": [
+          "R"
+        ],
+        "cost": "{4}{R}{R}",
+        "base": 4.5,
+        "gih": 0.73343098,
+        "sample": 8193
+      },
+      "chosenTotal": 5.9799999999999995,
+      "passedTotal": 4.9799999999999995,
+      "components": {
+        "potenza": 2.5,
+        "colori": 1.9799999999999998,
+        "sinergia": 0,
+        "curva": 1.5,
+        "segnali": 0,
+        "mana": 0
+      },
+      "gap": 2
+    },
+    {
+      "seed": "bot-audit-88",
+      "strategy": "aggro",
+      "round": 2,
+      "pick": 1,
+      "phase": "orienta",
+      "lane": "RG",
+      "pool": {
+        "cards": 14,
+        "inLaneCreatures": 6,
+        "inLaneCreaturesAtMost2Mana": 4
+      },
+      "chosen": {
+        "id": "fra-172",
+        "name": "Living Library",
+        "rarity": "common",
+        "colors": [],
+        "cost": "{2}",
+        "base": 2.5,
+        "gih": 0.52909211,
+        "sample": 7545
+      },
+      "passed": {
+        "id": "fra-308",
+        "name": "Ajani Unrelenting",
+        "rarity": "mythic",
+        "colors": [
+          "R"
+        ],
+        "cost": "{4}{R}{R}",
+        "base": 4.5,
+        "gih": 0.73343098,
+        "sample": 8193
+      },
+      "chosenTotal": 6.73,
+      "passedTotal": 3.7800000000000002,
+      "components": {
+        "potenza": 2.5,
+        "colori": 0.78,
+        "sinergia": 0,
+        "curva": 3.4499999999999997,
+        "segnali": 0,
+        "mana": 0
+      },
+      "gap": 2
+    },
+    {
+      "seed": "bot-audit-113",
+      "strategy": "aggro",
+      "round": 3,
+      "pick": 1,
+      "phase": "consolida",
+      "lane": "WR",
+      "pool": {
+        "cards": 28,
+        "inLaneCreatures": 14,
+        "inLaneCreaturesAtMost2Mana": 8
+      },
+      "chosen": {
+        "id": "fra-90",
+        "name": "Pompous Battlemage",
+        "rarity": "rare",
+        "colors": [
+          "R"
+        ],
+        "cost": "{R}",
+        "base": 2.5,
+        "gih": 0.53295225,
+        "sample": 5948
+      },
+      "passed": {
+        "id": "fra-242",
+        "name": "Ajani Unrelenting",
+        "rarity": "mythic",
+        "colors": [
+          "R"
+        ],
+        "cost": "{4}{R}{R}",
+        "base": 4.5,
+        "gih": 0.73343098,
+        "sample": 8193
+      },
+      "chosenTotal": 5.11,
+      "passedTotal": null,
+      "components": {
+        "potenza": 2.5,
+        "colori": 1.56,
+        "sinergia": 0,
+        "curva": 1.0499999999999998,
+        "segnali": 0,
+        "mana": 0
+      },
+      "gap": 2
+    },
+    {
+      "seed": "bot-audit-174",
+      "strategy": "aggro",
+      "round": 1,
+      "pick": 1,
+      "phase": "esplora",
+      "lane": "WU",
+      "pool": {
+        "cards": 0,
+        "inLaneCreatures": 0,
+        "inLaneCreaturesAtMost2Mana": 0
+      },
+      "chosen": {
+        "id": "fra-23",
+        "name": "Unflinching Hortimancer",
+        "rarity": "common",
+        "colors": [
+          "W"
+        ],
+        "cost": "{1}{W}",
+        "base": 2.5,
+        "gih": 0.53846154,
+        "sample": 37011
+      },
+      "passed": {
+        "id": "spg-163",
+        "name": "Sublime Epiphany",
+        "rarity": "mythic",
+        "colors": [
+          "U"
+        ],
+        "cost": "{4}{U}{U}",
+        "base": 4.5,
+        "gih": 0.67132505,
+        "sample": 1932
+      },
+      "chosenTotal": 5.2,
+      "passedTotal": null,
+      "components": {
+        "potenza": 2.5,
+        "colori": 0,
+        "sinergia": 0,
+        "curva": 2.7,
+        "segnali": 0,
+        "mana": 0
+      },
+      "gap": 2
+    },
+    {
+      "seed": "bot-audit-65",
+      "strategy": "aggro",
+      "round": 1,
+      "pick": 2,
+      "phase": "esplora",
+      "lane": "WU",
+      "pool": {
+        "cards": 1,
+        "inLaneCreatures": 1,
+        "inLaneCreaturesAtMost2Mana": 1
+      },
+      "chosen": {
+        "id": "fra-166",
+        "name": "Afterthought Sentry",
+        "rarity": "common",
+        "colors": [],
+        "cost": "{2}",
+        "base": 2.5,
+        "gih": 0.5278324,
+        "sample": 13222
+      },
+      "passed": {
+        "id": "fra-128",
+        "name": "Denzilore Fatehold",
+        "rarity": "mythic",
+        "colors": [
+          "U",
+          "W"
+        ],
+        "cost": "{1}{W}{U}{U}",
+        "base": 4.5,
+        "gih": 0.61699203,
+        "sample": 7274
+      },
+      "chosenTotal": 5.296,
+      "passedTotal": 4.708,
+      "components": {
+        "potenza": 2.5,
+        "colori": 0.096,
+        "sinergia": 0,
+        "curva": 2.7,
+        "segnali": 0,
+        "mana": 0
+      },
+      "gap": 2
+    },
+    {
+      "seed": "bot-audit-75",
+      "strategy": "aggro",
+      "round": 2,
+      "pick": 2,
+      "phase": "orienta",
+      "lane": "WU",
+      "pool": {
+        "cards": 15,
+        "inLaneCreatures": 7,
+        "inLaneCreaturesAtMost2Mana": 4
+      },
+      "chosen": {
+        "id": "fra-172",
+        "name": "Living Library",
+        "rarity": "common",
+        "colors": [],
+        "cost": "{2}",
+        "base": 2.5,
+        "gih": 0.52909211,
+        "sample": 7545
+      },
+      "passed": {
+        "id": "fra-40",
+        "name": "Sphinx of False Conclusions",
+        "rarity": "rare",
+        "colors": [
+          "U"
+        ],
+        "cost": "{2}{U}{U}",
+        "base": 4.5,
+        "gih": 0.64345794,
+        "sample": 17120
+      },
+      "chosenTotal": 6.73,
+      "passedTotal": 5.392,
+      "components": {
+        "potenza": 2.5,
+        "colori": 0.78,
+        "sinergia": 0,
+        "curva": 3.4499999999999997,
+        "segnali": 0,
+        "mana": 0
+      },
+      "gap": 2
+    },
+    {
+      "seed": "bot-audit-123",
+      "strategy": "aggro",
+      "round": 2,
+      "pick": 2,
+      "phase": "consolida",
+      "lane": "UB",
+      "pool": {
+        "cards": 15,
+        "inLaneCreatures": 12,
+        "inLaneCreaturesAtMost2Mana": 5
+      },
+      "chosen": {
+        "id": "fra-166",
+        "name": "Afterthought Sentry",
+        "rarity": "common",
+        "colors": [],
+        "cost": "{2}",
+        "base": 2.5,
+        "gih": 0.5278324,
+        "sample": 13222
+      },
+      "passed": {
+        "id": "fra-159",
+        "name": "Uldaros Theorix",
+        "rarity": "mythic",
+        "colors": [
+          "B",
+          "U"
+        ],
+        "cost": "{3}{U}{B}{B}",
+        "base": 4.5,
+        "gih": 0.69351717,
+        "sample": 8268
+      },
+      "chosenTotal": 5.5600000000000005,
+      "passedTotal": null,
+      "components": {
+        "potenza": 2.5,
+        "colori": 1.56,
+        "sinergia": 0,
+        "curva": 1.5,
+        "segnali": 0,
+        "mana": 0
+      },
+      "gap": 2
+    },
+    {
+      "seed": "bot-audit-161",
+      "strategy": "aggro",
+      "round": 2,
+      "pick": 3,
+      "phase": "consolida",
+      "lane": "UR",
+      "pool": {
+        "cards": 16,
+        "inLaneCreatures": 8,
+        "inLaneCreaturesAtMost2Mana": 3
+      },
+      "chosen": {
+        "id": "fra-172",
+        "name": "Living Library",
+        "rarity": "common",
+        "colors": [],
+        "cost": "{2}",
+        "base": 2.5,
+        "gih": 0.52909211,
+        "sample": 7545
+      },
+      "passed": {
+        "id": "fra-242",
+        "name": "Ajani Unrelenting",
+        "rarity": "mythic",
+        "colors": [
+          "R"
+        ],
+        "cost": "{4}{R}{R}",
+        "base": 4.5,
+        "gih": 0.73343098,
+        "sample": 8193
+      },
+      "chosenTotal": 7.51,
+      "passedTotal": null,
+      "components": {
+        "potenza": 2.5,
+        "colori": 1.56,
+        "sinergia": 0,
+        "curva": 3.4499999999999997,
+        "segnali": 0,
+        "mana": 0
+      },
+      "gap": 2
+    },
+    {
+      "seed": "bot-audit-81",
+      "strategy": "aggro",
+      "round": 3,
+      "pick": 4,
+      "phase": "consolida",
+      "lane": "UB",
+      "pool": {
+        "cards": 31,
+        "inLaneCreatures": 14,
+        "inLaneCreaturesAtMost2Mana": 6
+      },
+      "chosen": {
+        "id": "fra-223",
+        "name": "Way of the Cryomancer",
+        "rarity": "uncommon",
+        "colors": [
+          "U"
+        ],
+        "cost": "{2}{U}",
+        "base": 2.5,
+        "gih": 0.52948557,
+        "sample": 16737
+      },
+      "passed": {
+        "id": "fra-159",
+        "name": "Uldaros Theorix",
+        "rarity": "mythic",
+        "colors": [
+          "B",
+          "U"
+        ],
+        "cost": "{3}{U}{B}{B}",
+        "base": 4.5,
+        "gih": 0.69351717,
+        "sample": 8268
+      },
+      "chosenTotal": 4.5877552,
+      "passedTotal": 5.0137176000000006,
+      "components": {
+        "potenza": 2.5,
+        "colori": 1.56,
+        "sinergia": 0,
+        "curva": 0,
+        "segnali": 0.5277552,
+        "mana": 0
+      },
+      "gap": 2
+    },
+    {
+      "seed": "bot-audit-87",
+      "strategy": "aggro",
+      "round": 2,
+      "pick": 4,
+      "phase": "orienta",
+      "lane": "UR",
+      "pool": {
+        "cards": 17,
+        "inLaneCreatures": 8,
+        "inLaneCreaturesAtMost2Mana": 4
+      },
+      "chosen": {
+        "id": "fra-81",
+        "name": "Eardrum Rattler",
+        "rarity": "common",
+        "colors": [
+          "R"
+        ],
+        "cost": "{1}{R}",
+        "base": 2.5,
+        "gih": 0.4917144,
+        "sample": 9776
+      },
+      "passed": {
+        "id": "fra-79",
+        "name": "Curse-Marred Demon",
+        "rarity": "rare",
+        "colors": [
+          "R"
+        ],
+        "cost": "{2}{R}{R}",
+        "base": 4.5,
+        "gih": 0.56397433,
+        "sample": 10598
+      },
+      "chosenTotal": 6.35968,
+      "passedTotal": 5.65968,
+      "components": {
+        "potenza": 2.5,
+        "colori": 0.78,
+        "sinergia": 0,
+        "curva": 2.7,
+        "segnali": 0.37967999999999996,
+        "mana": 0
+      },
+      "gap": 2
+    },
+    {
+      "seed": "bot-audit-3",
+      "strategy": "aggro",
+      "round": 2,
+      "pick": 1,
+      "phase": "consolida",
+      "lane": "UR",
+      "pool": {
+        "cards": 14,
+        "inLaneCreatures": 7,
+        "inLaneCreaturesAtMost2Mana": 3
+      },
+      "chosen": {
+        "id": "fra-171",
+        "name": "Keeper of the Quiet Hour",
+        "rarity": "common",
+        "colors": [],
+        "cost": "{3}",
+        "base": 3,
+        "gih": 0.56358779,
+        "sample": 51653
+      },
+      "passed": {
+        "id": "fra-40",
+        "name": "Sphinx of False Conclusions",
+        "rarity": "rare",
+        "colors": [
+          "U"
+        ],
+        "cost": "{2}{U}{U}",
+        "base": 4.5,
+        "gih": 0.64345794,
+        "sample": 17120
+      },
+      "chosenTotal": 6.0600000000000005,
+      "passedTotal": 6.0600000000000005,
+      "components": {
+        "potenza": 3,
+        "colori": 1.56,
+        "sinergia": 0,
+        "curva": 1.5,
+        "segnali": 0,
+        "mana": 0
+      },
+      "gap": 1.5
+    },
+    {
+      "seed": "bot-audit-95",
+      "strategy": "aggro",
+      "round": 2,
+      "pick": 1,
+      "phase": "consolida",
+      "lane": "BR",
+      "pool": {
+        "cards": 14,
+        "inLaneCreatures": 9,
+        "inLaneCreaturesAtMost2Mana": 3
+      },
+      "chosen": {
+        "id": "fra-85",
+        "name": "Hallway Heckler",
+        "rarity": "common",
+        "colors": [
+          "R"
+        ],
+        "cost": "{2}{R}",
+        "base": 3,
+        "gih": 0.5214749,
+        "sample": 22049
+      },
+      "passed": {
+        "id": "fra-59",
+        "name": "Overwrite the Multiverse",
+        "rarity": "mythic",
+        "colors": [
+          "B"
+        ],
+        "cost": "{4}{B}{B}",
+        "base": 4.5,
+        "gih": 0.6585752,
+        "sample": 7580
+      },
+      "chosenTotal": 6.15,
+      "passedTotal": null,
+      "components": {
+        "potenza": 3,
+        "colori": 1.56,
+        "sinergia": 0.09,
+        "curva": 1.5,
+        "segnali": 0,
+        "mana": 0
+      },
+      "gap": 1.5
+    },
+    {
+      "seed": "bot-audit-103",
+      "strategy": "aggro",
+      "round": 2,
+      "pick": 1,
+      "phase": "consolida",
+      "lane": "WU",
+      "pool": {
+        "cards": 14,
+        "inLaneCreatures": 8,
+        "inLaneCreaturesAtMost2Mana": 1
+      },
+      "chosen": {
+        "id": "fra-42",
+        "name": "Surveillance Phantasm",
+        "rarity": "common",
+        "colors": [
+          "U"
+        ],
+        "cost": "{1}{U}",
+        "base": 3,
+        "gih": 0.57456825,
+        "sample": 90273
+      },
+      "passed": {
+        "id": "fra-40",
+        "name": "Sphinx of False Conclusions",
+        "rarity": "rare",
+        "colors": [
+          "U"
+        ],
+        "cost": "{2}{U}{U}",
+        "base": 4.5,
+        "gih": 0.64345794,
+        "sample": 17120
+      },
+      "chosenTotal": 7.3500000000000005,
+      "passedTotal": 6.0600000000000005,
+      "components": {
+        "potenza": 3,
+        "colori": 1.56,
+        "sinergia": 0.09,
+        "curva": 2.7,
+        "segnali": 0,
+        "mana": 0
+      },
+      "gap": 1.5
+    },
+    {
+      "seed": "bot-audit-113",
+      "strategy": "synergy",
+      "round": 3,
+      "pick": 1,
+      "phase": "orienta",
+      "lane": "BG",
+      "pool": {
+        "cards": 28,
+        "inLaneCreatures": 13,
+        "inLaneCreaturesAtMost2Mana": 4
+      },
+      "chosen": {
+        "id": "fra-48",
+        "name": "Apex Witchstalker",
+        "rarity": "common",
+        "colors": [
+          "B"
+        ],
+        "cost": "{4}{B}{B}",
+        "base": 3,
+        "gih": 0.55623367,
+        "sample": 69638
+      },
+      "passed": {
+        "id": "fra-118",
+        "name": "Verdant Kraken",
+        "rarity": "rare",
+        "colors": [
+          "G"
+        ],
+        "cost": "{4}{G}{G}{G}",
+        "base": 4.5,
+        "gih": 0.58500407,
+        "sample": 12270
+      },
+      "chosenTotal": 5.923,
+      "passedTotal": 4.765,
+      "components": {
+        "potenza": 2.7,
+        "colori": 0.7150000000000001,
+        "sinergia": 2.2680000000000002,
+        "curva": 0,
+        "segnali": 0,
+        "mana": 0.24
+      },
+      "gap": 1.5
+    },
+    {
+      "seed": "bot-audit-113",
+      "strategy": "control",
+      "round": 2,
+      "pick": 1,
+      "phase": "orienta",
+      "lane": "UB",
+      "pool": {
+        "cards": 14,
+        "inLaneCreatures": 3,
+        "inLaneCreaturesAtMost2Mana": 1
+      },
+      "chosen": {
+        "id": "fra-213",
+        "name": "Fblthp, Impossibly Lost",
+        "rarity": "uncommon",
+        "colors": [
+          "U"
+        ],
+        "cost": "{1}{U}",
+        "base": 3,
+        "gih": 0.59781584,
+        "sample": 48806
+      },
+      "passed": {
+        "id": "fra-217",
+        "name": "Lyra, Tolarian Archangel",
+        "rarity": "rare",
+        "colors": [
+          "U"
+        ],
+        "cost": "{1}{U}{U}",
+        "base": 4.5,
+        "gih": 0.61093115,
+        "sample": 16979
+      },
+      "chosenTotal": 5.43,
+      "passedTotal": 5.73,
+      "components": {
+        "potenza": 3.3000000000000003,
+        "colori": 0.78,
+        "sinergia": 0,
+        "curva": 1.35,
+        "segnali": 0,
+        "mana": 0
+      },
+      "gap": 1.5
+    },
+    {
+      "seed": "bot-audit-134",
+      "strategy": "aggro",
+      "round": 1,
+      "pick": 1,
+      "phase": "esplora",
+      "lane": "WU",
+      "pool": {
+        "cards": 0,
+        "inLaneCreatures": 0,
+        "inLaneCreaturesAtMost2Mana": 0
+      },
+      "chosen": {
+        "id": "fra-33",
+        "name": "Mindseeker Oculus",
+        "rarity": "common",
+        "colors": [
+          "U"
+        ],
+        "cost": "{2}{U}",
+        "base": 3.5,
+        "gih": 0.60051759,
+        "sample": 112831
+      },
+      "passed": {
+        "id": "fra-363",
+        "name": "The Theorist, Jace Beleren",
+        "rarity": "mythic",
+        "colors": [
+          "U"
+        ],
+        "cost": "{2}{U}{U}",
+        "base": 5,
+        "gih": 0.68577174,
+        "sample": 7956
+      },
+      "chosenTotal": 5,
+      "passedTotal": 5,
+      "components": {
+        "potenza": 3.5,
+        "colori": 0,
+        "sinergia": 0,
+        "curva": 1.5,
+        "segnali": 0,
+        "mana": 0
+      },
+      "gap": 1.5
+    },
+    {
+      "seed": "bot-audit-157",
+      "strategy": "control",
+      "round": 1,
+      "pick": 1,
+      "phase": "esplora",
+      "lane": "WU",
+      "pool": {
+        "cards": 0,
+        "inLaneCreatures": 0,
+        "inLaneCreaturesAtMost2Mana": 0
+      },
+      "chosen": {
+        "id": "fra-198",
+        "name": "Gideon's Memorial",
+        "rarity": "rare",
+        "colors": [
+          "W"
+        ],
+        "cost": "{1}{W}",
+        "base": 3,
+        "gih": 0.50688424,
+        "sample": 5883
+      },
+      "passed": {
+        "id": "fra-128",
+        "name": "Denzilore Fatehold",
+        "rarity": "mythic",
+        "colors": [
+          "U",
+          "W"
+        ],
+        "cost": "{1}{W}{U}{U}",
+        "base": 4.5,
+        "gih": 0.61699203,
+        "sample": 7274
+      },
+      "chosenTotal": 4.7700000000000005,
+      "passedTotal": 4.95,
+      "components": {
+        "potenza": 3.3000000000000003,
+        "colori": 0,
+        "sinergia": 0,
+        "curva": 1.35,
+        "segnali": 0,
+        "mana": 0.12
+      },
+      "gap": 1.5
+    },
+    {
+      "seed": "bot-audit-163",
+      "strategy": "aggro",
+      "round": 1,
+      "pick": 1,
+      "phase": "orienta",
+      "lane": "WU",
+      "pool": {
+        "cards": 0,
+        "inLaneCreatures": 0,
+        "inLaneCreaturesAtMost2Mana": 0
+      },
+      "chosen": {
+        "id": "fra-4",
+        "name": "Campus Crier",
+        "rarity": "common",
+        "colors": [
+          "W"
+        ],
+        "cost": "{1}{W}",
+        "base": 3,
+        "gih": 0.5583361,
+        "sample": 57143
+      },
+      "passed": {
+        "id": "fra-128",
+        "name": "Denzilore Fatehold",
+        "rarity": "mythic",
+        "colors": [
+          "U",
+          "W"
+        ],
+        "cost": "{1}{W}{U}{U}",
+        "base": 4.5,
+        "gih": 0.61699203,
+        "sample": 7274
+      },
+      "chosenTotal": 5.7,
+      "passedTotal": 4.5,
+      "components": {
+        "potenza": 3,
+        "colori": 0,
+        "sinergia": 0,
+        "curva": 2.7,
+        "segnali": 0,
+        "mana": 0
+      },
+      "gap": 1.5
+    },
+    {
+      "seed": "bot-audit-166",
+      "strategy": "aggro",
+      "round": 2,
+      "pick": 1,
+      "phase": "orienta",
+      "lane": "UB",
+      "pool": {
+        "cards": 14,
+        "inLaneCreatures": 9,
+        "inLaneCreaturesAtMost2Mana": 5
+      },
+      "chosen": {
+        "id": "fra-226",
+        "name": "Yuriko, Hope from the Shadows",
+        "rarity": "uncommon",
+        "colors": [
+          "U"
+        ],
+        "cost": "{U}",
+        "base": 3,
+        "gih": 0.53450456,
+        "sample": 15027
+      },
+      "passed": {
+        "id": "fra-40",
+        "name": "Sphinx of False Conclusions",
+        "rarity": "rare",
+        "colors": [
+          "U"
+        ],
+        "cost": "{2}{U}{U}",
+        "base": 4.5,
+        "gih": 0.64345794,
+        "sample": 17120
+      },
+      "chosenTotal": 6.48,
+      "passedTotal": null,
+      "components": {
+        "potenza": 3,
+        "colori": 0.78,
+        "sinergia": 0,
+        "curva": 2.7,
+        "segnali": 0,
+        "mana": 0
+      },
+      "gap": 1.5
+    },
+    {
+      "seed": "bot-audit-16",
+      "strategy": "signals",
+      "round": 3,
+      "pick": 2,
+      "phase": "completa",
+      "lane": "WU",
+      "pool": {
+        "cards": 29,
+        "inLaneCreatures": 11,
+        "inLaneCreaturesAtMost2Mana": 3
+      },
+      "chosen": {
+        "id": "fra-133",
+        "name": "Fatehold Chronologist",
+        "rarity": "common",
+        "colors": [
+          "U",
+          "W"
+        ],
+        "cost": "{1}{W/U}",
+        "base": 3,
+        "gih": 0.56510774,
+        "sample": 80098
+      },
+      "passed": {
+        "id": "fra-201",
+        "name": "Lyra, Archangel of Dawn",
+        "rarity": "rare",
+        "colors": [
+          "W"
+        ],
+        "cost": "{2}{W}",
+        "base": 4.5,
+        "gih": 0.58827614,
+        "sample": 10082
+      },
+      "chosenTotal": 5.874,
+      "passedTotal": 5.846000000000001,
+      "components": {
+        "potenza": 3,
+        "colori": 1.65,
+        "sinergia": 0.504,
+        "curva": 0.5599999999999999,
+        "segnali": 0.16000000000000003,
+        "mana": 0
+      },
+      "gap": 1.5
+    },
+    {
+      "seed": "bot-audit-27",
+      "strategy": "aggro",
+      "round": 1,
+      "pick": 2,
+      "phase": "esplora",
+      "lane": "UG",
+      "pool": {
+        "cards": 1,
+        "inLaneCreatures": 1,
+        "inLaneCreaturesAtMost2Mana": 1
+      },
+      "chosen": {
+        "id": "fra-226",
+        "name": "Yuriko, Hope from the Shadows",
+        "rarity": "uncommon",
+        "colors": [
+          "U"
+        ],
+        "cost": "{U}",
+        "base": 3,
+        "gih": 0.53450456,
+        "sample": 15027
+      },
+      "passed": {
+        "id": "fra-118",
+        "name": "Verdant Kraken",
+        "rarity": "rare",
+        "colors": [
+          "G"
+        ],
+        "cost": "{4}{G}{G}{G}",
+        "base": 4.5,
+        "gih": 0.58500407,
+        "sample": 12270
+      },
+      "chosenTotal": 5.88,
+      "passedTotal": null,
+      "components": {
+        "potenza": 3,
+        "colori": 0.096,
+        "sinergia": 0,
+        "curva": 2.7,
+        "segnali": 0.084,
+        "mana": 0
+      },
+      "gap": 1.5
+    },
+    {
+      "seed": "bot-audit-69",
+      "strategy": "synergy",
+      "round": 3,
+      "pick": 2,
+      "phase": "completa",
+      "lane": "UG",
+      "pool": {
+        "cards": 29,
+        "inLaneCreatures": 12,
+        "inLaneCreaturesAtMost2Mana": 5
+      },
+      "chosen": {
+        "id": "fra-37",
+        "name": "Protege's Awakening",
+        "rarity": "common",
+        "colors": [
+          "U"
+        ],
+        "cost": "{3}{U}",
+        "base": 3,
+        "gih": 0.58649163,
+        "sample": 76782
+      },
+      "passed": {
+        "id": "fra-118",
+        "name": "Verdant Kraken",
+        "rarity": "rare",
+        "colors": [
+          "G"
+        ],
+        "cost": "{4}{G}{G}{G}",
+        "base": 4.5,
+        "gih": 0.58500407,
+        "sample": 12270
+      },
+      "chosenTotal": 6.4910000000000005,
+      "passedTotal": 5.993,
+      "components": {
+        "potenza": 2.7,
+        "colori": 1.815,
+        "sinergia": 1.9440000000000002,
+        "curva": 0,
+        "segnali": 0.03200000000000001,
+        "mana": 0
+      },
+      "gap": 1.5
+    },
+    {
+      "seed": "bot-audit-93",
+      "strategy": "synergy",
+      "round": 3,
+      "pick": 2,
+      "phase": "completa",
+      "lane": "BR",
+      "pool": {
+        "cards": 29,
+        "inLaneCreatures": 13,
+        "inLaneCreaturesAtMost2Mana": 5
+      },
+      "chosen": {
+        "id": "fra-136",
+        "name": "Grim Repriser",
+        "rarity": "uncommon",
+        "colors": [
+          "B",
+          "R"
+        ],
+        "cost": "{B}{R}",
+        "base": 3,
+        "gih": 0.53289032,
+        "sample": 13393
+      },
+      "passed": {
+        "id": "fra-57",
+        "name": "Lich's Relic",
+        "rarity": "rare",
+        "colors": [
+          "B"
+        ],
+        "cost": "{B}",
+        "base": 4.5,
+        "gih": 0.63005817,
+        "sample": 15816
+      },
+      "chosenTotal": 7.019,
+      "passedTotal": 5.993,
+      "components": {
+        "potenza": 2.7,
+        "colori": 1.815,
+        "sinergia": 1.9440000000000002,
+        "curva": 0.48,
+        "segnali": 0.08000000000000002,
+        "mana": 0
+      },
+      "gap": 1.5
+    },
+    {
+      "seed": "bot-audit-124",
+      "strategy": "aggro",
+      "round": 2,
+      "pick": 2,
+      "phase": "consolida",
+      "lane": "WB",
+      "pool": {
+        "cards": 15,
+        "inLaneCreatures": 9,
+        "inLaneCreaturesAtMost2Mana": 4
+      },
+      "chosen": {
+        "id": "fra-69",
+        "name": "Theoretical Necromancer",
+        "rarity": "common",
+        "colors": [
+          "B"
+        ],
+        "cost": "{2}{B}",
+        "base": 3,
+        "gih": 0.55429971,
+        "sample": 51050
+      },
+      "passed": {
+        "id": "fra-59",
+        "name": "Overwrite the Multiverse",
+        "rarity": "mythic",
+        "colors": [
+          "B"
+        ],
+        "cost": "{4}{B}{B}",
+        "base": 4.5,
+        "gih": 0.6585752,
+        "sample": 7580
+      },
+      "chosenTotal": 4.972,
+      "passedTotal": null,
+      "components": {
+        "potenza": 3,
+        "colori": 1.56,
+        "sinergia": 0,
+        "curva": 0.29999999999999993,
+        "segnali": 0.11200000000000002,
+        "mana": 0
+      },
+      "gap": 1.5
+    },
+    {
+      "seed": "bot-audit-144",
+      "strategy": "aggro",
+      "round": 2,
+      "pick": 2,
+      "phase": "consolida",
+      "lane": "WU",
+      "pool": {
+        "cards": 15,
+        "inLaneCreatures": 11,
+        "inLaneCreaturesAtMost2Mana": 4
+      },
+      "chosen": {
+        "id": "fra-4",
+        "name": "Campus Crier",
+        "rarity": "common",
+        "colors": [
+          "W"
+        ],
+        "cost": "{1}{W}",
+        "base": 3,
+        "gih": 0.5583361,
+        "sample": 57143
+      },
+      "passed": {
+        "id": "fra-349",
+        "name": "Denzilore Fatehold",
+        "rarity": "mythic",
+        "colors": [
+          "U",
+          "W"
+        ],
+        "cost": "{1}{W}{U}{U}",
+        "base": 4.5,
+        "gih": 0.61699203,
+        "sample": 7274
+      },
+      "chosenTotal": 7.372000000000001,
+      "passedTotal": null,
+      "components": {
+        "potenza": 3,
+        "colori": 1.56,
+        "sinergia": 0,
+        "curva": 2.7,
+        "segnali": 0.11200000000000002,
+        "mana": 0
+      },
+      "gap": 1.5
+    },
+    {
+      "seed": "bot-audit-131",
+      "strategy": "denial",
+      "round": 3,
+      "pick": 3,
+      "phase": "consolida",
+      "lane": "WU",
+      "pool": {
+        "cards": 30,
+        "inLaneCreatures": 14,
+        "inLaneCreaturesAtMost2Mana": 3
+      },
+      "chosen": {
+        "id": "fra-133",
+        "name": "Fatehold Chronologist",
+        "rarity": "common",
+        "colors": [
+          "U",
+          "W"
+        ],
+        "cost": "{1}{W/U}",
+        "base": 3,
+        "gih": 0.56510774,
+        "sample": 80098
+      },
+      "passed": {
+        "id": "fra-201",
+        "name": "Lyra, Archangel of Dawn",
+        "rarity": "rare",
+        "colors": [
+          "W"
+        ],
+        "cost": "{2}{W}",
+        "base": 4.5,
+        "gih": 0.58827614,
+        "sample": 10082
+      },
+      "chosenTotal": 6.5244,
+      "passedTotal": 5.855920000000001,
+      "components": {
+        "potenza": 3,
+        "colori": 1.6900000000000002,
+        "sinergia": 0.9719999999999999,
+        "curva": 0.6400000000000001,
+        "segnali": 0.22240000000000004,
+        "mana": 0
+      },
+      "gap": 1.5
+    },
+    {
+      "seed": "bot-audit-143",
+      "strategy": "aggro",
+      "round": 2,
+      "pick": 3,
+      "phase": "orienta",
+      "lane": "WG",
+      "pool": {
+        "cards": 16,
+        "inLaneCreatures": 6,
+        "inLaneCreaturesAtMost2Mana": 4
+      },
+      "chosen": {
+        "id": "fra-161",
+        "name": "Vigorbloom Vanguard",
+        "rarity": "uncommon",
+        "colors": [
+          "G",
+          "W"
+        ],
+        "cost": "{1}{G/W}",
+        "base": 3,
+        "gih": 0.56351099,
+        "sample": 27263
+      },
+      "passed": {
+        "id": "fra-294",
+        "name": "Lyra, Archangel of Dawn",
+        "rarity": "rare",
+        "colors": [
+          "W"
+        ],
+        "cost": "{2}{W}",
+        "base": 4.5,
+        "gih": 0.58827614,
+        "sample": 10082
+      },
+      "chosenTotal": 7.23784,
+      "passedTotal": 7.0040000000000004,
+      "components": {
+        "potenza": 3,
+        "colori": 0.78,
+        "sinergia": 0.54,
+        "curva": 2.7,
+        "segnali": 0.21784,
+        "mana": 0
+      },
+      "gap": 1.5
+    },
+    {
+      "seed": "bot-audit-147",
+      "strategy": "synergy",
+      "round": 2,
+      "pick": 3,
+      "phase": "consolida",
+      "lane": "WR",
+      "pool": {
+        "cards": 16,
+        "inLaneCreatures": 5,
+        "inLaneCreaturesAtMost2Mana": 2
+      },
+      "chosen": {
+        "id": "fra-12",
+        "name": "Hexhaven Battalion",
+        "rarity": "common",
+        "colors": [
+          "W"
+        ],
+        "cost": "{4}{W}{W}",
+        "base": 3.5,
+        "gih": 0.57640385,
+        "sample": 76148
+      },
+      "passed": {
+        "id": "fra-244",
+        "name": "Chandra, Torch of Defiance",
+        "rarity": "mythic",
+        "colors": [
+          "R"
+        ],
+        "cost": "{2}{R}{R}",
+        "base": 5,
+        "gih": 0.60350762,
+        "sample": 6101
+      },
+      "chosenTotal": 7.120960000000001,
+      "passedTotal": 6.324879999999999,
+      "components": {
+        "potenza": 3.15,
+        "colori": 1.4300000000000002,
+        "sinergia": 2.2680000000000002,
+        "curva": 0,
+        "segnali": 0.15296000000000004,
+        "mana": 0.12
+      },
+      "gap": 1.5
+    },
+    {
+      "seed": "bot-audit-190",
+      "strategy": "signals",
+      "round": 2,
+      "pick": 3,
+      "phase": "consolida",
+      "lane": "WG",
+      "pool": {
+        "cards": 16,
+        "inLaneCreatures": 7,
+        "inLaneCreaturesAtMost2Mana": 2
+      },
+      "chosen": {
+        "id": "fra-198",
+        "name": "Gideon's Memorial",
+        "rarity": "rare",
+        "colors": [
+          "W"
+        ],
+        "cost": "{1}{W}",
+        "base": 3,
+        "gih": 0.50688424,
+        "sample": 5883
+      },
+      "passed": {
+        "id": "fra-140",
+        "name": "Kwia Vigorbloom",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "W"
+        ],
+        "cost": "{3}{G}{W}{W}",
+        "base": 4.5,
+        "gih": 0.6247394,
+        "sample": 5756
+      },
+      "chosenTotal": 5.441839999999999,
+      "passedTotal": 6.41184,
+      "components": {
+        "potenza": 3,
+        "colori": 1.3,
+        "sinergia": 0,
+        "curva": 0.35,
+        "segnali": 0.6118400000000002,
+        "mana": 0.18
+      },
+      "gap": 1.5
+    },
+    {
+      "seed": "bot-audit-152",
+      "strategy": "aggro",
+      "round": 3,
+      "pick": 5,
+      "phase": "consolida",
+      "lane": "UB",
+      "pool": {
+        "cards": 32,
+        "inLaneCreatures": 17,
+        "inLaneCreaturesAtMost2Mana": 7
+      },
+      "chosen": {
+        "id": "fra-156",
+        "name": "Theorix Metamage",
+        "rarity": "common",
+        "colors": [
+          "B",
+          "U"
+        ],
+        "cost": "{2}{U/B}",
+        "base": 3,
+        "gih": 0.54220256,
+        "sample": 41597
+      },
+      "passed": {
+        "id": "fra-229",
+        "name": "Garruk, Veiled Butcher",
+        "rarity": "mythic",
+        "colors": [
+          "B"
+        ],
+        "cost": "{3}{B}{B}",
+        "base": 4.5,
+        "gih": 0.6582519,
+        "sample": 7368
+      },
+      "chosenTotal": 5.812078368000001,
+      "passedTotal": 5.247043168,
+      "components": {
+        "potenza": 3,
+        "colori": 1.56,
+        "sinergia": 0.36,
+        "curva": 0.29999999999999993,
+        "segnali": 0.592078368,
+        "mana": 0
+      },
+      "gap": 1.5
+    },
+    {
+      "seed": "bot-audit-123",
+      "strategy": "aggro",
+      "round": 2,
+      "pick": 10,
+      "phase": "consolida",
+      "lane": "UB",
+      "pool": {
+        "cards": 23,
+        "inLaneCreatures": 17,
+        "inLaneCreaturesAtMost2Mana": 7
+      },
+      "chosen": {
+        "id": "fra-39",
+        "name": "Semester Foreseer",
+        "rarity": "common",
+        "colors": [
+          "U"
+        ],
+        "cost": "{3}{U}",
+        "base": 3,
+        "gih": 0.53959551,
+        "sample": 43957
+      },
+      "passed": {
+        "id": "fra-159",
+        "name": "Uldaros Theorix",
+        "rarity": "mythic",
+        "colors": [
+          "B",
+          "U"
+        ],
+        "cost": "{3}{U}{B}{B}",
+        "base": 4.5,
+        "gih": 0.69351717,
+        "sample": 8268
+      },
+      "chosenTotal": 5.457944406346176,
+      "passedTotal": 5.436378917868464,
+      "components": {
+        "potenza": 3,
+        "colori": 1.56,
+        "sinergia": 0,
+        "curva": 0,
+        "segnali": 0.8979444063461754,
+        "mana": 0
+      },
+      "gap": 1.5
+    },
+    {
+      "seed": "bot-audit-1",
+      "strategy": "aggro",
+      "round": 2,
+      "pick": 1,
+      "phase": "consolida",
+      "lane": "RG",
+      "pool": {
+        "cards": 14,
+        "inLaneCreatures": 8,
+        "inLaneCreaturesAtMost2Mana": 2
+      },
+      "chosen": {
+        "id": "fra-263",
+        "name": "Marwyn, the Preserver",
+        "rarity": "uncommon",
+        "colors": [
+          "G"
+        ],
+        "cost": "{1}{G}",
+        "base": 3.5,
+        "gih": 0.54341749,
+        "sample": 23608
+      },
+      "passed": {
+        "id": "fra-121",
+        "name": "Aerid Konstrari",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "R"
+        ],
+        "cost": "{1}{R}{G}{G}",
+        "base": 4.5,
+        "gih": 0.64799621,
+        "sample": 6338
+      },
+      "chosenTotal": 7.760000000000001,
+      "passedTotal": null,
+      "components": {
+        "potenza": 3.5,
+        "colori": 1.56,
+        "sinergia": 0,
+        "curva": 2.7,
+        "segnali": 0,
+        "mana": 0
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-17",
+      "strategy": "control",
+      "round": 1,
+      "pick": 1,
+      "phase": "esplora",
+      "lane": "WU",
+      "pool": {
+        "cards": 0,
+        "inLaneCreatures": 0,
+        "inLaneCreaturesAtMost2Mana": 0
+      },
+      "chosen": {
+        "id": "fra-24",
+        "name": "Your Fate Ends Here",
+        "rarity": "uncommon",
+        "colors": [
+          "W"
+        ],
+        "cost": "{2}{W}",
+        "base": 4,
+        "gih": 0.57324623,
+        "sample": 32145
+      },
+      "passed": {
+        "id": "fra-43",
+        "name": "The Theorist, Jace Beleren",
+        "rarity": "mythic",
+        "colors": [
+          "U"
+        ],
+        "cost": "{2}{U}{U}",
+        "base": 5,
+        "gih": 0.68577174,
+        "sample": 7956
+      },
+      "chosenTotal": 5.75,
+      "passedTotal": null,
+      "components": {
+        "potenza": 4.4,
+        "colori": 0,
+        "sinergia": 0,
+        "curva": 1.35,
+        "segnali": 0,
+        "mana": 0
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-19",
+      "strategy": "control",
+      "round": 1,
+      "pick": 1,
+      "phase": "esplora",
+      "lane": "WU",
+      "pool": {
+        "cards": 0,
+        "inLaneCreatures": 0,
+        "inLaneCreaturesAtMost2Mana": 0
+      },
+      "chosen": {
+        "id": "fra-167",
+        "name": "Archive Arbiter",
+        "rarity": "uncommon",
+        "colors": [],
+        "cost": "{6}",
+        "base": 3.5,
+        "gih": 0.55870985,
+        "sample": 22509
+      },
+      "passed": {
+        "id": "fra-338",
+        "name": "Sphinx of False Conclusions",
+        "rarity": "rare",
+        "colors": [
+          "U"
+        ],
+        "cost": "{2}{U}{U}",
+        "base": 4.5,
+        "gih": 0.64345794,
+        "sample": 17120
+      },
+      "chosenTotal": 5.200000000000001,
+      "passedTotal": 4.95,
+      "components": {
+        "potenza": 3.8500000000000005,
+        "colori": 0,
+        "sinergia": 0,
+        "curva": 1.35,
+        "segnali": 0,
+        "mana": 0
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-30",
+      "strategy": "signals",
+      "round": 2,
+      "pick": 1,
+      "phase": "orienta",
+      "lane": "UB",
+      "pool": {
+        "cards": 14,
+        "inLaneCreatures": 5,
+        "inLaneCreaturesAtMost2Mana": 2
+      },
+      "chosen": {
+        "id": "fra-62",
+        "name": "Rewrite Regrets",
+        "rarity": "uncommon",
+        "colors": [
+          "B"
+        ],
+        "cost": "{3}{B}",
+        "base": 3.5,
+        "gih": 0.59197316,
+        "sample": 38745
+      },
+      "passed": {
+        "id": "fra-40",
+        "name": "Sphinx of False Conclusions",
+        "rarity": "rare",
+        "colors": [
+          "U"
+        ],
+        "cost": "{2}{U}{U}",
+        "base": 4.5,
+        "gih": 0.64345794,
+        "sample": 17120
+      },
+      "chosenTotal": 4.276000000000001,
+      "passedTotal": 5.15,
+      "components": {
+        "potenza": 3.5,
+        "colori": 0.65,
+        "sinergia": 0.126,
+        "curva": 0,
+        "segnali": 0,
+        "mana": 0
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-35",
+      "strategy": "aggro",
+      "round": 3,
+      "pick": 1,
+      "phase": "completa",
+      "lane": "WU",
+      "pool": {
+        "cards": 28,
+        "inLaneCreatures": 19,
+        "inLaneCreaturesAtMost2Mana": 8
+      },
+      "chosen": {
+        "id": "fra-22",
+        "name": "Surgical Precision",
+        "rarity": "common",
+        "colors": [
+          "W"
+        ],
+        "cost": "{1}{W}",
+        "base": 3.5,
+        "gih": 0.57388349,
+        "sample": 63546
+      },
+      "passed": {
+        "id": "fra-217",
+        "name": "Lyra, Tolarian Archangel",
+        "rarity": "rare",
+        "colors": [
+          "U"
+        ],
+        "cost": "{1}{U}{U}",
+        "base": 4.5,
+        "gih": 0.61093115,
+        "sample": 16979
+      },
+      "chosenTotal": 6.2299999999999995,
+      "passedTotal": 6.779999999999999,
+      "components": {
+        "potenza": 3.5,
+        "colori": 1.9799999999999998,
+        "sinergia": 0,
+        "curva": 0.75,
+        "segnali": 0,
+        "mana": 0
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-36",
+      "strategy": "aggro",
+      "round": 3,
+      "pick": 1,
+      "phase": "completa",
+      "lane": "WG",
+      "pool": {
+        "cards": 28,
+        "inLaneCreatures": 16,
+        "inLaneCreaturesAtMost2Mana": 7
+      },
+      "chosen": {
+        "id": "fra-97",
+        "name": "Arcane Amphisbaena",
+        "rarity": "common",
+        "colors": [
+          "G"
+        ],
+        "cost": "{1}{G}",
+        "base": 3.5,
+        "gih": 0.55955459,
+        "sample": 68072
+      },
+      "passed": {
+        "id": "fra-201",
+        "name": "Lyra, Archangel of Dawn",
+        "rarity": "rare",
+        "colors": [
+          "W"
+        ],
+        "cost": "{2}{W}",
+        "base": 4.5,
+        "gih": 0.58827614,
+        "sample": 10082
+      },
+      "chosenTotal": 6.529999999999999,
+      "passedTotal": 6.779999999999999,
+      "components": {
+        "potenza": 3.5,
+        "colori": 1.9799999999999998,
+        "sinergia": 0,
+        "curva": 1.0499999999999998,
+        "segnali": 0,
+        "mana": 0
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-50",
+      "strategy": "control",
+      "round": 2,
+      "pick": 1,
+      "phase": "consolida",
+      "lane": "UR",
+      "pool": {
+        "cards": 14,
+        "inLaneCreatures": 8,
+        "inLaneCreaturesAtMost2Mana": 2
+      },
+      "chosen": {
+        "id": "fra-96",
+        "name": "Wrath of the Bloodmane",
+        "rarity": "common",
+        "colors": [
+          "R"
+        ],
+        "cost": "{2}{R}",
+        "base": 3.5,
+        "gih": 0.56080667,
+        "sample": 66843
+      },
+      "passed": {
+        "id": "fra-80",
+        "name": "Draconic Visitor",
+        "rarity": "rare",
+        "colors": [
+          "R"
+        ],
+        "cost": "{3}{R}{R}",
+        "base": 4.5,
+        "gih": 0.53899031,
+        "sample": 8874
+      },
+      "chosenTotal": 7.084,
+      "passedTotal": 6.51,
+      "components": {
+        "potenza": 3.8500000000000005,
+        "colori": 1.56,
+        "sinergia": 0.324,
+        "curva": 1.35,
+        "segnali": 0,
+        "mana": 0
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-53",
+      "strategy": "bomb",
+      "round": 3,
+      "pick": 1,
+      "phase": "consolida",
+      "lane": "RG",
+      "pool": {
+        "cards": 28,
+        "inLaneCreatures": 9,
+        "inLaneCreaturesAtMost2Mana": 1
+      },
+      "chosen": {
+        "id": "fra-74",
+        "name": "Awaken the Inferno",
+        "rarity": "common",
+        "colors": [
+          "R"
+        ],
+        "cost": "{4}{R}",
+        "base": 3.5,
+        "gih": 0.55939418,
+        "sample": 66488
+      },
+      "passed": {
+        "id": "fra-79",
+        "name": "Curse-Marred Demon",
+        "rarity": "rare",
+        "colors": [
+          "R"
+        ],
+        "cost": "{2}{R}{R}",
+        "base": 4.5,
+        "gih": 0.56397433,
+        "sample": 10598
+      },
+      "chosenTotal": 6.874,
+      "passedTotal": 6.77,
+      "components": {
+        "potenza": 3.8500000000000005,
+        "colori": 1.8199999999999998,
+        "sinergia": 0.8640000000000001,
+        "curva": 0.25,
+        "segnali": 0,
+        "mana": 0.09
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-61",
+      "strategy": "aggro",
+      "round": 2,
+      "pick": 1,
+      "phase": "consolida",
+      "lane": "WG",
+      "pool": {
+        "cards": 14,
+        "inLaneCreatures": 8,
+        "inLaneCreaturesAtMost2Mana": 6
+      },
+      "chosen": {
+        "id": "fra-22",
+        "name": "Surgical Precision",
+        "rarity": "common",
+        "colors": [
+          "W"
+        ],
+        "cost": "{1}{W}",
+        "base": 3.5,
+        "gih": 0.57388349,
+        "sample": 63546
+      },
+      "passed": {
+        "id": "fra-259",
+        "name": "Garruk, Curse Breaker",
+        "rarity": "mythic",
+        "colors": [
+          "G"
+        ],
+        "cost": "{3}{G}{G}",
+        "base": 4.5,
+        "gih": 0.65700838,
+        "sample": 6799
+      },
+      "chosenTotal": 5.8100000000000005,
+      "passedTotal": 4.5600000000000005,
+      "components": {
+        "potenza": 3.5,
+        "colori": 1.56,
+        "sinergia": 0,
+        "curva": 0.75,
+        "segnali": 0,
+        "mana": 0
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-75",
+      "strategy": "control",
+      "round": 2,
+      "pick": 1,
+      "phase": "orienta",
+      "lane": "UR",
+      "pool": {
+        "cards": 14,
+        "inLaneCreatures": 8,
+        "inLaneCreaturesAtMost2Mana": 2
+      },
+      "chosen": {
+        "id": "fra-255",
+        "name": "Way of the Warlord",
+        "rarity": "uncommon",
+        "colors": [
+          "R"
+        ],
+        "cost": "{2}{R}",
+        "base": 3.5,
+        "gih": 0.53467799,
+        "sample": 19782
+      },
+      "passed": {
+        "id": "fra-40",
+        "name": "Sphinx of False Conclusions",
+        "rarity": "rare",
+        "colors": [
+          "U"
+        ],
+        "cost": "{2}{U}{U}",
+        "base": 4.5,
+        "gih": 0.64345794,
+        "sample": 17120
+      },
+      "chosenTotal": 5.98,
+      "passedTotal": null,
+      "components": {
+        "potenza": 3.8500000000000005,
+        "colori": 0.78,
+        "sinergia": 0,
+        "curva": 1.35,
+        "segnali": 0,
+        "mana": 0
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-92",
+      "strategy": "bomb",
+      "round": 3,
+      "pick": 1,
+      "phase": "consolida",
+      "lane": "BR",
+      "pool": {
+        "cards": 28,
+        "inLaneCreatures": 12,
+        "inLaneCreaturesAtMost2Mana": 4
+      },
+      "chosen": {
+        "id": "fra-253",
+        "name": "Tomik, Izzet Sparkmage",
+        "rarity": "uncommon",
+        "colors": [
+          "R"
+        ],
+        "cost": "{1}{R}",
+        "base": 3.5,
+        "gih": 0.51347518,
+        "sample": 16215
+      },
+      "passed": {
+        "id": "fra-79",
+        "name": "Curse-Marred Demon",
+        "rarity": "rare",
+        "colors": [
+          "R"
+        ],
+        "cost": "{2}{R}{R}",
+        "base": 4.5,
+        "gih": 0.56397433,
+        "sample": 10598
+      },
+      "chosenTotal": 6.07,
+      "passedTotal": 6.369999999999999,
+      "components": {
+        "potenza": 3.8500000000000005,
+        "colori": 1.8199999999999998,
+        "sinergia": 0,
+        "curva": 0.4,
+        "segnali": 0,
+        "mana": 0
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-102",
+      "strategy": "aggro",
+      "round": 3,
+      "pick": 1,
+      "phase": "completa",
+      "lane": "WB",
+      "pool": {
+        "cards": 28,
+        "inLaneCreatures": 16,
+        "inLaneCreaturesAtMost2Mana": 7
+      },
+      "chosen": {
+        "id": "fra-204",
+        "name": "Teyo, Lightshield Expert",
+        "rarity": "uncommon",
+        "colors": [
+          "W"
+        ],
+        "cost": "{1}{W}",
+        "base": 3.5,
+        "gih": 0.56218716,
+        "sample": 23574
+      },
+      "passed": {
+        "id": "fra-59",
+        "name": "Overwrite the Multiverse",
+        "rarity": "mythic",
+        "colors": [
+          "B"
+        ],
+        "cost": "{4}{B}{B}",
+        "base": 4.5,
+        "gih": 0.6585752,
+        "sample": 7580
+      },
+      "chosenTotal": 5.329999999999999,
+      "passedTotal": 4.9799999999999995,
+      "components": {
+        "potenza": 3.5,
+        "colori": 1.9799999999999998,
+        "sinergia": 0,
+        "curva": -0.15000000000000013,
+        "segnali": 0,
+        "mana": 0
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-106",
+      "strategy": "control",
+      "round": 3,
+      "pick": 1,
+      "phase": "completa",
+      "lane": "WG",
+      "pool": {
+        "cards": 28,
+        "inLaneCreatures": 11,
+        "inLaneCreaturesAtMost2Mana": 3
+      },
+      "chosen": {
+        "id": "fra-101",
+        "name": "Compel Brutality",
+        "rarity": "common",
+        "colors": [
+          "G"
+        ],
+        "cost": "{1}{G}",
+        "base": 3.5,
+        "gih": 0.54719272,
+        "sample": 62605
+      },
+      "passed": {
+        "id": "fra-201",
+        "name": "Lyra, Archangel of Dawn",
+        "rarity": "rare",
+        "colors": [
+          "W"
+        ],
+        "cost": "{2}{W}",
+        "base": 4.5,
+        "gih": 0.58827614,
+        "sample": 10082
+      },
+      "chosenTotal": 7.18,
+      "passedTotal": 6.93,
+      "components": {
+        "potenza": 3.8500000000000005,
+        "colori": 1.9799999999999998,
+        "sinergia": 0,
+        "curva": 1.35,
+        "segnali": 0,
+        "mana": 0
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-115",
+      "strategy": "aggro",
+      "round": 3,
+      "pick": 1,
+      "phase": "completa",
+      "lane": "WR",
+      "pool": {
+        "cards": 28,
+        "inLaneCreatures": 17,
+        "inLaneCreaturesAtMost2Mana": 6
+      },
+      "chosen": {
+        "id": "fra-22",
+        "name": "Surgical Precision",
+        "rarity": "common",
+        "colors": [
+          "W"
+        ],
+        "cost": "{1}{W}",
+        "base": 3.5,
+        "gih": 0.57388349,
+        "sample": 63546
+      },
+      "passed": {
+        "id": "fra-242",
+        "name": "Ajani Unrelenting",
+        "rarity": "mythic",
+        "colors": [
+          "R"
+        ],
+        "cost": "{4}{R}{R}",
+        "base": 4.5,
+        "gih": 0.73343098,
+        "sample": 8193
+      },
+      "chosenTotal": 6.319999999999999,
+      "passedTotal": null,
+      "components": {
+        "potenza": 3.5,
+        "colori": 1.9799999999999998,
+        "sinergia": 0.09,
+        "curva": 0.75,
+        "segnali": 0,
+        "mana": 0
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-118",
+      "strategy": "control",
+      "round": 1,
+      "pick": 1,
+      "phase": "esplora",
+      "lane": "WU",
+      "pool": {
+        "cards": 0,
+        "inLaneCreatures": 0,
+        "inLaneCreaturesAtMost2Mana": 0
+      },
+      "chosen": {
+        "id": "fra-167",
+        "name": "Archive Arbiter",
+        "rarity": "uncommon",
+        "colors": [],
+        "cost": "{6}",
+        "base": 3.5,
+        "gih": 0.55870985,
+        "sample": 22509
+      },
+      "passed": {
+        "id": "fra-201",
+        "name": "Lyra, Archangel of Dawn",
+        "rarity": "rare",
+        "colors": [
+          "W"
+        ],
+        "cost": "{2}{W}",
+        "base": 4.5,
+        "gih": 0.58827614,
+        "sample": 10082
+      },
+      "chosenTotal": 5.200000000000001,
+      "passedTotal": 4.95,
+      "components": {
+        "potenza": 3.8500000000000005,
+        "colori": 0,
+        "sinergia": 0,
+        "curva": 1.35,
+        "segnali": 0,
+        "mana": 0
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-120",
+      "strategy": "control",
+      "round": 2,
+      "pick": 1,
+      "phase": "consolida",
+      "lane": "RG",
+      "pool": {
+        "cards": 14,
+        "inLaneCreatures": 5,
+        "inLaneCreaturesAtMost2Mana": 1
+      },
+      "chosen": {
+        "id": "fra-96",
+        "name": "Wrath of the Bloodmane",
+        "rarity": "common",
+        "colors": [
+          "R"
+        ],
+        "cost": "{2}{R}",
+        "base": 3.5,
+        "gih": 0.56080667,
+        "sample": 66843
+      },
+      "passed": {
+        "id": "fra-314",
+        "name": "Garruk, Curse Breaker",
+        "rarity": "mythic",
+        "colors": [
+          "G"
+        ],
+        "cost": "{3}{G}{G}",
+        "base": 4.5,
+        "gih": 0.65700838,
+        "sample": 6799
+      },
+      "chosenTotal": 6.76,
+      "passedTotal": 6.51,
+      "components": {
+        "potenza": 3.8500000000000005,
+        "colori": 1.56,
+        "sinergia": 0,
+        "curva": 1.35,
+        "segnali": 0,
+        "mana": 0
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-131",
+      "strategy": "control",
+      "round": 3,
+      "pick": 1,
+      "phase": "consolida",
+      "lane": "WG",
+      "pool": {
+        "cards": 28,
+        "inLaneCreatures": 15,
+        "inLaneCreaturesAtMost2Mana": 5
+      },
+      "chosen": {
+        "id": "fra-13",
+        "name": "Kindred Judgment",
+        "rarity": "rare",
+        "colors": [
+          "W"
+        ],
+        "cost": "{5}{W}{W}",
+        "base": 3.5,
+        "gih": 0.61955946,
+        "sample": 13211
+      },
+      "passed": {
+        "id": "fra-201",
+        "name": "Lyra, Archangel of Dawn",
+        "rarity": "rare",
+        "colors": [
+          "W"
+        ],
+        "cost": "{2}{W}",
+        "base": 4.5,
+        "gih": 0.58827614,
+        "sample": 10082
+      },
+      "chosenTotal": 6.3100000000000005,
+      "passedTotal": 5.79,
+      "components": {
+        "potenza": 3.8500000000000005,
+        "colori": 1.56,
+        "sinergia": 0,
+        "curva": 0.9,
+        "segnali": 0,
+        "mana": 0
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-145",
+      "strategy": "synergy",
+      "round": 2,
+      "pick": 1,
+      "phase": "consolida",
+      "lane": "WG",
+      "pool": {
+        "cards": 14,
+        "inLaneCreatures": 7,
+        "inLaneCreaturesAtMost2Mana": 3
+      },
+      "chosen": {
+        "id": "fra-104",
+        "name": "Greenhouse Propagator",
+        "rarity": "common",
+        "colors": [
+          "G"
+        ],
+        "cost": "{2}{G}",
+        "base": 3.5,
+        "gih": 0.54416607,
+        "sample": 48895
+      },
+      "passed": {
+        "id": "fra-201",
+        "name": "Lyra, Archangel of Dawn",
+        "rarity": "rare",
+        "colors": [
+          "W"
+        ],
+        "cost": "{2}{W}",
+        "base": 4.5,
+        "gih": 0.58827614,
+        "sample": 10082
+      },
+      "chosenTotal": 5.5520000000000005,
+      "passedTotal": 5.48,
+      "components": {
+        "potenza": 3.15,
+        "colori": 1.4300000000000002,
+        "sinergia": 0.9720000000000001,
+        "curva": 0,
+        "segnali": 0,
+        "mana": 0
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-147",
+      "strategy": "synergy",
+      "round": 2,
+      "pick": 1,
+      "phase": "consolida",
+      "lane": "WR",
+      "pool": {
+        "cards": 14,
+        "inLaneCreatures": 4,
+        "inLaneCreaturesAtMost2Mana": 1
+      },
+      "chosen": {
+        "id": "fra-12",
+        "name": "Hexhaven Battalion",
+        "rarity": "common",
+        "colors": [
+          "W"
+        ],
+        "cost": "{4}{W}{W}",
+        "base": 3.5,
+        "gih": 0.57640385,
+        "sample": 76148
+      },
+      "passed": {
+        "id": "fra-201",
+        "name": "Lyra, Archangel of Dawn",
+        "rarity": "rare",
+        "colors": [
+          "W"
+        ],
+        "cost": "{2}{W}",
+        "base": 4.5,
+        "gih": 0.58827614,
+        "sample": 10082
+      },
+      "chosenTotal": 6.644,
+      "passedTotal": 5.48,
+      "components": {
+        "potenza": 3.15,
+        "colori": 1.4300000000000002,
+        "sinergia": 1.9440000000000002,
+        "curva": 0,
+        "segnali": 0,
+        "mana": 0.12
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-147",
+      "strategy": "control",
+      "round": 2,
+      "pick": 1,
+      "phase": "consolida",
+      "lane": "WR",
+      "pool": {
+        "cards": 14,
+        "inLaneCreatures": 6,
+        "inLaneCreaturesAtMost2Mana": 2
+      },
+      "chosen": {
+        "id": "fra-15",
+        "name": "Memory Trap",
+        "rarity": "common",
+        "colors": [
+          "W"
+        ],
+        "cost": "{2}{W}",
+        "base": 4,
+        "gih": 0.55984798,
+        "sample": 67095
+      },
+      "passed": {
+        "id": "fra-244",
+        "name": "Chandra, Torch of Defiance",
+        "rarity": "mythic",
+        "colors": [
+          "R"
+        ],
+        "cost": "{2}{R}{R}",
+        "base": 5,
+        "gih": 0.60350762,
+        "sample": 6101
+      },
+      "chosenTotal": 7.3100000000000005,
+      "passedTotal": 7.0600000000000005,
+      "components": {
+        "potenza": 4.4,
+        "colori": 1.56,
+        "sinergia": 0,
+        "curva": 1.35,
+        "segnali": 0,
+        "mana": 0
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-159",
+      "strategy": "aggro",
+      "round": 3,
+      "pick": 1,
+      "phase": "completa",
+      "lane": "RG",
+      "pool": {
+        "cards": 28,
+        "inLaneCreatures": 17,
+        "inLaneCreaturesAtMost2Mana": 6
+      },
+      "chosen": {
+        "id": "fra-96",
+        "name": "Wrath of the Bloodmane",
+        "rarity": "common",
+        "colors": [
+          "R"
+        ],
+        "cost": "{2}{R}",
+        "base": 3.5,
+        "gih": 0.56080667,
+        "sample": 66843
+      },
+      "passed": {
+        "id": "fra-118",
+        "name": "Verdant Kraken",
+        "rarity": "rare",
+        "colors": [
+          "G"
+        ],
+        "cost": "{4}{G}{G}{G}",
+        "base": 4.5,
+        "gih": 0.58500407,
+        "sample": 12270
+      },
+      "chosenTotal": 6.2299999999999995,
+      "passedTotal": null,
+      "components": {
+        "potenza": 3.5,
+        "colori": 1.9799999999999998,
+        "sinergia": 0,
+        "curva": 0.75,
+        "segnali": 0,
+        "mana": 0
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-166",
+      "strategy": "control",
+      "round": 3,
+      "pick": 1,
+      "phase": "completa",
+      "lane": "UB",
+      "pool": {
+        "cards": 28,
+        "inLaneCreatures": 11,
+        "inLaneCreaturesAtMost2Mana": 7
+      },
+      "chosen": {
+        "id": "fra-167",
+        "name": "Archive Arbiter",
+        "rarity": "uncommon",
+        "colors": [],
+        "cost": "{6}",
+        "base": 3.5,
+        "gih": 0.55870985,
+        "sample": 22509
+      },
+      "passed": {
+        "id": "fra-159",
+        "name": "Uldaros Theorix",
+        "rarity": "mythic",
+        "colors": [
+          "B",
+          "U"
+        ],
+        "cost": "{3}{U}{B}{B}",
+        "base": 4.5,
+        "gih": 0.69351717,
+        "sample": 8268
+      },
+      "chosenTotal": 6.73,
+      "passedTotal": 6.93,
+      "components": {
+        "potenza": 3.8500000000000005,
+        "colori": 1.9799999999999998,
+        "sinergia": 0,
+        "curva": 0.9,
+        "segnali": 0,
+        "mana": 0
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-169",
+      "strategy": "aggro",
+      "round": 3,
+      "pick": 1,
+      "phase": "consolida",
+      "lane": "WG",
+      "pool": {
+        "cards": 28,
+        "inLaneCreatures": 18,
+        "inLaneCreaturesAtMost2Mana": 10
+      },
+      "chosen": {
+        "id": "fra-202",
+        "name": "Rescue Girl, First Responder",
+        "rarity": "uncommon",
+        "colors": [
+          "W"
+        ],
+        "cost": "{2}{W}",
+        "base": 3.5,
+        "gih": 0.52524982,
+        "sample": 22416
+      },
+      "passed": {
+        "id": "fra-118",
+        "name": "Verdant Kraken",
+        "rarity": "rare",
+        "colors": [
+          "G"
+        ],
+        "cost": "{4}{G}{G}{G}",
+        "base": 4.5,
+        "gih": 0.58500407,
+        "sample": 12270
+      },
+      "chosenTotal": 5.36,
+      "passedTotal": null,
+      "components": {
+        "potenza": 3.5,
+        "colori": 1.56,
+        "sinergia": 0,
+        "curva": 0.29999999999999993,
+        "segnali": 0,
+        "mana": 0
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-172",
+      "strategy": "aggro",
+      "round": 2,
+      "pick": 1,
+      "phase": "orienta",
+      "lane": "UG",
+      "pool": {
+        "cards": 14,
+        "inLaneCreatures": 7,
+        "inLaneCreaturesAtMost2Mana": 2
+      },
+      "chosen": {
+        "id": "fra-101",
+        "name": "Compel Brutality",
+        "rarity": "common",
+        "colors": [
+          "G"
+        ],
+        "cost": "{1}{G}",
+        "base": 3.5,
+        "gih": 0.54719272,
+        "sample": 62605
+      },
+      "passed": {
+        "id": "fra-259",
+        "name": "Garruk, Curse Breaker",
+        "rarity": "mythic",
+        "colors": [
+          "G"
+        ],
+        "cost": "{3}{G}{G}",
+        "base": 4.5,
+        "gih": 0.65700838,
+        "sample": 6799
+      },
+      "chosenTotal": 5.03,
+      "passedTotal": null,
+      "components": {
+        "potenza": 3.5,
+        "colori": 0.78,
+        "sinergia": 0,
+        "curva": 0.75,
+        "segnali": 0,
+        "mana": 0
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-182",
+      "strategy": "signals",
+      "round": 2,
+      "pick": 1,
+      "phase": "consolida",
+      "lane": "UG",
+      "pool": {
+        "cards": 14,
+        "inLaneCreatures": 7,
+        "inLaneCreaturesAtMost2Mana": 3
+      },
+      "chosen": {
+        "id": "fra-97",
+        "name": "Arcane Amphisbaena",
+        "rarity": "common",
+        "colors": [
+          "G"
+        ],
+        "cost": "{1}{G}",
+        "base": 3.5,
+        "gih": 0.55955459,
+        "sample": 68072
+      },
+      "passed": {
+        "id": "fra-40",
+        "name": "Sphinx of False Conclusions",
+        "rarity": "rare",
+        "colors": [
+          "U"
+        ],
+        "cost": "{2}{U}{U}",
+        "base": 4.5,
+        "gih": 0.64345794,
+        "sample": 17120
+      },
+      "chosenTotal": 5.864,
+      "passedTotal": 5.8,
+      "components": {
+        "potenza": 3.5,
+        "colori": 1.3,
+        "sinergia": 0.504,
+        "curva": 0.5599999999999999,
+        "segnali": 0,
+        "mana": 0
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-185",
+      "strategy": "aggro",
+      "round": 1,
+      "pick": 1,
+      "phase": "esplora",
+      "lane": "WU",
+      "pool": {
+        "cards": 0,
+        "inLaneCreatures": 0,
+        "inLaneCreaturesAtMost2Mana": 0
+      },
+      "chosen": {
+        "id": "fra-339",
+        "name": "Theorist's Proxy",
+        "rarity": "rare",
+        "colors": [
+          "U"
+        ],
+        "cost": "{1}{U}",
+        "base": 3.5,
+        "gih": 0.57394498,
+        "sample": 13341
+      },
+      "passed": {
+        "id": "fra-40",
+        "name": "Sphinx of False Conclusions",
+        "rarity": "rare",
+        "colors": [
+          "U"
+        ],
+        "cost": "{2}{U}{U}",
+        "base": 4.5,
+        "gih": 0.64345794,
+        "sample": 17120
+      },
+      "chosenTotal": 6.2,
+      "passedTotal": 4.5,
+      "components": {
+        "potenza": 3.5,
+        "colori": 0,
+        "sinergia": 0,
+        "curva": 2.7,
+        "segnali": 0,
+        "mana": 0
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-191",
+      "strategy": "fixing",
+      "round": 3,
+      "pick": 1,
+      "phase": "completa",
+      "lane": "BG",
+      "pool": {
+        "cards": 28,
+        "inLaneCreatures": 11,
+        "inLaneCreaturesAtMost2Mana": 4
+      },
+      "chosen": {
+        "id": "fra-119",
+        "name": "Vinelasher Adept",
+        "rarity": "common",
+        "colors": [
+          "G"
+        ],
+        "cost": "{4}{G}{G}",
+        "base": 3.5,
+        "gih": 0.55679402,
+        "sample": 60200
+      },
+      "passed": {
+        "id": "fra-365",
+        "name": "Lich's Relic",
+        "rarity": "rare",
+        "colors": [
+          "B"
+        ],
+        "cost": "{B}",
+        "base": 4.5,
+        "gih": 0.63005817,
+        "sample": 15816
+      },
+      "chosenTotal": 6.250000000000001,
+      "passedTotal": 6.57,
+      "components": {
+        "potenza": 3.8500000000000005,
+        "colori": 1.32,
+        "sinergia": 0,
+        "curva": 0,
+        "segnali": 0,
+        "mana": 1.08
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-194",
+      "strategy": "synergy",
+      "round": 2,
+      "pick": 1,
+      "phase": "orienta",
+      "lane": "UG",
+      "pool": {
+        "cards": 14,
+        "inLaneCreatures": 4,
+        "inLaneCreaturesAtMost2Mana": 0
+      },
+      "chosen": {
+        "id": "fra-97",
+        "name": "Arcane Amphisbaena",
+        "rarity": "common",
+        "colors": [
+          "G"
+        ],
+        "cost": "{1}{G}",
+        "base": 3.5,
+        "gih": 0.55955459,
+        "sample": 68072
+      },
+      "passed": {
+        "id": "fra-217",
+        "name": "Lyra, Tolarian Archangel",
+        "rarity": "rare",
+        "colors": [
+          "U"
+        ],
+        "cost": "{1}{U}{U}",
+        "base": 4.5,
+        "gih": 0.61093115,
+        "sample": 16979
+      },
+      "chosenTotal": 5.317,
+      "passedTotal": 4.765,
+      "components": {
+        "potenza": 3.15,
+        "colori": 0.7150000000000001,
+        "sinergia": 0.9720000000000001,
+        "curva": 0.48,
+        "segnali": 0,
+        "mana": 0
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-194",
+      "strategy": "synergy",
+      "round": 2,
+      "pick": 1,
+      "phase": "orienta",
+      "lane": "UG",
+      "pool": {
+        "cards": 14,
+        "inLaneCreatures": 4,
+        "inLaneCreaturesAtMost2Mana": 0
+      },
+      "chosen": {
+        "id": "fra-97",
+        "name": "Arcane Amphisbaena",
+        "rarity": "common",
+        "colors": [
+          "G"
+        ],
+        "cost": "{1}{G}",
+        "base": 3.5,
+        "gih": 0.55955459,
+        "sample": 68072
+      },
+      "passed": {
+        "id": "fra-40",
+        "name": "Sphinx of False Conclusions",
+        "rarity": "rare",
+        "colors": [
+          "U"
+        ],
+        "cost": "{2}{U}{U}",
+        "base": 4.5,
+        "gih": 0.64345794,
+        "sample": 17120
+      },
+      "chosenTotal": 5.317,
+      "passedTotal": 4.765,
+      "components": {
+        "potenza": 3.15,
+        "colori": 0.7150000000000001,
+        "sinergia": 0.9720000000000001,
+        "curva": 0.48,
+        "segnali": 0,
+        "mana": 0
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-199",
+      "strategy": "aggro",
+      "round": 1,
+      "pick": 1,
+      "phase": "orienta",
+      "lane": "WU",
+      "pool": {
+        "cards": 0,
+        "inLaneCreatures": 0,
+        "inLaneCreaturesAtMost2Mana": 0
+      },
+      "chosen": {
+        "id": "fra-200",
+        "name": "Liliana the Faultless",
+        "rarity": "rare",
+        "colors": [
+          "W"
+        ],
+        "cost": "{W}",
+        "base": 3.5,
+        "gih": 0.57819676,
+        "sample": 8274
+      },
+      "passed": {
+        "id": "fra-349",
+        "name": "Denzilore Fatehold",
+        "rarity": "mythic",
+        "colors": [
+          "U",
+          "W"
+        ],
+        "cost": "{1}{W}{U}{U}",
+        "base": 4.5,
+        "gih": 0.61699203,
+        "sample": 7274
+      },
+      "chosenTotal": 6.2,
+      "passedTotal": null,
+      "components": {
+        "potenza": 3.5,
+        "colori": 0,
+        "sinergia": 0,
+        "curva": 2.7,
+        "segnali": 0,
+        "mana": 0
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-2",
+      "strategy": "synergy",
+      "round": 3,
+      "pick": 2,
+      "phase": "completa",
+      "lane": "RG",
+      "pool": {
+        "cards": 29,
+        "inLaneCreatures": 12,
+        "inLaneCreaturesAtMost2Mana": 3
+      },
+      "chosen": {
+        "id": "fra-74",
+        "name": "Awaken the Inferno",
+        "rarity": "common",
+        "colors": [
+          "R"
+        ],
+        "cost": "{4}{R}",
+        "base": 3.5,
+        "gih": 0.55939418,
+        "sample": 66488
+      },
+      "passed": {
+        "id": "fra-328",
+        "name": "Curse-Marred Demon",
+        "rarity": "rare",
+        "colors": [
+          "R"
+        ],
+        "cost": "{2}{R}{R}",
+        "base": 4.5,
+        "gih": 0.56397433,
+        "sample": 10598
+      },
+      "chosenTotal": 5.957,
+      "passedTotal": 5.993,
+      "components": {
+        "potenza": 3.15,
+        "colori": 1.815,
+        "sinergia": 0.324,
+        "curva": 0.3,
+        "segnali": 0.12800000000000003,
+        "mana": 0.24
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-3",
+      "strategy": "aggro",
+      "round": 1,
+      "pick": 2,
+      "phase": "esplora",
+      "lane": "UR",
+      "pool": {
+        "cards": 1,
+        "inLaneCreatures": 1,
+        "inLaneCreaturesAtMost2Mana": 0
+      },
+      "chosen": {
+        "id": "fra-253",
+        "name": "Tomik, Izzet Sparkmage",
+        "rarity": "uncommon",
+        "colors": [
+          "R"
+        ],
+        "cost": "{1}{R}",
+        "base": 3.5,
+        "gih": 0.51347518,
+        "sample": 16215
+      },
+      "passed": {
+        "id": "fra-368",
+        "name": "Draconic Visitor",
+        "rarity": "rare",
+        "colors": [
+          "R"
+        ],
+        "cost": "{3}{R}{R}",
+        "base": 4.5,
+        "gih": 0.53899031,
+        "sample": 8874
+      },
+      "chosenTotal": 6.408,
+      "passedTotal": null,
+      "components": {
+        "potenza": 3.5,
+        "colori": 0.096,
+        "sinergia": 0,
+        "curva": 2.7,
+        "segnali": 0.11200000000000002,
+        "mana": 0
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-4",
+      "strategy": "fixing",
+      "round": 3,
+      "pick": 2,
+      "phase": "completa",
+      "lane": "UR",
+      "pool": {
+        "cards": 29,
+        "inLaneCreatures": 11,
+        "inLaneCreaturesAtMost2Mana": 3
+      },
+      "chosen": {
+        "id": "fra-74",
+        "name": "Awaken the Inferno",
+        "rarity": "common",
+        "colors": [
+          "R"
+        ],
+        "cost": "{4}{R}",
+        "base": 3.5,
+        "gih": 0.55939418,
+        "sample": 66488
+      },
+      "passed": {
+        "id": "fra-308",
+        "name": "Ajani Unrelenting",
+        "rarity": "mythic",
+        "colors": [
+          "R"
+        ],
+        "cost": "{4}{R}{R}",
+        "base": 4.5,
+        "gih": 0.73343098,
+        "sample": 8193
+      },
+      "chosenTotal": 6.694000000000001,
+      "passedTotal": 6.414000000000001,
+      "components": {
+        "potenza": 3.8500000000000005,
+        "colori": 1.32,
+        "sinergia": 0,
+        "curva": 0.3,
+        "segnali": 0.14400000000000004,
+        "mana": 1.08
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-6",
+      "strategy": "denial",
+      "round": 3,
+      "pick": 2,
+      "phase": "completa",
+      "lane": "WU",
+      "pool": {
+        "cards": 29,
+        "inLaneCreatures": 10,
+        "inLaneCreaturesAtMost2Mana": 5
+      },
+      "chosen": {
+        "id": "fra-129",
+        "name": "Desperate Futurescribe",
+        "rarity": "uncommon",
+        "colors": [
+          "U",
+          "W"
+        ],
+        "cost": "{2}{W}{U}",
+        "base": 3.5,
+        "gih": 0.57876412,
+        "sample": 33029
+      },
+      "passed": {
+        "id": "fra-40",
+        "name": "Sphinx of False Conclusions",
+        "rarity": "rare",
+        "colors": [
+          "U"
+        ],
+        "cost": "{2}{U}{U}",
+        "base": 4.5,
+        "gih": 0.64345794,
+        "sample": 17120
+      },
+      "chosenTotal": 6.281,
+      "passedTotal": 6.773,
+      "components": {
+        "potenza": 3.5,
+        "colori": 2.145,
+        "sinergia": 0.5399999999999999,
+        "curva": 0,
+        "segnali": 0.09600000000000003,
+        "mana": 0
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-28",
+      "strategy": "aggro",
+      "round": 3,
+      "pick": 2,
+      "phase": "completa",
+      "lane": "RG",
+      "pool": {
+        "cards": 29,
+        "inLaneCreatures": 14,
+        "inLaneCreaturesAtMost2Mana": 8
+      },
+      "chosen": {
+        "id": "fra-248",
+        "name": "Koth, the Geomancer",
+        "rarity": "uncommon",
+        "colors": [
+          "R"
+        ],
+        "cost": "{2}{R}",
+        "base": 3.5,
+        "gih": 0.52076856,
+        "sample": 16082
+      },
+      "passed": {
+        "id": "fra-308",
+        "name": "Ajani Unrelenting",
+        "rarity": "mythic",
+        "colors": [
+          "R"
+        ],
+        "cost": "{4}{R}{R}",
+        "base": 4.5,
+        "gih": 0.73343098,
+        "sample": 8193
+      },
+      "chosenTotal": 5.8919999999999995,
+      "passedTotal": 5.092,
+      "components": {
+        "potenza": 3.5,
+        "colori": 1.9799999999999998,
+        "sinergia": 0,
+        "curva": 0.29999999999999993,
+        "segnali": 0.11200000000000002,
+        "mana": 0
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-34",
+      "strategy": "fixing",
+      "round": 2,
+      "pick": 2,
+      "phase": "orienta",
+      "lane": "RG",
+      "pool": {
+        "cards": 15,
+        "inLaneCreatures": 4,
+        "inLaneCreaturesAtMost2Mana": 1
+      },
+      "chosen": {
+        "id": "fra-74",
+        "name": "Awaken the Inferno",
+        "rarity": "common",
+        "colors": [
+          "R"
+        ],
+        "cost": "{4}{R}",
+        "base": 3.5,
+        "gih": 0.55939418,
+        "sample": 66488
+      },
+      "passed": {
+        "id": "fra-80",
+        "name": "Draconic Visitor",
+        "rarity": "rare",
+        "colors": [
+          "R"
+        ],
+        "cost": "{3}{R}{R}",
+        "base": 4.5,
+        "gih": 0.53899031,
+        "sample": 8874
+      },
+      "chosenTotal": 5.678000000000001,
+      "passedTotal": 5.614000000000001,
+      "components": {
+        "potenza": 3.8500000000000005,
+        "colori": 0.52,
+        "sinergia": 0.324,
+        "curva": 0.3,
+        "segnali": 0.14400000000000004,
+        "mana": 0.54
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-52",
+      "strategy": "synergy",
+      "round": 3,
+      "pick": 2,
+      "phase": "completa",
+      "lane": "WU",
+      "pool": {
+        "cards": 29,
+        "inLaneCreatures": 14,
+        "inLaneCreaturesAtMost2Mana": 5
+      },
+      "chosen": {
+        "id": "fra-207",
+        "name": "Way of the Healer",
+        "rarity": "uncommon",
+        "colors": [
+          "W"
+        ],
+        "cost": "{3}{W}",
+        "base": 3.5,
+        "gih": 0.57479555,
+        "sample": 33137
+      },
+      "passed": {
+        "id": "fra-128",
+        "name": "Denzilore Fatehold",
+        "rarity": "mythic",
+        "colors": [
+          "U",
+          "W"
+        ],
+        "cost": "{1}{W}{U}{U}",
+        "base": 4.5,
+        "gih": 0.61699203,
+        "sample": 7274
+      },
+      "chosenTotal": 6.713,
+      "passedTotal": 5.993,
+      "components": {
+        "potenza": 3.15,
+        "colori": 1.815,
+        "sinergia": 1.6199999999999999,
+        "curva": 0,
+        "segnali": 0.12800000000000003,
+        "mana": 0
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-53",
+      "strategy": "fixing",
+      "round": 2,
+      "pick": 2,
+      "phase": "consolida",
+      "lane": "WB",
+      "pool": {
+        "cards": 15,
+        "inLaneCreatures": 4,
+        "inLaneCreaturesAtMost2Mana": 3
+      },
+      "chosen": {
+        "id": "fra-12",
+        "name": "Hexhaven Battalion",
+        "rarity": "common",
+        "colors": [
+          "W"
+        ],
+        "cost": "{4}{W}{W}",
+        "base": 3.5,
+        "gih": 0.57640385,
+        "sample": 76148
+      },
+      "passed": {
+        "id": "fra-303",
+        "name": "Garruk, Veiled Butcher",
+        "rarity": "mythic",
+        "colors": [
+          "B"
+        ],
+        "cost": "{3}{B}{B}",
+        "base": 4.5,
+        "gih": 0.6582519,
+        "sample": 7368
+      },
+      "chosenTotal": 6.3660000000000005,
+      "passedTotal": 6.134,
+      "components": {
+        "potenza": 3.8500000000000005,
+        "colori": 1.04,
+        "sinergia": 0.324,
+        "curva": 0,
+        "segnali": 0.07200000000000002,
+        "mana": 1.08
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-54",
+      "strategy": "denial",
+      "round": 2,
+      "pick": 2,
+      "phase": "orienta",
+      "lane": "WR",
+      "pool": {
+        "cards": 15,
+        "inLaneCreatures": 8,
+        "inLaneCreaturesAtMost2Mana": 3
+      },
+      "chosen": {
+        "id": "fra-22",
+        "name": "Surgical Precision",
+        "rarity": "common",
+        "colors": [
+          "W"
+        ],
+        "cost": "{1}{W}",
+        "base": 3.5,
+        "gih": 0.57388349,
+        "sample": 63546
+      },
+      "passed": {
+        "id": "fra-80",
+        "name": "Draconic Visitor",
+        "rarity": "rare",
+        "colors": [
+          "R"
+        ],
+        "cost": "{3}{R}{R}",
+        "base": 4.5,
+        "gih": 0.53899031,
+        "sample": 8874
+      },
+      "chosenTotal": 4.917,
+      "passedTotal": 5.473,
+      "components": {
+        "potenza": 3.5,
+        "colori": 0.8450000000000001,
+        "sinergia": 0.108,
+        "curva": 0.4,
+        "segnali": 0.06400000000000002,
+        "mana": 0
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-79",
+      "strategy": "aggro",
+      "round": 3,
+      "pick": 2,
+      "phase": "completa",
+      "lane": "WG",
+      "pool": {
+        "cards": 29,
+        "inLaneCreatures": 15,
+        "inLaneCreaturesAtMost2Mana": 10
+      },
+      "chosen": {
+        "id": "fra-99",
+        "name": "Budding Insurgent",
+        "rarity": "common",
+        "colors": [
+          "G"
+        ],
+        "cost": "{2}{G}",
+        "base": 3.5,
+        "gih": 0.50830264,
+        "sample": 16561
+      },
+      "passed": {
+        "id": "fra-11",
+        "name": "Guiding Hydra",
+        "rarity": "rare",
+        "colors": [
+          "W"
+        ],
+        "cost": "{X}{W}",
+        "base": 4.5,
+        "gih": 0.57755698,
+        "sample": 12681
+      },
+      "chosenTotal": 7.786,
+      "passedTotal": 7.6419999999999995,
+      "components": {
+        "potenza": 3.5,
+        "colori": 1.9799999999999998,
+        "sinergia": 0,
+        "curva": 2.25,
+        "segnali": 0.05600000000000001,
+        "mana": 0
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-99",
+      "strategy": "aggro",
+      "round": 3,
+      "pick": 2,
+      "phase": "completa",
+      "lane": "WR",
+      "pool": {
+        "cards": 29,
+        "inLaneCreatures": 16,
+        "inLaneCreaturesAtMost2Mana": 9
+      },
+      "chosen": {
+        "id": "fra-291",
+        "name": "Ajani Resolute",
+        "rarity": "mythic",
+        "colors": [
+          "W"
+        ],
+        "cost": "{1}{W}",
+        "base": 3.5,
+        "gih": 0.52322738,
+        "sample": 3272
+      },
+      "passed": {
+        "id": "fra-308",
+        "name": "Ajani Unrelenting",
+        "rarity": "mythic",
+        "colors": [
+          "R"
+        ],
+        "cost": "{4}{R}{R}",
+        "base": 4.5,
+        "gih": 0.73343098,
+        "sample": 8193
+      },
+      "chosenTotal": 5.536,
+      "passedTotal": 5.092,
+      "components": {
+        "potenza": 3.5,
+        "colori": 1.9799999999999998,
+        "sinergia": 0,
+        "curva": 0,
+        "segnali": 0.05600000000000001,
+        "mana": 0
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-112",
+      "strategy": "control",
+      "round": 2,
+      "pick": 2,
+      "phase": "consolida",
+      "lane": "WR",
+      "pool": {
+        "cards": 15,
+        "inLaneCreatures": 4,
+        "inLaneCreaturesAtMost2Mana": 1
+      },
+      "chosen": {
+        "id": "fra-204",
+        "name": "Teyo, Lightshield Expert",
+        "rarity": "uncommon",
+        "colors": [
+          "W"
+        ],
+        "cost": "{1}{W}",
+        "base": 3.5,
+        "gih": 0.56218716,
+        "sample": 23574
+      },
+      "passed": {
+        "id": "fra-79",
+        "name": "Curse-Marred Demon",
+        "rarity": "rare",
+        "colors": [
+          "R"
+        ],
+        "cost": "{2}{R}{R}",
+        "base": 4.5,
+        "gih": 0.56397433,
+        "sample": 10598
+      },
+      "chosenTotal": 6.194,
+      "passedTotal": 6.638,
+      "components": {
+        "potenza": 3.8500000000000005,
+        "colori": 1.56,
+        "sinergia": 0,
+        "curva": 0.7200000000000001,
+        "segnali": 0.06400000000000002,
+        "mana": 0
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-116",
+      "strategy": "synergy",
+      "round": 3,
+      "pick": 2,
+      "phase": "completa",
+      "lane": "WB",
+      "pool": {
+        "cards": 29,
+        "inLaneCreatures": 12,
+        "inLaneCreaturesAtMost2Mana": 5
+      },
+      "chosen": {
+        "id": "fra-12",
+        "name": "Hexhaven Battalion",
+        "rarity": "common",
+        "colors": [
+          "W"
+        ],
+        "cost": "{4}{W}{W}",
+        "base": 3.5,
+        "gih": 0.57640385,
+        "sample": 76148
+      },
+      "passed": {
+        "id": "fra-201",
+        "name": "Lyra, Archangel of Dawn",
+        "rarity": "rare",
+        "colors": [
+          "W"
+        ],
+        "cost": "{2}{W}",
+        "base": 4.5,
+        "gih": 0.58827614,
+        "sample": 10082
+      },
+      "chosenTotal": 7.601000000000001,
+      "passedTotal": 5.513,
+      "components": {
+        "potenza": 3.15,
+        "colori": 1.815,
+        "sinergia": 2.2680000000000002,
+        "curva": 0,
+        "segnali": 0.12800000000000003,
+        "mana": 0.24
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-117",
+      "strategy": "signals",
+      "round": 1,
+      "pick": 2,
+      "phase": "esplora",
+      "lane": "WU",
+      "pool": {
+        "cards": 1,
+        "inLaneCreatures": 1,
+        "inLaneCreaturesAtMost2Mana": 0
+      },
+      "chosen": {
+        "id": "fra-222",
+        "name": "Traxos, Academy Guardian",
+        "rarity": "uncommon",
+        "colors": [
+          "U"
+        ],
+        "cost": "{3}{U}",
+        "base": 3.5,
+        "gih": 0.55815295,
+        "sample": 29474
+      },
+      "passed": {
+        "id": "fra-38",
+        "name": "Seasoned Cryomancer",
+        "rarity": "mythic",
+        "colors": [
+          "U"
+        ],
+        "cost": "{1}{U}{U}",
+        "base": 4.5,
+        "gih": 0.592012,
+        "sample": 7336
+      },
+      "chosenTotal": 3.8360000000000003,
+      "passedTotal": 4.836,
+      "components": {
+        "potenza": 3.5,
+        "colori": 0.08,
+        "sinergia": 0,
+        "curva": 0,
+        "segnali": 0.25600000000000006,
+        "mana": 0
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-120",
+      "strategy": "aggro",
+      "round": 2,
+      "pick": 2,
+      "phase": "orienta",
+      "lane": "UG",
+      "pool": {
+        "cards": 15,
+        "inLaneCreatures": 10,
+        "inLaneCreaturesAtMost2Mana": 5
+      },
+      "chosen": {
+        "id": "fra-97",
+        "name": "Arcane Amphisbaena",
+        "rarity": "common",
+        "colors": [
+          "G"
+        ],
+        "cost": "{1}{G}",
+        "base": 3.5,
+        "gih": 0.55955459,
+        "sample": 68072
+      },
+      "passed": {
+        "id": "fra-314",
+        "name": "Garruk, Curse Breaker",
+        "rarity": "mythic",
+        "colors": [
+          "G"
+        ],
+        "cost": "{3}{G}{G}",
+        "base": 4.5,
+        "gih": 0.65700838,
+        "sample": 6799
+      },
+      "chosenTotal": 7.362000000000001,
+      "passedTotal": 3.8920000000000003,
+      "components": {
+        "potenza": 3.5,
+        "colori": 0.78,
+        "sinergia": 0.27,
+        "curva": 2.7,
+        "segnali": 0.11200000000000002,
+        "mana": 0
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-120",
+      "strategy": "control",
+      "round": 1,
+      "pick": 2,
+      "phase": "esplora",
+      "lane": "WR",
+      "pool": {
+        "cards": 1,
+        "inLaneCreatures": 0,
+        "inLaneCreaturesAtMost2Mana": 0
+      },
+      "chosen": {
+        "id": "fra-255",
+        "name": "Way of the Warlord",
+        "rarity": "uncommon",
+        "colors": [
+          "R"
+        ],
+        "cost": "{2}{R}",
+        "base": 3.5,
+        "gih": 0.53467799,
+        "sample": 19782
+      },
+      "passed": {
+        "id": "fra-328",
+        "name": "Curse-Marred Demon",
+        "rarity": "rare",
+        "colors": [
+          "R"
+        ],
+        "cost": "{2}{R}{R}",
+        "base": 4.5,
+        "gih": 0.56397433,
+        "sample": 10598
+      },
+      "chosenTotal": 5.424000000000001,
+      "passedTotal": 5.174,
+      "components": {
+        "potenza": 3.8500000000000005,
+        "colori": 0.096,
+        "sinergia": 0,
+        "curva": 1.35,
+        "segnali": 0.12800000000000003,
+        "mana": 0
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-132",
+      "strategy": "aggro",
+      "round": 1,
+      "pick": 2,
+      "phase": "esplora",
+      "lane": "WB",
+      "pool": {
+        "cards": 1,
+        "inLaneCreatures": 1,
+        "inLaneCreaturesAtMost2Mana": 1
+      },
+      "chosen": {
+        "id": "fra-22",
+        "name": "Surgical Precision",
+        "rarity": "common",
+        "colors": [
+          "W"
+        ],
+        "cost": "{1}{W}",
+        "base": 3.5,
+        "gih": 0.57388349,
+        "sample": 63546
+      },
+      "passed": {
+        "id": "fra-229",
+        "name": "Garruk, Veiled Butcher",
+        "rarity": "mythic",
+        "colors": [
+          "B"
+        ],
+        "cost": "{3}{B}{B}",
+        "base": 4.5,
+        "gih": 0.6582519,
+        "sample": 7368
+      },
+      "chosenTotal": 4.43,
+      "passedTotal": null,
+      "components": {
+        "potenza": 3.5,
+        "colori": 0.096,
+        "sinergia": 0,
+        "curva": 0.75,
+        "segnali": 0.084,
+        "mana": 0
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-136",
+      "strategy": "aggro",
+      "round": 3,
+      "pick": 2,
+      "phase": "completa",
+      "lane": "BG",
+      "pool": {
+        "cards": 29,
+        "inLaneCreatures": 15,
+        "inLaneCreaturesAtMost2Mana": 7
+      },
+      "chosen": {
+        "id": "fra-56",
+        "name": "Last Gasp",
+        "rarity": "common",
+        "colors": [
+          "B"
+        ],
+        "cost": "{1}{B}",
+        "base": 3.5,
+        "gih": 0.56905962,
+        "sample": 76948
+      },
+      "passed": {
+        "id": "fra-118",
+        "name": "Verdant Kraken",
+        "rarity": "rare",
+        "colors": [
+          "G"
+        ],
+        "cost": "{4}{G}{G}{G}",
+        "base": 4.5,
+        "gih": 0.58500407,
+        "sample": 12270
+      },
+      "chosenTotal": 6.286,
+      "passedTotal": 5.092,
+      "components": {
+        "potenza": 3.5,
+        "colori": 1.9799999999999998,
+        "sinergia": 0,
+        "curva": 0.75,
+        "segnali": 0.05600000000000001,
+        "mana": 0
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-159",
+      "strategy": "control",
+      "round": 1,
+      "pick": 2,
+      "phase": "esplora",
+      "lane": "RG",
+      "pool": {
+        "cards": 1,
+        "inLaneCreatures": 0,
+        "inLaneCreaturesAtMost2Mana": 0
+      },
+      "chosen": {
+        "id": "fra-99",
+        "name": "Budding Insurgent",
+        "rarity": "common",
+        "colors": [
+          "G"
+        ],
+        "cost": "{2}{G}",
+        "base": 3.5,
+        "gih": 0.50830264,
+        "sample": 16561
+      },
+      "passed": {
+        "id": "fra-118",
+        "name": "Verdant Kraken",
+        "rarity": "rare",
+        "colors": [
+          "G"
+        ],
+        "cost": "{4}{G}{G}{G}",
+        "base": 4.5,
+        "gih": 0.58500407,
+        "sample": 12270
+      },
+      "chosenTotal": 5.424000000000001,
+      "passedTotal": 5.174,
+      "components": {
+        "potenza": 3.8500000000000005,
+        "colori": 0.096,
+        "sinergia": 0,
+        "curva": 1.35,
+        "segnali": 0.12800000000000003,
+        "mana": 0
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-159",
+      "strategy": "control",
+      "round": 3,
+      "pick": 2,
+      "phase": "completa",
+      "lane": "RG",
+      "pool": {
+        "cards": 29,
+        "inLaneCreatures": 14,
+        "inLaneCreaturesAtMost2Mana": 9
+      },
+      "chosen": {
+        "id": "fra-74",
+        "name": "Awaken the Inferno",
+        "rarity": "common",
+        "colors": [
+          "R"
+        ],
+        "cost": "{4}{R}",
+        "base": 3.5,
+        "gih": 0.55939418,
+        "sample": 66488
+      },
+      "passed": {
+        "id": "fra-118",
+        "name": "Verdant Kraken",
+        "rarity": "rare",
+        "colors": [
+          "G"
+        ],
+        "cost": "{4}{G}{G}{G}",
+        "base": 4.5,
+        "gih": 0.58500407,
+        "sample": 12270
+      },
+      "chosenTotal": 7.670000000000001,
+      "passedTotal": 7.058,
+      "components": {
+        "potenza": 3.8500000000000005,
+        "colori": 1.9799999999999998,
+        "sinergia": 0.756,
+        "curva": 0.9,
+        "segnali": 0.06400000000000002,
+        "mana": 0.12
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-161",
+      "strategy": "control",
+      "round": 2,
+      "pick": 2,
+      "phase": "orienta",
+      "lane": "WR",
+      "pool": {
+        "cards": 15,
+        "inLaneCreatures": 0,
+        "inLaneCreaturesAtMost2Mana": 0
+      },
+      "chosen": {
+        "id": "fra-17",
+        "name": "Prophesied End",
+        "rarity": "uncommon",
+        "colors": [
+          "W"
+        ],
+        "cost": "{1}{W}",
+        "base": 3.5,
+        "gih": 0.55486542,
+        "sample": 26082
+      },
+      "passed": {
+        "id": "fra-242",
+        "name": "Ajani Unrelenting",
+        "rarity": "mythic",
+        "colors": [
+          "R"
+        ],
+        "cost": "{4}{R}{R}",
+        "base": 4.5,
+        "gih": 0.73343098,
+        "sample": 8193
+      },
+      "chosenTotal": 6.0440000000000005,
+      "passedTotal": 5.8580000000000005,
+      "components": {
+        "potenza": 3.8500000000000005,
+        "colori": 0.78,
+        "sinergia": 0,
+        "curva": 1.35,
+        "segnali": 0.06400000000000002,
+        "mana": 0
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-167",
+      "strategy": "bomb",
+      "round": 3,
+      "pick": 2,
+      "phase": "completa",
+      "lane": "WR",
+      "pool": {
+        "cards": 29,
+        "inLaneCreatures": 16,
+        "inLaneCreaturesAtMost2Mana": 6
+      },
+      "chosen": {
+        "id": "fra-24",
+        "name": "Your Fate Ends Here",
+        "rarity": "uncommon",
+        "colors": [
+          "W"
+        ],
+        "cost": "{2}{W}",
+        "base": 4,
+        "gih": 0.57324623,
+        "sample": 32145
+      },
+      "passed": {
+        "id": "fra-244",
+        "name": "Chandra, Torch of Defiance",
+        "rarity": "mythic",
+        "colors": [
+          "R"
+        ],
+        "cost": "{2}{R}{R}",
+        "base": 5,
+        "gih": 0.60350762,
+        "sample": 6101
+      },
+      "chosenTotal": 7.776,
+      "passedTotal": 7.93,
+      "components": {
+        "potenza": 4.4,
+        "colori": 2.3099999999999996,
+        "sinergia": 0.72,
+        "curva": 0.25,
+        "segnali": 0.09600000000000002,
+        "mana": 0
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-168",
+      "strategy": "control",
+      "round": 1,
+      "pick": 2,
+      "phase": "esplora",
+      "lane": "BR",
+      "pool": {
+        "cards": 1,
+        "inLaneCreatures": 1,
+        "inLaneCreaturesAtMost2Mana": 1
+      },
+      "chosen": {
+        "id": "fra-167",
+        "name": "Archive Arbiter",
+        "rarity": "uncommon",
+        "colors": [],
+        "cost": "{6}",
+        "base": 3.5,
+        "gih": 0.55870985,
+        "sample": 22509
+      },
+      "passed": {
+        "id": "fra-137",
+        "name": "Ingris Stingerquill",
+        "rarity": "mythic",
+        "colors": [
+          "B",
+          "R"
+        ],
+        "cost": "{B}{R}{R}",
+        "base": 4.5,
+        "gih": 0.57399655,
+        "sample": 4061
+      },
+      "chosenTotal": 5.296000000000001,
+      "passedTotal": 5.174,
+      "components": {
+        "potenza": 3.8500000000000005,
+        "colori": 0.096,
+        "sinergia": 0,
+        "curva": 1.35,
+        "segnali": 0,
+        "mana": 0
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-189",
+      "strategy": "aggro",
+      "round": 2,
+      "pick": 2,
+      "phase": "esplora",
+      "lane": "WG",
+      "pool": {
+        "cards": 15,
+        "inLaneCreatures": 7,
+        "inLaneCreaturesAtMost2Mana": 6
+      },
+      "chosen": {
+        "id": "fra-104",
+        "name": "Greenhouse Propagator",
+        "rarity": "common",
+        "colors": [
+          "G"
+        ],
+        "cost": "{2}{G}",
+        "base": 3.5,
+        "gih": 0.54416607,
+        "sample": 48895
+      },
+      "passed": {
+        "id": "fra-140",
+        "name": "Kwia Vigorbloom",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "W"
+        ],
+        "cost": "{3}{G}{W}{W}",
+        "base": 4.5,
+        "gih": 0.6247394,
+        "sample": 5756
+      },
+      "chosenTotal": 5.388,
+      "passedTotal": null,
+      "components": {
+        "potenza": 3.5,
+        "colori": 0.096,
+        "sinergia": 0.18,
+        "curva": 1.5,
+        "segnali": 0.11200000000000002,
+        "mana": 0
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-190",
+      "strategy": "aggro",
+      "round": 2,
+      "pick": 2,
+      "phase": "consolida",
+      "lane": "WU",
+      "pool": {
+        "cards": 15,
+        "inLaneCreatures": 10,
+        "inLaneCreaturesAtMost2Mana": 6
+      },
+      "chosen": {
+        "id": "fra-33",
+        "name": "Mindseeker Oculus",
+        "rarity": "common",
+        "colors": [
+          "U"
+        ],
+        "cost": "{2}{U}",
+        "base": 3.5,
+        "gih": 0.60051759,
+        "sample": 112831
+      },
+      "passed": {
+        "id": "fra-11",
+        "name": "Guiding Hydra",
+        "rarity": "rare",
+        "colors": [
+          "W"
+        ],
+        "cost": "{X}{W}",
+        "base": 4.5,
+        "gih": 0.57755698,
+        "sample": 12681
+      },
+      "chosenTotal": 6.886,
+      "passedTotal": 7.222,
+      "components": {
+        "potenza": 3.5,
+        "colori": 1.56,
+        "sinergia": 0.27,
+        "curva": 1.5,
+        "segnali": 0.05600000000000001,
+        "mana": 0
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-3",
+      "strategy": "control",
+      "round": 1,
+      "pick": 3,
+      "phase": "esplora",
+      "lane": "BR",
+      "pool": {
+        "cards": 2,
+        "inLaneCreatures": 1,
+        "inLaneCreaturesAtMost2Mana": 0
+      },
+      "chosen": {
+        "id": "fra-255",
+        "name": "Way of the Warlord",
+        "rarity": "uncommon",
+        "colors": [
+          "R"
+        ],
+        "cost": "{2}{R}",
+        "base": 3.5,
+        "gih": 0.53467799,
+        "sample": 19782
+      },
+      "passed": {
+        "id": "fra-368",
+        "name": "Draconic Visitor",
+        "rarity": "rare",
+        "colors": [
+          "R"
+        ],
+        "cost": "{3}{R}{R}",
+        "base": 4.5,
+        "gih": 0.53899031,
+        "sample": 8874
+      },
+      "chosenTotal": 5.651840000000001,
+      "passedTotal": 5.40184,
+      "components": {
+        "potenza": 3.8500000000000005,
+        "colori": 0.096,
+        "sinergia": 0,
+        "curva": 1.35,
+        "segnali": 0.3558400000000001,
+        "mana": 0
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-10",
+      "strategy": "control",
+      "round": 2,
+      "pick": 3,
+      "phase": "consolida",
+      "lane": "BR",
+      "pool": {
+        "cards": 16,
+        "inLaneCreatures": 7,
+        "inLaneCreaturesAtMost2Mana": 1
+      },
+      "chosen": {
+        "id": "fra-96",
+        "name": "Wrath of the Bloodmane",
+        "rarity": "common",
+        "colors": [
+          "R"
+        ],
+        "cost": "{2}{R}",
+        "base": 3.5,
+        "gih": 0.56080667,
+        "sample": 66843
+      },
+      "passed": {
+        "id": "fra-80",
+        "name": "Draconic Visitor",
+        "rarity": "rare",
+        "colors": [
+          "R"
+        ],
+        "cost": "{3}{R}{R}",
+        "base": 4.5,
+        "gih": 0.53899031,
+        "sample": 8874
+      },
+      "chosenTotal": 7.09088,
+      "passedTotal": 6.84088,
+      "components": {
+        "potenza": 3.8500000000000005,
+        "colori": 1.56,
+        "sinergia": 0,
+        "curva": 1.35,
+        "segnali": 0.33088000000000006,
+        "mana": 0
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-32",
+      "strategy": "aggro",
+      "round": 2,
+      "pick": 3,
+      "phase": "orienta",
+      "lane": "WU",
+      "pool": {
+        "cards": 16,
+        "inLaneCreatures": 8,
+        "inLaneCreaturesAtMost2Mana": 2
+      },
+      "chosen": {
+        "id": "fra-204",
+        "name": "Teyo, Lightshield Expert",
+        "rarity": "uncommon",
+        "colors": [
+          "W"
+        ],
+        "cost": "{1}{W}",
+        "base": 3.5,
+        "gih": 0.56218716,
+        "sample": 23574
+      },
+      "passed": {
+        "id": "fra-40",
+        "name": "Sphinx of False Conclusions",
+        "rarity": "rare",
+        "colors": [
+          "U"
+        ],
+        "cost": "{2}{U}{U}",
+        "base": 4.5,
+        "gih": 0.64345794,
+        "sample": 17120
+      },
+      "chosenTotal": 7.157520000000001,
+      "passedTotal": 5.5258400000000005,
+      "components": {
+        "potenza": 3.5,
+        "colori": 0.78,
+        "sinergia": 0,
+        "curva": 2.7,
+        "segnali": 0.17752,
+        "mana": 0
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-37",
+      "strategy": "control",
+      "round": 2,
+      "pick": 3,
+      "phase": "consolida",
+      "lane": "UB",
+      "pool": {
+        "cards": 16,
+        "inLaneCreatures": 5,
+        "inLaneCreaturesAtMost2Mana": 2
+      },
+      "chosen": {
+        "id": "fra-54",
+        "name": "Extended Absence",
+        "rarity": "common",
+        "colors": [
+          "B"
+        ],
+        "cost": "{3}{B}",
+        "base": 4,
+        "gih": 0.59542381,
+        "sample": 90643
+      },
+      "passed": {
+        "id": "fra-363",
+        "name": "The Theorist, Jace Beleren",
+        "rarity": "mythic",
+        "colors": [
+          "U"
+        ],
+        "cost": "{2}{U}{U}",
+        "base": 5,
+        "gih": 0.68577174,
+        "sample": 7956
+      },
+      "chosenTotal": 7.900880000000001,
+      "passedTotal": 7.45488,
+      "components": {
+        "potenza": 4.4,
+        "colori": 1.56,
+        "sinergia": 0.324,
+        "curva": 1.35,
+        "segnali": 0.26688000000000006,
+        "mana": 0
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-82",
+      "strategy": "synergy",
+      "round": 2,
+      "pick": 3,
+      "phase": "consolida",
+      "lane": "WG",
+      "pool": {
+        "cards": 16,
+        "inLaneCreatures": 7,
+        "inLaneCreaturesAtMost2Mana": 3
+      },
+      "chosen": {
+        "id": "fra-13",
+        "name": "Kindred Judgment",
+        "rarity": "rare",
+        "colors": [
+          "W"
+        ],
+        "cost": "{5}{W}{W}",
+        "base": 3.5,
+        "gih": 0.61955946,
+        "sample": 13211
+      },
+      "passed": {
+        "id": "fra-201",
+        "name": "Lyra, Archangel of Dawn",
+        "rarity": "rare",
+        "colors": [
+          "W"
+        ],
+        "cost": "{2}{W}",
+        "base": 4.5,
+        "gih": 0.58827614,
+        "sample": 10082
+      },
+      "chosenTotal": 5.18592,
+      "passedTotal": 5.785920000000001,
+      "components": {
+        "potenza": 3.15,
+        "colori": 1.4300000000000002,
+        "sinergia": 0,
+        "curva": 0.3,
+        "segnali": 0.3059200000000001,
+        "mana": 0
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-87",
+      "strategy": "control",
+      "round": 2,
+      "pick": 3,
+      "phase": "consolida",
+      "lane": "BR",
+      "pool": {
+        "cards": 16,
+        "inLaneCreatures": 10,
+        "inLaneCreaturesAtMost2Mana": 6
+      },
+      "chosen": {
+        "id": "fra-74",
+        "name": "Awaken the Inferno",
+        "rarity": "common",
+        "colors": [
+          "R"
+        ],
+        "cost": "{4}{R}",
+        "base": 3.5,
+        "gih": 0.55939418,
+        "sample": 66488
+      },
+      "passed": {
+        "id": "fra-79",
+        "name": "Curse-Marred Demon",
+        "rarity": "rare",
+        "colors": [
+          "R"
+        ],
+        "cost": "{2}{R}{R}",
+        "base": 4.5,
+        "gih": 0.56397433,
+        "sample": 10598
+      },
+      "chosenTotal": 7.16096,
+      "passedTotal": 6.79096,
+      "components": {
+        "potenza": 3.8500000000000005,
+        "colori": 1.56,
+        "sinergia": 0,
+        "curva": 1.35,
+        "segnali": 0.28096000000000004,
+        "mana": 0.12
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-150",
+      "strategy": "aggro",
+      "round": 3,
+      "pick": 3,
+      "phase": "consolida",
+      "lane": "UG",
+      "pool": {
+        "cards": 30,
+        "inLaneCreatures": 17,
+        "inLaneCreaturesAtMost2Mana": 7
+      },
+      "chosen": {
+        "id": "fra-101",
+        "name": "Compel Brutality",
+        "rarity": "common",
+        "colors": [
+          "G"
+        ],
+        "cost": "{1}{G}",
+        "base": 3.5,
+        "gih": 0.54719272,
+        "sample": 62605
+      },
+      "passed": {
+        "id": "fra-118",
+        "name": "Verdant Kraken",
+        "rarity": "rare",
+        "colors": [
+          "G"
+        ],
+        "cost": "{4}{G}{G}{G}",
+        "base": 4.5,
+        "gih": 0.58500407,
+        "sample": 12270
+      },
+      "chosenTotal": 6.214,
+      "passedTotal": null,
+      "components": {
+        "potenza": 3.5,
+        "colori": 1.56,
+        "sinergia": 0.18,
+        "curva": 0.75,
+        "segnali": 0.22400000000000003,
+        "mana": 0
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-181",
+      "strategy": "synergy",
+      "round": 3,
+      "pick": 3,
+      "phase": "consolida",
+      "lane": "UR",
+      "pool": {
+        "cards": 30,
+        "inLaneCreatures": 15,
+        "inLaneCreaturesAtMost2Mana": 3
+      },
+      "chosen": {
+        "id": "fra-89",
+        "name": "No Admittance",
+        "rarity": "common",
+        "colors": [
+          "R"
+        ],
+        "cost": "{1}{R}",
+        "base": 4,
+        "gih": 0.56854397,
+        "sample": 71166
+      },
+      "passed": {
+        "id": "fra-244",
+        "name": "Chandra, Torch of Defiance",
+        "rarity": "mythic",
+        "colors": [
+          "R"
+        ],
+        "cost": "{2}{R}{R}",
+        "base": 5,
+        "gih": 0.60350762,
+        "sample": 6101
+      },
+      "chosenTotal": 6.646960000000001,
+      "passedTotal": 6.27496,
+      "components": {
+        "potenza": 3.6,
+        "colori": 1.4300000000000002,
+        "sinergia": 0.9720000000000001,
+        "curva": 0.3,
+        "segnali": 0.34496000000000004,
+        "mana": 0
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-36",
+      "strategy": "control",
+      "round": 3,
+      "pick": 4,
+      "phase": "completa",
+      "lane": "WB",
+      "pool": {
+        "cards": 31,
+        "inLaneCreatures": 13,
+        "inLaneCreaturesAtMost2Mana": 7
+      },
+      "chosen": {
+        "id": "fra-58",
+        "name": "Multiply by Zero",
+        "rarity": "uncommon",
+        "colors": [
+          "B"
+        ],
+        "cost": "{1}{B}",
+        "base": 3.5,
+        "gih": 0.5902231,
+        "sample": 39624
+      },
+      "passed": {
+        "id": "fra-303",
+        "name": "Garruk, Veiled Butcher",
+        "rarity": "mythic",
+        "colors": [
+          "B"
+        ],
+        "cost": "{3}{B}{B}",
+        "base": 4.5,
+        "gih": 0.6582519,
+        "sample": 7368
+      },
+      "chosenTotal": 7.283228800000001,
+      "passedTotal": 7.4832288,
+      "components": {
+        "potenza": 3.8500000000000005,
+        "colori": 1.9799999999999998,
+        "sinergia": 0,
+        "curva": 0.9,
+        "segnali": 0.5532288000000001,
+        "mana": 0
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-36",
+      "strategy": "denial",
+      "round": 3,
+      "pick": 4,
+      "phase": "consolida",
+      "lane": "WU",
+      "pool": {
+        "cards": 31,
+        "inLaneCreatures": 17,
+        "inLaneCreaturesAtMost2Mana": 5
+      },
+      "chosen": {
+        "id": "fra-33",
+        "name": "Mindseeker Oculus",
+        "rarity": "common",
+        "colors": [
+          "U"
+        ],
+        "cost": "{2}{U}",
+        "base": 3.5,
+        "gih": 0.60051759,
+        "sample": 112831
+      },
+      "passed": {
+        "id": "fra-40",
+        "name": "Sphinx of False Conclusions",
+        "rarity": "rare",
+        "colors": [
+          "U"
+        ],
+        "cost": "{2}{U}{U}",
+        "base": 4.5,
+        "gih": 0.64345794,
+        "sample": 17120
+      },
+      "chosenTotal": 6.144777600000001,
+      "passedTotal": 6.072777600000001,
+      "components": {
+        "potenza": 3.5,
+        "colori": 1.6900000000000002,
+        "sinergia": 0.432,
+        "curva": 0,
+        "segnali": 0.5227776000000001,
+        "mana": 0
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-135",
+      "strategy": "control",
+      "round": 1,
+      "pick": 4,
+      "phase": "esplora",
+      "lane": "WB",
+      "pool": {
+        "cards": 3,
+        "inLaneCreatures": 0,
+        "inLaneCreaturesAtMost2Mana": 0
+      },
+      "chosen": {
+        "id": "fra-56",
+        "name": "Last Gasp",
+        "rarity": "common",
+        "colors": [
+          "B"
+        ],
+        "cost": "{1}{B}",
+        "base": 3.5,
+        "gih": 0.56905962,
+        "sample": 76948
+      },
+      "passed": {
+        "id": "fra-303",
+        "name": "Garruk, Veiled Butcher",
+        "rarity": "mythic",
+        "colors": [
+          "B"
+        ],
+        "cost": "{3}{B}{B}",
+        "base": 4.5,
+        "gih": 0.6582519,
+        "sample": 7368
+      },
+      "chosenTotal": 5.799308800000001,
+      "passedTotal": 5.5493088,
+      "components": {
+        "potenza": 3.8500000000000005,
+        "colori": 0.096,
+        "sinergia": 0,
+        "curva": 1.35,
+        "segnali": 0.5033088,
+        "mana": 0
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-166",
+      "strategy": "synergy",
+      "round": 2,
+      "pick": 4,
+      "phase": "consolida",
+      "lane": "UR",
+      "pool": {
+        "cards": 17,
+        "inLaneCreatures": 7,
+        "inLaneCreaturesAtMost2Mana": 4
+      },
+      "chosen": {
+        "id": "fra-253",
+        "name": "Tomik, Izzet Sparkmage",
+        "rarity": "uncommon",
+        "colors": [
+          "R"
+        ],
+        "cost": "{1}{R}",
+        "base": 3.5,
+        "gih": 0.51347518,
+        "sample": 16215
+      },
+      "passed": {
+        "id": "fra-242",
+        "name": "Ajani Unrelenting",
+        "rarity": "mythic",
+        "colors": [
+          "R"
+        ],
+        "cost": "{4}{R}{R}",
+        "base": 4.5,
+        "gih": 0.73343098,
+        "sample": 8193
+      },
+      "chosenTotal": 5.49392,
+      "passedTotal": 5.91392,
+      "components": {
+        "potenza": 3.15,
+        "colori": 1.4300000000000002,
+        "sinergia": 0,
+        "curva": 0.48,
+        "segnali": 0.43392000000000003,
+        "mana": 0
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-174",
+      "strategy": "aggro",
+      "round": 3,
+      "pick": 4,
+      "phase": "consolida",
+      "lane": "WR",
+      "pool": {
+        "cards": 31,
+        "inLaneCreatures": 15,
+        "inLaneCreaturesAtMost2Mana": 6
+      },
+      "chosen": {
+        "id": "fra-195",
+        "name": "Ajani Resolute",
+        "rarity": "mythic",
+        "colors": [
+          "W"
+        ],
+        "cost": "{1}{W}",
+        "base": 3.5,
+        "gih": 0.52322738,
+        "sample": 3272
+      },
+      "passed": {
+        "id": "fra-242",
+        "name": "Ajani Unrelenting",
+        "rarity": "mythic",
+        "colors": [
+          "R"
+        ],
+        "cost": "{4}{R}{R}",
+        "base": 4.5,
+        "gih": 0.73343098,
+        "sample": 8193
+      },
+      "chosenTotal": 5.2791056,
+      "passedTotal": 5.1218256,
+      "components": {
+        "potenza": 3.5,
+        "colori": 1.56,
+        "sinergia": 0,
+        "curva": 0,
+        "segnali": 0.21910559999999998,
+        "mana": 0
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-0",
+      "strategy": "control",
+      "round": 3,
+      "pick": 5,
+      "phase": "completa",
+      "lane": "WG",
+      "pool": {
+        "cards": 32,
+        "inLaneCreatures": 14,
+        "inLaneCreaturesAtMost2Mana": 6
+      },
+      "chosen": {
+        "id": "fra-22",
+        "name": "Surgical Precision",
+        "rarity": "common",
+        "colors": [
+          "W"
+        ],
+        "cost": "{1}{W}",
+        "base": 3.5,
+        "gih": 0.57388349,
+        "sample": 63546
+      },
+      "passed": {
+        "id": "fra-352",
+        "name": "Kwia Vigorbloom",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "W"
+        ],
+        "cost": "{3}{G}{W}{W}",
+        "base": 4.5,
+        "gih": 0.6247394,
+        "sample": 5756
+      },
+      "chosenTotal": 7.613824128000001,
+      "passedTotal": 7.82141696,
+      "components": {
+        "potenza": 3.8500000000000005,
+        "colori": 1.9799999999999998,
+        "sinergia": 0,
+        "curva": 0.9,
+        "segnali": 0.8838241280000001,
+        "mana": 0
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-59",
+      "strategy": "synergy",
+      "round": 2,
+      "pick": 5,
+      "phase": "consolida",
+      "lane": "RG",
+      "pool": {
+        "cards": 18,
+        "inLaneCreatures": 7,
+        "inLaneCreaturesAtMost2Mana": 3
+      },
+      "chosen": {
+        "id": "fra-74",
+        "name": "Awaken the Inferno",
+        "rarity": "common",
+        "colors": [
+          "R"
+        ],
+        "cost": "{4}{R}",
+        "base": 3.5,
+        "gih": 0.55939418,
+        "sample": 66488
+      },
+      "passed": {
+        "id": "fra-242",
+        "name": "Ajani Unrelenting",
+        "rarity": "mythic",
+        "colors": [
+          "R"
+        ],
+        "cost": "{4}{R}{R}",
+        "base": 4.5,
+        "gih": 0.73343098,
+        "sample": 8193
+      },
+      "chosenTotal": 7.510006528,
+      "passedTotal": 6.250006528,
+      "components": {
+        "potenza": 3.15,
+        "colori": 1.4300000000000002,
+        "sinergia": 1.6199999999999999,
+        "curva": 0.3,
+        "segnali": 0.7700065280000001,
+        "mana": 0.24
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-59",
+      "strategy": "synergy",
+      "round": 2,
+      "pick": 5,
+      "phase": "consolida",
+      "lane": "RG",
+      "pool": {
+        "cards": 18,
+        "inLaneCreatures": 7,
+        "inLaneCreaturesAtMost2Mana": 3
+      },
+      "chosen": {
+        "id": "fra-74",
+        "name": "Awaken the Inferno",
+        "rarity": "common",
+        "colors": [
+          "R"
+        ],
+        "cost": "{4}{R}",
+        "base": 3.5,
+        "gih": 0.55939418,
+        "sample": 66488
+      },
+      "passed": {
+        "id": "fra-79",
+        "name": "Curse-Marred Demon",
+        "rarity": "rare",
+        "colors": [
+          "R"
+        ],
+        "cost": "{2}{R}{R}",
+        "base": 4.5,
+        "gih": 0.56397433,
+        "sample": 10598
+      },
+      "chosenTotal": 7.510006528,
+      "passedTotal": 6.250006528,
+      "components": {
+        "potenza": 3.15,
+        "colori": 1.4300000000000002,
+        "sinergia": 1.6199999999999999,
+        "curva": 0.3,
+        "segnali": 0.7700065280000001,
+        "mana": 0.24
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-80",
+      "strategy": "aggro",
+      "round": 2,
+      "pick": 5,
+      "phase": "consolida",
+      "lane": "WG",
+      "pool": {
+        "cards": 18,
+        "inLaneCreatures": 12,
+        "inLaneCreaturesAtMost2Mana": 8
+      },
+      "chosen": {
+        "id": "fra-204",
+        "name": "Teyo, Lightshield Expert",
+        "rarity": "uncommon",
+        "colors": [
+          "W"
+        ],
+        "cost": "{1}{W}",
+        "base": 3.5,
+        "gih": 0.56218716,
+        "sample": 23574
+      },
+      "passed": {
+        "id": "fra-140",
+        "name": "Kwia Vigorbloom",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "W"
+        ],
+        "cost": "{3}{G}{W}{W}",
+        "base": 4.5,
+        "gih": 0.6247394,
+        "sample": 5756
+      },
+      "chosenTotal": 5.617826112,
+      "passedTotal": 5.267826112000001,
+      "components": {
+        "potenza": 3.5,
+        "colori": 1.56,
+        "sinergia": 0,
+        "curva": -0.15000000000000013,
+        "segnali": 0.707826112,
+        "mana": 0
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-116",
+      "strategy": "signals",
+      "round": 3,
+      "pick": 5,
+      "phase": "consolida",
+      "lane": "RG",
+      "pool": {
+        "cards": 32,
+        "inLaneCreatures": 13,
+        "inLaneCreaturesAtMost2Mana": 5
+      },
+      "chosen": {
+        "id": "fra-96",
+        "name": "Wrath of the Bloodmane",
+        "rarity": "common",
+        "colors": [
+          "R"
+        ],
+        "cost": "{2}{R}",
+        "base": 3.5,
+        "gih": 0.56080667,
+        "sample": 66843
+      },
+      "passed": {
+        "id": "fra-367",
+        "name": "Ajani's Anguish",
+        "rarity": "rare",
+        "colors": [
+          "R"
+        ],
+        "cost": "{X}{R}",
+        "base": 4.5,
+        "gih": 0.5629965,
+        "sample": 11707
+      },
+      "chosenTotal": 6.8812865279999995,
+      "passedTotal": 7.8812865279999995,
+      "components": {
+        "potenza": 3.5,
+        "colori": 1.3,
+        "sinergia": 0,
+        "curva": 0.35,
+        "segnali": 1.731286528,
+        "mana": 0
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-158",
+      "strategy": "aggro",
+      "round": 3,
+      "pick": 5,
+      "phase": "completa",
+      "lane": "WU",
+      "pool": {
+        "cards": 32,
+        "inLaneCreatures": 16,
+        "inLaneCreaturesAtMost2Mana": 9
+      },
+      "chosen": {
+        "id": "fra-22",
+        "name": "Surgical Precision",
+        "rarity": "common",
+        "colors": [
+          "W"
+        ],
+        "cost": "{1}{W}",
+        "base": 3.5,
+        "gih": 0.57388349,
+        "sample": 63546
+      },
+      "passed": {
+        "id": "fra-128",
+        "name": "Denzilore Fatehold",
+        "rarity": "mythic",
+        "colors": [
+          "U",
+          "W"
+        ],
+        "cost": "{1}{W}{U}{U}",
+        "base": 4.5,
+        "gih": 0.61699203,
+        "sample": 7274
+      },
+      "chosenTotal": 6.793498656,
+      "passedTotal": 7.139341311999999,
+      "components": {
+        "potenza": 3.5,
+        "colori": 1.9799999999999998,
+        "sinergia": 0,
+        "curva": 0.75,
+        "segnali": 0.563498656,
+        "mana": 0
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-88",
+      "strategy": "fixing",
+      "round": 2,
+      "pick": 7,
+      "phase": "consolida",
+      "lane": "WR",
+      "pool": {
+        "cards": 20,
+        "inLaneCreatures": 9,
+        "inLaneCreaturesAtMost2Mana": 1
+      },
+      "chosen": {
+        "id": "fra-74",
+        "name": "Awaken the Inferno",
+        "rarity": "common",
+        "colors": [
+          "R"
+        ],
+        "cost": "{4}{R}",
+        "base": 3.5,
+        "gih": 0.55939418,
+        "sample": 66488
+      },
+      "passed": {
+        "id": "fra-308",
+        "name": "Ajani Unrelenting",
+        "rarity": "mythic",
+        "colors": [
+          "R"
+        ],
+        "cost": "{4}{R}{R}",
+        "base": 4.5,
+        "gih": 0.73343098,
+        "sample": 8193
+      },
+      "chosenTotal": 7.5817539798144,
+      "passedTotal": 7.3017539798144,
+      "components": {
+        "potenza": 3.8500000000000005,
+        "colori": 1.04,
+        "sinergia": 0,
+        "curva": 0.3,
+        "segnali": 1.3117539798144,
+        "mana": 1.08
+      },
+      "gap": 1
+    },
+    {
+      "seed": "bot-audit-157",
+      "strategy": "synergy",
+      "round": 3,
+      "pick": 8,
+      "phase": "consolida",
+      "lane": "BR",
+      "pool": {
+        "cards": 35,
+        "inLaneCreatures": 19,
+        "inLaneCreaturesAtMost2Mana": 6
+      },
+      "chosen": {
+        "id": "fra-74",
+        "name": "Awaken the Inferno",
+        "rarity": "common",
+        "colors": [
+          "R"
+        ],
+        "cost": "{4}{R}",
+        "base": 3.5,
+        "gih": 0.55939418,
+        "sample": 66488
+      },
+      "passed": {
+        "id": "fra-351",
+        "name": "Ingris Stingerquill",
+        "rarity": "mythic",
+        "colors": [
+          "B",
+          "R"
+        ],
+        "cost": "{B}{R}{R}",
+        "base": 4.5,
+        "gih": 0.57399655,
+        "sample": 4061
+      },
+      "chosenTotal": 6.206884103337984,
+      "passedTotal": 6.021766758137856,
+      "components": {
+        "potenza": 3.15,
+        "colori": 1.4300000000000002,
+        "sinergia": 0,
+        "curva": 0.3,
+        "segnali": 1.0868841033379841,
+        "mana": 0.24
+      },
+      "gap": 1
+    }
+  ],
+  "lateHighRatedRares": [
+    {
+      "seed": "bot-audit-0",
+      "strategy": "signals",
+      "round": 3,
+      "pick": 9,
+      "lane": "RG",
+      "card": {
+        "id": "fra-352",
+        "name": "Kwia Vigorbloom",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "W"
+        ],
+        "cost": "{3}{G}{W}{W}",
+        "base": 4.5,
+        "gih": 0.6247394,
+        "sample": 5756
+      }
+    },
+    {
+      "seed": "bot-audit-0",
+      "strategy": "fixing",
+      "round": 2,
+      "pick": 7,
+      "lane": "UG",
+      "card": {
+        "id": "fra-122",
+        "name": "Avatar of Burgeoning Echoes",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "U"
+        ],
+        "cost": "{G}{U}",
+        "base": 4.5,
+        "gih": 0.60338379,
+        "sample": 5615
+      }
+    },
+    {
+      "seed": "bot-audit-3",
+      "strategy": "fixing",
+      "round": 2,
+      "pick": 7,
+      "lane": "RG",
+      "card": {
+        "id": "fra-40",
+        "name": "Sphinx of False Conclusions",
+        "rarity": "rare",
+        "colors": [
+          "U"
+        ],
+        "cost": "{2}{U}{U}",
+        "base": 4.5,
+        "gih": 0.64345794,
+        "sample": 17120
+      }
+    },
+    {
+      "seed": "bot-audit-3",
+      "strategy": "fixing",
+      "round": 3,
+      "pick": 7,
+      "lane": "RG",
+      "card": {
+        "id": "fra-352",
+        "name": "Kwia Vigorbloom",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "W"
+        ],
+        "cost": "{3}{G}{W}{W}",
+        "base": 4.5,
+        "gih": 0.6247394,
+        "sample": 5756
+      }
+    },
+    {
+      "seed": "bot-audit-4",
+      "strategy": "denial",
+      "round": 3,
+      "pick": 10,
+      "lane": "WG",
+      "card": {
+        "id": "fra-121",
+        "name": "Aerid Konstrari",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "R"
+        ],
+        "cost": "{1}{R}{G}{G}",
+        "base": 4.5,
+        "gih": 0.64799621,
+        "sample": 6338
+      }
+    },
+    {
+      "seed": "bot-audit-7",
+      "strategy": "bomb",
+      "round": 2,
+      "pick": 7,
+      "lane": "WG",
+      "card": {
+        "id": "fra-294",
+        "name": "Lyra, Archangel of Dawn",
+        "rarity": "rare",
+        "colors": [
+          "W"
+        ],
+        "cost": "{2}{W}",
+        "base": 4.5,
+        "gih": 0.58827614,
+        "sample": 10082
+      }
+    },
+    {
+      "seed": "bot-audit-7",
+      "strategy": "control",
+      "round": 2,
+      "pick": 8,
+      "lane": "WR",
+      "card": {
+        "id": "fra-80",
+        "name": "Draconic Visitor",
+        "rarity": "rare",
+        "colors": [
+          "R"
+        ],
+        "cost": "{3}{R}{R}",
+        "base": 4.5,
+        "gih": 0.53899031,
+        "sample": 8874
+      }
+    },
+    {
+      "seed": "bot-audit-8",
+      "strategy": "signals",
+      "round": 2,
+      "pick": 11,
+      "lane": "RG",
+      "card": {
+        "id": "fra-140",
+        "name": "Kwia Vigorbloom",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "W"
+        ],
+        "cost": "{3}{G}{W}{W}",
+        "base": 4.5,
+        "gih": 0.6247394,
+        "sample": 5756
+      }
+    },
+    {
+      "seed": "bot-audit-8",
+      "strategy": "denial",
+      "round": 2,
+      "pick": 7,
+      "lane": "UB",
+      "card": {
+        "id": "fra-57",
+        "name": "Lich's Relic",
+        "rarity": "rare",
+        "colors": [
+          "B"
+        ],
+        "cost": "{B}",
+        "base": 4.5,
+        "gih": 0.63005817,
+        "sample": 15816
+      }
+    },
+    {
+      "seed": "bot-audit-15",
+      "strategy": "denial",
+      "round": 2,
+      "pick": 7,
+      "lane": "UG",
+      "card": {
+        "id": "fra-121",
+        "name": "Aerid Konstrari",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "R"
+        ],
+        "cost": "{1}{R}{G}{G}",
+        "base": 4.5,
+        "gih": 0.64799621,
+        "sample": 6338
+      }
+    },
+    {
+      "seed": "bot-audit-18",
+      "strategy": "bomb",
+      "round": 3,
+      "pick": 7,
+      "lane": "UG",
+      "card": {
+        "id": "fra-128",
+        "name": "Denzilore Fatehold",
+        "rarity": "mythic",
+        "colors": [
+          "U",
+          "W"
+        ],
+        "cost": "{1}{W}{U}{U}",
+        "base": 4.5,
+        "gih": 0.61699203,
+        "sample": 7274
+      }
+    },
+    {
+      "seed": "bot-audit-28",
+      "strategy": "signals",
+      "round": 2,
+      "pick": 10,
+      "lane": "WR",
+      "card": {
+        "id": "fra-140",
+        "name": "Kwia Vigorbloom",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "W"
+        ],
+        "cost": "{3}{G}{W}{W}",
+        "base": 4.5,
+        "gih": 0.6247394,
+        "sample": 5756
+      }
+    },
+    {
+      "seed": "bot-audit-29",
+      "strategy": "denial",
+      "round": 3,
+      "pick": 8,
+      "lane": "WU",
+      "card": {
+        "id": "fra-217",
+        "name": "Lyra, Tolarian Archangel",
+        "rarity": "rare",
+        "colors": [
+          "U"
+        ],
+        "cost": "{1}{U}{U}",
+        "base": 4.5,
+        "gih": 0.61093115,
+        "sample": 16979
+      }
+    },
+    {
+      "seed": "bot-audit-29",
+      "strategy": "denial",
+      "round": 3,
+      "pick": 11,
+      "lane": "WU",
+      "card": {
+        "id": "fra-358",
+        "name": "Uldaros Theorix",
+        "rarity": "mythic",
+        "colors": [
+          "B",
+          "U"
+        ],
+        "cost": "{3}{U}{B}{B}",
+        "base": 4.5,
+        "gih": 0.69351717,
+        "sample": 8268
+      }
+    },
+    {
+      "seed": "bot-audit-34",
+      "strategy": "signals",
+      "round": 2,
+      "pick": 7,
+      "lane": "BG",
+      "card": {
+        "id": "fra-80",
+        "name": "Draconic Visitor",
+        "rarity": "rare",
+        "colors": [
+          "R"
+        ],
+        "cost": "{3}{R}{R}",
+        "base": 4.5,
+        "gih": 0.53899031,
+        "sample": 8874
+      }
+    },
+    {
+      "seed": "bot-audit-36",
+      "strategy": "synergy",
+      "round": 3,
+      "pick": 8,
+      "lane": "UR",
+      "card": {
+        "id": "fra-40",
+        "name": "Sphinx of False Conclusions",
+        "rarity": "rare",
+        "colors": [
+          "U"
+        ],
+        "cost": "{2}{U}{U}",
+        "base": 4.5,
+        "gih": 0.64345794,
+        "sample": 17120
+      }
+    },
+    {
+      "seed": "bot-audit-36",
+      "strategy": "control",
+      "round": 2,
+      "pick": 8,
+      "lane": "WB",
+      "card": {
+        "id": "fra-159",
+        "name": "Uldaros Theorix",
+        "rarity": "mythic",
+        "colors": [
+          "B",
+          "U"
+        ],
+        "cost": "{3}{U}{B}{B}",
+        "base": 4.5,
+        "gih": 0.69351717,
+        "sample": 8268
+      }
+    },
+    {
+      "seed": "bot-audit-37",
+      "strategy": "fixing",
+      "round": 2,
+      "pick": 8,
+      "lane": "WG",
+      "card": {
+        "id": "fra-140",
+        "name": "Kwia Vigorbloom",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "W"
+        ],
+        "cost": "{3}{G}{W}{W}",
+        "base": 4.5,
+        "gih": 0.6247394,
+        "sample": 5756
+      }
+    },
+    {
+      "seed": "bot-audit-39",
+      "strategy": "control",
+      "round": 3,
+      "pick": 14,
+      "lane": "UG",
+      "card": {
+        "id": "fra-159",
+        "name": "Uldaros Theorix",
+        "rarity": "mythic",
+        "colors": [
+          "B",
+          "U"
+        ],
+        "cost": "{3}{U}{B}{B}",
+        "base": 4.5,
+        "gih": 0.69351717,
+        "sample": 8268
+      }
+    },
+    {
+      "seed": "bot-audit-40",
+      "strategy": "bomb",
+      "round": 3,
+      "pick": 8,
+      "lane": "WB",
+      "card": {
+        "id": "fra-59",
+        "name": "Overwrite the Multiverse",
+        "rarity": "mythic",
+        "colors": [
+          "B"
+        ],
+        "cost": "{4}{B}{B}",
+        "base": 4.5,
+        "gih": 0.6585752,
+        "sample": 7580
+      }
+    },
+    {
+      "seed": "bot-audit-44",
+      "strategy": "signals",
+      "round": 3,
+      "pick": 8,
+      "lane": "BG",
+      "card": {
+        "id": "fra-159",
+        "name": "Uldaros Theorix",
+        "rarity": "mythic",
+        "colors": [
+          "B",
+          "U"
+        ],
+        "cost": "{3}{U}{B}{B}",
+        "base": 4.5,
+        "gih": 0.69351717,
+        "sample": 8268
+      }
+    },
+    {
+      "seed": "bot-audit-45",
+      "strategy": "signals",
+      "round": 3,
+      "pick": 7,
+      "lane": "RG",
+      "card": {
+        "id": "fra-118",
+        "name": "Verdant Kraken",
+        "rarity": "rare",
+        "colors": [
+          "G"
+        ],
+        "cost": "{4}{G}{G}{G}",
+        "base": 4.5,
+        "gih": 0.58500407,
+        "sample": 12270
+      }
+    },
+    {
+      "seed": "bot-audit-46",
+      "strategy": "synergy",
+      "round": 2,
+      "pick": 10,
+      "lane": "WG",
+      "card": {
+        "id": "fra-349",
+        "name": "Denzilore Fatehold",
+        "rarity": "mythic",
+        "colors": [
+          "U",
+          "W"
+        ],
+        "cost": "{1}{W}{U}{U}",
+        "base": 4.5,
+        "gih": 0.61699203,
+        "sample": 7274
+      }
+    },
+    {
+      "seed": "bot-audit-47",
+      "strategy": "fixing",
+      "round": 3,
+      "pick": 12,
+      "lane": "BG",
+      "card": {
+        "id": "fra-159",
+        "name": "Uldaros Theorix",
+        "rarity": "mythic",
+        "colors": [
+          "B",
+          "U"
+        ],
+        "cost": "{3}{U}{B}{B}",
+        "base": 4.5,
+        "gih": 0.69351717,
+        "sample": 8268
+      }
+    },
+    {
+      "seed": "bot-audit-48",
+      "strategy": "fixing",
+      "round": 3,
+      "pick": 11,
+      "lane": "BG",
+      "card": {
+        "id": "fra-80",
+        "name": "Draconic Visitor",
+        "rarity": "rare",
+        "colors": [
+          "R"
+        ],
+        "cost": "{3}{R}{R}",
+        "base": 4.5,
+        "gih": 0.53899031,
+        "sample": 8874
+      }
+    },
+    {
+      "seed": "bot-audit-49",
+      "strategy": "denial",
+      "round": 2,
+      "pick": 10,
+      "lane": "UG",
+      "card": {
+        "id": "fra-140",
+        "name": "Kwia Vigorbloom",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "W"
+        ],
+        "cost": "{3}{G}{W}{W}",
+        "base": 4.5,
+        "gih": 0.6247394,
+        "sample": 5756
+      }
+    },
+    {
+      "seed": "bot-audit-50",
+      "strategy": "control",
+      "round": 3,
+      "pick": 7,
+      "lane": "UR",
+      "card": {
+        "id": "fra-242",
+        "name": "Ajani Unrelenting",
+        "rarity": "mythic",
+        "colors": [
+          "R"
+        ],
+        "cost": "{4}{R}{R}",
+        "base": 4.5,
+        "gih": 0.73343098,
+        "sample": 8193
+      }
+    },
+    {
+      "seed": "bot-audit-50",
+      "strategy": "denial",
+      "round": 2,
+      "pick": 7,
+      "lane": "BG",
+      "card": {
+        "id": "fra-80",
+        "name": "Draconic Visitor",
+        "rarity": "rare",
+        "colors": [
+          "R"
+        ],
+        "cost": "{3}{R}{R}",
+        "base": 4.5,
+        "gih": 0.53899031,
+        "sample": 8874
+      }
+    },
+    {
+      "seed": "bot-audit-53",
+      "strategy": "denial",
+      "round": 3,
+      "pick": 8,
+      "lane": "RG",
+      "card": {
+        "id": "fra-137",
+        "name": "Ingris Stingerquill",
+        "rarity": "mythic",
+        "colors": [
+          "B",
+          "R"
+        ],
+        "cost": "{B}{R}{R}",
+        "base": 4.5,
+        "gih": 0.57399655,
+        "sample": 4061
+      }
+    },
+    {
+      "seed": "bot-audit-55",
+      "strategy": "denial",
+      "round": 3,
+      "pick": 10,
+      "lane": "WU",
+      "card": {
+        "id": "fra-121",
+        "name": "Aerid Konstrari",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "R"
+        ],
+        "cost": "{1}{R}{G}{G}",
+        "base": 4.5,
+        "gih": 0.64799621,
+        "sample": 6338
+      }
+    },
+    {
+      "seed": "bot-audit-56",
+      "strategy": "aggro",
+      "round": 3,
+      "pick": 8,
+      "lane": "UG",
+      "card": {
+        "id": "fra-140",
+        "name": "Kwia Vigorbloom",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "W"
+        ],
+        "cost": "{3}{G}{W}{W}",
+        "base": 4.5,
+        "gih": 0.6247394,
+        "sample": 5756
+      }
+    },
+    {
+      "seed": "bot-audit-57",
+      "strategy": "signals",
+      "round": 2,
+      "pick": 12,
+      "lane": "UG",
+      "card": {
+        "id": "fra-159",
+        "name": "Uldaros Theorix",
+        "rarity": "mythic",
+        "colors": [
+          "B",
+          "U"
+        ],
+        "cost": "{3}{U}{B}{B}",
+        "base": 4.5,
+        "gih": 0.69351717,
+        "sample": 8268
+      }
+    },
+    {
+      "seed": "bot-audit-58",
+      "strategy": "denial",
+      "round": 3,
+      "pick": 12,
+      "lane": "WG",
+      "card": {
+        "id": "fra-121",
+        "name": "Aerid Konstrari",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "R"
+        ],
+        "cost": "{1}{R}{G}{G}",
+        "base": 4.5,
+        "gih": 0.64799621,
+        "sample": 6338
+      }
+    },
+    {
+      "seed": "bot-audit-59",
+      "strategy": "signals",
+      "round": 2,
+      "pick": 7,
+      "lane": "BG",
+      "card": {
+        "id": "fra-79",
+        "name": "Curse-Marred Demon",
+        "rarity": "rare",
+        "colors": [
+          "R"
+        ],
+        "cost": "{2}{R}{R}",
+        "base": 4.5,
+        "gih": 0.56397433,
+        "sample": 10598
+      }
+    },
+    {
+      "seed": "bot-audit-60",
+      "strategy": "control",
+      "round": 3,
+      "pick": 12,
+      "lane": "WG",
+      "card": {
+        "id": "fra-159",
+        "name": "Uldaros Theorix",
+        "rarity": "mythic",
+        "colors": [
+          "B",
+          "U"
+        ],
+        "cost": "{3}{U}{B}{B}",
+        "base": 4.5,
+        "gih": 0.69351717,
+        "sample": 8268
+      }
+    },
+    {
+      "seed": "bot-audit-61",
+      "strategy": "denial",
+      "round": 3,
+      "pick": 10,
+      "lane": "RG",
+      "card": {
+        "id": "fra-128",
+        "name": "Denzilore Fatehold",
+        "rarity": "mythic",
+        "colors": [
+          "U",
+          "W"
+        ],
+        "cost": "{1}{W}{U}{U}",
+        "base": 4.5,
+        "gih": 0.61699203,
+        "sample": 7274
+      }
+    },
+    {
+      "seed": "bot-audit-66",
+      "strategy": "fixing",
+      "round": 3,
+      "pick": 10,
+      "lane": "BG",
+      "card": {
+        "id": "fra-140",
+        "name": "Kwia Vigorbloom",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "W"
+        ],
+        "cost": "{3}{G}{W}{W}",
+        "base": 4.5,
+        "gih": 0.6247394,
+        "sample": 5756
+      }
+    },
+    {
+      "seed": "bot-audit-69",
+      "strategy": "denial",
+      "round": 2,
+      "pick": 7,
+      "lane": "BR",
+      "card": {
+        "id": "fra-351",
+        "name": "Ingris Stingerquill",
+        "rarity": "mythic",
+        "colors": [
+          "B",
+          "R"
+        ],
+        "cost": "{B}{R}{R}",
+        "base": 4.5,
+        "gih": 0.57399655,
+        "sample": 4061
+      }
+    },
+    {
+      "seed": "bot-audit-70",
+      "strategy": "bomb",
+      "round": 3,
+      "pick": 7,
+      "lane": "RG",
+      "card": {
+        "id": "fra-121",
+        "name": "Aerid Konstrari",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "R"
+        ],
+        "cost": "{1}{R}{G}{G}",
+        "base": 4.5,
+        "gih": 0.64799621,
+        "sample": 6338
+      }
+    },
+    {
+      "seed": "bot-audit-70",
+      "strategy": "synergy",
+      "round": 2,
+      "pick": 7,
+      "lane": "UB",
+      "card": {
+        "id": "fra-57",
+        "name": "Lich's Relic",
+        "rarity": "rare",
+        "colors": [
+          "B"
+        ],
+        "cost": "{B}",
+        "base": 4.5,
+        "gih": 0.63005817,
+        "sample": 15816
+      }
+    },
+    {
+      "seed": "bot-audit-70",
+      "strategy": "denial",
+      "round": 3,
+      "pick": 7,
+      "lane": "UG",
+      "card": {
+        "id": "fra-122",
+        "name": "Avatar of Burgeoning Echoes",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "U"
+        ],
+        "cost": "{G}{U}",
+        "base": 4.5,
+        "gih": 0.60338379,
+        "sample": 5615
+      }
+    },
+    {
+      "seed": "bot-audit-71",
+      "strategy": "control",
+      "round": 3,
+      "pick": 11,
+      "lane": "UG",
+      "card": {
+        "id": "fra-358",
+        "name": "Uldaros Theorix",
+        "rarity": "mythic",
+        "colors": [
+          "B",
+          "U"
+        ],
+        "cost": "{3}{U}{B}{B}",
+        "base": 4.5,
+        "gih": 0.69351717,
+        "sample": 8268
+      }
+    },
+    {
+      "seed": "bot-audit-75",
+      "strategy": "signals",
+      "round": 2,
+      "pick": 9,
+      "lane": "RG",
+      "card": {
+        "id": "fra-122",
+        "name": "Avatar of Burgeoning Echoes",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "U"
+        ],
+        "cost": "{G}{U}",
+        "base": 4.5,
+        "gih": 0.60338379,
+        "sample": 5615
+      }
+    },
+    {
+      "seed": "bot-audit-76",
+      "strategy": "synergy",
+      "round": 2,
+      "pick": 7,
+      "lane": "UG",
+      "card": {
+        "id": "fra-242",
+        "name": "Ajani Unrelenting",
+        "rarity": "mythic",
+        "colors": [
+          "R"
+        ],
+        "cost": "{4}{R}{R}",
+        "base": 4.5,
+        "gih": 0.73343098,
+        "sample": 8193
+      }
+    },
+    {
+      "seed": "bot-audit-77",
+      "strategy": "denial",
+      "round": 2,
+      "pick": 8,
+      "lane": "RG",
+      "card": {
+        "id": "fra-328",
+        "name": "Curse-Marred Demon",
+        "rarity": "rare",
+        "colors": [
+          "R"
+        ],
+        "cost": "{2}{R}{R}",
+        "base": 4.5,
+        "gih": 0.56397433,
+        "sample": 10598
+      }
+    },
+    {
+      "seed": "bot-audit-80",
+      "strategy": "denial",
+      "round": 2,
+      "pick": 10,
+      "lane": "UG",
+      "card": {
+        "id": "fra-140",
+        "name": "Kwia Vigorbloom",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "W"
+        ],
+        "cost": "{3}{G}{W}{W}",
+        "base": 4.5,
+        "gih": 0.6247394,
+        "sample": 5756
+      }
+    },
+    {
+      "seed": "bot-audit-82",
+      "strategy": "synergy",
+      "round": 2,
+      "pick": 7,
+      "lane": "WG",
+      "card": {
+        "id": "fra-140",
+        "name": "Kwia Vigorbloom",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "W"
+        ],
+        "cost": "{3}{G}{W}{W}",
+        "base": 4.5,
+        "gih": 0.6247394,
+        "sample": 5756
+      }
+    },
+    {
+      "seed": "bot-audit-84",
+      "strategy": "control",
+      "round": 3,
+      "pick": 7,
+      "lane": "UG",
+      "card": {
+        "id": "fra-122",
+        "name": "Avatar of Burgeoning Echoes",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "U"
+        ],
+        "cost": "{G}{U}",
+        "base": 4.5,
+        "gih": 0.60338379,
+        "sample": 5615
+      }
+    },
+    {
+      "seed": "bot-audit-85",
+      "strategy": "denial",
+      "round": 2,
+      "pick": 8,
+      "lane": "UB",
+      "card": {
+        "id": "fra-159",
+        "name": "Uldaros Theorix",
+        "rarity": "mythic",
+        "colors": [
+          "B",
+          "U"
+        ],
+        "cost": "{3}{U}{B}{B}",
+        "base": 4.5,
+        "gih": 0.69351717,
+        "sample": 8268
+      }
+    },
+    {
+      "seed": "bot-audit-86",
+      "strategy": "bomb",
+      "round": 3,
+      "pick": 8,
+      "lane": "BR",
+      "card": {
+        "id": "fra-229",
+        "name": "Garruk, Veiled Butcher",
+        "rarity": "mythic",
+        "colors": [
+          "B"
+        ],
+        "cost": "{3}{B}{B}",
+        "base": 4.5,
+        "gih": 0.6582519,
+        "sample": 7368
+      }
+    },
+    {
+      "seed": "bot-audit-86",
+      "strategy": "aggro",
+      "round": 3,
+      "pick": 8,
+      "lane": "WU",
+      "card": {
+        "id": "fra-128",
+        "name": "Denzilore Fatehold",
+        "rarity": "mythic",
+        "colors": [
+          "U",
+          "W"
+        ],
+        "cost": "{1}{W}{U}{U}",
+        "base": 4.5,
+        "gih": 0.61699203,
+        "sample": 7274
+      }
+    },
+    {
+      "seed": "bot-audit-87",
+      "strategy": "signals",
+      "round": 2,
+      "pick": 7,
+      "lane": "UR",
+      "card": {
+        "id": "fra-79",
+        "name": "Curse-Marred Demon",
+        "rarity": "rare",
+        "colors": [
+          "R"
+        ],
+        "cost": "{2}{R}{R}",
+        "base": 4.5,
+        "gih": 0.56397433,
+        "sample": 10598
+      }
+    },
+    {
+      "seed": "bot-audit-88",
+      "strategy": "bomb",
+      "round": 2,
+      "pick": 11,
+      "lane": "UB",
+      "card": {
+        "id": "fra-349",
+        "name": "Denzilore Fatehold",
+        "rarity": "mythic",
+        "colors": [
+          "U",
+          "W"
+        ],
+        "cost": "{1}{W}{U}{U}",
+        "base": 4.5,
+        "gih": 0.61699203,
+        "sample": 7274
+      }
+    },
+    {
+      "seed": "bot-audit-88",
+      "strategy": "control",
+      "round": 2,
+      "pick": 8,
+      "lane": "RG",
+      "card": {
+        "id": "fra-308",
+        "name": "Ajani Unrelenting",
+        "rarity": "mythic",
+        "colors": [
+          "R"
+        ],
+        "cost": "{4}{R}{R}",
+        "base": 4.5,
+        "gih": 0.73343098,
+        "sample": 8193
+      }
+    },
+    {
+      "seed": "bot-audit-92",
+      "strategy": "signals",
+      "round": 2,
+      "pick": 10,
+      "lane": "UG",
+      "card": {
+        "id": "fra-140",
+        "name": "Kwia Vigorbloom",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "W"
+        ],
+        "cost": "{3}{G}{W}{W}",
+        "base": 4.5,
+        "gih": 0.6247394,
+        "sample": 5756
+      }
+    },
+    {
+      "seed": "bot-audit-101",
+      "strategy": "denial",
+      "round": 2,
+      "pick": 13,
+      "lane": "BR",
+      "card": {
+        "id": "fra-352",
+        "name": "Kwia Vigorbloom",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "W"
+        ],
+        "cost": "{3}{G}{W}{W}",
+        "base": 4.5,
+        "gih": 0.6247394,
+        "sample": 5756
+      }
+    },
+    {
+      "seed": "bot-audit-102",
+      "strategy": "denial",
+      "round": 3,
+      "pick": 10,
+      "lane": "WR",
+      "card": {
+        "id": "fra-159",
+        "name": "Uldaros Theorix",
+        "rarity": "mythic",
+        "colors": [
+          "B",
+          "U"
+        ],
+        "cost": "{3}{U}{B}{B}",
+        "base": 4.5,
+        "gih": 0.69351717,
+        "sample": 8268
+      }
+    },
+    {
+      "seed": "bot-audit-103",
+      "strategy": "signals",
+      "round": 2,
+      "pick": 9,
+      "lane": "BG",
+      "card": {
+        "id": "fra-159",
+        "name": "Uldaros Theorix",
+        "rarity": "mythic",
+        "colors": [
+          "B",
+          "U"
+        ],
+        "cost": "{3}{U}{B}{B}",
+        "base": 4.5,
+        "gih": 0.69351717,
+        "sample": 8268
+      }
+    },
+    {
+      "seed": "bot-audit-103",
+      "strategy": "synergy",
+      "round": 3,
+      "pick": 10,
+      "lane": "UG",
+      "card": {
+        "id": "fra-140",
+        "name": "Kwia Vigorbloom",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "W"
+        ],
+        "cost": "{3}{G}{W}{W}",
+        "base": 4.5,
+        "gih": 0.6247394,
+        "sample": 5756
+      }
+    },
+    {
+      "seed": "bot-audit-107",
+      "strategy": "control",
+      "round": 2,
+      "pick": 11,
+      "lane": "BG",
+      "card": {
+        "id": "fra-159",
+        "name": "Uldaros Theorix",
+        "rarity": "mythic",
+        "colors": [
+          "B",
+          "U"
+        ],
+        "cost": "{3}{U}{B}{B}",
+        "base": 4.5,
+        "gih": 0.69351717,
+        "sample": 8268
+      }
+    },
+    {
+      "seed": "bot-audit-110",
+      "strategy": "fixing",
+      "round": 2,
+      "pick": 7,
+      "lane": "BR",
+      "card": {
+        "id": "fra-137",
+        "name": "Ingris Stingerquill",
+        "rarity": "mythic",
+        "colors": [
+          "B",
+          "R"
+        ],
+        "cost": "{B}{R}{R}",
+        "base": 4.5,
+        "gih": 0.57399655,
+        "sample": 4061
+      }
+    },
+    {
+      "seed": "bot-audit-111",
+      "strategy": "fixing",
+      "round": 3,
+      "pick": 11,
+      "lane": "UG",
+      "card": {
+        "id": "fra-137",
+        "name": "Ingris Stingerquill",
+        "rarity": "mythic",
+        "colors": [
+          "B",
+          "R"
+        ],
+        "cost": "{B}{R}{R}",
+        "base": 4.5,
+        "gih": 0.57399655,
+        "sample": 4061
+      }
+    },
+    {
+      "seed": "bot-audit-116",
+      "strategy": "aggro",
+      "round": 3,
+      "pick": 8,
+      "lane": "BR",
+      "card": {
+        "id": "fra-367",
+        "name": "Ajani's Anguish",
+        "rarity": "rare",
+        "colors": [
+          "R"
+        ],
+        "cost": "{X}{R}",
+        "base": 4.5,
+        "gih": 0.5629965,
+        "sample": 11707
+      }
+    },
+    {
+      "seed": "bot-audit-120",
+      "strategy": "denial",
+      "round": 2,
+      "pick": 7,
+      "lane": "RG",
+      "card": {
+        "id": "fra-314",
+        "name": "Garruk, Curse Breaker",
+        "rarity": "mythic",
+        "colors": [
+          "G"
+        ],
+        "cost": "{3}{G}{G}",
+        "base": 4.5,
+        "gih": 0.65700838,
+        "sample": 6799
+      }
+    },
+    {
+      "seed": "bot-audit-122",
+      "strategy": "denial",
+      "round": 2,
+      "pick": 12,
+      "lane": "BG",
+      "card": {
+        "id": "fra-159",
+        "name": "Uldaros Theorix",
+        "rarity": "mythic",
+        "colors": [
+          "B",
+          "U"
+        ],
+        "cost": "{3}{U}{B}{B}",
+        "base": 4.5,
+        "gih": 0.69351717,
+        "sample": 8268
+      }
+    },
+    {
+      "seed": "bot-audit-123",
+      "strategy": "synergy",
+      "round": 2,
+      "pick": 11,
+      "lane": "UR",
+      "card": {
+        "id": "fra-159",
+        "name": "Uldaros Theorix",
+        "rarity": "mythic",
+        "colors": [
+          "B",
+          "U"
+        ],
+        "cost": "{3}{U}{B}{B}",
+        "base": 4.5,
+        "gih": 0.69351717,
+        "sample": 8268
+      }
+    },
+    {
+      "seed": "bot-audit-126",
+      "strategy": "denial",
+      "round": 3,
+      "pick": 10,
+      "lane": "WB",
+      "card": {
+        "id": "fra-140",
+        "name": "Kwia Vigorbloom",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "W"
+        ],
+        "cost": "{3}{G}{W}{W}",
+        "base": 4.5,
+        "gih": 0.6247394,
+        "sample": 5756
+      }
+    },
+    {
+      "seed": "bot-audit-131",
+      "strategy": "synergy",
+      "round": 3,
+      "pick": 7,
+      "lane": "WR",
+      "card": {
+        "id": "fra-201",
+        "name": "Lyra, Archangel of Dawn",
+        "rarity": "rare",
+        "colors": [
+          "W"
+        ],
+        "cost": "{2}{W}",
+        "base": 4.5,
+        "gih": 0.58827614,
+        "sample": 10082
+      }
+    },
+    {
+      "seed": "bot-audit-132",
+      "strategy": "signals",
+      "round": 1,
+      "pick": 7,
+      "lane": "UB",
+      "card": {
+        "id": "fra-229",
+        "name": "Garruk, Veiled Butcher",
+        "rarity": "mythic",
+        "colors": [
+          "B"
+        ],
+        "cost": "{3}{B}{B}",
+        "base": 4.5,
+        "gih": 0.6582519,
+        "sample": 7368
+      }
+    },
+    {
+      "seed": "bot-audit-132",
+      "strategy": "synergy",
+      "round": 3,
+      "pick": 12,
+      "lane": "RG",
+      "card": {
+        "id": "fra-137",
+        "name": "Ingris Stingerquill",
+        "rarity": "mythic",
+        "colors": [
+          "B",
+          "R"
+        ],
+        "cost": "{B}{R}{R}",
+        "base": 4.5,
+        "gih": 0.57399655,
+        "sample": 4061
+      }
+    },
+    {
+      "seed": "bot-audit-132",
+      "strategy": "fixing",
+      "round": 3,
+      "pick": 10,
+      "lane": "WG",
+      "card": {
+        "id": "fra-80",
+        "name": "Draconic Visitor",
+        "rarity": "rare",
+        "colors": [
+          "R"
+        ],
+        "cost": "{3}{R}{R}",
+        "base": 4.5,
+        "gih": 0.53899031,
+        "sample": 8874
+      }
+    },
+    {
+      "seed": "bot-audit-134",
+      "strategy": "fixing",
+      "round": 2,
+      "pick": 8,
+      "lane": "UB",
+      "card": {
+        "id": "fra-59",
+        "name": "Overwrite the Multiverse",
+        "rarity": "mythic",
+        "colors": [
+          "B"
+        ],
+        "cost": "{4}{B}{B}",
+        "base": 4.5,
+        "gih": 0.6585752,
+        "sample": 7580
+      }
+    },
+    {
+      "seed": "bot-audit-138",
+      "strategy": "control",
+      "round": 3,
+      "pick": 7,
+      "lane": "RG",
+      "card": {
+        "id": "fra-347",
+        "name": "Aerid Konstrari",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "R"
+        ],
+        "cost": "{1}{R}{G}{G}",
+        "base": 4.5,
+        "gih": 0.64799621,
+        "sample": 6338
+      }
+    },
+    {
+      "seed": "bot-audit-144",
+      "strategy": "aggro",
+      "round": 2,
+      "pick": 10,
+      "lane": "WU",
+      "card": {
+        "id": "fra-349",
+        "name": "Denzilore Fatehold",
+        "rarity": "mythic",
+        "colors": [
+          "U",
+          "W"
+        ],
+        "cost": "{1}{W}{U}{U}",
+        "base": 4.5,
+        "gih": 0.61699203,
+        "sample": 7274
+      }
+    },
+    {
+      "seed": "bot-audit-144",
+      "strategy": "control",
+      "round": 3,
+      "pick": 7,
+      "lane": "BR",
+      "card": {
+        "id": "fra-137",
+        "name": "Ingris Stingerquill",
+        "rarity": "mythic",
+        "colors": [
+          "B",
+          "R"
+        ],
+        "cost": "{B}{R}{R}",
+        "base": 4.5,
+        "gih": 0.57399655,
+        "sample": 4061
+      }
+    },
+    {
+      "seed": "bot-audit-146",
+      "strategy": "synergy",
+      "round": 3,
+      "pick": 10,
+      "lane": "UR",
+      "card": {
+        "id": "fra-137",
+        "name": "Ingris Stingerquill",
+        "rarity": "mythic",
+        "colors": [
+          "B",
+          "R"
+        ],
+        "cost": "{B}{R}{R}",
+        "base": 4.5,
+        "gih": 0.57399655,
+        "sample": 4061
+      }
+    },
+    {
+      "seed": "bot-audit-146",
+      "strategy": "control",
+      "round": 3,
+      "pick": 7,
+      "lane": "WR",
+      "card": {
+        "id": "fra-137",
+        "name": "Ingris Stingerquill",
+        "rarity": "mythic",
+        "colors": [
+          "B",
+          "R"
+        ],
+        "cost": "{B}{R}{R}",
+        "base": 4.5,
+        "gih": 0.57399655,
+        "sample": 4061
+      }
+    },
+    {
+      "seed": "bot-audit-147",
+      "strategy": "bomb",
+      "round": 3,
+      "pick": 8,
+      "lane": "UG",
+      "card": {
+        "id": "fra-217",
+        "name": "Lyra, Tolarian Archangel",
+        "rarity": "rare",
+        "colors": [
+          "U"
+        ],
+        "cost": "{1}{U}{U}",
+        "base": 4.5,
+        "gih": 0.61093115,
+        "sample": 16979
+      }
+    },
+    {
+      "seed": "bot-audit-147",
+      "strategy": "aggro",
+      "round": 2,
+      "pick": 8,
+      "lane": "BG",
+      "card": {
+        "id": "fra-217",
+        "name": "Lyra, Tolarian Archangel",
+        "rarity": "rare",
+        "colors": [
+          "U"
+        ],
+        "cost": "{1}{U}{U}",
+        "base": 4.5,
+        "gih": 0.61093115,
+        "sample": 16979
+      }
+    },
+    {
+      "seed": "bot-audit-148",
+      "strategy": "signals",
+      "round": 2,
+      "pick": 8,
+      "lane": "WB",
+      "card": {
+        "id": "fra-351",
+        "name": "Ingris Stingerquill",
+        "rarity": "mythic",
+        "colors": [
+          "B",
+          "R"
+        ],
+        "cost": "{B}{R}{R}",
+        "base": 4.5,
+        "gih": 0.57399655,
+        "sample": 4061
+      }
+    },
+    {
+      "seed": "bot-audit-151",
+      "strategy": "aggro",
+      "round": 2,
+      "pick": 8,
+      "lane": "UR",
+      "card": {
+        "id": "fra-40",
+        "name": "Sphinx of False Conclusions",
+        "rarity": "rare",
+        "colors": [
+          "U"
+        ],
+        "cost": "{2}{U}{U}",
+        "base": 4.5,
+        "gih": 0.64345794,
+        "sample": 17120
+      }
+    },
+    {
+      "seed": "bot-audit-151",
+      "strategy": "aggro",
+      "round": 3,
+      "pick": 8,
+      "lane": "UR",
+      "card": {
+        "id": "fra-303",
+        "name": "Garruk, Veiled Butcher",
+        "rarity": "mythic",
+        "colors": [
+          "B"
+        ],
+        "cost": "{3}{B}{B}",
+        "base": 4.5,
+        "gih": 0.6582519,
+        "sample": 7368
+      }
+    },
+    {
+      "seed": "bot-audit-152",
+      "strategy": "denial",
+      "round": 3,
+      "pick": 8,
+      "lane": "UG",
+      "card": {
+        "id": "fra-229",
+        "name": "Garruk, Veiled Butcher",
+        "rarity": "mythic",
+        "colors": [
+          "B"
+        ],
+        "cost": "{3}{B}{B}",
+        "base": 4.5,
+        "gih": 0.6582519,
+        "sample": 7368
+      }
+    },
+    {
+      "seed": "bot-audit-155",
+      "strategy": "fixing",
+      "round": 3,
+      "pick": 10,
+      "lane": "WR",
+      "card": {
+        "id": "fra-137",
+        "name": "Ingris Stingerquill",
+        "rarity": "mythic",
+        "colors": [
+          "B",
+          "R"
+        ],
+        "cost": "{B}{R}{R}",
+        "base": 4.5,
+        "gih": 0.57399655,
+        "sample": 4061
+      }
+    },
+    {
+      "seed": "bot-audit-157",
+      "strategy": "aggro",
+      "round": 3,
+      "pick": 9,
+      "lane": "UG",
+      "card": {
+        "id": "fra-351",
+        "name": "Ingris Stingerquill",
+        "rarity": "mythic",
+        "colors": [
+          "B",
+          "R"
+        ],
+        "cost": "{B}{R}{R}",
+        "base": 4.5,
+        "gih": 0.57399655,
+        "sample": 4061
+      }
+    },
+    {
+      "seed": "bot-audit-160",
+      "strategy": "aggro",
+      "round": 2,
+      "pick": 8,
+      "lane": "WU",
+      "card": {
+        "id": "fra-159",
+        "name": "Uldaros Theorix",
+        "rarity": "mythic",
+        "colors": [
+          "B",
+          "U"
+        ],
+        "cost": "{3}{U}{B}{B}",
+        "base": 4.5,
+        "gih": 0.69351717,
+        "sample": 8268
+      }
+    },
+    {
+      "seed": "bot-audit-160",
+      "strategy": "denial",
+      "round": 3,
+      "pick": 9,
+      "lane": "WU",
+      "card": {
+        "id": "fra-137",
+        "name": "Ingris Stingerquill",
+        "rarity": "mythic",
+        "colors": [
+          "B",
+          "R"
+        ],
+        "cost": "{B}{R}{R}",
+        "base": 4.5,
+        "gih": 0.57399655,
+        "sample": 4061
+      }
+    },
+    {
+      "seed": "bot-audit-161",
+      "strategy": "bomb",
+      "round": 2,
+      "pick": 11,
+      "lane": "WR",
+      "card": {
+        "id": "fra-140",
+        "name": "Kwia Vigorbloom",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "W"
+        ],
+        "cost": "{3}{G}{W}{W}",
+        "base": 4.5,
+        "gih": 0.6247394,
+        "sample": 5756
+      }
+    },
+    {
+      "seed": "bot-audit-162",
+      "strategy": "synergy",
+      "round": 2,
+      "pick": 7,
+      "lane": "UG",
+      "card": {
+        "id": "fra-348",
+        "name": "Avatar of Burgeoning Echoes",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "U"
+        ],
+        "cost": "{G}{U}",
+        "base": 4.5,
+        "gih": 0.60338379,
+        "sample": 5615
+      }
+    },
+    {
+      "seed": "bot-audit-164",
+      "strategy": "signals",
+      "round": 2,
+      "pick": 7,
+      "lane": "BR",
+      "card": {
+        "id": "fra-137",
+        "name": "Ingris Stingerquill",
+        "rarity": "mythic",
+        "colors": [
+          "B",
+          "R"
+        ],
+        "cost": "{B}{R}{R}",
+        "base": 4.5,
+        "gih": 0.57399655,
+        "sample": 4061
+      }
+    },
+    {
+      "seed": "bot-audit-164",
+      "strategy": "bomb",
+      "round": 2,
+      "pick": 7,
+      "lane": "UB",
+      "card": {
+        "id": "fra-358",
+        "name": "Uldaros Theorix",
+        "rarity": "mythic",
+        "colors": [
+          "B",
+          "U"
+        ],
+        "cost": "{3}{U}{B}{B}",
+        "base": 4.5,
+        "gih": 0.69351717,
+        "sample": 8268
+      }
+    },
+    {
+      "seed": "bot-audit-166",
+      "strategy": "aggro",
+      "round": 3,
+      "pick": 8,
+      "lane": "UB",
+      "card": {
+        "id": "fra-159",
+        "name": "Uldaros Theorix",
+        "rarity": "mythic",
+        "colors": [
+          "B",
+          "U"
+        ],
+        "cost": "{3}{U}{B}{B}",
+        "base": 4.5,
+        "gih": 0.69351717,
+        "sample": 8268
+      }
+    },
+    {
+      "seed": "bot-audit-167",
+      "strategy": "aggro",
+      "round": 2,
+      "pick": 10,
+      "lane": "BG",
+      "card": {
+        "id": "fra-140",
+        "name": "Kwia Vigorbloom",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "W"
+        ],
+        "cost": "{3}{G}{W}{W}",
+        "base": 4.5,
+        "gih": 0.6247394,
+        "sample": 5756
+      }
+    },
+    {
+      "seed": "bot-audit-167",
+      "strategy": "fixing",
+      "round": 3,
+      "pick": 9,
+      "lane": "RG",
+      "card": {
+        "id": "fra-347",
+        "name": "Aerid Konstrari",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "R"
+        ],
+        "cost": "{1}{R}{G}{G}",
+        "base": 4.5,
+        "gih": 0.64799621,
+        "sample": 6338
+      }
+    },
+    {
+      "seed": "bot-audit-169",
+      "strategy": "fixing",
+      "round": 3,
+      "pick": 7,
+      "lane": "RG",
+      "card": {
+        "id": "fra-137",
+        "name": "Ingris Stingerquill",
+        "rarity": "mythic",
+        "colors": [
+          "B",
+          "R"
+        ],
+        "cost": "{B}{R}{R}",
+        "base": 4.5,
+        "gih": 0.57399655,
+        "sample": 4061
+      }
+    },
+    {
+      "seed": "bot-audit-170",
+      "strategy": "fixing",
+      "round": 2,
+      "pick": 9,
+      "lane": "WB",
+      "card": {
+        "id": "fra-349",
+        "name": "Denzilore Fatehold",
+        "rarity": "mythic",
+        "colors": [
+          "U",
+          "W"
+        ],
+        "cost": "{1}{W}{U}{U}",
+        "base": 4.5,
+        "gih": 0.61699203,
+        "sample": 7274
+      }
+    },
+    {
+      "seed": "bot-audit-171",
+      "strategy": "bomb",
+      "round": 3,
+      "pick": 8,
+      "lane": "UG",
+      "card": {
+        "id": "fra-122",
+        "name": "Avatar of Burgeoning Echoes",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "U"
+        ],
+        "cost": "{G}{U}",
+        "base": 4.5,
+        "gih": 0.60338379,
+        "sample": 5615
+      }
+    },
+    {
+      "seed": "bot-audit-171",
+      "strategy": "bomb",
+      "round": 3,
+      "pick": 9,
+      "lane": "UG",
+      "card": {
+        "id": "fra-349",
+        "name": "Denzilore Fatehold",
+        "rarity": "mythic",
+        "colors": [
+          "U",
+          "W"
+        ],
+        "cost": "{1}{W}{U}{U}",
+        "base": 4.5,
+        "gih": 0.61699203,
+        "sample": 7274
+      }
+    },
+    {
+      "seed": "bot-audit-174",
+      "strategy": "denial",
+      "round": 3,
+      "pick": 9,
+      "lane": "UG",
+      "card": {
+        "id": "fra-121",
+        "name": "Aerid Konstrari",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "R"
+        ],
+        "cost": "{1}{R}{G}{G}",
+        "base": 4.5,
+        "gih": 0.64799621,
+        "sample": 6338
+      }
+    },
+    {
+      "seed": "bot-audit-174",
+      "strategy": "denial",
+      "round": 3,
+      "pick": 12,
+      "lane": "UG",
+      "card": {
+        "id": "fra-140",
+        "name": "Kwia Vigorbloom",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "W"
+        ],
+        "cost": "{3}{G}{W}{W}",
+        "base": 4.5,
+        "gih": 0.6247394,
+        "sample": 5756
+      }
+    },
+    {
+      "seed": "bot-audit-175",
+      "strategy": "fixing",
+      "round": 3,
+      "pick": 9,
+      "lane": "BG",
+      "card": {
+        "id": "fra-122",
+        "name": "Avatar of Burgeoning Echoes",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "U"
+        ],
+        "cost": "{G}{U}",
+        "base": 4.5,
+        "gih": 0.60338379,
+        "sample": 5615
+      }
+    },
+    {
+      "seed": "bot-audit-177",
+      "strategy": "fixing",
+      "round": 2,
+      "pick": 7,
+      "lane": "UG",
+      "card": {
+        "id": "fra-159",
+        "name": "Uldaros Theorix",
+        "rarity": "mythic",
+        "colors": [
+          "B",
+          "U"
+        ],
+        "cost": "{3}{U}{B}{B}",
+        "base": 4.5,
+        "gih": 0.69351717,
+        "sample": 8268
+      }
+    },
+    {
+      "seed": "bot-audit-178",
+      "strategy": "fixing",
+      "round": 2,
+      "pick": 8,
+      "lane": "WB",
+      "card": {
+        "id": "fra-137",
+        "name": "Ingris Stingerquill",
+        "rarity": "mythic",
+        "colors": [
+          "B",
+          "R"
+        ],
+        "cost": "{B}{R}{R}",
+        "base": 4.5,
+        "gih": 0.57399655,
+        "sample": 4061
+      }
+    },
+    {
+      "seed": "bot-audit-178",
+      "strategy": "denial",
+      "round": 3,
+      "pick": 11,
+      "lane": "WU",
+      "card": {
+        "id": "fra-159",
+        "name": "Uldaros Theorix",
+        "rarity": "mythic",
+        "colors": [
+          "B",
+          "U"
+        ],
+        "cost": "{3}{U}{B}{B}",
+        "base": 4.5,
+        "gih": 0.69351717,
+        "sample": 8268
+      }
+    },
+    {
+      "seed": "bot-audit-180",
+      "strategy": "control",
+      "round": 2,
+      "pick": 10,
+      "lane": "BG",
+      "card": {
+        "id": "fra-217",
+        "name": "Lyra, Tolarian Archangel",
+        "rarity": "rare",
+        "colors": [
+          "U"
+        ],
+        "cost": "{1}{U}{U}",
+        "base": 4.5,
+        "gih": 0.61093115,
+        "sample": 16979
+      }
+    },
+    {
+      "seed": "bot-audit-181",
+      "strategy": "aggro",
+      "round": 3,
+      "pick": 8,
+      "lane": "WU",
+      "card": {
+        "id": "fra-140",
+        "name": "Kwia Vigorbloom",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "W"
+        ],
+        "cost": "{3}{G}{W}{W}",
+        "base": 4.5,
+        "gih": 0.6247394,
+        "sample": 5756
+      }
+    },
+    {
+      "seed": "bot-audit-181",
+      "strategy": "denial",
+      "round": 3,
+      "pick": 7,
+      "lane": "WR",
+      "card": {
+        "id": "fra-244",
+        "name": "Chandra, Torch of Defiance",
+        "rarity": "mythic",
+        "colors": [
+          "R"
+        ],
+        "cost": "{2}{R}{R}",
+        "base": 5,
+        "gih": 0.60350762,
+        "sample": 6101
+      }
+    },
+    {
+      "seed": "bot-audit-183",
+      "strategy": "synergy",
+      "round": 1,
+      "pick": 8,
+      "lane": "UR",
+      "card": {
+        "id": "fra-121",
+        "name": "Aerid Konstrari",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "R"
+        ],
+        "cost": "{1}{R}{G}{G}",
+        "base": 4.5,
+        "gih": 0.64799621,
+        "sample": 6338
+      }
+    },
+    {
+      "seed": "bot-audit-185",
+      "strategy": "control",
+      "round": 3,
+      "pick": 9,
+      "lane": "UR",
+      "card": {
+        "id": "fra-137",
+        "name": "Ingris Stingerquill",
+        "rarity": "mythic",
+        "colors": [
+          "B",
+          "R"
+        ],
+        "cost": "{B}{R}{R}",
+        "base": 4.5,
+        "gih": 0.57399655,
+        "sample": 4061
+      }
+    },
+    {
+      "seed": "bot-audit-188",
+      "strategy": "synergy",
+      "round": 2,
+      "pick": 11,
+      "lane": "WB",
+      "card": {
+        "id": "fra-159",
+        "name": "Uldaros Theorix",
+        "rarity": "mythic",
+        "colors": [
+          "B",
+          "U"
+        ],
+        "cost": "{3}{U}{B}{B}",
+        "base": 4.5,
+        "gih": 0.69351717,
+        "sample": 8268
+      }
+    },
+    {
+      "seed": "bot-audit-189",
+      "strategy": "signals",
+      "round": 3,
+      "pick": 7,
+      "lane": "BR",
+      "card": {
+        "id": "fra-79",
+        "name": "Curse-Marred Demon",
+        "rarity": "rare",
+        "colors": [
+          "R"
+        ],
+        "cost": "{2}{R}{R}",
+        "base": 4.5,
+        "gih": 0.56397433,
+        "sample": 10598
+      }
+    },
+    {
+      "seed": "bot-audit-189",
+      "strategy": "fixing",
+      "round": 2,
+      "pick": 8,
+      "lane": "WG",
+      "card": {
+        "id": "fra-140",
+        "name": "Kwia Vigorbloom",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "W"
+        ],
+        "cost": "{3}{G}{W}{W}",
+        "base": 4.5,
+        "gih": 0.6247394,
+        "sample": 5756
+      }
+    },
+    {
+      "seed": "bot-audit-190",
+      "strategy": "bomb",
+      "round": 3,
+      "pick": 7,
+      "lane": "WR",
+      "card": {
+        "id": "fra-72",
+        "name": "Ajani's Anguish",
+        "rarity": "rare",
+        "colors": [
+          "R"
+        ],
+        "cost": "{X}{R}",
+        "base": 4.5,
+        "gih": 0.5629965,
+        "sample": 11707
+      }
+    },
+    {
+      "seed": "bot-audit-194",
+      "strategy": "control",
+      "round": 2,
+      "pick": 9,
+      "lane": "UR",
+      "card": {
+        "id": "fra-347",
+        "name": "Aerid Konstrari",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "R"
+        ],
+        "cost": "{1}{R}{G}{G}",
+        "base": 4.5,
+        "gih": 0.64799621,
+        "sample": 6338
+      }
+    },
+    {
+      "seed": "bot-audit-195",
+      "strategy": "denial",
+      "round": 2,
+      "pick": 7,
+      "lane": "BR",
+      "card": {
+        "id": "fra-57",
+        "name": "Lich's Relic",
+        "rarity": "rare",
+        "colors": [
+          "B"
+        ],
+        "cost": "{B}",
+        "base": 4.5,
+        "gih": 0.63005817,
+        "sample": 15816
+      }
+    },
+    {
+      "seed": "bot-audit-196",
+      "strategy": "denial",
+      "round": 3,
+      "pick": 8,
+      "lane": "WU",
+      "card": {
+        "id": "fra-140",
+        "name": "Kwia Vigorbloom",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "W"
+        ],
+        "cost": "{3}{G}{W}{W}",
+        "base": 4.5,
+        "gih": 0.6247394,
+        "sample": 5756
+      }
+    }
+  ],
+  "ratingReview": {
+    "highGradeLowGIH": [
+      {
+        "name": "Massacre Girl, Most Wanted",
+        "base": 4,
+        "gih": 0.50085555,
+        "sample": 14026
+      },
+      {
+        "name": "Ghalta the Unstoppable",
+        "base": 4,
+        "gih": 0.53411166,
+        "sample": 18073
+      },
+      {
+        "name": "Mabel, Bitter Recluse",
+        "base": 4,
+        "gih": 0.5369807,
+        "sample": 20051
+      },
+      {
+        "name": "Draconic Visitor",
+        "base": 4.5,
+        "gih": 0.53899031,
+        "sample": 8874
+      },
+      {
+        "name": "Koth of the Homestead",
+        "base": 4,
+        "gih": 0.54409762,
+        "sample": 19831
+      },
+      {
+        "name": "Vindictive Triumph",
+        "base": 4,
+        "gih": 0.54501348,
+        "sample": 5565
+      },
+      {
+        "name": "Vraska's Final Mercy",
+        "base": 4,
+        "gih": 0.54541718,
+        "sample": 9732
+      },
+      {
+        "name": "Way of the Wildspeaker",
+        "base": 4,
+        "gih": 0.54831925,
+        "sample": 27577
+      }
+    ],
+    "lowGradeHighGIH": [
+      {
+        "name": "Twinned Vision",
+        "base": 2.5,
+        "gih": 0.58166141,
+        "sample": 78054
+      },
+      {
+        "name": "Dark Matter Manipulator",
+        "base": 2.5,
+        "gih": 0.57651787,
+        "sample": 9207
+      },
+      {
+        "name": "Unsummon",
+        "base": 2.5,
+        "gih": 0.57509775,
+        "sample": 79543
+      },
+      {
+        "name": "Something Worth Saving",
+        "base": 2.5,
+        "gih": 0.57011583,
+        "sample": 41353
+      },
+      {
+        "name": "Heartwood Crafter",
+        "base": 2.5,
+        "gih": 0.56960079,
+        "sample": 30560
+      },
+      {
+        "name": "Murmuring Volume",
+        "base": 2.5,
+        "gih": 0.5667082,
+        "sample": 49754
+      },
+      {
+        "name": "Way of the Paradox",
+        "base": 2.5,
+        "gih": 0.56447417,
+        "sample": 21528
+      },
+      {
+        "name": "Sphinx's Approach",
+        "base": 2.5,
+        "gih": 0.56176595,
+        "sample": 28268
+      }
+    ]
+  }
+}

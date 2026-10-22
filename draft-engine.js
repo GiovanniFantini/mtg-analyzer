@@ -59,11 +59,33 @@
   if(strategy==='force'&&(!/^[WUBRG]{1,5}$/.test(target||'')||new Set(target).size!==target.length))throw Error('Choose an archetype');
   return {strategy,target,pool:[],phase:0,anchor:null,lane:target,signals:{},demand:Object.fromEntries(COLORS.map(c=>[c,0])),seen:{},log:[]};
  }
- function createEvaluator(format) {
+ function createEvaluator(format,engineVersion=3) {
+  if(![2,3].includes(engineVersion))throw Error('Versione del motore non supportata');
+  const modern=engineVersion===3;
   const byId=Object.fromEntries(format.cards.map(c=>[c.id,c])), archetypes=Object.keys(format.archetypes);
   if(!archetypes.length)throw Error('Archetipi non disponibili');
   const at=n=>format.rounds*format.packSize*n/42;
   const rating=c=>c.basic?0:(c.score??2.5);
+  // Mana symbols, rather than color identity, determine whether a hybrid spell
+  // needs a splash. This remains a draft heuristic, not a mana-payment engine.
+  function missingColors(c,lane){
+   const symbols=[...(c.cost||'').matchAll(/\{([^}]+)\}/g)].map(m=>m[1]);
+   const colored=symbols.filter(s=>/[WUBRG]/.test(s));
+   if(!colored.length)return c.colors.filter(x=>!lane.includes(x));
+   return [...new Set(colored.flatMap(s=>{
+    const choices=s.split('/').filter(x=>COLORS.includes(x));
+    return choices.some(x=>lane.includes(x))||s.split('/').some(x=>/^\d+$/.test(x))?[]:choices;
+   }))];
+  }
+  const fits=(c,lane)=>modern?missingColors(c,lane).length===0:c.colors.every(x=>lane.includes(x));
+  function manaColors(c){
+   const text=c.oracle||'';
+   if(/mana of any color|basic landcycling|search your library for a basic land/i.test(text))return COLORS;
+   if(c.land)return c.identity;
+   const cycling=['Plains','Island','Swamp','Mountain','Forest'].flatMap((type,i)=>new RegExp('\\b'+type+'cycling\\b','i').test(text)?[COLORS[i]]:[]);
+   const produced=[...text.matchAll(/\badd ([^.\n]+)/gi)].flatMap(m=>[...m[1].matchAll(/\{([WUBRG])\}/g)].map(x=>x[1]));
+   return [...new Set([...cycling,...produced])];
+  }
   function observe(bot,pack,round,pick) {
    const sig=bot.signals[round]??=Object.fromEntries(COLORS.map(c=>[c,0]));
    // The same packet has the same minimum UID. Track its route independently.
@@ -73,14 +95,83 @@
   }
   function context(bot,round) {
    const pool=bot.pool.map(e=>byId[e.id]);const sig=bot.signals[round]||{};
-   const support=Object.fromEntries(archetypes.map(a=>[a,pool.reduce((n,c)=>n+(!c.land&&c.colors.every(x=>a.includes(x))?Math.max(0,rating(c)-1.5):0)+(c.archetypes.includes(a)?.7:0),0)]));
+   const support=Object.fromEntries(archetypes.map(a=>[a,pool.reduce((n,c)=>n+(!c.land&&fits(c,a)?Math.max(0,rating(c)-1.5):0)+(c.archetypes.includes(a)&&(!modern||fits(c,a))?.7:0),0)]));
    const lanes=archetypes.map(a=>[support[a]+[...a].reduce((n,c)=>n+(sig[c]||0)*STRATEGIES[bot.strategy].weights[4],0),a]).sort((a,b)=>b[0]-a[0]);
    let lane=bot.target||lanes[0][1];
-   if(bot.strategy==='bomb'&&bot.anchor){const anchored=lanes.find(([,a])=>byId[bot.anchor].colors.every(c=>a.includes(c)));if(anchored){lane=lanes[0][0]>anchored[0]+6?lanes[0][1]:anchored[1];}}
+   if(bot.strategy==='bomb'&&bot.anchor){const anchored=lanes.find(([,a])=>fits(byId[bot.anchor],a));if(anchored){lane=lanes[0][0]>anchored[0]+6?lanes[0][1]:anchored[1];}}
    if(!bot.target&&bot.phase>=2&&bot.lane){const prior=lanes.find(([,a])=>a===bot.lane);if(prior&&lanes[0][0]<prior[0]+3)lane=bot.lane;}
-   return {pool,sig,lane,support,lanes};
+   // Equally supported pairs stay open. Their order in the JSON must not give
+   // one color a curve or synergy bonus before the bot has any evidence.
+   if(!modern)return {pool,sig,lane,support,lanes};
+   const supportedColors=new Set(pool.filter(c=>!c.land&&fits(c,lane)).flatMap(c=>[...(c.cost||'').matchAll(/\{([WUBRG])\}/g)].map(m=>m[1])));
+   const keepLane=bot.target||(bot.phase>=2&&supportedColors.size>=2);
+   const laneValue=lanes.find(([,a])=>a===lane)[0];
+   const anchored=bot.strategy==='bomb'&&bot.anchor&&fits(byId[bot.anchor],lane);
+   const options=keepLane?[lane]:lanes.filter(([value,a])=>value>=laneValue-.25&&(!anchored||fits(byId[bot.anchor],a))).map(([,a])=>a);
+   return {pool,sig,lane,support,lanes,options};
+  }
+  function rankModern(bot,pack,round,pick,random,transition){
+   const profile=STRATEGIES[bot.strategy],ctx=context(bot,round),n=bot.pool.length;
+   if(transition){
+    const masses=[...TRANSITIONS[bot.phase]];
+    if(n<at(3)){masses[0]+=2;masses[2]=0;masses[3]=0;}
+    if(n>=at(7))masses[1]+=.5;
+    if(n>=at(14))masses[2]+=1.5;
+    if(n>=at(5)&&ctx.lanes[0][0]-(ctx.lanes[1]?.[0]??0)>3)masses[2]+=.8;
+    if(bot.phase>=2&&bot.lane&&ctx.lane!==bot.lane)masses[1]+=.8;
+    if(n>=at(28))masses[3]+=4;
+    if(n<at(26))masses[3]=0;
+    bot.phase=weighted(masses.map((w,i)=>[w,i]),random);
+   }
+   const commitment=bot.strategy==='force'?1.5:n===0?0:[.08,.65,1.3,1.65][bot.phase];
+   const removal=c=>/rimozione|risposta|contromagia/i.test(c.role);
+   const sources=manaColors;
+   const playable=(c,lane)=>!c.land&&fits(c,lane);
+   function evaluate(entry,lane){
+    const c=byId[entry.id],off=missingColors(c,lane),own=ctx.pool.filter(x=>playable(x,lane));
+    const available=color=>ctx.pool.filter(x=>sources(x).includes(color)).length;
+    const splash=bot.strategy==='fixing'&&off.length===1&&available(off[0])>=2&&
+     [...(c.cost||'').matchAll(/\{([^}]+)\}/g)].filter(m=>m[1].split('/').includes(off[0])).length<=1;
+    const on=c.land?sources(c).some(x=>lane.includes(x)):off.length===0;
+    const fit=c.basic?-2:(on?1:splash?-.2:-1-off.length)*commitment;
+    // Archetype membership is evidence of a shared plan, not proof that every
+    // copy is another enabler. Duplicate copies cannot inflate this bonus.
+    const distinctSupport=new Set(own.filter(x=>x.full!==c.full&&x.archetypes.includes(lane)).map(x=>x.full)).size;
+    const synergy=playable(c,lane)&&c.archetypes.includes(lane)?Math.min(.35,distinctSupport*.07):0;
+    let curve=0;
+    const cheap=x=>x.creature&&x.mv<=2&&!/\{X\}/.test(x.cost||'');
+    if(n&&playable(c,lane)){
+     const cheapCount=own.filter(cheap).length;
+     if(cheap(c))curve+=cheapCount<6?.25:-.15;
+     if(c.creature&&own.filter(x=>x.creature&&Math.min(6,x.mv)===Math.min(6,c.mv)).length>=5)curve-=.2;
+     // An expensive activated answer is not an efficient removal spell merely
+     // because the editorial role contains the word "rimozione".
+     if(!c.creature&&removal(c)&&own.filter(x=>!x.creature&&removal(x)).length<5)curve+=.15;
+     if(bot.strategy==='aggro')curve+=c.creature&&c.mv<=3&&!/\{X\}/.test(c.cost||'')?.15:c.mv>=5?-.15:0;
+     if(bot.strategy==='control')curve+=!c.creature&&removal(c)?.15:/pesca|vantaggio|difens/i.test(c.role)?.1:0;
+    }
+    const signal=c.colors.reduce((s,x)=>s+(ctx.sig[x]||0),0)/Math.max(1,c.colors.length)*.12;
+    const offBombs=ctx.pool.filter(x=>rating(x)>=4&&!fits(x,lane));
+    const useful=sources(c).some(color=>lane.includes(color)||offBombs.some(b=>missingColors(b,lane).includes(color)));
+    const mana=useful&&!c.basic?.15:0;
+    const components={potenza:rating(c)*profile.weights[0],colori:fit*profile.weights[1],sinergia:synergy*profile.weights[2],curva:curve*profile.weights[3],segnali:signal*profile.weights[4],mana:mana*profile.weights[5]};
+    // Tactical preferences break close choices. Their combined bonus cannot
+    // erase a full point of card quality on the same weighted rating scale.
+    const keys=['sinergia','curva','segnali','mana'];
+    const positive=keys.reduce((s,k)=>s+Math.max(0,components[k]),0),negative=keys.reduce((s,k)=>s+Math.min(0,components[k]),0);
+    for(const key of keys)components[key]*=components[key]>=0?(positive>.45?.45/positive:1):(negative<-.2?-.2/negative:1);
+    return {entry,components,score:Object.values(components).reduce((a,b)=>a+b,0),playable:playable(c,lane),card:c,lane};
+   }
+   const scores=pack.map(entry=>ctx.options.map(lane=>evaluate(entry,lane)).sort((a,b)=>b.score-a.score)[0]);
+   const bestOwnPower=Math.max(0,...scores.filter(s=>s.playable).map(s=>rating(s.card)));
+   if(bot.strategy==='denial'&&n>=at(21)&&pick>=Math.ceil(format.packSize/format.picksPerTurn)/2&&bestOwnPower<=2.7){
+    for(const s of scores)if(!s.playable&&rating(s.card)>=3.5){const demand=Math.max(0,...s.card.colors.map(x=>bot.demand[x]));if(demand>=2){s.components.colori=0;s.components.negazione=Math.min(1.5,demand*.15);s.components.costoFuoriColore=-.6;s.score=Object.values(s.components).reduce((a,b)=>a+b,0);}}
+   }
+   scores.sort((a,b)=>b.score-a.score||a.entry.uid-b.entry.uid);
+   return {scores,ctx};
   }
   function rank(bot,pack,round,pick,random,transition=true) {
+   if(modern)return rankModern(bot,pack,round,pick,random,transition);
    const profile=STRATEGIES[bot.strategy];const ctx=context(bot,round);const n=bot.pool.length;
    if(transition){
     const masses=[...TRANSITIONS[bot.phase]];
@@ -131,8 +222,9 @@
    observe(bot,pack,round,pick);
    const {scores,ctx}=rank(bot,pack.cards,round,pick,random);
    const max=scores[0].score;
-   const selected=weighted(scores.map(s=>[Math.exp((s.score-max)/STRATEGIES[bot.strategy].temperature),s]),random);
-   bot.lane=ctx.lane;bot.pool.push(selected.entry);
+   const candidates=modern?scores.filter(s=>s.score>=max-.2):scores;
+   const selected=weighted(candidates.map(s=>[Math.exp((s.score-max)/STRATEGIES[bot.strategy].temperature),s]),random);
+   bot.lane=modern?selected.lane:ctx.lane;bot.pool.push(selected.entry);
    if(!bot.anchor&&rating(selected.card)>=4&&!selected.card.land)bot.anchor=selected.entry.id;
    bot.seen[pack.packetId]=pack.cards.filter(e=>e.uid!==selected.entry.uid).map(e=>({...e}));
    bot.log.push({round,pick,packetId:pack.packetId,id:selected.entry.id,uid:selected.entry.uid,phase:PHASES[bot.phase],lane:bot.lane,components:selected.components,score:selected.score,alternatives:scores.slice(0,3).map(s=>({id:s.entry.id,score:s.score})),observed:pack.cards.map(e=>e.id)});
@@ -140,11 +232,11 @@
   }
   return {byId,rating,observe,context,rank,take};
  }
- function createSession(format,seed,configs){
+ function createSession(format,seed,configs,engineVersion=3){
   if(!Number.isInteger(format.picksPerTurn)||format.picksPerTurn<1||!Number.isInteger(format.seats)||format.seats<2||format.directions.length!==format.rounds||format.directions.some(x=>x!==1&&x!==-1))throw Error('Regole del Draft non valide');
   if(!Array.isArray(configs)||configs.length!==format.seats-1)throw Error('Invalid bot count');
   for(const c of configs)if(!c||!STRATEGIES[c.strategy]||(c.strategy==='force'&&!format.archetypes[c.target]))throw Error('Invalid bot configuration');
-  const random=rng(seed),collator=createCollator(format,random),evaluator=createEvaluator(format);
+  const random=rng(seed),collator=createCollator(format,random),evaluator=createEvaluator(format,engineVersion);
   const bots=configs.map(c=>botState(c.strategy,c.target));
   const rounds=Array.from({length:format.rounds},(_,round)=>Array.from({length:format.seats},(_,seat)=>({packetId:round*format.seats+seat,cards:collator.pack()})));
   let packets=rounds[0],round=0,pick=0,pending=[];const human=[],log=[];
@@ -168,11 +260,11 @@
    else{const rotated=Array(format.seats);packets.forEach((p,i)=>rotated[(i+format.directions[round]+format.seats)%format.seats]=p);packets=rotated;}
    return entry;
   }
-  return {format,seed,configs,bots,human,log,current,step,get round(){return round+1;},get pick(){return pick+1;},get complete(){return round>=format.rounds;},export(){return {version:2,engineVersion:2,format:format.id,revision:format.revision,seed,configs,picks:log.map(x=>x.entry.uid)};}};
+  return {format,seed,configs,bots,human,log,current,step,get round(){return round+1;},get pick(){return pick+1;},get complete(){return round>=format.rounds;},export(){return {version:2,engineVersion,format:format.id,revision:format.revision,seed,configs,picks:log.map(x=>x.entry.uid)};}};
  }
  function replay(format,record){
-  if(!record||(record.version===1?!format.legacyReplay:record.version!==2||record.engineVersion!==2||(record.revision!==format.revision&&!(format.compatibleRevisions||[]).includes(record.revision)))||record.format!==format.id||typeof record.seed!=='string'||record.seed.length>200||!Array.isArray(record.picks)||record.picks.length>format.rounds*format.packSize||record.picks.some(x=>!Number.isInteger(x)))throw Error('Salvataggio non valido o riferito a un profilo differente');
-  const session=createSession(format,record.seed,record.configs);record.picks.forEach(uid=>session.step(uid));return session;
+  if(!record||(record.version===1?!format.legacyReplay:record.version!==2||![2,3].includes(record.engineVersion)||(record.revision!==format.revision&&!(format.compatibleRevisions||[]).includes(record.revision)))||record.format!==format.id||typeof record.seed!=='string'||record.seed.length>200||!Array.isArray(record.picks)||record.picks.length>format.rounds*format.packSize||record.picks.some(x=>!Number.isInteger(x)))throw Error('Salvataggio non valido o riferito a un profilo differente');
+  const session=createSession(format,record.seed,record.configs,record.version===1?2:record.engineVersion);record.picks.forEach(uid=>session.step(uid));return session;
  }
  const api={STRATEGIES,PHASES,TRANSITIONS,rng,weighted,createCollator,botState,createEvaluator,createSession,replay};
  if(typeof module!=='undefined')module.exports=api;else root.DraftEngine=api;

@@ -11,7 +11,7 @@ const oldCollator=E.createCollator(legacy,E.rng('legacy-compatible'));
 const newCollator=E.createCollator(data,E.rng('legacy-compatible'));
 for(let i=0;i<3000;i++)assert.deepEqual(newCollator.pack(),oldCollator.pack());
 const configs=Array.from({length:7},()=>({strategy:'signals',target:null}));
-const old=E.createSession(legacy,'legacy-session',configs);
+const old=E.createSession(legacy,'legacy-session',configs,2);
 for(let i=0;i<42;i++)old.step(old.current()[i%old.current().length].uid);
 const record={version:1,format:legacy.id,seed:old.seed,configs,picks:old.log.map(x=>x.entry.uid)};
 const restored=E.replay(data,record);

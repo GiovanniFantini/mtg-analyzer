@@ -1,0 +1,1935 @@
+{
+  "expansion": "reality-fracture",
+  "event": "draft",
+  "scenario": "mixed",
+  "engineVersion": 3,
+  "tables": 200,
+  "botPicks": 58800,
+  "formatRevision": "b8507e3f2b0065d879d9c570c3f321bd5c8ad90f64097d8b72967de38cf88bab",
+  "configs": [
+    {
+      "strategy": "signals",
+      "target": null
+    },
+    {
+      "strategy": "bomb",
+      "target": null
+    },
+    {
+      "strategy": "synergy",
+      "target": null
+    },
+    {
+      "strategy": "aggro",
+      "target": null
+    },
+    {
+      "strategy": "control",
+      "target": null
+    },
+    {
+      "strategy": "fixing",
+      "target": null
+    },
+    {
+      "strategy": "denial",
+      "target": null
+    }
+  ],
+  "humanPolicy": "signals v2, separate seeded RNG",
+  "ratingsDate": "21/09/2026",
+  "statisticsDate": "16 ottobre 2026",
+  "caveats": [
+    "Pick counts describe this simulation, not player results.",
+    "Passing a rare is not automatically a mistake. Same-lane rating gaps flag cases for review; curve, mana costs and synergy still matter.",
+    "GIH rates are historical observational data, not causal card grades.",
+    "First-pick color probe is synthetic; all draft examples use unmodified source data."
+  ],
+  "rareSelection": {
+    "mythic_scoreAtLeast4.5": {
+      "count": 591,
+      "pickSum": 1705,
+      "afterPick4": 121,
+      "afterPick7": 58,
+      "histogram": {
+        "1": 278,
+        "2": 113,
+        "3": 48,
+        "4": 31,
+        "5": 27,
+        "6": 22,
+        "7": 14,
+        "8": 22,
+        "9": 9,
+        "10": 5,
+        "11": 9,
+        "12": 8,
+        "13": 4,
+        "14": 1
+      },
+      "averagePick": 2.8849407783417935
+    },
+    "rare_scoreBelow4": {
+      "count": 2970,
+      "pickSum": 26414,
+      "afterPick4": 2480,
+      "afterPick7": 1914,
+      "histogram": {
+        "1": 71,
+        "2": 117,
+        "3": 141,
+        "4": 161,
+        "5": 163,
+        "6": 197,
+        "7": 206,
+        "8": 223,
+        "9": 236,
+        "10": 233,
+        "11": 273,
+        "12": 270,
+        "13": 384,
+        "14": 295
+      },
+      "averagePick": 8.893602693602693
+    },
+    "rare_score4": {
+      "count": 1047,
+      "pickSum": 4020,
+      "afterPick4": 302,
+      "afterPick7": 158,
+      "histogram": {
+        "1": 298,
+        "2": 208,
+        "3": 146,
+        "4": 93,
+        "5": 58,
+        "6": 46,
+        "7": 40,
+        "8": 41,
+        "9": 22,
+        "10": 15,
+        "11": 24,
+        "12": 26,
+        "13": 22,
+        "14": 8
+      },
+      "averagePick": 3.839541547277937
+    },
+    "mythic_scoreBelow4": {
+      "count": 382,
+      "pickSum": 2833,
+      "afterPick4": 255,
+      "afterPick7": 177,
+      "histogram": {
+        "1": 18,
+        "2": 29,
+        "3": 36,
+        "4": 44,
+        "5": 33,
+        "6": 27,
+        "7": 18,
+        "8": 24,
+        "9": 20,
+        "10": 14,
+        "11": 24,
+        "12": 23,
+        "13": 40,
+        "14": 32
+      },
+      "averagePick": 7.4162303664921465
+    },
+    "rare_scoreAtLeast4.5": {
+      "count": 671,
+      "pickSum": 1293,
+      "afterPick4": 41,
+      "afterPick7": 2,
+      "histogram": {
+        "1": 373,
+        "2": 135,
+        "3": 70,
+        "4": 52,
+        "5": 22,
+        "6": 13,
+        "7": 4,
+        "8": 2
+      },
+      "averagePick": 1.9269746646795827
+    },
+    "mythic_score4": {
+      "count": 195,
+      "pickSum": 527,
+      "afterPick4": 34,
+      "afterPick7": 3,
+      "histogram": {
+        "1": 68,
+        "2": 45,
+        "3": 28,
+        "4": 20,
+        "5": 14,
+        "6": 9,
+        "7": 8,
+        "8": 2,
+        "9": 1
+      },
+      "averagePick": 2.7025641025641027
+    }
+  },
+  "byStrategy": {
+    "signals": {
+      "picks": 8400,
+      "highRatedRareAvailableInSameLane": 139,
+      "highRatedRarePassedForWeakerSameLane": 0
+    },
+    "bomb": {
+      "picks": 8400,
+      "highRatedRareAvailableInSameLane": 152,
+      "highRatedRarePassedForWeakerSameLane": 0
+    },
+    "synergy": {
+      "picks": 8400,
+      "highRatedRareAvailableInSameLane": 145,
+      "highRatedRarePassedForWeakerSameLane": 0
+    },
+    "aggro": {
+      "picks": 8400,
+      "highRatedRareAvailableInSameLane": 125,
+      "highRatedRarePassedForWeakerSameLane": 0
+    },
+    "control": {
+      "picks": 8400,
+      "highRatedRareAvailableInSameLane": 135,
+      "highRatedRarePassedForWeakerSameLane": 0
+    },
+    "fixing": {
+      "picks": 8400,
+      "highRatedRareAvailableInSameLane": 132,
+      "highRatedRarePassedForWeakerSameLane": 0
+    },
+    "denial": {
+      "picks": 8400,
+      "highRatedRareAvailableInSameLane": 137,
+      "highRatedRarePassedForWeakerSameLane": 0
+    }
+  },
+  "firstPickColorProbe": {
+    "lane": "WU",
+    "scores": [
+      {
+        "color": "W",
+        "score": 3,
+        "components": {
+          "potenza": 3,
+          "colori": 0,
+          "sinergia": 0,
+          "curva": 0,
+          "segnali": 0,
+          "mana": 0
+        }
+      },
+      {
+        "color": "U",
+        "score": 3,
+        "components": {
+          "potenza": 3,
+          "colori": 0,
+          "sinergia": 0,
+          "curva": 0,
+          "segnali": 0,
+          "mana": 0
+        }
+      },
+      {
+        "color": "B",
+        "score": 3,
+        "components": {
+          "potenza": 3,
+          "colori": 0,
+          "sinergia": 0,
+          "curva": 0,
+          "segnali": 0,
+          "mana": 0
+        }
+      },
+      {
+        "color": "R",
+        "score": 3,
+        "components": {
+          "potenza": 3,
+          "colori": 0,
+          "sinergia": 0,
+          "curva": 0,
+          "segnali": 0,
+          "mana": 0
+        }
+      },
+      {
+        "color": "G",
+        "score": 3,
+        "components": {
+          "potenza": 3,
+          "colori": 0,
+          "sinergia": 0,
+          "curva": 0,
+          "segnali": 0,
+          "mana": 0
+        }
+      }
+    ]
+  },
+  "suspiciousExamples": [],
+  "lateHighRatedRares": [
+    {
+      "seed": "bot-audit-0",
+      "strategy": "fixing",
+      "round": 2,
+      "pick": 7,
+      "lane": "UG",
+      "card": {
+        "id": "fra-122",
+        "name": "Avatar of Burgeoning Echoes",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "U"
+        ],
+        "cost": "{G}{U}",
+        "base": 4.5,
+        "gih": 0.60338379,
+        "sample": 5615
+      }
+    },
+    {
+      "seed": "bot-audit-3",
+      "strategy": "control",
+      "round": 2,
+      "pick": 8,
+      "lane": "UG",
+      "card": {
+        "id": "fra-40",
+        "name": "Sphinx of False Conclusions",
+        "rarity": "rare",
+        "colors": [
+          "U"
+        ],
+        "cost": "{2}{U}{U}",
+        "base": 4.5,
+        "gih": 0.64345794,
+        "sample": 17120
+      }
+    },
+    {
+      "seed": "bot-audit-3",
+      "strategy": "denial",
+      "round": 3,
+      "pick": 8,
+      "lane": "RG",
+      "card": {
+        "id": "fra-352",
+        "name": "Kwia Vigorbloom",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "W"
+        ],
+        "cost": "{3}{G}{W}{W}",
+        "base": 4.5,
+        "gih": 0.6247394,
+        "sample": 5756
+      }
+    },
+    {
+      "seed": "bot-audit-4",
+      "strategy": "fixing",
+      "round": 3,
+      "pick": 8,
+      "lane": "WU",
+      "card": {
+        "id": "fra-122",
+        "name": "Avatar of Burgeoning Echoes",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "U"
+        ],
+        "cost": "{G}{U}",
+        "base": 4.5,
+        "gih": 0.60338379,
+        "sample": 5615
+      }
+    },
+    {
+      "seed": "bot-audit-5",
+      "strategy": "bomb",
+      "round": 2,
+      "pick": 11,
+      "lane": "WG",
+      "card": {
+        "id": "fra-349",
+        "name": "Denzilore Fatehold",
+        "rarity": "mythic",
+        "colors": [
+          "U",
+          "W"
+        ],
+        "cost": "{1}{W}{U}{U}",
+        "base": 4.5,
+        "gih": 0.61699203,
+        "sample": 7274
+      }
+    },
+    {
+      "seed": "bot-audit-6",
+      "strategy": "bomb",
+      "round": 2,
+      "pick": 7,
+      "lane": "WG",
+      "card": {
+        "id": "fra-140",
+        "name": "Kwia Vigorbloom",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "W"
+        ],
+        "cost": "{3}{G}{W}{W}",
+        "base": 4.5,
+        "gih": 0.6247394,
+        "sample": 5756
+      }
+    },
+    {
+      "seed": "bot-audit-7",
+      "strategy": "denial",
+      "round": 2,
+      "pick": 13,
+      "lane": "WB",
+      "card": {
+        "id": "fra-128",
+        "name": "Denzilore Fatehold",
+        "rarity": "mythic",
+        "colors": [
+          "U",
+          "W"
+        ],
+        "cost": "{1}{W}{U}{U}",
+        "base": 4.5,
+        "gih": 0.61699203,
+        "sample": 7274
+      }
+    },
+    {
+      "seed": "bot-audit-29",
+      "strategy": "synergy",
+      "round": 3,
+      "pick": 7,
+      "lane": "UB",
+      "card": {
+        "id": "fra-358",
+        "name": "Uldaros Theorix",
+        "rarity": "mythic",
+        "colors": [
+          "B",
+          "U"
+        ],
+        "cost": "{3}{U}{B}{B}",
+        "base": 4.5,
+        "gih": 0.69351717,
+        "sample": 8268
+      }
+    },
+    {
+      "seed": "bot-audit-35",
+      "strategy": "control",
+      "round": 3,
+      "pick": 12,
+      "lane": "BR",
+      "card": {
+        "id": "fra-128",
+        "name": "Denzilore Fatehold",
+        "rarity": "mythic",
+        "colors": [
+          "U",
+          "W"
+        ],
+        "cost": "{1}{W}{U}{U}",
+        "base": 4.5,
+        "gih": 0.61699203,
+        "sample": 7274
+      }
+    },
+    {
+      "seed": "bot-audit-39",
+      "strategy": "signals",
+      "round": 3,
+      "pick": 10,
+      "lane": "WB",
+      "card": {
+        "id": "fra-159",
+        "name": "Uldaros Theorix",
+        "rarity": "mythic",
+        "colors": [
+          "B",
+          "U"
+        ],
+        "cost": "{3}{U}{B}{B}",
+        "base": 4.5,
+        "gih": 0.69351717,
+        "sample": 8268
+      }
+    },
+    {
+      "seed": "bot-audit-42",
+      "strategy": "control",
+      "round": 2,
+      "pick": 13,
+      "lane": "RG",
+      "card": {
+        "id": "fra-140",
+        "name": "Kwia Vigorbloom",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "W"
+        ],
+        "cost": "{3}{G}{W}{W}",
+        "base": 4.5,
+        "gih": 0.6247394,
+        "sample": 5756
+      }
+    },
+    {
+      "seed": "bot-audit-44",
+      "strategy": "signals",
+      "round": 3,
+      "pick": 8,
+      "lane": "UB",
+      "card": {
+        "id": "fra-159",
+        "name": "Uldaros Theorix",
+        "rarity": "mythic",
+        "colors": [
+          "B",
+          "U"
+        ],
+        "cost": "{3}{U}{B}{B}",
+        "base": 4.5,
+        "gih": 0.69351717,
+        "sample": 8268
+      }
+    },
+    {
+      "seed": "bot-audit-44",
+      "strategy": "denial",
+      "round": 2,
+      "pick": 8,
+      "lane": "UG",
+      "card": {
+        "id": "fra-137",
+        "name": "Ingris Stingerquill",
+        "rarity": "mythic",
+        "colors": [
+          "B",
+          "R"
+        ],
+        "cost": "{B}{R}{R}",
+        "base": 4.5,
+        "gih": 0.57399655,
+        "sample": 4061
+      }
+    },
+    {
+      "seed": "bot-audit-46",
+      "strategy": "bomb",
+      "round": 2,
+      "pick": 11,
+      "lane": "WG",
+      "card": {
+        "id": "fra-349",
+        "name": "Denzilore Fatehold",
+        "rarity": "mythic",
+        "colors": [
+          "U",
+          "W"
+        ],
+        "cost": "{1}{W}{U}{U}",
+        "base": 4.5,
+        "gih": 0.61699203,
+        "sample": 7274
+      }
+    },
+    {
+      "seed": "bot-audit-47",
+      "strategy": "signals",
+      "round": 3,
+      "pick": 7,
+      "lane": "UB",
+      "card": {
+        "id": "fra-159",
+        "name": "Uldaros Theorix",
+        "rarity": "mythic",
+        "colors": [
+          "B",
+          "U"
+        ],
+        "cost": "{3}{U}{B}{B}",
+        "base": 4.5,
+        "gih": 0.69351717,
+        "sample": 8268
+      }
+    },
+    {
+      "seed": "bot-audit-52",
+      "strategy": "synergy",
+      "round": 3,
+      "pick": 7,
+      "lane": "WR",
+      "card": {
+        "id": "fra-79",
+        "name": "Curse-Marred Demon",
+        "rarity": "rare",
+        "colors": [
+          "R"
+        ],
+        "cost": "{2}{R}{R}",
+        "base": 4.5,
+        "gih": 0.56397433,
+        "sample": 10598
+      }
+    },
+    {
+      "seed": "bot-audit-53",
+      "strategy": "control",
+      "round": 3,
+      "pick": 7,
+      "lane": "UR",
+      "card": {
+        "id": "fra-140",
+        "name": "Kwia Vigorbloom",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "W"
+        ],
+        "cost": "{3}{G}{W}{W}",
+        "base": 4.5,
+        "gih": 0.6247394,
+        "sample": 5756
+      }
+    },
+    {
+      "seed": "bot-audit-55",
+      "strategy": "control",
+      "round": 3,
+      "pick": 8,
+      "lane": "RG",
+      "card": {
+        "id": "fra-121",
+        "name": "Aerid Konstrari",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "R"
+        ],
+        "cost": "{1}{R}{G}{G}",
+        "base": 4.5,
+        "gih": 0.64799621,
+        "sample": 6338
+      }
+    },
+    {
+      "seed": "bot-audit-57",
+      "strategy": "control",
+      "round": 2,
+      "pick": 8,
+      "lane": "UB",
+      "card": {
+        "id": "fra-159",
+        "name": "Uldaros Theorix",
+        "rarity": "mythic",
+        "colors": [
+          "B",
+          "U"
+        ],
+        "cost": "{3}{U}{B}{B}",
+        "base": 4.5,
+        "gih": 0.69351717,
+        "sample": 8268
+      }
+    },
+    {
+      "seed": "bot-audit-58",
+      "strategy": "denial",
+      "round": 3,
+      "pick": 12,
+      "lane": "WG",
+      "card": {
+        "id": "fra-121",
+        "name": "Aerid Konstrari",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "R"
+        ],
+        "cost": "{1}{R}{G}{G}",
+        "base": 4.5,
+        "gih": 0.64799621,
+        "sample": 6338
+      }
+    },
+    {
+      "seed": "bot-audit-60",
+      "strategy": "control",
+      "round": 3,
+      "pick": 12,
+      "lane": "RG",
+      "card": {
+        "id": "fra-159",
+        "name": "Uldaros Theorix",
+        "rarity": "mythic",
+        "colors": [
+          "B",
+          "U"
+        ],
+        "cost": "{3}{U}{B}{B}",
+        "base": 4.5,
+        "gih": 0.69351717,
+        "sample": 8268
+      }
+    },
+    {
+      "seed": "bot-audit-61",
+      "strategy": "denial",
+      "round": 3,
+      "pick": 10,
+      "lane": "WG",
+      "card": {
+        "id": "fra-128",
+        "name": "Denzilore Fatehold",
+        "rarity": "mythic",
+        "colors": [
+          "U",
+          "W"
+        ],
+        "cost": "{1}{W}{U}{U}",
+        "base": 4.5,
+        "gih": 0.61699203,
+        "sample": 7274
+      }
+    },
+    {
+      "seed": "bot-audit-65",
+      "strategy": "signals",
+      "round": 1,
+      "pick": 7,
+      "lane": "BR",
+      "card": {
+        "id": "fra-128",
+        "name": "Denzilore Fatehold",
+        "rarity": "mythic",
+        "colors": [
+          "U",
+          "W"
+        ],
+        "cost": "{1}{W}{U}{U}",
+        "base": 4.5,
+        "gih": 0.61699203,
+        "sample": 7274
+      }
+    },
+    {
+      "seed": "bot-audit-70",
+      "strategy": "aggro",
+      "round": 3,
+      "pick": 9,
+      "lane": "UR",
+      "card": {
+        "id": "fra-121",
+        "name": "Aerid Konstrari",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "R"
+        ],
+        "cost": "{1}{R}{G}{G}",
+        "base": 4.5,
+        "gih": 0.64799621,
+        "sample": 6338
+      }
+    },
+    {
+      "seed": "bot-audit-75",
+      "strategy": "denial",
+      "round": 2,
+      "pick": 11,
+      "lane": "WR",
+      "card": {
+        "id": "fra-122",
+        "name": "Avatar of Burgeoning Echoes",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "U"
+        ],
+        "cost": "{G}{U}",
+        "base": 4.5,
+        "gih": 0.60338379,
+        "sample": 5615
+      }
+    },
+    {
+      "seed": "bot-audit-81",
+      "strategy": "aggro",
+      "round": 3,
+      "pick": 12,
+      "lane": "BR",
+      "card": {
+        "id": "fra-159",
+        "name": "Uldaros Theorix",
+        "rarity": "mythic",
+        "colors": [
+          "B",
+          "U"
+        ],
+        "cost": "{3}{U}{B}{B}",
+        "base": 4.5,
+        "gih": 0.69351717,
+        "sample": 8268
+      }
+    },
+    {
+      "seed": "bot-audit-82",
+      "strategy": "synergy",
+      "round": 2,
+      "pick": 7,
+      "lane": "WG",
+      "card": {
+        "id": "fra-140",
+        "name": "Kwia Vigorbloom",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "W"
+        ],
+        "cost": "{3}{G}{W}{W}",
+        "base": 4.5,
+        "gih": 0.6247394,
+        "sample": 5756
+      }
+    },
+    {
+      "seed": "bot-audit-82",
+      "strategy": "fixing",
+      "round": 3,
+      "pick": 8,
+      "lane": "WU",
+      "card": {
+        "id": "fra-122",
+        "name": "Avatar of Burgeoning Echoes",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "U"
+        ],
+        "cost": "{G}{U}",
+        "base": 4.5,
+        "gih": 0.60338379,
+        "sample": 5615
+      }
+    },
+    {
+      "seed": "bot-audit-83",
+      "strategy": "fixing",
+      "round": 2,
+      "pick": 9,
+      "lane": "RG",
+      "card": {
+        "id": "fra-352",
+        "name": "Kwia Vigorbloom",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "W"
+        ],
+        "cost": "{3}{G}{W}{W}",
+        "base": 4.5,
+        "gih": 0.6247394,
+        "sample": 5756
+      }
+    },
+    {
+      "seed": "bot-audit-84",
+      "strategy": "fixing",
+      "round": 3,
+      "pick": 8,
+      "lane": "UB",
+      "card": {
+        "id": "fra-122",
+        "name": "Avatar of Burgeoning Echoes",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "U"
+        ],
+        "cost": "{G}{U}",
+        "base": 4.5,
+        "gih": 0.60338379,
+        "sample": 5615
+      }
+    },
+    {
+      "seed": "bot-audit-85",
+      "strategy": "aggro",
+      "round": 2,
+      "pick": 11,
+      "lane": "UG",
+      "card": {
+        "id": "fra-159",
+        "name": "Uldaros Theorix",
+        "rarity": "mythic",
+        "colors": [
+          "B",
+          "U"
+        ],
+        "cost": "{3}{U}{B}{B}",
+        "base": 4.5,
+        "gih": 0.69351717,
+        "sample": 8268
+      }
+    },
+    {
+      "seed": "bot-audit-86",
+      "strategy": "denial",
+      "round": 3,
+      "pick": 11,
+      "lane": "UG",
+      "card": {
+        "id": "fra-128",
+        "name": "Denzilore Fatehold",
+        "rarity": "mythic",
+        "colors": [
+          "U",
+          "W"
+        ],
+        "cost": "{1}{W}{U}{U}",
+        "base": 4.5,
+        "gih": 0.61699203,
+        "sample": 7274
+      }
+    },
+    {
+      "seed": "bot-audit-96",
+      "strategy": "signals",
+      "round": 3,
+      "pick": 9,
+      "lane": "WB",
+      "card": {
+        "id": "fra-128",
+        "name": "Denzilore Fatehold",
+        "rarity": "mythic",
+        "colors": [
+          "U",
+          "W"
+        ],
+        "cost": "{1}{W}{U}{U}",
+        "base": 4.5,
+        "gih": 0.61699203,
+        "sample": 7274
+      }
+    },
+    {
+      "seed": "bot-audit-101",
+      "strategy": "bomb",
+      "round": 2,
+      "pick": 8,
+      "lane": "RG",
+      "card": {
+        "id": "fra-121",
+        "name": "Aerid Konstrari",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "R"
+        ],
+        "cost": "{1}{R}{G}{G}",
+        "base": 4.5,
+        "gih": 0.64799621,
+        "sample": 6338
+      }
+    },
+    {
+      "seed": "bot-audit-102",
+      "strategy": "control",
+      "round": 3,
+      "pick": 8,
+      "lane": "UB",
+      "card": {
+        "id": "fra-159",
+        "name": "Uldaros Theorix",
+        "rarity": "mythic",
+        "colors": [
+          "B",
+          "U"
+        ],
+        "cost": "{3}{U}{B}{B}",
+        "base": 4.5,
+        "gih": 0.69351717,
+        "sample": 8268
+      }
+    },
+    {
+      "seed": "bot-audit-105",
+      "strategy": "denial",
+      "round": 3,
+      "pick": 7,
+      "lane": "UB",
+      "card": {
+        "id": "fra-121",
+        "name": "Aerid Konstrari",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "R"
+        ],
+        "cost": "{1}{R}{G}{G}",
+        "base": 4.5,
+        "gih": 0.64799621,
+        "sample": 6338
+      }
+    },
+    {
+      "seed": "bot-audit-109",
+      "strategy": "denial",
+      "round": 3,
+      "pick": 10,
+      "lane": "WB",
+      "card": {
+        "id": "fra-137",
+        "name": "Ingris Stingerquill",
+        "rarity": "mythic",
+        "colors": [
+          "B",
+          "R"
+        ],
+        "cost": "{B}{R}{R}",
+        "base": 4.5,
+        "gih": 0.57399655,
+        "sample": 4061
+      }
+    },
+    {
+      "seed": "bot-audit-110",
+      "strategy": "signals",
+      "round": 2,
+      "pick": 8,
+      "lane": "WR",
+      "card": {
+        "id": "fra-201",
+        "name": "Lyra, Archangel of Dawn",
+        "rarity": "rare",
+        "colors": [
+          "W"
+        ],
+        "cost": "{2}{W}",
+        "base": 4.5,
+        "gih": 0.58827614,
+        "sample": 10082
+      }
+    },
+    {
+      "seed": "bot-audit-110",
+      "strategy": "bomb",
+      "round": 2,
+      "pick": 11,
+      "lane": "UG",
+      "card": {
+        "id": "fra-137",
+        "name": "Ingris Stingerquill",
+        "rarity": "mythic",
+        "colors": [
+          "B",
+          "R"
+        ],
+        "cost": "{B}{R}{R}",
+        "base": 4.5,
+        "gih": 0.57399655,
+        "sample": 4061
+      }
+    },
+    {
+      "seed": "bot-audit-123",
+      "strategy": "synergy",
+      "round": 2,
+      "pick": 7,
+      "lane": "BR",
+      "card": {
+        "id": "fra-137",
+        "name": "Ingris Stingerquill",
+        "rarity": "mythic",
+        "colors": [
+          "B",
+          "R"
+        ],
+        "cost": "{B}{R}{R}",
+        "base": 4.5,
+        "gih": 0.57399655,
+        "sample": 4061
+      }
+    },
+    {
+      "seed": "bot-audit-123",
+      "strategy": "synergy",
+      "round": 2,
+      "pick": 8,
+      "lane": "BR",
+      "card": {
+        "id": "fra-137",
+        "name": "Ingris Stingerquill",
+        "rarity": "mythic",
+        "colors": [
+          "B",
+          "R"
+        ],
+        "cost": "{B}{R}{R}",
+        "base": 4.5,
+        "gih": 0.57399655,
+        "sample": 4061
+      }
+    },
+    {
+      "seed": "bot-audit-125",
+      "strategy": "fixing",
+      "round": 3,
+      "pick": 12,
+      "lane": "UR",
+      "card": {
+        "id": "fra-128",
+        "name": "Denzilore Fatehold",
+        "rarity": "mythic",
+        "colors": [
+          "U",
+          "W"
+        ],
+        "cost": "{1}{W}{U}{U}",
+        "base": 4.5,
+        "gih": 0.61699203,
+        "sample": 7274
+      }
+    },
+    {
+      "seed": "bot-audit-134",
+      "strategy": "fixing",
+      "round": 2,
+      "pick": 8,
+      "lane": "UB",
+      "card": {
+        "id": "fra-59",
+        "name": "Overwrite the Multiverse",
+        "rarity": "mythic",
+        "colors": [
+          "B"
+        ],
+        "cost": "{4}{B}{B}",
+        "base": 4.5,
+        "gih": 0.6585752,
+        "sample": 7580
+      }
+    },
+    {
+      "seed": "bot-audit-137",
+      "strategy": "fixing",
+      "round": 2,
+      "pick": 8,
+      "lane": "UR",
+      "card": {
+        "id": "fra-122",
+        "name": "Avatar of Burgeoning Echoes",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "U"
+        ],
+        "cost": "{G}{U}",
+        "base": 4.5,
+        "gih": 0.60338379,
+        "sample": 5615
+      }
+    },
+    {
+      "seed": "bot-audit-138",
+      "strategy": "denial",
+      "round": 3,
+      "pick": 9,
+      "lane": "UR",
+      "card": {
+        "id": "fra-347",
+        "name": "Aerid Konstrari",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "R"
+        ],
+        "cost": "{1}{R}{G}{G}",
+        "base": 4.5,
+        "gih": 0.64799621,
+        "sample": 6338
+      }
+    },
+    {
+      "seed": "bot-audit-146",
+      "strategy": "bomb",
+      "round": 3,
+      "pick": 9,
+      "lane": "UR",
+      "card": {
+        "id": "fra-137",
+        "name": "Ingris Stingerquill",
+        "rarity": "mythic",
+        "colors": [
+          "B",
+          "R"
+        ],
+        "cost": "{B}{R}{R}",
+        "base": 4.5,
+        "gih": 0.57399655,
+        "sample": 4061
+      }
+    },
+    {
+      "seed": "bot-audit-146",
+      "strategy": "control",
+      "round": 3,
+      "pick": 7,
+      "lane": "WR",
+      "card": {
+        "id": "fra-137",
+        "name": "Ingris Stingerquill",
+        "rarity": "mythic",
+        "colors": [
+          "B",
+          "R"
+        ],
+        "cost": "{B}{R}{R}",
+        "base": 4.5,
+        "gih": 0.57399655,
+        "sample": 4061
+      }
+    },
+    {
+      "seed": "bot-audit-147",
+      "strategy": "denial",
+      "round": 3,
+      "pick": 8,
+      "lane": "WG",
+      "card": {
+        "id": "fra-140",
+        "name": "Kwia Vigorbloom",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "W"
+        ],
+        "cost": "{3}{G}{W}{W}",
+        "base": 4.5,
+        "gih": 0.6247394,
+        "sample": 5756
+      }
+    },
+    {
+      "seed": "bot-audit-154",
+      "strategy": "fixing",
+      "round": 2,
+      "pick": 10,
+      "lane": "WB",
+      "card": {
+        "id": "fra-347",
+        "name": "Aerid Konstrari",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "R"
+        ],
+        "cost": "{1}{R}{G}{G}",
+        "base": 4.5,
+        "gih": 0.64799621,
+        "sample": 6338
+      }
+    },
+    {
+      "seed": "bot-audit-154",
+      "strategy": "denial",
+      "round": 3,
+      "pick": 14,
+      "lane": "BG",
+      "card": {
+        "id": "fra-347",
+        "name": "Aerid Konstrari",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "R"
+        ],
+        "cost": "{1}{R}{G}{G}",
+        "base": 4.5,
+        "gih": 0.64799621,
+        "sample": 6338
+      }
+    },
+    {
+      "seed": "bot-audit-157",
+      "strategy": "synergy",
+      "round": 3,
+      "pick": 8,
+      "lane": "UB",
+      "card": {
+        "id": "fra-351",
+        "name": "Ingris Stingerquill",
+        "rarity": "mythic",
+        "colors": [
+          "B",
+          "R"
+        ],
+        "cost": "{B}{R}{R}",
+        "base": 4.5,
+        "gih": 0.57399655,
+        "sample": 4061
+      }
+    },
+    {
+      "seed": "bot-audit-157",
+      "strategy": "denial",
+      "round": 3,
+      "pick": 8,
+      "lane": "WG",
+      "card": {
+        "id": "fra-140",
+        "name": "Kwia Vigorbloom",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "W"
+        ],
+        "cost": "{3}{G}{W}{W}",
+        "base": 4.5,
+        "gih": 0.6247394,
+        "sample": 5756
+      }
+    },
+    {
+      "seed": "bot-audit-160",
+      "strategy": "denial",
+      "round": 3,
+      "pick": 9,
+      "lane": "WG",
+      "card": {
+        "id": "fra-137",
+        "name": "Ingris Stingerquill",
+        "rarity": "mythic",
+        "colors": [
+          "B",
+          "R"
+        ],
+        "cost": "{B}{R}{R}",
+        "base": 4.5,
+        "gih": 0.57399655,
+        "sample": 4061
+      }
+    },
+    {
+      "seed": "bot-audit-161",
+      "strategy": "bomb",
+      "round": 2,
+      "pick": 11,
+      "lane": "RG",
+      "card": {
+        "id": "fra-140",
+        "name": "Kwia Vigorbloom",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "W"
+        ],
+        "cost": "{3}{G}{W}{W}",
+        "base": 4.5,
+        "gih": 0.6247394,
+        "sample": 5756
+      }
+    },
+    {
+      "seed": "bot-audit-164",
+      "strategy": "bomb",
+      "round": 2,
+      "pick": 7,
+      "lane": "UB",
+      "card": {
+        "id": "fra-358",
+        "name": "Uldaros Theorix",
+        "rarity": "mythic",
+        "colors": [
+          "B",
+          "U"
+        ],
+        "cost": "{3}{U}{B}{B}",
+        "base": 4.5,
+        "gih": 0.69351717,
+        "sample": 8268
+      }
+    },
+    {
+      "seed": "bot-audit-164",
+      "strategy": "denial",
+      "round": 2,
+      "pick": 9,
+      "lane": "RG",
+      "card": {
+        "id": "fra-137",
+        "name": "Ingris Stingerquill",
+        "rarity": "mythic",
+        "colors": [
+          "B",
+          "R"
+        ],
+        "cost": "{B}{R}{R}",
+        "base": 4.5,
+        "gih": 0.57399655,
+        "sample": 4061
+      }
+    },
+    {
+      "seed": "bot-audit-167",
+      "strategy": "control",
+      "round": 2,
+      "pick": 9,
+      "lane": "BG",
+      "card": {
+        "id": "fra-140",
+        "name": "Kwia Vigorbloom",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "W"
+        ],
+        "cost": "{3}{G}{W}{W}",
+        "base": 4.5,
+        "gih": 0.6247394,
+        "sample": 5756
+      }
+    },
+    {
+      "seed": "bot-audit-169",
+      "strategy": "fixing",
+      "round": 3,
+      "pick": 7,
+      "lane": "UR",
+      "card": {
+        "id": "fra-137",
+        "name": "Ingris Stingerquill",
+        "rarity": "mythic",
+        "colors": [
+          "B",
+          "R"
+        ],
+        "cost": "{B}{R}{R}",
+        "base": 4.5,
+        "gih": 0.57399655,
+        "sample": 4061
+      }
+    },
+    {
+      "seed": "bot-audit-170",
+      "strategy": "denial",
+      "round": 2,
+      "pick": 8,
+      "lane": "BG",
+      "card": {
+        "id": "fra-349",
+        "name": "Denzilore Fatehold",
+        "rarity": "mythic",
+        "colors": [
+          "U",
+          "W"
+        ],
+        "cost": "{1}{W}{U}{U}",
+        "base": 4.5,
+        "gih": 0.61699203,
+        "sample": 7274
+      }
+    },
+    {
+      "seed": "bot-audit-171",
+      "strategy": "fixing",
+      "round": 3,
+      "pick": 12,
+      "lane": "WG",
+      "card": {
+        "id": "fra-122",
+        "name": "Avatar of Burgeoning Echoes",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "U"
+        ],
+        "cost": "{G}{U}",
+        "base": 4.5,
+        "gih": 0.60338379,
+        "sample": 5615
+      }
+    },
+    {
+      "seed": "bot-audit-171",
+      "strategy": "fixing",
+      "round": 3,
+      "pick": 13,
+      "lane": "WG",
+      "card": {
+        "id": "fra-349",
+        "name": "Denzilore Fatehold",
+        "rarity": "mythic",
+        "colors": [
+          "U",
+          "W"
+        ],
+        "cost": "{1}{W}{U}{U}",
+        "base": 4.5,
+        "gih": 0.61699203,
+        "sample": 7274
+      }
+    },
+    {
+      "seed": "bot-audit-172",
+      "strategy": "bomb",
+      "round": 2,
+      "pick": 7,
+      "lane": "WR",
+      "card": {
+        "id": "fra-79",
+        "name": "Curse-Marred Demon",
+        "rarity": "rare",
+        "colors": [
+          "R"
+        ],
+        "cost": "{2}{R}{R}",
+        "base": 4.5,
+        "gih": 0.56397433,
+        "sample": 10598
+      }
+    },
+    {
+      "seed": "bot-audit-174",
+      "strategy": "denial",
+      "round": 3,
+      "pick": 9,
+      "lane": "UG",
+      "card": {
+        "id": "fra-121",
+        "name": "Aerid Konstrari",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "R"
+        ],
+        "cost": "{1}{R}{G}{G}",
+        "base": 4.5,
+        "gih": 0.64799621,
+        "sample": 6338
+      }
+    },
+    {
+      "seed": "bot-audit-174",
+      "strategy": "denial",
+      "round": 3,
+      "pick": 12,
+      "lane": "UG",
+      "card": {
+        "id": "fra-140",
+        "name": "Kwia Vigorbloom",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "W"
+        ],
+        "cost": "{3}{G}{W}{W}",
+        "base": 4.5,
+        "gih": 0.6247394,
+        "sample": 5756
+      }
+    },
+    {
+      "seed": "bot-audit-175",
+      "strategy": "control",
+      "round": 3,
+      "pick": 8,
+      "lane": "UG",
+      "card": {
+        "id": "fra-122",
+        "name": "Avatar of Burgeoning Echoes",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "U"
+        ],
+        "cost": "{G}{U}",
+        "base": 4.5,
+        "gih": 0.60338379,
+        "sample": 5615
+      }
+    },
+    {
+      "seed": "bot-audit-178",
+      "strategy": "denial",
+      "round": 3,
+      "pick": 11,
+      "lane": "UR",
+      "card": {
+        "id": "fra-159",
+        "name": "Uldaros Theorix",
+        "rarity": "mythic",
+        "colors": [
+          "B",
+          "U"
+        ],
+        "cost": "{3}{U}{B}{B}",
+        "base": 4.5,
+        "gih": 0.69351717,
+        "sample": 8268
+      }
+    },
+    {
+      "seed": "bot-audit-179",
+      "strategy": "bomb",
+      "round": 2,
+      "pick": 7,
+      "lane": "WB",
+      "card": {
+        "id": "fra-303",
+        "name": "Garruk, Veiled Butcher",
+        "rarity": "mythic",
+        "colors": [
+          "B"
+        ],
+        "cost": "{3}{B}{B}",
+        "base": 4.5,
+        "gih": 0.6582519,
+        "sample": 7368
+      }
+    },
+    {
+      "seed": "bot-audit-182",
+      "strategy": "control",
+      "round": 2,
+      "pick": 8,
+      "lane": "WB",
+      "card": {
+        "id": "fra-59",
+        "name": "Overwrite the Multiverse",
+        "rarity": "mythic",
+        "colors": [
+          "B"
+        ],
+        "cost": "{4}{B}{B}",
+        "base": 4.5,
+        "gih": 0.6585752,
+        "sample": 7580
+      }
+    },
+    {
+      "seed": "bot-audit-182",
+      "strategy": "denial",
+      "round": 3,
+      "pick": 11,
+      "lane": "WG",
+      "card": {
+        "id": "fra-159",
+        "name": "Uldaros Theorix",
+        "rarity": "mythic",
+        "colors": [
+          "B",
+          "U"
+        ],
+        "cost": "{3}{U}{B}{B}",
+        "base": 4.5,
+        "gih": 0.69351717,
+        "sample": 8268
+      }
+    },
+    {
+      "seed": "bot-audit-183",
+      "strategy": "denial",
+      "round": 2,
+      "pick": 10,
+      "lane": "WB",
+      "card": {
+        "id": "fra-137",
+        "name": "Ingris Stingerquill",
+        "rarity": "mythic",
+        "colors": [
+          "B",
+          "R"
+        ],
+        "cost": "{B}{R}{R}",
+        "base": 4.5,
+        "gih": 0.57399655,
+        "sample": 4061
+      }
+    },
+    {
+      "seed": "bot-audit-184",
+      "strategy": "aggro",
+      "round": 2,
+      "pick": 7,
+      "lane": "WG",
+      "card": {
+        "id": "fra-118",
+        "name": "Verdant Kraken",
+        "rarity": "rare",
+        "colors": [
+          "G"
+        ],
+        "cost": "{4}{G}{G}{G}",
+        "base": 4.5,
+        "gih": 0.58500407,
+        "sample": 12270
+      }
+    },
+    {
+      "seed": "bot-audit-188",
+      "strategy": "bomb",
+      "round": 2,
+      "pick": 12,
+      "lane": "WB",
+      "card": {
+        "id": "fra-159",
+        "name": "Uldaros Theorix",
+        "rarity": "mythic",
+        "colors": [
+          "B",
+          "U"
+        ],
+        "cost": "{3}{U}{B}{B}",
+        "base": 4.5,
+        "gih": 0.69351717,
+        "sample": 8268
+      }
+    },
+    {
+      "seed": "bot-audit-193",
+      "strategy": "aggro",
+      "round": 3,
+      "pick": 7,
+      "lane": "BR",
+      "card": {
+        "id": "fra-80",
+        "name": "Draconic Visitor",
+        "rarity": "rare",
+        "colors": [
+          "R"
+        ],
+        "cost": "{3}{R}{R}",
+        "base": 4.5,
+        "gih": 0.53899031,
+        "sample": 8874
+      }
+    },
+    {
+      "seed": "bot-audit-194",
+      "strategy": "signals",
+      "round": 2,
+      "pick": 13,
+      "lane": "UR",
+      "card": {
+        "id": "fra-347",
+        "name": "Aerid Konstrari",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "R"
+        ],
+        "cost": "{1}{R}{G}{G}",
+        "base": 4.5,
+        "gih": 0.64799621,
+        "sample": 6338
+      }
+    },
+    {
+      "seed": "bot-audit-194",
+      "strategy": "fixing",
+      "round": 3,
+      "pick": 8,
+      "lane": "WU",
+      "card": {
+        "id": "fra-122",
+        "name": "Avatar of Burgeoning Echoes",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "U"
+        ],
+        "cost": "{G}{U}",
+        "base": 4.5,
+        "gih": 0.60338379,
+        "sample": 5615
+      }
+    },
+    {
+      "seed": "bot-audit-194",
+      "strategy": "denial",
+      "round": 2,
+      "pick": 7,
+      "lane": "UB",
+      "card": {
+        "id": "fra-159",
+        "name": "Uldaros Theorix",
+        "rarity": "mythic",
+        "colors": [
+          "B",
+          "U"
+        ],
+        "cost": "{3}{U}{B}{B}",
+        "base": 4.5,
+        "gih": 0.69351717,
+        "sample": 8268
+      }
+    },
+    {
+      "seed": "bot-audit-196",
+      "strategy": "denial",
+      "round": 2,
+      "pick": 8,
+      "lane": "RG",
+      "card": {
+        "id": "fra-121",
+        "name": "Aerid Konstrari",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "R"
+        ],
+        "cost": "{1}{R}{G}{G}",
+        "base": 4.5,
+        "gih": 0.64799621,
+        "sample": 6338
+      }
+    },
+    {
+      "seed": "bot-audit-196",
+      "strategy": "denial",
+      "round": 3,
+      "pick": 8,
+      "lane": "RG",
+      "card": {
+        "id": "fra-140",
+        "name": "Kwia Vigorbloom",
+        "rarity": "mythic",
+        "colors": [
+          "G",
+          "W"
+        ],
+        "cost": "{3}{G}{W}{W}",
+        "base": 4.5,
+        "gih": 0.6247394,
+        "sample": 5756
+      }
+    }
+  ],
+  "ratingReview": {
+    "highGradeLowGIH": [
+      {
+        "name": "Massacre Girl, Most Wanted",
+        "base": 4,
+        "gih": 0.50085555,
+        "sample": 14026
+      },
+      {
+        "name": "Ghalta the Unstoppable",
+        "base": 4,
+        "gih": 0.53411166,
+        "sample": 18073
+      },
+      {
+        "name": "Mabel, Bitter Recluse",
+        "base": 4,
+        "gih": 0.5369807,
+        "sample": 20051
+      },
+      {
+        "name": "Draconic Visitor",
+        "base": 4.5,
+        "gih": 0.53899031,
+        "sample": 8874
+      },
+      {
+        "name": "Koth of the Homestead",
+        "base": 4,
+        "gih": 0.54409762,
+        "sample": 19831
+      },
+      {
+        "name": "Vindictive Triumph",
+        "base": 4,
+        "gih": 0.54501348,
+        "sample": 5565
+      },
+      {
+        "name": "Vraska's Final Mercy",
+        "base": 4,
+        "gih": 0.54541718,
+        "sample": 9732
+      },
+      {
+        "name": "Way of the Wildspeaker",
+        "base": 4,
+        "gih": 0.54831925,
+        "sample": 27577
+      }
+    ],
+    "lowGradeHighGIH": [
+      {
+        "name": "Twinned Vision",
+        "base": 2.5,
+        "gih": 0.58166141,
+        "sample": 78054
+      },
+      {
+        "name": "Dark Matter Manipulator",
+        "base": 2.5,
+        "gih": 0.57651787,
+        "sample": 9207
+      },
+      {
+        "name": "Unsummon",
+        "base": 2.5,
+        "gih": 0.57509775,
+        "sample": 79543
+      },
+      {
+        "name": "Something Worth Saving",
+        "base": 2.5,
+        "gih": 0.57011583,
+        "sample": 41353
+      },
+      {
+        "name": "Heartwood Crafter",
+        "base": 2.5,
+        "gih": 0.56960079,
+        "sample": 30560
+      },
+      {
+        "name": "Murmuring Volume",
+        "base": 2.5,
+        "gih": 0.5667082,
+        "sample": 49754
+      },
+      {
+        "name": "Way of the Paradox",
+        "base": 2.5,
+        "gih": 0.56447417,
+        "sample": 21528
+      },
+      {
+        "name": "Sphinx's Approach",
+        "base": 2.5,
+        "gih": 0.56176595,
+        "sample": 28268
+      }
+    ]
+  }
+}
