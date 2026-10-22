@@ -1,0 +1,89 @@
+{
+  "findings": [
+    {
+      "id": "R2-BAIT-RARITY-FROM-STATS",
+      "priority": "P2",
+      "file": "render_guides.py",
+      "line": 50,
+      "title": "Le rare e mitiche dei bait prendono rarità e campione dalle statistiche, non dal catalogo",
+      "scenario": "In un'espansione con pickBaits valorizzato ma senza statistiche Draft (stesso caso della fixture 'no-statistics'), o con una carta assente dallo snapshot, si apre la sezione 'Rare e mitiche: i bait'. Nel gruppo 'Mitiche: serve il mazzo giusto' compaiono Emrakul, Bloodline Recollector e Ajani Resolute.",
+      "evidence": "stat(name) restituisce c={} quando la carta non è in statistics.draft.cards. La rarità è calcolata come 'Mitica' if c.get('rarity')=='mythic' else 'Rara', quindi ogni carta senza statistiche è etichettata 'Rara'. In più n vale 0, per cui ogni riga mostra 'GIH WR N/D · 0 osservazioni · campione sotto 2.000, maggiore cautela'. La disponibilità guides:pickBaits dipende solo da guides.pickBaits, non dalle statistiche, e verify-expansion-review.cjs non controlla questa sezione nel fixture senza statistiche.",
+      "impact": "Etichette di rarità errate e avvisi sul campione privi di senso in un percorso supportato (statistiche opzionali). Il dato di rarità esiste già in expansion.cards.",
+      "suggested_fix": "Ricavare la rarità da expansion.cards per nome o full, con le statistiche solo per GIH e n. Quando statistics:draft non è disponibile, omettere la parte statistica e l'avviso sul campione.",
+      "certainty": "certain"
+    },
+    {
+      "id": "R2-TEMPLATE-ASSET-NAMES",
+      "priority": "P2",
+      "file": "templates/atlas/pick-guide-section.html",
+      "line": 8,
+      "title": "I template Atlas condivisi puntano a file con nome FRA (draft-drilldown-20261016.json, draft-oracle-20261016.json)",
+      "scenario": "Si aggiunge una seconda espansione Atlas con pickGuide e pickBaits, senza elencare nei suoi assets i file con quei nomi. Il file fixture ereditava gli assets di FRA, quindi il test test_another_expansion_uses_shared_build non vede il problema.",
+      "evidence": "I link download href=\"draft-drilldown-20261016.json\" e href=\"draft-oracle-20261016.json\" sono scritti nei template: pick-guide-section.html:8, pick-baits-section.html:7, draft-drilldown-statistics.html:29. build() copia solo gli assets del manifest nella cartella dell'espansione. validate_site() segnala quindi 'missing draft-drilldown-20261016.json' e la build fallisce. Se invece l'autore copia lo stesso nome, il link serve lo snapshot di FRA.",
+      "impact": "Una nuova espansione Atlas non è realizzabile con soli JSON: serve toccare i template o pubblicare dati di un altro set sotto il suo nome.",
+      "suggested_fix": "Esprimere gli snapshot scaricabili nei dati, per esempio statistics.draft.downloads o sources, con token {{download:...}}. Omettere il link quando il dato non è dichiarato.",
+      "certainty": "certain"
+    },
+    {
+      "id": "R2-STALE-FRA-COUNTS",
+      "priority": "P2",
+      "file": "templates/atlas/set.html",
+      "line": 3,
+      "title": "Conteggi e descrizioni di prodotto FRA scritti nei template invece che derivati dai JSON",
+      "scenario": "(a) Nella fixture 'atlas' di verify-expansion-review.py il Sealed ha packsPerPlayer=4. sealedSummary mostra 4 buste, ma il dialogo di reset del simulatore dice ancora 'Preparare altre sei buste?'. (b) Un aggiornamento di FRA aggiunge un pacchetto Draft, una situazione di scelta o una carta in discovery: le pagine continuano a dire '20 pacchetti', 'Leggi 20 situazioni', '17 carte selezionate'. (c) Un nuovo prodotto con ricetta diversa vede nella pagina del tavolo Draft la composizione di FRA.",
+      "evidence": "Valori fissi nei template: set.html:3 ('285', '10 Special Guests') e :7 ('sei buste'); simulator.html:12 ('sei buste'); combos.html:3 ('295 carte', 'sei buste'); discovery.html:6 ('17 carte') e :8 (opzione FRC); pick-guide-section.html:7 ('20 situazioni'); draft-combos-section.html:1 ('Venti pacchetti', '20 pacchetti'); draft.html:9 ('le 40 carte', mentre il prompt usa deckSize da minDeckSize); draft-engine.html:6 ('6 comuni, 1 non comune... 1 busta su 55'). Esistono già i token cardCount, pickDecisionCount e sealedSummary. event_summary() scrive inoltre 'Le terre base restano nelle buste; i token sono esclusi' senza leggere product.tokensIncluded né la ricetta.",
+      "impact": "Dopo un normale aggiornamento dei JSON o con una seconda espansione, il testo è in contraddizione con i dati mostrati accanto. Questo vale anche per FRA, che è una delle due interfacce da preservare.",
+      "suggested_fix": "Sostituire i numeri con token calcolati: count pacchetti/decisioni/discovery, packsPerPlayer, minDeckSize, numero di carte. Spostare la descrizione della busta FRA in guides.fragments (o generarla dalla ricetta). Leggere il codice del prodotto Commander da dati e non scriverlo come FRC.",
+      "certainty": "certain"
+    },
+    {
+      "id": "R2-UI-REFS-UNVALIDATED",
+      "priority": "P2",
+      "file": "expansion_data.py",
+      "line": 123,
+      "title": "I riferimenti a carte e archetipi in ui.json non sono validati e un refuso blocca l'intera pagina",
+      "scenario": "Un aggiornamento di ui.json cambia un [[Nome]] in botExamples (nome non presente fra le stampe), una voce di drilldownCompare, oppure un 'pair' in drilldownFindings.",
+      "evidence": "validate() controlla pickGuide, pickBaits, pickDecisions e draftCombos ma non ui. draft-table.js:23-25 usa named() che lancia 'Missing example', e viene eseguita nel caricamento prima del listener di start (riga 46): il pulsante 'Inizia il draft' non fa nulla. draft-drilldown.js:67 legge guides[e.pair].name e :90-91 e :63 usano byName.get(name).name: con un valore non valido lanciano TypeError dentro render()/renderFindings() e il drilldown resta incompleto.",
+      "impact": "Un errore di contenuto, pur sotto lo schema, passa la build e rompe la pagina del tavolo o il drilldown solo a runtime. I salvataggi non sono toccati, ma la funzione diventa inutilizzabile.",
+      "suggested_fix": "In validate() verificare che botExamples ([[...]]), drilldownCompare, cardAliases e drilldownFindings (name e pair) puntino a stampe, nomi e chiavi di archetipo esistenti. In alternativa, rendere named() e le letture di guides[...] tolleranti, mostrando il testo senza collegamento.",
+      "certainty": "certain"
+    },
+    {
+      "id": "R2-SOURCE-DOUBLE-ESCAPE",
+      "priority": "P3",
+      "file": "build_expansion.py",
+      "line": 41,
+      "title": "Il token {{source:...}} riesegue l'escape di URL che contengono già '&amp;'",
+      "scenario": "Nella pagina dei bait si apre il link 'statistiche del formato' ({{source:afc44a857abe}}).",
+      "evidence": "In sources.json il valore è 'https://www.17lands.com/card_data?expansion=FRA&amp;format=PremierDraft'. render_tokens applica html.escape(..., quote=True) e produce '&amp;amp;' nell'href. Il browser lo decodifica in '&amp;', e la query diventa expansion=FRA e amp;format=PremierDraft: il filtro di formato va perso. Gli stessi dati pubblici in data/sources.json contengono URL con entità HTML.",
+      "impact": "Link alla fonte con parametro errato. Il difetto è piccolo, ma colpisce anche i JSON pubblicati, che dovrebbero contenere URL grezzi.",
+      "suggested_fix": "Memorizzare URL con '&' reale in sources.json e lasciare l'escape a render_tokens. Se i frammenti HTML hanno bisogno della forma escapata, usare un token distinto.",
+      "certainty": "certain"
+    },
+    {
+      "id": "R2-DRAFT-NAV-DEAD-ANCHORS",
+      "priority": "P3",
+      "file": "templates/atlas/draft.html",
+      "line": 6,
+      "title": "L'indice della pagina Draft elenca sezioni assenti quando mancano le statistiche",
+      "scenario": "Espansione Atlas senza statistics.draft (caso 'no-statistics'): draftStatistics non è disponibile.",
+      "evidence": "render_tokens restituisce '' per draft.report-0..5 e 7 (restano solo i casi di scelta), ma report-nav mantiene i link #report-0 ... #report-7. Se pickDecisions è vuoto, anche #pick-decisions non esiste: render_guides produce una sezione di avviso con id, quindi quel caso resta valido.",
+      "impact": "Sette o otto link dell'indice non portano da nessuna parte nel percorso supportato 'guida e pool senza statistiche'.",
+      "suggested_fix": "Generare le voci #report-N con un token condizionato alla disponibilità delle statistiche, oppure omettere il nav quando draftStatistics non è disponibile.",
+      "certainty": "certain"
+    },
+    {
+      "id": "R2-GALLERY-SETCURVE-DEREF",
+      "priority": "P2",
+      "file": "templates/atlas/gallery.html",
+      "line": 86,
+      "title": "L'inizializzazione del catalogo dipende da #setcurve, che con ogni probabilità vive nel frammento Guida Sealed sostituito",
+      "scenario": "Espansione senza guides.sealed: render_tokens sostituisce gallery.strategy con una sezione di avviso. Si apre il catalogo.",
+      "evidence": "La riga 86 esegue $('setcurve').innerHTML=DATA.stats.map(...) e solo dopo, sulla stessa riga, sync();render();poolRender(). Se #setcurve è nel frammento gallery.strategy (non verificabile dall'estratto omesso), la sostituzione fa lanciare TypeError e nessuna scheda viene renderizzata. Il test test_missing_sections_show_their_notice_on_host_page controlla solo il testo Python, non l'esecuzione nel browser.",
+      "impact": "Una guida Sealed mancante, che dovrebbe degradare a un avviso, potrebbe rendere vuoto il catalogo e il pool.",
+      "suggested_fix": "Proteggere l'accesso (const t=$('setcurve'); if(t) ...) e portare render() fuori dalla riga. Verificare nel browser una fixture con guides.sealed rimosso.",
+      "certainty": "hypothesis"
+    }
+  ],
+  "summary": "Non ho eseguito verifiche. L'analisi è solo statica sul codice e sui dati forniti. Le correzioni dei round precedenti non risultano regredite. Restano sette punti, quasi tutti sul riuso per nuova espansione e sul degrado di funzioni opzionali: etichette di rarità dei bait derivate dalle statistiche, nomi di file FRA nei template condivisi, conteggi e prosa di prodotto FRA nei template, riferimenti non validati in ui.json, un href con doppio escape, anchor morte nell'indice Draft e un possibile TypeError nel catalogo senza guida Sealed (quest'ultimo è un'ipotesi). La separazione prodotto/evento, la collazione dichiarativa, il replay e la separazione di Star Trek, senza dati inventati, non mostrano difetti concreti nel codice esaminato."
+}

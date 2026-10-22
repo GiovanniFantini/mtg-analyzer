@@ -27,6 +27,7 @@
  }
  const choose=(a,r)=>{if(!a.length)throw Error('Empty card group');return a[Math.floor(r()*a.length)];};
  function createCollator(format, random) {
+  if(format.collation?.schemaVersion)return (typeof module!=='undefined'?require('./collation.js'):root.Collation).createCollator(format,random);
   const byId=Object.fromEntries(format.cards.map(c=>[c.id,c])), spec=format.collation;
   if(!spec)throw Error('Profilo di collazione non disponibile');
   const resolve=ids=>ids.map(id=>{if(!byId[id])throw Error('Unknown card '+id);return byId[id];});
@@ -55,11 +56,13 @@
  }
  function botState(strategy='signals',target=null) {
   if(!STRATEGIES[strategy])throw Error('Unknown strategy');
-  if(strategy==='force'&&!/^[WUBRG]{2}$/.test(target||''))throw Error('Choose an archetype');
+  if(strategy==='force'&&(!/^[WUBRG]{1,5}$/.test(target||'')||new Set(target).size!==target.length))throw Error('Choose an archetype');
   return {strategy,target,pool:[],phase:0,anchor:null,lane:target,signals:{},demand:Object.fromEntries(COLORS.map(c=>[c,0])),seen:{},log:[]};
  }
  function createEvaluator(format) {
   const byId=Object.fromEntries(format.cards.map(c=>[c.id,c])), archetypes=Object.keys(format.archetypes);
+  if(!archetypes.length)throw Error('Archetipi non disponibili');
+  const at=n=>format.rounds*format.packSize*n/42;
   const rating=c=>c.basic?0:(c.score??2.5);
   function observe(bot,pack,round,pick) {
    const sig=bot.signals[round]??=Object.fromEntries(COLORS.map(c=>[c,0]));
@@ -81,13 +84,13 @@
    const profile=STRATEGIES[bot.strategy];const ctx=context(bot,round);const n=bot.pool.length;
    if(transition){
     const masses=[...TRANSITIONS[bot.phase]];
-    if(n<3){masses[0]+=2;masses[2]=0;masses[3]=0;}
-    if(n>=7)masses[1]+=.5;
-    if(n>=14)masses[2]+=1.5;
-    if(n>=5&&ctx.lanes[0][0]-ctx.lanes[1][0]>3)masses[2]+=.8;
+    if(n<at(3)){masses[0]+=2;masses[2]=0;masses[3]=0;}
+    if(n>=at(7))masses[1]+=.5;
+    if(n>=at(14))masses[2]+=1.5;
+    if(n>=at(5)&&ctx.lanes[0][0]-(ctx.lanes[1]?.[0]??0)>3)masses[2]+=.8;
     if(bot.phase>=2&&bot.lane&&ctx.lane!==bot.lane)masses[1]+=.8;
-    if(n>=28)masses[3]+=4;
-    if(n<26)masses[3]=0;
+    if(n>=at(28))masses[3]+=4;
+    if(n<at(26))masses[3]=0;
     bot.phase=weighted(masses.map((w,i)=>[w,i]),random);
    }
    const commitment=bot.strategy==='force'?1.5:n===0?0:[.08,.65,1.3,1.65][bot.phase];
@@ -120,7 +123,7 @@
     return {entry,components,score:Object.values(components).reduce((a,b)=>a+b,0),playable:playable(c),card:c};
    });
    const bestOwnPower=Math.max(0,...scores.filter(s=>s.playable).map(s=>rating(s.card)));
-   if(bot.strategy==='denial'&&n>=21&&pick>=7&&bestOwnPower<=2.7){for(const s of scores){if(!s.playable&&rating(s.card)>=3.5){const demand=Math.max(0,...s.card.colors.map(x=>bot.demand[x]));if(demand>=2){const denial=Math.min(1.5,demand*.15);s.score-=s.components.colori;s.components.colori=0;s.components.negazione=denial;s.components.costoFuoriColore=-.6;s.score+=denial-.6;}}}}
+   if(bot.strategy==='denial'&&n>=at(21)&&pick>=Math.ceil(format.packSize/format.picksPerTurn)/2&&bestOwnPower<=2.7){for(const s of scores){if(!s.playable&&rating(s.card)>=3.5){const demand=Math.max(0,...s.card.colors.map(x=>bot.demand[x]));if(demand>=2){const denial=Math.min(1.5,demand*.15);s.score-=s.components.colori;s.components.colori=0;s.components.negazione=denial;s.components.costoFuoriColore=-.6;s.score+=denial-.6;}}}}
    scores.sort((a,b)=>b.score-a.score||a.entry.uid-b.entry.uid);
    return {scores,ctx};
   }
@@ -138,28 +141,37 @@
   return {byId,rating,observe,context,rank,take};
  }
  function createSession(format,seed,configs){
+  if(!Number.isInteger(format.picksPerTurn)||format.picksPerTurn<1||!Number.isInteger(format.seats)||format.seats<2||format.directions.length!==format.rounds||format.directions.some(x=>x!==1&&x!==-1))throw Error('Regole del Draft non valide');
   if(!Array.isArray(configs)||configs.length!==format.seats-1)throw Error('Invalid bot count');
   for(const c of configs)if(!c||!STRATEGIES[c.strategy]||(c.strategy==='force'&&!format.archetypes[c.target]))throw Error('Invalid bot configuration');
   const random=rng(seed),collator=createCollator(format,random),evaluator=createEvaluator(format);
   const bots=configs.map(c=>botState(c.strategy,c.target));
   const rounds=Array.from({length:format.rounds},(_,round)=>Array.from({length:format.seats},(_,seat)=>({packetId:round*format.seats+seat,cards:collator.pack()})));
-  let packets=rounds[0],round=0,pick=0;const human=[],log=[];
+  let packets=rounds[0],round=0,pick=0,pending=[];const human=[],log=[];
   const current=()=>round<format.rounds?packets[0].cards:[];
   function step(uid){
    if(round>=format.rounds)throw Error('Draft completo');
    const entry=current().find(e=>e.uid===uid);if(!entry)throw Error('Carta non presente');
-   const selections=[entry,...bots.map((bot,i)=>evaluator.take(bot,packets[i+1],round+1,pick+1,random))];
    human.push(entry);log.push({round:round+1,pick:pick+1,entry});
-   packets.forEach((packet,i)=>packet.cards=packet.cards.filter(e=>e.uid!==selections[i].uid));
+   pending.push(entry);packets[0].cards=packets[0].cards.filter(e=>e.uid!==uid);
+   if(pending.length<format.picksPerTurn&&packets[0].cards.length)return entry;
+   for(let i=0;i<bots.length;i++){
+    const packet=packets[i+1];
+    for(let n=0;n<pending.length;n++){
+     const selected=evaluator.take(bots[i],packet,round+1,pick+1,random);
+     packet.cards=packet.cards.filter(e=>e.uid!==selected.uid);
+    }
+   }
+   pending=[];
    pick++;
    if(packets.every(p=>!p.cards.length)){round++;pick=0;packets=rounds[round]||[];}
    else{const rotated=Array(format.seats);packets.forEach((p,i)=>rotated[(i+format.directions[round]+format.seats)%format.seats]=p);packets=rotated;}
    return entry;
   }
-  return {format,seed,configs,bots,human,log,current,step,get round(){return round+1;},get pick(){return pick+1;},get complete(){return round>=format.rounds;},export(){return {version:1,format:format.id,seed,configs,picks:log.map(x=>x.entry.uid)};}};
+  return {format,seed,configs,bots,human,log,current,step,get round(){return round+1;},get pick(){return pick+1;},get complete(){return round>=format.rounds;},export(){return {version:2,engineVersion:2,format:format.id,revision:format.revision,seed,configs,picks:log.map(x=>x.entry.uid)};}};
  }
  function replay(format,record){
-  if(record?.version!==1||record.format!==format.id||typeof record.seed!=='string'||record.seed.length>200||!Array.isArray(record.picks)||record.picks.length>format.rounds*format.packSize||record.picks.some(x=>!Number.isInteger(x)))throw Error('Salvataggio non valido');
+  if(!record||(record.version===1?!format.legacyReplay:record.version!==2||record.engineVersion!==2||(record.revision!==format.revision&&!(format.compatibleRevisions||[]).includes(record.revision)))||record.format!==format.id||typeof record.seed!=='string'||record.seed.length>200||!Array.isArray(record.picks)||record.picks.length>format.rounds*format.packSize||record.picks.some(x=>!Number.isInteger(x)))throw Error('Salvataggio non valido o riferito a un profilo differente');
   const session=createSession(format,record.seed,record.configs);record.picks.forEach(uid=>session.step(uid));return session;
  }
  const api={STRATEGIES,PHASES,TRANSITIONS,rng,weighted,createCollator,botState,createEvaluator,createSession,replay};

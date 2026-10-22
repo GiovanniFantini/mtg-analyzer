@@ -6,27 +6,33 @@
   const basics = ['Plains','Island','Swamp','Mountain','Forest'];
   const basicIds = basics.map(name => DATA.cards.find(c => c.name === name && c.type.startsWith('Basic Land'))?.id);
   const isBasic = id => basicIds.includes(id);
+  const basicCard = id => !!byId.get(id)?.basic||/\bBasic\b.*\bLand\b/.test(byId.get(id)?.type||'');
   const pageKey = document.body.dataset.page;
-  const modes = ['sealed','draft','picktwo'];
+  const modes = Object.keys(EXPANSION_CONFIG.events);
+  const eventRules=(selectedMode=mode)=>EXPANSION_CONFIG.events[selectedMode];
+  const handSize=()=>eventRules().mulligan.handSize;
+  const bottomCount=()=>Math.max(0,mulligans-eventRules().mulligan.freeMulligans);
   const requestedMode = new URLSearchParams(location.search).get('mode');
   let rememberedMode;
-  try { rememberedMode=sessionStorage.getItem('mtg-trk-mode-v1'); } catch {}
-  let mode = modes.includes(requestedMode) ? requestedMode : pageKey==='draft' ? 'draft' : modes.includes(rememberedMode) ? rememberedMode : 'sealed';
+  try { rememberedMode=sessionStorage.getItem(EXPANSION_CONFIG.storage.mode); } catch {}
+  let mode = modes.includes(requestedMode) ? requestedMode : pageKey==='draft'&&modes.includes('draft') ? 'draft' : modes.includes(rememberedMode) ? rememberedMode : modes.includes('sealed')?'sealed':modes[0]||null;
   let page = 0, state = empty(), storageError = '';
   const memoryStates=new Map();
   let hand = [], library = [], fullDeck = [], bottom = [], mulligans = 0, kept = false;
   function empty() { return {pool:{},deck:{},basics:{}}; }
-  function key(selectedMode=mode) { return 'mtg-trk-'+selectedMode+'-v1'; }
+  function key(selectedMode=mode) { return EXPANSION_CONFIG.storage.poolPrefix+selectedMode+'-v1'; }
   function status(message=storageError) {
     let target=$('trk-storage-status');
     if(!target){target=document.createElement('p');target.id='trk-storage-status';target.setAttribute('role','status');target.setAttribute('aria-live','polite');document.querySelector('main').prepend(target);}
     target.textContent=message;
   }
   function modeLinks() {
-    try { sessionStorage.setItem('mtg-trk-mode-v1',mode); } catch {}
+    if(!mode)return;
+    try { sessionStorage.setItem(EXPANSION_CONFIG.storage.mode,mode); } catch {}
+    const modePaths=new Set(['gallery','pool','simulator','draft'].map(key=>EXPANSION_CONFIG.routes[key]).filter(Boolean).map(route=>new URL(route,location.href).pathname));
     for(const link of document.querySelectorAll('a[href]')){
       const url=new URL(link.href);
-      if(url.origin===location.origin&&url.pathname.startsWith(location.pathname.slice(0,location.pathname.lastIndexOf('/')+1))&&/\/(catalogo|sealed|simulatore|draft)\.html$/.test(url.pathname)){
+      if(url.origin===location.origin&&url.pathname.startsWith(location.pathname.slice(0,location.pathname.lastIndexOf('/')+1))&&modePaths.has(url.pathname)){
         url.searchParams.set('mode',mode);link.setAttribute('href',url.pathname+url.search+url.hash);
       }
     }
@@ -36,22 +42,27 @@
     for (const [id, n] of Object.entries(obj)) if (!byId.has(id) || !Number.isInteger(n) || n<0 || n>999) throw Error('Carta o quantità non valida nel salvataggio.');
     return Object.fromEntries(Object.entries(obj).filter(([,n])=>n>0));
   }
-  function validate(value) {
+  function validate(value,selectedMode=mode) {
+    const rules=eventRules(selectedMode);
+    if(!rules)throw Error('Regole del formato non disponibili.');
     if (!value || typeof value !== 'object') throw Error('Salvataggio non valido.');
     const next = {pool:validCounts(value.pool),deck:validCounts(value.deck),basics:validCounts(value.basics)};
+    if(!rules.extraBasicLands&&Object.keys(next.basics).length)throw Error('Terre base aggiuntive non previste dal profilo.');
+    for(const [id,n] of Object.entries(next.deck))if(!basicCard(id)&&rules.maxCopies!=null&&n>rules.maxCopies)throw Error('Limite di copie del formato superato.');
     for (const [id,n] of Object.entries(next.deck)) if (n>(next.pool[id]||0)) throw Error('Il mazzo supera le copie nel pool.');
     for (const id of Object.keys(next.basics)) if (!isBasic(id)) throw Error('Le terre aggiunte devono essere terre base normali.');
     return next;
   }
-  function stored(storageKey,fallback=empty()) {
+  function stored(storageKey,fallback=empty(),selectedMode=mode) {
     if(memoryStates.has(storageKey))return {value:structuredClone(memoryStates.get(storageKey)),persistent:false};
     let raw;
     try { raw=localStorage.getItem(storageKey); }
     catch { return {value:fallback,persistent:false}; }
-    return {value:raw?validate(JSON.parse(raw)):empty(),persistent:true};
+    return {value:raw?validate(JSON.parse(raw),selectedMode):empty(),persistent:true};
   }
   function load() {
     storageError='';
+    if(!mode){state=empty();storageError='Regole del formato non disponibili: pool e mazzo non sono ancora utilizzabili.';status();return;}
     try { const result=stored(key());state=result.value;if(!result.persistent)storageError='Memoria non disponibile. Esporta il lavoro prima di chiudere la pagina.'; }
     catch { state=empty();storageError='Salvataggio non leggibile: il contenuto originale è conservato e non verrà sovrascritto.'; }
     status();
@@ -60,8 +71,9 @@
   function changeState(mutate,selectedMode=mode) {
     const storageKey=key(selectedMode);
     const apply=()=>{
-      const result=stored(storageKey,selectedMode===mode?state:empty());
+      const result=stored(storageKey,selectedMode===mode?state:empty(),selectedMode);
       mutate(result.value);
+      validate(result.value,selectedMode);
       let message='';
       try { localStorage.setItem(storageKey,JSON.stringify(result.value));memoryStates.delete(storageKey); }
       catch { memoryStates.set(storageKey,result.value);message='Memoria del browser non disponibile. Il lavoro resta in questa pagina: esportalo per conservarlo.'; }
@@ -105,13 +117,14 @@
   }
   const ref = c => `<span class="card-reference" tabindex="0" role="button" data-card-preview="${esc(c.name)}" aria-label="Mostra ${esc(c.name)}">${esc(c.name)}</span>`;
   function actions(c) {
-    return `<div class="trk-actions"><span>Pool: ${state.pool[c.id]||0}</span><button type="button" data-op="pool-minus" data-id="${c.id}" aria-label="Rimuovi una copia dal pool: ${esc(c.name)}" ${!state.pool[c.id]?'disabled':''}>Pool −</button><button type="button" data-op="pool-plus" data-id="${c.id}" aria-label="Aggiungi una copia al pool: ${esc(c.name)}">Pool +</button><span>Mazzo: ${state.deck[c.id]||0}</span><button type="button" data-op="deck-minus" data-id="${c.id}" aria-label="Rimuovi dal mazzo: ${esc(c.name)}" ${!state.deck[c.id]?'disabled':''}>Mazzo −</button><button type="button" data-op="deck-plus" data-id="${c.id}" aria-label="Aggiungi al mazzo: ${esc(c.name)}" ${(state.deck[c.id]||0)>=(state.pool[c.id]||0)?'disabled':''}>Mazzo +</button></div>`;
+    if(!eventRules())return '';
+    return `<div class="trk-actions"><span>Pool: ${state.pool[c.id]||0}</span><button type="button" data-op="pool-minus" data-id="${c.id}" aria-label="Rimuovi una copia dal pool: ${esc(c.name)}" ${!state.pool[c.id]?'disabled':''}>Pool −</button><button type="button" data-op="pool-plus" data-id="${c.id}" aria-label="Aggiungi una copia al pool: ${esc(c.name)}">Pool +</button><span>Mazzo: ${state.deck[c.id]||0}</span><button type="button" data-op="deck-minus" data-id="${c.id}" aria-label="Rimuovi dal mazzo: ${esc(c.name)}" ${!state.deck[c.id]?'disabled':''}>Mazzo −</button><button type="button" data-op="deck-plus" data-id="${c.id}" aria-label="Aggiungi al mazzo: ${esc(c.name)}" ${(state.deck[c.id]||0)>=Math.min(state.pool[c.id]||0,basicCard(c.id)||eventRules().maxCopies==null?999:eventRules().maxCopies)?'disabled':''}>Mazzo +</button></div>`;
   }
   function card(c, controls=false, variants=false) {
     let watch=false;
-    try { watch=JSON.parse(localStorage.getItem('mtg-trk-watch-v1')||'[]').includes(c.id); } catch {}
+    try { watch=JSON.parse(localStorage.getItem(EXPANSION_CONFIG.storage.watch)||'[]').includes(c.id); } catch {}
     const legal=$('trk-legality')?.value;
-    return `<article class="trk-card"><h3>${ref(c)}</h3><div class="trk-meta">${esc(c.set)} #${esc(c.number)} · ${esc(c.mana||'Senza costo di mana')} · ${esc(c.rarity)} · MV ${c.cmc}</div><p>${esc(c.type)}</p><p class="trk-oracle">${esc(c.text)}</p><p><a href="${esc(c.url)}" target="_blank" rel="noopener" aria-label="Testo e dettagli: ${esc(c.name)}">Testo e dettagli ↗</a></p>${legal?`<p>Stato ${esc(legal)}: ${esc(c.legalities[legal]||'non disponibile')} (21 ottobre).</p>`:''}${controls?actions(c):''}${pageKey==='discovery'?`<button data-op="watch" data-id="${c.id}" type="button" aria-pressed="${watch}">${watch?'Osservata':'Segui carta'}</button>`:''}${variants?`<details><summary>${c.prints.length} stampe nello snapshot</summary><p>La presenza nel catalogo non certifica l’apertura nei Play Booster. Trattamenti e idoneità vanno verificati nella guida ufficiale.</p><div class="trk-variants">${c.prints.map(p=>`<div>${p.image?`<img src="${esc(p.image)}" loading="lazy" alt="${esc(c.name)} #${esc(p.number)}">`:''}<p>#${esc(p.number)} · ${esc(p.finishes.join(', '))}</p></div>`).join('')}</div></details>`:''}</article>`;
+    return `<article class="trk-card"><h3>${ref(c)}</h3><div class="trk-meta">${esc(c.set)} #${esc(c.number)} · ${esc(c.mana||'Senza costo di mana')} · ${esc(c.rarity)} · MV ${c.cmc}</div><p>${esc(c.type)}</p><p class="trk-oracle">${esc(c.text)}</p><p><a href="${esc(c.url)}" target="_blank" rel="noopener" aria-label="Testo e dettagli: ${esc(c.name)}">Testo e dettagli ↗</a></p>${legal?`<p>Stato ${esc(legal)}: ${esc(c.legalities[legal]||'non disponibile')} (${esc(DATA.date||"data non disponibile")}).</p>`:''}${controls?actions(c):''}${pageKey==='discovery'?`<button data-op="watch" data-id="${c.id}" type="button" aria-pressed="${watch}">${watch?'Osservata':'Segui carta'}</button>`:''}${variants?`<details><summary>${c.prints.length} stampe nello snapshot</summary><p>La presenza nel catalogo non certifica l’apertura nel prodotto selezionato per questo evento. Trattamenti e idoneità vanno verificati nella guida ufficiale.</p><div class="trk-variants">${c.prints.map(p=>`<div>${p.image?`<img src="${esc(p.image)}" loading="lazy" alt="${esc(c.name)} #${esc(p.number)}">`:''}<p>#${esc(p.number)} · ${esc(p.finishes.join(', '))}</p></div>`).join('')}</div></details>`:''}</article>`;
   }
   function filtered() {
     const q=($('trk-search')?.value||'').trim().toLocaleLowerCase();
@@ -124,7 +137,7 @@
   function renderCards() {
     if (!$('trk-cards')) return;
     const items=filtered(),pages=Math.max(1,Math.ceil(items.length/12)); page=Math.min(page,pages-1);
-    $('trk-count').textContent=`${items.length} / ${DATA.cards.length} carte distinte disponibili. Catalogo parziale.`;
+    $('trk-count').textContent=`${items.length} / ${DATA.cards.length} carte distinte disponibili. ${DATA.complete?"Catalogo completo":"Catalogo parziale"}.`;
     $('trk-cards').innerHTML=items.length?items.slice(page*12,page*12+12).map(c=>card(c,pageKey!=='discovery',true)).join(''):'<p>Nessuna carta corrisponde ai filtri nello snapshot. Le carte non ancora rivelate non sono incluse.</p>';
     $('trk-page').textContent=`Pagina ${page+1} di ${pages}`;
     $('trk-prev').disabled=page===0;$('trk-next').disabled=page===pages-1;
@@ -134,15 +147,23 @@
     for(const [id,n] of Object.entries(state.basics)) counts[id]=(counts[id]||0)+n;
     return Object.entries(counts).filter(([,n])=>n>0).map(([id,n])=>({c:byId.get(id),n}));
   }
+  function renderRules() {
+    const rules=eventRules();
+    const notice=rules?`${rules.name}: almeno ${rules.minDeckSize} carte. ${rules.maxCopies==null?'Nessun limite alle copie non base provenienti dal pool.':`Limite di ${rules.maxCopies} copie per nome, eccetto le terre base.`} ${rules.extraBasicLands?'Puoi aggiungere terre base normali.':'Non puoi aggiungere terre base oltre a quelle del pool.'} Le carte restanti sono la sideboard.`:'Regole del formato non disponibili.';
+    document.querySelectorAll('[data-event-rules]').forEach(node=>node.textContent=notice);
+    if($('trk-new-hand'))$('trk-new-hand').textContent=rules?`Mescola e pesca ${rules.mulligan.handSize} carte`:'Mano iniziale non disponibile';
+  }
   function renderDeck() {
+    renderRules();
+    if(!eventRules()){if($('trk-deck-status'))$('trk-deck-status').textContent='Regole del formato non disponibili.';for(const id of ['trk-new-hand','trk-mulligan','trk-keep','trk-draw'])if($(id))$(id).disabled=true;return;}
     const entries=deckEntries(), total=entries.reduce((s,x)=>s+x.n,0), pool=Object.values(state.pool).reduce((s,n)=>s+n,0);
     const lands=entries.filter(x=>x.c.type.includes('Land')).reduce((s,x)=>s+x.n,0);
-    if($('trk-deck-status')) $('trk-deck-status').textContent=`Pool: ${pool} copie. Mazzo: ${total} carte, ${lands} terre, ${total-lands} non terre. ${total<40?'Mancano '+(40-total)+' carte al minimo di 40.':'Minimo di 40 raggiunto.'} Controllo delle quantità, non certificazione del pool.`;
-    if($('trk-new-hand')) $('trk-new-hand').disabled=total<40;
+    if($('trk-deck-status')) $('trk-deck-status').textContent=`Pool: ${pool} copie. Mazzo: ${total} carte, ${lands} terre, ${total-lands} non terre. ${total<eventRules().minDeckSize?'Mancano '+(eventRules().minDeckSize-total)+' carte al minimo di '+eventRules().minDeckSize+'.':'Minimo di '+eventRules().minDeckSize+' raggiunto.'} Controllo delle quantità, non certificazione del pool.`;
+    if($('trk-new-hand')) $('trk-new-hand').disabled=total<eventRules().minDeckSize;
     if($('trk-storage-status')) $('trk-storage-status').textContent=storageError;
     if(!$('trk-deck')) return;
     $('trk-deck').innerHTML=Object.keys(state.pool).length?DATA.cards.filter(c=>state.pool[c.id]>0).map(c=>`<div class="trk-card"><h3>${ref(c)}</h3>${actions(c)}</div>`).join(''):'<p>Il pool è vuoto. Cerca le carte qui sotto e aggiungi le copie.</p>';
-    $('trk-basics').innerHTML=basics.map((name,i)=>`<label>${esc(name)} aggiunte<input type="number" min="0" max="999" step="1" value="${state.basics[basicIds[i]]||0}" data-basic="${basicIds[i]}" aria-label="${esc(name)} aggiunte al mazzo"></label>`).join('');
+    $('trk-basics').innerHTML=basics.map((name,i)=>`<label>${esc(name)} aggiunte<input type="number" min="0" max="999" step="1" value="${state.basics[basicIds[i]]||0}" data-basic="${basicIds[i]}" aria-label="${esc(name)} aggiunte al mazzo" ${eventRules().extraBasicLands?'':'disabled'}></label>`).join('');
     const curve=Array(8).fill(0);
     entries.filter(x=>!x.c.type.includes('Land')).forEach(x=>curve[Math.min(7,Math.floor(x.c.cmc))]+=x.n);
     const max=Math.max(1,...curve);
@@ -166,19 +187,20 @@
   }
   function deal(mulligan=false) {
     fullDeck=deckEntries().flatMap(x=>Array(x.n).fill(x.c.id));
-    if(fullDeck.length<40)return;
+    if(!eventRules()||fullDeck.length<eventRules().minDeckSize)return;
     mulligans=mulligan?mulligans+1:0;kept=false;bottom=[];
-    library=shuffle(fullDeck);hand=library.splice(0,7);renderHand();
+    library=shuffle(fullDeck);hand=library.splice(0,handSize());renderHand();
   }
   function renderHand() {
     const focus=captureFocus();
     $('trk-hand').innerHTML=hand.map((id,i)=>`<div class="${bottom.includes(i)?'trk-hand-selected':''}">${card(byId.get(id))}${!kept&&mulligans>0?`<button type="button" data-bottom="${i}" aria-pressed="${bottom.includes(i)}">${bottom.includes(i)?'In fondo, posizione '+(bottom.indexOf(i)+1):'Metti in fondo'}</button>`:''}</div>`).join('');
-    $('trk-hand-status').textContent=kept?`Mano tenuta: ${hand.length} carte. Biblioteca: ${library.length}.`:`Mulligan effettuati: ${mulligans}. Seleziona ${mulligans} carte da mettere in fondo. Selezionate: ${bottom.length}.`;
-    $('trk-mulligan').disabled=kept||mulligans>=7;
-    $('trk-keep').disabled=kept||bottom.length!==mulligans;
+    $('trk-hand-status').textContent=kept?`Mano tenuta: ${hand.length} carte. Biblioteca: ${library.length}.`:`Mulligan effettuati: ${mulligans}. Seleziona ${bottomCount()} carte da mettere in fondo. Selezionate: ${bottom.length}.`;
+    $('trk-mulligan').disabled=kept||bottomCount()>=handSize();
+    $('trk-keep').disabled=kept||bottom.length!==bottomCount();
     $('trk-draw').disabled=!kept||!library.length;
     restoreFocus(focus);
   }
+  if($('trk-mode')){const select=$('trk-mode');for(const option of [...select.options])if(!modes.includes(option.value))option.remove();for(const id of modes)if(![...select.options].some(option=>option.value===id))select.add(new Option(EXPANSION_CONFIG.events[id].name,id));select.disabled=!modes.length;}
   load();
   modeLinks();
   if($('trk-mode')){$('trk-mode').value=mode;$('trk-mode').addEventListener('change',()=>{mode=$('trk-mode').value;const url=new URL(location.href);url.searchParams.set('mode',mode);history.replaceState(null,'',url);modeLinks();load();clearHand();refresh();});}
@@ -190,21 +212,21 @@
     if(button){
       const id=button.dataset.id,op=button.dataset.op;if(!byId.has(id))return;
       if(op==='watch'){
-        try{const ids=new Set(JSON.parse(localStorage.getItem('mtg-trk-watch-v1')||'[]'));if(ids.has(id))ids.delete(id);else ids.add(id);localStorage.setItem('mtg-trk-watch-v1',JSON.stringify([...ids]));button.setAttribute('aria-pressed',String(ids.has(id)));button.textContent=ids.has(id)?'Osservata':'Segui carta';}catch{button.textContent='Memoria non disponibile';}return;
+        try{const ids=new Set(JSON.parse(localStorage.getItem(EXPANSION_CONFIG.storage.watch)||'[]'));if(ids.has(id))ids.delete(id);else ids.add(id);localStorage.setItem(EXPANSION_CONFIG.storage.watch,JSON.stringify([...ids]));button.setAttribute('aria-pressed',String(ids.has(id)));button.textContent=ids.has(id)?'Osservata':'Segui carta';}catch{button.textContent='Memoria non disponibile';}return;
       }
       const group=op.startsWith('pool')?'pool':'deck',delta=op.endsWith('plus')?1:-1;
       changeState(next=>{
         next[group][id]=Math.max(0,Math.min(999,(next[group][id]||0)+delta));
         if(group==='pool')next.deck[id]=Math.min(next.deck[id]||0,next.pool[id]);
-        else next.deck[id]=Math.min(next.deck[id],next.pool[id]||0);
+        else next.deck[id]=Math.min(next.deck[id],next.pool[id]||0,basicCard(id)||eventRules().maxCopies==null?999:eventRules().maxCopies);
         for(const kind of ['pool','deck'])if(!next[kind][id])delete next[kind][id];
       }).catch(()=>{});
     }
     const pick=event.target.closest('[data-bottom]');
-    if(pick&&!kept){const focus=captureFocus(),i=Number(pick.dataset.bottom);if(bottom.includes(i))bottom=bottom.filter(x=>x!==i);else if(bottom.length<mulligans)bottom.push(i);renderHand();restoreFocus(focus);}
+    if(pick&&!kept){const focus=captureFocus(),i=Number(pick.dataset.bottom);if(bottom.includes(i))bottom=bottom.filter(x=>x!==i);else if(bottom.length<bottomCount())bottom.push(i);renderHand();restoreFocus(focus);}
   });
   $('trk-basics')?.addEventListener('change',event=>{
-    const id=event.target.dataset.basic;if(!isBasic(id))return;
+    const id=event.target.dataset.basic;if(!eventRules()?.extraBasicLands||!isBasic(id))return;
     const n=Math.max(0,Math.min(999,Math.floor(Number(event.target.value)||0)));
     changeState(next=>{next.basics[id]=n;}).catch(()=>{});
   });
@@ -212,9 +234,9 @@
     await writes;
     try { state=stored(key(),state).value; }
     catch { status('Salvataggio non leggibile: il contenuto originale è conservato e non verrà sovrascritto.');return; }
-    const data={version:1,set:'TRK',mode,snapshot:DATA.date,...state};
+    const data={version:1,set:EXPANSION_CONFIG.code,mode,snapshot:DATA.date,...state};
     const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');
-    a.href=url;a.download='star-trek-'+mode+'-pool.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+    a.href=url;a.download=EXPANSION_CONFIG.id+'-'+mode+'-pool.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
   });
   $('trk-import')?.addEventListener('change',async event=>{
     const file=event.target.files[0];if(!file)return;
@@ -222,7 +244,7 @@
     try{
       if(file.size>1000000)throw Error('File troppo grande.');
       const imported=JSON.parse(await file.text());
-      if(imported.version!==1||imported.set!=='TRK'||imported.mode!==importMode)throw Error('File di un altro set, formato o versione. Seleziona prima il pool corretto.');
+      if(imported.version!==1||imported.set!==EXPANSION_CONFIG.code||imported.mode!==importMode)throw Error('File di un altro set, formato o versione. Seleziona prima il pool corretto.');
       const next=validate(imported);
       await changeState(value=>{Object.assign(value,next);},importMode);
       status(storageError||'Pool e mazzo importati.');
@@ -235,11 +257,11 @@
   }
   $('trk-new-hand')?.addEventListener('click',()=>deal());
   $('trk-mulligan')?.addEventListener('click',()=>deal(true));
-  $('trk-keep')?.addEventListener('click',()=>{if(bottom.length!==mulligans)return;library.push(...bottom.map(i=>hand[i]));hand=hand.filter((_,i)=>!bottom.includes(i));bottom=[];kept=true;renderHand();});
+  $('trk-keep')?.addEventListener('click',()=>{if(bottom.length!==bottomCount())return;library.push(...bottom.map(i=>hand[i]));hand=hand.filter((_,i)=>!bottom.includes(i));bottom=[];kept=true;renderHand();});
   $('trk-draw')?.addEventListener('click',()=>{if(kept&&library.length){hand.push(library.shift());renderHand();}});
   if($('trk-statistics')){
     const counts={};DATA.cards.forEach(c=>counts[c.rarity]=(counts[c.rarity]||0)+1);
-    $('trk-statistics').innerHTML='<div class="trk-stat-grid">'+Object.entries(counts).map(([r,n])=>`<p><span>${n}</span>${esc(r)}</p>`).join('')+'</div><p>'+DATA.print_count+' stampe, '+DATA.cards.length+' carte distinte nel catalogo parziale.</p>';
+    $('trk-statistics').innerHTML='<div class="trk-stat-grid">'+Object.entries(counts).map(([r,n])=>`<p><span>${n}</span>${esc(r)}</p>`).join('')+'</div><p>'+DATA.print_count+' stampe, '+DATA.cards.length+' carte distinte nel catalogo '+(DATA.complete?'completo':'parziale')+'.</p>';
   }
   renderCards();renderDeck();renderCompare();
 })();

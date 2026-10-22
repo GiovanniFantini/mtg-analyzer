@@ -24,9 +24,27 @@ FILES = {'Sealed':'gallery','Draft':'draft','Analisi':'analysis',
          'Draft-Engine':'draft-engine'}
 
 
-def shell(content, key, root=False, expansion=None):
+def shell(content, key, root=False, expansion=None, expansions=None):
+    if root and expansions is not None:
+        import html
+        e=html.escape
+        output=shell(content,key,root=True)
+        groups=[]
+        for index,item in enumerate(expansions):
+            base='sets/'+item['id']+'/'
+            pages=item['presentation']['pages']
+            if index==0:
+                groups.append('<div class="site-set-label"><span>ESPANSIONE</span><strong>'+e(item['name'])+' <small>'+e(item['code'])+'</small></strong></div>')
+                others=''.join('<a href="sets/'+other['id']+'/'+e(other['presentation']['pages']['set']['url'],quote=True)+'">'+e(other['name'])+(' · anteprima' if other.get('status')=='preview' else '')+'</a>' for other in expansions[1:])
+                groups.append(others+'<nav>')
+                for title,keys in item['presentation']['groups']:
+                    links=''.join('<a data-page="'+id_+'" href="'+base+e(pages[id_]['url'],quote=True)+'">'+e(pages[id_]['label'])+'</a>' for id_ in keys if id_ in pages)
+                    groups.append('<div class="site-nav-group"><p>'+e(title)+'</p>'+links+'</div>')
+                groups.append('</nav>')
+        aside='<aside class="site-sidebar" id="site-sidebar" aria-label="Navigazione principale"><a class="site-home" href="index.html" aria-current="page">⌂ Home</a>'+''.join(groups)+'<p class="site-storage-note">Pool e carte osservate si salvano in questo browser.</p></aside>'
+        return re.sub(r'<aside class="site-sidebar".*?</aside>',lambda _:aside,output,count=1,flags=re.S)
     if expansion is not None:
-        return expansion_shell(content, key, expansion)
+        return configured_shell(content, key, expansion)
     home = 'index.html' if root else '../../index.html'
     prefix = 'sets/reality-fracture/' if root else ''
     asset = '' if root else '../../'
@@ -102,3 +120,49 @@ def expansion_shell(content, key, expansion):
     content = content.replace('</head>', '<link rel="stylesheet" href="../../site.css"></head>', 1)
     content = content.replace('<body>', f'<body class="site-layout trk-page" data-page="{key}">{nav}', 1)
     return content.replace('</body>', '</div><a class="site-to-top" href="#site-content" aria-label="Torna al contenuto">↑</a><script src="../../site.js"></script></body>', 1)
+
+
+def configured_shell(content, key, expansion):
+    """Keep existing page layouts while obtaining all navigation from the manifest."""
+    import html
+    e = html.escape
+    presentation = expansion['presentation']
+    pages = presentation['pages']
+    adapt_atlas = presentation['style'] == 'atlas' and not expansion.get('minimal')
+    if adapt_atlas:
+        content = shell(content,key if key in PAGES else 'set')
+        ids=set(re.findall(r'\bid=[\'"]([^\'"]+)[\'"]',content))
+        if not expansion.get('sentimentAvailable',True):ids.discard('sentiment')
+        def local_nav(match):
+            return re.sub(r'<a\b[^>]*href="\#([^\"]+)"[^>]*>.*?</a>',lambda link:link[0] if link[1] in ids else '',match[0],flags=re.S)
+        content=re.sub(r'<nav class="site-local-nav".*?</nav>',local_nav,content,flags=re.S)
+    else:
+        content = content.replace('<main>', '<main id="site-content" tabindex="-1">',1)
+        content = content.replace('</head>', '<link rel="stylesheet" href="../../site.css"></head>',1)
+        body_class='site-layout site-page-'+key if presentation['style']=='atlas' else 'site-layout trk-page'
+        content = content.replace('<body>', '<body class="'+body_class+'" data-page="'+key+'">',1)
+        if 'class="site-to-top"' not in content:
+            content=content.replace('</body>','<a class="site-to-top" href="#site-content" aria-label="Torna al contenuto">↑</a></body>',1)
+        content = content.replace('</body>', '<script src="../../site.js"></script></body>',1)
+    groups=[]
+    for title, keys in presentation['groups']:
+        links=''.join('<a data-page="'+id_+'" href="'+e(pages[id_]['url']+('#gallery' if presentation['style']=='atlas' and id_=='gallery' else ''),quote=True)+'"'+(' aria-current="page"' if id_==key else '')+'>'+e(pages[id_]['label'])+'</a>' for id_ in keys if id_ in pages)
+        groups.append('<div class="site-nav-group"><p>'+e(title)+'</p>'+links+'</div>')
+    from expansion_data import read_json, ROOT, confined
+    others=[]
+    for entry in read_json(ROOT/'expansions.json'):
+        other=read_json(confined(ROOT,entry['manifest']))
+        if other['id']!=expansion['id']:
+            others.append('<a href="../'+other['id']+'/'+other['presentation']['pages']['set']['url']+'">'+e(other['name'])+(' · anteprima' if other.get('status')=='preview' else '')+'</a>')
+    overview_url=pages['set']['url']
+    storage_note=expansion.get('storageNote','Pool e carte osservate si salvano in questo browser.')
+    nav=f'''<a class="site-skip" href="#site-content">Vai al contenuto</a>
+<div class="site-bar"><a class="site-brand" href="../../index.html"><span class="site-mark" aria-hidden="true">M<span>✦</span></span><span>MTG <b>Analyzer</b></span></a><span class="site-bar-note">Il tuo tavolo di Magic</span><button class="site-menu-toggle" type="button" aria-expanded="false" aria-controls="site-sidebar">☰ Menu</button></div>
+<div class="site-backdrop" hidden></div><aside class="site-sidebar" id="site-sidebar" aria-label="Navigazione principale"><a class="site-home" href="../../index.html">⌂ Home</a><div class="site-set-label"><span>ESPANSIONE</span><strong>{e(expansion['name'])}<small>{e(expansion['code'])}{' · Anteprima' if expansion.get('status')=='preview' else ''}</small></strong></div>{''.join(others)}<nav>{''.join(groups)}</nav><p class="site-storage-note">{e(storage_note)}</p></aside>
+<div class="site-body"><nav class="site-breadcrumb" aria-label="Percorso"><a href="../../index.html">Home</a><span aria-hidden="true">/</span><a href="{e(overview_url,quote=True)}">{e(expansion['name'])}</a><span aria-hidden="true">/</span><span id="site-page-label">{e(pages[key]['label'])}</span></nav>'''
+    if adapt_atlas:
+        content=re.sub(r'<a class="site-skip".*?(?=<main)',lambda _:nav,content,count=1,flags=re.S)
+    else:
+        content=content.replace('<main',nav+'<main',1)
+        content=content.replace('</body>','</div></body>',1)
+    return content

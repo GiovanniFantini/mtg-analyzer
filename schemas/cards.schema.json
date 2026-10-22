@@ -1,0 +1,199 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:mtg-analyzer:cards:1",
+  "title": "Catalogo carte",
+  "type": "object",
+  "required": [
+    "cards"
+  ],
+  "properties": {
+    "cards": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/card"
+      }
+    },
+    "complete": {
+      "type": "boolean"
+    },
+    "date": {
+      "type": "string"
+    }
+  },
+  "$defs": {
+    "card": {
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "set",
+        "number",
+        "colors",
+        "identity",
+        "type",
+        "rarity",
+        "image",
+        "url"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "set": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "rarity": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "full": {
+          "type": "string"
+        },
+        "large": {
+          "type": "string"
+        },
+        "cost": {
+          "type": "string"
+        },
+        "mana": {
+          "type": "string"
+        },
+        "oracle": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        },
+        "number": {
+          "type": [
+            "integer",
+            "string"
+          ]
+        },
+        "mv": {
+          "type": "number"
+        },
+        "cmc": {
+          "type": "number"
+        },
+        "basic": {
+          "type": "boolean"
+        },
+        "land": {
+          "type": "boolean"
+        },
+        "creature": {
+          "type": "boolean"
+        },
+        "colors": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "W",
+              "U",
+              "B",
+              "R",
+              "G"
+            ]
+          }
+        },
+        "identity": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "W",
+              "U",
+              "B",
+              "R",
+              "G"
+            ]
+          }
+        },
+        "keywords": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "faces": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "name"
+            ],
+            "properties": {
+              "name": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "prints": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "legalities": {
+          "type": "object"
+        }
+      },
+      "allOf": [
+        {
+          "anyOf": [
+            {
+              "required": [
+                "cost"
+              ]
+            },
+            {
+              "required": [
+                "mana"
+              ]
+            }
+          ]
+        },
+        {
+          "anyOf": [
+            {
+              "required": [
+                "mv"
+              ]
+            },
+            {
+              "required": [
+                "cmc"
+              ]
+            }
+          ]
+        },
+        {
+          "anyOf": [
+            {
+              "required": [
+                "oracle"
+              ]
+            },
+            {
+              "required": [
+                "text"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "findings": [
+    {
+      "id": "R5-PREVIEW-DISCOVERY-ST-FACTS",
+      "priority": "P2",
+      "file": "templates/preview/discovery.html",
+      "line": 1,
+      "title": "Il template condiviso della pagina Constructed contiene fatti specifici di Star Trek",
+      "scenario": "Si aggiunge una seconda espansione con style preview (codice, ad esempio, ABC, non ancora uscita). La build scrive abc/discovery.html partendo da templates/preview/discovery.html.",
+      "evidence": "Il paragrafo fisso dice: 'Il set non è ancora uscito. TRK è annunciato per Standard e gli altri formati principali; SDS e TRC non conferiscono da soli legalità in Standard o Pioneer.' Non passa da {{code}}, né da un frammento o da un campo JSON. Gli altri paragrafi della pagina (filtro Scryfall, assenza di risultati di torneo) presuppongono la stessa situazione. Nel round 4 lo stesso problema era stato corretto per i template Atlas (R4-ATLAS-FRA-EDITORIAL-IN-TEMPLATES), ma per i template preview non è stato fatto.",
+      "impact": "La pagina di un'altra espansione mostra codici di set, stato di uscita e regole di legalità inventati o falsi. Il requisito 'tutte le feature riutilizzabili tramite soli JSON' e il divieto di inventare dati vengono violati per qualunque preview diversa da Star Trek.",
+      "suggested_fix": "Spostare il testo in un frammento obbligatorio (ad esempio discovery.copy-2 in guides.json di Star Trek) e usare {{code}} e {{fragment:...}} nel template. Sostituire anche il placeholder 'Es. station, Spock, draw' con un valore preso da ui.json.",
+      "certainty": "certain"
+    },
+    {
+      "id": "R5-PREVIEW-JS-HARDCODED",
+      "priority": "P2",
+      "file": "star-trek.js",
+      "line": 127,
+      "title": "Il runtime preview e i template dichiarano sempre catalogo parziale e una data di snapshot fissa",
+      "scenario": "Un'espansione preview ha cards.complete=true (come la fixture complete-preview) o un diverso snapshot di legalità. Si apre il catalogo e la pagina discovery.",
+      "evidence": "star-trek.js:127 stampa '(21 ottobre)' accanto allo stato di legalità. star-trek.js:140 e :264 aggiungono 'Catalogo parziale' e 'catalogo parziale' al conteggio e alle statistiche, senza leggere DATA.complete. Tutti i template in templates/preview/ aprono con il banner fisso 'Catalogo parziale · I dati mancanti non sono valutazioni negative'. Il testo dei dettagli nomina i 'Play Booster' invece di usare il nome del prodotto.",
+      "impact": "Con dati completi o con un'altra data la UI afferma il falso: un catalogo completo risulta parziale e la legalità risulta datata 21 ottobre. Gli utenti leggono informazioni errate e l'espansione non è riutilizzabile tramite soli JSON.",
+      "suggested_fix": "Derivare il banner da cards.complete (renderlo nel build tramite token). Prendere la data dalla data dello snapshot in DATA.date o dalle fonti. Ricavare il nome del prodotto dal prodotto dell'evento.",
+      "certainty": "certain"
+    },
+    {
+      "id": "R5-CARD-CONTRACT-UNVALIDATED",
+      "priority": "P2",
+      "file": "expansion_data.py",
+      "line": 143,
+      "title": "Nessuna validazione dei campi richiesti di cards.json e printings.json, con crash in build o a runtime",
+      "scenario": "Una nuova espansione fornisce cards.json con campi minimi: ad esempio senza faces, senza number o senza basic. Oppure fornisce printings.json senza full.",
+      "evidence": "validate() controlla solo gli id delle carte. Expansion.cards inizializza score, role, why, condition ecc., ma non faces. templates/atlas/analysis.html:81 esegue c.faces.map(...) senza guardia, quindi il clic su una carta nell'analisi lancia TypeError. build_expansion.data_for_page('draft') (righe 179-184) legge card['cost'], ['mv'], ['number'], ['basic'], ['image'], ['url'] con indice diretto. Viene eseguita anche per le pagine preview, che non usano quei dati, e produce un KeyError senza messaggio. star-trek.js richiede mana, cmc, text, legalities e prints; gli strumenti Atlas richiedono cost, mv, oracle, faces. Nessuno schema descrive la forma delle carte (schemas/ ha solo expansion, limited, products). Per le stampe, printing_catalog() tollera l'assenza di full, mentre expansion_data.py:208 usa ['full'] (KeyError con unique). collation.js usa c.full per exclude e per i partner; senza full tutte le stampe collidono e lo slot lancia 'Nessuna carta disponibile'.",
+      "impact": "Un aggiornamento realistico dei JSON supera la validazione e poi rompe una scheda, la build o l'apertura delle buste. Il contratto dei dati richiesto non è verificabile.",
+      "suggested_fix": "Aggiungere un controllo dei campi obbligatori con messaggio (documento e id carta). Normalizzare faces=[] e full=name in Expansion.cards e in draft_format. Aggiungere schemas/cards.schema.json e printings.schema.json. Non eseguire data_for_page('draft') per i template preview.",
+      "certainty": "certain"
+    },
+    {
+      "id": "R5-EXCLUDE-FEASIBILITY-UNCHECKED",
+      "priority": "P3",
+      "file": "expansion_data.py",
+      "line": 203,
+      "title": "Le esclusioni degli slot non vengono verificate per fattibilità, ma collation.js può lanciare durante l'estrazione",
+      "scenario": "In un prodotto lo slot pair estrae da un gruppo G di due stampe che formano la coppia garantita. Lo slot echoed, con exclude ['pair'], ha un ramo con peso positivo sullo stesso gruppo G.",
+      "evidence": "Le righe 203-204 controllano solo che gli slot citati in exclude esistano già. Non viene mai confrontato il numero di nomi distinti del gruppo con quelli esclusi. collation.js:47 lancia 'Nessuna carta disponibile nello slot' quando available è vuoto, cioè quando entrambi gli slot pescano da G. Il caso unique era stato coperto nel round 4, il caso exclude no.",
+      "impact": "La validazione e la build passano. Poi, a caso e con probabilità proporzionale ai pesi, Start nel tavolo Draft non fa nulla con un'eccezione non gestita. Nel simulatore Sealed fresh() lancia al caricamento e la pagina resta vuota.",
+      "suggested_fix": "Per ogni rami con weight>0 di uno slot con exclude, richiedere che i nomi distinti del gruppo superino il numero massimo di nomi esclusi (somma di count e dei raddoppi delle pair degli slot elencati).",
+      "certainty": "certain"
+    },
+    {
+      "id": "R5-LOCALNAV-DEAD-ANCHORS",
+      "priority": "P3",
+      "file": "site_navigation.py",
+      "line": 50,
+      "title": "I link locali di Analisi e Combo puntano ad ancore che possono non esistere o essere nascoste",
+      "scenario": "Si costruisce un'espansione Atlas pulita (come la fixture clean-atlas, con fragments={}) oppure senza sentiment. Si apre la pagina Analisi o Combo.",
+      "evidence": "Per key analysis la nav locale è fissa: #explorer, #reports, #sentiment, #method. Per combos: #catalogo, #metodo. Nei template #method deriva da {{optionalFragment:analysis.method}} e #metodo da {{optionalFragment:combos.metodo}}, quindi assenti senza frammenti. #sentiment resta nel DOM, ma sentiment-ui.js:18 lo nasconde con closest('section').hidden=true quando il sentiment non è disponibile (regola CSS .site-layout [hidden]{display:none!important}).",
+      "impact": "Link visibili che non portano da nessuna parte. È lo stesso tipo di difetto corretto per Draft in R2-DRAFT-NAV-DEAD-ANCHORS.",
+      "suggested_fix": "Generare i link locali solo per gli id presenti nel contenuto renderizzato e visibili, in base alla disponibilità di sentiment e ai frammenti.",
+      "certainty": "certain"
+    },
+    {
+      "id": "R5-HOME-SHELL-HARDCODED",
+      "priority": "P3",
+      "file": "site_navigation.py",
+      "line": 43,
+      "title": "La sidebar della home è fissa su Reality Fracture e Star Trek e non deriva dal registro",
+      "scenario": "Si aggiunge una terza espansione in expansions.json. Oppure si rinomina un URL di pagina di Reality Fracture nel manifest.",
+      "evidence": "build_site.homepage chiama shell(..., 'home', root=True) senza expansion, quindi usa il ramo legacy. Le righe 30-44 usano PAGES con i file Reality-Fracture-*.html, l'etichetta 'Reality Fracture FRA' e il prefisso sets/reality-fracture/. La riga 78 aggiunge il link fisso sets/star-trek/index.html. Le pagine di set invece costruiscono 'others' dal registro (configured_shell, righe 129-133).",
+      "impact": "La nuova espansione compare nelle card della home ma non nella sidebar. Se l'URL di una pagina cambia, validate_site fallisce con link mancanti dalla sola home. Il requisito 'aggiungere un'espansione con soli JSON' è soddisfatto solo in parte.",
+      "suggested_fix": "Costruire la sidebar della home iterando le espansioni caricate (nome, codice, URL della pagina set dal manifest).",
+      "certainty": "certain"
+    }
+  ],
+  "summary": "Revisione solo statica del codice e dei JSON forniti: non ho eseguito build, test o browser e non dichiaro verifiche. Le correzioni dei round 1-4 che ho riesaminato risultano coerenti nel codice. Restano due difetti P2 sul riuso tramite soli JSON: i template e il runtime preview contengono fatti e testi di Star Trek (TRK/SDS/TRC, '21 ottobre', 'Catalogo parziale' sempre mostrato), e manca la validazione del contratto di cards.json e printings.json. Questa lacuna fa crashare l'analisi, la build o la collazione con dati minimi ma plausibili. Ci sono poi tre punti P3: le esclusioni di collazione senza controllo di fattibilità, i link locali morti in Analisi e Combo, e la sidebar della home non derivata dal registro. Collazione, replay e separazione evento/prodotto non mostrano altri difetti concreti nel codice esaminato."
+}

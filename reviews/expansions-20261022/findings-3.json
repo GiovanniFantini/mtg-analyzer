@@ -1,0 +1,125 @@
+{
+  "findings": [
+    {
+      "id": "R3-DRILLDOWN-AVAILABILITY",
+      "priority": "P2",
+      "file": "expansion_data.py",
+      "line": 242,
+      "title": "draftStatistics risulta disponibile con solo statistics.draft.cards, ma il drilldown dipende da drill",
+      "scenario": "Un'espansione Atlas aggiunge in statistics.json solo l'elenco delle carte con gih ed n e nessun blocco drill con contexts, colors e retrieved. È un aggiornamento realistico, perché corrisponde al semplice export card_data di 17Lands. La build produce la pagina Draft.",
+      "evidence": "capabilities() imposta statistics:draft solo su stats.cards con gih e n. data_for_page('draft') (build_expansion.py:166) riempie drill con contexts {}, colors {} e retrieved ''. render_tokens (build_expansion.py:93-97) inserisce comunque tutto il template draft-drilldown-statistics.html. In draft-drilldown.js:55 new Date('').toLocaleString restituisce la stringa Invalid Date. renderSummary (riga 34) mostra Dati del campione non disponibili. Con il minimo predefinito di 2000 osservazioni la tabella è vuota. Confronto e tabelle per coppia mostrano solo N/D.",
+      "impact": "Il sito dichiara disponibile un confronto statistico che non ha dati. L'utente vede una sezione interattiva vuota, con Rilevazione Invalid Date, e non vede alcun avviso su cosa manca. Il requisito sulla disponibilità delle singole feature non è rispettato.",
+      "suggested_fix": "Separare la capability del drilldown da quella delle statistiche per carta, richiedendo drill.contexts non vuoto e drill.retrieved. Quando manca, mostrare l'avviso già usato per le statistiche indisponibili e lasciare attiva la tabella delle carte.",
+      "certainty": "certain"
+    },
+    {
+      "id": "R3-DRAFT-EVENTS-NOT-GATED",
+      "priority": "P2",
+      "file": "expansion_data.py",
+      "line": 224,
+      "title": "La capability draftTable controlla solo l'evento con chiave draft; gli altri eventi di tipo draft finiscono nel selettore anche se il loro prodotto non è simulabile",
+      "scenario": "Un'espansione rilasciata ha l'evento draft con prodotto play completo e verificato, più un evento picktwo con un prodotto diverso, con collation null o non verificata. È la separazione prodotto/evento voluta dai requisiti. Si apre la pagina del tavolo Draft e si seleziona quel formato.",
+      "evidence": "capabilities() usa solo product_for('draft'), product_printings('draft') e catalogMapping:draft (righe 224-250). data_for_page('draft-engine') (build_expansion.py:172) include in formats tutti gli eventi con kind draft. draft_format('picktwo') produce cards [] e collation con valori None. In draft-table.js:27 E.createCollator lancia Versione della collazione non supportata e lo script si interrompe prima di registrare #start.",
+      "impact": "Il tavolo risulta disponibile e mostra un formato che non può partire. La pagina resta senza handler e senza spiegazione. Con eventi e prodotti separati il caso è prevedibile, e anche Star Trek ha un evento picktwo.",
+      "suggested_fix": "Calcolare disponibilità e motivi per ogni evento di tipo draft, con collazione verificata, mapping, valutazioni e archetipi. Includere in formats solo gli eventi pronti e segnalare gli altri come non disponibili, con i motivi.",
+      "certainty": "certain"
+    },
+    {
+      "id": "R3-ATLAS-TEMPLATES-FRA-CONTENT",
+      "priority": "P2",
+      "file": "templates/atlas/discovery.html",
+      "line": 11,
+      "title": "I template Atlas condivisi contengono affermazioni, date, carte e meccaniche specifiche di FRA",
+      "scenario": "Una nuova espansione Atlas, con soli JSON, usa i template condivisi: analysis, combos, discovery e draft. Il requisito è che le feature FRA siano riutilizzabili tramite soli JSON.",
+      "evidence": "discovery.html:11 afferma 3.594 liste Modern in cinque Regional, con token source FRA. analysis.html:11 contiene la data 22 settembre 2026. analysis.html:31 contiene i preset Surveil e Prepared; il pulsante Prepared imposta un keyword che non esiste nel select e svuota il filtro. analysis.html:15 ha l'opzione SPG fissa, ma ui.bonusCode esiste per questo. combos.html:14 contiene il calcolatore del ciclo blu con c.id==='loot'. draft.html:13 ha un esempio con Surveillance Phantasm e Your Fate Ends Here. discovery.html:3 ha una data nella meta description. Le fixture rinominano soltanto nome e codice, quindi non intercettano il problema.",
+      "impact": "Una seconda espansione Atlas mostra come proprio un testo fattuale su FRA e controlli che non fanno nulla. Servirebbe una copia del template per ogni set, contro il requisito di soli JSON.",
+      "suggested_fix": "Spostare testi, date, esempi, preset e fonti in guides, ui e sources. Rendere i preset e l'opzione dei gruppi derivati dai dati. Rendere condizionale il calcolatore del ciclo. Aggiungere un test con un set diverso, che verifichi l'assenza di nomi e cifre FRA nell'HTML.",
+      "certainty": "certain"
+    },
+    {
+      "id": "R3-PICKDECISIONS-COUPLED-TO-FRAGMENT",
+      "priority": "P2",
+      "file": "build_expansion.py",
+      "line": 87,
+      "title": "La guida delle situazioni di scelta compare solo se un frammento editoriale contiene il segnaposto",
+      "scenario": "Un'espansione fornisce guides.pickDecisions e guides.templates.pickDecisions ma non il frammento HTML draft.report-6, che contiene {{guide:pickDecisions}} solo in FRA. È un set con soli dati strutturati.",
+      "evidence": "draft.html:6 collega sempre #pick-decisions, e il testo mostra {{pickDecisionCount}} situazioni. draft.html:29 inserisce solo fragment:draft.report-N. Con le statistiche indisponibili, render_tokens (righe 87-88) restituisce '' se il frammento manca o non contiene il segnaposto. Con le statistiche disponibili e il frammento assente restituisce l'avviso Contenuto non disponibile (riga 91). In entrambi i casi render_guides.render('pickDecisions') non viene mai chiamato. availability['pickDecisions'] resta available. Nessun fixture lo copre, perché FRA ha report-6.",
+      "impact": "La feature è dichiarata disponibile con N situazioni, ma non viene mostrata. Il link del menu locale è morto, e draft-pick-guide.js non trova i pulsanti Apri/Chiudi tutti.",
+      "suggested_fix": "Inserire la guida pickDecisions direttamente nel template draft.html tramite {{guide:pickDecisions}}, indipendentemente dai frammenti del report. Generare l'indice locale solo quando la sezione esiste.",
+      "certainty": "certain"
+    },
+    {
+      "id": "R3-DISCOVERY-HARDCODED-ENUMS",
+      "priority": "P2",
+      "file": "discovery.js",
+      "line": 3,
+      "title": "Formati e livelli della discovery sono fissi nel codice, mentre il JSON può dichiararne altri",
+      "scenario": "Una nuova espansione legale in Standard, come Star Trek, ha in discovery.json carte con formats ['Standard'] e magari un livello diverso da Confermata, Emergente o Preliminare.",
+      "evidence": "discovery.js:3 definisce formats=['Tutti','Commander','Pioneer','Modern','Pauper','Legacy'] e levels={Confermata,Emergente,Preliminare}. Il template discovery.html:8 fissa le opzioni del livello. Una carta solo Standard non è raggiungibile da nessun tab. Un livello sconosciuto fa sì che levels[a.level] sia undefined, quindi l'ordinamento è NaN (riga 20). In riga 22 la classe del badge ['confirmed','emerging','early'][undefined] è undefined. discoveryOptions ricava invece i prodotti dai dati.",
+      "impact": "Parte delle carte o dei livelli dichiarati nei JSON è ignorata dalla UI, con ordinamento incoerente e badge senza stile.",
+      "suggested_fix": "Derivare i tab dei formati e i livelli dai dati o da ui.json. Mantenere un ordine dei livelli configurabile e validare i valori in expansion_data.py.",
+      "certainty": "certain"
+    },
+    {
+      "id": "R3-MISSING-TOKENS-SILENT",
+      "priority": "P3",
+      "file": "build_expansion.py",
+      "line": 60,
+      "title": "Fonti e frammenti mancanti degradano in silenzio, con link morti e blocchi di errore dentro titoli",
+      "scenario": "Una nuova espansione omette una chiave in sources.links o un frammento richiesto dai template, ad esempio gallery.copy-1, set.title o draft-engine.copy-3. Le chiavi dei template sono hash FRA e indici opachi.",
+      "evidence": "kind==source restituisce '#method' se la chiave manca (riga 60). Nelle pagine Draft, Discovery e Draft Engine non esiste un id method, quindi il link è un'ancora morta. validate_site salta i riferimenti senza path (build_site.py:45), quindi non lo rileva. Il frammento mancante restituisce un p con classe notice (riga 91), anche dentro h1, div.eyebrow o caption. Il contratto dei frammenti e dei token source non è validato né documentato. guides.sealed e guides.draft sono booleani indipendenti dal frammento reale (gallery.strategy).",
+      "impact": "Il build passa e il sito pubblica placeholder visibili, con paragrafi annidati in titoli e link che non portano da nessuna parte. Il verificatore dei link non può accorgersene.",
+      "suggested_fix": "Far fallire la build, o almeno produrre un warning esplicito, per i fragment e i source mancanti. Derivare sealedGuide e draftGuide dalla presenza dei frammenti. Documentare le chiavi richieste dai template.",
+      "certainty": "certain"
+    },
+    {
+      "id": "R3-UNAVAILABLE-FORMATS-MISSING-IGNORED",
+      "priority": "P3",
+      "file": "draft-table.js",
+      "line": 7,
+      "title": "Il campo unavailableFormats[].missing viene generato ma non mostrato",
+      "scenario": "Si apre il tavolo Draft di Reality Fracture. Il JSON incorporato contiene unavailableFormats con name e missing per Star Trek.",
+      "evidence": "build_expansion.py:177 costruisce missing da other.availability['draftTable']['missing']. draft-table.js:7 usa solo f.name e crea option disabled con il testo non disponibile. Il frammento draft-engine.copy-0 (Star Trek: catalogo ancora incompleto) non è referenziato da draft-engine.html.",
+      "impact": "L'utente vede un formato disabilitato, ma non sa cosa manca. Il requisito prevede di indicare lo strumento non disponibile e cosa manca. Su una option disabilitata non si può mettere una spiegazione accessibile.",
+      "suggested_fix": "Aggiungere sotto il selettore un elenco con nome del set e motivi presi da unavailableFormats[].missing, collegato con aria-describedby.",
+      "certainty": "certain"
+    },
+    {
+      "id": "R3-COLLATION-TABLE-OMITS-OPS",
+      "priority": "P3",
+      "file": "draft-table.js",
+      "line": 28,
+      "title": "La tabella delle percentuali mostra solo branches e omette chance, count ed exclude",
+      "scenario": "Sul tavolo Draft di FRA si apre Vedi le percentuali e le ipotesi, e si legge lo slot guest.",
+      "evidence": "collation.js ha rule.chance=0.01818 per la replace guest, ma branches[guest] contiene un solo ramo con peso 1. draft-table.js:28 stampa 100% · 10 stampe · SPG 159-168. Lo stesso accade per common, mostrato come 100% · 71 stampe senza il count 6. L'esclusione dell'echoed rispetto alla coppia non è visibile. La spiegazione corretta è nei frammenti FRA copy-1 e copy-2, non generata.",
+      "impact": "Per un nuovo prodotto la tabella induce a credere che la Special Guest compaia in ogni busta. La spiegazione dipende da testo manuale che può divergere dalla ricetta.",
+      "suggested_fix": "Generare le righe dalla regola, mostrando operazione, count, unique, exclude, target e chance, ad esempio 1,8% di sostituire una comune.",
+      "certainty": "certain"
+    },
+    {
+      "id": "R3-PICKTWO-SOURCE",
+      "priority": "P3",
+      "file": "expansions/star-trek/limited.json",
+      "line": 1,
+      "title": "L'evento picktwo cita come fonte la pagina del Booster Draft",
+      "scenario": "Si controlla la provenienza delle regole di Star Trek Pick-Two: seats 4 e picksPerTurn 2.",
+      "evidence": "events.picktwo.sources contiene https://magic.wizards.com/en/formats/booster-draft. L'esempio del README usa https://magic.wizards.com/en/formats/pick-two-draft, e sources.json di Star Trek ha già la chiave 45d1e4718d08 per quell'URL. rules.panel-0 afferma che il Pick-Two è una procedura distinta dal Draft tradizionale.",
+      "impact": "La provenienza dichiarata per quattro posti e due pick non descrive la procedura. La validazione richiede solo che sources non sia vuoto.",
+      "suggested_fix": "Sostituire la fonte con la pagina Pick-Two Draft. Opzionalmente, controllare che ogni evento citi una fonte coerente con il proprio tipo.",
+      "certainty": "certain"
+    },
+    {
+      "id": "R3-GUIDE-FACE-NAME-KEYERROR",
+      "priority": "P3",
+      "file": "render_guides.py",
+      "line": 51,
+      "title": "La validazione accetta nomi di faccia nelle guide, ma il rendering di pickBaits li cerca solo per nome e full",
+      "scenario": "In guides.pickBaits si inserisce una carta con il nome di una faccia posteriore già valido altrove, ad esempio Soul Tether.",
+      "evidence": "validate() costruisce names includendo f['name'] per ogni faccia (expansion_data.py:145-147) e controlla pickBaits contro quell'insieme (righe 210-212). render_guides.py:24 costruisce catalog solo da c['name'] e c.get('full'). La riga 51 accede a catalog[entry['name']] e lancia KeyError.",
+      "impact": "La build fallisce con KeyError generico invece del messaggio di validazione, per un errore di dati plausibile in un aggiornamento.",
+      "suggested_fix": "Includere i nomi delle facce nel catalogo del renderer, oppure validare pickBaits solo sui nomi risolvibili con lo stesso lookup usato dal renderer.",
+      "certainty": "certain"
+    }
+  ],
+  "summary": "Il refactoring regge sui punti già corretti nei round precedenti, ma restano lacune sulla riusabilità tramite soli JSON e sulla disponibilità per singola feature. I difetti più concreti: il drilldown statistico è dichiarato disponibile senza i suoi dati; gli eventi draft diversi da draft non sono controllati e possono rompere la pagina; i template Atlas contengono testi e controlli FRA; la guida delle situazioni di scelta dipende da un frammento HTML. Seguono difetti minori su token e frammenti mancanti, formati e livelli della discovery fissi nel codice, motivi di indisponibilità non mostrati, tabella della collazione che omette le operazioni, una fonte errata per il Pick-Two e un KeyError nelle guide. Nessuna verifica è stata eseguita: tutto è desunto dalla lettura del codice e dei dati forniti."
+}

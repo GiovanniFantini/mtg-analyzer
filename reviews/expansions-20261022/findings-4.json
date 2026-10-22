@@ -1,0 +1,65 @@
+{
+  "findings": [
+    {
+      "id": "R4-ATLAS-FRA-EDITORIAL-IN-TEMPLATES",
+      "priority": "P2",
+      "file": "templates/atlas/gallery.html",
+      "line": 20,
+      "title": "I template Atlas condivisi richiedono chiavi di fonte e testi specifici di Reality Fracture",
+      "scenario": "Si crea una seconda espansione con presentazione atlas, solo con propri JSON. Oppure si completa Star Trek (collazione verificata, catalogo completo, valutazioni, archetipi) perché il tavolo Draft diventi disponibile e venga renderizzato il template atlas draft-engine.html.",
+      "evidence": "gallery.html righe 20-22 richiedono {{source:4c82533b829a}}, {{source:0d0a321bfe6b}}, {{source:9d749ca00d9b}}, {{source:56e31b425544}} e {{source:0b9ffa461c8a}}, e contengono prosa FRA fissa: 'tier list di Marc, Limited Level-Ups', 'Giappone: E.B', 'Drosan (FR)', 'Sol4r1s (DE)'. Altre chiavi fisse: draft-combos-section.html {{source:dea50d6a18df}}, pick-guide-section.html {{source:99e49b309bd6}}, draft-engine.html {{source:4d2a11deb2e9}} {{source:b8270e554000}} {{source:98e96262964a}}, simulator.html {{source:0ad45d236e41}}. Le chiavi sono hash di URL FRA. combos.html riga 5 contiene 'Proft e la pedina Jace', gallery.html riga 63 'Casual Spike'. build_expansion.py:59 fissa otto titoli del report da indice (reportNav). Le fixture di verifica sono copie di FRA e non rivelano il problema. sources.json di Star Trek non ha 4d2a11deb2e9, b8270e554000 e 98e96262964a, e il suo guides.json non ha draft-engine.productDescription né draft-engine.copy-1.",
+      "impact": "Con dati diversi la build si ferma per chiavi che non hanno senso per quel set (render_tokens solleva ValueError, build_expansion.py:71). Se l'autore le inventa, la pagina pubblica attribuisce a FRA fonti e autori che non appartengono al nuovo set. Abilitare il tavolo Star Trek, obiettivo dichiarato, richiede di registrare URL Star Trek sotto hash FRA. Il requisito 'feature FRA riutilizzabili con soli JSON' non è soddisfatto per le pagine atlas.",
+      "suggested_fix": "Spostare in guides.fragments o sources i paragrafi con fonti e autori FRA (righe 20-22 di gallery.html, combos.html:5, simulator.html:11). Usare optionalFragment/optionalSource per i riferimenti non universali e chiavi semantiche (es. sources.links.releaseNotes) al posto degli hash. Le etichette dell'indice report devono venire da un campo del frammento o da ui, non dalla lista fissa in render_tokens.",
+      "certainty": "certain"
+    },
+    {
+      "id": "R4-PREVIEW-RULES-HARDCODED",
+      "priority": "P2",
+      "file": "templates/preview/pool.html",
+      "line": 1,
+      "title": "Le pagine preview dichiarano regole di costruzione fisse che possono contraddire limited.json",
+      "scenario": "Un'espansione preview ha un evento con maxCopies, extraBasicLands, minDeckSize o handSize diversi. È già il caso della fixture 'preview' in verify-expansion-review.py: sealed con maxCopies=1 ed extraBasicLands=false.",
+      "evidence": "pool.html, draft.html e simulator.html contengono il riquadro fisso 'Limited: almeno 40 carte, nessun limite di quattro copie se provengono dal tuo pool. Puoi aggiungere terre base normali.' simulator.html ha anche 'Mescola e pesca sette' e lo stato iniziale 'Costruisci un mazzo di almeno 40 carte per iniziare.' star-trek.js applica invece le regole dell'evento: valida maxCopies (riga 51), disabilita gli input delle basi (riga 159), usa minDeckSize e handSize dinamici.",
+      "impact": "La stessa pagina dice che le basi sono libere e le copie illimitate, mentre i controlli le bloccano. L'utente riceve istruzioni contrarie al comportamento e alle regole dell'evento. La fixture lo produce senza che il test controlli il testo. Per i set preview la separazione regole di evento / contenuto non è rispettata.",
+      "suggested_fix": "Sostituire i testi fissi con token derivati dall'evento (come sealedRules per atlas, o un nuovo token limitedRules:<evento>). Per simulator.html usare minDeckSize e handSize dell'evento. Aggiungere una verifica nella fixture 'preview' sul testo mostrato.",
+      "certainty": "certain"
+    },
+    {
+      "id": "R4-DRAFT-SAVE-OVERWRITE",
+      "priority": "P2",
+      "file": "draft-table.js",
+      "line": 52,
+      "title": "Avviare un nuovo draft sovrascrive senza avviso un salvataggio incompatibile dichiarato 'preservato'",
+      "scenario": "Un aggiornamento realistico dei JSON (una valutazione in ratings.json o un archetipo) cambia la revision funzionale. Un utente con una sessione salvata apre il tavolo, vede 'Salvataggio precedente non leggibile. Puoi iniziare un nuovo draft.' e preme 'Inizia il draft'.",
+      "evidence": "Alla riga 36 E.replay rifiuta il record e il catch imposta solo il messaggio; saved resta null. Il click su #start (riga 52) chiama persist() (riga 37), che esegue localStorage.setItem(key, ...) senza controllare l'esistenza di un record. Il README (riga 101) promette 'preservando il salvataggio'. verify-expansion-browser.cjs controlla solo che il record resti dopo un reload, mai dopo l'avvio. Il simulatore Sealed protegge invece il record con blockedStorage e conferma esplicita (simulator.js:9-11).",
+      "impact": "La sessione incompatibile, esportabile solo dopo un ripristino che non è più possibile, viene distrutta al primo avvio. Viola il requisito di salvaguardare i salvataggi e l'impegno scritto nel README.",
+      "suggested_fix": "Quando il record esiste ma replay fallisce, impostare un flag bloccato e non scrivere finché l'utente non conferma. In alternativa copiare il raw in una chiave di backup (key + '-previous') prima di persist(), con un avviso e un pulsante per esportarlo.",
+      "certainty": "certain"
+    },
+    {
+      "id": "R4-GUIDE-AVAILABILITY-FRA-FRAGMENT-KEYS",
+      "priority": "P3",
+      "file": "expansion_data.py",
+      "line": 267,
+      "title": "La disponibilità di guides:draft e guides:sealed dipende da chiavi di frammento FRA, in contrasto col README",
+      "scenario": "Un'espansione fornisce archetipi, guide strutturate (pickGuide, pickDecisions, draftCombos) e statistiche, ma non il frammento HTML draft.report-3 (o gallery.strategy per Sealed). Il README (riga 38) dice che i frammenti draft.report-N 'possono essere omessi'. La fixture 'structured-guide' rimuove tutti i draft.report-*.",
+      "evidence": "present['guides:sealed'] richiede fragments['gallery.strategy'] (riga 267). present['guides:draft'] richiede fragments['draft.report-3'] (riga 268). draftGuide richiede guides:draft, quindi diventa non disponibile. availability_notice mostra nella pagina Draft 'Guida Draft e archetipi: non disponibile. Manca: Guida Draft.' mentre le sezioni strutturate e il drilldown (che usa gli archetipi) sono presenti. Il test browser della fixture controlla solo decisioni e assenza dell'indice, non l'avviso.",
+      "impact": "Avviso falso sulla pagina Draft e voce 'mancante' non correggibile con dati reali: l'unico rimedio è inserire un frammento con un nome tipico di FRA, che contraddice il contratto documentato.",
+      "suggested_fix": "Derivare la disponibilità da archetypes, statistiche e guide strutturate (pickGuide, pickDecisions, draftCombos). Trattare i frammenti HTML come opzionali, oppure documentare esplicitamente le chiavi richieste e aggiungerle ai messaggi missing.",
+      "certainty": "certain"
+    },
+    {
+      "id": "R4-COLLATION-FEASIBILITY-UNCHECKED",
+      "priority": "P3",
+      "file": "expansion_data.py",
+      "line": 191,
+      "title": "La validazione della ricetta non verifica la fattibilità a runtime di replace e unique",
+      "scenario": "In products.json si aggiorna una ricetta con uno slot replace che ha count 2 su un target con count 1, oppure uno slot unique con count maggiore della numerosità di un gruppo (es. count 6 su un ramo con 5 stampe, anche dopo una potatura).",
+      "evidence": "Il ciclo alle righe 191-203 controlla op, pesi, gruppi, exclude e lunghezza, ma non confronta il count del replace con quello del target, né count con len(groups[branch.group]) per unique. collation.js lancia 'Sostituzione senza carte sufficienti' (riga 54) e 'Nessuna carta disponibile nello slot' (riga 47) solo in pack(). Il Python non vede mai la ricetta eseguita.",
+      "impact": "La build passa e la capability risulta available. In simulator.js fresh() chiama pack() al caricamento, quindi la pagina fallisce con eccezione non gestita (a volte, a seconda del ramo estratto). Nel tavolo Draft createSession solleva dal click su Inizia senza alcun messaggio all'utente.",
+      "suggested_fix": "In validate(): per replace richiedere count <= count del target (o almeno che il target sia un draw con count sufficiente). Per unique richiedere count <= min(len(group)) tra i rami con peso > 0, sottraendo gli exclude se calcolabili. Alternativa: eseguire 200 pack con un RNG fisso in Python e fallire la build in caso di errore.",
+      "certainty": "certain"
+    }
+  ],
+  "summary": "Esame statico, senza test eseguiti né verifiche nel browser. I round precedenti risultano in gran parte corretti. Restano cinque problemi concreti. Tre sono P2: i template atlas non sono davvero riutilizzabili con soli JSON (chiavi di fonte e prosa FRA fisse, che bloccherebbero anche l'abilitazione del tavolo Star Trek); le pagine preview hanno regole di costruzione scritte nel template che contraddicono limited.json; l'avvio di un nuovo draft sovrascrive un salvataggio incompatibile che il README dichiara preservato. Due sono P3: la disponibilità delle guide dipende da chiavi di frammento FRA e produce un avviso falso, e la validazione delle ricette non intercetta errori che esplodono solo a runtime."
+}

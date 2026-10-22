@@ -6,7 +6,8 @@
   document.getElementById('pick-policy-pod').hidden=mode.value!=='pod';
   document.querySelectorAll('#pick-guide [data-pick-stat]').forEach(el=>el.hidden=!stats.checked);
  }
- mode.addEventListener('change',update);stats.addEventListener('change',update);update();
+ if(stats&&EXPANSION_CONFIG.availability?.draftStatistics?.available===false){stats.disabled=true;stats.checked=false;stats.title='Statistiche non disponibili';}
+ if(mode&&stats){mode.addEventListener('change',update);stats.addEventListener('change',update);update();}
  document.querySelectorAll('[data-decisions]').forEach(button=>button.addEventListener('click',()=>{
   document.querySelectorAll('#pick-decisions .pick-decision').forEach(item=>item.open=button.dataset.decisions==='open');
  }));

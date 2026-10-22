@@ -1,7 +1,11 @@
 'use strict';
 (() => {
  const el=id=>document.getElementById('dp-'+id), cards=DRAFT_DATA.poolCards;
- const key='fra-draft-pool-v1', byName=new Map(cards.map(c=>[c.name,c]));
+ const rules=EXPANSION_CONFIG.events.draft;
+ const deckSize=rules?.minDeckSize||40;
+ const extraBasics=rules?.extraBasicLands===true;
+ const copyRule=rules?.maxCopies==null?'Non applicare il limite di quattro copie del Constructed al Draft.':`Per ogni carta non base rispetta il limite del formato: ${rules.maxCopies} copie per nome.`;
+ const key=EXPANSION_CONFIG.storage.draftPool, byName=new Map(cards.map(c=>[c.name,c]));
  const normalize=s=>s.normalize('NFKC').replace(/[’‘]/g,"'").replace(/\s+/g,' ').trim().toLowerCase();
  const aliases=new Map();
  for(const c of cards)for(const n of [c.name,c.name.split(' // ')[0],...(c.faces||[]).map(f=>f.name)]){
@@ -31,7 +35,7 @@
   el('results').innerHTML=!query?'<p class="small">Cerca una carta per iniziare, oppure incolla la tua lista.</p>':!matches.length?'<p>Nessuna carta trovata. Usa il nome inglese.</p>':matches.slice(0,12).map(c=>`<div class="dp-row"><div>${cardButton(c)}<small>${html(c.cost||c.type.replace(/\u2014/g, ':'))} · ${c.set}</small></div><button type="button" data-dp-add="${html(c.name)}" aria-label="Aggiungi ${html(c.name)}" ${pool[c.name]>=100?'disabled':''}>+</button></div>`).join('')+(matches.length>12?'<p class="small">Primi 12 risultati. Scrivi un nome più preciso.</p>':'');
  }
  function prompt(){
-  if(!total())return '';
+  if(!total()||!rules)return '';
   const mode=el('mode').value==='bo3'?'BO3 con sideboard':'BO1';
   const list=entries().map(c=>`${pool[c.name]} ${c.name}`).join('\n');
   const details=entries().map(c=>{
@@ -41,19 +45,19 @@
   }).join('\n\n');
   const guides=Object.entries(DRAFT_DATA.drill.guides).filter(([pair])=>[...pair].every(color=>entries().some(c=>c.color.includes(color)))).map(([pair,g])=>`${pair}: ${g.name}. Tema: ${g.theme}. ${g.plan}\nRischio: ${g.risk}`).join('\n\n');
   return `Agisci come consulente esperto di Magic: The Gathering Limited. Rispondi in italiano senza usare il trattino lungo (U+2014).
-Costruisci il miglior mazzo Draft di Reality Fracture dal pool qui sotto. Partite: ${mode}. Il pool contiene ${total()} carte. I testi e le statistiche sono snapshot statici del sito, datati ${DRAFT_DATA.date}; non presentarli come aggiornati.
+Costruisci il miglior mazzo Draft di ${EXPANSION_CONFIG.name} dal pool qui sotto. Partite: ${mode}. Il pool contiene ${total()} carte. I testi e le statistiche sono snapshot statici del sito, datati ${DRAFT_DATA.date}; non presentarli come aggiornati.
 
 VINCOLI
-- Usa soltanto le carte elencate e rispetta tutte le quantità, incluse le terre non base. Puoi aggiungere liberamente Plains, Island, Swamp, Mountain e Forest. Non presumere altre terre o altre carte. Non applicare il limite di quattro copie del Constructed al Draft.
-- Proponi una lista finale di esattamente 40 carte, comprese tutte le terre. Indica quantità e subtotali: magie, terre, totale. Ogni copia del pool deve risultare nel mazzo o tra gli esclusi, senza doppi conteggi. Le basi aggiunte vanno identificate separatamente.
+- Usa soltanto le carte elencate e rispetta tutte le quantità, incluse le terre non base. ${extraBasics?'Puoi aggiungere liberamente Plains, Island, Swamp, Mountain e Forest.':'Non aggiungere terre base oltre alle copie presenti nel pool.'} Non presumere altre terre o altre carte. ${copyRule}
+- Proponi una lista finale di esattamente ${deckSize} carte, comprese tutte le terre. Indica quantità e subtotali: magie, terre, totale. Ogni copia del pool deve risultare nel mazzo o tra gli esclusi, senza doppi conteggi. ${extraBasics?'Le basi aggiunte vanno identificate separatamente.':'Non sono previste basi aggiuntive.'}
 - Per dubbi di regole, verifica Oracle e fonti ufficiali aggiornate. Se non puoi navigare, dichiara che usi lo snapshot e segnala le interazioni incerte senza inventarle.
 - Non ordinare semplicemente per GIH WR: è un dato osservazionale globale, influenzato da campione, colori e selezione dei mazzi. N/D non significa carta scarsa. Confronta potenza autonoma, supporto realmente presente, curva, interazione, consistenza e piano di vittoria.
 
 ANALISI RICHIESTA
 1. Esamina tutte le coppie di colori sostenibili con questo pool e gli eventuali splash. Confronta almeno i due piani migliori se il pool li consente, motivando perché gli altri sono inferiori. Per ogni splash verifica fixing, fonti, doppi costi e turno in cui serve la carta.
 2. Cerca le sinergie e le antisinergie rilevanti fra TUTTE le carte del pool, incluse comuni, non comuni, carte fuori colore, facce alternative e Special Guests. Per ciascuna indica nomi, colori richiesti, quantità degli enabler e payoff, una sequenza di gioco concreta, limiti e risposte avversarie. Distingui combo deterministiche da sinergie di valore. Non dichiarare di avere esplorato matematicamente ogni combinazione.
-3. Presenta la lista finale da 40 carte, poi i tagli: per ogni carta esclusa indica quantità, ragione concreta, quale carta svolge meglio il suo ruolo e quando potrebbe rientrare. Scartare significa lasciare fuori dal mazzo, non vendere o eliminare la carta.
-4. Spiega curva di mana, giocate iniziali, creature, interazione, vantaggio carte, condizioni di vittoria e base di mana con fonti per colore. Parti da una valutazione ragionata di 17 terre, modificandola solo se curva e piano lo giustificano. Considera le facce alternative senza contare due volte la stessa carta.
+3. Presenta la lista finale da ${deckSize} carte, poi i tagli: per ogni carta esclusa indica quantità, ragione concreta, quale carta svolge meglio il suo ruolo e quando potrebbe rientrare. Scartare significa lasciare fuori dal mazzo, non vendere o eliminare la carta.
+4. Spiega curva di mana, giocate iniziali, creature, interazione, vantaggio carte, condizioni di vittoria e base di mana con fonti per colore. Parti da una valutazione ragionata di ${Math.round(deckSize*.425)} terre, modificandola solo se curva e piano lo giustificano. Considera le facce alternative senza contare due volte la stessa carta.
 5. ${mode==='BO3 con sideboard'?'Proponi cambi di sideboard concreti contro aggro, control e minacce specifiche, indicando cosa entra ed esce dal pool.':'Ottimizza il main deck per BO1; indica comunque gli esclusi situazionali e quando sarebbero utili, senza presumere cambi di sideboard tra partite.'}
 6. Chiudi con una versione breve leggibile da cellulare, mantenendo la lista e gli esempi di sinergia con nomi delle carte e sequenze concrete.
 
@@ -69,16 +73,17 @@ ${details}
 CONTESTO EDITORIALE DEL SITO (ipotesi da verificare sul pool, non carte aggiuntive disponibili)
 ${guides||'Nessun archetipo bicolore evidente dal pool attuale.'}
 
-Fonti per verifiche: https://magic.wizards.com/en/rules e https://scryfall.com/sets/fra
-Statistiche dello snapshot: https://www.17lands.com/card_data (Premier Draft FRA, globale; non specifiche del mio mazzo).
+Fonti per verifiche: https://magic.wizards.com/en/rules e https://scryfall.com/sets/${EXPANSION_CONFIG.code.toLowerCase()}
+Statistiche dello snapshot: https://www.17lands.com/card_data (Premier Draft ${EXPANSION_CONFIG.code}, globale; non specifiche del mio mazzo).
 `.replace(/\u2014/g, ':');
  }
  function update(){
   const n=total();el('total').textContent=n+' carte';
   const lands=entries().filter(c=>/\bLand\b/.test(c.type)).reduce((n,c)=>n+pool[c.name],0);
-  el('summary').textContent=n?`${entries().length} nomi diversi · ${lands} terre nel pool · ${n-lands} altre carte. Le basi per costruire il mazzo si possono aggiungere a parte.`:'Aggiungi le carte che hai pickato, con tutte le copie.';
+  el('summary').textContent=n?`${entries().length} nomi diversi · ${lands} terre nel pool · ${n-lands} altre carte. ${extraBasics?'Le basi per costruire il mazzo si possono aggiungere a parte.':'Le basi aggiuntive non sono previste dal formato.'}`:'Aggiungi le carte che hai pickato, con tutte le copie.';
   el('pool').innerHTML=entries().map(c=>`<div class="dp-row"><div>${cardButton(c)}</div><div class="dp-quantity"><button type="button" data-dp-remove="${html(c.name)}" aria-label="Togli una copia di ${html(c.name)}">−</button><span aria-label="Quantità">${pool[c.name]}</span><button type="button" data-dp-add="${html(c.name)}" aria-label="Aggiungi una copia di ${html(c.name)}" ${pool[c.name]>=100?'disabled':''}>+</button></div></div>`).join('');
   for(const id of ['copy','download','list','clear'])el(id).disabled=!n;
+  if(!rules){el('copy').disabled=true;el('download').disabled=true;status('Prompt AI non disponibile: mancano le regole del Draft. Puoi registrare ed esportare la lista del pool.');}
   el('prompt').value=prompt();renderSearch();
  }
  function download(text,name){const blob=new Blob([text],{type:'text/plain;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);}
@@ -111,8 +116,8 @@ Statistiche dello snapshot: https://www.17lands.com/card_data (Premier Draft FRA
   try{await navigator.clipboard.writeText(prompt());status('Prompt copiato. Incollalo nella tua chat AI per ottenere lista e tagli.');}
   catch{el('preview').open=true;el('prompt').focus();el('prompt').select();status('Copia automatica non disponibile. Il prompt è selezionato: usa Copia oppure scarica il file .txt.');}
  });
- el('download').addEventListener('click',()=>download(prompt(),'reality-fracture-draft-prompt.txt'));
- el('list').addEventListener('click',()=>download(entries().map(c=>`${pool[c.name]} ${c.name}`).join('\n')+'\n','reality-fracture-draft-pool.txt'));
+ el('download').addEventListener('click',()=>download(prompt(),EXPANSION_CONFIG.id+'-draft-prompt.txt'));
+ el('list').addEventListener('click',()=>download(entries().map(c=>`${pool[c.name]} ${c.name}`).join('\n')+'\n',EXPANSION_CONFIG.id+'-draft-pool.txt'));
  el('clear').addEventListener('click',()=>{if(!window.confirm('Svuotare tutte le carte del pool Draft? Scarica prima la lista se vuoi conservarla.'))return;pool=Object.create(null);save();update();status('Pool Draft svuotato.');});
  update();
 })();

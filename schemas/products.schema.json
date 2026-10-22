@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:mtg-analyzer:products:1",
+  "title": "MTG Analyzer products and collation v1",
+  "type": "object", "required": ["schemaVersion", "products"],
+  "properties": {
+    "schemaVersion": {"const": 1},
+    "products": {"type": "object", "additionalProperties": {"$ref": "#/$defs/product"}}
+  },
+  "$defs": {
+    "product": {
+      "type": "object", "required": ["name", "packSize", "collation"],
+      "properties": {
+        "name": {"type": "string"}, "packSize": {"type": "integer", "minimum": 1},
+        "collation": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/collation"}]},
+        "missing": {"type": "array", "items": {"type": "string"}},
+        "assumptions": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "collation": {
+      "type": "object", "required": ["schemaVersion", "groups", "recipe"],
+      "properties": {
+        "schemaVersion": {"const": 1}, "source": {"type": "string"}, "verified": {"type": "string"},
+        "groups": {"type": "object", "additionalProperties": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string"}}},
+        "expectedGroupCounts": {"type": "object", "additionalProperties": {"type": "integer", "minimum": 1}},
+        "partners": {"type": "array", "items": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"type": "string"}}},
+        "recipe": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/rule"}}
+      }
+    },
+    "rule": {
+      "type": "object", "required": ["id", "op", "branches"],
+      "properties": {
+        "id": {"type": "string"}, "op": {"enum": ["draw", "replace", "pair"]},
+        "count": {"type": "integer", "minimum": 1}, "unique": {"type": "boolean"},
+        "foil": {"type": "boolean"}, "target": {"type": "string"},
+        "chance": {"type": "number", "minimum": 0, "maximum": 1},
+        "exclude": {"type": "array", "items": {"type": "string"}},
+        "branches": {"type": "array", "minItems": 1, "items": {"type": "object", "required": ["weight", "group"], "properties": {"weight": {"type": "number", "minimum": 0, "maximum": 1}, "group": {"type": "string"}, "foil": {"type": "boolean"}}}}
+      },
+      "allOf": [{"if": {"properties": {"op": {"const": "replace"}}}, "then": {"required": ["target", "chance"]}}]
+    }
+  }
+}

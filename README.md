@@ -19,11 +19,112 @@ Ogni push su `main` esegue la build e pubblica `dist/` con GitHub Actions e GitH
 
 ## Espansioni
 
-`expansions.json` alimenta la homepage. Ogni set ha un URL sotto `sets/<slug>/`. Per aggiungerne uno, creare prima i relativi contenuti e builder, estendere la selezione degli asset in `build_site.py`, poi registrarlo nel catalogo. I collegamenti Draft e discovery sono configurabili per set. Le pagine storiche di Reality Fracture mantengono i propri adattatori; le nuove espansioni possono usare `expansion_shell` con percorsi e gruppi propri.
+`expansions.json` registra i manifest delle espansioni. La build usa `expansion_data.py` per caricare e validare i documenti e `build_expansion.py` per generare tutte le pagine. Non contiene diramazioni per codice del set. I vecchi builder sono ingressi di compatibilità verso lo stesso percorso.
+
+Ogni espansione ha una cartella sotto `expansions/<slug>/`:
+
+- `expansion.json`: versione dello schema, identità, file collegati, pagine, strumenti richiesti e chiavi dei salvataggi.
+- `cards.json` e `printings.json`: catalogo delle carte e stampe effettivamente usate nella collazione. Le diverse stampe mantengono identità distinte; `catalogId` viene risolto per la visualizzazione.
+- `products.json`: prodotti, dimensione delle buste, gruppi di stampe, probabilità, coppie e ricetta di estrazione.
+- `limited.json`: eventi Draft, Sealed e Pick-Two, ciascuno collegato al proprio prodotto.
+- `ratings.json`, `archetypes.json`, `combos.json`: valutazioni, piani e sinergie. Gli indici delle combo vengono ricalcolati dai dati.
+- `guides.json`: contenuti editoriali, priorità dei pick, bait, situazioni di scelta e pacchetti Draft. I frammenti HTML sono contenuto di presentazione già presente, conservato per mantenere l’interfaccia. Le liste interattive sono generate dai dati strutturati.
+- `statistics.json`: viste degli snapshot statistici, con le loro date e contesti. I dati datati del report restano distinti dal catalogo e non diventano aggiornati per effetto della build.
+- `sentiment.json`: metadati della ricerca e osservazioni per identità di carta.
+- `discovery.json`, `prices.json`, `sources.json`, `ui.json`: metagame documentato, disponibilità dei prezzi, fonti e testi/esempi specifici degli strumenti.
+
+I template sotto `templates/atlas/` e `templates/preview/` conservano le due presentazioni esistenti. Il manifest sceglie i template condivisi per pagina. Aggiungere un’espansione richiede documenti JSON e una voce nel registro, senza un nuovo builder o una nuova interfaccia di gestione. Gli asset pubblici aggiuntivi sono elencati esplicitamente nel manifest; gli snapshot storici alla radice restano conservati.
+
+I token `fragment:chiave` richiedono la stessa chiave in `guides.fragments`; `source:chiave` richiede un URL grezzo in `sources.links`. Chiavi mancanti fermano la build con documento e chiave da completare. `optionalFragment` e i frammenti `draft.report-N` possono essere omessi. Le guide strutturate, comprese le situazioni di scelta, non richiedono i frammenti del report. `sources.downloads` dichiara i download opzionali con `url` e `label`, e i relativi file vanno inclusi negli asset. Il catalogo e le statistiche conservano date separate (`ratings.date`, `statistics.catalogDate`, `statistics.draft.date`).
+
+`ui.json` contiene esempi dei bot, alias, etichette dei set, esempi di importazione, preset di analisi ed eventuale ordine `discoveryLevels`. I formati della discovery derivano dalle carte. Un preset di analisi con un valore assente nei filtri non viene mostrato. I calcolatori delle combo sono opzionali: `calculator.kind: netMana`, `netPerCycle`, `unit`, `label` e `note` descrivono un guadagno fisso per ciclo senza codice eseguibile nei dati.
+
+I template Atlas non richiedono fonti o frammenti di Reality Fracture per attivare uno strumento. Le note editoriali sono opzionali e i renderer delle guide hanno template condivisi predefiniti. Per fonti proprie, `sources.groups` contiene liste di oggetti `url` e `label`, con il nome della sezione (`draft-engine`, `pick-guide-section`, `gallery` e gli altri nomi dei template). La guida Sealed conserva il contenuto HTML in `guides.fragments.gallery.strategy`: se manca, la sezione indica esattamente questa proprietà da completare. I dati strutturati Draft restano disponibili anche senza i frammenti del report.
+
+Un salvataggio Draft incompatibile viene conservato integralmente in una chiave separata prima della prima scrittura del nuovo draft. Se il backup fallisce, il salvataggio originale non viene sovrascritto. Il messaggio permette di scaricare il record precedente, anche dopo la riapertura del nuovo salvataggio.
+
+La disponibilità del tavolo viene verificata per ogni evento Draft e per il suo prodotto; il selettore elenca soltanto eventi pronti e spiega cosa manca agli altri. Le statistiche per carta e il drilldown per contesto sono indipendenti: il secondo richiede anche `statistics.draft.drill.contexts` e `retrieved`.
+
+I contratti di `cards.json` e `printings.json` sono descritti anche in `schemas/cards.schema.json` e `schemas/printings.schema.json`. Ogni carta richiede identità, nome, set, numero, colori, identità di colore, tipo, rarità, immagine, URL e dati di mana/testo. Le stampe del motore non richiedono un URL separato. Il caricatore accetta `cost`/`mana`, `mv`/`cmc` e `oracle`/`text`, mantenendo coerenti i due nomi; i campi aggiuntivi restano conservati. `full` usa il nome se omesso; facce, stampe, keyword e legalità mancanti hanno contenitori vuoti. I flag di carta base, terra e creatura si ricavano dal tipo della faccia principale se assenti. Gli errori dei campi essenziali indicano documento e carta. I documenti pubblicati contengono la forma normalizzata.
+
+La homepage deriva percorsi e nomi dal registro. `home.featured` e `home.quickTools` nel manifest scelgono rispettivamente il set in evidenza e gli accessi rapidi; in assenza di indicazioni usa l’ultima e la prima espansione registrata. Il catalogo completo/parziale e la data della legalità derivano dai dati, anche nella presentazione di anteprima. I collegamenti locali alle sezioni assenti o non disponibili vengono omessi.
+
+### Regole delle buste e degli eventi
+
+I documenti sono letti come oggetti JSON, attraverso un caricatore comune. Non serve un database: il sito resta statico e la build risolve i riferimenti, poi incorpora i dati necessari agli strumenti. I documenti pubblici si trovano anche sotto `sets/<slug>/data/`, compresi `runtime.json` e `availability.json`.
+
+La collazione è una ricetta dichiarativa ordinata, eseguita da `collation.js` sia nel Draft sia nel Sealed. Le operazioni supportate sono:
+
+- `draw`: estrae una o più carte da gruppi pesati. `unique` evita ripetizioni della stessa carta entro lo slot.
+- `replace`: con probabilità `chance` sostituisce le prime carte estratte dallo slot `target`.
+- `pair`: estrae una carta e il partner indicato in `partners`, con la stessa finitura.
+- `exclude`: impedisce di estrarre carte con lo stesso nome completo di quelle già estratte dagli slot indicati. Per esempio, la terza echoed esclude la coppia garantita.
+
+Esempio di uno slot, i cui gruppi sono definiti nello stesso documento:
+
+```json
+{
+  "op": "draw",
+  "id": "rare",
+  "count": 1,
+  "branches": [
+    {"weight": 0.8, "group": "rare"},
+    {"weight": 0.2, "group": "mythic"}
+  ]
+}
+```
+
+Questi pesi sono soltanto un esempio di struttura. Non sono probabilità di un prodotto reale. I pesi di ogni slot devono sommare a uno. I tassi pubblicati come `<1%` rimangono separati dai pesi modellati, con le assunzioni dichiarate. Un prodotto incompleto ha `collation: null`: i dati ufficiali disponibili possono essere conservati in `published`, ma il sito non li trasforma automaticamente in una simulazione.
+
+Le regole dell’evento sono indipendenti dalla busta:
+
+```json
+{
+  "id": "example-pick-two",
+  "name": "Esempio Pick-Two",
+  "kind": "draft",
+  "product": "play",
+  "packsPerPlayer": 3,
+  "seats": 4,
+  "picksPerTurn": 2,
+  "directions": [1, -1, 1],
+  "minDeckSize": 40,
+  "maxCopies": null,
+  "extraBasicLands": true,
+  "mulligan": {"kind": "london", "handSize": 7, "freeMulligans": 0},
+  "sources": ["https://magic.wizards.com/en/formats/pick-two-draft"]
+}
+```
+
+Il motore prende entrambe le carte prima di passare la busta; se resta una sola carta, prende quella. `1` e `-1` indicano i due versi di passaggio. Sealed indica il proprio numero di buste e prodotto e usa `picksPerTurn: 0`. Le regole di costruzione e il London mulligan sono lette dal profilo dell’evento.
+
+### Evoluzione, dati mancanti e salvataggi
+
+`schemaVersion: 1` identifica il contratto. Proprietà aggiuntive ed `extensions` consentono ampliamenti compatibili. Una modifica incompatibile richiede una nuova versione e un adattatore esplicito nel caricatore. Una nuova operazione di collazione o procedura di gioco richiede supporto nel motore; non viene eseguito codice JavaScript dal JSON. Versioni e operazioni sconosciute fanno fallire la validazione.
+
+Gli schemi JSON in `schemas/` descrivono manifest, prodotti ed eventi per gli editor. La build usa controlli Python senza dipendenze esterne: verifica identità, campi delle carte, riferimenti, archetipi, esempi, gruppi, partner, pesi, numerosità attese e regole degli eventi. Controlla anche la capienza delle sostituzioni ed esegue percorsi deterministici della ricetta, forzando i rami con probabilità positiva, per individuare gruppi esauriti da estrazioni uniche ed esclusioni. Queste verifiche eseguono i vincoli effettivi senza imporre limiti prudenziali che scarterebbero collazioni valide con esclusioni correlate; non costituiscono una prova esaustiva di ogni possibile sequenza. Le chiavi dei salvataggi non possono essere condivise da espansioni diverse.
+
+`features.<strumento>.requested` indica che vogliamo quello strumento. La disponibilità effettiva viene calcolata dalle dipendenze: dichiararlo richiesto non abilita dati mancanti. Le pagine mostrano lo strumento non disponibile e cosa manca, mantenendo utilizzabili gli strumenti già pronti. Per i template Atlas sono protetti gli strumenti che richiedono collazione; nella pagina Draft le sole sezioni statistiche indicano i dati mancanti, mentre guide e pool restano utilizzabili. Le chiavi di salvataggio richieste dai controller sono validate prima della build. Scegliere un template esistente diverso richiede soltanto una modifica al manifest.
+
+Le sessioni Draft nuove salvano la versione del motore e un’impronta dei soli dati che guidano le scelte: procedura dell’evento, collazione, identità e proprietà funzionali delle stampe, voti e appartenenza agli archetipi. Immagini, fonti e testi informativi non invalidano il replay. Le revisioni precedenti verificate sono collegate alla stessa impronta funzionale; una modifica al gioco disabilita automaticamente quelle compatibilità. Una sessione riferita a dati diversi viene rifiutata, preservando il salvataggio. Le sessioni FRA precedenti sono accettate soltanto con il profilo di compatibilità verificato. I pool e le buste Sealed già estratte mantengono le identità precedenti e le stesse chiavi locali.
+
+Controlli del contratto:
+
+```sh
+python build_site.py
+python -m unittest test_expansion_data.py
+node verify-expansions.cjs
+node verify-draft-engine.cjs
+node verify-expansion-browser.cjs
+python verify-expansion-review.py
+python verify-collation-contract.py
+```
+
+I test coprono documenti incompleti o incoerenti, aggiunte compatibili, un’altra espansione senza nuovo codice, 3.000 buste storiche identiche, replay precedenti e Pick-Two a quattro posti con buste dispari.
 
 ### Star Trek
 
-`build_star_trek.py` genera dieci pagine sotto `sets/star-trek/`: panoramica, catalogo, Draft, pool Sealed, prova del mazzo, sinergie, analisi, Constructed, regole e fonti. Gli input versionati sono `star-trek-cards-20261021.json` (163 carte distinte, 321 stampe TRK/SDS) e `star-trek-format-20261021.json` (collazione ufficiale). La build è offline e non legge gli snapshot privati `ev-*`.
+`build_star_trek.py` richiama il generatore comune per le dieci pagine sotto `sets/star-trek/`: panoramica, catalogo, Draft, pool Sealed, prova del mazzo, sinergie, analisi, Constructed, regole e fonti. I documenti attivi sono sotto `expansions/star-trek/`; gli snapshot storici `star-trek-cards-20261021.json` (163 carte distinte, 321 stampe TRK/SDS) e `star-trek-format-20261021.json` conservano la provenienza originaria. La pagina del tavolo Draft indica i requisiti ancora mancanti. La build è offline e non legge gli snapshot privati `ev-*`.
 
 Il catalogo è incompleto e i prezzi non sono disponibili. Non viene simulata l'apertura delle buste né calcolato un ricavo atteso. La prova del mazzo mescola soltanto le carte selezionate dall'utente e implementa il London mulligan per il Limited uno contro uno. I controlli del mazzo verificano quantità e minimo di 40 carte, senza certificare l'idoneità delle carte al prodotto dell'evento.
 
@@ -33,7 +134,7 @@ Le modifiche rileggono il salvataggio aggiornato; Web Locks, quando disponibili,
 
 `node verify-star-trek-review.cjs` verifica le regressioni segnalate dalla review: aggiornamenti fra schede e simultanei, focus dei comandi e delle terre, mulligan da tastiera, modalità nei collegamenti, protezione dei dati non validi, chiusura delle anteprime fuori schermo, salvataggi FRA e memoria temporanea quando la scrittura nel browser fallisce.
 
-Per aggiornare i dati, conservare gli input datati e creare nuovi snapshot con provenienza e data; aggiornare i riferimenti e le date del builder e degli strumenti, verificare la collazione e le regole ufficiali prima di abilitare nuove stime. Il campo Scryfall `booster` non viene usato da solo per decidere l'idoneità durante l'anteprima.
+Per aggiornare i dati, conservare gli input datati e creare nuovi snapshot con provenienza e data; aggiornare i riferimenti e le date nei JSON dell’espansione, verificare la collazione e le regole ufficiali prima di abilitare nuove stime. Il campo Scryfall `booster` non viene usato da solo per decidere l'idoneità durante l'anteprima.
 
 Con il server di `dist/` sulla porta 8871, `node verify-star-trek.cjs` controlla le dieci pagine a 360, 768 e 1440 pixel, navigazione, anteprime, separazione pool, quantità, import/export, mulligan e compatibilità del catalogo FRA. Il percorso Playwright e il browser si configurano con `MTG_PLAYWRIGHT_MODULE` e `MTG_BROWSER_CHANNEL`; `MTG_SITE_URL` cambia l'URL del server.
 
@@ -55,7 +156,7 @@ Riferimenti UX: [animazioni efficienti con transform e opacity](https://web.dev/
 
 La voce “Tavolo Draft con bot” apre `Reality-Fracture-Draft-Engine.html` nel set Reality Fracture. Offre sette avversari configurabili prima del draft, nove strategie, tre giri di buste con passaggio simultaneo, anteprime accessibili, ripresa locale e revisione delle scelte dei bot alla fine. Il codice del draft, la configurazione e le pick permettono la riproduzione deterministica. L'esportazione JSON contiene le pick umane e, solo a draft concluso, il resoconto degli avversari.
 
-`draft-engine.js` contiene collazione, stato dei bot, transizioni condizionali e politica di scelta; non usa DOM, rete o salvataggi. `draft-table.js` gestisce l'interfaccia. `build_draft_engine.py` integra valutazioni e archetipi esistenti. `draft-format-fra-20261021.json` conserva stampe pubbliche Scryfall del 18 ottobre, coppie garantite, ricetta degli slot, pesi e ipotesi. La build non legge snapshot privati `ev-*` per questo strumento. Per un nuovo formato occorrono catalogo completo, valutazioni, archetipi e un profilo di collazione verificato; Star Trek rimane disabilitato fino al completamento dei dati. Il motore legge gruppi e ricetta dal profilo, senza percentuali FRA nel codice.
+`draft-engine.js` contiene collazione, stato dei bot, transizioni condizionali e politica di scelta; non usa DOM, rete o salvataggi. `draft-table.js` gestisce l'interfaccia. `build_draft_engine.py` è un ingresso di compatibilità: il renderer comune integra valutazioni e archetipi dai documenti dell’espansione. Lo snapshot storico `draft-format-fra-20261021.json` conserva stampe pubbliche Scryfall del 18 ottobre, coppie garantite, ricetta degli slot, pesi e ipotesi. La build non legge snapshot privati `ev-*` per questo strumento. Per un nuovo formato occorrono catalogo completo, valutazioni, archetipi e un profilo di collazione verificato; Star Trek rimane disabilitato fino al completamento dei dati. Gli input attivi sono `products.json`, `limited.json` e `printings.json` dell’espansione. Il motore legge gruppi e ricetta dal profilo, senza percentuali FRA nel codice.
 
 Le probabilità pubblicate come inferiori all'1% sono ripartite in parti uguali entro il residuo del rispettivo slot. La coppia echoed viene estratta insieme, con rarità e trattamento comuni, poi viene estratta una terza echoed distinta. Queste correlazioni e l'equiprobabilità entro i gruppi sono ipotesi esplicite, non una ricostruzione dei fogli di stampa. Le buste sono indipendenti e includono tutte le 14 carte, terre comprese; i token sono esclusi.
 

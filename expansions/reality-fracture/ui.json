@@ -1,0 +1,103 @@
+{
+  "botExamples": {
+    "power": "[[The Theorist, Jace Beleren]] è una scelta di potenza in blu: il profilo lo valuta senza correggere il costo di abbandonare altri colori.",
+    "bomb": "Dopo [[The Theorist, Jace Beleren]], cerca una base blu. In bianco/blu, [[Surveillance Phantasm]] è una giocata difensiva iniziale che aiuta a proteggere il planeswalker.",
+    "signals": "[[Extended Absence]] ricevuta tardi aumenta l’interesse per il nero; una sola carta non basta e il bot accumula più osservazioni prima di consolidare.",
+    "force": "Forzando blu/nero preferisce [[Recursive Recruitment]], che sviluppa il campo e offre un secondo lancio con flashback, a una giocabile di colori esterni.",
+    "synergy": "In blu/nero, [[Apex Witchstalker]] usa landcycling e finisce nel cimitero: [[Rewrite Regrets]] può poi rianimarlo. Il profilo premia i supporti quando l’archetipo è già rappresentato nel pool.",
+    "aggro": "In una base bianca cerca creature iniziali come [[Campus Crier]]; [[Your Fate Ends Here]] può liberare il passaggio da una creatura con valore di mana almeno tre.",
+    "control": "In blu/nero valorizza [[Countersculpt]] come risposta e [[Recursive Recruitment]] per corpi e risorse nel lungo periodo; conserva comunque giocate iniziali.",
+    "fixing": "[[Konstrari Annex]] offre rosso e verde: il profilo conta le fonti già prese prima di concedere uno splash. Una singola terra non basta per una magia con doppio simbolo fuori colore.",
+    "denial": "Se [[Bloodline Recollector]] scompare da una busta al giro, è un indizio di richiesta del nero. Solo tardi, con alternative proprie deboli, valuta di sottrarre una rimozione forte come [[Extended Absence]]."
+  },
+  "cardAliases": {
+    "Oculus": "Mindseeker Oculus",
+    "Crusher": "Craftwork Crusher",
+    "Kiora": "Kiora of Fire and Ashes",
+    "Recruitment": "Recursive Recruitment",
+    "Healer": "Way of the Healer",
+    "The Theorist": "The Theorist, Jace Beleren"
+  },
+  "drilldownStages": {
+    "early": "Nei primi pick privilegia qualità autonoma e flessibilità: Mindseeker Oculus può andare in blu/bianco o blu/nero, Craftwork Crusher impegna rosso e verde. Non confondere una preferenza per un colore con un segnale che quel colore sia aperto.",
+    "middle": "Leggi una sequenza coerente: Mindseeker Oculus, Countersculpt e Surveillance Phantasm ricevuti dopo diversi pick sono più informativi di una sola Codie, Ravenous Codex tardiva. Se hai già pescate ma pochi bloccanti, valuta Prudent Fateseer rispetto a Twinned Vision.",
+    "late": "Completa i ruoli: Surveillance Phantasm per il turno due, Your Fate Ends Here per rimuovere minacce con valore di mana almeno tre, Fatehold Annex per il mana bianco/blu. Nel BO3 Budding Insurgent contro Way of the Healer viene normalmente prima di una bomba fuori colore presa solo per negarla."
+  },
+  "drilldownFindings": [
+    {
+      "name": "Way of the Healer",
+      "pair": "WU",
+      "text": "Il risultato di bianco blu è un motivo per approfondire il pacchetto surveil e pedine. Non prova che aggiungere la carta a qualunque mazzo produca lo stesso miglioramento."
+    },
+    {
+      "name": "Command the Stage",
+      "pair": "BR",
+      "text": "Migliorare rispetto al dato generale non basta: considera anche il rendimento assoluto, il piano del mazzo e il costo dei supporti."
+    },
+    {
+      "name": "Twinned Vision",
+      "pair": "UR",
+      "text": "La carta è ibrida e non obbliga a Izzet. Il confronto per archetipo va letto insieme ai simboli del costo, non soltanto al colore stampato."
+    }
+  ],
+  "drilldownCompare": [
+    "Mindseeker Oculus",
+    "Countersculpt"
+  ],
+  "drilldownGeneral": "<h3>Leggere il campione generale</h3><p>Parti da qualità autonoma e flessibilità: Mindseeker Oculus sviluppa campo e risorse in più coppie blu; Recursive Recruitment richiede invece blu e nero. Seleziona una coppia nel Premier per analizzare il piano specifico e i suoi supporti.</p>",
+  "packageAliases": {
+    "Chandra’s Emberling": "Chandra's Emberling",
+    "Medic’s Kitesail": "Medic's Kitesail",
+    "Tam’s Resistance": "Tam's Resistance"
+  },
+  "packTitle": [
+    "Reality",
+    "Fracture"
+  ],
+  "bonusCode": "SPG",
+  "keywordAliases": [
+    {
+      "pattern": "empower Jace",
+      "keyword": "Empower Jace"
+    }
+  ],
+  "draftSeed": "fra-tavolo-1",
+  "setLabels": {
+    "FRA": "Reality Fracture",
+    "SPG": "Special Guests"
+  },
+  "sentimentLabels": {
+    "regional": "Ricontrollo internazionale 25/09",
+    "updated": "Ricontrollo esteso 24/09"
+  },
+  "poolImportExample": "2 Surveillance Phantasm\n1 Your Fate Ends Here",
+  "analysisPresets": {
+    "early": {
+      "type": "Creature",
+      "rarity": "common",
+      "mana": "2"
+    },
+    "prepared": {
+      "keyword": "Prepared"
+    },
+    "removal": {
+      "role": "Rimozione"
+    }
+  },
+  "analysisPresetLabels": {
+    "early": "Creature comuni a 2 mana",
+    "prepared": "Esplora Prepared",
+    "removal": "Esplora le rimozioni"
+  },
+  "buildAroundLabel": "Casual Spike segnala questa carta come build-around.",
+  "reportLabels": {
+    "0": "Risultati principali",
+    "1": "Come leggere i dati",
+    "2": "Carte da scegliere presto",
+    "3": "Priorità per archetipo",
+    "4": "Carte da valutare con cautela",
+    "5": "Counterpick e risposte alle minacce",
+    "6": "Esempi di draft e linee di gioco",
+    "7": "Metodo, limiti e fonti"
+  }
+}

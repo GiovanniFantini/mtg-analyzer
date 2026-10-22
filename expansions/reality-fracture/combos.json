@@ -1,0 +1,935 @@
+[
+  {
+    "id": "morso",
+    "title": "Un danno che elimina un gigante",
+    "cards": [
+      "fra-97",
+      "fra-101"
+    ],
+    "colors": "G",
+    "power": 4,
+    "practical": 4.5,
+    "mana": "2 per il Serpente; poi 2 per Compel.",
+    "ready": "Amphisbaena sul campo, anche appena entrata.",
+    "steps": [
+      {
+        "action": "Scegli il primo modo di Compel Brutality.",
+        "state": "Bersagli il tuo Serpente e una creatura avversaria."
+      },
+      {
+        "action": "Il Serpente infligge 1 danno con deathtouch.",
+        "state": "La creatura danneggiata viene distrutta dalle azioni generate dallo stato; il Serpente non riceve danno."
+      }
+    ],
+    "result": "Rimozione economica anche contro un corpo enorme, conservando la tua creatura.",
+    "risk": "Rimozione del Serpente in risposta, prevenzione o indistruttibile; ward può richiedere mana aggiuntivo.",
+    "tip": "Due comuni: una delle sinergie più pratiche da cercare. Non è un combattimento né un effetto fight.",
+    "source": null,
+    "family": "morso",
+    "commonOnly": true,
+    "noRare": true,
+    "access": "Solo comuni"
+  },
+  {
+    "id": "orto-volante",
+    "title": "Ogni attacco fa crescere il volante",
+    "cards": [
+      "fra-23",
+      "fra-173"
+    ],
+    "colors": "W",
+    "power": 3.5,
+    "practical": 4,
+    "mana": "2 + 2 per le carte; 2 per equipaggiare.",
+    "ready": "Hortimancer 2/1 pronto ad attaccare.",
+    "steps": [
+      {
+        "action": "Equipaggia Medic’s Kitesail.",
+        "state": "Hortimancer è 3/1 con volare."
+      },
+      {
+        "action": "Dichiara l’attacco e risolvi il guadagno vita.",
+        "state": "Guadagni 1 vita: Hortimancer diventa 4/2 prima dei blocchi."
+      },
+      {
+        "action": "Attacca nel tuo turno successivo.",
+        "state": "Un altro evento vita: diventa 5/3 volante."
+      }
+    ],
+    "result": "Minaccia evasiva che cresce permanentemente.",
+    "risk": "Rimozione in risposta all’equipaggiamento o all’innescata; i volanti possono bloccarla.",
+    "tip": "Le vite sono utili anche senza infliggere danno da combattimento.",
+    "source": null,
+    "family": "orto-volante",
+    "commonOnly": true,
+    "noRare": true,
+    "access": "Solo comuni"
+  },
+  {
+    "id": "titano-volante",
+    "title": "Titanbones prende quota",
+    "cards": [
+      "fra-266",
+      "fra-173"
+    ],
+    "colors": "G",
+    "power": 4,
+    "practical": 4,
+    "mana": "4 + 2 per le carte; 2 per equipaggiare.",
+    "ready": "Titanbones 4/3 pronto ad attaccare.",
+    "steps": [
+      {
+        "action": "Equipaggia Kitesail.",
+        "state": "Titanbones diventa 5/3 volante."
+      },
+      {
+        "action": "Attacca: guadagni 1 vita.",
+        "state": "Due segnalini: Titanbones è 7/5 volante."
+      },
+      {
+        "action": "Ripeti nel turno successivo.",
+        "state": "Diventa 9/7 volante; hai guadagnato 2 vite in totale."
+      }
+    ],
+    "result": "Una chiusura crescente senza bisogno di un terzo pezzo.",
+    "risk": "Rimozione, esilio o blocchi volanti; non è danno garantito.",
+    "tip": "Il guadagno vita produce due segnalini per evento, non per punto vita.",
+    "source": null,
+    "family": "titano-volante",
+    "commonOnly": false,
+    "noRare": true,
+    "access": "Comuni / non comuni"
+  },
+  {
+    "id": "vampiro-orto",
+    "title": "Crescita prima dei bloccanti",
+    "cards": [
+      "fra-65",
+      "fra-23"
+    ],
+    "colors": "WB",
+    "power": 3.5,
+    "practical": 4,
+    "mana": "3 + 2 distribuiti sui turni.",
+    "ready": "Soulbreaker e Hortimancer 2/1 sul campo; Soulbreaker pronto.",
+    "steps": [
+      {
+        "action": "Attacca con Soulbreaker.",
+        "state": "Si innesca la sua abilità; non serve colpire il giocatore."
+      },
+      {
+        "action": "Risolvi: 1 danno all’avversario e 1 vita a te.",
+        "state": "Hortimancer prende un segnalino e diventa 3/2 prima dei blocchi."
+      }
+    ],
+    "result": "Danno ricorrente e crescita protetta da ward 1.",
+    "risk": "Rimuovere Soulbreaker prima degli attaccanti impedisce l’innescata; dopo l’attacco non la cancella.",
+    "tip": "Se attacca anche Hortimancer, deve essere già pronto. È un motore, non una chiusura immediata.",
+    "source": null,
+    "family": "vampiro-orto",
+    "commonOnly": true,
+    "noRare": true,
+    "access": "Solo comuni"
+  },
+  {
+    "id": "serra-battaglione",
+    "title": "Tre reclute, tre eventi vita",
+    "cards": [
+      "fra-104",
+      "fra-23",
+      "fra-12"
+    ],
+    "colors": "GW",
+    "power": 4,
+    "practical": 3.5,
+    "mana": "3 + 2 di preparazione; Battalion costa 6 (WW).",
+    "ready": "Propagator e Hortimancer 2/1 sul campo; nessun Jace.",
+    "steps": [
+      {
+        "action": "Risolvi Hexhaven Battalion.",
+        "state": "Entrano tre Cadet 2/2; crei Jace con 2 fedeltà."
+      },
+      {
+        "action": "Risolvi le tre innescate di Propagator e di Hortimancer.",
+        "state": "Guadagni 3 vite in eventi separati; Hortimancer diventa 5/4."
+      }
+    ],
+    "result": "Tre corpi, Jace e tre segnalini: forte ricostruzione del campo.",
+    "risk": "I Cadet appena creati non attaccano senza rapidità. Una rimozione globale punisce l’accumulo.",
+    "tip": "Sono tutte comuni. Un singolo “guadagni 3 vite” farebbe crescere Hortimancer una sola volta.",
+    "source": null,
+    "family": "serra-battaglione",
+    "commonOnly": true,
+    "noRare": true,
+    "access": "Solo comuni"
+  },
+  {
+    "id": "serra-pesca",
+    "title": "Guadagnare vita diventa pescare",
+    "cards": [
+      "fra-104",
+      "fra-124",
+      "fra-130"
+    ],
+    "colors": "GW",
+    "power": 4,
+    "practical": 3.5,
+    "mana": "3 + 4 di preparazione; 1 per Phytomedic e 1 per Seed Suture.",
+    "ready": "Propagator e Bloombrute sul campo; Bloombrute non ha ancora innescato questo turno.",
+    "steps": [
+      {
+        "action": "Lancia Phytomedic.",
+        "state": "Entra preparato; Propagator fa guadagnare 1 vita, Bloombrute fa pescare 1 carta."
+      },
+      {
+        "action": "Lancia Seed Suture dalla preparazione.",
+        "state": "Un segnalino e un’altra vita. Bloombrute NON pesca di nuovo nello stesso turno."
+      }
+    ],
+    "result": "Trasforma le creature successive in vantaggio, fino a una pescata per turno.",
+    "risk": "Bloombrute deve sopravvivere. Le magie preparate qui sono stregonerie: niente lancio nel turno avversario.",
+    "tip": "Non confondere tanti eventi vita con tante pescate da Bloombrute.",
+    "source": null,
+    "family": "serra-pesca",
+    "commonOnly": false,
+    "noRare": true,
+    "access": "Comuni / non comuni"
+  },
+  {
+    "id": "eredita",
+    "title": "I segnalini crescono anche quando passano",
+    "cards": [
+      "fra-209",
+      "fra-10"
+    ],
+    "colors": "W",
+    "power": 4,
+    "practical": 4,
+    "mana": "3 + 3 distribuiti sui turni.",
+    "ready": "Yoshimaru 2/2 sul campo.",
+    "steps": [
+      {
+        "action": "Lancia Graft.",
+        "state": "Il segnalino d’ingresso diventa due: Graft è 4/4."
+      },
+      {
+        "action": "In uno scambio, Graft muore con due segnalini.",
+        "state": "Bersaglia Yoshimaru con l’abilità di morte."
+      },
+      {
+        "action": "Risolvi il trasferimento.",
+        "state": "I due segnalini diventano tre: Yoshimaru è 5/5."
+      }
+    ],
+    "result": "Rende scomodo scambiare con le tue creature.",
+    "risk": "Esilio e rimbalzo evitano la morte. Devi davvero trovare uno scambio: la coppia non sacrifica da sola.",
+    "tip": "Yoshimaru aggiunge un segnalino per evento, non raddoppia ogni quantità.",
+    "source": null,
+    "family": "eredita",
+    "commonOnly": false,
+    "noRare": true,
+    "access": "Comuni / non comuni"
+  },
+  {
+    "id": "danitha",
+    "title": "Una preparazione che si ripaga",
+    "cards": [
+      "fra-196",
+      "fra-161"
+    ],
+    "colors": "W",
+    "power": 3.5,
+    "practical": 4,
+    "mana": "3 + 2 per i corpi; 1 per Seed Suture.",
+    "ready": "Danitha 2/2 e Vanguard preparato; Danitha non ha innescato questo turno.",
+    "steps": [
+      {
+        "action": "Lancia Seed Suture bersagliando Danitha.",
+        "state": "L’innescata di Danitha ti fa pescare una carta."
+      },
+      {
+        "action": "Risolvi Seed Suture.",
+        "state": "Danitha è 3/3 con attacco improvviso e cautela; guadagni 1 vita."
+      }
+    ],
+    "result": "Potenziamento, vita e una carta senza consumare Vanguard.",
+    "risk": "Rimuovere il bersaglio può far fallire Seed Suture; la pescata già innescata resta.",
+    "tip": "Equipaggiare non è lanciare una magia: la sola abilità equip non fa pescare Danitha.",
+    "source": null,
+    "family": "danitha",
+    "commonOnly": false,
+    "noRare": true,
+    "access": "Comuni / non comuni"
+  },
+  {
+    "id": "carica",
+    "title": "Dodici danni da una squadra di comuni",
+    "cards": [
+      "fra-21",
+      "fra-12"
+    ],
+    "colors": "W",
+    "power": 4,
+    "practical": 4,
+    "mana": "3 + 6 di preparazione; 5 per il potenziamento.",
+    "ready": "Pegasus e tre Cadet creati da Battalion sono pronti ad attaccare.",
+    "steps": [
+      {
+        "action": "Attiva Pegasus una volta.",
+        "state": "Pegasus passa da 2/3 a 3/4; i tre Cadet da 2/2 a 3/3."
+      },
+      {
+        "action": "Attacca con tutti.",
+        "state": "12 danni potenziali se nessuna creatura è bloccata; solo Pegasus ha volare."
+      }
+    ],
+    "result": "Un modo concreto di rompere uno stallo o punire un avversario scoperto.",
+    "risk": "Blocchi, rimozioni e mana elevato. Non sono 12 danni automatici.",
+    "tip": "Battalion può anche ciclarsi per una terra se la mano non arriva a sei mana.",
+    "source": null,
+    "family": "carica",
+    "commonOnly": true,
+    "noRare": true,
+    "access": "Solo comuni"
+  },
+  {
+    "id": "ember",
+    "title": "Sei di forza con rapidità",
+    "cards": [
+      "fra-76",
+      "fra-75"
+    ],
+    "colors": "R",
+    "power": 3.5,
+    "practical": 4,
+    "mana": "3 per Emberling; poi 2 per Crescendo (5 nello stesso turno).",
+    "ready": "Emberling 2/2, anche appena entrato.",
+    "steps": [
+      {
+        "action": "Lancia Crescendo su Emberling.",
+        "state": "L’innescata da lancio aggiunge un segnalino: ora è 3/3."
+      },
+      {
+        "action": "Risolvi Crescendo.",
+        "state": "Diventa 6/4 con rapidità; esili una carta giocabile fino alla fine del prossimo turno."
+      },
+      {
+        "action": "Termina il turno.",
+        "state": "Finisce +3/+1; Emberling resta 3/3."
+      }
+    ],
+    "result": "Pressione economica e crescita permanente, con una risorsa temporanea aggiuntiva.",
+    "risk": "Una rimozione in risposta al pump può costarti due carte; non dà evasione.",
+    "tip": "La carta esiliata va pagata e rispetta i tempi di lancio; giocare terre rispetta il limite normale.",
+    "source": null,
+    "family": "ember",
+    "commonOnly": true,
+    "noRare": true,
+    "access": "Solo comuni"
+  },
+  {
+    "id": "tetsuko",
+    "title": "Dodici danni non bloccabili",
+    "cards": [
+      "fra-81",
+      "fra-252",
+      "fra-75"
+    ],
+    "colors": "R",
+    "power": 4.5,
+    "practical": 3.5,
+    "mana": "2 + 4 di preparazione; chiusura: 1 + 2.",
+    "ready": "Rattler e Tetsuko 2/4 sono pronti; Tetsuko non è ancora potenziata.",
+    "steps": [
+      {
+        "action": "Paga 1 e tappa Rattler, bersagliando Tetsuko.",
+        "state": "Lascia RISOLVERE: Tetsuko non può essere bloccata questo turno."
+      },
+      {
+        "action": "Solo ora lancia Crescendo su Tetsuko.",
+        "state": "Prodezza +1/+1 e Crescendo +3/+1: diventa 6/6 con doppio attacco."
+      },
+      {
+        "action": "Attacca e risolvi entrambe le sottofasi di danno.",
+        "state": "12 danni al giocatore se nulla interrompe il piano."
+      }
+    ],
+    "result": "Una vera chiusura a tre carte senza rare.",
+    "risk": "Se aumenti la forza prima che risolva Rattler, il bersaglio non è più legale. Rimozione o prevenzione fermano la chiusura.",
+    "tip": "Non aggiungere altri pump prima dell’abilità di Rattler. Il suo controllo di forza è il punto cruciale.",
+    "source": null,
+    "family": "tetsuko",
+    "commonOnly": false,
+    "noRare": true,
+    "access": "Comuni / non comuni"
+  },
+  {
+    "id": "soul-whip",
+    "title": "Il danno apre la strada ai volanti",
+    "cards": [
+      "fra-65",
+      "fra-164"
+    ],
+    "colors": "B",
+    "power": 3.5,
+    "practical": 4,
+    "mana": "3 + 4; Wordsmith si può pagare con B.",
+    "ready": "Entrambi sul campo dall’inizio del turno, pronti ad attaccare.",
+    "steps": [
+      {
+        "action": "Dichiara entrambi attaccanti.",
+        "state": "Si innesca Soulbreaker."
+      },
+      {
+        "action": "Risolvi il suo danno non da combattimento.",
+        "state": "Avversario −1 vita, tu +1; Wordsmith ottiene volare prima dei blocchi."
+      },
+      {
+        "action": "Se entrambi passano, infliggono 4 danni da combattimento.",
+        "state": "Totale 5 danni nel turno, compreso il danno dell’innescata."
+      }
+    ],
+    "result": "Pressione evasiva usando due comuni, anche mononero.",
+    "risk": "Un Wordsmith appena entrato NON può aspettare l’innescata di attacco per essere dichiarato attaccante.",
+    "tip": "Per far attaccare subito un nuovo Wordsmith, infliggi danno non da combattimento prima di dichiarare gli attaccanti.",
+    "source": null,
+    "family": "soul-whip",
+    "commonOnly": true,
+    "noRare": true,
+    "access": "Solo comuni"
+  },
+  {
+    "id": "ritornello",
+    "title": "Un Cadet nuovo ogni turno",
+    "cards": [
+      "fra-151",
+      "fra-77"
+    ],
+    "colors": "R",
+    "power": 4,
+    "practical": 4,
+    "mana": "1 + 3 iniziali; ogni ripetizione costa 1 + 3.",
+    "ready": "Voxmancer è sul campo prima del tuo mantenimento e si prepara.",
+    "steps": [
+      {
+        "action": "Lancia Vicious Verse pagando R, poi Command the Stage pagando 2R.",
+        "state": "1 danno all’avversario; crei un Cadet 2/2."
+      },
+      {
+        "action": "All’inizio del mantenimento avversario recupera Command.",
+        "state": "L’avversario ha subito danno non da combattimento nel turno precedente."
+      },
+      {
+        "action": "Nel tuo prossimo turno Voxmancer si prepara: ripeti entrambe le magie.",
+        "state": "Altro danno, nuovo Cadet 2/2; il precedente diventa 3/3."
+      }
+    ],
+    "result": "Motore ripetibile: corpi e segnalini senza consumare altre carte dalla mano.",
+    "risk": "Voxmancer non entra preparato. Se interrompono il danno o esiliano Command dal cimitero, il motore si ferma.",
+    "tip": "I segnalini vanno alle altre pedine Wizard, non a Jace planeswalker. Non è una combo infinita.",
+    "source": null,
+    "family": "recupero-command",
+    "commonOnly": false,
+    "noRare": true,
+    "access": "Comuni / non comuni"
+  },
+  {
+    "id": "soul-stage",
+    "title": "Recuperare il battaglione con un attacco",
+    "cards": [
+      "fra-65",
+      "fra-77"
+    ],
+    "colors": "BR",
+    "power": 4,
+    "practical": 4,
+    "mana": "3 + 3; ogni nuovo Command costa 3.",
+    "ready": "Soulbreaker pronto ad attaccare.",
+    "steps": [
+      {
+        "action": "Attacca con Soulbreaker e risolvi la sua innescata.",
+        "state": "Avversario subisce 1 danno non da combattimento; tu guadagni 1."
+      },
+      {
+        "action": "Nella seconda fase principale lancia Command.",
+        "state": "Crei un Cadet 2/2; Command va al cimitero."
+      },
+      {
+        "action": "Al mantenimento avversario recupera Command.",
+        "state": "Puoi ripetere nel prossimo turno se Soulbreaker continua ad attaccare."
+      }
+    ],
+    "result": "Ricorsione sostenuta da una comune già utile da sola.",
+    "risk": "Soulbreaker deve poter essere dichiarato attaccante; l’attacco può esporlo a uno scambio sfavorevole.",
+    "tip": "Anche se viene bloccato, il danno della sua innescata ha già abilitato Command.",
+    "source": null,
+    "family": "recupero-command",
+    "commonOnly": false,
+    "noRare": true,
+    "access": "Comuni / non comuni"
+  },
+  {
+    "id": "tomik",
+    "title": "La rimozione supera la soglia",
+    "cards": [
+      "fra-253",
+      "fra-89"
+    ],
+    "colors": "R",
+    "power": 4,
+    "practical": 4.5,
+    "mana": "2 per Tomik; 2 per No Admittance.",
+    "ready": "Tomik 1/2 sul campo; nessun Jace.",
+    "steps": [
+      {
+        "action": "Lancia No Admittance.",
+        "state": "Prodezza rende Tomik 2/3 per il turno."
+      },
+      {
+        "action": "Risolvi il danno con l’effetto di Tomik.",
+        "state": "Infliggi 4 invece di 3 danni; crei Jace con 1 fedeltà."
+      }
+    ],
+    "result": "Rimozione di un corpo con costituzione 4 oppure quattro danni al giocatore.",
+    "risk": "Se Tomik lascia il campo prima del danno, l’aumento non si applica.",
+    "tip": "Con Fulminous Forte, Tomik porta i modi a 2 danni a ogni creatura/planeswalker avversario oppure 6 a un bersaglio.",
+    "source": null,
+    "family": "tomik",
+    "commonOnly": false,
+    "noRare": true,
+    "access": "Comuni / non comuni"
+  },
+  {
+    "id": "sacrificio",
+    "title": "Lo scambio fa crescere Massacre Girl",
+    "cards": [
+      "fra-234",
+      "fra-61",
+      "fra-66"
+    ],
+    "colors": "B",
+    "power": 4,
+    "practical": 3.5,
+    "mana": "5 + 2 per i corpi; 2 per Silence sacrificando Rat.",
+    "ready": "Massacre Girl 4/4 e Rank Rat sul campo; Rat ha già fatto scartare una carta.",
+    "steps": [
+      {
+        "action": "Lancia Silence e sacrifica Rank Rat come costo aggiuntivo.",
+        "state": "L’abilità di Massacre Girl va sopra la magia in pila."
+      },
+      {
+        "action": "Risolvi le innescate di Massacre Girl.",
+        "state": "Avversario −1 vita, tu +1; Massacre Girl diventa 5/5."
+      },
+      {
+        "action": "Risolvi Silence.",
+        "state": "Distruggi la creatura o il planeswalker bersaglio."
+      }
+    ],
+    "result": "Usi un corpo già sfruttato per rimuovere una minaccia e accrescere la tua chiusura.",
+    "risk": "Il sacrificio è un costo: non recuperi Rat se Silence viene neutralizzata.",
+    "tip": "Tre carte, ma due sono comuni. Cerca creature con valore d’ingresso, non sacrificare automaticamente la tua migliore.",
+    "source": null,
+    "family": "sacrificio",
+    "commonOnly": false,
+    "noRare": true,
+    "access": "Comuni / non comuni"
+  },
+  {
+    "id": "soccorso",
+    "title": "Ricaricare Jace e produrre Cadet",
+    "cards": [
+      "fra-202",
+      "fra-207"
+    ],
+    "colors": "W",
+    "power": 4,
+    "practical": 3.5,
+    "mana": "3 + 4 iniziali; ogni rilancio della Way costa 4.",
+    "ready": "Rescue Girl pronta; Way appena entrata ha creato un Jace con 5 fedeltà.",
+    "steps": [
+      {
+        "action": "Attiva il −2 concesso dalla Way.",
+        "state": "Jace va a 3; crei un Cadet e fai surveil 1."
+      },
+      {
+        "action": "Nel tuo turno successivo, tappa Rescue Girl e riprendi la Way.",
+        "state": "Jace resta sul campo con 3 fedeltà."
+      },
+      {
+        "action": "Rilancia la Way e attiva −2.",
+        "state": "Jace sale a 8, poi scende a 6; secondo Cadet e altro surveil."
+      }
+    ],
+    "result": "Una fonte ripetibile di corpi e fedeltà con due non comuni.",
+    "risk": "Proteggi Rescue Girl e Jace. Una sola abilità di fedeltà per ciascun planeswalker in ciascun tuo turno.",
+    "tip": "Rescue Girl può attivarsi solo nel tuo turno: non usarla come salvataggio nel turno avversario.",
+    "source": null,
+    "family": "soccorso",
+    "commonOnly": false,
+    "noRare": true,
+    "access": "Comuni / non comuni"
+  },
+  {
+    "id": "visioni",
+    "title": "Una copia pesca più dell’originale",
+    "cards": [
+      "fra-223",
+      "fra-157"
+    ],
+    "colors": "U",
+    "power": 4,
+    "practical": 4,
+    "mana": "3 per la Way; poi 2 per Vision dalla mano.",
+    "ready": "Jace pedina con 5 fedeltà, creato dalla Way; nessuna abilità di fedeltà ancora attivata.",
+    "steps": [
+      {
+        "action": "Attiva il −3 della Way.",
+        "state": "Jace resta a 2; la prossima istantaneo/stregoneria del turno verrà copiata."
+      },
+      {
+        "action": "Lancia Twinned Vision dalla mano.",
+        "state": "L’effetto crea una copia in pila: la copia non è stata lanciata dalla mano."
+      },
+      {
+        "action": "Risolvi copia e originale.",
+        "state": "La copia pesca 2, l’originale 1: 3 pescate lorde, +2 carte nette dalla mano."
+      }
+    ],
+    "result": "Vantaggio carte notevole con due pezzi.",
+    "risk": "Una copia di magia non è lanciata: non innesca prodezza o Saheeli.",
+    "tip": "Con flashback anche l’originale pesca 2: quattro pescate lorde, ma devi pagare 3 mana e scartare una carta.",
+    "source": null,
+    "family": "visioni",
+    "commonOnly": false,
+    "noRare": true,
+    "access": "Comuni / non comuni"
+  },
+  {
+    "id": "tether",
+    "title": "Due crescite e Jace pronto a pescare",
+    "cards": [
+      "fra-109",
+      "fra-153"
+    ],
+    "colors": "G",
+    "power": 4,
+    "practical": 4.5,
+    "mana": "3 per Tethermage; 2 per Tam’s Resistance.",
+    "ready": "Tethermage 3/2 sul campo; nessun Jace.",
+    "steps": [
+      {
+        "action": "Lancia Tam’s Resistance bersagliando Tethermage.",
+        "state": "Diventa 4/3 con cautela per il turno; crei Jace con 4 fedeltà."
+      },
+      {
+        "action": "Risolvi l’innescata di Tethermage.",
+        "state": "Riceve UN ulteriore segnalino: è 5/4, non 8/7."
+      },
+      {
+        "action": "Se vuoi valore immediato, attiva −3 di Jace.",
+        "state": "Peschi una carta e Jace resta a 1 fedeltà."
+      }
+    ],
+    "result": "Due comuni producono una minaccia e una risorsa aggiuntiva.",
+    "risk": "Tam’s Resistance è una STREGONERIA. Non usarla come trucco durante il combattimento.",
+    "tip": "Empower 4 è un solo evento di aggiunta di fedeltà: Tethermage cresce una volta.",
+    "source": null,
+    "family": "tether",
+    "commonOnly": true,
+    "noRare": true,
+    "access": "Solo comuni"
+  },
+  {
+    "id": "proft",
+    "title": "Surveil che diventa vantaggio",
+    "cards": [
+      "fra-33",
+      "fra-218"
+    ],
+    "colors": "U",
+    "power": 3.5,
+    "practical": 4,
+    "mana": "3 + 2 per i corpi; 2 per ogni innescata di Proft che paghi.",
+    "ready": "Oculus ha creato Jace a 4; Proft è 2/2.",
+    "steps": [
+      {
+        "action": "Attiva −1 di Jace.",
+        "state": "Jace va a 3; fai surveil 1."
+      },
+      {
+        "action": "Paga 2 per Proft.",
+        "state": "Proft diventa 3/3 e peschi una carta dopo surveil."
+      },
+      {
+        "action": "Ripeti nel tuo prossimo turno, se Jace sopravvive.",
+        "state": "Jace va a 2, Proft a 4/4 e peschi ancora pagando 2."
+      }
+    ],
+    "result": "Selezione, carte e una creatura crescente.",
+    "risk": "Jace può essere attaccato; conservare mana per Proft può rallentare lo sviluppo.",
+    "tip": "Proft non ha limite una volta per turno; è Jace che non può riattivare la fedeltà nello stesso turno.",
+    "source": null,
+    "family": "proft",
+    "commonOnly": false,
+    "noRare": true,
+    "access": "Comuni / non comuni"
+  },
+  {
+    "id": "saheeli",
+    "title": "Le magie diventano attaccanti",
+    "cards": [
+      "fra-275",
+      "fra-76",
+      "fra-157"
+    ],
+    "colors": "UR",
+    "power": 4.5,
+    "practical": 3.5,
+    "mana": "4 + 3 per i corpi; Vision costa 2, poi flashback 3 e uno scarto.",
+    "ready": "Saheeli e Emberling 2/2 sul campo.",
+    "steps": [
+      {
+        "action": "Lancia Twinned Vision dalla mano.",
+        "state": "Emberling diventa 3/3; crei un Thopter 1/1 volante rapido; peschi 1."
+      },
+      {
+        "action": "Con altro mana, lancia Vision dal cimitero e scarta una carta.",
+        "state": "Emberling diventa 4/4; secondo Thopter rapido; peschi 2."
+      },
+      {
+        "action": "Attacca se vuoi.",
+        "state": "Emberling e due Thopter hanno 6 forza complessiva; solo i Thopter hanno volare."
+      }
+    ],
+    "result": "Due lanci della stessa carta producono due segnalini e due attaccanti.",
+    "risk": "Rimozioni sui motori, blocchi e mancanza di una carta da scartare.",
+    "tip": "Flashback è un lancio e innesca entrambi. Una semplice copia in pila non li innescherebbe.",
+    "source": null,
+    "family": "saheeli",
+    "commonOnly": false,
+    "noRare": true,
+    "access": "Comuni / non comuni"
+  },
+  {
+    "id": "draghi",
+    "title": "Ogni Heartwood diventa un Drago",
+    "cards": [
+      "fra-80",
+      "fra-165"
+    ],
+    "colors": "R",
+    "power": 4.5,
+    "practical": 2.5,
+    "mana": "5 + 3 iniziali; Soul Tether costa 3 ogni volta.",
+    "ready": "Visitor sul campo; Prodigy è sopravvissuto fino al tuo mantenimento e si è preparato.",
+    "steps": [
+      {
+        "action": "Lancia Soul Tether pagando 2R.",
+        "state": "Visitor sostituisce la creazione dell’Heartwood con un Drago 5/5 volante."
+      },
+      {
+        "action": "Attendi il tuo prossimo mantenimento.",
+        "state": "Prodigy si prepara di nuovo; puoi pagare altri 3 per un secondo Drago."
+      }
+    ],
+    "result": "Un 5/5 volante per turno è un motore di chiusura molto forte.",
+    "risk": "Richiede una rara e tempo. I Draghi nuovi non hanno rapidità.",
+    "tip": "Il Drago NON è un artefatto Heartwood e non conserva la sua abilità di mana.",
+    "source": null,
+    "family": "draghi",
+    "commonOnly": false,
+    "noRare": false,
+    "access": "Richiede rara"
+  },
+  {
+    "id": "hapatra",
+    "title": "Ciclare una chiusura per ucciderne un’altra",
+    "cards": [
+      "fra-119",
+      "fra-271"
+    ],
+    "colors": "BG",
+    "power": 4,
+    "practical": 4,
+    "mana": "2 per ciclare Vinelasher; poi 5 per Hapatra (BBG).",
+    "ready": "Vinelasher in mano; Hapatra in mano; nessun effetto esilia il tuo cimitero.",
+    "steps": [
+      {
+        "action": "Cicla Vinelasher per una terra base.",
+        "state": "Vinelasher resta nel cimitero e ha valore di mana 6."
+      },
+      {
+        "action": "Lancia Hapatra.",
+        "state": "Alla risoluzione dell’innescata, scegli X=6 se nessuna carta nel tuo cimitero ha valore maggiore."
+      },
+      {
+        "action": "Metti sei segnalini −1/−1 sulla creatura bersaglio.",
+        "state": "Un 6/6 diventa 0/0 e muore anche se indistruttibile."
+      }
+    ],
+    "result": "Fixing iniziale e una rimozione molto forte incorporata in una creatura.",
+    "risk": "Esiliare Vinelasher in risposta può ridurre X; antimalocchio e ward complicano il bersaglio.",
+    "tip": "Non stai lanciando Vinelasher: per il setup basta mana generico. Hapatra richiede davvero BBG.",
+    "source": null,
+    "family": "hapatra",
+    "commonOnly": false,
+    "noRare": true,
+    "access": "Comuni / non comuni"
+  },
+  {
+    "id": "mabel",
+    "title": "Nove danni dalle reclute appena entrate",
+    "cards": [
+      "fra-274",
+      "fra-245",
+      "fra-12"
+    ],
+    "colors": "RW",
+    "power": 4.5,
+    "practical": 3.5,
+    "mana": "3 + 2 di preparazione; Battalion costa 6 (WW).",
+    "ready": "Mabel e Gallia sul campo.",
+    "steps": [
+      {
+        "action": "Lancia Battalion: entrano tre Cadet.",
+        "state": "Mabel si innesca tre volte; crei anche Jace con 2 fedeltà."
+      },
+      {
+        "action": "Assegna un’innescata a ciascun Cadet.",
+        "state": "Tutti e tre diventano 3/3 con un segnalino; Gallia dà loro rapidità."
+      },
+      {
+        "action": "Attacca con le tre nuove pedine.",
+        "state": "9 danni potenziali dalle sole reclute se non vengono bloccate."
+      }
+    ],
+    "result": "Trasforma uno sviluppo di campo in un attacco immediato.",
+    "risk": "Se Gallia viene rimossa prima degli attaccanti, i nuovi Cadet non possono attaccare.",
+    "tip": "Le tre innescate possono bersagliare solo creature entrate questo turno. Non servono attivazioni di Gallia.",
+    "source": null,
+    "family": "mabel",
+    "commonOnly": false,
+    "noRare": true,
+    "access": "Comuni / non comuni"
+  },
+  {
+    "id": "tre-colori",
+    "title": "Danni, Thopter e crescita",
+    "cards": [
+      "fra-275",
+      "fra-151",
+      "fra-234"
+    ],
+    "colors": "UBR",
+    "power": 4.5,
+    "practical": 2.5,
+    "mana": "4 + 1 + 5 per i motori; Verse costa 1 per turno.",
+    "ready": "Saheeli, Voxmancer preparato e Massacre Girl 4/4 sul campo.",
+    "steps": [
+      {
+        "action": "Lancia Vicious Verse dalla preparazione pagando R.",
+        "state": "Saheeli crea un Thopter 1/1 volante con rapidità."
+      },
+      {
+        "action": "Risolvi Verse.",
+        "state": "1 danno all’avversario; Massacre Girl diventa 5/5."
+      },
+      {
+        "action": "Nel prossimo tuo turno Voxmancer si prepara: ripeti.",
+        "state": "Secondo Thopter; Massacre Girl 6/6; altro danno."
+      }
+    ],
+    "result": "Un motore a tre colori che accumula minacce diverse.",
+    "risk": "Tre motori, tre colori e dieci mana di setup: non giustifica da solo una base di mana instabile.",
+    "tip": "Preferisci prima il nucleo UR; aggiungi B solo se fixing e qualità complessiva del pool lo sostengono.",
+    "source": null,
+    "family": "tre-colori",
+    "commonOnly": false,
+    "noRare": true,
+    "access": "Comuni / non comuni"
+  },
+  {
+    "id": "loot",
+    "title": "Mana senza limite, poi Gecko enorme",
+    "cards": [
+      "fra-262",
+      "fra-215",
+      "fra-97",
+      "fra-120"
+    ],
+    "colors": "GU",
+    "power": 5,
+    "practical": 2.5,
+    "mana": "3 + 4 + 2 + 5 distribuiti sui turni; il ciclo si autofinanzia.",
+    "ready": "Loot pronto a tappare; forze attuali distinte: Loot 2, Hapatra 4, Serpente 1, Gecko 5. Gecko pronto se vuoi attaccare.",
+    "steps": [
+      {
+        "action": "Tappa Loot e scegli blu.",
+        "state": "Quattro forze diverse: aggiungi UUUU."
+      },
+      {
+        "action": "Paga 2U ad Hapatra per stappare Loot.",
+        "state": "Loot stappato; rimane U. Il ciclo guadagna un mana blu."
+      },
+      {
+        "action": "Ripeti un numero finito dichiarato di volte.",
+        "state": "Con N cicli accumuli N mana blu. Tutto nella stessa fase, senza lasciar svuotare la riserva."
+      },
+      {
+        "action": "Accumula abbastanza blu, poi attiva Loot scegliendo verde.",
+        "state": "Ogni produzione verde dà GGGG; paghi gli stappi con il blu accumulato. Finanzia Gecko a 6GG per +4/+4 e travolgere ripetibili."
+      }
+    ],
+    "result": "Mana arbitrariamente grande e un utilizzatore per trasformarlo in una minaccia con travolgere.",
+    "risk": "Una rimozione o un cambio di forza può ridurre le forze distinte a tre: il ciclo non guadagna più mana. Prevenzione o rimozione possono ancora fermare l’attacco.",
+    "tip": "Due non comuni e due comuni, ma QUATTRO pezzi. Loot + Hapatra da soli non bastano. A torneo dichiara un numero finito di ripetizioni.",
+    "source": "https://www.reddit.com/r/magicTCG/comments/1wk8lch/everyone_is_talking_about_the_splinter_twin_combo/",
+    "family": "loot",
+    "commonOnly": false,
+    "noRare": true,
+    "access": "Comuni / non comuni",
+    "calculator": {
+      "kind": "netMana",
+      "label": "Calcolatore del ciclo blu: ripetizioni (quattro forze distinte)",
+      "netPerCycle": 1,
+      "unit": "mana blu netti",
+      "note": "Un ciclo: +4 blu, -3 per stappare. Non comprende le successive conversioni in verde o le attivazioni di Gecko."
+    }
+  },
+  {
+    "id": "twin",
+    "title": "La chiusura eccezionale con Special Guest",
+    "cards": [
+      "spg-167",
+      "fra-29"
+    ],
+    "colors": "UR",
+    "power": 5,
+    "practical": 1,
+    "mana": "3 per Duelist; 4 per Twin (RR).",
+    "ready": "Duelist sotto il tuo controllo dall’inizio del turno, incantato con Twin.",
+    "steps": [
+      {
+        "action": "Tappa Duelist per creare una sua copia.",
+        "state": "La pedina ha rapidità e innesca l’abilità di ingresso."
+      },
+      {
+        "action": "Scegli di stappare il Duelist originale.",
+        "state": "L’originale è pronto a ripetere il ciclo; la pedina resta sul campo."
+      },
+      {
+        "action": "Ripeti un numero finito e attacca con le pedine.",
+        "state": "Produci arbitrariamente tanti attaccanti rapidi; le pedine verranno esiliate all’inizio della prossima sottofase finale."
+      }
+    ],
+    "result": "Una combinazione di due carte capace di chiudere.",
+    "risk": "Rimozione sul Duelist o sull’Aura, prevenzione del danno e altri effetti possono fermarla. Serve la specifica SPG nel pool.",
+    "tip": "Non scegliere UR sperando di aprirla. Se hai solo Duelist, valutalo per il suo normale rendimento.",
+    "source": "https://www.reddit.com/r/lrcast/comments/1wh9gkq/you_can_literally_splinter_twin_combo_people_in/",
+    "family": "twin",
+    "commonOnly": false,
+    "noRare": false,
+    "access": "Richiede SPG"
+  }
+]

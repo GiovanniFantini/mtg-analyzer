@@ -1,0 +1,77 @@
+{
+  "$schema": "../../schemas/limited.schema.json",
+  "schemaVersion": 1,
+  "events": {
+    "draft": {
+      "id": "trk-play-draft",
+      "name": "Star Trek · Booster Draft",
+      "kind": "draft",
+      "product": "play",
+      "packsPerPlayer": 3,
+      "seats": 8,
+      "picksPerTurn": 1,
+      "directions": [
+        1,
+        -1,
+        1
+      ],
+      "minDeckSize": 40,
+      "maxCopies": null,
+      "extraBasicLands": true,
+      "mulligan": {
+        "kind": "london",
+        "handSize": 7,
+        "freeMulligans": 0
+      },
+      "sources": [
+        "https://magic.wizards.com/en/formats/booster-draft"
+      ]
+    },
+    "sealed": {
+      "id": "trk-play-sealed",
+      "name": "Star Trek · Sealed",
+      "kind": "sealed",
+      "product": "play",
+      "packsPerPlayer": 6,
+      "seats": 1,
+      "picksPerTurn": 0,
+      "directions": [],
+      "minDeckSize": 40,
+      "maxCopies": null,
+      "extraBasicLands": true,
+      "mulligan": {
+        "kind": "london",
+        "handSize": 7,
+        "freeMulligans": 0
+      },
+      "sources": [
+        "https://magic.wizards.com/en/formats/sealed-deck"
+      ]
+    },
+    "picktwo": {
+      "id": "trk-play-picktwo",
+      "name": "Star Trek · Pick-Two Draft",
+      "kind": "draft",
+      "product": "play",
+      "packsPerPlayer": 3,
+      "seats": 4,
+      "picksPerTurn": 2,
+      "directions": [
+        1,
+        -1,
+        1
+      ],
+      "minDeckSize": 40,
+      "maxCopies": null,
+      "extraBasicLands": true,
+      "mulligan": {
+        "kind": "london",
+        "handSize": 7,
+        "freeMulligans": 0
+      },
+      "sources": [
+        "https://magic.wizards.com/en/formats/pick-two-draft"
+      ]
+    }
+  }
+}

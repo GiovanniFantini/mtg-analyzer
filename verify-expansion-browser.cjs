@@ -1,0 +1,51 @@
+'use strict';
+const {chromium}=require(process.env.MTG_PLAYWRIGHT_MODULE||'C:/Users/mimir/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
+const assert=require('node:assert/strict');
+const base=process.env.MTG_SITE_URL||'http://127.0.0.1:8871/';
+(async()=>{
+ const browser=await chromium.launch({headless:true,channel:process.env.MTG_BROWSER_CHANNEL||'msedge'});
+ try{
+  const context=await browser.newContext(),page=await context.newPage(),errors=[];
+  page.on('pageerror',e=>errors.push(e.message));
+  await page.goto(base);
+  const old={version:1,packs:Array.from({length:6},()=>Array.from({length:14},()=>({id:'fra-188',foil:false,slot:'Terra'}))),opened:[0],deck:[0],basics:[0,0,0,0,0]};
+  await page.evaluate(value=>localStorage.setItem('fra-sealed-simulator-v1',JSON.stringify(value)),old);
+  await page.goto(base+'sets/reality-fracture/Reality-Fracture-Simulatore.html');
+  assert.match(await page.locator('#progress').innerText(),/1 di 6 buste.*14 carte/);
+  assert.match(await page.locator('#poolCount').innerText(),/13/);
+  assert.equal(await page.locator('#deck .deckrow').count(),1);
+  await page.locator('#all').click();
+  const saved=await page.evaluate(()=>JSON.parse(localStorage.getItem('fra-sealed-simulator-v1')));
+  assert.deepEqual(saved.packs,old.packs);assert.deepEqual(saved.deck,[0]);
+  await page.goto(base+'sets/reality-fracture/Reality-Fracture-Draft-Engine.html');
+  const record=await page.evaluate(()=>{
+   const root=JSON.parse(document.getElementById('draft-data').textContent);
+   return {version:2,engineVersion:2,format:root.id,revision:'another-profile',seed:'test',configs:Array.from({length:7},()=>({strategy:'signals',target:null})),picks:[]};
+  });
+  await page.evaluate(value=>localStorage.setItem('mtg-draft-table-fra-v1',JSON.stringify(value)),record);
+  await page.reload();
+  assert.match(await page.locator('#save-status').innerText(),/non leggibile/);
+  assert.equal(await page.locator('#resume').isVisible(),false);
+  assert.deepEqual(await page.evaluate(()=>JSON.parse(localStorage.getItem('mtg-draft-table-fra-v1'))),record);
+  await page.locator('#start').click();
+  const current=await page.evaluate(()=>JSON.parse(localStorage.getItem('mtg-draft-table-fra-v1')));
+  assert.ok(current.previousSaveKey);
+  assert.deepEqual(await page.evaluate(key=>JSON.parse(localStorage.getItem(key)),current.previousSaveKey),record);
+  await page.reload();
+  assert.equal(await page.locator('#save-status a[download]').count(),1);
+  await page.evaluate(value=>localStorage.setItem('mtg-draft-table-fra-v1',JSON.stringify(value)),record);await page.reload();
+  await page.evaluate(()=>{const original=Storage.prototype.setItem;Storage.prototype.setItem=function(key,value){if(key.includes('-incompatible-'))throw new DOMException('Full','QuotaExceededError');return original.call(this,key,value);};});
+  await page.locator('#start').click();
+  assert.deepEqual(await page.evaluate(()=>JSON.parse(localStorage.getItem('mtg-draft-table-fra-v1'))),record);
+  await page.goto(base+'sets/star-trek/draft.html');
+  assert.match(await page.locator('.feature-availability').innerText(),/Statistiche.*non disponibile/s);
+  const runtime=await (await context.request.get(base+'sets/star-trek/data/runtime.json')).json();
+  assert.equal(runtime.events.picktwo.picksPerTurn,2);
+  assert.equal(runtime.events.picktwo.seats,4);
+  assert.equal(runtime.availability.draftTable.available,false);
+  await page.goto(base+'sets/star-trek/draft-engine.html');
+  assert.match(await page.locator('main').innerText(),/Profilo di collazione/);
+  assert.deepEqual(errors,[]);
+  console.log('PASS: historical Sealed saves preserved; incompatible Draft save preserved; missing-feature pages and public JSON; no JavaScript errors.');
+ }finally{await browser.close();}
+})().catch(e=>{console.error(e);process.exitCode=1;});

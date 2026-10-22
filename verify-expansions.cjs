@@ -1,0 +1,38 @@
+'use strict';
+const assert=require('node:assert/strict'),fs=require('node:fs'),E=require('./draft-engine.js');
+const html=fs.readFileSync('dist/sets/reality-fracture/Reality-Fracture-Draft-Engine.html','utf8');
+const data=JSON.parse(html.match(/<script id="draft-data" type="application\/json">([\s\S]*?)<\/script>/)[1]);
+const legacy=JSON.parse(fs.readFileSync('draft-format-fra-20261021.json','utf8'));
+legacy.archetypes=data.archetypes;
+const reviews=new Map(data.cards.map(c=>[c.id,c]));
+legacy.cards=legacy.cards.map(c=>({...c,score:reviews.get(c.id).score,role:reviews.get(c.id).role,archetypes:reviews.get(c.id).archetypes}));
+// Changing representation must preserve every RNG draw, UID and correlated pair.
+const oldCollator=E.createCollator(legacy,E.rng('legacy-compatible'));
+const newCollator=E.createCollator(data,E.rng('legacy-compatible'));
+for(let i=0;i<3000;i++)assert.deepEqual(newCollator.pack(),oldCollator.pack());
+const configs=Array.from({length:7},()=>({strategy:'signals',target:null}));
+const old=E.createSession(legacy,'legacy-session',configs);
+for(let i=0;i<42;i++)old.step(old.current()[i%old.current().length].uid);
+const record={version:1,format:legacy.id,seed:old.seed,configs,picks:old.log.map(x=>x.entry.uid)};
+const restored=E.replay(data,record);
+assert.deepEqual(E.replay(data,{...restored.export(),revision:data.compatibleRevisions[0]}).log,restored.log);
+assert.deepEqual(restored.log,old.log);assert.deepEqual(restored.bots,old.bots);
+assert.throws(()=>E.replay({...data,legacyReplay:false},record));
+assert.throws(()=>E.replay({...data,revision:'changed'},restored.export()));
+// A different event/product, no pairs, four seats, two picks and an odd pack size.
+const fixture={...structuredClone(data),id:'test-pick-two',revision:'test-v1',legacyReplay:false,seats:4,packSize:5,picksPerTurn:2};
+fixture.collation={schemaVersion:1,groups:{cards:data.collation.groups.common},recipe:[{op:'draw',id:'cards',count:5,unique:true,branches:[{group:'cards',weight:1}]}]};
+const session=E.createSession(fixture,'odd-packs',configs.slice(0,3));
+const first=session.current().map(e=>e.uid);
+session.step(first[0]);assert.equal(session.current().length,4);assert.equal(session.pick,1);
+assert.ok(session.current().every(e=>first.includes(e.uid)));assert.equal(session.bots[0].pool.length,0);
+assert.deepEqual(E.replay(fixture,session.export()).export(),session.export());
+session.step(first[1]);assert.equal(session.current().length,3);assert.equal(session.pick,2);
+assert.ok(session.current().every(e=>!first.includes(e.uid)));assert.equal(session.bots[0].pool.length,2);
+while(!session.complete)session.step(session.current()[0].uid);
+assert.equal(session.human.length,15);assert.ok(session.bots.every(bot=>bot.pool.length===15));
+assert.equal(new Set([...session.human,...session.bots.flatMap(b=>b.pool)].map(e=>e.uid)).size,60);
+assert.deepEqual(E.replay(fixture,session.export()).bots,session.bots);
+assert.throws(()=>E.createCollator({...fixture,collation:{...fixture.collation,schemaVersion:999}},E.rng('x')));
+assert.throws(()=>E.createCollator({...fixture,collation:{...fixture.collation,recipe:[{op:'unknown',id:'x',branches:[]}]}},E.rng('x')));
+console.log('PASS: 3,000 historical packs identical; legacy replay; revision rejection; Pick-Two, odd packs, four seats, partial replay and card conservation.');

@@ -1,0 +1,173 @@
+{
+  "findings": [
+    {
+      "id": "R1-OPTION-MARKUP",
+      "priority": "P2",
+      "file": "templates/atlas/simulator.html",
+      "line": 8,
+      "title": "Opzioni di filtro perse per tag option malformati in quattro template",
+      "scenario": "Si apre la build di Reality Fracture. Nel simulatore Sealed il filtro Colore mostra Tutti i colori, Blu, Nero e così via, ma non Bianco. Nel catalogo il filtro valutazione non offre 'Sealed >= 4 stelle'. In Combo manca '2 carte'. In Discovery manca 'Solo set FRA'.",
+      "evidence": "simulator.html:8 contiene <option value=''>Tutti i colori</option value='W'>Bianco</option>. gallery.html:25 ha <option value=''>Tutte le valutazioni</option value='4'>Sealed >= 4 stelle</option>. combos.html:5 ha <option value=''>2-4 carte</option value='2'>2 carte</option>. discovery.html:8 ha <option value=''>...</option value='{{code}}'>...</option>. Il parser HTML chiude l'option sulla end tag con attributo, e il testo successivo resta fuori da qualsiasi option dentro il select. Il codice JS gestisce già i valori W, 4, 2 e il prodotto FRA, quindi i valori esistono ma non sono raggiungibili. I file in templates/ sono nuovi nel working tree. Non posso stabilire se il difetto fosse già presente nelle pagine originali; per questo il rilievo si basa solo sul markup attuale.",
+      "impact": "Funzionalità esistenti non raggiungibili dall'interfaccia: nessun filtro per il bianco nel simulatore, nessun filtro per le carte con valutazione >= 4 nel catalogo, nessun filtro 'Solo set FRA' in Discovery. Il difetto passa ogni controllo di build, perché i link locali sono validi.",
+      "suggested_fix": "Correggere i quattro punti in <option value='X'>Testo</option> ben formati: nel simulatore un option per il bianco, nel catalogo un option per Sealed >= 4 stelle, in Combo un option per 2 carte, in Discovery un option con value={{code}}.",
+      "certainty": "certain"
+    },
+    {
+      "id": "R1-SHELL-COMBO-REWRITE",
+      "priority": "P2",
+      "file": "site_navigation.py",
+      "line": 70,
+      "title": "La riscrittura letterale del pulsante 'N combo' vale solo per l'URL di Reality Fracture",
+      "scenario": "Una seconda espansione Atlas ha pages.combos.url diverso, come fa il test con 'test-Reality-Fracture-Combo.html'. Nel catalogo si clicca il pulsante 'N combo' di una carta.",
+      "evidence": "render_page esegue render_tokens prima di shell (build_expansion.py:102 e 114), quindi il codice del template contiene già l'URL della seconda espansione. site_navigation.py:70 cerca la stringa letterale src='Reality-Fracture-Combo.html?card=', che non compare più. Il replace non scatta e resta $('combos').querySelector('iframe'). La sezione #combos è stata rimossa a riga 69, quindi $('combos') è null. Il test test_another_expansion_uses_shared_build controlla solo il link nel HTML e non copre questo percorso.",
+      "impact": "Nel catalogo di ogni espansione Atlas diversa da FRA il pulsante 'N combo' lancia un TypeError e non naviga. Il requisito di riuso tramite soli JSON è violato proprio sul collegamento catalogo-combo.",
+      "suggested_fix": "Nel template usare direttamente location.href con il token {{route:combos}} e togliere la riscrittura letterale. In alternativa, costruire la stringa da cercare con pages['combos']['url'] invece del nome FRA.",
+      "certainty": "certain"
+    },
+    {
+      "id": "R1-STORAGE-KEYS-UNVALIDATED",
+      "priority": "P2",
+      "file": "expansion_data.py",
+      "line": 239,
+      "title": "Le chiavi di salvataggio richieste dagli strumenti non sono validate: chiavi 'undefined' condivise tra espansioni",
+      "scenario": "Un manifest Atlas richiede draftTable, pool e sealedSimulator ma dimentica storage.draftPool oppure storage.sealedPool. Una seconda espansione fa lo stesso.",
+      "evidence": "validate controlla solo il tipo di features.*.requested (righe 104-106). load_expansions raccoglie soltanto i valori presenti in storage (riga 239-246). Il JS legge EXPANSION_CONFIG.storage.draftPool (draft-pool.js:4), sealedPool (gallery.html:56), sealedSimulator (simulator.js:9) e draftTable (draft-table.js:13). Una chiave mancante diventa la stringa 'undefined' (o 'undefined-picktwo') in localStorage. Quella chiave non passa dal controllo di collisione.",
+      "impact": "I pool e le sessioni di espansioni diverse finiscono nella stessa voce localStorage senza alcun errore di build. Il controllo di collisione dichiarato nel README viene eluso proprio nel caso in cui serve.",
+      "suggested_fix": "Collegare a ogni feature richiesta le chiavi storage obbligatorie (draftTable, sealedPool, draftPool, sealedSimulator, watch, poolPrefix e mode per lo stile preview) e fallire la validazione se mancano. Includere nel controllo di collisione anche le chiavi di default.",
+      "certainty": "certain"
+    },
+    {
+      "id": "R1-AVAIL-TRUTHINESS",
+      "priority": "P2",
+      "file": "expansion_data.py",
+      "line": 186,
+      "title": "La disponibilità usa la sola veridicità degli oggetti: documenti con contenitori vuoti risultano disponibili",
+      "scenario": "Star Trek ha discovery.json = {cards: [], previews: []} e statistics.json con draft = {cards: [], poolCards: [], drill: {}}. Si ricalcola la disponibilità.",
+      "evidence": "Riga 186: present = {key: bool(value) ...}, e righe 194-196: present['statistics:draft'] = bool(value). Un dict con chiavi vuote è truthy, quindi discovery e statistics:draft risultano presenti. Il test verify-expansion-browser.cjs:31 si aspetta invece che draft.html di Star Trek segnali 'Statistiche ... non disponibile'. Per discovery la conclusione è certa dal file letterale. Per statistics:draft dipende dal contenuto reale del file, che qui vedo riassunto.",
+      "impact": "availability.json e runtime.json dichiarano disponibili Metagame documentato e Statistiche Draft per un'espansione senza dati. In una espansione Atlas la pagina Discovery viene renderizzata vuota ('0 di 0 carte') invece della pagina di indisponibilità, e non compare alcuna spiegazione di cosa manca.",
+      "suggested_fix": "Definire per ogni dataset un predicato di contenuto reale, per esempio discovery.cards non vuoto e statistics.draft.cards e poolCards non vuoti, e usarlo al posto di bool(value).",
+      "certainty": "certain"
+    },
+    {
+      "id": "R1-REVISION-OVERBROAD",
+      "priority": "P2",
+      "file": "expansion_data.py",
+      "line": 218,
+      "title": "L'impronta del profilo Draft include campi che non influenzano il replay",
+      "scenario": "Si aggiornano nei JSON l'URL dell'immagine di una stampa (i link Scryfall hanno il suffisso ?timestamp), una source dell'evento o il testo di assumptions. Un utente ha un draft salvato.",
+      "evidence": "revision è l'sha256 di event, product, cards e archetypes. cards deriva da printings, che contengono image. event contiene name e sources, product contiene assumptions. Nessuno di questi campi è letto da draft-engine.js per bot o collazione. replay (draft-engine.js:174) rifiuta ogni sessione v2 con revision diversa. legacyReplay (riga 224) richiede inoltre l'uguaglianza esatta con legacyDraftRevision nel manifest.",
+      "impact": "Un normale refresh delle immagini o un ritocco editoriale rende illeggibili tutti i draft salvati ('Salvataggio precedente non leggibile'). Disattiva anche silenziosamente la compatibilità con le sessioni FRA v1, finché qualcuno non ricalcola a mano legacyDraftRevision.",
+      "suggested_fix": "Calcolare la revision soltanto sui campi usati dal motore: id, colors, identity, cost, mv, rarity, oracle, score, role, archetypes dei cards, più archetipi, seats, packsPerPlayer, picksPerTurn, directions e la collazione. Escludere image, nomi, sources e assumptions.",
+      "certainty": "certain"
+    },
+    {
+      "id": "R1-NOTICE-PSEUDO-PAGES",
+      "priority": "P2",
+      "file": "build_expansion.py",
+      "line": 74,
+      "title": "Le funzionalità mappate su pagine che non esistono come pagine Atlas non mostrano mai l'avviso di indisponibilità",
+      "scenario": "Un'espansione Atlas richiede sealedGuide, pool o rules, ma non ha guides.sealed.",
+      "evidence": "FEATURES assegna a sealedGuide la page 'strategy', a pool 'pool' e a rules 'rules' (expansion_data.py:12-15, 28). availability_notice include una funzionalità solo se value['page']==page oppure page=='method'. In Atlas le uniche chiavi di pagina renderizzate sono gallery, draft, analysis, simulator, combos, discovery, draft-engine e set. #pool, #strategy e #method sono sezioni dentro gallery.html, quindi nessun avviso viene mai emesso. La navigazione resta quella del manifest e punta alle sezioni.",
+      "impact": "Il link 'Guida Sealed' porta a una sezione vuota o con 'Contenuto non disponibile: gallery.strategy', senza indicare cosa manca. È l'indicazione degli strumenti non disponibili che il requisito chiede. L'informazione è presente solo in availability.json.",
+      "suggested_fix": "Far corrispondere page di queste funzionalità alla pagina che le ospita (gallery per pool, sealedGuide e method) oppure mostrare nella pagina gallery gli avvisi per quelle pseudo-pagine.",
+      "certainty": "certain"
+    },
+    {
+      "id": "R1-ST-DRAFT-TABLE-HIDDEN",
+      "priority": "P2",
+      "file": "build_expansion.py",
+      "line": 131,
+      "title": "Il Tavolo Draft con bot di Star Trek è irraggiungibile dalla navigazione e non è segnalato nella pagina Draft",
+      "scenario": "Un utente apre Star Trek, Draft e pick, cercando il Tavolo Draft con bot. Oppure scorre il menu laterale.",
+      "evidence": "build aggiunge a pages la voce draft-engine (riga 131-132), ma presentation.groups del manifest Star Trek (Limited: draft, pool, simulator, combos) non la elenca, mentre configured_shell genera i link solo dai groups. availability_notice per la chiave 'draft' include solo le funzionalità con page=='draft', e draftTable ha page 'draft-engine'. La pagina draft-engine.html esiste, ma ci si arriva solo digitando l'URL (come fa il test) o leggendo la pagina Fonti.",
+      "impact": "L'indicazione 'strumento non disponibile e cosa manca' per il tavolo bot non è visibile dai percorsi normali di Star Trek. La pagina Draft elenca altre assenze ma tace proprio su questa.",
+      "suggested_fix": "Includere draft-engine nei groups del manifest Star Trek, oppure aggiungere automaticamente le pagine iniettate ai groups. In alternativa, far comparire l'avviso di draftTable anche sulla pagina draft.",
+      "certainty": "certain"
+    },
+    {
+      "id": "R1-MAXCOPIES-UNRECOVERABLE",
+      "priority": "P2",
+      "file": "star-trek.js",
+      "line": 46,
+      "title": "maxCopies è verificato solo in lettura: la UI permette di superarlo e poi il salvataggio diventa illeggibile",
+      "scenario": "Un evento ha maxCopies = 4 (o 1 per un formato singleton) in limited.json. Nella pagina pool l'utente aggiunge 6 copie al pool, poi preme 'Mazzo +' 5 volte e ricarica la pagina.",
+      "evidence": "actions() disabilita 'Mazzo +' solo quando deck >= pool (riga 113). Il click handler (201-206) non applica maxCopies, quindi lo stato con 5 copie viene scritto. Alla ricarica stored() chiama validate (riga 56), che alla riga 46 lancia 'Limite di copie del formato superato'. load mostra 'Salvataggio non leggibile' e state = empty(). Anche changeState fallisce da allora in poi, perché apply legge di nuovo lo stesso JSON non valido.",
+      "impact": "La proprietà maxCopies è dichiarata nello schema e accettata dal validatore Python, ma l'unico effetto è bloccare l'utente: il pool risulta vuoto e non modificabile finché non cancella a mano localStorage. Oggi tutti gli eventi hanno maxCopies null, quindi il difetto è latente. Appare non appena un JSON usa il campo.",
+      "suggested_fix": "Applicare il limite in actions() e nel click handler (clamp e pulsante disabilitato per le carte non base) con la stessa regola di validate.",
+      "certainty": "certain"
+    },
+    {
+      "id": "R1-SIM-CATALOGID",
+      "priority": "P2",
+      "file": "expansion_data.py",
+      "line": 22,
+      "title": "sealedSimulator non verifica che ogni stampa della collazione risolva in una carta del catalogo",
+      "scenario": "Un aggiornamento aggiunge a printings.json e ai gruppi della collazione una stampa il cui full non coincide con nessuna carta di cards.json, per esempio per una differenza nel nome della faccia.",
+      "evidence": "draft_format assegna catalogId = review.get('id'), quindi None se il nome non si risolve (righe 213-215). simulator.js:7 costruisce id:printingById[e.id].catalogId. render poi esegue byId[null], quindi e.c è undefined e tile lancia un TypeError su e.c.rarity. La capability sealedSimulator richiede solo completeCards, collation:sealed e limited:sealed; il controllo di copertura per nome esiste solo in ratingsComplete, che riguarda il Draft.",
+      "impact": "Il simulatore Sealed risulta disponibile ma la pagina si rompe appena esce quella stampa. Il difetto è intermittente, perché dipende dalla busta estratta.",
+      "suggested_fix": "In validate o capabilities controllare che ogni stampa presente nei gruppi di collazione degli eventi abbia un catalogId. Se manca, segnare sealedSimulator come non disponibile con la ragione specifica.",
+      "certainty": "hypothesis"
+    },
+    {
+      "id": "R1-DRAFT-PAGE-GATING",
+      "priority": "P3",
+      "file": "build_expansion.py",
+      "line": 133,
+      "title": "Una sola funzionalità (draftStatistics) sostituisce l'intera pagina Draft",
+      "scenario": "Un'espansione Atlas ha guide pickGuide, pickBaits, pickDecisions e draftCombos complete, ma non ha ancora statistiche 17Lands.",
+      "evidence": "page_requirement mappa 'draft' su draftStatistics, e righe 139-140 sostituiscono l'intera pagina con unavailable_page. Il README promette di mantenere utilizzabili gli strumenti già pronti. availability.json segnerebbe invece pickGuide, pickBaits e le altre voci come available. Non verifico se i template draft.html e draft-report.js potrebbero funzionare senza statistics.draft, perché i loro sorgenti non sono nel materiale.",
+      "impact": "Strumenti dichiarati disponibili restano inaccessibili finché non arrivano le statistiche. Questo succede nel caso più comune a ridosso dell'uscita di un set.",
+      "suggested_fix": "Se la pagina può essere resa senza statistiche, limitare l'avviso alle sole sezioni dipendenti da statistics. Altrimenti dichiarare nei requisiti di pickGuide, pickBaits e draftCombos anche la dipendenza da statistics:draft, così availability.json non promette ciò che la pagina non offre.",
+      "certainty": "hypothesis"
+    },
+    {
+      "id": "R1-SENTIMENT-NOSET",
+      "priority": "P3",
+      "file": "sentiment-ui.js",
+      "line": 12,
+      "title": "Il sentiment mostra una data fissa di Reality Fracture e può fallire senza meta",
+      "scenario": "Una nuova espansione Atlas ha cards e analysis richiesti, ma sentiment.json è vuoto (meta null o assente), come quello di Star Trek.",
+      "evidence": "Riga 12: per ogni comune o non comune senza sintesi il testo dice 'nessuna sintesi qualitativa disponibile nella raccolta del 25/09/2026'. gallery.html:88 esegue $('coverage-count').textContent = DATA.sentimentMeta.covered. Con meta null (catalog_data usa .get('meta', {}), che restituisce null se la chiave è presente con valore null) lancia un TypeError. Lo script si interrompe prima di openWorkspace (riga 95), quindi tutte le sezioni restano visibili insieme. La riga 19 stampa 'undefined' nelle statistiche se meta è {}. L'analysis page non è gated da sentiment.",
+      "impact": "Un'altra espansione riceve nelle schede un riferimento a una raccolta di un altro set. In più la pagina catalogo può rompersi, se il documento è nella forma di Star Trek. La forma esatta del file Star Trek è riassunta nel materiale, quindi la parte del crash è un'ipotesi.",
+      "suggested_fix": "Leggere la data da sentimentMeta.date con un testo neutro se manca, normalizzare meta a {} in catalog_data, e non montare né mostrare le parti sentiment quando la funzionalità non è disponibile.",
+      "certainty": "hypothesis"
+    },
+    {
+      "id": "R1-HARDCODED-FRA-EXPORTS",
+      "priority": "P3",
+      "file": "draft-pool.js",
+      "line": 72,
+      "title": "Prompt ed export condivisi contengono valori fissi di Reality Fracture",
+      "scenario": "Una seconda espansione Atlas usa draft-pool.js, la selezione CSV dell'analisi, l'export del pool del catalogo o il simulatore.",
+      "evidence": "draft-pool.js:72 cita https://scryfall.com/sets/fra e le righe 114-115 scaricano 'reality-fracture-draft-prompt.txt' e 'reality-fracture-draft-pool.txt'. Il prompt impone 'esattamente 40 carte', '17 terre' e il limite delle quattro copie senza leggere minDeckSize e maxCopies dell'evento. analysis.html:82 scarica 'Reality-Fracture-selezione.csv', gallery.html:83 'Il-mio-pool-FRA.json', simulator.html:4 dice '6 Play Booster / 84 carte' e simulator.js:15 stampa 'PLAY BOOSTER'.",
+      "impact": "L'altra espansione mostra fonti e nomi file sbagliati, e l'utente incolla in una AI un prompt con la fonte dell'espansione sbagliata. Il vincolo dei 40 carte ignora le regole dell'evento JSON.",
+      "suggested_fix": "Derivare nome file, URL della fonte e vincoli del prompt da EXPANSION_CONFIG (id, code, events.draft.minDeckSize, maxCopies). Per il simulatore, usare il nome prodotto e il numero di buste dell'evento.",
+      "certainty": "certain"
+    },
+    {
+      "id": "R1-SCHEMA-VS-CODE",
+      "priority": "P3",
+      "file": "expansion_data.py",
+      "line": 182,
+      "title": "Documenti validi per lo schema fanno crollare il caricatore con KeyError",
+      "scenario": "Un'espansione ha solo l'evento sealed, oppure un manifest senza date o description, oppure senza pagina draft o discovery.",
+      "evidence": "capabilities usa d['limited']['events']['draft']['product'] (riga 182), e draft_format ha 'draft' come default. limited.schema.json non richiede un evento chiamato draft. build_site.py:56-59 legge item['date'] e item['description'] e pages['draft'] e pages['discovery'], mentre expansion.schema.json non li richiede.",
+      "impact": "Un aggiornamento coerente con lo schema dà una traceback invece di un errore di validazione leggibile e fa fallire l'intera build.",
+      "suggested_fix": "Rendere capabilities tollerante all'assenza dell'evento draft (draftTable non disponibile) e validare nel Python i campi che build_site usa (o dare default espliciti). Allineare lo schema ai campi realmente necessari.",
+      "certainty": "certain"
+    },
+    {
+      "id": "R1-MISSING-IGNORED",
+      "priority": "P3",
+      "file": "expansion_data.py",
+      "line": 200,
+      "title": "Le proprietà missing dichiarate in products.json e prices.json sono ignorate",
+      "scenario": "Star Trek dichiara products.play.missing (catalogo completo e risoluzione dei tassi sotto l'1%) e prices.missing (prezzi EUR assenti). Si apre il tavolo Draft o la pagina Fonti.",
+      "evidence": "capabilities costruisce missing solo con REASONS.get(item, item), testi generici (righe 30-44). Nessun codice legge product['missing'] o prices['missing']. products.schema.json documenta missing, e il test test_incomplete_is_explicit verifica la frase generica 'Catalogo completo'.",
+      "impact": "Gli avvisi non dicono cosa manca davvero per quel prodotto (ad esempio l'ambiguità sui tassi <1%), anche se il dato è nel JSON. La parte 'di cosa manca' del requisito resta generica.",
+      "suggested_fix": "Aggiungere ai motivi di collation, completeCards e prices le voci di product.missing e prices.missing quando presenti, mantenendo i testi generici come ripiego.",
+      "certainty": "certain"
+    }
+  ],
+  "summary": "Revisione statica del solo materiale fornito: non ho eseguito build, test né browser. I rilievi riguardano markup rotto nei template (filtri irraggiungibili), la riscrittura di navigazione legata all'URL di FRA, chiavi di salvataggio non validate, disponibilità calcolata con la sola veridicità degli oggetti, un'impronta di replay troppo ampia, avvisi di indisponibilità che non raggiungono alcune pagine, maxCopies non applicato dalla UI, una stampa senza catalogId che può rompere il simulatore, più alcune incoerenze minori tra schema e codice. La parte di collazione (ricetta, coppie, esclusioni, pesi) e il motore dei bot sono coerenti con il README sui punti che ho potuto controllare. Ho distinto i rilievi certi dalle ipotesi, che dipendono dal contenuto reale dei file qui riassunti."
+}

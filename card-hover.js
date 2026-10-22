@@ -12,7 +12,7 @@
   }
   const aliasNames=new Set();
   if (typeof DRAFT_DATA !== 'undefined') {
-    const aliases = {Oculus:'Mindseeker Oculus',Crusher:'Craftwork Crusher',Kiora:'Kiora of Fire and Ashes',Recruitment:'Recursive Recruitment',Healer:'Way of the Healer','The Theorist':'The Theorist, Jace Beleren'};
+    const aliases = typeof EXPANSION_CONFIG!=='undefined' ? EXPANSION_CONFIG.ui.cardAliases||{} : {};
     for (const [alias, name] of Object.entries(aliases)) if (cards.has(name)){cards.set(alias, cards.get(name));aliasNames.add(alias);}
   }
   const escape = s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');

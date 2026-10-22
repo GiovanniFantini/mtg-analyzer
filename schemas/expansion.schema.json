@@ -1,0 +1,158 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:mtg-analyzer:expansion:1",
+  "title": "MTG Analyzer expansion manifest v1",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "id",
+    "name",
+    "code",
+    "datasets",
+    "presentation",
+    "storage",
+    "features",
+    "date",
+    "description"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "code": {
+      "type": "string",
+      "minLength": 1
+    },
+    "status": {
+      "enum": [
+        "preview",
+        "released"
+      ]
+    },
+    "datasets": {
+      "type": "object",
+      "required": [
+        "cards",
+        "printings",
+        "products",
+        "limited",
+        "ratings",
+        "archetypes",
+        "combos",
+        "guides",
+        "statistics",
+        "sentiment",
+        "discovery",
+        "prices",
+        "sources",
+        "ui"
+      ],
+      "additionalProperties": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "presentation": {
+      "type": "object",
+      "required": [
+        "style",
+        "pages",
+        "groups"
+      ],
+      "properties": {
+        "style": {
+          "enum": [
+            "atlas",
+            "preview"
+          ]
+        },
+        "pages": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "required": [
+              "label",
+              "url"
+            ],
+            "properties": {
+              "label": {
+                "type": "string"
+              },
+              "url": {
+                "type": "string"
+              },
+              "template": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "set",
+            "draft",
+            "discovery"
+          ]
+        },
+        "groups": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "prefixItems": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ],
+            "minItems": 2,
+            "maxItems": 2
+          }
+        }
+      }
+    },
+    "storage": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "features": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "requested"
+        ],
+        "properties": {
+          "requested": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "extensions": {
+      "type": "object"
+    },
+    "date": {
+      "type": "string",
+      "minLength": 1
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "additionalProperties": true
+}

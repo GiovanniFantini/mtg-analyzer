@@ -1,0 +1,198 @@
+{
+  "$schema": "../../schemas/expansion.schema.json",
+  "schemaVersion": 1,
+  "id": "reality-fracture",
+  "name": "Reality Fracture",
+  "code": "FRA",
+  "date": "18 ottobre 2026",
+  "description": "Catalogo delle carte, guida Draft, costruzione Sealed e discovery del metagame.",
+  "status": "released",
+  "datasets": {
+    "cards": "cards.json",
+    "printings": "printings.json",
+    "ratings": "ratings.json",
+    "combos": "combos.json",
+    "sentiment": "sentiment.json",
+    "statistics": "statistics.json",
+    "discovery": "discovery.json",
+    "archetypes": "archetypes.json",
+    "guides": "guides.json",
+    "ui": "ui.json",
+    "sources": "sources.json",
+    "prices": "prices.json",
+    "products": "products.json",
+    "limited": "limited.json"
+  },
+  "presentation": {
+    "style": "atlas",
+    "pages": {
+      "gallery": {
+        "label": "Catalogo carte",
+        "url": "Reality-Fracture-Sealed.html",
+        "template": "templates/atlas/gallery.html"
+      },
+      "draft": {
+        "label": "Draft e pick",
+        "url": "Reality-Fracture-Draft.html",
+        "template": "templates/atlas/draft.html"
+      },
+      "analysis": {
+        "label": "Analisi del set",
+        "url": "Reality-Fracture-Analisi.html",
+        "template": "templates/atlas/analysis.html"
+      },
+      "simulator": {
+        "label": "Simulatore Sealed",
+        "url": "Reality-Fracture-Simulatore.html",
+        "template": "templates/atlas/simulator.html"
+      },
+      "combos": {
+        "label": "Combo e sinergie",
+        "url": "Reality-Fracture-Combo.html",
+        "template": "templates/atlas/combos.html"
+      },
+      "discovery": {
+        "label": "Metagame e carte",
+        "url": "Reality-Fracture-Discovery.html",
+        "template": "templates/atlas/discovery.html"
+      },
+      "draft-engine": {
+        "label": "Tavolo Draft con bot",
+        "url": "Reality-Fracture-Draft-Engine.html",
+        "template": "templates/atlas/draft-engine.html"
+      },
+      "set": {
+        "label": "Panoramica",
+        "url": "index.html",
+        "template": "templates/atlas/set.html"
+      },
+      "pool": {
+        "label": "Il mio pool Sealed",
+        "url": "Reality-Fracture-Sealed.html#pool"
+      },
+      "strategy": {
+        "label": "Guida Sealed",
+        "url": "Reality-Fracture-Sealed.html#strategy"
+      },
+      "method": {
+        "label": "Fonti e metodo",
+        "url": "Reality-Fracture-Sealed.html#method"
+      }
+    },
+    "groups": [
+      [
+        "Carte e set",
+        [
+          "set",
+          "gallery",
+          "analysis"
+        ]
+      ],
+      [
+        "Limited",
+        [
+          "draft",
+          "draft-engine",
+          "strategy",
+          "pool",
+          "simulator"
+        ]
+      ],
+      [
+        "Sinergie",
+        [
+          "combos"
+        ]
+      ],
+      [
+        "Constructed",
+        [
+          "discovery"
+        ]
+      ],
+      [
+        "Approfondimenti",
+        [
+          "method"
+        ]
+      ]
+    ]
+  },
+  "storage": {
+    "sealedPool": "fra-sealed-pool-v1",
+    "draftPool": "fra-draft-pool-v1",
+    "sealedSimulator": "fra-sealed-simulator-v1",
+    "draftTable": "mtg-draft-table-fra-v1",
+    "watch": "mtg-fra-discovery-watch-v1"
+  },
+  "assets": [
+    "draft-drilldown-20261016.json",
+    "draft-oracle-20261016.json",
+    "draft-report-assets-20261016"
+  ],
+  "features": {
+    "catalog": {
+      "requested": true
+    },
+    "pool": {
+      "requested": true
+    },
+    "analysis": {
+      "requested": true
+    },
+    "sealedGuide": {
+      "requested": true
+    },
+    "draftGuide": {
+      "requested": true
+    },
+    "draftStatistics": {
+      "requested": true
+    },
+    "pickGuide": {
+      "requested": true
+    },
+    "pickBaits": {
+      "requested": true
+    },
+    "pickDecisions": {
+      "requested": true
+    },
+    "draftCombos": {
+      "requested": true
+    },
+    "sealedSimulator": {
+      "requested": true
+    },
+    "draftTable": {
+      "requested": true
+    },
+    "combos": {
+      "requested": true
+    },
+    "sentiment": {
+      "requested": true
+    },
+    "discovery": {
+      "requested": true
+    },
+    "boxEV": {
+      "requested": true
+    },
+    "rules": {
+      "requested": true
+    }
+  },
+  "legacyDraftRevision": "6e8ea0f945550b785e0197f8368b079d7ed98b54551ed83e819f360fc26e5e1e",
+  "draftReplayCompatibility": {
+    "draft": {
+      "revision": "b8507e3f2b0065d879d9c570c3f321bd5c8ad90f64097d8b72967de38cf88bab",
+      "previousRevisions": [
+        "6e8ea0f945550b785e0197f8368b079d7ed98b54551ed83e819f360fc26e5e1e"
+      ]
+    }
+  },
+  "home": {
+    "quickTools": true
+  }
+}

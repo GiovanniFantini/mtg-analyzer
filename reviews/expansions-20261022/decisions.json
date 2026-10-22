@@ -1,0 +1,313 @@
+{
+  "rounds": [
+    {
+      "round": 1,
+      "model": "claude-sonnet-5-5",
+      "findings": [
+        {
+          "id": "R1-OPTION-MARKUP",
+          "decision": "confirmed_fixed",
+          "evidence": "Riprodotte opzioni mancanti nei quattro select. Corretti i tag; controllo build e browser sui valori disponibili."
+        },
+        {
+          "id": "R1-SHELL-COMBO-REWRITE",
+          "decision": "confirmed_fixed",
+          "evidence": "Riprodotta navigazione combo con URL Atlas rinominati. Ora usa le route configurate; browser verifica atterraggio sulla pagina corretta."
+        },
+        {
+          "id": "R1-STORAGE-KEYS-UNVALIDATED",
+          "decision": "confirmed_fixed",
+          "evidence": "Chiavi mancanti o vuote ora rifiutate dalla validazione, secondo i controller attivi. Verificate anche collisioni tra espansioni."
+        },
+        {
+          "id": "R1-AVAIL-TRUTHINESS",
+          "decision": "confirmed_fixed",
+          "evidence": "Contenitori vuoti non attivano discovery, statistiche e guide. Test con documenti privi di record."
+        },
+        {
+          "id": "R1-REVISION-OVERBROAD",
+          "decision": "confirmed_fixed",
+          "evidence": "Il revision hash ora contiene i dati usati dal motore. Immagini, fonti e note non invalidano replay; modifiche alle regole si. Compatibilita storica ancorata al profilo verificata."
+        },
+        {
+          "id": "R1-NOTICE-PSEUDO-PAGES",
+          "decision": "confirmed_fixed",
+          "evidence": "Gli avvisi sono associati anche alla pagina ospitante gli anchor pool, strategy e method. Test delle route alias."
+        },
+        {
+          "id": "R1-ST-DRAFT-TABLE-HIDDEN",
+          "decision": "confirmed_fixed",
+          "evidence": "Il tavolo Draft Star Trek ha una route esplicita e un collegamento raggiungibile con motivo di indisponibilita."
+        },
+        {
+          "id": "R1-MAXCOPIES-UNRECOVERABLE",
+          "decision": "confirmed_fixed",
+          "evidence": "Limiti applicati prima di salvare sia in preview sia nel simulatore Atlas. Test maxCopies, terre base, ricaricamento e salvataggi incompatibili preservati."
+        },
+        {
+          "id": "R1-SIM-CATALOGID",
+          "decision": "confirmed_fixed",
+          "evidence": "Mapping catalogo verificato per le stampe del prodotto effettivo. Una stampa orfana disabilita la simulazione con identificativo mancante anziche provocare errore casuale."
+        },
+        {
+          "id": "R1-DRAFT-PAGE-GATING",
+          "decision": "confirmed_fixed",
+          "evidence": "Statistiche opzionali separate da guide e pool. Test browser senza snapshot: guida, decisioni e pool funzionano; sezioni statistiche spiegano cosa manca."
+        },
+        {
+          "id": "R1-SENTIMENT-NOSET",
+          "decision": "confirmed_fixed",
+          "evidence": "Metadati sentiment null gestiti, date derivate dal documento, conteggi derivati dai record. Catalogo funzionante senza sentiment con controlli pertinenti disabilitati."
+        },
+        {
+          "id": "R1-HARDCODED-FRA-EXPORTS",
+          "decision": "confirmed_fixed",
+          "evidence": "Prompt, nomi export e riepiloghi prodotto derivano dal profilo. Fixture Atlas rinominata con regole diverse verificata nel browser."
+        },
+        {
+          "id": "R1-SCHEMA-VS-CODE",
+          "decision": "confirmed_fixed",
+          "evidence": "Evento draft assente gestito come funzionalita non disponibile. Campi homepage richiesti allineati tra schema e validazione Python."
+        },
+        {
+          "id": "R1-MISSING-IGNORED",
+          "decision": "confirmed_fixed",
+          "evidence": "Le motivazioni missing di prodotti e prezzi sono incluse negli avvisi di disponibilita senza duplicati."
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "model": "claude-sonnet-5-5",
+      "findings": [
+        {
+          "id": "R2-BAIT-RARITY-FROM-STATS",
+          "decision": "confirmed_fixed",
+          "evidence": "Rarita ricavata dal catalogo canonico; nessun finto campione zero quando le statistiche sono assenti. Fixture browser controlla Bloodline Recollector come Mitica. Anche le anteprime dei pacchetti usano ora il catalogo senza dipendere dalle statistiche."
+        },
+        {
+          "id": "R2-TEMPLATE-ASSET-NAMES",
+          "decision": "confirmed_fixed",
+          "evidence": "Download dichiarati in sources.downloads e renderizzati da token; assenza omette il link. Fixture senza asset JSON e senza download dichiarati mantiene le guide utilizzabili."
+        },
+        {
+          "id": "R2-STALE-FRA-COUNTS",
+          "decision": "confirmed_fixed",
+          "evidence": "Conteggi carte, pacchetti, decisioni, candidati discovery e formati sono calcolati. Numero buste e dimensione mazzo derivati dagli eventi; filtri prodotto dai dati discovery. Composizione FRA ed esempi editoriali trasferiti nei frammenti per espansione. Riepilogo token legge tokensIncluded."
+        },
+        {
+          "id": "R2-UI-REFS-UNVALIDATED",
+          "decision": "confirmed_fixed",
+          "evidence": "Validazione dei riferimenti ui a carte e archetipi. Test negativi su botExamples, confronto e pair; controller tolleranti anche a snapshot parziali."
+        },
+        {
+          "id": "R2-SOURCE-DOUBLE-ESCAPE",
+          "decision": "confirmed_fixed",
+          "evidence": "URL nei documenti sources normalizzati come URL grezzi. Test verifica singolo escape e parametro format corretto."
+        },
+        {
+          "id": "R2-DRAFT-NAV-DEAD-ANCHORS",
+          "decision": "confirmed_fixed",
+          "evidence": "Indice report generato solo per i frammenti presenti quando le statistiche sono disponibili. Fixture senza statistiche verifica assenza di link report non renderizzati."
+        },
+        {
+          "id": "R2-GALLERY-SETCURVE-DEREF",
+          "decision": "confirmed_fixed",
+          "evidence": "Ipotesi confermata: setcurve risiede in gallery.strategy. Accesso ora condizionale; fixture browser senza guida Sealed verifica 24 carte renderizzate e pool utilizzabile."
+        }
+      ]
+    },
+    {
+      "round": 3,
+      "model": "claude-sonnet-5-5",
+      "findings": [
+        {
+          "id": "R3-DRILLDOWN-AVAILABILITY",
+          "decision": "confirmed_fixed",
+          "evidence": "Separate statistiche per carta e drilldown: capability draftDrilldown richiede contexts e retrieved. Fixture statistics-only mantiene tabella carte e sostituisce drilldown con avviso."
+        },
+        {
+          "id": "R3-DRAFT-EVENTS-NOT-GATED",
+          "decision": "confirmed_fixed",
+          "evidence": "Disponibilita verificata per ogni evento/prodotto; selector contiene solo eventi pronti. Fixture alternate-event con prodotto null mostra motivo e permette il normale Draft."
+        },
+        {
+          "id": "R3-ATLAS-TEMPLATES-FRA-CONTENT",
+          "decision": "confirmed_fixed",
+          "evidence": "Testi fattuali, date, esempi di importazione, spiegazioni meccaniche, preset ed etichette spostati nei JSON. Gruppi extra derivati dalle carte; calcolatore netMana dichiarato nella combo e validato, senza ID loot nel renderer."
+        },
+        {
+          "id": "R3-PICKDECISIONS-COUPLED-TO-FRAGMENT",
+          "decision": "confirmed_fixed",
+          "evidence": "pickDecisions inserito direttamente nel template; rimosso segnaposto annidato dal frammento FRA. Fixture senza draft.report-N mostra tutti i casi e nessun anchor report morto."
+        },
+        {
+          "id": "R3-DISCOVERY-HARDCODED-ENUMS",
+          "decision": "confirmed_fixed",
+          "evidence": "Formati derivati dalle carte. Livelli derivati o ordinati con ui.discoveryLevels, copertura validata; classi badge con fallback. Fixture Standard e livello Verificata funzionanti."
+        },
+        {
+          "id": "R3-MISSING-TOKENS-SILENT",
+          "decision": "confirmed_fixed",
+          "evidence": "Fonti e frammenti obbligatori mancanti generano errori di build con documento e chiave, senza anchor fittizi o paragrafi nei titoli. Frammenti opzionali e report assenti omessi esplicitamente. Contratto documentato nel README; disponibilita guide legata ai contenuti effettivi."
+        },
+        {
+          "id": "R3-UNAVAILABLE-FORMATS-MISSING-IGNORED",
+          "decision": "confirmed_fixed",
+          "evidence": "Motivi unavailableFormats mostrati sotto il selettore e associati tramite aria-describedby, inclusi eventi incompleti della stessa espansione."
+        },
+        {
+          "id": "R3-COLLATION-TABLE-OMITS-OPS",
+          "decision": "confirmed_fixed",
+          "evidence": "Tabella generata dalla ricetta con operazione, quantita, chance/target di sostituzione ed esclusioni. Pesi dei rami etichettati come condizionati. Browser verifica 1,8182% per guest."
+        },
+        {
+          "id": "R3-PICKTWO-SOURCE",
+          "decision": "confirmed_fixed",
+          "evidence": "Fonte corretta e verificata sulla pagina ufficiale https://magic.wizards.com/en/formats/pick-two-draft, che descrive due carte per passaggio e tavolo a quattro."
+        },
+        {
+          "id": "R3-GUIDE-FACE-NAME-KEYERROR",
+          "decision": "confirmed_fixed",
+          "evidence": "Lookup del renderer esteso ai nomi delle facce; test con faccia posteriore valido senza KeyError."
+        }
+      ]
+    },
+    {
+      "round": 4,
+      "model": "claude-sonnet-5-5",
+      "findings": [
+        {
+          "id": "R4-ATLAS-FRA-EDITORIAL-IN-TEMPLATES",
+          "decision": "confirmed_fixed",
+          "evidence": "Tutti i riferimenti e paragrafi FRA residui spostati nei frammenti opzionali della sua espansione. Nessun source:hash nei template Atlas. sources.groups supporta fonti proprie senza chiavi FRA. Titoli indice da ui.reportLabels; titolo set con fallback al nome. Prove con Atlas senza frammenti/fonti e con anteprima Star Trek completata in ambiente temporaneo."
+        },
+        {
+          "id": "R4-PREVIEW-RULES-HARDCODED",
+          "decision": "confirmed_fixed",
+          "evidence": "Istruzioni preview aggiornate da limited.json per la modalita selezionata: minimo carte, limite copie, terre aggiuntive e mano iniziale. Fixture maxCopies1/no basi controlla sia testo sia comportamento."
+        },
+        {
+          "id": "R4-DRAFT-SAVE-OVERWRITE",
+          "decision": "confirmed_fixed",
+          "evidence": "Prima di sovrascrivere una sessione incompatibile viene salvata e riletta una copia integrale in una chiave separata. Il nuovo record mantiene previousSaveKey. Link di recupero disponibile nel messaggio anche dopo reload. Browser controlla contenuto esatto backup, ripresa nuova sessione e mancata sovrascrittura quando il backup fallisce."
+        },
+        {
+          "id": "R4-GUIDE-AVAILABILITY-FRA-FRAGMENT-KEYS",
+          "decision": "confirmed_fixed",
+          "evidence": "Guida Draft disponibile da contenuti strutturati o dal report: nessun avviso falso senza draft.report-3. Per Sealed il requisito del contenuto in guides.fragments.gallery.strategy e esplicito nel messaggio e nel README. Se assente la sezione rimane raggiungibile con avviso."
+        },
+        {
+          "id": "R4-COLLATION-FEASIBILITY-UNCHECKED",
+          "decision": "confirmed_fixed",
+          "evidence": "Validazione minima della cardinalita residua dei target replace, anche dopo sostituzioni precedenti, e dei gruppi unique. Test negativi su count di replace oltre target e gruppo ridotto sotto count."
+        }
+      ]
+    },
+    {
+      "round": 5,
+      "model": "claude-sonnet-5-5",
+      "findings": [
+        {
+          "id": "R5-PREVIEW-DISCOVERY-ST-FACTS",
+          "decision": "confirmed_fixed",
+          "evidence": "Fatti su TRK/SDS/TRC e stato anteprima spostati nel documento guide Star Trek. Template preview generici, frammenti editoriali opzionali ed esempio ricerca in ui.searchExample. Fixture Generic Preview non pubblica la frase di legalita Star Trek."
+        },
+        {
+          "id": "R5-PREVIEW-JS-HARDCODED",
+          "decision": "confirmed_fixed",
+          "evidence": "Banner e conteggi derivati da cards.complete; legalita mostra DATA.date. Descrizione stampe parla del prodotto selezionato senza assumere Play Booster. Prova catalogo completo e data snapshot differente."
+        },
+        {
+          "id": "R5-CARD-CONTRACT-UNVALIDATED",
+          "decision": "confirmed_fixed",
+          "evidence": "Contratti cards e printings con schemi JSON e messaggi per documento/id/campo. Normalizzazione full, faces, flag dal tipo, keyword, stampe e legalita; alias cost/mana, mv/cmc e oracle/text coerenti. Preview non genera la vista statistica Draft inutilizzata. Test campi opzionali, URL facoltativo stampe e numero essenziale mancante."
+        },
+        {
+          "id": "R5-EXCLUDE-FEASIBILITY-UNCHECKED",
+          "decision": "confirmed_fixed",
+          "evidence": "Vincoli statici esatti di count/target e verifica di percorsi effettivi tramite collation_validation.py: 128 estrazioni deterministiche, rami con peso positivo forzati, casi combinati degli slot exclude e sostituzioni attive/inattive. Una verifica incrociata esegue gli stessi quattro profili nel motore JavaScript per 512 buste ciascuno. Rifiutati gruppi esauriti; accettate esclusioni correlate e coppie valide. Non e una prova esaustiva di tutte le sequenze."
+        },
+        {
+          "id": "R5-LOCALNAV-DEAD-ANCHORS",
+          "decision": "confirmed_fixed",
+          "evidence": "Indici locali derivati dagli id effettivi del contenuto; sentiment omesso se indisponibile. Fixture clean-atlas verifica Analisi e Combo senza metodo; fixture no-sentiment verifica assenza del link nascosto."
+        },
+        {
+          "id": "R5-HOME-SHELL-HARDCODED",
+          "decision": "confirmed_fixed",
+          "evidence": "Sidebar e percorsi della home derivati dal registro. Scoperto e corretto anche il contenuto principale home-template: nomi, date, hero e accessi rapidi dai manifest con home.featured/quickTools. Test con set rinominato, route Draft differente e terzo set senza percorsi FRA residui."
+        }
+      ]
+    },
+    {
+      "round": 6,
+      "status": "not_run_rate_limited",
+      "model": null,
+      "findings": null,
+      "provider_message": "You've hit your session limit · resets 10pm (Europe/Rome)",
+      "note": "Nessuna review eseguita sull’ultima versione. Non equivale a zero segnalazioni."
+    }
+  ],
+  "independent_findings": [
+    {
+      "id": "SELF-NO-DRAFT",
+      "decision": "confirmed_fixed",
+      "evidence": "Rimuovere events.draft provocava KeyError. Ora la capability del tavolo Draft risulta non disponibile."
+    },
+    {
+      "id": "SELF-MISSING-PICK-GUIDE",
+      "decision": "confirmed_fixed",
+      "evidence": "Il controller si registrava su controlli assenti. Il collegamento dei controlli è ora condizionale; i comandi dei casi di scelta restano indipendenti."
+    },
+    {
+      "id": "SELF-UNAVAILABLE-SHELL",
+      "decision": "confirmed_fixed",
+      "evidence": "Disabilitare catalog, analysis o combos provocava ValueError o TypeError negli adattatori Atlas. Le pagine di indisponibilità ora usano una cornice minima."
+    },
+    {
+      "id": "SELF-ROUTE-SUBSTRINGS",
+      "decision": "confirmed_fixed",
+      "evidence": "La sostituzione globale rinominava due volte i link test-Reality-Fracture. Le sostituzioni ora riguardano URL letterali completi."
+    },
+    {
+      "id": "SELF-GUIDE-DEFAULT-TEMPLATES",
+      "decision": "confirmed_fixed",
+      "evidence": "Dati strutturati senza guides.templates avevano capability disponibile ma solo un avviso senza sezione. I quattro renderer usano ora template condivisi predefiniti."
+    },
+    {
+      "id": "SELF-STRUCTURED-GUIDES-FRAGMENTS",
+      "decision": "confirmed_fixed",
+      "evidence": "La fixture clean-atlas ha riprodotto pickGuide, pickBaits e draftCombos assenti senza frammenti intermedi. Inseriti direttamente nel template, come pickDecisions."
+    },
+    {
+      "id": "SELF-CONSERVATIVE-EXCLUSION-BOUNDS",
+      "decision": "confirmed_fixed",
+      "evidence": "Limiti massimi prudenziali avrebbero rifiutato ricette valide con esclusioni correlate e pair unique. Sostituiti i limiti non necessari con esecuzioni deterministiche effettive, verificate anche nel motore JavaScript."
+    }
+  ],
+  "verification": {
+    "build": "2 espansioni, 20 pagine HTML, collegamenti locali verificati",
+    "unit": "30 test superati",
+    "json_fixtures": "18 scenari isolati nel browser superati dopo le ultime correzioni",
+    "historical_collation": "3000 buste identiche al motore storico anche dopo normalizzazione del contratto carte",
+    "draft_engine": "30000 buste, 336 carte conservate, replay identico, 9 strategie",
+    "site": "24 controlli responsive, anteprime mouse/tastiera/tocco, pool e navigazione",
+    "ux": "95 controlli responsive su 19 pagine, Draft completo e ripresa, movimento ridotto e contenuti statici",
+    "star_trek": "30 controlli responsive e flussi interattivi; 10 regressioni su concorrenza, focus, modalita e persistenza",
+    "incompatible_saves": "Draft e Sealed preservano record incompatibili senza sovrascriverli",
+    "diff_check": "superato dopo le ultime modifiche",
+    "drilldown": "snapshot originale, dieci archetipi, filtri, periodi, confronti, dettagli, paginazione, desktop e mobile verificati",
+    "draft_save_recovery": "backup esatto, recupero dopo reload e protezione quando backup fallisce verificati",
+    "json_schema": "Schemi JSON presenti; la validazione operativa Python e coperta da 30 test. Libreria JSON Schema separata non installata.",
+    "collation_contract": "Python e JavaScript concordano su 4 profili, inclusi due validi che i limiti prudenziali avrebbero rifiutato",
+    "ui_latest": "24 verifiche navigazione, 95 responsive su 19 pagine, 30 responsive Star Trek, regressioni salvataggi e concorrenza superate"
+  },
+  "status": "local_fixes_verified_final_sonnet_review_deferred_by_user",
+  "latest_completed_review": 5,
+  "known_confirmed_findings_remaining": [],
+  "requires_followup_review": true,
+  "provider_reset_local": "2026-10-22T22:00:00+02:00",
+  "followup_preference": "Giovanni: andiamo avanti, poi faremo un controllo dopo. Nessuna ripresa automatica programmata.",
+  "next_review_command": "python review-expansions-sonnet.py 6"
+}

@@ -1,0 +1,1597 @@
+{
+  "$schema": "../../schemas/products.schema.json",
+  "schemaVersion": 1,
+  "products": {
+    "play": {
+      "name": "Play Booster",
+      "packSize": 14,
+      "tokensIncluded": false,
+      "collation": {
+        "schemaVersion": 1,
+        "verified": "2026-10-21",
+        "source": "https://magic.wizards.com/en/news/feature/collecting-reality-fracture",
+        "groups": {
+          "common": [
+            "fra-2",
+            "fra-166",
+            "fra-48",
+            "fra-97",
+            "fra-73",
+            "fra-74",
+            "fra-98",
+            "fra-75",
+            "fra-123",
+            "fra-3",
+            "fra-99",
+            "fra-4",
+            "fra-51",
+            "fra-76",
+            "fra-125",
+            "fra-101",
+            "fra-27",
+            "fra-29",
+            "fra-81",
+            "fra-130",
+            "fra-54",
+            "fra-133",
+            "fra-6",
+            "fra-134",
+            "fra-10",
+            "fra-104",
+            "fra-85",
+            "fra-86",
+            "fra-12",
+            "fra-30",
+            "fra-31",
+            "fra-109",
+            "fra-171",
+            "fra-139",
+            "fra-56",
+            "fra-172",
+            "fra-173",
+            "fra-15",
+            "fra-33",
+            "fra-174",
+            "fra-89",
+            "fra-16",
+            "fra-37",
+            "fra-60",
+            "fra-61",
+            "fra-188",
+            "fra-65",
+            "fra-39",
+            "fra-21",
+            "fra-66",
+            "fra-92",
+            "fra-67",
+            "fra-114",
+            "fra-41",
+            "fra-115",
+            "fra-22",
+            "fra-42",
+            "fra-153",
+            "fra-117",
+            "fra-94",
+            "fra-69",
+            "fra-156",
+            "fra-157",
+            "fra-45",
+            "fra-23",
+            "fra-46",
+            "fra-119",
+            "fra-70",
+            "fra-164",
+            "fra-96",
+            "fra-120"
+          ],
+          "guests": [
+            "spg-159",
+            "spg-160",
+            "spg-161",
+            "spg-162",
+            "spg-163",
+            "spg-164",
+            "spg-165",
+            "spg-166",
+            "spg-167",
+            "spg-168"
+          ],
+          "uncommon-0": [
+            "fra-167",
+            "fra-124",
+            "fra-50",
+            "fra-126",
+            "fra-77",
+            "fra-25",
+            "fra-127",
+            "fra-129",
+            "fra-82",
+            "fra-170",
+            "fra-132",
+            "fra-102",
+            "fra-84",
+            "fra-8",
+            "fra-136",
+            "fra-105",
+            "fra-181",
+            "fra-108",
+            "fra-138",
+            "fra-141",
+            "fra-58",
+            "fra-143",
+            "fra-34",
+            "fra-35",
+            "fra-36",
+            "fra-144",
+            "fra-17",
+            "fra-146",
+            "fra-147",
+            "fra-18",
+            "fra-112",
+            "fra-62",
+            "fra-150",
+            "fra-151",
+            "fra-68",
+            "fra-155",
+            "fra-158",
+            "fra-160",
+            "fra-161",
+            "fra-95",
+            "fra-163",
+            "fra-165",
+            "fra-24"
+          ],
+          "uncommon-1": [
+            "fra-369",
+            "fra-372",
+            "fra-362",
+            "fra-361",
+            "fra-366"
+          ],
+          "wildcard-0": [
+            "fra-2",
+            "fra-166",
+            "fra-48",
+            "fra-97",
+            "fra-73",
+            "fra-74",
+            "fra-98",
+            "fra-75",
+            "fra-123",
+            "fra-3",
+            "fra-99",
+            "fra-4",
+            "fra-51",
+            "fra-76",
+            "fra-125",
+            "fra-101",
+            "fra-27",
+            "fra-29",
+            "fra-81",
+            "fra-130",
+            "fra-54",
+            "fra-133",
+            "fra-6",
+            "fra-134",
+            "fra-10",
+            "fra-104",
+            "fra-85",
+            "fra-86",
+            "fra-12",
+            "fra-30",
+            "fra-31",
+            "fra-109",
+            "fra-171",
+            "fra-139",
+            "fra-56",
+            "fra-172",
+            "fra-173",
+            "fra-15",
+            "fra-33",
+            "fra-174",
+            "fra-89",
+            "fra-16",
+            "fra-37",
+            "fra-60",
+            "fra-61",
+            "fra-188",
+            "fra-65",
+            "fra-39",
+            "fra-21",
+            "fra-66",
+            "fra-92",
+            "fra-67",
+            "fra-114",
+            "fra-41",
+            "fra-115",
+            "fra-22",
+            "fra-42",
+            "fra-153",
+            "fra-117",
+            "fra-94",
+            "fra-69",
+            "fra-156",
+            "fra-157",
+            "fra-45",
+            "fra-23",
+            "fra-46",
+            "fra-119",
+            "fra-70",
+            "fra-164",
+            "fra-96",
+            "fra-120"
+          ],
+          "wildcard-1": [
+            "fra-167",
+            "fra-124",
+            "fra-50",
+            "fra-126",
+            "fra-77",
+            "fra-25",
+            "fra-127",
+            "fra-129",
+            "fra-82",
+            "fra-170",
+            "fra-132",
+            "fra-102",
+            "fra-84",
+            "fra-8",
+            "fra-136",
+            "fra-105",
+            "fra-181",
+            "fra-108",
+            "fra-138",
+            "fra-141",
+            "fra-58",
+            "fra-143",
+            "fra-34",
+            "fra-35",
+            "fra-36",
+            "fra-144",
+            "fra-17",
+            "fra-146",
+            "fra-147",
+            "fra-18",
+            "fra-112",
+            "fra-62",
+            "fra-150",
+            "fra-151",
+            "fra-68",
+            "fra-155",
+            "fra-158",
+            "fra-160",
+            "fra-161",
+            "fra-95",
+            "fra-163",
+            "fra-165",
+            "fra-24"
+          ],
+          "wildcard-2": [
+            "fra-369",
+            "fra-372",
+            "fra-362",
+            "fra-361",
+            "fra-366"
+          ],
+          "echoed-0": [
+            "fra-211",
+            "fra-243",
+            "fra-227",
+            "fra-196",
+            "fra-270",
+            "fra-257",
+            "fra-213",
+            "fra-258",
+            "fra-245",
+            "fra-228",
+            "fra-214",
+            "fra-197",
+            "fra-260",
+            "fra-271",
+            "fra-215",
+            "fra-246",
+            "fra-261",
+            "fra-247",
+            "fra-273",
+            "fra-199",
+            "fra-248",
+            "fra-232",
+            "fra-262",
+            "fra-233",
+            "fra-274",
+            "fra-249",
+            "fra-263",
+            "fra-234",
+            "fra-264",
+            "fra-250",
+            "fra-218",
+            "fra-235",
+            "fra-202",
+            "fra-219",
+            "fra-265",
+            "fra-203",
+            "fra-275",
+            "fra-221",
+            "fra-252",
+            "fra-236",
+            "fra-204",
+            "fra-205",
+            "fra-237",
+            "fra-266",
+            "fra-253",
+            "fra-206",
+            "fra-222",
+            "fra-280",
+            "fra-223",
+            "fra-238",
+            "fra-207",
+            "fra-208",
+            "fra-224",
+            "fra-239",
+            "fra-267",
+            "fra-254",
+            "fra-255",
+            "fra-268",
+            "fra-256",
+            "fra-240",
+            "fra-241",
+            "fra-225",
+            "fra-209",
+            "fra-269",
+            "fra-210",
+            "fra-226"
+          ],
+          "echoed-1": [
+            "fra-198",
+            "fra-230",
+            "fra-216",
+            "fra-279",
+            "fra-272",
+            "fra-200",
+            "fra-231",
+            "fra-201",
+            "fra-217",
+            "fra-251",
+            "fra-220",
+            "fra-276",
+            "fra-277",
+            "fra-278"
+          ],
+          "echoed-2": [
+            "fra-195",
+            "fra-242",
+            "fra-212",
+            "fra-244",
+            "fra-259",
+            "fra-229"
+          ],
+          "echoed-3": [
+            "fra-298",
+            "fra-313",
+            "fra-299",
+            "fra-310",
+            "fra-315",
+            "fra-306",
+            "fra-295",
+            "fra-296",
+            "fra-312",
+            "fra-307"
+          ],
+          "echoed-4": [
+            "fra-292",
+            "fra-304",
+            "fra-300",
+            "fra-320",
+            "fra-316",
+            "fra-293",
+            "fra-305",
+            "fra-294",
+            "fra-301",
+            "fra-311",
+            "fra-302",
+            "fra-317",
+            "fra-318",
+            "fra-319"
+          ],
+          "echoed-5": [
+            "fra-291",
+            "fra-308",
+            "fra-297",
+            "fra-309",
+            "fra-314",
+            "fra-303"
+          ],
+          "rare-0": [
+            "fra-72",
+            "fra-100",
+            "fra-168",
+            "fra-26",
+            "fra-79",
+            "fra-52",
+            "fra-176",
+            "fra-28",
+            "fra-80",
+            "fra-131",
+            "fra-55",
+            "fra-83",
+            "fra-7",
+            "fra-135",
+            "fra-103",
+            "fra-9",
+            "fra-11",
+            "fra-179",
+            "fra-180",
+            "fra-107",
+            "fra-87",
+            "fra-32",
+            "fra-13",
+            "fra-57",
+            "fra-14",
+            "fra-88",
+            "fra-142",
+            "fra-185",
+            "fra-90",
+            "fra-145",
+            "fra-111",
+            "fra-91",
+            "fra-19",
+            "fra-63",
+            "fra-186",
+            "fra-187",
+            "fra-64",
+            "fra-189",
+            "fra-113",
+            "fra-148",
+            "fra-149",
+            "fra-40",
+            "fra-152",
+            "fra-154",
+            "fra-44",
+            "fra-191",
+            "fra-47",
+            "fra-118",
+            "fra-162",
+            "fra-71"
+          ],
+          "rare-1": [
+            "fra-121",
+            "fra-122",
+            "fra-49",
+            "fra-78",
+            "fra-53",
+            "fra-128",
+            "fra-1",
+            "fra-5",
+            "fra-106",
+            "fra-137",
+            "fra-140",
+            "fra-110",
+            "fra-59",
+            "fra-20",
+            "fra-38",
+            "fra-93",
+            "fra-116",
+            "fra-169",
+            "fra-43",
+            "fra-159"
+          ],
+          "rare-2": [
+            "fra-328",
+            "fra-333",
+            "fra-322",
+            "fra-326",
+            "fra-332"
+          ],
+          "rare-3": [
+            "fra-327",
+            "fra-325",
+            "fra-321",
+            "fra-330",
+            "fra-331",
+            "fra-323",
+            "fra-324",
+            "fra-329"
+          ],
+          "rare-4": [
+            "fra-336",
+            "fra-340",
+            "fra-350",
+            "fra-345",
+            "fra-334",
+            "fra-346",
+            "fra-337",
+            "fra-344",
+            "fra-353",
+            "fra-354",
+            "fra-335",
+            "fra-342",
+            "fra-355",
+            "fra-338",
+            "fra-356",
+            "fra-357",
+            "fra-339",
+            "fra-343"
+          ],
+          "rare-5": [
+            "fra-347",
+            "fra-348",
+            "fra-349",
+            "fra-351",
+            "fra-352",
+            "fra-341",
+            "fra-358"
+          ],
+          "rare-6": [
+            "fra-367",
+            "fra-368",
+            "fra-364",
+            "fra-370",
+            "fra-359",
+            "fra-360",
+            "fra-379",
+            "fra-371",
+            "fra-365",
+            "fra-373",
+            "fra-380",
+            "fra-376",
+            "fra-381",
+            "fra-375",
+            "fra-377"
+          ],
+          "rare-7": [
+            "fra-374",
+            "fra-378",
+            "fra-363"
+          ],
+          "rare-8": [
+            "fra-397",
+            "fra-398",
+            "fra-399",
+            "fra-400",
+            "fra-401"
+          ],
+          "foil-0": [
+            "fra-2",
+            "fra-166",
+            "fra-48",
+            "fra-97",
+            "fra-73",
+            "fra-74",
+            "fra-98",
+            "fra-75",
+            "fra-123",
+            "fra-3",
+            "fra-99",
+            "fra-4",
+            "fra-51",
+            "fra-76",
+            "fra-125",
+            "fra-101",
+            "fra-27",
+            "fra-29",
+            "fra-81",
+            "fra-130",
+            "fra-54",
+            "fra-133",
+            "fra-6",
+            "fra-134",
+            "fra-10",
+            "fra-104",
+            "fra-85",
+            "fra-86",
+            "fra-12",
+            "fra-30",
+            "fra-31",
+            "fra-109",
+            "fra-171",
+            "fra-139",
+            "fra-56",
+            "fra-172",
+            "fra-173",
+            "fra-15",
+            "fra-33",
+            "fra-174",
+            "fra-89",
+            "fra-16",
+            "fra-37",
+            "fra-60",
+            "fra-61",
+            "fra-188",
+            "fra-65",
+            "fra-39",
+            "fra-21",
+            "fra-66",
+            "fra-92",
+            "fra-67",
+            "fra-114",
+            "fra-41",
+            "fra-115",
+            "fra-22",
+            "fra-42",
+            "fra-153",
+            "fra-117",
+            "fra-94",
+            "fra-69",
+            "fra-156",
+            "fra-157",
+            "fra-45",
+            "fra-23",
+            "fra-46",
+            "fra-119",
+            "fra-70",
+            "fra-164",
+            "fra-96",
+            "fra-120"
+          ],
+          "foil-1": [
+            "fra-167",
+            "fra-211",
+            "fra-243",
+            "fra-124",
+            "fra-50",
+            "fra-126",
+            "fra-77",
+            "fra-25",
+            "fra-127",
+            "fra-227",
+            "fra-196",
+            "fra-129",
+            "fra-270",
+            "fra-257",
+            "fra-82",
+            "fra-170",
+            "fra-132",
+            "fra-213",
+            "fra-258",
+            "fra-102",
+            "fra-84",
+            "fra-245",
+            "fra-228",
+            "fra-214",
+            "fra-8",
+            "fra-197",
+            "fra-260",
+            "fra-136",
+            "fra-271",
+            "fra-215",
+            "fra-105",
+            "fra-181",
+            "fra-108",
+            "fra-246",
+            "fra-261",
+            "fra-247",
+            "fra-273",
+            "fra-138",
+            "fra-199",
+            "fra-248",
+            "fra-232",
+            "fra-262",
+            "fra-233",
+            "fra-274",
+            "fra-249",
+            "fra-263",
+            "fra-234",
+            "fra-141",
+            "fra-58",
+            "fra-143",
+            "fra-34",
+            "fra-264",
+            "fra-250",
+            "fra-35",
+            "fra-36",
+            "fra-144",
+            "fra-218",
+            "fra-235",
+            "fra-17",
+            "fra-146",
+            "fra-147",
+            "fra-18",
+            "fra-202",
+            "fra-112",
+            "fra-62",
+            "fra-219",
+            "fra-265",
+            "fra-203",
+            "fra-275",
+            "fra-150",
+            "fra-151",
+            "fra-68",
+            "fra-221",
+            "fra-252",
+            "fra-236",
+            "fra-204",
+            "fra-205",
+            "fra-155",
+            "fra-237",
+            "fra-266",
+            "fra-253",
+            "fra-206",
+            "fra-222",
+            "fra-280",
+            "fra-158",
+            "fra-160",
+            "fra-161",
+            "fra-95",
+            "fra-163",
+            "fra-223",
+            "fra-238",
+            "fra-207",
+            "fra-208",
+            "fra-224",
+            "fra-239",
+            "fra-267",
+            "fra-254",
+            "fra-255",
+            "fra-268",
+            "fra-256",
+            "fra-240",
+            "fra-165",
+            "fra-241",
+            "fra-225",
+            "fra-209",
+            "fra-269",
+            "fra-24",
+            "fra-210",
+            "fra-226"
+          ],
+          "foil-2": [
+            "fra-72",
+            "fra-100",
+            "fra-168",
+            "fra-26",
+            "fra-79",
+            "fra-52",
+            "fra-176",
+            "fra-28",
+            "fra-80",
+            "fra-131",
+            "fra-55",
+            "fra-83",
+            "fra-7",
+            "fra-135",
+            "fra-103",
+            "fra-9",
+            "fra-198",
+            "fra-230",
+            "fra-11",
+            "fra-179",
+            "fra-180",
+            "fra-107",
+            "fra-87",
+            "fra-216",
+            "fra-32",
+            "fra-279",
+            "fra-272",
+            "fra-13",
+            "fra-57",
+            "fra-200",
+            "fra-231",
+            "fra-14",
+            "fra-201",
+            "fra-217",
+            "fra-88",
+            "fra-142",
+            "fra-185",
+            "fra-90",
+            "fra-145",
+            "fra-111",
+            "fra-91",
+            "fra-19",
+            "fra-63",
+            "fra-186",
+            "fra-187",
+            "fra-251",
+            "fra-220",
+            "fra-64",
+            "fra-189",
+            "fra-113",
+            "fra-148",
+            "fra-149",
+            "fra-40",
+            "fra-152",
+            "fra-276",
+            "fra-154",
+            "fra-44",
+            "fra-191",
+            "fra-47",
+            "fra-118",
+            "fra-162",
+            "fra-71",
+            "fra-277",
+            "fra-278"
+          ],
+          "foil-3": [
+            "fra-121",
+            "fra-195",
+            "fra-242",
+            "fra-122",
+            "fra-49",
+            "fra-212",
+            "fra-244",
+            "fra-78",
+            "fra-53",
+            "fra-128",
+            "fra-1",
+            "fra-5",
+            "fra-259",
+            "fra-229",
+            "fra-106",
+            "fra-137",
+            "fra-140",
+            "fra-110",
+            "fra-59",
+            "fra-20",
+            "fra-38",
+            "fra-93",
+            "fra-116",
+            "fra-169",
+            "fra-43",
+            "fra-159"
+          ],
+          "foil-4": [
+            "fra-298",
+            "fra-313",
+            "fra-299",
+            "fra-310",
+            "fra-315",
+            "fra-306",
+            "fra-295",
+            "fra-296",
+            "fra-312",
+            "fra-307"
+          ],
+          "foil-5": [
+            "fra-292",
+            "fra-304",
+            "fra-300",
+            "fra-320",
+            "fra-316",
+            "fra-293",
+            "fra-305",
+            "fra-294",
+            "fra-301",
+            "fra-311",
+            "fra-302",
+            "fra-317",
+            "fra-318",
+            "fra-319"
+          ],
+          "foil-6": [
+            "fra-291",
+            "fra-308",
+            "fra-297",
+            "fra-309",
+            "fra-314",
+            "fra-303"
+          ],
+          "foil-7": [
+            "fra-369",
+            "fra-372",
+            "fra-362",
+            "fra-361",
+            "fra-366"
+          ],
+          "foil-8": [
+            "fra-367",
+            "fra-368",
+            "fra-364",
+            "fra-370",
+            "fra-359",
+            "fra-360",
+            "fra-379",
+            "fra-371",
+            "fra-365",
+            "fra-373",
+            "fra-380",
+            "fra-376",
+            "fra-381",
+            "fra-375",
+            "fra-377"
+          ],
+          "foil-9": [
+            "fra-374",
+            "fra-378",
+            "fra-363"
+          ],
+          "foil-10": [
+            "fra-336",
+            "fra-340",
+            "fra-350",
+            "fra-345",
+            "fra-334",
+            "fra-346",
+            "fra-337",
+            "fra-344",
+            "fra-353",
+            "fra-354",
+            "fra-335",
+            "fra-342",
+            "fra-355",
+            "fra-338",
+            "fra-356",
+            "fra-357",
+            "fra-339",
+            "fra-343"
+          ],
+          "foil-11": [
+            "fra-347",
+            "fra-348",
+            "fra-349",
+            "fra-351",
+            "fra-352",
+            "fra-341",
+            "fra-358"
+          ],
+          "foil-12": [
+            "fra-397",
+            "fra-398",
+            "fra-399",
+            "fra-400",
+            "fra-401"
+          ],
+          "land-0": [
+            "fra-289",
+            "fra-290",
+            "fra-283",
+            "fra-284",
+            "fra-287",
+            "fra-288",
+            "fra-281",
+            "fra-282",
+            "fra-285",
+            "fra-286"
+          ],
+          "land-1": [
+            "fra-289",
+            "fra-290",
+            "fra-283",
+            "fra-284",
+            "fra-287",
+            "fra-288",
+            "fra-281",
+            "fra-282",
+            "fra-285",
+            "fra-286"
+          ],
+          "land-2": [
+            "fra-394",
+            "fra-395",
+            "fra-396",
+            "fra-385",
+            "fra-386",
+            "fra-387",
+            "fra-391",
+            "fra-392",
+            "fra-393",
+            "fra-382",
+            "fra-383",
+            "fra-384",
+            "fra-388",
+            "fra-389",
+            "fra-390"
+          ],
+          "land-3": [
+            "fra-394",
+            "fra-395",
+            "fra-396",
+            "fra-385",
+            "fra-386",
+            "fra-387",
+            "fra-391",
+            "fra-392",
+            "fra-393",
+            "fra-382",
+            "fra-383",
+            "fra-384",
+            "fra-388",
+            "fra-389",
+            "fra-390"
+          ],
+          "land-4": [
+            "fra-175",
+            "fra-177",
+            "fra-178",
+            "fra-182",
+            "fra-183",
+            "fra-184",
+            "fra-190",
+            "fra-192",
+            "fra-193",
+            "fra-194"
+          ],
+          "land-5": [
+            "fra-175",
+            "fra-177",
+            "fra-178",
+            "fra-182",
+            "fra-183",
+            "fra-184",
+            "fra-190",
+            "fra-192",
+            "fra-193",
+            "fra-194"
+          ]
+        },
+        "partners": [
+          [
+            "fra-195",
+            "fra-242"
+          ],
+          [
+            "fra-196",
+            "fra-227"
+          ],
+          [
+            "fra-197",
+            "fra-260"
+          ],
+          [
+            "fra-198",
+            "fra-230"
+          ],
+          [
+            "fra-199",
+            "fra-248"
+          ],
+          [
+            "fra-200",
+            "fra-231"
+          ],
+          [
+            "fra-201",
+            "fra-217"
+          ],
+          [
+            "fra-202",
+            "fra-234"
+          ],
+          [
+            "fra-203",
+            "fra-275"
+          ],
+          [
+            "fra-204",
+            "fra-236"
+          ],
+          [
+            "fra-205",
+            "fra-214"
+          ],
+          [
+            "fra-206",
+            "fra-253"
+          ],
+          [
+            "fra-207",
+            "fra-239"
+          ],
+          [
+            "fra-208",
+            "fra-255"
+          ],
+          [
+            "fra-209",
+            "fra-269"
+          ],
+          [
+            "fra-210",
+            "fra-226"
+          ],
+          [
+            "fra-211",
+            "fra-243"
+          ],
+          [
+            "fra-212",
+            "fra-244"
+          ],
+          [
+            "fra-213",
+            "fra-258"
+          ],
+          [
+            "fra-215",
+            "fra-271"
+          ],
+          [
+            "fra-216",
+            "fra-276"
+          ],
+          [
+            "fra-218",
+            "fra-235"
+          ],
+          [
+            "fra-219",
+            "fra-265"
+          ],
+          [
+            "fra-220",
+            "fra-251"
+          ],
+          [
+            "fra-221",
+            "fra-252"
+          ],
+          [
+            "fra-222",
+            "fra-280"
+          ],
+          [
+            "fra-223",
+            "fra-254"
+          ],
+          [
+            "fra-224",
+            "fra-267"
+          ],
+          [
+            "fra-225",
+            "fra-241"
+          ],
+          [
+            "fra-228",
+            "fra-245"
+          ],
+          [
+            "fra-229",
+            "fra-259"
+          ],
+          [
+            "fra-232",
+            "fra-262"
+          ],
+          [
+            "fra-233",
+            "fra-274"
+          ],
+          [
+            "fra-237",
+            "fra-266"
+          ],
+          [
+            "fra-238",
+            "fra-268"
+          ],
+          [
+            "fra-240",
+            "fra-256"
+          ],
+          [
+            "fra-246",
+            "fra-261"
+          ],
+          [
+            "fra-247",
+            "fra-273"
+          ],
+          [
+            "fra-249",
+            "fra-263"
+          ],
+          [
+            "fra-250",
+            "fra-264"
+          ],
+          [
+            "fra-257",
+            "fra-270"
+          ],
+          [
+            "fra-272",
+            "fra-279"
+          ],
+          [
+            "fra-277",
+            "fra-278"
+          ],
+          [
+            "fra-291",
+            "fra-308"
+          ],
+          [
+            "fra-292",
+            "fra-304"
+          ],
+          [
+            "fra-293",
+            "fra-305"
+          ],
+          [
+            "fra-294",
+            "fra-301"
+          ],
+          [
+            "fra-295",
+            "fra-306"
+          ],
+          [
+            "fra-296",
+            "fra-299"
+          ],
+          [
+            "fra-297",
+            "fra-309"
+          ],
+          [
+            "fra-298",
+            "fra-313"
+          ],
+          [
+            "fra-300",
+            "fra-317"
+          ],
+          [
+            "fra-302",
+            "fra-311"
+          ],
+          [
+            "fra-303",
+            "fra-314"
+          ],
+          [
+            "fra-307",
+            "fra-312"
+          ],
+          [
+            "fra-310",
+            "fra-315"
+          ],
+          [
+            "fra-316",
+            "fra-320"
+          ],
+          [
+            "fra-318",
+            "fra-319"
+          ]
+        ],
+        "recipe": [
+          {
+            "op": "draw",
+            "id": "common",
+            "count": 6,
+            "unique": true,
+            "branches": [
+              {
+                "weight": 1,
+                "group": "common"
+              }
+            ]
+          },
+          {
+            "op": "replace",
+            "id": "guest",
+            "target": "common",
+            "chance": 0.01818181818181818,
+            "branches": [
+              {
+                "weight": 1,
+                "group": "guests"
+              }
+            ]
+          },
+          {
+            "op": "draw",
+            "id": "uncommon",
+            "branches": [
+              {
+                "weight": 0.962,
+                "group": "uncommon-0",
+                "foil": false
+              },
+              {
+                "weight": 0.038,
+                "group": "uncommon-1",
+                "foil": false
+              }
+            ]
+          },
+          {
+            "op": "draw",
+            "id": "wildcard",
+            "branches": [
+              {
+                "weight": 0.23,
+                "group": "wildcard-0",
+                "foil": false
+              },
+              {
+                "weight": 0.74,
+                "group": "wildcard-1",
+                "foil": false
+              },
+              {
+                "weight": 0.03,
+                "group": "wildcard-2",
+                "foil": false
+              }
+            ]
+          },
+          {
+            "op": "pair",
+            "id": "pair",
+            "branches": [
+              {
+                "weight": 0.889,
+                "group": "echoed-0",
+                "foil": false
+              },
+              {
+                "weight": 0.067,
+                "group": "echoed-1",
+                "foil": false
+              },
+              {
+                "weight": 0.014,
+                "group": "echoed-2",
+                "foil": false
+              },
+              {
+                "weight": 0.017,
+                "group": "echoed-3",
+                "foil": false
+              },
+              {
+                "weight": 0.0065,
+                "group": "echoed-4",
+                "foil": false
+              },
+              {
+                "weight": 0.0065,
+                "group": "echoed-5",
+                "foil": false
+              }
+            ]
+          },
+          {
+            "op": "draw",
+            "id": "echoed",
+            "branches": [
+              {
+                "weight": 0.889,
+                "group": "echoed-0",
+                "foil": false
+              },
+              {
+                "weight": 0.067,
+                "group": "echoed-1",
+                "foil": false
+              },
+              {
+                "weight": 0.014,
+                "group": "echoed-2",
+                "foil": false
+              },
+              {
+                "weight": 0.017,
+                "group": "echoed-3",
+                "foil": false
+              },
+              {
+                "weight": 0.0065,
+                "group": "echoed-4",
+                "foil": false
+              },
+              {
+                "weight": 0.0065,
+                "group": "echoed-5",
+                "foil": false
+              }
+            ],
+            "exclude": [
+              "pair"
+            ]
+          },
+          {
+            "op": "draw",
+            "id": "rare",
+            "branches": [
+              {
+                "weight": 0.744,
+                "group": "rare-0",
+                "foil": false
+              },
+              {
+                "weight": 0.148,
+                "group": "rare-1",
+                "foil": false
+              },
+              {
+                "weight": 0.01,
+                "group": "rare-2",
+                "foil": false
+              },
+              {
+                "weight": 0.0045,
+                "group": "rare-3",
+                "foil": false
+              },
+              {
+                "weight": 0.038,
+                "group": "rare-4",
+                "foil": false
+              },
+              {
+                "weight": 0.01,
+                "group": "rare-5",
+                "foil": false
+              },
+              {
+                "weight": 0.031,
+                "group": "rare-6",
+                "foil": false
+              },
+              {
+                "weight": 0.0045,
+                "group": "rare-7",
+                "foil": false
+              },
+              {
+                "weight": 0.01,
+                "group": "rare-8",
+                "foil": false
+              }
+            ]
+          },
+          {
+            "op": "draw",
+            "id": "foil",
+            "branches": [
+              {
+                "weight": 0.495,
+                "group": "foil-0",
+                "foil": false
+              },
+              {
+                "weight": 0.405,
+                "group": "foil-1",
+                "foil": false
+              },
+              {
+                "weight": 0.06,
+                "group": "foil-2",
+                "foil": false
+              },
+              {
+                "weight": 0.012,
+                "group": "foil-3",
+                "foil": false
+              },
+              {
+                "weight": 0.0031111111111111114,
+                "group": "foil-4",
+                "foil": false
+              },
+              {
+                "weight": 0.0031111111111111114,
+                "group": "foil-5",
+                "foil": false
+              },
+              {
+                "weight": 0.0031111111111111114,
+                "group": "foil-6",
+                "foil": false
+              },
+              {
+                "weight": 0.0031111111111111114,
+                "group": "foil-7",
+                "foil": false
+              },
+              {
+                "weight": 0.0031111111111111114,
+                "group": "foil-8",
+                "foil": false
+              },
+              {
+                "weight": 0.0031111111111111114,
+                "group": "foil-9",
+                "foil": false
+              },
+              {
+                "weight": 0.0031111111111111114,
+                "group": "foil-10",
+                "foil": false
+              },
+              {
+                "weight": 0.0031111111111111114,
+                "group": "foil-11",
+                "foil": false
+              },
+              {
+                "weight": 0.0031111111111111114,
+                "group": "foil-12",
+                "foil": false
+              }
+            ],
+            "foil": true
+          },
+          {
+            "op": "draw",
+            "id": "land",
+            "branches": [
+              {
+                "weight": 0.146,
+                "group": "land-0",
+                "foil": false
+              },
+              {
+                "weight": 0.036,
+                "group": "land-1",
+                "foil": true
+              },
+              {
+                "weight": 0.218,
+                "group": "land-2",
+                "foil": false
+              },
+              {
+                "weight": 0.055,
+                "group": "land-3",
+                "foil": true
+              },
+              {
+                "weight": 0.436,
+                "group": "land-4",
+                "foil": false
+              },
+              {
+                "weight": 0.109,
+                "group": "land-5",
+                "foil": true
+              }
+            ]
+          }
+        ],
+        "expectedGroupCounts": {
+          "common": 71,
+          "guests": 10,
+          "uncommon-0": 43,
+          "uncommon-1": 5,
+          "wildcard-0": 71,
+          "wildcard-1": 43,
+          "wildcard-2": 5,
+          "echoed-0": 66,
+          "echoed-1": 14,
+          "echoed-2": 6,
+          "echoed-3": 10,
+          "echoed-4": 14,
+          "echoed-5": 6,
+          "rare-0": 50,
+          "rare-1": 20,
+          "rare-2": 5,
+          "rare-3": 8,
+          "rare-4": 18,
+          "rare-5": 7,
+          "rare-6": 15,
+          "rare-7": 3,
+          "rare-8": 5,
+          "foil-0": 71,
+          "foil-1": 109,
+          "foil-2": 64,
+          "foil-3": 26,
+          "foil-4": 10,
+          "foil-5": 14,
+          "foil-6": 6,
+          "foil-7": 5,
+          "foil-8": 15,
+          "foil-9": 3,
+          "foil-10": 18,
+          "foil-11": 7,
+          "foil-12": 5,
+          "land-0": 10,
+          "land-1": 10,
+          "land-2": 15,
+          "land-3": 15,
+          "land-4": 10,
+          "land-5": 10
+        }
+      },
+      "assumptions": [
+        "Equiprobabilità entro ciascun gruppo; comuni iniziali senza ripetizioni.",
+        "Tassi <1%: residuo ripartito in parti uguali fra i rami ammessi. Coppia garantita estratta insieme, stesso trattamento; terza echoed distinta. Correlazioni di stampa non pubblicate.",
+        "Tutte le 14 carte sono draftate, incluse terre base; token escluso. Simulazione di buste indipendenti, non di fogli o box fisici."
+      ]
+    }
+  }
+}
