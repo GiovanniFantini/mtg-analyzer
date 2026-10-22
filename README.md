@@ -31,6 +31,23 @@ Il procedimento è riutilizzabile per tutte le espansioni:
 
 Il confronto Star Trek del 22 ottobre 2026 è un'applicazione di questo flusso: `sources.reviewAnalysis` e `star-trek-reviews-20261022.json` conservano punteggi preliminari, recensioni e correzioni. Quel contenuto è uno snapshot specifico, non una classifica generale né un nuovo contratto obbligatorio per tutte le espansioni.
 
+## Analisi di utilizzo e valore delle carte
+
+Le richieste di Giovanni sulle prospettive di un'espansione mirano a uno strumento di consultazione per decidere quali carte giocare, osservare o vendere. L'analisi comprende due aspetti distinti: utilizzo nei formati di gioco e prospettive economiche. Se viene chiesta per ogni carta, deve coprire l'intero catalogo pertinente, comprese le carte ospiti, mantenendo il prodotto Commander separato dai pool Limited. Una selezione delle carte più interessanti può affiancare la vista completa.
+
+Il flusso riutilizzabile per le espansioni è:
+
+1. Ricercare regole, legalità, recensioni, liste e risultati aggiornati. Per uno studio esteso usare almeno dieci editori o servizi distinti e affidabili nell'intera ricerca, con priorità alle fonti ufficiali per regole e legalità. Non servono dieci fonti per ogni carta; più pagine dello stesso editore non sono fonti indipendenti.
+2. Per ciascuna carta distinguere ruolo, sinergie e interazioni dalle prove di adozione e dai risultati nei formati di gioco. Conservare date, contesti e limiti delle fonti. Una carta legale non è automaticamente giocata; una lista pubblicata non dimostra un vantaggio competitivo. Dove mancano riscontri, segnalarlo senza inventare un giudizio numerico.
+3. Usare esclusivamente Cardmarket per i valori economici correnti e per i nuovi confronti storici. La varietà delle fonti riguarda la ricerca di gioco, non autorizza prezzi alternativi. Scryfall può fornire Oracle, immagini, identità e legalità, ma non sostituisce Cardmarket quando manca un prezzo.
+4. Usare di norma il minimo Cardmarket From in euro, conservando prodotto/stampa, variante, finitura, data, URL e filtri. Separare From, Price Trend, medie e ricavi realizzati. Senza un filtro di finitura verificato, un minimo resta riferito al prodotto e non diventa un prezzo non foil. Confrontare solo osservazioni omogenee; prezzi mancanti o esclusi da una soglia storica restano null. Gli snapshot precedenti, anche con metodi diversi, si conservano senza reinterpretarli come dati correnti.
+5. Formulare scenari di prezzo condizionati alla domanda di gioco, all'offerta delle ristampe e ai movimenti Cardmarket documentati, dichiarando orizzonte e confidenza. Non inventare obiettivi di prezzo, volumi, liquidità o probabilità di rialzo/profitto. L'aggiornamento delle singole carte non aggiorna automaticamente il valore atteso di un box: occorrono prezzi coerenti per tutte le finiture e varianti della sua collazione.
+6. Integrare i risultati nei JSON, conservare acquisizioni datate e una procedura riproducibile, quindi rendere consultabile l'analisi completa nel sito. Verificare ricerca, filtri, dettagli per carta, prezzi, fonti e anteprime da mouse, tastiera e tocco. Il resoconto deve indicare dove consultare i risultati e lo stato effettivo della pubblicazione.
+
+La consultazione completa è parte di questo tipo di richiesta nel contesto del sito: non basta aggiornare i JSON e lasciare visibile soltanto una selezione. Ricerca, filtri e dettagli espandibili costituiscono la UX di base. Per parlare di UX avanzata serve una verifica della facilità di trovare e confrontare le informazioni. Confronti affiancati e ordinamenti per potenziale di utilizzo, andamento del prezzo e solidità delle prove sono sviluppi possibili da concordare, non funzioni già implicite nella vista attuale.
+
+Le istruzioni operative persistenti sono in `AGENTS.md`; i contratti e le implementazioni dei dati sono documentati nelle sezioni successive. Gli aggiornamenti restano specifici nei JSON delle espansioni e usano motori e renderer condivisi.
+
 ## Espansioni
 
 `expansions.json` registra i manifest delle espansioni. La build usa `expansion_data.py` per caricare e validare i documenti e `build_expansion.py` per generare tutte le pagine. Non contiene diramazioni per codice del set. I vecchi builder sono ingressi di compatibilità verso lo stesso percorso.
