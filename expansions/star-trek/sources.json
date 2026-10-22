@@ -14,6 +14,297 @@
     "852c75a1ad54": "https://wpn.wizards.com/en/rules-documents",
     "8edf05ae6ce5": "https://magic.wizards.com/en/products/star-trek/card-image-gallery",
     "7f2c239a7307": "https://scryfall.com/sets/trk",
-    "ce97dcf2e8c7": "https://scryfall.com/sets/sds"
+    "ce97dcf2e8c7": "https://scryfall.com/sets/sds",
+    "preview-calendar": "https://magic.wizards.com/en/news/announcements/where-to-find-star-trek-previews",
+    "scg-calendar": "https://articles.starcitygames.com/magic-the-gathering/full-preview-schedule-for-magic-the-gathering-star-trek-revealed/",
+    "scg-gallery": "https://articles.starcitygames.com/magic-the-gathering/every-card-revealed-so-far-from-magic-the-gathering-star-trek/",
+    "regional-delays": "https://wpn.wizards.com/en/news/magic-the-gathering-star-trek-product-delays-in-select-regions",
+    "scg-delays": "https://articles.starcitygames.com/magic-the-gathering/delays-expected-to-impact-select-magic-the-gathering-star-trek-products/",
+    "spotlight": "https://magic.gg/news/start-your-voyage-at-magic-spotlight-star-trek-in-lille-and-minneapolis",
+    "design-interview": "https://www.space.com/entertainment/space-games/magic-the-gathering-is-exploring-strange-new-worlds-with-the-star-trek-60th-anniversary-crossover-interview",
+    "card-kingdom": "https://blog.cardkingdom.com/star-trek-first-look/",
+    "arena-calendar": "https://magic.wizards.com/en/news/mtg-arena/star-trek-event-schedule",
+    "standard-preview-ratings": "https://www.mtg-standard.com/powerating/TRK",
+    "standard-method": "https://www.mtg-standard.com/power-rating-system",
+    "meta-limited-preview": "https://mtgmeta.com/limited/trk",
+    "collectorunion-review": "https://collectorunion.com/blog/magic-star-trek-revealed-cards-first-impressions",
+    "draftsim-collective-review": "https://draftsim.com/mtg-star-trek-join-the-collective-leak/",
+    "deathmarked-cruiser": "https://deathmarked.info/d-7-battle-cruiser-magic-the-gathering-card-preview-standard-potential/",
+    "deathmarked-munitions": "https://deathmarked.info/munitions-enthusiast-star-trek-mtg-card-review-and-potential/"
+  },
+  "research": {
+    "date": "2026-10-22",
+    "catalogSnapshot": "star-trek-cards-20261022.json",
+    "rawSnapshot": "star-trek-scryfall-20261022.json",
+    "previousCatalogSnapshot": "star-trek-cards-20261021.json",
+    "newDistinctCards": 30,
+    "sources": [
+      {
+        "id": "preview-calendar",
+        "label": "Calendario anteprime e presentazioni Commander",
+        "url": "https://magic.wizards.com/en/news/announcements/where-to-find-star-trek-previews",
+        "kind": "official",
+        "published": "2026-10-16",
+        "checked": "2026-10-22"
+      },
+      {
+        "id": "scg-calendar",
+        "label": "Star City Games: calendario delle anteprime",
+        "url": "https://articles.starcitygames.com/magic-the-gathering/full-preview-schedule-for-magic-the-gathering-star-trek-revealed/",
+        "kind": "specialist",
+        "published": "2026-10-16",
+        "checked": "2026-10-22"
+      },
+      {
+        "id": "scg-gallery",
+        "label": "Star City Games: galleria aggiornata al 22 ottobre",
+        "url": "https://articles.starcitygames.com/magic-the-gathering/every-card-revealed-so-far-from-magic-the-gathering-star-trek/",
+        "kind": "specialist",
+        "published": "2026-10-22",
+        "checked": "2026-10-22"
+      },
+      {
+        "id": "regional-delays",
+        "label": "WPN: ritardi per prodotto e regione",
+        "url": "https://wpn.wizards.com/en/news/magic-the-gathering-star-trek-product-delays-in-select-regions",
+        "kind": "official",
+        "published": "2026-10-16",
+        "checked": "2026-10-22"
+      },
+      {
+        "id": "scg-delays",
+        "label": "Star City Games: dettaglio dei ritardi in Europa",
+        "url": "https://articles.starcitygames.com/magic-the-gathering/delays-expected-to-impact-select-magic-the-gathering-star-trek-products/",
+        "kind": "specialist",
+        "published": "2026-10-16",
+        "checked": "2026-10-22"
+      },
+      {
+        "id": "spotlight",
+        "label": "Magic Spotlight: Lille e Minneapolis",
+        "url": "https://magic.gg/news/start-your-voyage-at-magic-spotlight-star-trek-in-lille-and-minneapolis",
+        "kind": "official",
+        "published": "2026-10-20",
+        "checked": "2026-10-22"
+      },
+      {
+        "id": "design-interview",
+        "label": "Space.com: intervista a Gavin Verhey",
+        "url": "https://www.space.com/entertainment/space-games/magic-the-gathering-is-exploring-strange-new-worlds-with-the-star-trek-60th-anniversary-crossover-interview",
+        "kind": "interview",
+        "published": "2026-10-03",
+        "checked": "2026-10-22"
+      },
+      {
+        "id": "card-kingdom",
+        "label": "Card Kingdom: date e prodotti",
+        "url": "https://blog.cardkingdom.com/star-trek-first-look/",
+        "kind": "specialist",
+        "published": "2026-09-23",
+        "checked": "2026-10-22"
+      },
+      {
+        "id": "arena-calendar",
+        "label": "Arena: calendario e Mastery",
+        "url": "https://magic.wizards.com/en/news/mtg-arena/star-trek-event-schedule",
+        "kind": "official",
+        "published": "2026-10-20",
+        "checked": "2026-10-22"
+      }
+    ],
+    "notes": [
+      "Il conteggio di 193 identità TRK/SDS e 366 stampe proviene da Scryfall, non dal numero di immagini della galleria SCG.",
+      "SCG calendario indica erroneamente il 6 novembre come uscita generale: usare 6 novembre per inizio Prerelease e 13 novembre per uscita cartacea.",
+      "L’intervista Space.com è contesto di design del 3 ottobre, non una nuova rivelazione del 22 ottobre. Il ritmo dichiarato non prova la velocità del metagame Limited.",
+      "Nella prima ricerca Draftsim era accessibile solo dai risultati indicizzati. Nel successivo approfondimento è stato letto direttamente l’articolo Commander del 9 ottobre, con testo della carta verificato separatamente su Scryfall; vedere reviewAnalysis.",
+      "MTGGoldfish consultato: dati indicizzati meno recenti e accesso parziale, non usato per conteggi o prezzi aggiornati.",
+      "Nessun nuovo chiarimento verificato sulle terre Away Team foil; collazione eseguibile e ricavo atteso restano indisponibili."
+    ]
+  },
+  "reviewAnalysis": {
+    "date": "2026-10-22",
+    "scope": "Ranking preliminari e recensioni Star Trek, con verifica sul testo delle carte.",
+    "status": "preliminary",
+    "sources": [
+      {
+        "id": "standard-preview-ratings",
+        "label": "MTG-Standard: punteggi preliminari TRK",
+        "url": "https://www.mtg-standard.com/powerating/TRK",
+        "kind": "automated-ranking",
+        "access": "direct",
+        "use": "Solo segnale esplorativo per Constructed; nessun ordine dei pick Limited.",
+        "checked": "2026-10-22"
+      },
+      {
+        "id": "standard-method",
+        "label": "MTG-Standard: metodologia",
+        "url": "https://www.mtg-standard.com/power-rating-system",
+        "kind": "methodology",
+        "access": "direct",
+        "use": "Formula dichiarata 50% efficienza, 30% situazione di gioco, 20% ruolo per carte nuove. La documentazione alterna finestre di 30 e 60 giorni.",
+        "checked": "2026-10-22"
+      },
+      {
+        "id": "meta-limited-preview",
+        "label": "MTGMeta: previsioni Limited TRK",
+        "url": "https://mtgmeta.com/limited/trk",
+        "kind": "model-prediction",
+        "access": "search-index-only; direct HTTP 403",
+        "use": "Nessuna partita registrata dichiarata nel contenuto indicizzato; nessun voto importato.",
+        "checked": "2026-10-22"
+      },
+      {
+        "id": "collectorunion-review",
+        "label": "CollectorUnion: prime impressioni sulle carte",
+        "url": "https://collectorunion.com/blog/magic-star-trek-revealed-cards-first-impressions",
+        "kind": "editorial-review",
+        "author": "ArcanoLeviata317",
+        "published": "2026-10-21",
+        "access": "direct",
+        "use": "Opinioni per Commander e Standard. Correggere la presunta sinergia Tesori/Borg Cube e completare la descrizione di Q.",
+        "checked": "2026-10-22"
+      },
+      {
+        "id": "draftsim-collective-review",
+        "label": "Draftsim: analisi di una rimozione globale Commander",
+        "url": "https://draftsim.com/mtg-star-trek-join-the-collective-leak/",
+        "kind": "editorial-review",
+        "author": "Timothy Zaccagnino",
+        "published": "2026-10-09",
+        "access": "direct",
+        "use": "Confronto utile fra rimozioni globali e pedine in Commander; riguarda TRC, non una priorità Draft dei Play Booster. Articolo originato da anticipazioni non ufficiali: testo verificato separatamente su Scryfall.",
+        "checked": "2026-10-22"
+      },
+      {
+        "id": "deathmarked-cruiser",
+        "label": "Deathmarked: D-7 Battle Cruiser",
+        "url": "https://deathmarked.info/d-7-battle-cruiser-magic-the-gathering-card-preview-standard-potential/",
+        "kind": "editorial-review",
+        "author": "Mark Ian Alloso",
+        "published": "2026-10-21",
+        "access": "direct in earlier research; subsequent request unavailable",
+        "use": "Utile il costo di tempo delle creature tappate per station. Potenziale Standard ancora ipotetico.",
+        "checked": "2026-10-22"
+      },
+      {
+        "id": "deathmarked-munitions",
+        "label": "Deathmarked: Munitions Enthusiast",
+        "url": "https://deathmarked.info/munitions-enthusiast-star-trek-mtg-card-review-and-potential/",
+        "kind": "editorial-review",
+        "author": "Mark Ian Alloso",
+        "published": "2026-10-11",
+        "access": "direct",
+        "use": "La non legalità durante l’anteprima non basta a concludere che la carta vada privilegiata nei formati non rotanti.",
+        "checked": "2026-10-22"
+      }
+    ],
+    "observations": [
+      {
+        "cardId": "6fc7401f-66fe-4d17-be2f-afcf892be740",
+        "name": "Federation Probe",
+        "context": "Limited: valutazione editoriale preliminare",
+        "summary": "Per {U}, 1/1 volante con sorvegliare 1 o bonus temporaneo: supporta consistenza e sinergie, ma il punteggio automatico non dimostra una priorità assoluta di pick.",
+        "sources": [
+          "standard-preview-ratings"
+        ],
+        "oracleSource": "https://scryfall.com/card/trk/59/federation-probe",
+        "externalScore": {
+          "value": 3.7,
+          "scaleMax": 5,
+          "kind": "automated-constructed-preview"
+        }
+      },
+      {
+        "cardId": "4da9b548-898d-431b-8aa5-9cb7bf579219",
+        "name": "Set Phasers to . . .",
+        "context": "Limited: valutazione editoriale preliminare",
+        "summary": "Per {W}, il modo da 3 danni bersaglia solo una creatura attaccante. Per superare un bloccante resta il modo che tappa e aggiunge un segnalino stordimento, una soluzione temporanea.",
+        "sources": [
+          "standard-preview-ratings"
+        ],
+        "oracleSource": "https://scryfall.com/card/trk/34/set-phasers-to-",
+        "externalScore": {
+          "value": 3.6,
+          "scaleMax": 5,
+          "kind": "automated-constructed-preview"
+        }
+      },
+      {
+        "cardId": "0013f005-2b49-48a4-8a74-9bbdadc88c9f",
+        "name": "Munitions Enthusiast",
+        "context": "Limited: valutazione editoriale preliminare",
+        "summary": "Per {1}{R}, 3/2 travolgere con un danno alla morte. Adatto a un piano aggressivo rosso; dopo uno scambio può finire un’altra creatura già danneggiata. Priorità da verificare nel set completo.",
+        "sources": [
+          "standard-preview-ratings",
+          "deathmarked-munitions"
+        ],
+        "oracleSource": "https://scryfall.com/card/trk/158/munitions-enthusiast",
+        "externalScore": {
+          "value": 3.4,
+          "scaleMax": 5,
+          "kind": "automated-constructed-preview"
+        }
+      },
+      {
+        "cardId": "61703e94-cb57-44d8-b37b-7b14b3cfd86d",
+        "name": "Quark, Humble Proprietor",
+        "context": "Regole: correzione verificata",
+        "summary": "I Tesori normali non sono creature artefatto e non riducono il costo di Borg Cube tramite affinità. Quark impedisce inoltre di sacrificarli mentre resta sul campo.",
+        "sources": [
+          "collectorunion-review"
+        ],
+        "oracleSource": "https://scryfall.com/card/trk/166/quark-humble-proprietor",
+        "relatedCardIds": [
+          "a59b854c-0e04-4581-b9d3-1516263d7ace"
+        ],
+        "rules": [
+          "702.41a"
+        ]
+      },
+      {
+        "cardId": "6866f0a4-5fe6-40d9-bbfc-6f116f4e415d",
+        "name": "Q, Stacking the Deck",
+        "context": "Regole: precisazione verificata",
+        "summary": "L’abilità concessa alla carta esiliata non è limitata a una volta per turno. Ogni attivazione esilia una carta dalla mano; il lancio della copia richiede il pagamento dei costi. La rimozione di Q non elimina l’abilità della carta esiliata.",
+        "sources": [
+          "collectorunion-review"
+        ],
+        "oracleSource": "https://scryfall.com/card/trk/165/q-stacking-the-deck",
+        "rules": [
+          "707.12",
+          "601.2"
+        ]
+      },
+      {
+        "cardId": "5e696f9a-425c-470a-870e-10d2ba3bb27d",
+        "name": "D-7 Battle Cruiser",
+        "context": "Constructed: valutazione editoriale preliminare",
+        "summary": "La produzione ripetuta di pedine va bilanciata con il costo di tappare creature per station invece di attaccare o bloccare. Il ruolo in Standard è ancora da dimostrare.",
+        "sources": [
+          "deathmarked-cruiser"
+        ],
+        "oracleSource": "https://scryfall.com/card/trk/145/d-7-battle-cruiser"
+      }
+    ],
+    "commanderOnlyReviews": [
+      {
+        "name": "Join the Collective",
+        "set": "TRC",
+        "source": "draftsim-collective-review",
+        "oracleSource": "https://scryfall.com/card/trc/20/join-the-collective",
+        "summary": "Per {5}{W}{W} distrugge tutte le creature; il numero di pedine dipende dalle creature non artefatto effettivamente distrutte. Il confronto riguarda Commander, non il Draft dei Play Booster."
+      }
+    ],
+    "rulesSource": {
+      "url": "https://media.wizards.com/2026/downloads/MagicCompRules%2020260925.txt",
+      "effective": "2026-09-25",
+      "checked": "2026-10-22"
+    },
+    "limitations": [
+      "Nessun voto Limited esterno importato in ratings.json.",
+      "Punteggi automatici, opinioni degli autori e valutazioni editoriali conservati distinti.",
+      "Nessuna classifica sistematica di esperti o statistica di vittoria verificata per il set.",
+      "Nessuna modifica a collazione, eventi, motore, chiavi dei salvataggi o compatibilità dei replay."
+    ]
   }
 }
