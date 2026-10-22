@@ -87,7 +87,7 @@ def build():
     DIST.mkdir()
     (DIST/'index.html').write_text(home,encoding='utf-8')
     (DIST/'.nojekyll').touch()
-    for name in ['site.css','site.js']:
+    for name in ['site.css','site.js','favicon.svg']:
         shutil.copy2(ROOT/name,DIST/name)
     shutil.copytree(ROOT/'schemas',DIST/'schemas')
     for expansion in loaded:

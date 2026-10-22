@@ -24,6 +24,10 @@ FILES = {'Sealed':'gallery','Draft':'draft','Analisi':'analysis',
          'Draft-Engine':'draft-engine'}
 
 
+def icon_links(prefix):
+    return f'<link rel="icon" type="image/svg+xml" href="{prefix}favicon.svg">'
+
+
 def shell(content, key, root=False, expansion=None, expansions=None):
     if root and expansions is not None:
         import html
@@ -95,7 +99,7 @@ def shell(content, key, root=False, expansion=None, expansions=None):
     change_set = 'sets/star-trek/index.html' if root else '../star-trek/index.html'
     navigation = navigation.replace('<nav>', f'<a href="{change_set}">Star Trek · anteprima</a><nav>', 1)
     content = content.replace('<main>', '<main id="site-content" tabindex="-1">', 1)
-    content = content.replace('</head>', f'<link rel="stylesheet" href="{asset}site.css"></head>', 1)
+    content = content.replace('</head>', icon_links(asset) + f'<link rel="stylesheet" href="{asset}site.css"></head>', 1)
     content = content.replace('<body>', f'<body class="site-layout site-page-{key}">{navigation}', 1)
     content = content.replace('</body>', f'</div><a class="site-to-top" href="#site-content" aria-label="Torna al contenuto">↑</a><script src="{asset}site.js"></script></body>', 1)
     return content
@@ -117,7 +121,7 @@ def expansion_shell(content, key, expansion):
 <div class="site-backdrop" hidden></div><aside class="site-sidebar" id="site-sidebar" aria-label="Navigazione principale"><a class="site-home" href="../../index.html">⌂ Home</a><div class="site-set-label"><span>ESPANSIONE</span><strong>{e(expansion['name'])}<small>{e(expansion['code'])} · Anteprima</small></strong></div><a href="../reality-fracture/index.html">Reality Fracture</a><nav>{''.join(groups)}</nav><p class="site-storage-note">Pool Star Trek separati da Reality Fracture. Esporta i salvataggi per conservarli.</p></aside>
 <div class="site-body"><nav class="site-breadcrumb" aria-label="Percorso"><a href="../../index.html">Home</a><span>/</span><a href="index.html">Star Trek</a><span>/</span><span id="site-page-label">{e(pages[key][0])}</span></nav>'''
     content = content.replace('<main>', '<main id="site-content" tabindex="-1">', 1)
-    content = content.replace('</head>', '<link rel="stylesheet" href="../../site.css"></head>', 1)
+    content = content.replace('</head>', icon_links('../../') + '<link rel="stylesheet" href="../../site.css"></head>', 1)
     content = content.replace('<body>', f'<body class="site-layout trk-page" data-page="{key}">{nav}', 1)
     return content.replace('</body>', '</div><a class="site-to-top" href="#site-content" aria-label="Torna al contenuto">↑</a><script src="../../site.js"></script></body>', 1)
 
@@ -138,7 +142,7 @@ def configured_shell(content, key, expansion):
         content=re.sub(r'<nav class="site-local-nav".*?</nav>',local_nav,content,flags=re.S)
     else:
         content = content.replace('<main>', '<main id="site-content" tabindex="-1">',1)
-        content = content.replace('</head>', '<link rel="stylesheet" href="../../site.css"></head>',1)
+        content = content.replace('</head>', icon_links('../../') + '<link rel="stylesheet" href="../../site.css"></head>',1)
         body_class='site-layout site-page-'+key if presentation['style']=='atlas' else 'site-layout trk-page'
         content = content.replace('<body>', '<body class="'+body_class+'" data-page="'+key+'">',1)
         if 'class="site-to-top"' not in content:
