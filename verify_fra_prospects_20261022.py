@@ -21,14 +21,19 @@ def main():
     assert manifest['draftReplayCompatibility']==baseline['expansion']['draftReplayCompatibility']
     source_meta=read(EXP/'sources.json')['research'];sources={s['id']:s for s in source_meta['sources']}
     assert len({s['publisher'] for s in sources.values() if s['status']=='retrieved'})>=10
-    assert source_meta['publisherCount']==14
+    assert source_meta['publisherCount']==len({s['publisher'] for s in sources.values() if s['status']=='retrieved'})
     for source in sources.values():
         if source.get('sha256'):
             path=CACHE/(source['id']+'.html')
             if path.exists():assert hashlib.sha256(path.read_bytes()).hexdigest()==source.get('archiveSha256',source['sha256']),source['id']
     raw=read(RESEARCH/'scryfall-fra.json')+read(RESEARCH/'scryfall-spg.json')+read(RESEARCH/'scryfall-frc.json')
     printing={c['id']:c for c in raw}
-    old={c['id']:c for c in read(RESEARCH/'scryfall-fra-20261018.json')+read(RESEARCH/'scryfall-spg-20261018.json')}
+    listings=read(RESEARCH/'cardmarket-listings-20261022.json')
+    products={r['url']:r for r in listings['rows']}
+    history=read(RESEARCH/'cardmarket-history-20261018.json')
+    details=read(RESEARCH/'cardmarket-product-checks-20261022.json')
+    default={r[0]:dict(zip(details['columns'],r)) for r in details['defaultRows']}
+    finishes={kind:{r[0]:dict(zip(details['columns'],r)) for r in details[kind+'Rows']} for kind in ['nonfoil','foil']}
     records={(r['name'],r['format']):r for r in read(RESEARCH/'tournament-evidence.json')['cards']}
     assert len(records)==104
     appendix=read(EXP/'prospects-commander-20261022.json')['cards'];assert len(appendix)==87
@@ -55,12 +60,26 @@ def main():
             assert p['cedhObservation']['lists']==cedh[card['name']]['lists']
             assert p['cedhObservation']['window']['end']=='2026-10-11'
         assert price['printingId']==oracle['printingId'] and price['set']==raw_card['set']
-        assert price['nonfoil']==(float(raw_card['prices']['eur']) if raw_card['prices'].get('eur') is not None else None)
+        assert price['source']=='Cardmarket' and price['outlook']['priceAuthority']=='Cardmarket'
+        product=products[price['url']]
+        assert price['listingFrom']==product['from']
+        assert price['from']==(default[card['name']]['from'] if card['set']=='SPG' else product['from'])
+        for kind in ['nonfoil','foil']:
+            observed=finishes[kind].get(card['name'])
+            assert price[kind]==(observed['from'] if observed else None)
+            if observed:
+                assert str(observed['collectorNumber'])==price['number']
+                assert price['finishReadings'][kind]['source']=='Cardmarket'
+                assert price['finishReadings'][kind]['filter']==('Y' if kind=='foil' else 'N')
+        assert price['variants']==[], 'Unverified variant values must not fall back to other sources'
         comparison=price['comparison']
         if comparison['status']=='comparable':
-            previous=old[price['printingId']]
-            assert comparison['nonfoil']==float(previous['prices']['eur'])
-            assert comparison['changePct']==round((price['nonfoil']/comparison['nonfoil']-1)*100,2)
+            assert card['set']=='FRA' and comparison['source']=='Cardmarket'
+            assert comparison['from']==history['base_above_threshold'][price['number']]
+            assert comparison['nonfoil'] is None and comparison['finishFilter']=='any'
+            assert comparison['changePct']==round((price['from']/comparison['from']-1)*100,2)
+        else:
+            assert comparison['from'] is None and comparison['changePct'] is None
         assert price['outlook']['targetPrice'] is None and price['outlook']['probabilityOfRise'] is None
         assert price['outlook']['confidence']=='bassa'
         if card['set']=='SPG':assert price['set']=='spg'
@@ -69,7 +88,9 @@ def main():
             assert v['set']==price['set']
     assert read(EXP/'prices.json')['available']==baseline['prices']['available']==False
     assert read(EXP/'prices.json')['references']['boxEVUpdated']==False
-    report={'date':'2026-10-22','status':'passed','catalogCards':295,'commanderAppendix':87,'sourcePublishers':14,'tournamentCardFormatRecords':104,'functionalCardDataUnchanged':True,'replayMetadataUnchanged':True,'currencyFinishAndPrintingSeparated':True,'historicalEVUnchanged':True,'checks':'Coverage; source resolution; source content hashes; Oracle/legalities; all observed-list joins; Commander and cEDH joins with distinct dates; same-printing EUR changes; no invented targets/probabilities; no functional mutations.'}
+    assert read(EXP/'prices.json')['references']['source']=='Cardmarket'
+    assert sum(c['prospects']['price']['comparison']['status']=='comparable' for c in cards+appendix)==48
+    report={'date':'2026-10-22','status':'passed','catalogCards':295,'commanderAppendix':87,'sourcePublishers':source_meta['publisherCount'],'priceAuthority':'Cardmarket','priceListings':387,'exactHistoricalComparisons':48,'nonfoilReadings':6,'foilReadings':1,'tournamentCardFormatRecords':104,'functionalCardDataUnchanged':True,'replayMetadataUnchanged':True,'currencyFinishAndPrintingSeparated':True,'historicalEVUnchanged':True,'checks':'Coverage; source resolution; Oracle/legalities; observed-list joins; Commander/cEDH date separation; exclusively direct Cardmarket prices; exact From comparisons only; no finish/variant fallback; no invented targets/probabilities; no functional mutations.'}
     (RESEARCH/'validation.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     print(json.dumps(report,ensure_ascii=False,indent=2))
 

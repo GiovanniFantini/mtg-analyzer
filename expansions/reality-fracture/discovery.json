@@ -50,25 +50,38 @@
         "downsideRisks": [
           "Nuove aperture e disponibilità di copie",
           "Mancano dati su vendite concluse, liquidità e differenza tra acquisto e vendita",
-          "Il riferimento è già salito: il movimento passato può anticipare la domanda o riassorbirsi"
+          "Il minimo Cardmarket è già salito: servono vendite e domanda persistenti per sostenere questo livello."
         ],
         "confidence": "bassa",
         "targetPrice": null,
         "probabilityOfRise": null,
-        "action": "monitorare_domanda_e_prezzo_della_stessa_stampa"
+        "action": "verificare_offerte_cardmarket_della_stessa_stampa_e_finitura",
+        "priceAuthority": "Cardmarket",
+        "marketAssessment": "Il minimo Cardmarket osservato è 3,00 euro. Supera la soglia personale di vendita di 0,10 euro, ma resta un prezzo di offerta, prima di commissioni, materiali e tempo. Dal 18 ottobre il minimo dello stesso prodotto è aumentato (+1900.00%). Questo movimento non dimostra né esclude crescita della domanda.",
+        "windowAssessment": null
       },
       "priceReference": {
         "date": "2026-10-22",
+        "source": "Cardmarket",
+        "url": "https://www.cardmarket.com/en/Magic/Products/Singles/Reality-Fracture/Dark-Matter-Manipulator",
         "currency": "EUR",
-        "metric": "Scryfall EUR reference for the identified printing; not Cardmarket From or realized sale",
-        "nonfoil": 2.28,
-        "foil": 2.34,
+        "metric": "Cardmarket From, minimo richiesto per il prodotto; non ricavo realizzato",
+        "from": 3.0,
+        "nonfoil": null,
+        "foil": null,
         "comparison": {
           "date": "2026-10-18",
-          "samePrinting": true,
-          "nonfoil": 0.25,
-          "changePct": 812.0,
-          "status": "comparable"
+          "source": "Cardmarket",
+          "sourceId": "cardmarket-browser-20261018",
+          "samePrinting": null,
+          "sameProduct": true,
+          "metric": "from",
+          "finishFilter": "any",
+          "from": 0.15,
+          "nonfoil": null,
+          "changePct": 1900.0,
+          "status": "comparable",
+          "note": "Confronto dei minimi From del prodotto base, senza isolamento della finitura. Lo snapshot del 18 ottobre conserva solo i valori strettamente superiori a 0,10 euro; gli altri non sono zeri."
         },
         "printingId": "4ec912d5-cbe7-4d07-9ece-b03ac02d3055"
       }
@@ -121,20 +134,33 @@
         "confidence": "bassa",
         "targetPrice": null,
         "probabilityOfRise": null,
-        "action": "monitorare_domanda_e_prezzo_della_stessa_stampa"
+        "action": "verificare_offerte_cardmarket_della_stessa_stampa_e_finitura",
+        "priceAuthority": "Cardmarket",
+        "marketAssessment": "Il minimo Cardmarket osservato è 1,60 euro. Supera la soglia personale di vendita di 0,10 euro, ma resta un prezzo di offerta, prima di commissioni, materiali e tempo. Dal 18 ottobre il minimo dello stesso prodotto è diminuito (-33.33%). Questo movimento non dimostra né esclude crescita della domanda.",
+        "windowAssessment": null
       },
       "priceReference": {
         "date": "2026-10-22",
+        "source": "Cardmarket",
+        "url": "https://www.cardmarket.com/en/Magic/Products/Singles/Reality-Fracture/Pompous-Battlemage-Improvised-Act",
         "currency": "EUR",
-        "metric": "Scryfall EUR reference for the identified printing; not Cardmarket From or realized sale",
-        "nonfoil": 4.61,
-        "foil": 5.31,
+        "metric": "Cardmarket From, minimo richiesto per il prodotto; non ricavo realizzato",
+        "from": 1.6,
+        "nonfoil": null,
+        "foil": null,
         "comparison": {
           "date": "2026-10-18",
-          "samePrinting": true,
-          "nonfoil": 4.56,
-          "changePct": 1.1,
-          "status": "comparable"
+          "source": "Cardmarket",
+          "sourceId": "cardmarket-browser-20261018",
+          "samePrinting": null,
+          "sameProduct": true,
+          "metric": "from",
+          "finishFilter": "any",
+          "from": 2.4,
+          "nonfoil": null,
+          "changePct": -33.33,
+          "status": "comparable",
+          "note": "Confronto dei minimi From del prodotto base, senza isolamento della finitura. Lo snapshot del 18 ottobre conserva solo i valori strettamente superiori a 0,10 euro; gli altri non sono zeri."
         },
         "printingId": "aa0f77ac-741a-444a-8bf0-a42c644726bf"
       }
@@ -182,26 +208,38 @@
         "downsideRisks": [
           "Nuove aperture e disponibilità di copie",
           "Mancano dati su vendite concluse, liquidità e differenza tra acquisto e vendita",
-          "Offerta elevata e costi di gestione rispetto al valore unitario",
-          "Il riferimento è già salito: il movimento passato può anticipare la domanda o riassorbirsi"
+          "Offerta elevata e costi di gestione rispetto al valore unitario"
         ],
         "confidence": "bassa",
         "targetPrice": null,
         "probabilityOfRise": null,
-        "action": "monitorare_domanda_e_prezzo_della_stessa_stampa"
+        "action": "verificare_offerte_cardmarket_della_stessa_stampa_e_finitura",
+        "priceAuthority": "Cardmarket",
+        "marketAssessment": "Il minimo Cardmarket osservato è 0,02 euro. Non supera la soglia personale di vendita di 0,10 euro; un premio foil o di una variante richiede una quotazione distinta. Manca un minimo storico esatto confrontabile: nessuna variazione percentuale viene calcolata.",
+        "windowAssessment": null
       },
       "priceReference": {
         "date": "2026-10-22",
+        "source": "Cardmarket",
+        "url": "https://www.cardmarket.com/en/Magic/Products/Singles/Reality-Fracture/Twinned-Vision",
         "currency": "EUR",
-        "metric": "Scryfall EUR reference for the identified printing; not Cardmarket From or realized sale",
-        "nonfoil": 0.15,
-        "foil": 0.27,
+        "metric": "Cardmarket From, minimo richiesto per il prodotto; non ricavo realizzato",
+        "from": 0.02,
+        "nonfoil": null,
+        "foil": null,
         "comparison": {
           "date": "2026-10-18",
-          "samePrinting": true,
-          "nonfoil": 0.12,
-          "changePct": 25.0,
-          "status": "comparable"
+          "source": "Cardmarket",
+          "sourceId": "cardmarket-browser-20261018",
+          "samePrinting": null,
+          "sameProduct": null,
+          "metric": "from",
+          "finishFilter": "any",
+          "from": null,
+          "nonfoil": null,
+          "changePct": null,
+          "status": "missing_reference",
+          "note": "Confronto dei minimi From del prodotto base, senza isolamento della finitura. Lo snapshot del 18 ottobre conserva solo i valori strettamente superiori a 0,10 euro; gli altri non sono zeri."
         },
         "printingId": "55f85984-0137-4899-8993-bbc8c4794d33"
       }
@@ -244,26 +282,38 @@
         ],
         "downsideRisks": [
           "Nuove aperture e disponibilità di copie",
-          "Mancano dati su vendite concluse, liquidità e differenza tra acquisto e vendita",
-          "Il riferimento è già salito: il movimento passato può anticipare la domanda o riassorbirsi"
+          "Mancano dati su vendite concluse, liquidità e differenza tra acquisto e vendita"
         ],
         "confidence": "bassa",
         "targetPrice": null,
         "probabilityOfRise": null,
-        "action": "monitorare_domanda_e_prezzo_della_stessa_stampa"
+        "action": "verificare_offerte_cardmarket_della_stessa_stampa_e_finitura",
+        "priceAuthority": "Cardmarket",
+        "marketAssessment": "Il minimo Cardmarket osservato è 0,20 euro. Supera la soglia personale di vendita di 0,10 euro, ma resta un prezzo di offerta, prima di commissioni, materiali e tempo. Dal 18 ottobre il minimo dello stesso prodotto è diminuito (-20.00%). Questo movimento non dimostra né esclude crescita della domanda.",
+        "windowAssessment": null
       },
       "priceReference": {
         "date": "2026-10-22",
+        "source": "Cardmarket",
+        "url": "https://www.cardmarket.com/en/Magic/Products/Singles/Reality-Fracture/Roiling-Canopy",
         "currency": "EUR",
-        "metric": "Scryfall EUR reference for the identified printing; not Cardmarket From or realized sale",
-        "nonfoil": 0.95,
-        "foil": 1.09,
+        "metric": "Cardmarket From, minimo richiesto per il prodotto; non ricavo realizzato",
+        "from": 0.2,
+        "nonfoil": null,
+        "foil": null,
         "comparison": {
           "date": "2026-10-18",
-          "samePrinting": true,
-          "nonfoil": 0.33,
-          "changePct": 187.88,
-          "status": "comparable"
+          "source": "Cardmarket",
+          "sourceId": "cardmarket-browser-20261018",
+          "samePrinting": null,
+          "sameProduct": true,
+          "metric": "from",
+          "finishFilter": "any",
+          "from": 0.25,
+          "nonfoil": null,
+          "changePct": -20.0,
+          "status": "comparable",
+          "note": "Confronto dei minimi From del prodotto base, senza isolamento della finitura. Lo snapshot del 18 ottobre conserva solo i valori strettamente superiori a 0,10 euro; gli altri non sono zeri."
         },
         "printingId": "db61361b-bd12-453e-abc2-bbe09b66e3d9"
       }
@@ -308,26 +358,38 @@
         ],
         "downsideRisks": [
           "Nuove aperture e disponibilità di copie",
-          "Mancano dati su vendite concluse, liquidità e differenza tra acquisto e vendita",
-          "Il riferimento è già salito: il movimento passato può anticipare la domanda o riassorbirsi"
+          "Mancano dati su vendite concluse, liquidità e differenza tra acquisto e vendita"
         ],
         "confidence": "bassa",
         "targetPrice": null,
         "probabilityOfRise": null,
-        "action": "monitorare_domanda_e_prezzo_della_stessa_stampa"
+        "action": "verificare_offerte_cardmarket_della_stessa_stampa_e_finitura",
+        "priceAuthority": "Cardmarket",
+        "marketAssessment": "Il minimo Cardmarket osservato è 0,10 euro. Non supera la soglia personale di vendita di 0,10 euro; un premio foil o di una variante richiede una quotazione distinta. Manca un minimo storico esatto confrontabile: nessuna variazione percentuale viene calcolata.",
+        "windowAssessment": null
       },
       "priceReference": {
         "date": "2026-10-22",
+        "source": "Cardmarket",
+        "url": "https://www.cardmarket.com/en/Magic/Products/Singles/Reality-Fracture/Theorists-Sanctum",
         "currency": "EUR",
-        "metric": "Scryfall EUR reference for the identified printing; not Cardmarket From or realized sale",
-        "nonfoil": 0.29,
-        "foil": 0.73,
+        "metric": "Cardmarket From, minimo richiesto per il prodotto; non ricavo realizzato",
+        "from": 0.1,
+        "nonfoil": null,
+        "foil": null,
         "comparison": {
           "date": "2026-10-18",
-          "samePrinting": true,
-          "nonfoil": 0.08,
-          "changePct": 262.5,
-          "status": "comparable"
+          "source": "Cardmarket",
+          "sourceId": "cardmarket-browser-20261018",
+          "samePrinting": null,
+          "sameProduct": null,
+          "metric": "from",
+          "finishFilter": "any",
+          "from": null,
+          "nonfoil": null,
+          "changePct": null,
+          "status": "missing_reference",
+          "note": "Confronto dei minimi From del prodotto base, senza isolamento della finitura. Lo snapshot del 18 ottobre conserva solo i valori strettamente superiori a 0,10 euro; gli altri non sono zeri."
         },
         "printingId": "22db5bba-46c9-4a26-821d-303ddb386ea4"
       }
@@ -371,26 +433,38 @@
         ],
         "downsideRisks": [
           "Nuove aperture e disponibilità di copie",
-          "Mancano dati su vendite concluse, liquidità e differenza tra acquisto e vendita",
-          "Il riferimento è già salito: il movimento passato può anticipare la domanda o riassorbirsi"
+          "Mancano dati su vendite concluse, liquidità e differenza tra acquisto e vendita"
         ],
         "confidence": "bassa",
         "targetPrice": null,
         "probabilityOfRise": null,
-        "action": "monitorare_domanda_e_prezzo_della_stessa_stampa"
+        "action": "verificare_offerte_cardmarket_della_stessa_stampa_e_finitura",
+        "priceAuthority": "Cardmarket",
+        "marketAssessment": "Il minimo Cardmarket osservato è 7,00 euro. Supera la soglia personale di vendita di 0,10 euro, ma resta un prezzo di offerta, prima di commissioni, materiali e tempo. Dal 18 ottobre il minimo dello stesso prodotto è aumentato (+1.45%). Questo movimento non dimostra né esclude crescita della domanda.",
+        "windowAssessment": null
       },
       "priceReference": {
         "date": "2026-10-22",
+        "source": "Cardmarket",
+        "url": "https://www.cardmarket.com/en/Magic/Products/Singles/Reality-Fracture/Seasoned-Cryomancer",
         "currency": "EUR",
-        "metric": "Scryfall EUR reference for the identified printing; not Cardmarket From or realized sale",
-        "nonfoil": 8.99,
-        "foil": 10.08,
+        "metric": "Cardmarket From, minimo richiesto per il prodotto; non ricavo realizzato",
+        "from": 7.0,
+        "nonfoil": null,
+        "foil": null,
         "comparison": {
           "date": "2026-10-18",
-          "samePrinting": true,
-          "nonfoil": 7.42,
-          "changePct": 21.16,
-          "status": "comparable"
+          "source": "Cardmarket",
+          "sourceId": "cardmarket-browser-20261018",
+          "samePrinting": null,
+          "sameProduct": true,
+          "metric": "from",
+          "finishFilter": "any",
+          "from": 6.9,
+          "nonfoil": null,
+          "changePct": 1.45,
+          "status": "comparable",
+          "note": "Confronto dei minimi From del prodotto base, senza isolamento della finitura. Lo snapshot del 18 ottobre conserva solo i valori strettamente superiori a 0,10 euro; gli altri non sono zeri."
         },
         "printingId": "51d86875-420d-4e82-b69c-4feeb99c9428"
       }
@@ -435,26 +509,38 @@
         ],
         "downsideRisks": [
           "Nuove aperture e disponibilità di copie",
-          "Mancano dati su vendite concluse, liquidità e differenza tra acquisto e vendita",
-          "Il riferimento è già salito: il movimento passato può anticipare la domanda o riassorbirsi"
+          "Mancano dati su vendite concluse, liquidità e differenza tra acquisto e vendita"
         ],
         "confidence": "bassa",
         "targetPrice": null,
         "probabilityOfRise": null,
-        "action": "monitorare_domanda_e_prezzo_della_stessa_stampa"
+        "action": "verificare_offerte_cardmarket_della_stessa_stampa_e_finitura",
+        "priceAuthority": "Cardmarket",
+        "marketAssessment": "Il minimo Cardmarket osservato è 0,02 euro. Non supera la soglia personale di vendita di 0,10 euro; un premio foil o di una variante richiede una quotazione distinta. Manca un minimo storico esatto confrontabile: nessuna variazione percentuale viene calcolata.",
+        "windowAssessment": null
       },
       "priceReference": {
         "date": "2026-10-22",
+        "source": "Cardmarket",
+        "url": "https://www.cardmarket.com/en/Magic/Products/Singles/Reality-Fracture/Carnivorous-Cultivator-Enroot",
         "currency": "EUR",
-        "metric": "Scryfall EUR reference for the identified printing; not Cardmarket From or realized sale",
-        "nonfoil": 0.31,
-        "foil": 0.37,
+        "metric": "Cardmarket From, minimo richiesto per il prodotto; non ricavo realizzato",
+        "from": 0.02,
+        "nonfoil": null,
+        "foil": null,
         "comparison": {
           "date": "2026-10-18",
-          "samePrinting": true,
-          "nonfoil": 0.02,
-          "changePct": 1450.0,
-          "status": "comparable"
+          "source": "Cardmarket",
+          "sourceId": "cardmarket-browser-20261018",
+          "samePrinting": null,
+          "sameProduct": null,
+          "metric": "from",
+          "finishFilter": "any",
+          "from": null,
+          "nonfoil": null,
+          "changePct": null,
+          "status": "missing_reference",
+          "note": "Confronto dei minimi From del prodotto base, senza isolamento della finitura. Lo snapshot del 18 ottobre conserva solo i valori strettamente superiori a 0,10 euro; gli altri non sono zeri."
         },
         "printingId": "79dd5c54-5ea5-47b5-8f9b-50ed57a5ea45"
       }
@@ -497,26 +583,38 @@
         "downsideRisks": [
           "Nuove aperture e disponibilità di copie",
           "Mancano dati su vendite concluse, liquidità e differenza tra acquisto e vendita",
-          "Offerta elevata e costi di gestione rispetto al valore unitario",
-          "Il riferimento è già salito: il movimento passato può anticipare la domanda o riassorbirsi"
+          "Offerta elevata e costi di gestione rispetto al valore unitario"
         ],
         "confidence": "bassa",
         "targetPrice": null,
         "probabilityOfRise": null,
-        "action": "monitorare_domanda_e_prezzo_della_stessa_stampa"
+        "action": "verificare_offerte_cardmarket_della_stessa_stampa_e_finitura",
+        "priceAuthority": "Cardmarket",
+        "marketAssessment": "Il minimo Cardmarket osservato è 0,02 euro. Non supera la soglia personale di vendita di 0,10 euro; un premio foil o di una variante richiede una quotazione distinta. Manca un minimo storico esatto confrontabile: nessuna variazione percentuale viene calcolata.",
+        "windowAssessment": null
       },
       "priceReference": {
         "date": "2026-10-22",
+        "source": "Cardmarket",
+        "url": "https://www.cardmarket.com/en/Magic/Products/Singles/Reality-Fracture/Archive-Arbiter",
         "currency": "EUR",
-        "metric": "Scryfall EUR reference for the identified printing; not Cardmarket From or realized sale",
-        "nonfoil": 0.08,
-        "foil": 0.2,
+        "metric": "Cardmarket From, minimo richiesto per il prodotto; non ricavo realizzato",
+        "from": 0.02,
+        "nonfoil": null,
+        "foil": null,
         "comparison": {
           "date": "2026-10-18",
-          "samePrinting": true,
-          "nonfoil": 0.02,
-          "changePct": 300.0,
-          "status": "comparable"
+          "source": "Cardmarket",
+          "sourceId": "cardmarket-browser-20261018",
+          "samePrinting": null,
+          "sameProduct": null,
+          "metric": "from",
+          "finishFilter": "any",
+          "from": null,
+          "nonfoil": null,
+          "changePct": null,
+          "status": "missing_reference",
+          "note": "Confronto dei minimi From del prodotto base, senza isolamento della finitura. Lo snapshot del 18 ottobre conserva solo i valori strettamente superiori a 0,10 euro; gli altri non sono zeri."
         },
         "printingId": "024bce1e-a5f3-4292-bc17-d0355a5d65e1"
       }
@@ -555,26 +653,38 @@
         "downsideRisks": [
           "Nuove aperture e disponibilità di copie",
           "Mancano dati su vendite concluse, liquidità e differenza tra acquisto e vendita",
-          "Offerta elevata e costi di gestione rispetto al valore unitario",
-          "Il riferimento è già salito: il movimento passato può anticipare la domanda o riassorbirsi"
+          "Offerta elevata e costi di gestione rispetto al valore unitario"
         ],
         "confidence": "bassa",
         "targetPrice": null,
         "probabilityOfRise": null,
-        "action": "monitorare_domanda_e_prezzo_della_stessa_stampa"
+        "action": "verificare_offerte_cardmarket_della_stessa_stampa_e_finitura",
+        "priceAuthority": "Cardmarket",
+        "marketAssessment": "Il minimo Cardmarket osservato è 0,02 euro. Non supera la soglia personale di vendita di 0,10 euro; un premio foil o di una variante richiede una quotazione distinta. Manca un minimo storico esatto confrontabile: nessuna variazione percentuale viene calcolata.",
+        "windowAssessment": null
       },
       "priceReference": {
         "date": "2026-10-22",
+        "source": "Cardmarket",
+        "url": "https://www.cardmarket.com/en/Magic/Products/Singles/Reality-Fracture/Unflinching-Hortimancer",
         "currency": "EUR",
-        "metric": "Scryfall EUR reference for the identified printing; not Cardmarket From or realized sale",
-        "nonfoil": 0.06,
-        "foil": 0.17,
+        "metric": "Cardmarket From, minimo richiesto per il prodotto; non ricavo realizzato",
+        "from": 0.02,
+        "nonfoil": null,
+        "foil": null,
         "comparison": {
           "date": "2026-10-18",
-          "samePrinting": true,
-          "nonfoil": 0.03,
-          "changePct": 100.0,
-          "status": "comparable"
+          "source": "Cardmarket",
+          "sourceId": "cardmarket-browser-20261018",
+          "samePrinting": null,
+          "sameProduct": null,
+          "metric": "from",
+          "finishFilter": "any",
+          "from": null,
+          "nonfoil": null,
+          "changePct": null,
+          "status": "missing_reference",
+          "note": "Confronto dei minimi From del prodotto base, senza isolamento della finitura. Lo snapshot del 18 ottobre conserva solo i valori strettamente superiori a 0,10 euro; gli altri non sono zeri."
         },
         "printingId": "63f82985-c9c2-4d0a-ac4f-560166bebd9f"
       }
@@ -624,20 +734,33 @@
         "confidence": "bassa",
         "targetPrice": null,
         "probabilityOfRise": null,
-        "action": "monitorare_domanda_e_prezzo_della_stessa_stampa"
+        "action": "verificare_offerte_cardmarket_della_stessa_stampa_e_finitura",
+        "priceAuthority": "Cardmarket",
+        "marketAssessment": "Il minimo Cardmarket osservato è 4,95 euro. Supera la soglia personale di vendita di 0,10 euro, ma resta un prezzo di offerta, prima di commissioni, materiali e tempo. Dal 18 ottobre il minimo dello stesso prodotto è rimasto invariato (+0.00%). Questo movimento non dimostra né esclude crescita della domanda.",
+        "windowAssessment": null
       },
       "priceReference": {
         "date": "2026-10-22",
+        "source": "Cardmarket",
+        "url": "https://www.cardmarket.com/en/Magic/Products/Singles/Reality-Fracture/Samut-Tyrant-of-Naktamun",
         "currency": "EUR",
-        "metric": "Scryfall EUR reference for the identified printing; not Cardmarket From or realized sale",
-        "nonfoil": 4.11,
-        "foil": 4.19,
+        "metric": "Cardmarket From, minimo richiesto per il prodotto; non ricavo realizzato",
+        "from": 4.95,
+        "nonfoil": null,
+        "foil": null,
         "comparison": {
           "date": "2026-10-18",
-          "samePrinting": true,
-          "nonfoil": 4.15,
-          "changePct": -0.96,
-          "status": "comparable"
+          "source": "Cardmarket",
+          "sourceId": "cardmarket-browser-20261018",
+          "samePrinting": null,
+          "sameProduct": true,
+          "metric": "from",
+          "finishFilter": "any",
+          "from": 4.95,
+          "nonfoil": null,
+          "changePct": 0.0,
+          "status": "comparable",
+          "note": "Confronto dei minimi From del prodotto base, senza isolamento della finitura. Lo snapshot del 18 ottobre conserva solo i valori strettamente superiori a 0,10 euro; gli altri non sono zeri."
         },
         "printingId": "6d7d8fa7-ce69-4a8c-9af0-55571393a244"
       }
@@ -678,26 +801,38 @@
         "downsideRisks": [
           "Nuove aperture e disponibilità di copie",
           "Mancano dati su vendite concluse, liquidità e differenza tra acquisto e vendita",
-          "Offerta elevata e costi di gestione rispetto al valore unitario",
-          "Il riferimento è già salito: il movimento passato può anticipare la domanda o riassorbirsi"
+          "Offerta elevata e costi di gestione rispetto al valore unitario"
         ],
         "confidence": "bassa",
         "targetPrice": null,
         "probabilityOfRise": null,
-        "action": "monitorare_domanda_e_prezzo_della_stessa_stampa"
+        "action": "verificare_offerte_cardmarket_della_stessa_stampa_e_finitura",
+        "priceAuthority": "Cardmarket",
+        "marketAssessment": "Il minimo Cardmarket osservato è 0,02 euro. Non supera la soglia personale di vendita di 0,10 euro; un premio foil o di una variante richiede una quotazione distinta. Manca un minimo storico esatto confrontabile: nessuna variazione percentuale viene calcolata.",
+        "windowAssessment": null
       },
       "priceReference": {
         "date": "2026-10-22",
+        "source": "Cardmarket",
+        "url": "https://www.cardmarket.com/en/Magic/Products/Singles/Reality-Fracture/Pia-Aether-Ascetic",
         "currency": "EUR",
-        "metric": "Scryfall EUR reference for the identified printing; not Cardmarket From or realized sale",
-        "nonfoil": 0.6,
-        "foil": 3.14,
+        "metric": "Cardmarket From, minimo richiesto per il prodotto; non ricavo realizzato",
+        "from": 0.02,
+        "nonfoil": null,
+        "foil": null,
         "comparison": {
           "date": "2026-10-18",
-          "samePrinting": true,
-          "nonfoil": 0.41,
-          "changePct": 46.34,
-          "status": "comparable"
+          "source": "Cardmarket",
+          "sourceId": "cardmarket-browser-20261018",
+          "samePrinting": null,
+          "sameProduct": null,
+          "metric": "from",
+          "finishFilter": "any",
+          "from": null,
+          "nonfoil": null,
+          "changePct": null,
+          "status": "missing_reference",
+          "note": "Confronto dei minimi From del prodotto base, senza isolamento della finitura. Lo snapshot del 18 ottobre conserva solo i valori strettamente superiori a 0,10 euro; gli altri non sono zeri."
         },
         "printingId": "ff0bc30f-9d20-458e-808f-bdc2825905a5"
       }
@@ -744,26 +879,38 @@
         ],
         "downsideRisks": [
           "Nuove aperture e disponibilità di copie",
-          "Mancano dati su vendite concluse, liquidità e differenza tra acquisto e vendita",
-          "Il riferimento è già salito: il movimento passato può anticipare la domanda o riassorbirsi"
+          "Mancano dati su vendite concluse, liquidità e differenza tra acquisto e vendita"
         ],
         "confidence": "bassa",
         "targetPrice": null,
         "probabilityOfRise": null,
-        "action": "monitorare_domanda_e_prezzo_della_stessa_stampa"
+        "action": "verificare_offerte_cardmarket_della_stessa_stampa_e_finitura",
+        "priceAuthority": "Cardmarket",
+        "marketAssessment": "Il minimo Cardmarket osservato è 0,99 euro. Supera la soglia personale di vendita di 0,10 euro, ma resta un prezzo di offerta, prima di commissioni, materiali e tempo. Dal 18 ottobre il minimo dello stesso prodotto è rimasto invariato (+0.00%). Questo movimento non dimostra né esclude crescita della domanda.",
+        "windowAssessment": null
       },
       "priceReference": {
         "date": "2026-10-22",
+        "source": "Cardmarket",
+        "url": "https://www.cardmarket.com/en/Magic/Products/Singles/Reality-Fracture/Samut-Hazorets-Champion",
         "currency": "EUR",
-        "metric": "Scryfall EUR reference for the identified printing; not Cardmarket From or realized sale",
-        "nonfoil": 2.43,
-        "foil": 2.66,
+        "metric": "Cardmarket From, minimo richiesto per il prodotto; non ricavo realizzato",
+        "from": 0.99,
+        "nonfoil": null,
+        "foil": null,
         "comparison": {
           "date": "2026-10-18",
-          "samePrinting": true,
-          "nonfoil": 1.94,
-          "changePct": 25.26,
-          "status": "comparable"
+          "source": "Cardmarket",
+          "sourceId": "cardmarket-browser-20261018",
+          "samePrinting": null,
+          "sameProduct": true,
+          "metric": "from",
+          "finishFilter": "any",
+          "from": 0.99,
+          "nonfoil": null,
+          "changePct": 0.0,
+          "status": "comparable",
+          "note": "Confronto dei minimi From del prodotto base, senza isolamento della finitura. Lo snapshot del 18 ottobre conserva solo i valori strettamente superiori a 0,10 euro; gli altri non sono zeri."
         },
         "printingId": "ba920f23-f05c-410e-8516-c93abedf1d4d"
       }
@@ -814,20 +961,33 @@
         "confidence": "bassa",
         "targetPrice": null,
         "probabilityOfRise": null,
-        "action": "monitorare_domanda_e_prezzo_della_stessa_stampa"
+        "action": "verificare_offerte_cardmarket_della_stessa_stampa_e_finitura",
+        "priceAuthority": "Cardmarket",
+        "marketAssessment": "Il minimo Cardmarket osservato è 0,09 euro. Non supera la soglia personale di vendita di 0,10 euro; un premio foil o di una variante richiede una quotazione distinta. Manca un minimo storico esatto confrontabile: nessuna variazione percentuale viene calcolata.",
+        "windowAssessment": null
       },
       "priceReference": {
         "date": "2026-10-22",
+        "source": "Cardmarket",
+        "url": "https://www.cardmarket.com/en/Magic/Products/Singles/Commander-Reality-Fracture/Dack-Fayden-Helping-Hand",
         "currency": "EUR",
-        "metric": "Scryfall EUR reference for the identified printing; not Cardmarket From or realized sale",
-        "nonfoil": 0.2,
+        "metric": "Cardmarket From, minimo richiesto per il prodotto; non ricavo realizzato",
+        "from": 0.09,
+        "nonfoil": null,
         "foil": null,
         "comparison": {
           "date": "2026-10-18",
+          "source": "Cardmarket",
+          "sourceId": "cardmarket-browser-20261018",
           "samePrinting": null,
+          "sameProduct": null,
+          "metric": "from",
+          "finishFilter": "any",
+          "from": null,
           "nonfoil": null,
           "changePct": null,
-          "status": "missing_reference"
+          "status": "missing_reference",
+          "note": "Confronto dei minimi From del prodotto base, senza isolamento della finitura. Lo snapshot del 18 ottobre conserva solo i valori strettamente superiori a 0,10 euro; gli altri non sono zeri."
         },
         "printingId": "b0db02cb-d029-46d5-9df2-dee980047758"
       }
@@ -864,26 +1024,38 @@
         ],
         "downsideRisks": [
           "Nuove aperture e disponibilità di copie",
-          "Mancano dati su vendite concluse, liquidità e differenza tra acquisto e vendita",
-          "Il riferimento è già salito: il movimento passato può anticipare la domanda o riassorbirsi"
+          "Mancano dati su vendite concluse, liquidità e differenza tra acquisto e vendita"
         ],
         "confidence": "bassa",
         "targetPrice": null,
         "probabilityOfRise": null,
-        "action": "monitorare_domanda_e_prezzo_della_stessa_stampa"
+        "action": "verificare_offerte_cardmarket_della_stessa_stampa_e_finitura",
+        "priceAuthority": "Cardmarket",
+        "marketAssessment": "Il minimo Cardmarket osservato è 1,80 euro. Supera la soglia personale di vendita di 0,10 euro, ma resta un prezzo di offerta, prima di commissioni, materiali e tempo. Dal 18 ottobre il minimo dello stesso prodotto è diminuito (-60.00%). Questo movimento non dimostra né esclude crescita della domanda.",
+        "windowAssessment": null
       },
       "priceReference": {
         "date": "2026-10-22",
+        "source": "Cardmarket",
+        "url": "https://www.cardmarket.com/en/Magic/Products/Singles/Reality-Fracture/Bloodline-Recollector-Ancestral-Craving",
         "currency": "EUR",
-        "metric": "Scryfall EUR reference for the identified printing; not Cardmarket From or realized sale",
-        "nonfoil": 4.94,
-        "foil": 5.85,
+        "metric": "Cardmarket From, minimo richiesto per il prodotto; non ricavo realizzato",
+        "from": 1.8,
+        "nonfoil": null,
+        "foil": null,
         "comparison": {
           "date": "2026-10-18",
-          "samePrinting": true,
-          "nonfoil": 2.27,
-          "changePct": 117.62,
-          "status": "comparable"
+          "source": "Cardmarket",
+          "sourceId": "cardmarket-browser-20261018",
+          "samePrinting": null,
+          "sameProduct": true,
+          "metric": "from",
+          "finishFilter": "any",
+          "from": 4.5,
+          "nonfoil": null,
+          "changePct": -60.0,
+          "status": "comparable",
+          "note": "Confronto dei minimi From del prodotto base, senza isolamento della finitura. Lo snapshot del 18 ottobre conserva solo i valori strettamente superiori a 0,10 euro; gli altri non sono zeri."
         },
         "printingId": "4fcc913e-f736-460a-b24b-022fa2e861b9"
       }
@@ -929,26 +1101,38 @@
         ],
         "downsideRisks": [
           "Nuove aperture e disponibilità di copie",
-          "Mancano dati su vendite concluse, liquidità e differenza tra acquisto e vendita",
-          "Il riferimento è già salito: il movimento passato può anticipare la domanda o riassorbirsi"
+          "Mancano dati su vendite concluse, liquidità e differenza tra acquisto e vendita"
         ],
         "confidence": "bassa",
         "targetPrice": null,
         "probabilityOfRise": null,
-        "action": "monitorare_domanda_e_prezzo_della_stessa_stampa"
+        "action": "verificare_offerte_cardmarket_della_stessa_stampa_e_finitura",
+        "priceAuthority": "Cardmarket",
+        "marketAssessment": "Il minimo Cardmarket osservato è 41,00 euro. Supera la soglia personale di vendita di 0,10 euro, ma resta un prezzo di offerta, prima di commissioni, materiali e tempo. Dal 18 ottobre il minimo dello stesso prodotto è aumentato (+3.80%). Questo movimento non dimostra né esclude crescita della domanda.",
+        "windowAssessment": null
       },
       "priceReference": {
         "date": "2026-10-22",
+        "source": "Cardmarket",
+        "url": "https://www.cardmarket.com/en/Magic/Products/Singles/Reality-Fracture/The-Theorist-Jace-Beleren",
         "currency": "EUR",
-        "metric": "Scryfall EUR reference for the identified printing; not Cardmarket From or realized sale",
-        "nonfoil": 39.74,
-        "foil": 49.35,
+        "metric": "Cardmarket From, minimo richiesto per il prodotto; non ricavo realizzato",
+        "from": 41.0,
+        "nonfoil": null,
+        "foil": null,
         "comparison": {
           "date": "2026-10-18",
-          "samePrinting": true,
-          "nonfoil": 30.57,
-          "changePct": 30.0,
-          "status": "comparable"
+          "source": "Cardmarket",
+          "sourceId": "cardmarket-browser-20261018",
+          "samePrinting": null,
+          "sameProduct": true,
+          "metric": "from",
+          "finishFilter": "any",
+          "from": 39.5,
+          "nonfoil": null,
+          "changePct": 3.8,
+          "status": "comparable",
+          "note": "Confronto dei minimi From del prodotto base, senza isolamento della finitura. Lo snapshot del 18 ottobre conserva solo i valori strettamente superiori a 0,10 euro; gli altri non sono zeri."
         },
         "printingId": "20bb8c55-4b0b-425f-8201-b54fa2fdde86"
       }
@@ -993,26 +1177,38 @@
         "downsideRisks": [
           "Nuove aperture e disponibilità di copie",
           "Mancano dati su vendite concluse, liquidità e differenza tra acquisto e vendita",
-          "Il riferimento è già salito: il movimento passato può anticipare la domanda o riassorbirsi",
           "Domanda competitiva concentrata nello Standard e soggetta al cambio del metagame"
         ],
         "confidence": "bassa",
         "targetPrice": null,
         "probabilityOfRise": null,
-        "action": "monitorare_domanda_e_prezzo_della_stessa_stampa"
+        "action": "verificare_offerte_cardmarket_della_stessa_stampa_e_finitura",
+        "priceAuthority": "Cardmarket",
+        "marketAssessment": "Il minimo Cardmarket osservato è 0,04 euro. Non supera la soglia personale di vendita di 0,10 euro; un premio foil o di una variante richiede una quotazione distinta. Manca un minimo storico esatto confrontabile: nessuna variazione percentuale viene calcolata.",
+        "windowAssessment": null
       },
       "priceReference": {
         "date": "2026-10-22",
+        "source": "Cardmarket",
+        "url": "https://www.cardmarket.com/en/Magic/Products/Singles/Reality-Fracture/Jaces-Machinations",
         "currency": "EUR",
-        "metric": "Scryfall EUR reference for the identified printing; not Cardmarket From or realized sale",
-        "nonfoil": 0.55,
-        "foil": 0.66,
+        "metric": "Cardmarket From, minimo richiesto per il prodotto; non ricavo realizzato",
+        "from": 0.04,
+        "nonfoil": null,
+        "foil": null,
         "comparison": {
           "date": "2026-10-18",
-          "samePrinting": true,
-          "nonfoil": 0.03,
-          "changePct": 1733.33,
-          "status": "comparable"
+          "source": "Cardmarket",
+          "sourceId": "cardmarket-browser-20261018",
+          "samePrinting": null,
+          "sameProduct": null,
+          "metric": "from",
+          "finishFilter": "any",
+          "from": null,
+          "nonfoil": null,
+          "changePct": null,
+          "status": "missing_reference",
+          "note": "Confronto dei minimi From del prodotto base, senza isolamento della finitura. Lo snapshot del 18 ottobre conserva solo i valori strettamente superiori a 0,10 euro; gli altri non sono zeri."
         },
         "printingId": "282588b9-3656-453b-aa25-2419e078ddc1"
       }
@@ -1051,26 +1247,38 @@
         ],
         "downsideRisks": [
           "Nuove aperture e disponibilità di copie",
-          "Mancano dati su vendite concluse, liquidità e differenza tra acquisto e vendita",
-          "Il riferimento è già salito: il movimento passato può anticipare la domanda o riassorbirsi"
+          "Mancano dati su vendite concluse, liquidità e differenza tra acquisto e vendita"
         ],
         "confidence": "bassa",
         "targetPrice": null,
         "probabilityOfRise": null,
-        "action": "monitorare_domanda_e_prezzo_della_stessa_stampa"
+        "action": "verificare_offerte_cardmarket_della_stessa_stampa_e_finitura",
+        "priceAuthority": "Cardmarket",
+        "marketAssessment": "Il minimo Cardmarket osservato è 3,10 euro. Supera la soglia personale di vendita di 0,10 euro, ma resta un prezzo di offerta, prima di commissioni, materiali e tempo. Dal 18 ottobre il minimo dello stesso prodotto è rimasto invariato (+0.00%). Questo movimento non dimostra né esclude crescita della domanda.",
+        "windowAssessment": null
       },
       "priceReference": {
         "date": "2026-10-22",
+        "source": "Cardmarket",
+        "url": "https://www.cardmarket.com/en/Magic/Products/Singles/Reality-Fracture/Stingcaster-Mage",
         "currency": "EUR",
-        "metric": "Scryfall EUR reference for the identified printing; not Cardmarket From or realized sale",
-        "nonfoil": 5.59,
-        "foil": 6.87,
+        "metric": "Cardmarket From, minimo richiesto per il prodotto; non ricavo realizzato",
+        "from": 3.1,
+        "nonfoil": null,
+        "foil": null,
         "comparison": {
           "date": "2026-10-18",
-          "samePrinting": true,
-          "nonfoil": 3.35,
-          "changePct": 66.87,
-          "status": "comparable"
+          "source": "Cardmarket",
+          "sourceId": "cardmarket-browser-20261018",
+          "samePrinting": null,
+          "sameProduct": true,
+          "metric": "from",
+          "finishFilter": "any",
+          "from": 3.1,
+          "nonfoil": null,
+          "changePct": 0.0,
+          "status": "comparable",
+          "note": "Confronto dei minimi From del prodotto base, senza isolamento della finitura. Lo snapshot del 18 ottobre conserva solo i valori strettamente superiori a 0,10 euro; gli altri non sono zeri."
         },
         "printingId": "2d8e8e5f-3bf5-490d-aa9c-9df2b26f1460"
       }
@@ -3275,6 +3483,7 @@
     "catalogCoverage": 295,
     "publisherCount": 14,
     "details": "data/cards.json: cards[].prospects",
-    "commanderAppendix": "prospects-commander-20261022.json"
+    "commanderAppendix": "prospects-commander-20261022.json",
+    "priceAuthority": "Cardmarket"
   }
 }

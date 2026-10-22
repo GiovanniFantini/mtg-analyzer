@@ -271,4 +271,8 @@ def main():
     write(INPUT/'assessment-summary.json',{'date':DATE,'catalog':len(catalog),'commanderAppendix':len(appendix),'publishers':publishers,'withTournamentSightings':sum(bool(c['prospects']['tournamentObservations']) for c in catalog),'withCommanderSightings':sum(bool(c['prospects']['commanderObservations']) for c in catalog),'withLimitedReviews':sum(bool(c['prospects']['limitedReviews']) for c in catalog),'eurReferenceAvailable':sum(c['prospects']['price']['nonfoil'] is not None for c in catalog),'eurComparable':sum(c['prospects']['price']['comparison']['status']=='comparable' for c in catalog)})
     print(json.dumps(read(INPUT/'assessment-summary.json'),ensure_ascii=False,indent=2))
 
-if __name__=='__main__':main()
+if __name__=='__main__':
+    main()
+    # The requested pricing policy is applied last, including on future reruns.
+    from refresh_cardmarket_prospects_20261022 import main as apply_cardmarket_prices
+    apply_cardmarket_prices()

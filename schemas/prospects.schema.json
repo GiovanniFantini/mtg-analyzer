@@ -42,6 +42,10 @@
           "required": ["date", "currency", "metric", "printingId", "nonfoil", "foil", "comparison", "variants", "outlook"],
           "properties": {
             "currency": {"const": "EUR"},
+            "source": {"type": "string"},
+            "url": {"type": "string", "format": "uri"},
+            "from": {"$ref": "#/$defs/nullablePrice"},
+            "finishFilter": {"enum": ["any", "nonfoil", "foil"]},
             "nonfoil": {"$ref": "#/$defs/nullablePrice"},
             "foil": {"$ref": "#/$defs/nullablePrice"},
             "comparison": {
@@ -49,6 +53,7 @@
               "required": ["date", "samePrinting", "nonfoil", "changePct", "status"],
               "properties": {
                 "samePrinting": {"type": ["boolean", "null"]},
+                "from": {"$ref": "#/$defs/nullablePrice"},
                 "nonfoil": {"$ref": "#/$defs/nullablePrice"},
                 "changePct": {"type": ["number", "null"]},
                 "status": {"enum": ["comparable", "missing_reference"]}

@@ -114,9 +114,10 @@
       "basicLandIdentities": 5,
       "specialGuestIdentities": 10,
       "commanderProductIdentities": 87,
-      "treatmentRule": "Valutazione di gioco per identità; prezzi per stampa e finitura"
+      "treatmentRule": "Valutazione di gioco per identità; prezzi per prodotto, finiture separate solo dove il filtro è verificato."
     },
     "publishers": [
+      "Cardmarket",
       "Cards Realm",
       "DeckCortex",
       "Draftsim",
@@ -132,7 +133,7 @@
       "Scryfall",
       "Wizards / Magic.gg"
     ],
-    "publisherCount": 14,
+    "publisherCount": 15,
     "sources": [
       {
         "id": "wizards-standard",
@@ -455,6 +456,30 @@
           "903.11"
         ],
         "finding": "Commander has no sideboard; ordinary outside-the-game effects cannot bring traditional cards into the game."
+      },
+      {
+        "id": "cardmarket-browser-20261022",
+        "publisher": "Cardmarket",
+        "kind": "marketplace-direct-browser",
+        "url": "https://www.cardmarket.com/en/Magic/Spoilers/Reality-Fracture",
+        "retrieved": "2026-10-22",
+        "status": "retrieved",
+        "label": "Listini e schede Cardmarket, 22 ottobre",
+        "snapshot": "research/reality-fracture-20261022/cardmarket-listings-20261022.json",
+        "snapshotSha256": "a33a4a8f125913e4a3f7f338f19f678dd5d7d9a8849afbe40856e86b90dc706d",
+        "scope": "Prezzi richiesti, non ricavi di vendita; nessun filtro lingua/condizione/paese; spedizione esclusa."
+      },
+      {
+        "id": "cardmarket-browser-20261018",
+        "publisher": "Cardmarket",
+        "kind": "marketplace-direct-browser",
+        "url": "https://www.cardmarket.com/en/Magic/Spoilers/Reality-Fracture",
+        "retrieved": "2026-10-18",
+        "status": "retrieved",
+        "label": "Snapshot storico Cardmarket, 18 ottobre",
+        "snapshot": "research/reality-fracture-20261022/cardmarket-history-20261018.json",
+        "snapshotSha256": "b945d2fc2483d753618b53792267e60a1ab40b3edd68b80945338548ba56195f",
+        "scope": "Prezzi richiesti, non ricavi di vendita; nessun filtro lingua/condizione/paese; spedizione esclusa."
       }
     ],
     "tournamentContexts": {
@@ -489,7 +514,7 @@
       "edhrec": "Liste pubblicate, non partite vinte; denominatore per identità di colore. Ristampe con storico di tutte le edizioni.",
       "postboard": "Campione di 3.313 liste. 104 schede per carta/formato (66 identità) estratte; altre presenze isolate non sono visibili nelle schede. Percentuali ponderate per dimensione evento.",
       "limited": "Recensioni con scala originale e profilo editoriale preesistente datato; nessuna modifica ai voti del motore. Non trasferire un voto Draft a Sealed o Pick-Two.",
-      "prices": "Confronto EUR Scryfall 18/22 ottobre della stessa stampa. USD, foil e trattamenti restano separati. Nessun nuovo minimo Cardmarket verificato.",
+      "prices": "Unica autorità dei valori attivi: Cardmarket, lettura diretta del browser del 22 ottobre. Minimo From per prodotto, senza isolamento della finitura salvo filtro N/Y verificato. Confronto del minimo dello stesso prodotto con il 18 ottobre solo dove conservato esattamente. Scryfall resta fonte Oracle/legalità: nessuna quotazione Scryfall attiva.",
       "forecast": "Scenari editoriali a 3 e 12 mesi, senza prezzi obiettivo o probabilità inventate.",
       "unknownFormats": "Tutti i formati censiti dalle legalità ricevono uno stato; dove mancano risultati si dichiara la lacuna, senza assegnare voti fittizi.",
       "productBoundaries": "Le Special Guests non acquisiscono legalità Standard o Pioneer dal prodotto FRA. Il prodotto Commander FRC resta separato dal catalogo e dalla collazione."
@@ -501,26 +526,9 @@
           "postboard"
         ],
         "finding": "PauperPilot mostra 1 carta nella finestra 12 settembre/11 ottobre; Postboard ne elenca 3 nel campione successivo. Finestre e copertura diverse, non mediare i dati."
-      },
-      {
-        "sources": [
-          "echomtg",
-          "scryfall-api"
-        ],
-        "finding": "EchoMTG usa riferimenti TCGplayer mid USD, Scryfall espone riferimenti USD/EUR diversi. Non fondere quotazioni e trend."
       }
     ],
-    "unavailable": [
-      {
-        "id": "cardmarket",
-        "publisher": "Cardmarket",
-        "kind": "marketplace",
-        "url": "https://www.cardmarket.com/en/Magic/Spoilers/Reality-Fracture",
-        "retrieved": "2026-10-22",
-        "status": "unavailable",
-        "error": "HTTP Error 403: Forbidden"
-      }
-    ],
+    "unavailable": [],
     "commanderAppendix": "prospects-commander-20261022.json",
     "cedhContext": {
       "source": "deckcortex-cedh",
@@ -540,6 +548,25 @@
       "sourceAsOf": "2026-10-22 20:01",
       "kind": "beta_popular_card_list_not_performance",
       "perCardCountsAvailable": false
-    }
+    },
+    "priceAuthority": "Cardmarket",
+    "priceCoverage": {
+      "available": true,
+      "date": "2026-10-22",
+      "source": "Cardmarket",
+      "metric": "From per prodotto; finiture isolate solo dove verificate",
+      "location": "cards.json: cards[].prospects.price e appendice Commander",
+      "cardmarketFromAvailable": true,
+      "soldPricesAvailable": false,
+      "boxEVUpdated": false,
+      "catalogCoverage": 295,
+      "commanderCoverage": 87,
+      "nonfoilCoverage": 6,
+      "foilCoverage": 1,
+      "missing": "Serie storica esatta per le carte a 0,10 euro o meno nello snapshot del 18 ottobre; finiture e varianti non verificate; volumi delle vendite."
+    },
+    "collectionLimitations": [
+      "Le pagine prodotto hanno successivamente presentato la verifica di sicurezza Cloudflare. Usati soltanto i valori già letti, senza aggirare il controllo."
+    ]
   }
 }

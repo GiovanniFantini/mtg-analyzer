@@ -1,0 +1,33 @@
+{
+  "date": "2026-10-22",
+  "source": "Cardmarket browser-rendered product info",
+  "columns": ["name", "collectorNumber", "from", "trend", "average30", "average7", "average1", "availableItems"],
+  "defaultFilter": "any",
+  "defaultRows": [
+    ["Eye of Ugin",159,24,25.37,30.26,26.87,26.23,842],
+    ["Austere Command",160,1.99,2.88,2.78,2.88,2.65,505],
+    ["Flesh Duplicate",161,8,10.34,13.48,11.65,10.8,713],
+    ["Consign to Memory",162,8,12.52,14.41,13.7,19.09,490],
+    ["Sublime Epiphany",163,1.9,2.32,3.31,2.64,2,578],
+    ["Consider",164,3.7,4.88,5.01,5.03,5.12,480],
+    ["Necrodominance",165,4.9,6.18,7.41,6.38,6.34,681],
+    ["Mind Twist",166,2.35,3.37,4.41,3.72,2.86,727],
+    ["Splinter Twin",167,4.5,5.28,7.47,6.11,5.18,701],
+    ["Root Maze",168,2.85,2.98,5.02,4.11,3.65,783]
+  ],
+  "nonfoilRows": [
+    ["Academic Ascent",2,0.02,0.04,0.06,0.06,0.03,10506],
+    ["Aerid Konstrari",121,1.99,3.04,3.65,3.33,3.3,1169],
+    ["Afterthought Sentry",166,0.02,0.02,0.06,0.04,0.03,9964],
+    ["Ajani Resolute",195,6.5,9.02,8.02,8.91,9.28,590],
+    ["Ajani Unrelenting",242,9.89,12.04,7.13,11.5,11.88,464],
+    ["Root Maze",168,2.85,2.98,5.02,4.11,3.65,783]
+  ],
+  "foilRows": [["Root Maze",168,5,6.48,8.43,7.69,5.97,184]],
+  "notes": [
+    "Finitura non isolata nel listino iniziale e nelle schede default. Il filtro isFoil=N o Y è stato verificato nel select Cardmarket per le righe nonfoilRows e foilRows.",
+    "Listino e schede prodotto sono rilevazioni successive: i valori possono differire. Non mediare né attribuire una variazione temporale a questi disallineamenti.",
+    "Nessun filtro lingua, condizione o paese del venditore; spedizione esclusa. Nessun volume di transazioni verificato.",
+    "Ulteriore raccolta delle schede fermata dalla pagina di verifica di sicurezza Cardmarket (Cloudflare) su Ajani's Anguish. Nessun aggiramento del controllo."
+  ]
+}

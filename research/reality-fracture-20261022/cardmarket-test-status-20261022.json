@@ -1,0 +1,27 @@
+{
+  "date": "2026-10-22",
+  "scope": "Task changes exported to a temporary directory with committed collation code; unrelated local expansion_data.py changes excluded",
+  "unitTests": {
+    "command": "python -m unittest test_expansion_data.py",
+    "exitCode": 0,
+    "run": 30,
+    "passed": 30,
+    "errors": 0
+  },
+  "build": "passed, 20 pages and local links",
+  "dataAudit": "passed, 382 identities with Cardmarket-only values",
+  "browser": {
+    "command": "node verify-prospects-browser.cjs",
+    "status": "passed",
+    "coverage": [
+      "382 analyses",
+      "Cardmarket product links",
+      "verified foil/nonfoil prices",
+      "missing finish values",
+      "format filters and pagination",
+      "hover, keyboard and touch previews",
+      "desktop and mobile layout",
+      "appendix failure fallback"
+    ]
+  }
+}

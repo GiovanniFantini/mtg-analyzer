@@ -3,11 +3,16 @@
   "status": "passed",
   "catalogCards": 295,
   "commanderAppendix": 87,
-  "sourcePublishers": 14,
+  "sourcePublishers": 15,
+  "priceAuthority": "Cardmarket",
+  "priceListings": 387,
+  "exactHistoricalComparisons": 48,
+  "nonfoilReadings": 6,
+  "foilReadings": 1,
   "tournamentCardFormatRecords": 104,
   "functionalCardDataUnchanged": true,
   "replayMetadataUnchanged": true,
   "currencyFinishAndPrintingSeparated": true,
   "historicalEVUnchanged": true,
-  "checks": "Coverage; source resolution; source content hashes; Oracle/legalities; all observed-list joins; Commander and cEDH joins with distinct dates; same-printing EUR changes; no invented targets/probabilities; no functional mutations."
+  "checks": "Coverage; source resolution; Oracle/legalities; observed-list joins; Commander/cEDH date separation; exclusively direct Cardmarket prices; exact From comparisons only; no finish/variant fallback; no invented targets/probabilities; no functional mutations."
 }
