@@ -148,6 +148,9 @@
         },
         "legalities": {
           "type": "object"
+        },
+        "prospects": {
+          "$ref": "prospects.schema.json#/$defs/cardProspects"
         }
       },
       "allOf": [

@@ -1,0 +1,24 @@
+.card-prospects{margin:20px 0;padding:18px 0;border-block:1px solid var(--line,#c6d2dc);text-align:left;min-width:0;overflow-wrap:anywhere}
+.card-prospects h4{font-size:20px;line-height:1.3;margin:0 0 10px}
+.card-prospects h5{font-size:15px;line-height:1.4;margin:20px 0 8px}
+.card-prospects p,.card-prospects li{font-size:14px;line-height:1.6}
+.card-prospects ul{padding-left:20px}
+.card-prospects .prospect-note{font-size:12px;color:var(--muted,#526779)}
+.prospect-table{overflow-x:auto;max-width:100%;margin:12px 0}
+.prospect-table table{border-collapse:collapse;width:100%;font-size:13px;min-width:460px}
+.prospect-table th,.prospect-table td{text-align:left;vertical-align:top;padding:10px;border-bottom:1px solid var(--line,#c6d2dc)}
+.prospect-table th:first-child{min-width:100px}
+.prospect-table td:nth-child(2){min-width:85px}
+.prospect-table p{font-size:12px;margin:5px 0}
+.prospect-price-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:15px 0}
+.prospect-price-grid>div{background:var(--paper,#eef3f6);padding:12px;border:1px solid var(--line,#c6d2dc);border-radius:5px}
+.prospect-price-grid span{font-size:11px}
+.prospect-price-grid p{font-size:21px;margin:6px 0 0}
+.prospect-sources{margin-top:20px}
+.prospect-sources a{overflow-wrap:anywhere}
+.prospect-load-status{font-size:13px;color:var(--muted,#526779)}
+.prospect-more{display:block;margin:20px auto;padding:12px 20px;min-height:44px}
+.prospect-table:focus-visible{outline:3px solid #1889bf;outline-offset:2px}
+.modalgrid>div{min-width:0}
+dialog .close{position:sticky;top:0;z-index:2}
+@media(max-width:650px){.prospect-price-grid{grid-template-columns:1fr}.card-prospects h4{font-size:18px}.card-prospects{padding-block:14px}}

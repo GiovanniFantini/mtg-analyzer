@@ -105,5 +105,441 @@
       "url": "draft-oracle-20261016.json",
       "label": "snapshot Oracle"
     }
+  },
+  "research": {
+    "date": "2026-10-22",
+    "scope": {
+      "catalogIdentities": 295,
+      "fraNonbasic": 280,
+      "basicLandIdentities": 5,
+      "specialGuestIdentities": 10,
+      "commanderProductIdentities": 87,
+      "treatmentRule": "Valutazione di gioco per identità; prezzi per stampa e finitura"
+    },
+    "publishers": [
+      "Cards Realm",
+      "DeckCortex",
+      "Draftsim",
+      "Duel Commander Meta",
+      "EDHREC",
+      "EDHTop16",
+      "EchoMTG",
+      "MTG Arena Zone",
+      "MTGDECKS",
+      "MTGGoldfish",
+      "PauperPilot",
+      "Postboard",
+      "Scryfall",
+      "Wizards / Magic.gg"
+    ],
+    "publisherCount": 14,
+    "sources": [
+      {
+        "id": "wizards-standard",
+        "publisher": "Wizards / Magic.gg",
+        "kind": "tournament-analysis",
+        "url": "https://magic.gg/news/metagame-mentor-the-first-standard-results-with-reality-fracture",
+        "retrieved": "2026-10-22",
+        "status": "retrieved",
+        "bytes": 280390,
+        "sha256": "d9f6a3b106aedf9e2bc5f3882c09ebea67854278f1e775dc2cbcfb0bfb34d219",
+        "textCharacters": 26033,
+        "archiveSha256": "ed2302f1e9985b8971de7bed47e8789854e659d06df04c1d9f6fb2f15a4788c5",
+        "archiveNote": "Archive written as UTF-8 text on Windows; newline normalization differs from original network bytes. sha256 records network input, archiveSha256 records the saved file."
+      },
+      {
+        "id": "wizards-modern",
+        "publisher": "Wizards / Magic.gg",
+        "kind": "tournament-analysis",
+        "url": "https://magic.gg/news/metagame-mentor-modern-developments-at-five-2026-fall-regional-championships",
+        "retrieved": "2026-10-22",
+        "status": "retrieved",
+        "bytes": 272906,
+        "sha256": "ba319a4a4016cce0f2b1df78f55fe242417c5f62214471e78eb43f5b21f78e77",
+        "textCharacters": 24137,
+        "archiveSha256": "b4ad8e0a35304cb06c6cd93c6344af3e572f986727cc60f2e6a1d81f5b7e9f0f",
+        "archiveNote": "Archive written as UTF-8 text on Windows; newline normalization differs from original network bytes. sha256 records network input, archiveSha256 records the saved file."
+      },
+      {
+        "id": "wizards-banlist",
+        "publisher": "Wizards / Magic.gg",
+        "kind": "official-policy",
+        "url": "https://magic.wizards.com/en/news/announcements/banned-and-restricted-october-12-2026",
+        "retrieved": "2026-10-22",
+        "status": "retrieved",
+        "bytes": 279880,
+        "sha256": "9aac7be9009971a619a5362e41c76d4fb57e9ef99d4b7a4729ca34de1d5b99a6",
+        "textCharacters": 37664,
+        "archiveSha256": "1af3a2b4dff3ed756e997c62f50a6b1f0ae5d7cd6d56702ade0aafe944c66133",
+        "archiveNote": "Archive written as UTF-8 text on Windows; newline normalization differs from original network bytes. sha256 records network input, archiveSha256 records the saved file."
+      },
+      {
+        "id": "wizards-release",
+        "publisher": "Wizards / Magic.gg",
+        "kind": "official-rules",
+        "url": "https://magic.wizards.com/en/news/feature/reality-fracture-release-notes",
+        "retrieved": "2026-10-22",
+        "status": "retrieved",
+        "bytes": 454418,
+        "sha256": "1ca577fded7dccc9865fb18e9e84ca9ad019047aad4f56d85bf3867638b67a92",
+        "textCharacters": 101779,
+        "archiveSha256": "711523664423cbba45314a55fe3229ecdfe203438e1fe80ba57d646b0d2c9036",
+        "archiveNote": "Archive written as UTF-8 text on Windows; newline normalization differs from original network bytes. sha256 records network input, archiveSha256 records the saved file."
+      },
+      {
+        "id": "wizards-collecting",
+        "publisher": "Wizards / Magic.gg",
+        "kind": "official-product",
+        "url": "https://magic.wizards.com/en/news/feature/collecting-reality-fracture",
+        "retrieved": "2026-10-22",
+        "status": "retrieved",
+        "bytes": 294106,
+        "sha256": "9e6ea7c75631e4aefce82ccfbdf7f86a6669f2b432b793129730450d50f26551",
+        "textCharacters": 28151,
+        "archiveSha256": "b02217b412bbb8f682723da00f47caa8c550ea587b24de2fc9973349f8a76a8e",
+        "archiveNote": "Archive written as UTF-8 text on Windows; newline normalization differs from original network bytes. sha256 records network input, archiveSha256 records the saved file."
+      },
+      {
+        "id": "postboard",
+        "publisher": "Postboard",
+        "kind": "tournament-aggregation",
+        "url": "https://www.postboard.gg/sets/fra",
+        "retrieved": "2026-10-22",
+        "status": "retrieved",
+        "bytes": 1020455,
+        "sha256": "ae6f7ed5ae4451cf94f7b869e1b03a2210ad7a46391953f38992902b2dc2cddd",
+        "textCharacters": 33149,
+        "archiveSha256": "2955445d7b27a7532756e1732aa4526aa563f8810284410e5222c81e7355b8ac",
+        "archiveNote": "Archive written as UTF-8 text on Windows; newline normalization differs from original network bytes. sha256 records network input, archiveSha256 records the saved file."
+      },
+      {
+        "id": "edhrec",
+        "publisher": "EDHREC",
+        "kind": "deck-aggregation",
+        "url": "https://edhrec.com/sets/fra",
+        "retrieved": "2026-10-22",
+        "status": "retrieved",
+        "bytes": 651058,
+        "sha256": "69aa9bb3b75a844e51059bf3f455333490ba4c81422018240855334c2bac4d18",
+        "textCharacters": 23703,
+        "archiveSha256": "5aeea531190d1862f8f50d23b8d9abb57e513d536403af6b1ed37526ae644aa6",
+        "archiveNote": "Archive written as UTF-8 text on Windows; newline normalization differs from original network bytes. sha256 records network input, archiveSha256 records the saved file."
+      },
+      {
+        "id": "edhrec-review",
+        "publisher": "EDHREC",
+        "kind": "editorial-review",
+        "url": "https://edhrec.com/articles/how-good-is-reality-fracture-for-commander",
+        "retrieved": "2026-10-22",
+        "status": "retrieved",
+        "bytes": 320721,
+        "sha256": "42c1f494a657f92c894cdd5df051d83f8ac201e203f99e6841d3fb7a72e438de",
+        "textCharacters": 14874,
+        "archiveSha256": "8a17b31ba0a810c8c38cfb35608d4a683b8a3d7d214675462f060bb017cd352e",
+        "archiveNote": "Archive written as UTF-8 text on Windows; newline normalization differs from original network bytes. sha256 records network input, archiveSha256 records the saved file."
+      },
+      {
+        "id": "goldfish-vintage",
+        "publisher": "MTGGoldfish",
+        "kind": "editorial-review",
+        "url": "https://www.mtggoldfish.com/articles/vintage-101-reality-is-doomed",
+        "retrieved": "2026-10-22",
+        "status": "retrieved",
+        "bytes": 90223,
+        "sha256": "1c23fabe55bfc57e88f48d7d91215757a126660c3c495c1accfe4e39840d89f3",
+        "textCharacters": 15773,
+        "archiveSha256": "97e6c0528adbe4a13ae56f1ec99b58a4c357a824a6b36507100553a3ca444038",
+        "archiveNote": "Archive written as UTF-8 text on Windows; newline normalization differs from original network bytes. sha256 records network input, archiveSha256 records the saved file."
+      },
+      {
+        "id": "mtgdecks",
+        "publisher": "MTGDECKS",
+        "kind": "tournament-market-aggregation",
+        "url": "https://mtgdecks.net/prices/edition/FRA",
+        "retrieved": "2026-10-22",
+        "status": "retrieved",
+        "bytes": 628940,
+        "sha256": "a339247abc531631d6ed39f2381bb79b055a366b6f8b834a9dc476a495c0b932",
+        "textCharacters": 27146,
+        "archiveSha256": "36a18567ce90973859b870c6a644faa57d04a6d28430c83a47f182b6df75cffa",
+        "archiveNote": "Archive written as UTF-8 text on Windows; newline normalization differs from original network bytes. sha256 records network input, archiveSha256 records the saved file."
+      },
+      {
+        "id": "cardsrealm-cedh",
+        "publisher": "Cards Realm",
+        "kind": "editorial-review",
+        "url": "https://mtg.cardsrealm.com/en-us/articles/cedh-reality-fracture-review",
+        "retrieved": "2026-10-22",
+        "status": "retrieved",
+        "bytes": 161501,
+        "sha256": "f43c935e8e9f916c29d4eb9b68d3b68d6a99c99dc3bb85ce337552b77269641f",
+        "textCharacters": 10895,
+        "archiveSha256": "d54f0493fe5bd5d4605b6216b67604ebcb3099653b2e8edb9fa418e88dc2820f",
+        "archiveNote": "Archive written as UTF-8 text on Windows; newline normalization differs from original network bytes. sha256 records network input, archiveSha256 records the saved file."
+      },
+      {
+        "id": "cardsrealm-pauper",
+        "publisher": "Cards Realm",
+        "kind": "editorial-review",
+        "url": "https://mtg.cardsrealm.com/en-us/articles/pauper-reality-fracture-review",
+        "retrieved": "2026-10-22",
+        "status": "retrieved",
+        "bytes": 160590,
+        "sha256": "8c9329cc0f73db065c77c90ad3472b4dc467624f61f5df4d7966d8e8ea5b7b5f",
+        "textCharacters": 8637,
+        "archiveSha256": "cc2b314fc595ce2f06c2d762cef98820c895fa6e7af7ca3540f8f719b6b01d5d",
+        "archiveNote": "Archive written as UTF-8 text on Windows; newline normalization differs from original network bytes. sha256 records network input, archiveSha256 records the saved file."
+      },
+      {
+        "id": "arenazone",
+        "publisher": "MTG Arena Zone",
+        "kind": "limited-review",
+        "url": "https://mtgazone.com/reality-fracture-fra-limited-set-review-artifacts-and-lands/",
+        "retrieved": "2026-10-22",
+        "status": "retrieved",
+        "bytes": 732585,
+        "sha256": "79311e20726e251d08c7c376f820559e6f45697f6c2649919f4ddb7652636323",
+        "textCharacters": 29086,
+        "archiveSha256": "33bbd8792c04ac43b38ee903acff46bf0ac0cf9e57ac62e9b10700fd4f3c9995",
+        "archiveNote": "Archive written as UTF-8 text on Windows; newline normalization differs from original network bytes. sha256 records network input, archiveSha256 records the saved file."
+      },
+      {
+        "id": "draftsim",
+        "publisher": "Draftsim",
+        "kind": "limited-review",
+        "url": "https://draftsim.com/mtg-fra-limited-set-review/",
+        "retrieved": "2026-10-22",
+        "status": "retrieved",
+        "bytes": 2206027,
+        "sha256": "60cd3c92049f60901f1fa791adec963f5bbe767a13e96445436206becd6ee37b",
+        "textCharacters": 140908,
+        "archiveSha256": "9b235ddf8b787c6aed9bea823d190dcc0d1d888e55d50f3438e11e0ef0e15616",
+        "archiveNote": "Archive written as UTF-8 text on Windows; newline normalization differs from original network bytes. sha256 records network input, archiveSha256 records the saved file."
+      },
+      {
+        "id": "pauperpilot",
+        "publisher": "PauperPilot",
+        "kind": "tournament-aggregation",
+        "url": "https://pauperpilot.com/sets/fra/",
+        "retrieved": "2026-10-22",
+        "status": "retrieved",
+        "bytes": 47411,
+        "sha256": "33c2e5bc8f8deb0770ab1c710f6311eae6ad570d8dbbf8390a32851f262ffb25",
+        "textCharacters": 2278,
+        "archiveSha256": "1c9eaec4e0f582d1999050bcf9561c201e6b58181d4ce1da18bac0530dedea16",
+        "archiveNote": "Archive written as UTF-8 text on Windows; newline normalization differs from original network bytes. sha256 records network input, archiveSha256 records the saved file."
+      },
+      {
+        "id": "echomtg",
+        "publisher": "EchoMTG",
+        "kind": "market-aggregation",
+        "url": "https://www.echomtg.com/mtg/daily-movers/",
+        "retrieved": "2026-10-22",
+        "status": "retrieved",
+        "bytes": 193148,
+        "sha256": "47a9636df080138ae59d8f4101327960257086b75494af2bc18c620dfbef32eb",
+        "textCharacters": 6330,
+        "archiveSha256": "9d43637b191867d2be06dfae36d398fe2b3be897c16f306430b9dabf6361cb5b",
+        "archiveNote": "Archive written as UTF-8 text on Windows; newline normalization differs from original network bytes. sha256 records network input, archiveSha256 records the saved file."
+      },
+      {
+        "id": "cardmarket",
+        "publisher": "Cardmarket",
+        "kind": "marketplace",
+        "url": "https://www.cardmarket.com/en/Magic/Spoilers/Reality-Fracture",
+        "retrieved": "2026-10-22",
+        "status": "unavailable",
+        "error": "HTTP Error 403: Forbidden"
+      },
+      {
+        "id": "scryfall-docs",
+        "publisher": "Scryfall",
+        "kind": "api-documentation",
+        "url": "https://scryfall.com/docs/api/cards",
+        "retrieved": "2026-10-22",
+        "status": "retrieved",
+        "bytes": 117639,
+        "sha256": "a5cbfcc3121f208a74a30259d8bb85a60dea250dded625694e008f214eb699f5",
+        "textCharacters": 15038,
+        "archiveSha256": "77a17ebf246abd1a4574f39286ee95bf24dbaf433dfc221d94761553495a48f5",
+        "archiveNote": "Archive written as UTF-8 text on Windows; newline normalization differs from original network bytes. sha256 records network input, archiveSha256 records the saved file."
+      },
+      {
+        "id": "scryfall-api",
+        "publisher": "Scryfall",
+        "kind": "oracle-legalities-market-reference",
+        "url": "https://api.scryfall.com/cards/search?q=set%3Afra&unique=prints",
+        "retrieved": "2026-10-22",
+        "status": "retrieved",
+        "printings": 461
+      },
+      {
+        "id": "deckcortex-cedh",
+        "publisher": "DeckCortex",
+        "kind": "tournament-aggregation",
+        "url": "https://deckcortex.com/articles/reality-fracture-cedh-first-ten-days",
+        "retrieved": "2026-10-22",
+        "status": "retrieved",
+        "bytes": 4210,
+        "sha256": "a30933685cac34918091dffb3d3b5b1f0c0b8abdffa3d1057f6bc68cc506f0d0",
+        "archiveSha256": "a30933685cac34918091dffb3d3b5b1f0c0b8abdffa3d1057f6bc68cc506f0d0",
+        "textCharacters": 10,
+        "access": "Article verified with the web reader; structured numerical findings in cedh-evidence.json. Direct HTTP response is only the application shell.",
+        "verifiedArticleDate": "2026-10-12"
+      },
+      {
+        "id": "edhtop16-dack",
+        "publisher": "EDHTop16",
+        "kind": "tournament-results",
+        "url": "https://edhtop16.com/tournament/baked-ziti-4-goldsabertooths-ny-cedh",
+        "retrieved": "2026-10-22",
+        "status": "retrieved",
+        "bytes": 328587,
+        "sha256": "f6e8c1c971a38263593687c665d6690165f2dca6a984682280786320f00bd24e",
+        "archiveSha256": "f6e8c1c971a38263593687c665d6690165f2dca6a984682280786320f00bd24e",
+        "textCharacters": 9972
+      },
+      {
+        "id": "duel-meta",
+        "publisher": "Duel Commander Meta",
+        "kind": "tournament-aggregation-beta",
+        "url": "https://duel-commander-meta.com/fra/index.html",
+        "retrieved": "2026-10-22",
+        "status": "retrieved",
+        "bytes": 15590,
+        "sha256": "8877d3a55bf3892041f7e8bf9a504fe7a774875887c699a35d0e712ffeaac90a",
+        "archiveSha256": "8877d3a55bf3892041f7e8bf9a504fe7a774875887c699a35d0e712ffeaac90a",
+        "textCharacters": 1317
+      },
+      {
+        "id": "scryfall-spg",
+        "publisher": "Scryfall",
+        "kind": "oracle-legalities-market-reference",
+        "url": "https://api.scryfall.com/cards/66ddce56-3d5c-4a9d-af27-56cc01b30c25",
+        "urls": [
+          "https://api.scryfall.com/cards/66ddce56-3d5c-4a9d-af27-56cc01b30c25",
+          "https://api.scryfall.com/cards/8fcce60c-6baa-4f55-907a-4acc2a597030",
+          "https://api.scryfall.com/cards/ec9ffeac-ae49-465e-9dc5-976db8252fe6",
+          "https://api.scryfall.com/cards/c9c6977d-0e14-47c1-89c0-be376f2675f3",
+          "https://api.scryfall.com/cards/c12dd88f-ce9a-445c-882a-62e7695e39df",
+          "https://api.scryfall.com/cards/0ab1e081-47b1-4d53-a820-98c451e6440d",
+          "https://api.scryfall.com/cards/4f981c28-9134-45e8-8687-94b3c81ba582",
+          "https://api.scryfall.com/cards/07bf6e66-b146-4db3-b2ab-f7b199acbe27",
+          "https://api.scryfall.com/cards/a0c1323f-d468-4d8a-beed-5077d91b86d9",
+          "https://api.scryfall.com/cards/1bf992ff-b7a1-48d9-a7e1-89a48d743fc2"
+        ],
+        "retrieved": "2026-10-22",
+        "status": "retrieved",
+        "cards": 10,
+        "access": "Individual existing printing IDs, not a set-wide SPG query"
+      },
+      {
+        "id": "scryfall-frc",
+        "publisher": "Scryfall",
+        "kind": "oracle-legalities-market-reference",
+        "url": "https://api.scryfall.com/cards/search?q=set%3Afrc&unique=prints",
+        "retrieved": "2026-10-22",
+        "status": "retrieved",
+        "printings": 103
+      },
+      {
+        "id": "wizards-commander-rules",
+        "publisher": "Wizards / Magic.gg",
+        "kind": "official-rules",
+        "url": "https://magic.wizards.com/en/news/announcements/edge-of-eternities-update-bulletin",
+        "retrieved": "2026-10-22",
+        "status": "retrieved",
+        "access": "Official source checked in web search",
+        "rules": [
+          "903.5e",
+          "903.11"
+        ],
+        "finding": "Commander has no sideboard; ordinary outside-the-game effects cannot bring traditional cards into the game."
+      }
+    ],
+    "tournamentContexts": {
+      "standard": {
+        "decklists": 487,
+        "since": "2026-09-25",
+        "retrieved": "2026-10-22"
+      },
+      "pioneer": {
+        "decklists": 218,
+        "since": "2026-09-25",
+        "retrieved": "2026-10-22"
+      },
+      "modern": {
+        "decklists": 903,
+        "since": "2026-09-25",
+        "retrieved": "2026-10-22"
+      },
+      "pauper": {
+        "decklists": 1140,
+        "since": "2026-09-25",
+        "retrieved": "2026-10-22"
+      },
+      "legacy": {
+        "decklists": 565,
+        "since": "2026-09-25",
+        "retrieved": "2026-10-22"
+      }
+    },
+    "methodology": {
+      "observation": "Metriche pubblicate dalle fonti, senza trasformarle in causalità o probabilità di vittoria.",
+      "edhrec": "Liste pubblicate, non partite vinte; denominatore per identità di colore. Ristampe con storico di tutte le edizioni.",
+      "postboard": "Campione di 3.313 liste. 104 schede per carta/formato (66 identità) estratte; altre presenze isolate non sono visibili nelle schede. Percentuali ponderate per dimensione evento.",
+      "limited": "Recensioni con scala originale e profilo editoriale preesistente datato; nessuna modifica ai voti del motore. Non trasferire un voto Draft a Sealed o Pick-Two.",
+      "prices": "Confronto EUR Scryfall 18/22 ottobre della stessa stampa. USD, foil e trattamenti restano separati. Nessun nuovo minimo Cardmarket verificato.",
+      "forecast": "Scenari editoriali a 3 e 12 mesi, senza prezzi obiettivo o probabilità inventate.",
+      "unknownFormats": "Tutti i formati censiti dalle legalità ricevono uno stato; dove mancano risultati si dichiara la lacuna, senza assegnare voti fittizi.",
+      "productBoundaries": "Le Special Guests non acquisiscono legalità Standard o Pioneer dal prodotto FRA. Il prodotto Commander FRC resta separato dal catalogo e dalla collazione."
+    },
+    "sourceDisagreements": [
+      {
+        "sources": [
+          "pauperpilot",
+          "postboard"
+        ],
+        "finding": "PauperPilot mostra 1 carta nella finestra 12 settembre/11 ottobre; Postboard ne elenca 3 nel campione successivo. Finestre e copertura diverse, non mediare i dati."
+      },
+      {
+        "sources": [
+          "echomtg",
+          "scryfall-api"
+        ],
+        "finding": "EchoMTG usa riferimenti TCGplayer mid USD, Scryfall espone riferimenti USD/EUR diversi. Non fondere quotazioni e trend."
+      }
+    ],
+    "unavailable": [
+      {
+        "id": "cardmarket",
+        "publisher": "Cardmarket",
+        "kind": "marketplace",
+        "url": "https://www.cardmarket.com/en/Magic/Spoilers/Reality-Fracture",
+        "retrieved": "2026-10-22",
+        "status": "unavailable",
+        "error": "HTTP Error 403: Forbidden"
+      }
+    ],
+    "commanderAppendix": "prospects-commander-20261022.json",
+    "cedhContext": {
+      "source": "deckcortex-cedh",
+      "start": "2026-10-02",
+      "end": "2026-10-11",
+      "decklists": 3351,
+      "retrieved": "2026-10-22",
+      "limitations": [
+        "Inclusione in liste, non win rate",
+        "Circa 108 liste potenzialmente duplicate tra archivi; non sommare con altre fonti",
+        "Non descrivere questa finestra come aggiornata al 22 ottobre"
+      ]
+    },
+    "duelContext": {
+      "source": "duel-meta",
+      "retrieved": "2026-10-22",
+      "sourceAsOf": "2026-10-22 20:01",
+      "kind": "beta_popular_card_list_not_performance",
+      "perCardCountsAvailable": false
+    }
   }
 }

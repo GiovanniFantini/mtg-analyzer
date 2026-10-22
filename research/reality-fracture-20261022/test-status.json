@@ -1,0 +1,46 @@
+{
+  "date": "2026-10-22",
+  "build": {
+    "command": "python build_site.py",
+    "status": "passed",
+    "pages": 20,
+    "localLinks": "passed"
+  },
+  "unitTests": {
+    "command": "python -m unittest test_expansion_data.py",
+    "run": 30,
+    "passed": 28,
+    "errors": 2,
+    "baselineReproduction": {
+      "previousExpansionJson": true,
+      "sameErrors": true,
+      "workspaceFilesRestoredOrOverwritten": false
+    },
+    "failingTests": [
+      "test_correlated_exclusions_are_not_rejected_by_upper_bounds",
+      "test_pair_unique_counts_use_actual_pair_members"
+    ],
+    "area": "pre-existing local changes to collation validation in expansion_data.py"
+  },
+  "dataAudit": {
+    "command": "python verify_fra_prospects_20261022.py",
+    "status": "passed"
+  },
+  "browser": {
+    "desktop": "mouse e tastiera OK",
+    "catalog": "295 carte e JSON completo OK",
+    "mobile": "tocco e larghezza 390px OK",
+    "consoleErrors": [],
+    "dataDownloads": "catalogo, appendice FRC e 14 fonti OK",
+    "allAnalyses": "382 schede, filtri, paginazione, link diretti, anteprime e fallback appendice OK"
+  },
+  "commitSnapshot": {
+    "build": "passed, 20 pages and local links",
+    "unitTests": {
+      "run": 30,
+      "passed": 30,
+      "errors": 0
+    },
+    "scope": "Index exported to a temporary directory, excluding unrelated local collation changes."
+  }
+}

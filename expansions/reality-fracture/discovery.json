@@ -1,18 +1,20 @@
 {
-  "date": "18 ottobre 2026",
+  "date": "22 ottobre 2026",
   "cards": [
     {
       "name": "Dark Matter Manipulator",
       "formats": [
         "Modern",
-        "Legacy"
+        "Legacy",
+        "Standard",
+        "Pioneer"
       ],
       "level": "Confermata",
       "role": "Cimitero",
       "verdict": "La prima carta da esplorare per i mazzi che trasformano il cimitero in pressione.",
       "line": "Per {B} macini tre carte: alimenti Nethergoyf, il delirio di Fear of Missing Out e Detective's Phoenix.",
       "limit": "Soffre le risposte al cimitero. Il successo del mazzo non misura il contributo isolato della carta.",
-      "evidence": "Modern: 4 copie nel Rakdos di Shuhei Nakamura, Top 8 al Regional Giappone/Corea. Legacy: 4 copie nel Dimir Tempo di OSCA66, vincitore del Challenge del 16 ottobre.",
+      "evidence": "Presenze nel campione: Standard (10 liste), Pioneer (5 liste), Modern (64 liste), Legacy (19 liste). Campione Postboard dal 25 settembre, rilevato il 22 ottobre; le presenze non sono una percentuale di vittorie.",
       "sources": [
         [
           "Regional Championship",
@@ -25,23 +27,65 @@
         [
           "Showcase del 17 ottobre",
           "https://metagame.info/en-us/mtg/tournaments/mtgo-modern-showcase-challenge-12856566-top-8-2026-10-17"
+        ],
+        [
+          "Snapshot per formato, 22 ottobre",
+          "https://www.postboard.gg/sets/fra"
         ]
       ],
       "product": "FRA",
-      "image": "https://cards.scryfall.io/normal/front/4/e/4ec912d5-cbe7-4d07-9ece-b03ac02d3055.jpg?1789385959"
+      "image": "https://cards.scryfall.io/normal/front/4/e/4ec912d5-cbe7-4d07-9ece-b03ac02d3055.jpg?1789385959",
+      "priceProspect": {
+        "kind": "scenario_condizionale",
+        "horizonsMonths": [
+          3,
+          12
+        ],
+        "thesis": "La domanda Modern e Legacy è concreta; risposte al cimitero e un possibile arretramento di Rakdos sono i principali rischi.",
+        "gameplayDependency": "Costo minimo, self-mill e crescita collegata al cimitero. Il miglioramento di molte altre carte è il punto forte; hate sul cimitero ne riduce il rendimento.",
+        "upsideConditions": [
+          "Adozione ripetuta nei mazzi Standard, Pioneer, Modern, Legacy",
+          "Domanda Commander da liste pubblicate; non risultati di torneo né compravendite"
+        ],
+        "downsideRisks": [
+          "Nuove aperture e disponibilità di copie",
+          "Mancano dati su vendite concluse, liquidità e differenza tra acquisto e vendita",
+          "Il riferimento è già salito: il movimento passato può anticipare la domanda o riassorbirsi"
+        ],
+        "confidence": "bassa",
+        "targetPrice": null,
+        "probabilityOfRise": null,
+        "action": "monitorare_domanda_e_prezzo_della_stessa_stampa"
+      },
+      "priceReference": {
+        "date": "2026-10-22",
+        "currency": "EUR",
+        "metric": "Scryfall EUR reference for the identified printing; not Cardmarket From or realized sale",
+        "nonfoil": 2.28,
+        "foil": 2.34,
+        "comparison": {
+          "date": "2026-10-18",
+          "samePrinting": true,
+          "nonfoil": 0.25,
+          "changePct": 812.0,
+          "status": "comparable"
+        },
+        "printingId": "4ec912d5-cbe7-4d07-9ece-b03ac02d3055"
+      }
     },
     {
       "name": "Pompous Battlemage",
       "formats": [
         "Modern",
-        "Pioneer"
+        "Pioneer",
+        "Standard"
       ],
       "level": "Confermata",
       "role": "Aggro / prowess",
-      "verdict": "Una delle prove più convincenti del set in due formati.",
+      "verdict": "Adozione ripetuta in Standard, Pioneer e Modern, con un ruolo coerente nei mazzi prowess.",
       "line": "Primo turno: creatura per {R}. Nel turno successivo Improvised Act costa {R}, innesca destrezza e può cambiare una carta in mano.",
       "limit": "Le liste non concordano sul numero ottimale. Una lista Prowess in Top 4 allo Showcase non la giocava.",
-      "evidence": "Showcase Modern del 17 ottobre, 286 partecipanti: 2 copie nel mazzo finalista e 4 in una lista Top 4. Anche Wizards ne conferma l'impatto Pioneer.",
+      "evidence": "Presenze nel campione: Standard (18 liste), Pioneer (16 liste), Modern (29 liste). Campione Postboard dal 25 settembre, rilevato il 22 ottobre; le presenze non sono una percentuale di vittorie.",
       "sources": [
         [
           "Liste Showcase",
@@ -50,10 +94,50 @@
         [
           "Pioneer, Wizards",
           "https://magic.wizards.com/en/news/announcements/banned-and-restricted-october-12-2026"
+        ],
+        [
+          "Snapshot per formato, 22 ottobre",
+          "https://www.postboard.gg/sets/fra"
         ]
       ],
       "product": "FRA",
-      "image": "https://cards.scryfall.io/normal/front/a/a/aa0f77ac-741a-444a-8bf0-a42c644726bf.jpg?1788878186"
+      "image": "https://cards.scryfall.io/normal/front/a/a/aa0f77ac-741a-444a-8bf0-a42c644726bf.jpg?1788878186",
+      "priceProspect": {
+        "kind": "scenario_condizionale",
+        "horizonsMonths": [
+          3,
+          12
+        ],
+        "thesis": "La domanda in più formati sostiene la tesi, ma una rara aperta nei Play Booster richiede adozione persistente.",
+        "gameplayDependency": "Drop rosso prowess che porta con sé un secondo lancio economico. Il filtraggio facoltativo riduce le carte morte, senza produrre vantaggio carte netto.",
+        "upsideConditions": [
+          "Adozione ripetuta nei mazzi Standard, Pioneer, Modern",
+          "Domanda Commander da liste pubblicate; non risultati di torneo né compravendite"
+        ],
+        "downsideRisks": [
+          "Nuove aperture e disponibilità di copie",
+          "Mancano dati su vendite concluse, liquidità e differenza tra acquisto e vendita"
+        ],
+        "confidence": "bassa",
+        "targetPrice": null,
+        "probabilityOfRise": null,
+        "action": "monitorare_domanda_e_prezzo_della_stessa_stampa"
+      },
+      "priceReference": {
+        "date": "2026-10-22",
+        "currency": "EUR",
+        "metric": "Scryfall EUR reference for the identified printing; not Cardmarket From or realized sale",
+        "nonfoil": 4.61,
+        "foil": 5.31,
+        "comparison": {
+          "date": "2026-10-18",
+          "samePrinting": true,
+          "nonfoil": 4.56,
+          "changePct": 1.1,
+          "status": "comparable"
+        },
+        "printingId": "aa0f77ac-741a-444a-8bf0-a42c644726bf"
+      }
     },
     {
       "name": "Twinned Vision",
@@ -66,7 +150,7 @@
       "verdict": "La comune da seguire per prima, con applicazioni anche in Modern.",
       "line": "In Ruby Storm, Ruby Medallion riduce il costo. Se la lanci dall'esilio con Wrenn's Resolve peschi due; Past in Flames offre un altro modo di rigiocarla.",
       "limit": "Dalla mano pesca una sola carta. Il flashback stampato richiede anche uno scarto.",
-      "evidence": "Due copie nel Ruby Storm di Max Dore, quarto al Regional canadese. Una copia nel Mono Red Madness vincitore del PauperNATION del 4 ottobre.",
+      "evidence": "Presenze nel campione: Modern (16 liste), Pauper (34 liste). Campione Postboard dal 25 settembre, rilevato il 22 ottobre; le presenze non sono una percentuale di vittorie.",
       "sources": [
         [
           "Regional Canada",
@@ -75,63 +159,192 @@
         [
           "Lista PauperNATION",
           "https://www.postboard.gg/decks/118691?card=Twinned+Vision&set=fra"
+        ],
+        [
+          "Snapshot per formato, 22 ottobre",
+          "https://www.postboard.gg/sets/fra"
         ]
       ],
       "product": "FRA",
-      "image": "https://cards.scryfall.io/normal/front/5/5/55f85984-0137-4899-8993-bbc8c4794d33.jpg?1789556940"
+      "image": "https://cards.scryfall.io/normal/front/5/5/55f85984-0137-4899-8993-bbc8c4794d33.jpg?1789556940",
+      "priceProspect": {
+        "kind": "scenario_condizionale",
+        "horizonsMonths": [
+          3,
+          12
+        ],
+        "thesis": "Comune: l'utilizzo in più formati non elimina l'offerta elevata né i costi di gestione delle singole economiche.",
+        "gameplayDependency": "Pescata ibrida che migliora se lanciata da altre zone. Storm ed esilio sfruttano la condizione; il flashback stampato richiede anche uno scarto.",
+        "upsideConditions": [
+          "Adozione ripetuta nei mazzi Modern, Pauper",
+          "Domanda Commander da liste pubblicate; non risultati di torneo né compravendite"
+        ],
+        "downsideRisks": [
+          "Nuove aperture e disponibilità di copie",
+          "Mancano dati su vendite concluse, liquidità e differenza tra acquisto e vendita",
+          "Offerta elevata e costi di gestione rispetto al valore unitario",
+          "Il riferimento è già salito: il movimento passato può anticipare la domanda o riassorbirsi"
+        ],
+        "confidence": "bassa",
+        "targetPrice": null,
+        "probabilityOfRise": null,
+        "action": "monitorare_domanda_e_prezzo_della_stessa_stampa"
+      },
+      "priceReference": {
+        "date": "2026-10-22",
+        "currency": "EUR",
+        "metric": "Scryfall EUR reference for the identified printing; not Cardmarket From or realized sale",
+        "nonfoil": 0.15,
+        "foil": 0.27,
+        "comparison": {
+          "date": "2026-10-18",
+          "samePrinting": true,
+          "nonfoil": 0.12,
+          "changePct": 25.0,
+          "status": "comparable"
+        },
+        "printingId": "55f85984-0137-4899-8993-bbc8c4794d33"
+      }
     },
     {
       "name": "Roiling Canopy",
       "formats": [
-        "Modern"
+        "Modern",
+        "Standard"
       ],
       "level": "Confermata",
       "role": "Terre / combo",
       "verdict": "Un pezzo specialistico per Amulet Titan, con una chiusura concreta.",
       "line": "Yavimaya, Cradle of Growth rende Foreste le terre. Scapeshift può così produrre molte innescate e rendere letale anche Arboreal Grazer.",
       "limit": "Entra TAPpata, richiede cinque altre Foreste e una creatura bersaglio. Non è una terra da inserire in qualsiasi mazzo verde.",
-      "evidence": "Due copie nell'Amulet di Julien Henry, qualificato al Pro Tour al Regional di Ghent.",
+      "evidence": "Presenze nel campione: Standard (2 liste), Modern (21 liste). Campione Postboard dal 25 settembre, rilevato il 22 ottobre; le presenze non sono una percentuale di vittorie.",
       "sources": [
         [
           "Regional EMEA",
           "https://magic.gg/news/metagame-mentor-modern-developments-at-five-2026-fall-regional-championships"
+        ],
+        [
+          "Snapshot per formato, 22 ottobre",
+          "https://www.postboard.gg/sets/fra"
         ]
       ],
       "product": "FRA",
-      "image": "https://cards.scryfall.io/normal/front/d/b/db61361b-bd12-453e-abc2-bbe09b66e3d9.jpg?1789514074"
+      "image": "https://cards.scryfall.io/normal/front/d/b/db61361b-bd12-453e-abc2-bbe09b66e3d9.jpg?1789514074",
+      "priceProspect": {
+        "kind": "scenario_condizionale",
+        "horizonsMonths": [
+          3,
+          12
+        ],
+        "thesis": "Domanda specialistica, spesso una o due copie: servono più giocatori del mazzo per sostenere un rialzo duraturo.",
+        "gameplayDependency": "Payoff per molte Foreste, Yavimaya e Scapeshift. Non infligge danni direttamente e richiede una propria creatura: specialistica per chiusure da terre.",
+        "upsideConditions": [
+          "Adozione ripetuta nei mazzi Standard, Modern",
+          "Domanda Commander da liste pubblicate; non risultati di torneo né compravendite"
+        ],
+        "downsideRisks": [
+          "Nuove aperture e disponibilità di copie",
+          "Mancano dati su vendite concluse, liquidità e differenza tra acquisto e vendita",
+          "Il riferimento è già salito: il movimento passato può anticipare la domanda o riassorbirsi"
+        ],
+        "confidence": "bassa",
+        "targetPrice": null,
+        "probabilityOfRise": null,
+        "action": "monitorare_domanda_e_prezzo_della_stessa_stampa"
+      },
+      "priceReference": {
+        "date": "2026-10-22",
+        "currency": "EUR",
+        "metric": "Scryfall EUR reference for the identified printing; not Cardmarket From or realized sale",
+        "nonfoil": 0.95,
+        "foil": 1.09,
+        "comparison": {
+          "date": "2026-10-18",
+          "samePrinting": true,
+          "nonfoil": 0.33,
+          "changePct": 187.88,
+          "status": "comparable"
+        },
+        "printingId": "db61361b-bd12-453e-abc2-bbe09b66e3d9"
+      }
     },
     {
       "name": "Theorist's Sanctum",
       "formats": [
-        "Modern"
+        "Modern",
+        "Standard",
+        "Legacy",
+        "Duel Commander"
       ],
       "level": "Confermata",
       "role": "Valore / controllo",
       "verdict": "Utilità cercabile con fetch, soprattutto in una copia.",
       "line": "Flooded Strand può cercare questa Isola. Nelle partite lunghe l'abilità empower Jace converte il mana in sorvegliare e pescate nel tempo.",
       "limit": "Senza behold di un Jace entra TAPpata. La capacità richiede mana e TAP: la pescata non è gratuita.",
-      "evidence": "Una copia nell'Azorius Chant di Nate Green, vincitore del Regional di Los Angeles.",
+      "evidence": "Presenze nel campione: Standard (15 liste), Modern (36 liste), Legacy (2 liste). Duel Commander: segnalata tra le carte popolari della fonte beta, senza conteggio o rendimento per carta. Campione Postboard dal 25 settembre, rilevato il 22 ottobre; le presenze non sono una percentuale di vittorie.",
       "sources": [
         [
           "Regional USA",
           "https://magic.gg/news/metagame-mentor-modern-developments-at-five-2026-fall-regional-championships"
+        ],
+        [
+          "Snapshot per formato, 22 ottobre",
+          "https://www.postboard.gg/sets/fra"
         ]
       ],
       "product": "FRA",
-      "image": "https://cards.scryfall.io/normal/front/2/2/22db5bba-46c9-4a26-821d-303ddb386ea4.jpg?1788878256"
+      "image": "https://cards.scryfall.io/normal/front/2/2/22db5bba-46c9-4a26-821d-303ddb386ea4.jpg?1788878256",
+      "priceProspect": {
+        "kind": "scenario_condizionale",
+        "horizonsMonths": [
+          3,
+          12
+        ],
+        "thesis": "Una copia per mazzo limita il volume di domanda, mentre la rara riceve nuova offerta dalle aperture.",
+        "gameplayDependency": "Isola cercabile con fetch e utilizzo tardivo del mana. Può entrare TAPpata senza Jace, e l'impiego spesso in singola copia limita la domanda per mazzo.",
+        "upsideConditions": [
+          "Adozione ripetuta nei mazzi Standard, Modern, Legacy",
+          "Domanda Commander da liste pubblicate; non risultati di torneo né compravendite"
+        ],
+        "downsideRisks": [
+          "Nuove aperture e disponibilità di copie",
+          "Mancano dati su vendite concluse, liquidità e differenza tra acquisto e vendita",
+          "Il riferimento è già salito: il movimento passato può anticipare la domanda o riassorbirsi"
+        ],
+        "confidence": "bassa",
+        "targetPrice": null,
+        "probabilityOfRise": null,
+        "action": "monitorare_domanda_e_prezzo_della_stessa_stampa"
+      },
+      "priceReference": {
+        "date": "2026-10-22",
+        "currency": "EUR",
+        "metric": "Scryfall EUR reference for the identified printing; not Cardmarket From or realized sale",
+        "nonfoil": 0.29,
+        "foil": 0.73,
+        "comparison": {
+          "date": "2026-10-18",
+          "samePrinting": true,
+          "nonfoil": 0.08,
+          "changePct": 262.5,
+          "status": "comparable"
+        },
+        "printingId": "22db5bba-46c9-4a26-821d-303ddb386ea4"
+      }
     },
     {
       "name": "Seasoned Cryomancer",
       "formats": [
         "Pioneer",
-        "Modern"
+        "Modern",
+        "Standard"
       ],
-      "level": "Emergente",
+      "level": "Confermata",
       "role": "Pescata / cimitero",
-      "verdict": "La seconda pista Pioneer da esplorare dopo Battlemage.",
+      "verdict": "Adozione confermata soprattutto in Standard, con presenze ripetute anche in Pioneer e Modern.",
       "line": "Per {1}{U}{U} peschi due e scarti due: prepari il cimitero e sfrutti Proft's Eidetic Memory. Scartando non terre puoi anche stordire creature avversarie.",
       "limit": "Non crea automaticamente vantaggio carte all'entrata. Per l'abilità dal cimitero servono altri cinque mana.",
-      "evidence": "Quattro copie nell'Izzet Cauldron di Cachorrowo, vincitore del Pioneer Challenge del 5 ottobre. Presenze Modern nel campione aggregato.",
+      "evidence": "Presenze nel campione: Standard (51 liste), Pioneer (12 liste), Modern (9 liste). Campione Postboard dal 25 settembre, rilevato il 22 ottobre; le presenze non sono una percentuale di vittorie.",
       "sources": [
         [
           "Lista vincitrice Pioneer",
@@ -143,20 +356,58 @@
         ]
       ],
       "product": "FRA",
-      "image": "https://cards.scryfall.io/normal/front/f/1/f1a15a83-2f74-4513-ae4b-4cdc17016a84.jpg?1789470965"
+      "image": "https://cards.scryfall.io/normal/front/f/1/f1a15a83-2f74-4513-ae4b-4cdc17016a84.jpg?1789470965",
+      "priceProspect": {
+        "kind": "scenario_condizionale",
+        "horizonsMonths": [
+          3,
+          12
+        ],
+        "thesis": "La combinazione di utilizzo Standard e Pioneer è un sostegno; controllare che la domanda resti dopo la fase di esplorazione.",
+        "gameplayDependency": "Selezione della mano, cimitero e stun nello stesso ingresso. Riutilizzabile anche dal cimitero: piano convincente nei mazzi che trasformano gli scarti in valore.",
+        "upsideConditions": [
+          "Adozione ripetuta nei mazzi Standard, Pioneer, Modern",
+          "Domanda Commander da liste pubblicate; non risultati di torneo né compravendite"
+        ],
+        "downsideRisks": [
+          "Nuove aperture e disponibilità di copie",
+          "Mancano dati su vendite concluse, liquidità e differenza tra acquisto e vendita",
+          "Il riferimento è già salito: il movimento passato può anticipare la domanda o riassorbirsi"
+        ],
+        "confidence": "bassa",
+        "targetPrice": null,
+        "probabilityOfRise": null,
+        "action": "monitorare_domanda_e_prezzo_della_stessa_stampa"
+      },
+      "priceReference": {
+        "date": "2026-10-22",
+        "currency": "EUR",
+        "metric": "Scryfall EUR reference for the identified printing; not Cardmarket From or realized sale",
+        "nonfoil": 8.99,
+        "foil": 10.08,
+        "comparison": {
+          "date": "2026-10-18",
+          "samePrinting": true,
+          "nonfoil": 7.42,
+          "changePct": 21.16,
+          "status": "comparable"
+        },
+        "printingId": "51d86875-420d-4e82-b69c-4feeb99c9428"
+      }
     },
     {
       "name": "Carnivorous Cultivator",
       "formats": [
         "Legacy",
-        "Pioneer"
+        "Pioneer",
+        "Standard"
       ],
-      "level": "Emergente",
+      "level": "Confermata",
       "role": "Terre / cimitero",
       "verdict": "Una pista per strategie con terre utilità e recupero dal cimitero.",
       "line": "Enroot mette Wasteland dal grimorio nel cimitero. Quando Cultivator infligge danno da combattimento a un giocatore puoi riprenderla in mano.",
       "limit": "La magia preparata costa altro mana e il recupero richiede di colpire un giocatore.",
-      "evidence": "Una copia nel Maverick di Bastiaan Boel, primo a Haarlem Night 41 il 7 ottobre, 25 giocatori. Altre presenze in Depths e mazzi verdi.",
+      "evidence": "Presenze nel campione: Standard (17 liste), Pioneer (3 liste), Legacy (16 liste). Campione Postboard dal 25 settembre, rilevato il 22 ottobre; le presenze non sono una percentuale di vittorie.",
       "sources": [
         [
           "Lista Haarlem",
@@ -168,7 +419,45 @@
         ]
       ],
       "product": "FRA",
-      "image": "https://cards.scryfall.io/normal/front/7/9/79dd5c54-5ea5-47b5-8f9b-50ed57a5ea45.jpg?1789385967"
+      "image": "https://cards.scryfall.io/normal/front/7/9/79dd5c54-5ea5-47b5-8f9b-50ed57a5ea45.jpg?1789385967",
+      "priceProspect": {
+        "kind": "scenario_condizionale",
+        "horizonsMonths": [
+          3,
+          12
+        ],
+        "thesis": "Più applicazioni di nicchia, ma serve diffusione oltre i test iniziali per una rivalutazione stabile.",
+        "gameplayDependency": "Tutor per terra al cimitero accessibile da creatura, più deathtouch e recupero in combattimento. La sinergia con terre specifiche è il vero motivo d'inclusione.",
+        "upsideConditions": [
+          "Adozione ripetuta nei mazzi Standard, Pioneer, Legacy",
+          "Domanda Commander da liste pubblicate; non risultati di torneo né compravendite",
+          "Conferma futura dei test cEDH indicati dalla recensione"
+        ],
+        "downsideRisks": [
+          "Nuove aperture e disponibilità di copie",
+          "Mancano dati su vendite concluse, liquidità e differenza tra acquisto e vendita",
+          "Il riferimento è già salito: il movimento passato può anticipare la domanda o riassorbirsi"
+        ],
+        "confidence": "bassa",
+        "targetPrice": null,
+        "probabilityOfRise": null,
+        "action": "monitorare_domanda_e_prezzo_della_stessa_stampa"
+      },
+      "priceReference": {
+        "date": "2026-10-22",
+        "currency": "EUR",
+        "metric": "Scryfall EUR reference for the identified printing; not Cardmarket From or realized sale",
+        "nonfoil": 0.31,
+        "foil": 0.37,
+        "comparison": {
+          "date": "2026-10-18",
+          "samePrinting": true,
+          "nonfoil": 0.02,
+          "changePct": 1450.0,
+          "status": "comparable"
+        },
+        "printingId": "79dd5c54-5ea5-47b5-8f9b-50ed57a5ea45"
+      }
     },
     {
       "name": "Archive Arbiter",
@@ -180,27 +469,69 @@
       "verdict": "Un bersaglio da sideboard per i mazzi con Karn, the Great Creator.",
       "line": "Karn lo prende dal sideboard: l'entrata può distruggere un permanente non creatura e non terra, oppure farti guadagnare quattro vite.",
       "limit": "Sei mana e un ruolo ristretto. Non è una rimozione universale.",
-      "evidence": "Due copie nel sideboard del Mystic Forge Combo di BHe, vincitore del Legacy Challenge del 30 settembre.",
+      "evidence": "Presenze nel campione: Legacy (8 liste). Campione Postboard dal 25 settembre, rilevato il 22 ottobre; le presenze non sono una percentuale di vittorie.",
       "sources": [
         [
           "Lista vincitrice",
           "https://www.postboard.gg/decks/115713?card=Archive+Arbiter&set=fra"
+        ],
+        [
+          "Snapshot per formato, 22 ottobre",
+          "https://www.postboard.gg/sets/fra"
         ]
       ],
       "product": "FRA",
-      "image": "https://cards.scryfall.io/normal/front/0/2/024bce1e-a5f3-4292-bc17-d0355a5d65e1.jpg?1789614867"
+      "image": "https://cards.scryfall.io/normal/front/0/2/024bce1e-a5f3-4292-bc17-d0355a5d65e1.jpg?1789614867",
+      "priceProspect": {
+        "kind": "scenario_condizionale",
+        "horizonsMonths": [
+          3,
+          12
+        ],
+        "thesis": "Domanda agonistica osservata in Legacy. La tenuta del prezzo richiede che l'adozione assorba la nuova offerta.",
+        "gameplayDependency": "Risposta su corpo incolore da ramp o rianimazione. Sei mana e impossibilità di colpire creature o terre limitano i matchup utili.",
+        "upsideConditions": [
+          "Adozione ripetuta nei mazzi Legacy",
+          "Domanda Commander da liste pubblicate; non risultati di torneo né compravendite"
+        ],
+        "downsideRisks": [
+          "Nuove aperture e disponibilità di copie",
+          "Mancano dati su vendite concluse, liquidità e differenza tra acquisto e vendita",
+          "Offerta elevata e costi di gestione rispetto al valore unitario",
+          "Il riferimento è già salito: il movimento passato può anticipare la domanda o riassorbirsi"
+        ],
+        "confidence": "bassa",
+        "targetPrice": null,
+        "probabilityOfRise": null,
+        "action": "monitorare_domanda_e_prezzo_della_stessa_stampa"
+      },
+      "priceReference": {
+        "date": "2026-10-22",
+        "currency": "EUR",
+        "metric": "Scryfall EUR reference for the identified printing; not Cardmarket From or realized sale",
+        "nonfoil": 0.08,
+        "foil": 0.2,
+        "comparison": {
+          "date": "2026-10-18",
+          "samePrinting": true,
+          "nonfoil": 0.02,
+          "changePct": 300.0,
+          "status": "comparable"
+        },
+        "printingId": "024bce1e-a5f3-4292-bc17-d0355a5d65e1"
+      }
     },
     {
       "name": "Unflinching Hortimancer",
       "formats": [
         "Pauper"
       ],
-      "level": "Preliminare",
+      "level": "Emergente",
       "role": "Aggro / lifegain",
       "verdict": "Una pista secondaria per aggro bianchi con guadagno di vite.",
       "line": "Ogni evento di guadagno di vite aggiunge un segnalino +1/+1. Ward {1} rende un poco più costose le risposte avversarie.",
       "limit": "Due sole liste con Top 8 nel campione: troppo poco per chiamarla staple.",
-      "evidence": "Postboard registra due liste, di due giocatori, in Mono-white e Orzhov Aggro.",
+      "evidence": "Presenze nel campione: Pauper (7 liste). Campione Postboard dal 25 settembre, rilevato il 22 ottobre; le presenze non sono una percentuale di vittorie.",
       "sources": [
         [
           "Campione Pauper",
@@ -208,39 +539,121 @@
         ]
       ],
       "product": "FRA",
-      "image": "https://cards.scryfall.io/normal/front/6/3/63f82985-c9c2-4d0a-ac4f-560166bebd9f.jpg?1789556741"
+      "image": "https://cards.scryfall.io/normal/front/6/3/63f82985-c9c2-4d0a-ac4f-560166bebd9f.jpg?1789556741",
+      "priceProspect": {
+        "kind": "scenario_condizionale",
+        "horizonsMonths": [
+          3,
+          12
+        ],
+        "thesis": "Domanda agonistica osservata in Pauper. La tenuta del prezzo richiede che l'adozione assorba la nuova offerta.",
+        "gameplayDependency": "Minaccia Lifegain economica con ward, interessante anche in Pauper. Richiede fonti ripetute di vite e rimane esposta prima di accumulare segnalini.",
+        "upsideConditions": [
+          "Adozione ripetuta nei mazzi Pauper",
+          "Domanda Commander da liste pubblicate; non risultati di torneo né compravendite"
+        ],
+        "downsideRisks": [
+          "Nuove aperture e disponibilità di copie",
+          "Mancano dati su vendite concluse, liquidità e differenza tra acquisto e vendita",
+          "Offerta elevata e costi di gestione rispetto al valore unitario",
+          "Il riferimento è già salito: il movimento passato può anticipare la domanda o riassorbirsi"
+        ],
+        "confidence": "bassa",
+        "targetPrice": null,
+        "probabilityOfRise": null,
+        "action": "monitorare_domanda_e_prezzo_della_stessa_stampa"
+      },
+      "priceReference": {
+        "date": "2026-10-22",
+        "currency": "EUR",
+        "metric": "Scryfall EUR reference for the identified printing; not Cardmarket From or realized sale",
+        "nonfoil": 0.06,
+        "foil": 0.17,
+        "comparison": {
+          "date": "2026-10-18",
+          "samePrinting": true,
+          "nonfoil": 0.03,
+          "changePct": 100.0,
+          "status": "comparable"
+        },
+        "printingId": "63f82985-c9c2-4d0a-ac4f-560166bebd9f"
+      }
     },
     {
       "name": "Samut, Tyrant of Naktamun",
       "formats": [
-        "Commander / cEDH"
+        "Commander / cEDH",
+        "Legacy"
       ],
       "level": "Confermata",
       "role": "Protezione / combo",
       "verdict": "La nuova carta con l'adozione cEDH più ampia nella rilevazione consultata.",
       "line": "Con Samut in campo, Ad Nauseam e Brain Freeze hanno split second. La protezione vale anche per i tuoi counter istantanei.",
       "limit": "Samut stessa non ha split second. Le innescate restano attive e permanenti o abilità di combo non sono protetti automaticamente.",
-      "evidence": "682 su 3.351 liste cEDH, 2–11 ottobre: 20,4%, circa 20,0% escludendo possibili duplicati. È adozione, non win rate.",
+      "evidence": "Presenze nel campione: Legacy (2 liste). cEDH: 682 liste su 3.351 nella finestra 2-11 ottobre, con possibili duplicati.",
       "sources": [
         [
           "Rilevazione cEDH",
           "https://deckcortex.com/articles/reality-fracture-cedh-first-ten-days"
+        ],
+        [
+          "Snapshot per formato, 22 ottobre",
+          "https://www.postboard.gg/sets/fra"
         ]
       ],
       "product": "FRA",
-      "image": "https://cards.scryfall.io/normal/front/6/d/6d7d8fa7-ce69-4a8c-9af0-55571393a244.jpg?1789729644"
+      "image": "https://cards.scryfall.io/normal/front/6/d/6d7d8fa7-ce69-4a8c-9af0-55571393a244.jpg?1789729644",
+      "priceProspect": {
+        "kind": "scenario_condizionale",
+        "horizonsMonths": [
+          3,
+          12
+        ],
+        "thesis": "Domanda Commander e interesse cEDH, con giudizi Vintage più scettici: le conclusioni non si trasferiscono tra formati.",
+        "gameplayDependency": "Split second sui propri istantanei e stregonerie sostiene combo e interazione. Non impedisce ogni possibile risposta di gioco e il corpo resta molto fragile.",
+        "upsideConditions": [
+          "Adozione ripetuta nei mazzi Legacy",
+          "Domanda Commander da liste pubblicate; non risultati di torneo né compravendite",
+          "Conferma futura dei test cEDH indicati dalla recensione",
+          "Conferma dell'adozione cEDH oltre la finestra 2-11 ottobre (682 liste rilevate)"
+        ],
+        "downsideRisks": [
+          "Nuove aperture e disponibilità di copie",
+          "Mancano dati su vendite concluse, liquidità e differenza tra acquisto e vendita"
+        ],
+        "confidence": "bassa",
+        "targetPrice": null,
+        "probabilityOfRise": null,
+        "action": "monitorare_domanda_e_prezzo_della_stessa_stampa"
+      },
+      "priceReference": {
+        "date": "2026-10-22",
+        "currency": "EUR",
+        "metric": "Scryfall EUR reference for the identified printing; not Cardmarket From or realized sale",
+        "nonfoil": 4.11,
+        "foil": 4.19,
+        "comparison": {
+          "date": "2026-10-18",
+          "samePrinting": true,
+          "nonfoil": 4.15,
+          "changePct": -0.96,
+          "status": "comparable"
+        },
+        "printingId": "6d7d8fa7-ce69-4a8c-9af0-55571393a244"
+      }
     },
     {
       "name": "Pia, Aether Ascetic",
       "formats": [
-        "Commander / cEDH"
+        "Commander / cEDH",
+        "Duel Commander"
       ],
       "level": "Confermata",
       "role": "Tutore / incantesimi",
       "verdict": "Molto interessante nei mazzi verdi che cercano incantesimi chiave.",
       "line": "Un tutore per creature trova Pia; la sua entrata, scartando una carta, cerca Food Chain o un altro incantesimo utile.",
       "limit": "Richiede uno scarto. È un Umano: l'abilità di Kinnan, Bonder Prodigy non può metterla in campo.",
-      "evidence": "376 su 3.351 liste nel campione cEDH. In Rograkh/Thrasios: 100 liste su 186.",
+      "evidence": "Nessuna presenza nelle schede pubblicate del campione a cinque formati; non equivale ad assenza di gioco. cEDH: 376 liste su 3.351 nella finestra 2-11 ottobre, con possibili duplicati. Duel Commander: segnalata tra le carte popolari della fonte beta, senza conteggio o rendimento per carta.",
       "sources": [
         [
           "Rilevazione cEDH",
@@ -248,27 +661,112 @@
         ]
       ],
       "product": "FRA",
-      "image": "https://cards.scryfall.io/normal/front/f/f/ff0bc30f-9d20-458e-808f-bdc2825905a5.jpg?1789387120"
+      "image": "https://cards.scryfall.io/normal/front/f/f/ff0bc30f-9d20-458e-808f-bdc2825905a5.jpg?1789387120",
+      "priceProspect": {
+        "kind": "scenario_condizionale",
+        "horizonsMonths": [
+          3,
+          12
+        ],
+        "thesis": "Interesse cEDH specialistico; servono liste e risultati successivi per superare la fase di recensione.",
+        "gameplayDependency": "Tutor per incantesimi su creatura verde, pagando uno scarto. Interessa le combo che possono trovare Pia con tutor per creature e vogliono Food Chain o altri motori.",
+        "upsideConditions": [
+          "Domanda Commander da liste pubblicate; non risultati di torneo né compravendite",
+          "Conferma futura dei test cEDH indicati dalla recensione",
+          "Conferma dell'adozione cEDH oltre la finestra 2-11 ottobre (376 liste rilevate)"
+        ],
+        "downsideRisks": [
+          "Nuove aperture e disponibilità di copie",
+          "Mancano dati su vendite concluse, liquidità e differenza tra acquisto e vendita",
+          "Offerta elevata e costi di gestione rispetto al valore unitario",
+          "Il riferimento è già salito: il movimento passato può anticipare la domanda o riassorbirsi"
+        ],
+        "confidence": "bassa",
+        "targetPrice": null,
+        "probabilityOfRise": null,
+        "action": "monitorare_domanda_e_prezzo_della_stessa_stampa"
+      },
+      "priceReference": {
+        "date": "2026-10-22",
+        "currency": "EUR",
+        "metric": "Scryfall EUR reference for the identified printing; not Cardmarket From or realized sale",
+        "nonfoil": 0.6,
+        "foil": 3.14,
+        "comparison": {
+          "date": "2026-10-18",
+          "samePrinting": true,
+          "nonfoil": 0.41,
+          "changePct": 46.34,
+          "status": "comparable"
+        },
+        "printingId": "ff0bc30f-9d20-458e-808f-bdc2825905a5"
+      }
     },
     {
       "name": "Samut, Hazoret's Champion",
       "formats": [
-        "Commander / cEDH"
+        "Commander / cEDH",
+        "Standard",
+        "Legacy",
+        "Duel Commander"
       ],
       "level": "Confermata",
       "role": "Rapidità / combo",
       "verdict": "Una scelta mirata per Sisay e motori che richiedono TAP.",
       "line": "Dare rapidità alle creature permette di usare subito abilità con TAP di pezzi come Ioreth of the Healing House.",
       "limit": "Il dato è concentrato su Sisay. Non rende automaticamente migliore ogni mazzo rosso.",
-      "evidence": "204 liste cEDH; presente in 109 delle 167 liste Sisay, Weatherlight Captain del campione.",
+      "evidence": "Presenze nel campione: Standard (5 liste), Legacy (5 liste). cEDH: 204 liste su 3.351 nella finestra 2-11 ottobre, con possibili duplicati. Duel Commander: segnalata tra le carte popolari della fonte beta, senza conteggio o rendimento per carta.",
       "sources": [
         [
           "Rilevazione cEDH",
           "https://deckcortex.com/articles/reality-fracture-cedh-first-ten-days"
+        ],
+        [
+          "Snapshot per formato, 22 ottobre",
+          "https://www.postboard.gg/sets/fra"
         ]
       ],
       "product": "FRA",
-      "image": "https://cards.scryfall.io/normal/front/b/a/ba920f23-f05c-410e-8516-c93abedf1d4d.jpg?1789729662"
+      "image": "https://cards.scryfall.io/normal/front/b/a/ba920f23-f05c-410e-8516-c93abedf1d4d.jpg?1789729662",
+      "priceProspect": {
+        "kind": "scenario_condizionale",
+        "horizonsMonths": [
+          3,
+          12
+        ],
+        "thesis": "La domanda Commander è un canale distinto dai risultati dei mazzi da sessanta carte.",
+        "gameplayDependency": "Haste globale su creatura a due mana. Supporto economico per dork e attacchi immediati, ma nessun valore carte o protezione dalle rimozioni.",
+        "upsideConditions": [
+          "Adozione ripetuta nei mazzi Standard, Legacy",
+          "Domanda Commander da liste pubblicate; non risultati di torneo né compravendite",
+          "Conferma futura dei test cEDH indicati dalla recensione",
+          "Conferma dell'adozione cEDH oltre la finestra 2-11 ottobre (204 liste rilevate)"
+        ],
+        "downsideRisks": [
+          "Nuove aperture e disponibilità di copie",
+          "Mancano dati su vendite concluse, liquidità e differenza tra acquisto e vendita",
+          "Il riferimento è già salito: il movimento passato può anticipare la domanda o riassorbirsi"
+        ],
+        "confidence": "bassa",
+        "targetPrice": null,
+        "probabilityOfRise": null,
+        "action": "monitorare_domanda_e_prezzo_della_stessa_stampa"
+      },
+      "priceReference": {
+        "date": "2026-10-22",
+        "currency": "EUR",
+        "metric": "Scryfall EUR reference for the identified printing; not Cardmarket From or realized sale",
+        "nonfoil": 2.43,
+        "foil": 2.66,
+        "comparison": {
+          "date": "2026-10-18",
+          "samePrinting": true,
+          "nonfoil": 1.94,
+          "changePct": 25.26,
+          "status": "comparable"
+        },
+        "printingId": "ba920f23-f05c-410e-8516-c93abedf1d4d"
+      }
     },
     {
       "name": "Dack Fayden, Helping Hand",
@@ -280,7 +778,7 @@
       "verdict": "Il comandante emergente da esplorare separatamente dalle carte del box.",
       "line": "Le creature entrano sotto il tuo controllo prima di essere cedute: le innescate rimangono tue. Le liste sfruttano Preston, the Vanisher, Felidar Guardian e Radiant Solar.",
       "limit": "Costa sei mana. Le combinazioni richiedono una lista costruita appositamente; campione ancora piccolo. Carta FRC, fuori dal Play Booster FRA.",
-      "evidence": "Tim Taranto vince BAKED ZITI 4 il 3 ottobre: 119 giocatori, record 6-0-1.",
+      "evidence": "Tim Taranto vince BAKED ZITI 4 il 3 ottobre: 119 giocatori, 6-0-1. Risultato EDHTop16 ricontrollato il 22 ottobre; un torneo non basta a definirne la forza stabile.",
       "sources": [
         [
           "Classifica EDHTop16",
@@ -289,10 +787,50 @@
         [
           "Analisi delle liste",
           "https://deckcortex.com/articles/dack-fayden-helping-hand-cedh"
+        ],
+        [
+          "Campione cEDH, 2-11 ottobre",
+          "https://deckcortex.com/articles/reality-fracture-cedh-first-ten-days"
         ]
       ],
       "product": "FRC",
-      "image": "https://api.scryfall.com/cards/named?exact=Dack%20Fayden%2C%20Helping%20Hand&format=image"
+      "image": "https://api.scryfall.com/cards/named?exact=Dack%20Fayden%2C%20Helping%20Hand&format=image",
+      "priceProspect": {
+        "kind": "scenario_condizionale",
+        "horizonsMonths": [
+          3,
+          12
+        ],
+        "thesis": "Domanda Commander osservata in 2541 liste: è un sostegno possibile, senza dimostrare crescita delle vendite o del prezzo.",
+        "gameplayDependency": "Polymorph politico che distribuisce creature agli avversari e le goada. La scelta dei bersagli nel mazzo è essenziale: il goad non annulla le abilità donate.",
+        "upsideConditions": [
+          "Domanda Commander da liste pubblicate; non risultati di torneo né compravendite",
+          "Conferma dell'adozione cEDH oltre la finestra 2-11 ottobre (40 liste rilevate)"
+        ],
+        "downsideRisks": [
+          "Nuove aperture e disponibilità di copie",
+          "Mancano dati su vendite concluse, liquidità e differenza tra acquisto e vendita"
+        ],
+        "confidence": "bassa",
+        "targetPrice": null,
+        "probabilityOfRise": null,
+        "action": "monitorare_domanda_e_prezzo_della_stessa_stampa"
+      },
+      "priceReference": {
+        "date": "2026-10-22",
+        "currency": "EUR",
+        "metric": "Scryfall EUR reference for the identified printing; not Cardmarket From or realized sale",
+        "nonfoil": 0.2,
+        "foil": null,
+        "comparison": {
+          "date": "2026-10-18",
+          "samePrinting": null,
+          "nonfoil": null,
+          "changePct": null,
+          "status": "missing_reference"
+        },
+        "printingId": "b0db02cb-d029-46d5-9df2-dee980047758"
+      }
     },
     {
       "name": "Bloodline Recollector",
@@ -312,21 +850,58 @@
         ]
       ],
       "product": "FRA",
-      "image": "https://cards.scryfall.io/normal/front/4/f/4fcc913e-f736-460a-b24b-022fa2e861b9.jpg?1788329264"
+      "image": "https://cards.scryfall.io/normal/front/4/f/4fcc913e-f736-460a-b24b-022fa2e861b9.jpg?1788329264",
+      "priceProspect": {
+        "kind": "scenario_condizionale",
+        "horizonsMonths": [
+          3,
+          12
+        ],
+        "thesis": "Sacrifice in Commander è il canale principale da verificare; il premio della serializzata non va trasferito alla stampa base.",
+        "gameplayDependency": "Motore sacrifice: tre morti in un turno preparano una pescata molto efficiente. Richiede sac outlet e pedine; serializzata e stampa base hanno mercati diversi.",
+        "upsideConditions": [
+          "Domanda Commander da liste pubblicate; non risultati di torneo né compravendite"
+        ],
+        "downsideRisks": [
+          "Nuove aperture e disponibilità di copie",
+          "Mancano dati su vendite concluse, liquidità e differenza tra acquisto e vendita",
+          "Il riferimento è già salito: il movimento passato può anticipare la domanda o riassorbirsi"
+        ],
+        "confidence": "bassa",
+        "targetPrice": null,
+        "probabilityOfRise": null,
+        "action": "monitorare_domanda_e_prezzo_della_stessa_stampa"
+      },
+      "priceReference": {
+        "date": "2026-10-22",
+        "currency": "EUR",
+        "metric": "Scryfall EUR reference for the identified printing; not Cardmarket From or realized sale",
+        "nonfoil": 4.94,
+        "foil": 5.85,
+        "comparison": {
+          "date": "2026-10-18",
+          "samePrinting": true,
+          "nonfoil": 2.27,
+          "changePct": 117.62,
+          "status": "comparable"
+        },
+        "printingId": "4fcc913e-f736-460a-b24b-022fa2e861b9"
+      }
     },
     {
       "name": "The Theorist, Jace Beleren",
       "formats": [
         "Commander",
         "Modern",
-        "Pioneer"
+        "Pioneer",
+        "Standard"
       ],
-      "level": "Emergente",
+      "level": "Confermata",
       "role": "Valore / controllo",
-      "verdict": "Più attraente nel multiplayer che nei mazzi cEDH più veloci.",
+      "verdict": "Domanda documentata in Standard, Pioneer, Modern e Commander; il prezzo è già cresciuto sensibilmente.",
       "line": "In una partita a quattro, se sopravvive alle tre sottofasi di acquisizione avversarie, può farti pescare tre carte aggiuntive.",
       "limit": "Richiede quattro mana ed è vulnerabile agli attacchi. In cEDH la presenza rilevata è ancora limitata.",
-      "evidence": "48 su 3.351 liste cEDH nel campione. Presenze nei control Modern e in Pioneer nell'archivio Postboard.",
+      "evidence": "Presenze nel campione: Standard (43 liste), Pioneer (9 liste), Modern (14 liste). cEDH: 48 liste su 3.351 nella finestra 2-11 ottobre, con possibili duplicati.",
       "sources": [
         [
           "Campione cEDH",
@@ -338,39 +913,122 @@
         ]
       ],
       "product": "FRA",
-      "image": "https://cards.scryfall.io/normal/front/2/0/20bb8c55-4b0b-425f-8201-b54fa2fdde86.jpg?1788329228"
+      "image": "https://cards.scryfall.io/normal/front/2/0/20bb8c55-4b0b-425f-8201-b54fa2fdde86.jpg?1788329228",
+      "priceProspect": {
+        "kind": "scenario_condizionale",
+        "horizonsMonths": [
+          3,
+          12
+        ],
+        "thesis": "Il prezzo incorpora già una rivalutazione: il rischio è pagare una crescita prima che i risultati successivi la confermino.",
+        "gameplayDependency": "Motore da control che pesca nei turni avversari e produce materiale. In multiplayer scala con gli avversari, ma richiede protezione dall'attacco e dalle rimozioni.",
+        "upsideConditions": [
+          "Adozione ripetuta nei mazzi Standard, Pioneer, Modern",
+          "Domanda Commander da liste pubblicate; non risultati di torneo né compravendite",
+          "Conferma dell'adozione cEDH oltre la finestra 2-11 ottobre (48 liste rilevate)"
+        ],
+        "downsideRisks": [
+          "Nuove aperture e disponibilità di copie",
+          "Mancano dati su vendite concluse, liquidità e differenza tra acquisto e vendita",
+          "Il riferimento è già salito: il movimento passato può anticipare la domanda o riassorbirsi"
+        ],
+        "confidence": "bassa",
+        "targetPrice": null,
+        "probabilityOfRise": null,
+        "action": "monitorare_domanda_e_prezzo_della_stessa_stampa"
+      },
+      "priceReference": {
+        "date": "2026-10-22",
+        "currency": "EUR",
+        "metric": "Scryfall EUR reference for the identified printing; not Cardmarket From or realized sale",
+        "nonfoil": 39.74,
+        "foil": 49.35,
+        "comparison": {
+          "date": "2026-10-18",
+          "samePrinting": true,
+          "nonfoil": 30.57,
+          "changePct": 30.0,
+          "status": "comparable"
+        },
+        "printingId": "20bb8c55-4b0b-425f-8201-b54fa2fdde86"
+      }
     },
     {
       "name": "Jace's Machinations",
       "formats": [
-        "Pioneer"
+        "Pioneer",
+        "Standard",
+        "Duel Commander"
       ],
-      "level": "Preliminare",
+      "level": "Emergente",
       "role": "Combo",
-      "verdict": "Una scommessa con una combinazione potente, ancora da dimostrare nei risultati.",
+      "verdict": "Presenze ripetute in Standard; la combinazione Pioneer resta un'ipotesi distinta dai risultati del campione.",
       "line": "Con Kasmina, Enigma Sage, gli otto segnalini sul Jace pedina permettono di usare il −8 concesso da Kasmina per lanciare Enter the Infinite e preparare Thassa's Oracle.",
       "limit": "Richiede più pezzi. Wizards il 12 ottobre segnalava l'assenza di risultati Pioneer rilevanti.",
-      "evidence": "Combo discussa nell'aggiornamento ufficiale delle banlist, non una vittoria documentata.",
+      "evidence": "Presenze nel campione: Standard (10 liste). Duel Commander: segnalata tra le carte popolari della fonte beta, senza conteggio o rendimento per carta. Campione Postboard dal 25 settembre, rilevato il 22 ottobre; le presenze non sono una percentuale di vittorie.",
       "sources": [
         [
           "Valutazione Wizards",
           "https://magic.wizards.com/en/news/announcements/banned-and-restricted-october-12-2026"
+        ],
+        [
+          "Snapshot per formato, 22 ottobre",
+          "https://www.postboard.gg/sets/fra"
         ]
       ],
       "product": "FRA",
-      "image": "https://cards.scryfall.io/normal/front/2/8/282588b9-3656-453b-aa25-2419e078ddc1.jpg?1788878150"
+      "image": "https://cards.scryfall.io/normal/front/2/8/282588b9-3656-453b-aa25-2419e078ddc1.jpg?1788878150",
+      "priceProspect": {
+        "kind": "scenario_condizionale",
+        "horizonsMonths": [
+          3,
+          12
+        ],
+        "thesis": "Le combinazioni con Kasmina richiedono prove di torneo; il monitoraggio ufficiale non equivale a una previsione di ban.",
+        "gameplayDependency": "Abilita uso di Jace nel turno avversario e alimenta combo con fedeltà. Richiede benefici superiori alla sola pescata differita per giustificare il pacchetto.",
+        "upsideConditions": [
+          "Adozione ripetuta nei mazzi Standard",
+          "Domanda Commander da liste pubblicate; non risultati di torneo né compravendite"
+        ],
+        "downsideRisks": [
+          "Nuove aperture e disponibilità di copie",
+          "Mancano dati su vendite concluse, liquidità e differenza tra acquisto e vendita",
+          "Il riferimento è già salito: il movimento passato può anticipare la domanda o riassorbirsi",
+          "Domanda competitiva concentrata nello Standard e soggetta al cambio del metagame"
+        ],
+        "confidence": "bassa",
+        "targetPrice": null,
+        "probabilityOfRise": null,
+        "action": "monitorare_domanda_e_prezzo_della_stessa_stampa"
+      },
+      "priceReference": {
+        "date": "2026-10-22",
+        "currency": "EUR",
+        "metric": "Scryfall EUR reference for the identified printing; not Cardmarket From or realized sale",
+        "nonfoil": 0.55,
+        "foil": 0.66,
+        "comparison": {
+          "date": "2026-10-18",
+          "samePrinting": true,
+          "nonfoil": 0.03,
+          "changePct": 1733.33,
+          "status": "comparable"
+        },
+        "printingId": "282588b9-3656-453b-aa25-2419e078ddc1"
+      }
     },
     {
       "name": "Stingcaster Mage",
       "formats": [
-        "Pioneer"
+        "Pioneer",
+        "Standard"
       ],
-      "level": "Preliminare",
+      "level": "Emergente",
       "role": "Recupero magie",
       "verdict": "Carta da osservare, con evidenza più debole dei principali candidati Pioneer.",
       "line": "Per {1}{R} ottieni un corpo rapido e dai flashback a una magia nel cimitero. Occorre pagare anche il costo di quella magia.",
       "limit": "Non ha flash: il ruolo differisce da Snapcaster Mage. Le presenze non bastano ancora a dimostrare un posto stabile.",
-      "evidence": "Quattro liste e due Top 8 nel campione Pioneer consultato.",
+      "evidence": "Presenze nel campione: Standard (9 liste), Pioneer (4 liste). Campione Postboard dal 25 settembre, rilevato il 22 ottobre; le presenze non sono una percentuale di vittorie.",
       "sources": [
         [
           "Campione Pioneer",
@@ -378,7 +1036,44 @@
         ]
       ],
       "product": "FRA",
-      "image": "https://cards.scryfall.io/normal/front/2/d/2d8e8e5f-3bf5-490d-aa9c-9df2b26f1460.jpg?1788329303"
+      "image": "https://cards.scryfall.io/normal/front/2/d/2d8e8e5f-3bf5-490d-aa9c-9df2b26f1460.jpg?1788329303",
+      "priceProspect": {
+        "kind": "scenario_condizionale",
+        "horizonsMonths": [
+          3,
+          12
+        ],
+        "thesis": "La crescita del riferimento EUR è più marcata della diffusione documentata: distinguere aspettative da adozione ripetuta.",
+        "gameplayDependency": "Riutilizza una magia del cimitero e attacca subito. Il piano richiede sia un bersaglio già nel cimitero sia il mana per lanciarlo nello stesso turno.",
+        "upsideConditions": [
+          "Adozione ripetuta nei mazzi Standard, Pioneer",
+          "Domanda Commander da liste pubblicate; non risultati di torneo né compravendite"
+        ],
+        "downsideRisks": [
+          "Nuove aperture e disponibilità di copie",
+          "Mancano dati su vendite concluse, liquidità e differenza tra acquisto e vendita",
+          "Il riferimento è già salito: il movimento passato può anticipare la domanda o riassorbirsi"
+        ],
+        "confidence": "bassa",
+        "targetPrice": null,
+        "probabilityOfRise": null,
+        "action": "monitorare_domanda_e_prezzo_della_stessa_stampa"
+      },
+      "priceReference": {
+        "date": "2026-10-22",
+        "currency": "EUR",
+        "metric": "Scryfall EUR reference for the identified printing; not Cardmarket From or realized sale",
+        "nonfoil": 5.59,
+        "foil": 6.87,
+        "comparison": {
+          "date": "2026-10-18",
+          "samePrinting": true,
+          "nonfoil": 3.35,
+          "changePct": 66.87,
+          "status": "comparable"
+        },
+        "printingId": "2d8e8e5f-3bf5-490d-aa9c-9df2b26f1460"
+      }
     }
   ],
   "previews": [
@@ -2483,6 +3178,103 @@
       "name": "Snapcaster Mage",
       "image": "https://api.scryfall.com/cards/named?exact=Snapcaster%20Mage&format=image",
       "faces": []
+    },
+    {
+      "name": "Superior Spider-Man",
+      "image": "https://cards.scryfall.io/normal/front/a/d/ad4adc3e-ec41-4406-8ff2-59ba8067cf4e.jpg?1783905308",
+      "large": "https://cards.scryfall.io/large/front/a/d/ad4adc3e-ec41-4406-8ff2-59ba8067cf4e.jpg?1783905308",
+      "url": "https://scryfall.com/card/spm/155/superior-spider-man?utm_source=api"
+    },
+    {
+      "name": "Cloud of Faeries",
+      "image": "https://cards.scryfall.io/normal/front/0/3/03aff125-8962-4a0a-a2b4-e5d693b75400.jpg?1783917172",
+      "large": "https://cards.scryfall.io/large/front/0/3/03aff125-8962-4a0a-a2b4-e5d693b75400.jpg?1783917172",
+      "url": "https://scryfall.com/card/moc/219/cloud-of-faeries?utm_source=api"
+    },
+    {
+      "name": "Peregrine Drake",
+      "image": "https://cards.scryfall.io/normal/front/6/1/611c8fa2-b53f-483b-9efa-759ac59dc30f.jpg?1783918487",
+      "large": "https://cards.scryfall.io/large/front/6/1/611c8fa2-b53f-483b-9efa-759ac59dc30f.jpg?1783918487",
+      "url": "https://scryfall.com/card/dmr/65/peregrine-drake?utm_source=api"
+    },
+    {
+      "name": "Earthcraft",
+      "image": "https://cards.scryfall.io/normal/front/9/d/9dda7531-82a1-4f49-8858-601ddbc6e2bc.jpg?1783946620",
+      "large": "https://cards.scryfall.io/large/front/9/d/9dda7531-82a1-4f49-8858-601ddbc6e2bc.jpg?1783946620",
+      "url": "https://scryfall.com/card/tmp/222/earthcraft?utm_source=api"
+    },
+    {
+      "name": "Counterspell",
+      "image": "https://cards.scryfall.io/normal/front/4/f/4f616706-ec97-4923-bb1e-11a69fbaa1f8.jpg?1783909630",
+      "large": "https://cards.scryfall.io/large/front/4/f/4f616706-ec97-4923-bb1e-11a69fbaa1f8.jpg?1783909630",
+      "url": "https://scryfall.com/card/dsc/114/counterspell?utm_source=api"
+    },
+    {
+      "name": "Arclight Phoenix",
+      "image": "https://cards.scryfall.io/normal/front/d/e/def7f05b-6e63-4828-a92c-ce7921bbdf4e.jpg?1783913318",
+      "large": "https://cards.scryfall.io/large/front/d/e/def7f05b-6e63-4828-a92c-ce7921bbdf4e.jpg?1783913318",
+      "url": "https://scryfall.com/card/rvr/100/arclight-phoenix?utm_source=api"
+    },
+    {
+      "name": "Lurrus of the Dream-Den",
+      "image": "https://cards.scryfall.io/normal/front/5/a/5ad36fb2-c44e-4085-ba0d-54277841ad3a.jpg?1783931010",
+      "large": "https://cards.scryfall.io/large/front/5/a/5ad36fb2-c44e-4085-ba0d-54277841ad3a.jpg?1783931010",
+      "url": "https://scryfall.com/card/iko/226/lurrus-of-the-dream-den?utm_source=api"
+    },
+    {
+      "name": "Mishra's Workshop",
+      "image": "https://cards.scryfall.io/normal/front/a/a/aac0c8df-f01d-4178-8d66-ee603f814d24.jpg?1783939223",
+      "large": "https://cards.scryfall.io/large/front/a/a/aac0c8df-f01d-4178-8d66-ee603f814d24.jpg?1783939223",
+      "url": "https://scryfall.com/card/vma/305/mishras-workshop?utm_source=api"
+    },
+    {
+      "name": "Phyrexian Dreadnought",
+      "image": "https://cards.scryfall.io/normal/front/7/b/7b8197b9-0cd1-4fa1-9668-d1b5f1759151.jpg?1783947042",
+      "large": "https://cards.scryfall.io/large/front/7/b/7b8197b9-0cd1-4fa1-9668-d1b5f1759151.jpg?1783947042",
+      "url": "https://scryfall.com/card/mir/315/phyrexian-dreadnought?utm_source=api"
+    },
+    {
+      "name": "Gev, Scaled Scorch",
+      "image": "https://cards.scryfall.io/normal/front/1/3/131ea976-289e-4f32-896d-27bbfd423ba9.jpg?1783910797",
+      "large": "https://cards.scryfall.io/large/front/1/3/131ea976-289e-4f32-896d-27bbfd423ba9.jpg?1783910797",
+      "url": "https://scryfall.com/card/blb/214/gev-scaled-scorch?utm_source=api"
+    },
+    {
+      "name": "Orcish Bowmasters",
+      "image": "https://cards.scryfall.io/normal/front/7/c/7c024bae-5631-4e20-ac69-df392ac9e109.jpg?1783916299",
+      "large": "https://cards.scryfall.io/large/front/7/c/7c024bae-5631-4e20-ac69-df392ac9e109.jpg?1783916299",
+      "url": "https://scryfall.com/card/ltr/103/orcish-bowmasters?utm_source=api"
+    },
+    {
+      "name": "Cori-Steel Cutter",
+      "image": "https://cards.scryfall.io/normal/front/4/9/490eb213-9ae2-4b45-abec-6f1dfc83792a.jpg?1783907363",
+      "large": "https://cards.scryfall.io/large/front/4/9/490eb213-9ae2-4b45-abec-6f1dfc83792a.jpg?1783907363",
+      "url": "https://scryfall.com/card/tdm/103/cori-steel-cutter?utm_source=api"
+    },
+    {
+      "name": "Narset, Parter of Veils",
+      "image": "https://cards.scryfall.io/normal/front/4/e/4e6e5c63-b6e5-4756-bf23-6c6f8669442d.jpg?1783915440",
+      "large": "https://cards.scryfall.io/large/front/4/e/4e6e5c63-b6e5-4756-bf23-6c6f8669442d.jpg?1783915440",
+      "url": "https://scryfall.com/card/cmm/853/narset-parter-of-veils?utm_source=api"
+    },
+    {
+      "name": "Goryo's Vengeance",
+      "image": "https://cards.scryfall.io/normal/front/6/2/6261205d-3506-4f0a-98ce-690f40df7a5a.jpg?1783933822",
+      "large": "https://cards.scryfall.io/large/front/6/2/6261205d-3506-4f0a-98ce-690f40df7a5a.jpg?1783933822",
+      "url": "https://scryfall.com/card/uma/99/goryos-vengeance?utm_source=api"
+    },
+    {
+      "name": "Living End",
+      "image": "https://cards.scryfall.io/normal/front/b/1/b1eede29-17a4-437f-a5c2-e24cccbc6a33.jpg?1783927818",
+      "large": "https://cards.scryfall.io/large/front/b/1/b1eede29-17a4-437f-a5c2-e24cccbc6a33.jpg?1783927818",
+      "url": "https://scryfall.com/card/tsr/121/living-end?utm_source=api"
     }
-  ]
+  ],
+  "research": {
+    "date": "2026-10-22",
+    "catalogCoverage": 295,
+    "publisherCount": 14,
+    "details": "data/cards.json: cards[].prospects",
+    "commanderAppendix": "prospects-commander-20261022.json"
+  }
 }

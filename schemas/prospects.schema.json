@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:mtg-analyzer:prospects:1",
+  "title": "Osservazioni e scenari editoriali per carta",
+  "$defs": {
+    "formatAssessment": {
+      "type": "object",
+      "required": ["legality", "evidence", "prospect", "confidence"],
+      "properties": {
+        "legality": {"type": "string"},
+        "evidence": {"type": "string"},
+        "prospect": {"type": "string"},
+        "confidence": {"enum": ["bassa", "media", "alta"]},
+        "observation": {"type": "integer", "minimum": 0}
+      },
+      "additionalProperties": true
+    },
+    "nullablePrice": {"type": ["number", "null"], "minimum": 0},
+    "cardProspects": {
+      "type": "object",
+      "required": ["date", "kind", "summary", "gameplayReview", "sources", "oracle", "formats", "tournamentObservations", "commanderObservations", "price", "limitations"],
+      "properties": {
+        "date": {"type": "string", "format": "date"},
+        "kind": {"const": "evidence_and_editorial_scenarios"},
+        "summary": {"type": "string", "minLength": 1},
+        "gameplayReview": {
+          "type": "object",
+          "required": ["kind", "finding", "evidenceOfTournamentSuccess"],
+          "properties": {
+            "kind": {"const": "analisi_editoriale_oracle"},
+            "finding": {"type": "string", "minLength": 1},
+            "evidenceOfTournamentSuccess": {"const": false}
+          }
+        },
+        "sources": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string"}},
+        "oracle": {"type": "object", "required": ["printingId", "url", "set", "number", "text"]},
+        "formats": {"type": "object", "additionalProperties": {"$ref": "#/$defs/formatAssessment"}},
+        "tournamentObservations": {"type": "array", "items": {"type": "object", "required": ["name", "format", "decklistsWithCard", "source"]}},
+        "commanderObservations": {"type": "array"},
+        "price": {
+          "type": "object",
+          "required": ["date", "currency", "metric", "printingId", "nonfoil", "foil", "comparison", "variants", "outlook"],
+          "properties": {
+            "currency": {"const": "EUR"},
+            "nonfoil": {"$ref": "#/$defs/nullablePrice"},
+            "foil": {"$ref": "#/$defs/nullablePrice"},
+            "comparison": {
+              "type": "object",
+              "required": ["date", "samePrinting", "nonfoil", "changePct", "status"],
+              "properties": {
+                "samePrinting": {"type": ["boolean", "null"]},
+                "nonfoil": {"$ref": "#/$defs/nullablePrice"},
+                "changePct": {"type": ["number", "null"]},
+                "status": {"enum": ["comparable", "missing_reference"]}
+              }
+            },
+            "outlook": {
+              "type": "object",
+              "required": ["kind", "thesis", "confidence", "targetPrice", "probabilityOfRise"],
+              "properties": {
+                "kind": {"const": "scenario_condizionale"},
+                "thesis": {"type": "string", "minLength": 1},
+                "confidence": {"const": "bassa"},
+                "targetPrice": {"type": "null"},
+                "probabilityOfRise": {"type": "null"}
+              }
+            }
+          }
+        },
+        "limitations": {"type": "array", "minItems": 1, "items": {"type": "string"}}
+      },
+      "additionalProperties": true
+    }
+  },
+  "$ref": "#/$defs/cardProspects"
+}

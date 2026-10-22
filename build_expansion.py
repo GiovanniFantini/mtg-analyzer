@@ -139,7 +139,9 @@ def catalog_data(expansion):
           'mixedCards':sum(s.get('kind')=='misto' for s in covered)}
     return {'date':d['cards'].get('date',''),'cards':cards,
             'stats':d['statistics'].get('catalog',[]),'scale':d['ratings'].get('scale',{}),
-            'combos':d['combos'],'sentimentMeta':meta}
+            'combos':d['combos'],'sentimentMeta':meta,
+            'prospectSources':d['sources'].get('research',{}).get('sources',[]),
+            'previewCards':d['discovery'].get('previews',[])}
 
 
 def configured_routes(content, expansion):

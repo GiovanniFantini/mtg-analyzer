@@ -1,7 +1,7 @@
 'use strict';
 // Shared card previews for the report, catalog, analysis and simulator.
 (() => {
-  const source = typeof DRAFT_DATA !== 'undefined' ? [...(DRAFT_DATA.poolCards || []), ...DRAFT_DATA.cards] : typeof DATA !== 'undefined' ? DATA.cards : [];
+  const source = typeof DRAFT_DATA !== 'undefined' ? [...(DRAFT_DATA.poolCards || []), ...DRAFT_DATA.cards] : typeof DATA !== 'undefined' ? [...DATA.cards,...(DATA.previewCards||[])] : [];
   if (!Array.isArray(source) || !source.length) return;
   const cards = new Map();
   for (const card of source) {
@@ -18,8 +18,8 @@
   const escape = s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   const normalize = s => s.replace(/’/g, "'");
   const normalized = new Map([...cards].map(([name, card]) => [normalize(name), card]));
-  const names = [...cards.keys()].sort((a,b) => b.length-a.length).map(n => escape(n).replace(/['’]/g, "['’]"));
-  const pattern = new RegExp('(?<![\\p{L}\\p{N}])(?:'+names.join('|')+')(?![\\p{L}\\p{N}])', 'gu');
+  function buildPattern(){const names=[...cards.keys()].sort((a,b)=>b.length-a.length).map(n=>escape(n).replace(/['’]/g,"['’]"));return new RegExp('(?<![\\p{L}\\p{N}])(?:'+names.join('|')+')(?![\\p{L}\\p{N}])','gu')}
+  let pattern = buildPattern();
   const preview = document.createElement('div');
   preview.id = 'mtg-card-preview'; preview.setAttribute('role','tooltip');
   preview.setAttribute('popover','manual'); preview.hidden=true;
@@ -120,6 +120,13 @@
       for(const root of roots)if(root.isConnected&&!roots.some(other=>other!==root&&other.contains(root)))annotate(root);
       if(active&&!active.isConnected)hide();
     });
+  });
+  window.addEventListener('mtg-card-data',event=>{
+    for(const card of event.detail?.cards||[]){
+      if(!card.image)continue;
+      for(const name of [card.name,card.full,...(card.faces||[]).map(face=>face.name)].filter(Boolean)){cards.set(name,card);normalized.set(normalize(name),card)}
+    }
+    pattern=buildPattern();annotate(document.body);
   });
   annotate(document.body);observer.observe(document.body,{childList:true,subtree:true});
 })();

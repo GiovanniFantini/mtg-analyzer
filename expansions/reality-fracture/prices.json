@@ -2,5 +2,15 @@
   "available": false,
   "missing": [
     "Nessuno snapshot di prezzi pubblicabile incluso nella build del sito."
-  ]
+  ],
+  "references": {
+    "available": true,
+    "date": "2026-10-22",
+    "metric": "Scryfall EUR per printing",
+    "location": "cards.json: cards[].prospects.price",
+    "cardmarketFromAvailable": false,
+    "soldPricesAvailable": false,
+    "boxEVUpdated": false,
+    "missing": "Minimi Cardmarket aggiornati e vendite concluse non rilevati."
+  }
 }
