@@ -49,6 +49,14 @@ I contratti di `cards.json` e `printings.json` sono descritti anche in `schemas/
 
 La homepage deriva percorsi e nomi dal registro. `home.featured` e `home.quickTools` nel manifest scelgono rispettivamente il set in evidenza e gli accessi rapidi; in assenza di indicazioni usa l’ultima e la prima espansione registrata. Il catalogo completo/parziale e la data della legalità derivano dai dati, anche nella presentazione di anteprima. I collegamenti locali alle sezioni assenti o non disponibili vengono omessi.
 
+### Consultazione per legalità: requisito trasversale
+
+L'esigenza espressa il 22 ottobre 2026 è poter consultare tutte le carte dell'espansione selezionata ammesse in un formato di gioco, per esempio Pauper, anche quando non hanno recensioni o risultati competitivi. Il requisito riguarda tutte le espansioni e tutti i formati pertinenti. Espansione, formato Constructed ed evento Limited sono dimensioni distinte.
+
+La consultazione deve distinguere legalità attuale alla data dello snapshot, ammissibilità prevista all'uscita e interesse competitivo. Per le anteprime, conservare fonti, date e incertezze: uno stato attuale `not_legal` non basta a stabilire la futura esclusione. La copertura va dichiarata rispetto al catalogo disponibile, segnalando i set ancora parziali. Per Pauper il solo filtro di rarità della stampa non è equivalente alla legalità: contano anche le stampe comuni precedenti ammesse e la banlist. I prodotti collegati e le carte ospiti mantengono le proprie condizioni.
+
+Stato rilevato nei sorgenti il 22 ottobre: Reality Fracture offre `Metagame e carte → Tutte le analisi` con filtro Pauper sulla legalità registrata; Star Trek non offre il filtro Pauper nel selettore Constructed né una vista dell'ammissibilità prevista all'uscita. Questa sezione documenta il requisito e il limite esistente; non attesta l'implementazione delle viste mancanti. I futuri interventi devono usare dati e componenti condivisi, mantenendo anteprime delle carte da mouse, tastiera e tocco.
+
 ### Regole delle buste e degli eventi
 
 I documenti sono letti come oggetti JSON, attraverso un caricatore comune. Non serve un database: il sito resta statico e la build risolve i riferimenti, poi incorpora i dati necessari agli strumenti. I documenti pubblici si trovano anche sotto `sets/<slug>/data/`, compresi `runtime.json` e `availability.json`.
