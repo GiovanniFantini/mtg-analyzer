@@ -95,7 +95,7 @@ def expansion_shell(content, key, expansion):
                         f'>{e(pages[id_][0])}</a>' for id_ in ids)
         groups.append(f'<div class="site-nav-group"><p>{e(title)}</p>{links}</div>')
     nav = f'''<a class="site-skip" href="#site-content">Vai al contenuto</a>
-<div class="site-bar"><a class="site-brand" href="../../index.html">MTG Analyzer</a><span class="site-bar-note">Il tuo tavolo di Magic</span><button class="site-menu-toggle" type="button" aria-expanded="false" aria-controls="site-sidebar">☰ Menu</button></div>
+<div class="site-bar"><a class="site-brand" href="../../index.html"><span class="site-mark" aria-hidden="true">M<span>✦</span></span><span>MTG <b>Analyzer</b></span></a><span class="site-bar-note">Il tuo tavolo di Magic</span><button class="site-menu-toggle" type="button" aria-expanded="false" aria-controls="site-sidebar">☰ Menu</button></div>
 <div class="site-backdrop" hidden></div><aside class="site-sidebar" id="site-sidebar" aria-label="Navigazione principale"><a class="site-home" href="../../index.html">⌂ Home</a><div class="site-set-label"><span>ESPANSIONE</span><strong>{e(expansion['name'])}<small>{e(expansion['code'])} · Anteprima</small></strong></div><a href="../reality-fracture/index.html">Reality Fracture</a><nav>{''.join(groups)}</nav><p class="site-storage-note">Pool Star Trek separati da Reality Fracture. Esporta i salvataggi per conservarli.</p></aside>
 <div class="site-body"><nav class="site-breadcrumb" aria-label="Percorso"><a href="../../index.html">Home</a><span>/</span><a href="index.html">Star Trek</a><span>/</span><span id="site-page-label">{e(pages[key][0])}</span></nav>'''
     content = content.replace('<main>', '<main id="site-content" tabindex="-1">', 1)

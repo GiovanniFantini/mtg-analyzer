@@ -63,4 +63,93 @@
   const top = document.querySelector('.site-to-top');
   const updateTop = () => { top.hidden = scrollY < 650; };
   addEventListener('scroll', updateTop, {passive:true}); updateTop();
+
+  // Prepare offscreen content only; never dim content already painted in view.
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  if ('IntersectionObserver' in window && !reduced.matches) {
+    const reveal = new IntersectionObserver(entries => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        const item = entry.target;
+        const finish = event => {
+          if (event.target !== item || event.animationName !== 'site-enter') return;
+          item.classList.remove('site-enter', 'site-reveal-pending');
+          item.removeEventListener('animationend', finish);
+          item.removeEventListener('animationcancel', finish);
+        };
+        item.addEventListener('animationend', finish);
+        item.addEventListener('animationcancel', finish);
+        entry.target.classList.add('site-enter');
+        reveal.unobserve(entry.target);
+      }
+    }, {threshold: 0, rootMargin: '0px 0px 64px 0px'});
+    document.querySelectorAll('.site-hero,.site-task,.set,main>.report-section,main>.trk-panel,main>.panel').forEach((item, i) => {
+      const rect = item.getBoundingClientRect();
+      if (rect.width && rect.top < innerHeight && rect.bottom > 0) return;
+      item.style.setProperty('--site-delay', `${Math.min(i % 3, 2) * 45}ms`);
+      item.classList.add('site-reveal-pending');
+      reveal.observe(item);
+    });
+    reduced.addEventListener('change', () => {
+      if (reduced.matches) {
+        reveal.disconnect();
+        document.querySelectorAll('.site-enter,.site-reveal-pending').forEach(item => item.classList.remove('site-enter', 'site-reveal-pending'));
+      }
+    });
+  }
+  // Add keyboard stops only to overflowing regions, including new drilldowns.
+  const tableRegions = new Map();
+  let tableFrame = 0;
+  const tableTitle = (region, table) => {
+    const caption = table?.querySelector('caption')?.textContent.trim();
+    if (caption) return caption;
+    const scope = region.closest('article,section,details,dialog') || document.body;
+    const headings = 'h1,h2,h3,h4,h5,h6,summary';
+    for (let node = region; node && node !== scope; node = node.parentElement) {
+      for (let previous = node.previousElementSibling; previous; previous = previous.previousElementSibling) {
+        const heading = previous.matches(headings) ? previous : [...previous.querySelectorAll(headings)].at(-1);
+        if (heading?.textContent.trim()) return heading.textContent.trim();
+      }
+    }
+    return [...(table?.querySelectorAll('thead th') || [])].slice(0, 3).map(cell => cell.textContent.trim()).join(', ') || 'Dati';
+  };
+  const scheduleTables = () => {
+    if (!tableFrame) tableFrame = requestAnimationFrame(syncTables);
+  };
+  const tableResize = 'ResizeObserver' in window ? new ResizeObserver(scheduleTables) : null;
+  function syncTables() {
+    tableFrame = 0;
+    for (const [region, state] of tableRegions) {
+      if (region.isConnected) continue;
+      tableResize?.unobserve(region);
+      if (state.table) tableResize?.unobserve(state.table);
+      tableRegions.delete(region);
+    }
+    document.querySelectorAll('.tablewrap,.trk-table-wrap').forEach(region => {
+      if (!tableRegions.has(region)) {
+        tableRegions.set(region, {
+          original: Object.fromEntries(['tabindex','role','aria-label'].map(name => [name, region.getAttribute(name)])),
+          labelled: region.hasAttribute('aria-labelledby'), table: null
+        });
+        tableResize?.observe(region);
+      }
+      const state = tableRegions.get(region), table = region.querySelector('table');
+      if (state.table !== table) {
+        if (state.table) tableResize?.unobserve(state.table);
+        if (table) tableResize?.observe(table);
+        state.table = table;
+      }
+      const overflow = region.clientWidth > 0 && region.scrollWidth > region.clientWidth + 1;
+      const values = {tabindex: '0', role: 'region', 'aria-label': `${tableTitle(region, table)}, tabella a scorrimento orizzontale`};
+      for (const [name, value] of Object.entries(values)) {
+        if (state.original[name] !== null || (name === 'aria-label' && state.labelled)) continue;
+        if (overflow) region.setAttribute(name, value);
+        else region.removeAttribute(name);
+      }
+    });
+  }
+  const content = document.body;
+  if (content && 'MutationObserver' in window) new MutationObserver(scheduleTables).observe(content, {childList:true, subtree:true});
+  addEventListener('resize', scheduleTables, {passive:true});
+  syncTables();
 })();

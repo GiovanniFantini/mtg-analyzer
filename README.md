@@ -43,6 +43,14 @@ Pool e carte osservate sono memorizzati nel browser del visitatore, senza accoun
 
 ## Navigazione e layout
 
+La veste comune usa caratteri di sistema, pannelli coerenti, accessi per obiettivo e microanimazioni CSS brevi, senza dipendenze aggiuntive. Le animazioni rispettano `prefers-reduced-motion`; i contenuti editoriali rimangono visibili anche senza JavaScript. Le tabelle nelle aree scorrevoli sono raggiungibili da tastiera. Nel tavolo Draft le colonne mantengono la stessa larghezza mentre diminuiscono le carte, le immagini riservano lo spazio prima del caricamento e i pulsanti di scelta sono allineati. La barra di avanzamento rappresenta le 42 pick, senza cambiare motore o salvataggi.
+
+Con il server locale sulla porta 8765, `node verify-ux.cjs` controlla le 19 pagine a 320, 360, 768, 1024 e 1440 pixel, le dimensioni del draft per tutta la prima busta, ripresa della sessione, movimento ridotto e contenuti statici senza JavaScript. Salva anche anteprime desktop e mobile. Usa `MTG_PLAYWRIGHT_MODULE`, `MTG_BROWSER_CHANNEL` e `MTG_SITE_URL` per configurare l'ambiente, come gli altri controlli browser.
+
+Verifica hosting del 22 ottobre 2026: il sito rimane statico e usa il workflow GitHub Actions esistente. La build locale produce circa 12,6 MB in meno di 10 secondi nell'ambiente di verifica. I [limiti ufficiali di GitHub Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/github-pages-limits) prevedono 1 GB per il sito pubblicato, timeout del deploy dopo 10 minuti e una soglia indicativa di traffico di 100 GB al mese. La soglia di 10 build all'ora non si applica ai workflow Actions personalizzati. Il traffico effettivo e le impostazioni dell'account non sono deducibili dalla build locale. Il sito informativo non introduce checkout, transazioni sensibili o un servizio commerciale SaaS.
+
+Riferimenti UX: [animazioni efficienti con transform e opacity](https://web.dev/articles/animations-guide), [preferenza di movimento ridotto](https://www.w3.org/WAI/WCAG22/Techniques/css/C39), [dimensione e spaziatura dei controlli](https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html). Le scelte privilegiano transizioni brevi, feedback delle azioni, immagini stabili e controlli principali da almeno 44 pixel sul telefono. Questi interventi non costituiscono una certificazione completa WCAG.
+
 ### Tavolo Draft con bot
 
 La voce “Tavolo Draft con bot” apre `Reality-Fracture-Draft-Engine.html` nel set Reality Fracture. Offre sette avversari configurabili prima del draft, nove strategie, tre giri di buste con passaggio simultaneo, anteprime accessibili, ripresa locale e revisione delle scelte dei bot alla fine. Il codice del draft, la configurazione e le pick permettono la riproduzione deterministica. L'esportazione JSON contiene le pick umane e, solo a draft concluso, il resoconto degli avversari.

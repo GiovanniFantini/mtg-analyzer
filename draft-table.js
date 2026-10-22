@@ -32,6 +32,8 @@
  function render(){
   $('setup').hidden=true;$('table').hidden=false;$('review').hidden=!session.complete;
   $('progress').textContent=session.complete?'Draft completato':`Busta ${session.round}/3 · Pick ${session.pick}/14`;
+  $('draft-meter').value=session.human.length;
+  $('draft-meter').setAttribute('aria-valuetext', `${session.human.length} pick su 42`);
   $('direction').textContent=session.complete?'Tutte le pick sono visibili nella revisione del tavolo.':`Passaggio a ${data.directions[session.round-1]===1?'sinistra':'destra'} · ${session.current().length} carte rimaste`;
   $('pack').innerHTML=session.current().map(e=>{const c=byId[e.id];return `<article class="draft-card"><button class="art" data-preview="${c.id}" aria-label="Anteprima ${esc(c.name)}"><img src="${esc(c.image)}" alt="${esc(c.name)}" loading="lazy"></button>${ref(c.id)}<small>${esc(c.rarity)}${e.foil?' · foil':''} · ${esc(e.slot)}</small><button class="pick" data-pick="${e.uid}" aria-label="Scegli ${esc(c.name)}">Scegli</button></article>`;}).join('');
   $('pool-count').textContent=`(${session.human.length})`;
