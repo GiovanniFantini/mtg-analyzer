@@ -17,6 +17,20 @@ Aprire http://localhost:8765. La build rigenera le pagine dai template e dagli s
 
 Ogni push su `main` esegue la build e pubblica `dist/` con GitHub Actions e GitHub Pages. Un errore di build impedisce il deploy. La cartella di lavoro, gli script e i dati grezzi non vengono serviti come risorse del sito.
 
+## Ricerca e analisi degli aggiornamenti delle espansioni
+
+Giovanni richiede una ricerca che arrivi a informazioni utilizzabili: confronto con quanto già presente, lettura di fonti diverse, analisi critica dei giudizi e, quando richiesto, integrazione nel repository. La ricerca deve coprire anche recensioni delle singole carte senza voti numerici, senza fermarsi all'assenza di classifiche complete. Le preferenze operative sono in `AGENTS.md`, nella sezione sulla ricerca di aggiornamenti, ranking e recensioni.
+
+Il procedimento è riutilizzabile per tutte le espansioni:
+
+1. Leggere catalogo, snapshot e ricerca precedente; identificare le lacune e confrontare i nuovi risultati con la rilevazione precedente. Registrare separatamente nuove informazioni, conferme e contesto storico.
+2. Consultare fonti ufficiali per annunci, regole, legalità e prodotti; affiancare fonti specialistiche e autori delle recensioni per valutazioni e strategie. Registrare URL, autore quando disponibile, data di pubblicazione e verifica, accesso diretto o solo tramite indice, ambito e copertura effettiva.
+3. Analizzare separatamente statistiche osservate, ranking automatici e recensioni qualitative. Per un voto conservare scala, metodo e contesto; per una recensione conservare conclusione attribuita, motivazione e limiti. Verificare sul testo Oracle e sulle regole le interazioni da cui dipende il giudizio, documentando eventuali correzioni. Una recensione autorevole può comunque contenere errori.
+4. Su richiesta di aggiornamento, conservare acquisizioni e analisi datate, collegare le osservazioni agli identificativi stabili e usare i documenti appropriati sotto `expansions/<slug>/`: provenienza e valutazione delle fonti in `sources.json`, sintesi per carta in `sentiment.json` quando pertinenti, contenuti e sequenze in `guides.json`, statistiche osservate in `statistics.json`. Usare `ratings.json` soltanto per valutazioni Limited con significato coerente con la scala del progetto. Un numero esterno non abilita automaticamente uno strumento o una politica dei bot.
+5. Aggiornare le pagine interessate dai dati, mantenere esempi concreti e anteprime accessibili, eseguire le verifiche pertinenti e indicare copertura, limiti e stato reale del lavoro. Aggiornamento locale, push e pubblicazione riuscita sono esiti distinti.
+
+Il confronto Star Trek del 22 ottobre 2026 è un'applicazione di questo flusso: `sources.reviewAnalysis` e `star-trek-reviews-20261022.json` conservano punteggi preliminari, recensioni e correzioni. Quel contenuto è uno snapshot specifico, non una classifica generale né un nuovo contratto obbligatorio per tutte le espansioni.
+
 ## Espansioni
 
 `expansions.json` registra i manifest delle espansioni. La build usa `expansion_data.py` per caricare e validare i documenti e `build_expansion.py` per generare tutte le pagine. Non contiene diramazioni per codice del set. I vecchi builder sono ingressi di compatibilità verso lo stesso percorso.
