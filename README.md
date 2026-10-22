@@ -172,6 +172,19 @@ L'aggiornamento porta il registro a 15 editori/servizi, incluso Cardmarket come 
 
 `prospects-commander-20261022.json` contiene un'appendice separata per le 87 identità FRC rilevate (103 stampe), pubblicata come asset esplicito del set. Queste carte non entrano nei pool Limited. `research/reality-fracture-20261022/` conserva snapshot API, osservazioni numeriche normalizzate, valutazioni editoriali e audit. I testi integrali delle pagine consultate restano nella cache temporanea configurabile con `MTG_RESEARCH_CACHE`. `research_fra_prospects_20261022.py` raccoglie gli input online; `extract_fra_prospects_20261022.py` estrae i riscontri; `update_fra_prospects_20261022.py` aggiorna i documenti offline; `verify_fra_prospects_20261022.py` verifica copertura, corrispondenze e conservazione dei dati funzionali. Nessuno viene eseguito dalla build.
 
+## Aggiornare e verificare l'analisi economica di un box
+
+Una richiesta sui prezzi serve a valutare il costo del prodotto e il possibile ricavo delle singole. Prima di usare un risultato storico, cercare gli snapshot più recenti e leggerne osservazioni, fonti, date e copertura. Un aggiornamento delle analisi per carta non aggiorna automaticamente il valore atteso del box.
+
+1. Identificare prodotto e numero di buste, lingua, costo comprensivo della spedizione e soglia di vendita. Usare la collazione documentata del prodotto, mantenendo distinte regole ufficiali e ipotesi del modello.
+2. Rilevare su Cardmarket le stampe pertinenti e registrare metrica e filtri. `From` senza filtri lingua, condizione e finitura è un minimo di prodotto; non certifica il prezzo inglese NM non foil. Se il lettore web fallisce, verificare l'accesso dal browser e dichiarare le lacune residue.
+3. Verificare la copertura di base, varianti ammesse, foil e carte ospiti, escludendo i trattamenti di altri prodotti. Conservare valori mancanti distinti dagli zeri e dalle carte escluse dalla soglia. Per una stima usare soltanto prezzi pertinenti o ipotesi dichiarate.
+4. Ricalcolare lordo, commissioni verificate, netto e differenza dal costo. Dichiarare l'ipotesi di vendita di tutte le carte sopra soglia e i costi esclusi. Gli intervalli del modello storico misurano la sensibilità del valore atteso alle probabilità, non il risultato garantito di un box.
+5. Confrontare gli snapshot a parità di fonte, metrica e modello; quantificare separatamente eventuali sostituzioni della fonte. Spiegare variazioni sorprendenti con carte e versioni concrete. I riferimenti Scryfall degli esperimenti storici non diventano minimi Cardmarket né aggiornano automaticamente le schede del sito.
+6. Conservare acquisizioni e risultati datati, con gli input necessari a riprodurre il calcolo. Dichiarare separatamente cosa è stato acquisito, ricalcolato, integrato nel sito e pubblicato. I file privati `ev-*` sono esclusi da Git dalla configurazione attuale.
+
+Le richieste sullo stato del push richiedono un controllo aggiornato di modifiche tracciate, file non tracciati o ignorati e commit rispetto al remoto dopo `git fetch`. Non autorizzano commit o push. La pubblicazione del sito va verificata sul workflow relativo al commit; il semplice allineamento di `main` e `origin/main` non ne conferma l'esito.
+
 ## Navigazione e layout
 
 La veste comune usa caratteri di sistema, pannelli coerenti, accessi per obiettivo e microanimazioni CSS brevi, senza dipendenze aggiuntive. Le animazioni rispettano `prefers-reduced-motion`; i contenuti editoriali rimangono visibili anche senza JavaScript. Le tabelle nelle aree scorrevoli sono raggiungibili da tastiera. Nel tavolo Draft le colonne mantengono la stessa larghezza mentre diminuiscono le carte, le immagini riservano lo spazio prima del caricamento e i pulsanti di scelta sono allineati. La barra di avanzamento rappresenta le 42 pick, senza cambiare motore o salvataggi.
