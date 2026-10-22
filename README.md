@@ -225,6 +225,24 @@ Riferimenti UX: [animazioni efficienti con transform e opacity](https://web.dev/
 
 ### Tavolo Draft con bot
 
+Il requisito di Giovanni è un simulatore utilizzabile nel sito e riutilizzabile per ogni espansione. L'espansione seleziona i dati; il prodotto definisce la busta; l'evento stabilisce posti, buste, pick e passaggi. Il tavolo a otto posti di Reality Fracture è un'applicazione di questo contratto, non un vincolo universale. La collazione comprende percentuali di rarità, coppie garantite, sostituzioni e trattamenti effettivamente ammessi: gli esempi iniziali vanno verificati sulle fonti e le probabilità non pubblicate restano ipotesi dichiarate.
+
+Prima del draft, ogni bot deve poter ricevere un profilo indipendente. La ricerca delle strategie deve tradursi in regole decisionali verificabili:
+
+- Potenza pura: privilegia il valore individuale della carta, accettando il rischio di un pool incoerente.
+- Bomba e costruzione attorno: usa una carta forte come incentivo per colori e supporti, con condizioni esplicite per cambiare piano.
+- Lettura dei segnali: accumula indizi dalle buste ricevute e consolida i colori quando il sostegno è sufficiente.
+- Archetipo forzato: segue la combinazione scelta prima di iniziare, anche quando è contesa.
+- Sinergie: valorizza enabler e payoff in funzione dei supporti già acquisiti e di quelli ancora necessari.
+- Aggro e tempo: cerca giocate iniziali, pressione e interazione coerenti con la curva.
+- Controllo e vantaggio: cerca risposte, difesa, risorse e condizioni di vittoria sostenibili.
+- Fixing e splash: valuta le fonti e i simboli richiesti prima di aggiungere colori.
+- Counterpick: confronta il beneficio dedotto di sottrarre una carta con il costo di rinunciare a una propria giocabile; non conosce i pool avversari.
+
+Il processo richiesto è osservare la busta, aggiornare la memoria utile, valutare il piano e la fase, confrontare le alternative, scegliere e aggiornare il pool. Un modello markoviano deve definire lo stato che rende disponibili le informazioni necessarie, le transizioni e la politica di scelta: il nome del modello non dimostra da solo qualità o apprendimento. Le spiegazioni nel sito devono includere esempi dell'espansione con anteprima da mouse, tastiera e tocco. I requisiti qui descritti restano distinti dallo stato implementato riportato nei paragrafi seguenti e dai limiti delle singole euristiche.
+
+La richiesta di un ciclo con Sonnet significa revisione effettiva, verifica dei rilievi, correzione dei difetti confermati e nuova revisione delle parti interessate fino alla risoluzione dei problemi concreti nel perimetro concordato. Conservare richieste, risposte, decisioni e controlli datati; quote esaurite o chiamate rifiutate lasciano il controllo pendente. I test locali non sostituiscono una review con il modello richiesto e una review non costituisce una misura della forza dei mazzi. Questa procedura documenta il criterio di lavoro, non certifica il completamento di revisioni ancora aperte.
+
 La voce “Tavolo Draft con bot” apre `Reality-Fracture-Draft-Engine.html` nel set Reality Fracture. Offre sette avversari configurabili prima del draft, nove strategie, tre giri di buste con passaggio simultaneo, anteprime accessibili, ripresa locale e revisione delle scelte dei bot alla fine. Il codice del draft, la configurazione e le pick permettono la riproduzione deterministica. L'esportazione JSON contiene le pick umane e, solo a draft concluso, il resoconto degli avversari.
 
 `draft-engine.js` contiene collazione, stato dei bot, transizioni condizionali e politica di scelta; non usa DOM, rete o salvataggi. `draft-table.js` gestisce l'interfaccia. `build_draft_engine.py` è un ingresso di compatibilità: il renderer comune integra valutazioni e archetipi dai documenti dell’espansione. Lo snapshot storico `draft-format-fra-20261021.json` conserva stampe pubbliche Scryfall del 18 ottobre, coppie garantite, ricetta degli slot, pesi e ipotesi. La build non legge snapshot privati `ev-*` per questo strumento. Per un nuovo formato occorrono catalogo completo, valutazioni, archetipi e un profilo di collazione verificato; Star Trek rimane disabilitato fino al completamento dei dati. Gli input attivi sono `products.json`, `limited.json` e `printings.json` dell’espansione. Il motore legge gruppi e ricetta dal profilo, senza percentuali FRA nel codice.
