@@ -5,6 +5,7 @@ import json
 import re
 from pathlib import Path
 from urllib.parse import quote_plus
+from draft_combo_guide import render as render_combo_guide
 
 ROOT = Path(__file__).parent
 ASSETS = 'draft-report-assets-20261016'
@@ -255,6 +256,7 @@ def build():
     data = dict(cards=cards, poolCards=pool_cards, pairs=pairs, baseline=baseline, date='16 ottobre 2026', drill=drill)
     drill_html = (ROOT / 'draft-drilldown-section.html').read_text(encoding='utf-8')
     result = template.replace('__DRAFT_POOL__', (ROOT / 'draft-pool-section.html').read_text(encoding='utf-8')).replace('__PICK_GUIDE__', pick_guide(cards)).replace('__PICK_BAITS__', pick_baits(cards)).replace('__DRILLDOWN_SECTION__', drill_html).replace('__REPORT__', ''.join(body)).replace('__REPORT_NAV__', nav)
+    result = result.replace('__DRAFT_COMBOS__', render_combo_guide(oracle))
     result = result.replace('\u2014', ':')
     # Preserve the source Oracle in data instead of editing it with a global replacement.
     result = result.replace('__DRAFT_DATA__', json.dumps(data, ensure_ascii=True).replace('</', '<\\/'))
