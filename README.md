@@ -232,6 +232,24 @@ Le richieste sullo stato del push richiedono un controllo aggiornato di modifich
 
 ## Navigazione e layout
 
+### Interpretare e realizzare una richiesta UX
+
+Una richiesta di rendere il sito più curato e piacevole riguarda i percorsi completi, la chiarezza delle informazioni e la coerenza fra pagine. I problemi citati dall'utente, come dimensioni diverse nel Draft o assenza di animazioni, sono esempi da verificare anche negli altri strumenti. Se viene richiesto "solo UX", tutte le funzionalità e i contenuti utili devono restare disponibili; regole, dati, voti e salvataggi conservano il proprio significato.
+
+1. Esaminare navigazione, gerarchia, disposizione, densità delle informazioni, comandi e stati dei diversi strumenti, su desktop e telefono. Distinguere un problema di presentazione da una funzione mancante o da un errore del motore.
+2. Cercare riferimenti pertinenti su UX, accessibilità e prestazioni e tradurli in interventi concreti. Preferire gli strumenti nativi del browser; valutare ogni dipendenza, immagine o effetto rispetto al beneficio e al costo di caricamento. Quando richiesto, verificare i requisiti ufficiali correnti di GitHub Pages senza spacciare dimensione e tempi locali per misure del traffico reale.
+3. Intervenire sui sorgenti e sui template condivisi. Stabilizzare immagini e griglie, mantenere leggibili i testi e allineati i comandi anche quando cambiano carte, risultati o filtri. Usare animazioni brevi per ingresso e feedback, rispettando `prefers-reduced-motion` e conservando il focus e le selezioni.
+4. Verificare i flussi reali: navigazione, anteprime da mouse/tastiera/tocco, filtri, dialoghi, ripresa dei salvataggi e stati dinamici. Controllare overflow, tabelle scorrevoli e dimensioni del Draft durante lo svuotamento delle buste. Usare le pagine e gli eventi attuali; i conteggi di un controllo storico non provano la copertura di nuove espansioni.
+5. Per un push autorizzato, includere soltanto le modifiche pertinenti e le dipendenze necessarie a riprodurre il risultato. Verificare che la build non dipenda da file locali non versionati. Dopo il push, controllare il workflow del commit e, quando possibile, le risorse online prima di dichiarare il sito aggiornato.
+
+### Review richiesta e criteri di chiusura
+
+Se viene richiesta una review con Sonnet, usare realmente Sonnet e fornire diff, sorgenti e contesto necessari, distinguendo ciò che il revisore ha letto da ciò che è stato provato nel browser. Per ogni rilievo registrare scenario, evidenza, decisione e verifica della correzione. Un sospetto, una preferenza stilistica o una proposta fuori perimetro non giustificano da soli un fix.
+
+Quando viene chiesto di ciclare, ripetere la review sulla versione corretta fino a non avere rilievi fondati aperti, conservando anche le motivazioni dei rilievi scartati. Dichiarare un ultimo giro senza segnalazioni soltanto se è stato effettivamente completato con quell'esito. Una verifica interrotta dalla quota o rimandata rimane incompleta. Tenere separati i registri delle diverse attività: `sonnet-ux-decisions-20261022.json` documenta il restyling UX, mentre `reviews/expansions-20261022/decisions.json` documenta la review dell'architettura delle espansioni. L'esito dell'una non chiude l'altra.
+
+### Presentazione e controlli esistenti
+
 La veste comune usa caratteri di sistema, pannelli coerenti, accessi per obiettivo e microanimazioni CSS brevi, senza dipendenze aggiuntive. Le animazioni rispettano `prefers-reduced-motion`; i contenuti editoriali rimangono visibili anche senza JavaScript. Le tabelle nelle aree scorrevoli sono raggiungibili da tastiera. Nel tavolo Draft le colonne mantengono la stessa larghezza mentre diminuiscono le carte, le immagini riservano lo spazio prima del caricamento e i pulsanti di scelta sono allineati. La barra di avanzamento rappresenta le 42 pick, senza cambiare motore o salvataggi.
 
 Con il server locale sulla porta 8765, `node verify-ux.cjs` controlla le 19 pagine a 320, 360, 768, 1024 e 1440 pixel, le dimensioni del draft per tutta la prima busta, ripresa della sessione, movimento ridotto e contenuti statici senza JavaScript. Salva anche anteprime desktop e mobile. Usa `MTG_PLAYWRIGHT_MODULE`, `MTG_BROWSER_CHANNEL` e `MTG_SITE_URL` per configurare l'ambiente, come gli altri controlli browser.
