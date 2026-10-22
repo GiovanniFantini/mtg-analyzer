@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:mtg-analyzer:statistics:1",
+  "title": "Snapshot statistici indipendenti per espansione",
+  "type": "object",
+  "properties": {
+    "draft": {
+      "type": "object",
+      "properties": {
+        "externalSources": {
+          "type": "object",
+          "additionalProperties": {"$ref": "#/$defs/providerSnapshot"}
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true,
+  "$defs": {
+    "metric": {
+      "type": "object",
+      "required": ["label", "unit", "status"],
+      "properties": {
+        "label": {"type": "string"},
+        "unit": {"enum": ["percent", "pick", "games"]},
+        "status": {"enum": ["public", "locked", "suspect"]}
+      },
+      "additionalProperties": true
+    },
+    "cardObservation": {
+      "type": "object",
+      "required": ["catalogId", "name", "metrics"],
+      "properties": {
+        "catalogId": {"type": "string", "minLength": 1},
+        "name": {"type": "string", "minLength": 1},
+        "sourceCardId": {"type": "string"},
+        "sourceUrl": {"type": "string", "format": "uri"},
+        "metrics": {
+          "type": "object",
+          "additionalProperties": {"type": ["number", "null"], "minimum": 0}
+        },
+        "display": {"type": "object", "additionalProperties": {"type": "string"}}
+      },
+      "additionalProperties": true
+    },
+    "providerSnapshot": {
+      "type": "object",
+      "required": ["schemaVersion", "provider", "url", "retrieved", "rateUnit", "filters", "metrics", "cards"],
+      "properties": {
+        "schemaVersion": {"const": 1},
+        "provider": {"type": "string", "minLength": 1},
+        "url": {"type": "string", "format": "uri", "pattern": "^https://"},
+        "retrieved": {"type": "string", "format": "date"},
+        "rateUnit": {"const": "percent"},
+        "filters": {"type": "object"},
+        "metrics": {"type": "object", "minProperties": 1, "additionalProperties": {"$ref": "#/$defs/metric"}},
+        "cards": {"type": "array", "items": {"$ref": "#/$defs/cardObservation"}},
+        "coverage": {"type": "object"},
+        "limitations": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": true
+    }
+  }
+}

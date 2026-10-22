@@ -179,6 +179,8 @@ class Expansion:
             if type(setting.get('requested')) is not bool:fail('requested deve essere booleano: '+feature)
         ids = [c['id'] for c in self.data['cards']['cards']]
         if len(ids) != len(set(ids)): fail('identità carta duplicate')
+        from statistics_data import validate_external_statistics
+        validate_external_statistics(self.data['statistics'], self.data['cards']['cards'])
         if not set(self.data['ratings'].get('cards',{})) <= set(ids): fail('valutazione di carta inesistente')
         if not set(self.data['sentiment'].get('cards',{})) <= set(ids): fail('sentiment di carta inesistente')
         names = {c.get('full',c['name']) for c in self.cards} | {c['name'] for c in self.cards}

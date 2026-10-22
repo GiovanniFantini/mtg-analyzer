@@ -83,6 +83,28 @@ class ExpansionTests(unittest.TestCase):
         self.assertFalse(e.availability['draftTable']['available'])
         self.assertTrue(e.availability['sealedSimulator']['available'])
 
+    def test_external_statistics_are_preserved_without_changing_replay(self):
+        snapshot = self.source.data['statistics']['draft']['externalSources']['untapped']
+        self.assertEqual(len(snapshot['cards']), 290)
+        self.assertEqual(len({row['catalogId'] for row in snapshot['cards']}), 290)
+        def mutate(m, d):
+            d['statistics']['draft']['externalSources']['untapped']['retrieved'] = '2026-10-23'
+        updated = self.fixture(mutate)
+        self.assertEqual(updated.data['statistics']['draft']['externalSources']['untapped']['retrieved'], '2026-10-23')
+        self.assertEqual(updated.draft_format()['revision'], self.source.draft_format()['revision'])
+        self.assertEqual(updated.data['ratings'], self.source.data['ratings'])
+
+    def test_external_statistics_reject_invalid_observations(self):
+        for field, value, message in [('catalogId', 'missing-card', 'carta sconosciuta'),
+                                      ('inHandWinRate', 101, 'percentuale fuori scala'),
+                                      ('playedWinRate', 50, 'metrica bloccata valorizzata')]:
+            with self.subTest(field=field):
+                def mutate(m, d):
+                    row = d['statistics']['draft']['externalSources']['untapped']['cards'][0]
+                    (row if field == 'catalogId' else row['metrics'])[field] = value
+                with self.assertRaisesRegex(ValueError, message):
+                    self.fixture(mutate)
+
     def test_required_storage_keys_are_validated(self):
         with self.assertRaisesRegex(ValueError,'storage mancanti: draftPool'):
             self.fixture(lambda m,d:m['storage'].pop('draftPool'))
