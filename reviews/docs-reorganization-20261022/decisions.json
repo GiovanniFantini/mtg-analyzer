@@ -1,0 +1,266 @@
+{
+  "scope": "Riorganizzazione documentale: AGENTS.md, README, docs, skill e .gitignore. Esclusi codice e dati del sito e review storiche.",
+  "baselineReadmeCommit": "f2805a1ee52c9b9aa81a3a6d94fb621597cdbba0",
+  "privateEvidence": "docs/local/reviews/docs-reorganization-20261022/",
+  "rounds": [
+    {
+      "round": 1,
+      "model": "claude-sonnet-5-5",
+      "manifest": "round-1.manifest.json",
+      "findings": [
+        {
+          "id": "DOC-01",
+          "decision": "partially_confirmed_fixed",
+          "evidence": "La richiesta di Giovanni autorizza la review Sonnet nel perimetro documentale: non è confermata una violazione di autorizzazione. Confermato invece che request/response sotto reviews non ereditavano l'esclusione della memoria privata. Verbali spostati in docs/local/reviews e helper corretto; skill aggiornata per minimizzazione e separazione delle copie."
+        },
+        {
+          "id": "DOC-02",
+          "decision": "confirmed_fixed",
+          "evidence": "Verificati schemas/prospects.schema.json, prospects-ui.js, refresh_cardmarket_prospects_20261022.py e asset del manifest. Aggiunto contratto ordinario per prospects, prezzi, copertura e appendice; rinvii da economics e mtg-research. Conteggi storici restano nella storia."
+        },
+        {
+          "id": "DOC-03",
+          "decision": "confirmed_fixed",
+          "evidence": "Verificati storage del manifest preview, validate/changeState/import e handler storage/pageshow di star-trek.js. Contratto ordinario documenta garanzie e campi del manifest senza fissare chiavi del singolo set. Aggiunta regola sul flag booster in architettura e percorso ricerca."
+        },
+        {
+          "id": "DOC-04",
+          "decision": "partially_confirmed_fixed",
+          "evidence": "draft-engine.md già rinviava alla storia per parametri e confronto; quindi non era del tutto privo di instradamento. Confermata comunque la mancanza dei casi funzionali nel percorso ordinario: documentati simmetria, ibridi, X, supporti distinti, replay ed export dei bot solo a draft concluso. Verificati draft-engine.js e draft-table.js, senza fissare per sempre versione o pesi."
+        },
+        {
+          "id": "DOC-05",
+          "decision": "partially_confirmed_documented_limit",
+          "evidence": "Il vecchio AGENTS completo non è nel repository e non si può affermare un confronto su disco. Le istruzioni originarie sono disponibili nella chat di Giovanni. La mappa viene qualificata come ricostruzione e il limite di assenza della copia integrale è esplicito; nessuna copia è stata ricreata fingendola originale."
+        },
+        {
+          "id": "DOC-06",
+          "decision": "confirmed_fixed",
+          "evidence": "Migrazione e conteggi della verifica iniziale erano in documentation.md. Trasferiti nel resoconto storico con baseline e rinvio ai manifest; documentation.md mantiene solo criteri e collegamenti."
+        },
+        {
+          "id": "DOC-07",
+          "decision": "confirmed_fixed",
+          "evidence": "Verificato il registro architettura: cinque giri completati, giro 6 non eseguito per quota e requires_followup_review true. Aggiunto riferimento concreto e distinta la semplice lettura del registro da una nuova review; identificato il commit del README precedente in requirements e storia."
+        },
+        {
+          "id": "DOC-08",
+          "decision": "confirmed_fixed",
+          "evidence": "Confermate liste fisse negli helper. Skill aggiornata con nomi, meccanismo CLI senza strumenti, verifica modello effettivo e limiti degli helper datati; non modificati script di altre attività."
+        },
+        {
+          "id": "DOC-09",
+          "decision": "rejected_after_verification",
+          "evidence": ".github/workflows/pages.yml esiste e dichiara sia push su main sia workflow_dispatch. verify-prospects-browser.cjs esiste ed è tracciato da Git. Le due affermazioni sono corrette; il materiale del primo giro era insufficiente per verificarle. Aggiunti questi file al contesto del giro successivo."
+        }
+      ],
+      "postFixVerification": {
+        "skillValidator": "4 skill valide con quick_validate.py, Python 3.12 e PyYAML temporaneo",
+        "markdown": "15 documenti, 41 link locali e anchor validi",
+        "privateArtifacts": "git check-ignore conferma esclusione di request e response del primo giro; contenuti locali omessi dal secondo input",
+        "workflowAndScript": "pages.yml: push main e workflow_dispatch; verify-prospects-browser.cjs esistente e tracciato",
+        "diffCheck": "superato su README.md e .gitignore; letti tutti i nuovi documenti modificati",
+        "siteTests": "non ripetuti: nessuna modifica al sito"
+      }
+    },
+    {
+      "round": 2,
+      "model": "claude-sonnet-5-5",
+      "manifest": "round-2.manifest.json",
+      "previousFindings": "Sonnet conferma adeguate le correzioni precedenti e riconosce i limiti documentati.",
+      "findings": [
+        {
+          "id": "DOC-10",
+          "decision": "confirmed_fixed",
+          "evidence": "Lette le quattro chiamate screenshot nel controllo prospects; i PNG omonimi sono tracciati. Documentata la scrittura, il contesto datato dei conteggi e l'esecuzione con cartella di lavoro temporanea, senza cambiare il test o ripristinare file altrui."
+        },
+        {
+          "id": "DOC-11",
+          "decision": "confirmed_fixed",
+          "evidence": "Verificati copytree degli schemi in build_site.py e pubblicazione dataset, JS/CSS e asset in build_expansion.py. Riscritta la descrizione con categorie effettivamente pubblicate e distinta visibilità Git da dist. Esplicitato che anche un file in una cartella non copiata in blocco viene pubblicato se scelto come asset."
+        },
+        {
+          "id": "DOC-12",
+          "decision": "partially_confirmed_fixed",
+          "evidence": "Le istruzioni originarie fornite da Giovanni nella chat esplicitano il ruolo di consulente MTG e il divieto di dichiarare qualifiche personali. Non serve richiederle di nuovo. Chiariti soggetto e ambito nella regola e sciolti gli acronimi, senza imporre disclaimer alle risposte."
+        },
+        {
+          "id": "DOC-13",
+          "decision": "partially_confirmed_fixed",
+          "evidence": "Rimossa la frase storica dal documento dei criteri. Non adottata la proposta di introdurre un nuovo obbligo generale di conferma: non necessario alla correzione e non concordato. Il resoconto datato conserva già l'informazione storica."
+        }
+      ],
+      "postFixVerification": {
+        "sourceInspection": "verify-prospects-browser.cjs e build_expansion.py letti; git ls-files conferma i quattro screenshot storici",
+        "siteTests": "non ripetuti per modifiche esclusivamente documentali"
+      }
+    },
+    {
+      "round": 3,
+      "model": "claude-sonnet-5-5",
+      "manifest": "round-3.manifest.json",
+      "previousFindings": "Nessun ulteriore rilievo sui documenti e sulle skill. Confermata la coerenza del nuovo instradamento e della separazione dei contenuti.",
+      "findings": [
+        {
+          "id": "DOC-14",
+          "decision": "confirmed_fixed",
+          "evidence": "L'helper usava HEAD per la baseline, mentre storia e requisiti dichiarano un commit fisso. Impostato BASELINE_COMMIT e registrato nel manifest; prompt e comando git show usano la stessa costante. Verificato che il contenuto coincide con la baseline del primo giro tramite SHA256."
+        }
+      ],
+      "postFixVerification": {
+        "baselineSha256": "47494cabe34b7e5013be6e4a2b6121963d89fe1f44c3f52a37ba833529177905",
+        "matchesRound1": true,
+        "documentation": "Nessuna modifica ai documenti dopo il terzo input. Verification-round-3.json registra 15 documenti, 41 link validi e verbali privati ignorati."
+      }
+    },
+    {
+      "round": 4,
+      "model": "claude-sonnet-5-5",
+      "manifest": "round-4.manifest.json",
+      "previousFindings": "Confermata la baseline fissa e le correzioni dei giri precedenti.",
+      "findings": [
+        {
+          "id": "DOC-15",
+          "decision": "partially_confirmed_fixed",
+          "evidence": "Verificati prospects-ui.js (evidenceLabels) e update_fra_prospects_20261022.py (costruzione dei formati). Corretto il punto del rilievo che attribuiva non_documentata a prospect: il valore appartiene a evidence. Documentati significato di dati insufficienti, distinzione del giudizio, cEDH e legalità propria degli ospiti nel contratto attivo."
+        },
+        {
+          "id": "DOC-16",
+          "decision": "partially_confirmed_fixed",
+          "evidence": "Il vecchio README e refresh_cardmarket_prospects_20261022.py danno precedenza alla scheda prodotto perché acquisita successivamente al listino, non per una superiorità universale della fonte. Ripristinata la regola con stessi prodotto/metrica/filtri e cronologia verificata; non adottata la precedenza incondizionata suggerita. Conservazione di entrambe le osservazioni esplicita."
+        },
+        {
+          "id": "DOC-17",
+          "decision": "confirmed_fixed",
+          "evidence": "Verificato build_expansion.py: ROOT.glob per ogni *.js e *.css e copytree per asset directory. Documentati esattamente entrambi i percorsi di pubblicazione e controllo di dist per queste aggiunte."
+        }
+      ],
+      "postFixVerification": {
+        "sourceInspection": "Lettura mirata di prospetti, aggiornamento Cardmarket e build condivisa; nessun dato o motore modificato.",
+        "skills": "Invariate dopo la validazione precedente."
+      }
+    },
+    {
+      "round": 5,
+      "model": "claude-sonnet-5-5",
+      "manifest": "round-5.manifest.json",
+      "previousFindings": "Confermate le precisazioni sui campi, Cardmarket e pubblicazione. Nessun rilievo P1 o P2.",
+      "findings": [
+        {
+          "id": "DOC-18",
+          "decision": "confirmed_fixed",
+          "evidence": "Il metodo nella baseline chiedeva esplicitamente conservazione delle carte, buste e replay anche nel percorso bot. Aggiunto riferimento a verify-draft-engine.cjs nella skill e nella riga Politica dei bot della matrice, senza conteggi storici."
+        },
+        {
+          "id": "DOC-19",
+          "decision": "partially_confirmed_fixed_without_numeric_requirement",
+          "evidence": "La baseline descriveva 44 pixel tra le scelte di quel restyling, non come vincolo permanente di Giovanni. L'ipotesi di rendere obbligatoria quella soglia non è quindi adottata. Aggiunta invece alla skill la cura esplicita di dimensioni e spaziatura dei bersagli tattili e verifica nei flussi reali. Il dato numerico resta nella storia, coerentemente con la richiesta di eliminare istruzioni troppo specifiche."
+        }
+      ],
+      "postFixVerification": {
+        "skillValidator": "mtg-draft-bots e mtg-site-ux rivalidate con quick_validate.py; le altre due skill invariate dopo la validazione precedente",
+        "siteTests": "non ripetuti per sole istruzioni e documentazione"
+      }
+    },
+    {
+      "round": 6,
+      "model": "claude-sonnet-5-5",
+      "manifest": "round-6.manifest.json",
+      "previousFindings": "Confermate le correzioni dei giri precedenti; nessuna perdita di requisiti riscontrata nel confronto con il README. Tre nuovi rilievi ipotetici P3.",
+      "findings": [
+        {
+          "id": "DOC-20",
+          "decision": "partially_confirmed_clarified",
+          "evidence": "La skill obbligatoria mtg-review già impone la destinazione privata, quindi non è dimostrata una contraddizione del flusso completo. Aggiunta comunque l'eccezione alla tabella di collocazione per evitare letture isolate ambigue, senza cambiare la politica."
+        },
+        {
+          "id": "DOC-21",
+          "decision": "partially_confirmed_clarified",
+          "evidence": "La skill già impone preservazione delle funzionalità e verifica tastiera/tabelle; verification.md cita il controllo senza JavaScript. Resi espliciti nella skill i due comportamenti esistenti. Non richiesto che tutti gli strumenti interattivi funzionino senza JavaScript."
+        },
+        {
+          "id": "DOC-22",
+          "decision": "partially_confirmed_clarified_without_schema_duplication",
+          "evidence": "Non confermata una divergenza dal contratto: il testo già rimanda esplicitamente allo schema per tutti i campi richiesti e consente estensioni. sameProduct è realmente presente nei dati ma non richiesto dallo schema: chiarita la natura opzionale e il carattere non esaustivo del paragrafo. Non copiata nella prosa l'intera lista required o gli enum, per conservare lo schema come fonte canonica ed evitare nuova entropia."
+        }
+      ],
+      "postFixVerification": {
+        "skillValidator": "mtg-site-ux validata dopo la modifica; altre skill invariate dalla loro ultima validazione",
+        "siteTests": "non ripetuti per sole precisazioni documentali"
+      }
+    },
+    {
+      "round": 7,
+      "model": "claude-sonnet-5-5",
+      "manifest": "round-7.manifest.json",
+      "previousFindings": "Nessuna contraddizione sostanziale o dichiarazione di verifica infondata riscontrata. Nuove osservazioni minori su contesto e compatibilità.",
+      "findings": [
+        {
+          "id": "DOC-23",
+          "decision": "partially_confirmed_clarified",
+          "evidence": "Il problema dei termini era già nella baseline, ma la leggibilità del contratto generico rientra nel riordino richiesto. Esempio exclude reso neutro; compatibilità storica espressa per il profilo dell'espansione, senza sigla FRA o estensioni automatiche ad altri set."
+        },
+        {
+          "id": "DOC-24",
+          "decision": "confirmed_fixed",
+          "evidence": "Verificati reindirizzamenti e rimozione dei vecchi iframe in site_navigation.py e controllo hash in site.js. Ripristinato il requisito di conservare i fragment storici e le pagine complete. Letto verify-draft-engine.cjs: aggiunto ambito reale con fixture esplicita e senza conteggi storici o certificazioni su altri eventi."
+        },
+        {
+          "id": "DOC-25",
+          "decision": "partially_confirmed_clarified_without_new_approval_flow",
+          "evidence": "Non confermato che occorra inventare una richiesta di conferma universale: la sessione e le skill richiedono già autorizzazione per l'attività e vietano di dedurla da un controllo di stato. AGENTS ora esplicita che commit/push devono rientrare nell'autorizzazione ricevuta e che quella già valida non va richiesta nuovamente. Non adottato un vincolo aggiuntivo di conferma a ogni azione."
+        }
+      ],
+      "postFixVerification": {
+        "sourceInspection": "site_navigation.py, site.js e verify-draft-engine.cjs consultati per gli scenari e la copertura dichiarata",
+        "siteTests": "Non ripetuti per sole istruzioni e documentazione"
+      }
+    },
+    {
+      "round": 8,
+      "model": "claude-sonnet-5-5",
+      "manifest": "round-8.manifest.json",
+      "overallVerdict": "Sonnet ritiene la versione adeguata al compito e indica che il ciclo può chiudersi dopo decisione sui due dettagli condizionati.",
+      "findings": [
+        {
+          "id": "DOC-26",
+          "decision": "partially_confirmed_clarified",
+          "evidence": "git ls-files e git status confermano che helper e registro UX sono locali non tracciati, mentre helper e registro dell'architettura sono versionati. Nessun commit/push richiesto: non aggiunti automaticamente file di altre attività. Skill e storia ora qualificano la disponibilità locale e il comportamento se gli artefatti sono assenti."
+        },
+        {
+          "id": "DOC-27",
+          "decision": "portability_clarified_current_environment_issue_not_reproduced",
+          "evidence": "PowerShell effettivo 7.6.5: una chiamata Python di prova riceve ['--tools', '', '--strict-mcp-config'], quindi non è confermata una perdita dell'argomento nell'ambiente attuale. Rimossa comunque la forma da copiare in shell: la skill indica la lista argomenti di subprocess.run usata con successo dagli helper, con prompt stdin e stringa vuota preservata."
+        }
+      ],
+      "postFixVerification": {
+        "skillValidator": "mtg-review validata dopo l'ultima modifica",
+        "powershell": "Versione 7.6.5 e prova argv senza perdita della stringa vuota",
+        "git": "Disponibilità locale e tracciamento verificati senza staging, commit o push"
+      }
+    },
+    {
+      "round": 9,
+      "model": "claude-sonnet-5-5",
+      "type": "targeted_final_closure",
+      "manifest": "round-9.manifest.json",
+      "findings": [],
+      "summary": "Per lettura dei due file aggiornati, le correzioni di DOC-26 e DOC-27 sono adeguate e non trovo difetti concreti. DOC-26: la skill (righe 16 e 28) e la storia (riga 78) qualificano review-ux-sonnet.py e sonnet-ux-decisions-20261022.json come artefatti locali non tracciati, da verificare in disponibilità e tracciamento. Se mancano, l'esito va dichiarato non consultabile. Il registro dell'architettura e l'helper review-expansions-sonnet.py non sono qualificati allo stesso modo, e questo è coerente con lo stato Git fornito, dove non risultano tra i non tracciati. La formulazione non impone commit e non chiede di includere artefatti di altre attività, quindi resta nel perimetro autorizzato. DOC-27: la forma copiabile in shell è stata sostituita dalla lista di argomenti per subprocess.run, con prompt su standard input e istruzione esplicita di preservare la stringa vuota dopo --tools. La motivazione è presentata come precauzione di portabilità (può perdere argomenti vuoti in alcune versioni di PowerShell) e non come difetto riprodotto, in accordo con la decisione che dichiara non riprodotto il problema in PowerShell 7.6.5. La distinzione fra difetto riprodotto e precauzione è quindi mantenuta e non si introducono nuovi obblighi permanenti. Questo giudizio si basa solo sul testo ricevuto: non ho eseguito prove e non ho verificato l'esistenza o il comportamento dei flag della CLI. Il ciclo può chiudersi.",
+      "scope": "DOC-26 e DOC-27; hash verificano che il resto del materiale approvato al giro 8 è invariato."
+    }
+  ],
+  "selfFindings": [],
+  "status": "complete_no_open_confirmed_findings",
+  "closedOnLocal": "2026-10-23",
+  "latestCompletedReview": 9,
+  "finalReviewFindings": [],
+  "fullReviewRounds": 8,
+  "targetedClosureRounds": 1,
+  "totalFindingsEvaluated": 27,
+  "verification": "verification-final.json",
+  "limitations": [
+    "Il vecchio AGENTS non era tracciato e non ne esiste copia integrale su disco: mappa ricostruita dalle istruzioni in chat, limite dichiarato.",
+    "Review statica documentale: nessuna nuova verifica browser o suite del sito.",
+    "Le review precedenti di UX e architettura conservano i propri registri e stati."
+  ]
+}

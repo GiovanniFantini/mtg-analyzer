@@ -1,0 +1,59 @@
+{
+  "round": 9,
+  "scope": "Controllo conclusivo mirato di DOC-26 e DOC-27 dopo giudizio di adeguatezza del giro 8. Resto della documentazione invariato.",
+  "dateLocal": "2026-10-23",
+  "requestedModel": "sonnet",
+  "baselineAcceptedRound": 8,
+  "changedFiles": [
+    ".agents/skills/mtg-review/SKILL.md",
+    "docs/history/2026-10-22.md"
+  ],
+  "files": {
+    "AGENTS.md": "cce9c6c3b169a67bd80f5e5e4bb9b5326e36288bc42a2f20dd7291056420d9b9",
+    "README.md": "4cdb0f3c514bd59c54ad7ebdc6a2349c2fffe5e09c325c9e6579b33f9b81845d",
+    ".gitignore": "102793f1b1b5a91876c3311b3f7f2ba7b4e5e7839d06d91ea9f2d098489f440a",
+    ".agents/skills/mtg-draft-bots/SKILL.md": "6da1a1fdacba611169845b1f5d1fa29335e9ba4be8e90acac42eab6e3f27c70f",
+    ".agents/skills/mtg-research/SKILL.md": "e0e6a993306a1426ded523ae8e123e220cd08c3e27276743da44cf5152878050",
+    ".agents/skills/mtg-review/SKILL.md": "d3b8af312f02ea8d38de6aba1680c97c7f9ee9446acb6e4a0d9d20e28c4e3475",
+    ".agents/skills/mtg-site-ux/SKILL.md": "09699f5f8615519eb2d4ee7200134442f0f70a45be55f00275e057d278c618cb",
+    "docs/architecture.md": "a6ec9a15fcd0e8074c99381b1ed8613781ea3b99d245aa2abe5a185f03de1790",
+    "docs/documentation.md": "f17fd8a0211342359565d73c3880a26d7a9b03debedac8e5689e87884c2b8f98",
+    "docs/draft-engine.md": "7c7dbfe15ba7f4de355a8691e0bba7e586ba7c15e60ff7dab5b8fab3d1b725f9",
+    "docs/economics.md": "760238a9dfd34eabab8d60cde173f8c58bf24e8ec63ad4203f7f4d4f0758c281",
+    "docs/history/2026-10-22.md": "6a92a139c6c2c30c626804a07d30b93b14320305262c6f9c8acf6a023ce78843",
+    "docs/requirements.md": "2021d3951f0b78b24dfa4b7e5b0cda55a0f519765c2b90acfc8944f57ead40de",
+    "docs/statistics.md": "30dc878077529e267892f5f3bfd9c7dad87c14cb8202732cabf378de3efa1706",
+    "docs/verification.md": "90568fe703e3d367736c016ce3b33334526da91c8c343ccba63a1df6abea09fe",
+    "build_site.py": "34775c650f4441af1b28c5df43b6c78b0a6e8d0d2ddc1c041162ba0234dd014c",
+    "review-expansions-sonnet.py": "48aabc6f37afbda82c6371025265c98337b0ae8ad7947503e3a5e82cc6dd3601",
+    "review-ux-sonnet.py": "36364941ce3757156ed86778e72b6d4b3132724f76fe50d91a1495cfdb85f792",
+    "schemas/statistics.schema.json": "564a144106ceb5e30917d0019fb0e993e88f4f1baac49ad4fa4d5128654a7f92",
+    "schemas/prospects.schema.json": "e1f890ff2f37d8134f4bcc11029d0e553e5f4382be6de78c0a9f29af3c29b0c3",
+    ".github/workflows/pages.yml": "d646b9618ca65ee192f87e8aab314a86552b1aef97a50ca7eb32dd3776facb82",
+    "verify-prospects-browser.cjs": "7815ff0be413075e1b571307108360b9d498d935322fd75de344b307251da218",
+    "reviews/docs-reorganization-20261022/review.py": "59ee21522056e42e06f9c98cc3156b0866f813cffe77e263ff02a59d213357ad"
+  },
+  "contextExcerpts": {
+    "build_expansion.py": {
+      "lines": [
+        260,
+        285
+      ],
+      "sha256": "1700fc568ad73e20d4587235adada4594c95709e69dff2e104b33826591ba033"
+    },
+    "prospects-ui.js": {
+      "lines": [
+        1,
+        7
+      ],
+      "sha256": "ee18f987277bf97e1e7fba1d7d0a1fbfc1660896021c2b9bd097ea7d628f7674"
+    },
+    "update_fra_prospects_20261022.py": {
+      "lines": [
+        128,
+        148
+      ],
+      "sha256": "90a1be57cf6957c18975e9c994bcf4d81eb84a24c7ca53c6478f4580c5cb2220"
+    }
+  }
+}

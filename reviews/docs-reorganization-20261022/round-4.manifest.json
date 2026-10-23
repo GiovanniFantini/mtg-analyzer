@@ -1,0 +1,44 @@
+{
+  "scope": "Riorganizzazione AGENTS.md, README, docs, quattro skill locali e .gitignore. Nessuna modifica funzionale.",
+  "head": "f2805a1ee52c9b9aa81a3a6d94fb621597cdbba0",
+  "requestedModel": "sonnet",
+  "baselineReadmeCommit": "f2805a1ee52c9b9aa81a3a6d94fb621597cdbba0",
+  "files": {
+    "AGENTS.md": "4f7ea6192f0ece235d509984fe77d4c09b8a6064c0b54278e68cbfedf4ef1ca8",
+    "README.md": "4cdb0f3c514bd59c54ad7ebdc6a2349c2fffe5e09c325c9e6579b33f9b81845d",
+    ".gitignore": "102793f1b1b5a91876c3311b3f7f2ba7b4e5e7839d06d91ea9f2d098489f440a",
+    ".agents/skills/mtg-draft-bots/SKILL.md": "cbe81a02c0f43610f60a8d3ce698b54a7427125a9d344367c188e8009e3deac8",
+    ".agents/skills/mtg-research/SKILL.md": "e0e6a993306a1426ded523ae8e123e220cd08c3e27276743da44cf5152878050",
+    ".agents/skills/mtg-review/SKILL.md": "db42495d5b5915534fe20863b240ba38cc9b64b03e8a8437d3b59e5ac1e617eb",
+    ".agents/skills/mtg-site-ux/SKILL.md": "b226fe33d51ed11c52dd12cb674f12b2b9a3230e62b5c931edf53ca3a0ed17af",
+    "docs/architecture.md": "eb0f2fe518ccd006265e01894f8a7d5d205e1482c4732f14c819403c6c8633da",
+    "docs/documentation.md": "b5d54736ccfe4314a16033ab9e076e65252d2c24acdcd51cc158fa3b3e3a760e",
+    "docs/draft-engine.md": "7c7dbfe15ba7f4de355a8691e0bba7e586ba7c15e60ff7dab5b8fab3d1b725f9",
+    "docs/economics.md": "4d0f67d00ee90c2c2d56ee7c7ebfb1bd1ac4a539bdc5a3df996e3362dab085ad",
+    "docs/history/2026-10-22.md": "8bab200ae06f60b2c44f2fc6fa4b95ab4ca4afab650d5f0363cbf39748eafcdb",
+    "docs/requirements.md": "2021d3951f0b78b24dfa4b7e5b0cda55a0f519765c2b90acfc8944f57ead40de",
+    "docs/statistics.md": "30dc878077529e267892f5f3bfd9c7dad87c14cb8202732cabf378de3efa1706",
+    "docs/verification.md": "6e2bc48164de104162ec6827b2ca5eba1b725ddd871a63e634c44bd588c45b77",
+    "build_site.py": "34775c650f4441af1b28c5df43b6c78b0a6e8d0d2ddc1c041162ba0234dd014c",
+    "review-expansions-sonnet.py": "48aabc6f37afbda82c6371025265c98337b0ae8ad7947503e3a5e82cc6dd3601",
+    "review-ux-sonnet.py": "36364941ce3757156ed86778e72b6d4b3132724f76fe50d91a1495cfdb85f792",
+    "schemas/statistics.schema.json": "564a144106ceb5e30917d0019fb0e993e88f4f1baac49ad4fa4d5128654a7f92",
+    "schemas/prospects.schema.json": "e1f890ff2f37d8134f4bcc11029d0e553e5f4382be6de78c0a9f29af3c29b0c3",
+    ".github/workflows/pages.yml": "d646b9618ca65ee192f87e8aab314a86552b1aef97a50ca7eb32dd3776facb82",
+    "verify-prospects-browser.cjs": "7815ff0be413075e1b571307108360b9d498d935322fd75de344b307251da218",
+    "reviews/docs-reorganization-20261022/review.py": "f63875a4e1249a8850473ddca260de20a93710eabbfbdb520f0cbf1582264bfd"
+  },
+  "baselineReadmeSha256": "47494cabe34b7e5013be6e4a2b6121963d89fe1f44c3f52a37ba833529177905",
+  "privateDocumentsOmitted": {
+    "docs/local/reality-fracture-box.md": "33e8a7ee33c91523d0a871def83cc938c58adbc987d2e8a7ce6c77f5f86bd5f0"
+  },
+  "contextExcerpts": {
+    "build_expansion.py": {
+      "lines": [
+        260,
+        285
+      ],
+      "sha256": "1700fc568ad73e20d4587235adada4594c95709e69dff2e104b33826591ba033"
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "scope": "Verifica documentale prima della conclusione del terzo giro",
+  "documents": 15,
+  "localLinks": 41,
+  "errors": [],
+  "unchangedSinceRound3Input": true,
+  "privateEvidenceExisting": 6,
+  "privateEvidenceIgnored": 6,
+  "runtimeInspection": "Playwright coreBundle.js: screenshot usa mkdirIfNeeded(options.path) e fs.promises.writeFile(options.path); percorsi relativi alla cartella di lavoro. Non eseguito browser.",
+  "siteTests": "Non ripetuti per sola documentazione",
+  "documentHashes": {
+    "README.md": "4cdb0f3c514bd59c54ad7ebdc6a2349c2fffe5e09c325c9e6579b33f9b81845d",
+    "AGENTS.md": "4f7ea6192f0ece235d509984fe77d4c09b8a6064c0b54278e68cbfedf4ef1ca8",
+    "docs/architecture.md": "eb0f2fe518ccd006265e01894f8a7d5d205e1482c4732f14c819403c6c8633da",
+    "docs/documentation.md": "b5d54736ccfe4314a16033ab9e076e65252d2c24acdcd51cc158fa3b3e3a760e",
+    "docs/draft-engine.md": "7c7dbfe15ba7f4de355a8691e0bba7e586ba7c15e60ff7dab5b8fab3d1b725f9",
+    "docs/economics.md": "4d0f67d00ee90c2c2d56ee7c7ebfb1bd1ac4a539bdc5a3df996e3362dab085ad",
+    "docs/history/2026-10-22.md": "8bab200ae06f60b2c44f2fc6fa4b95ab4ca4afab650d5f0363cbf39748eafcdb",
+    "docs/local/reality-fracture-box.md": "33e8a7ee33c91523d0a871def83cc938c58adbc987d2e8a7ce6c77f5f86bd5f0",
+    "docs/requirements.md": "2021d3951f0b78b24dfa4b7e5b0cda55a0f519765c2b90acfc8944f57ead40de",
+    "docs/statistics.md": "30dc878077529e267892f5f3bfd9c7dad87c14cb8202732cabf378de3efa1706",
+    "docs/verification.md": "6e2bc48164de104162ec6827b2ca5eba1b725ddd871a63e634c44bd588c45b77",
+    ".agents/skills/mtg-draft-bots/SKILL.md": "cbe81a02c0f43610f60a8d3ce698b54a7427125a9d344367c188e8009e3deac8",
+    ".agents/skills/mtg-research/SKILL.md": "e0e6a993306a1426ded523ae8e123e220cd08c3e27276743da44cf5152878050",
+    ".agents/skills/mtg-review/SKILL.md": "db42495d5b5915534fe20863b240ba38cc9b64b03e8a8437d3b59e5ac1e617eb",
+    ".agents/skills/mtg-site-ux/SKILL.md": "b226fe33d51ed11c52dd12cb674f12b2b9a3230e62b5c931edf53ca3a0ed17af"
+  }
+}

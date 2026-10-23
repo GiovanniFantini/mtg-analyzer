@@ -5,7 +5,6 @@ node_modules/
 .env
 .env.*
 !.env.example
-AGENTS.md
 .publish-files
 *-preview.png
 share-*.png
@@ -22,3 +21,6 @@ compare-ev-*
 /sealed-database.json
 /discovery-data-*.json
 draft-report-assets-*/*.png
+
+# Memoria personale e analisi locali
+/docs/local/
