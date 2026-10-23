@@ -1,0 +1,120 @@
+{
+  "scope": "Assistente Draft per telefono e pool condiviso. Nessun commit o push.",
+  "rounds": [{
+    "round": 1,
+    "model": "claude-sonnet-5-5",
+    "decisions": [
+      {"id":"R1-01","decision":"confermato e corretto","evidence":"Status e Annulla erano dopo 12 risultati. Spostati sopra la ricerca, conferma con nome e quantità, lista e bersagli mantenuti dopo la pick. Test verifica visibilità della conferma."},
+      {"id":"R1-02","decision":"confermato e corretto","evidence":"Prima alternativa assente vicino alla ricerca. Aggiunto riepilogo con anteprime e rimozione prima dei risultati; verdetto completo resta sotto."},
+      {"id":"R1-03","decision":"confermato e corretto","evidence":"Riproduzione browser iniziale: hash draft-pool, poolVisible false, focusMode true. Il link ora esce dalla modalità concentrata. Gli errori offrono lo stesso accesso esplicito."},
+      {"id":"R1-04","decision":"confermato e corretto","evidence":"Rimozione e undo ora attendono e verificano l'esito. Undo invalidato agli aggiornamenti del pool e protetto da confronto dello snapshot dentro la transazione."},
+      {"id":"R1-05","decision":"confermato e corretto","evidence":"La frase sui colori era comune a tutte le candidate. Le comuni mostrano ruolo o bisogno specifico. Il confronto spiega il contributo che differenzia maggiormente le alternative e riporta l'avvertenza principale."},
+      {"id":"R1-06","decision":"confermato e corretto","evidence":"Il vecchio gestore metadata salvava il pool in memoria. Tutte le scritture ora rileggono il record sotto Web Locks quando disponibili. Aggiunto riallineamento focus/visibilitychange. Test per scritture concorrenti fra schede."},
+      {"id":"R1-07","decision":"confermato e corretto","evidence":"I pulsanti di rimozione erano ricreati senza recupero focus. Ora focus sulla stessa carta, sul riepilogo se rimossa l'ultima copia e sulla ricerca dopo undo da tastiera."},
+      {"id":"R1-08","decision":"confermato e corretto","evidence":"Nel catalogo attivo, query re collocava Recursive Recruitment e altre carte con prefisso alle posizioni 39-45. Ora prefisso, poi inizio parola, poi sottostringa; test con query re."},
+      {"id":"R1-09","decision":"parzialmente fondato e corretto","evidence":"L'altezza dei filtri prima dei risultati è verificabile da DOM/CSS; non è stata emulata una tastiera di sistema reale. I filtri secondari sono ora in un details chiuso, con riepilogo dei filtri attivi."},
+      {"id":"R1-10","decision":"confermato e corretto per il piano","evidence":"Il piano era solo nel DOM. Ora assistantPlan è un campo compatibile del pool, salvato con le stesse transazioni e ripristinato al reload e tra schede. La modalità concentrata resta una scelta di presentazione della singola pagina, non un impegno strategico."},
+      {"id":"R1-11","decision":"confermato e corretto","evidence":"Import e clear ignoravano save false. Ora usano transazione con rollback e nessuna conferma positiva sul fallimento; la lista da importare resta disponibile."},
+      {"id":"R1-12","decision":"non riproducibile sul catalogo attivo; ripiego corretto","evidence":"Le rarità attive sono common/uncommon/rare/mythic. Il renderer condiviso ora usa una mappa con ripiego al valore grezzo, evitando la falsa etichetta Mitica su futuri valori."}
+    ]
+  }, {
+    "round": 2,
+    "model": "claude-sonnet-5-5",
+    "decisions": [
+      {"id":"R2-01","decision":"confermato e corretto","evidence":"Il rifiuto di una terza alternativa ora porta in vista lo status. Test seleziona due carte, ne cerca una terza e verifica messaggio e visibilità."},
+      {"id":"R2-02","decision":"guasto ipotizzato riprodotto per iniezione e corretto","evidence":"Web Locks sostituito nel test con una richiesta che rifiuta SecurityError: fallback consentito solo se il task non è partito. Il gestore pick usa try/catch/finally e gestisce anche una Promise rifiutata dall'API. Non è stata provata una WebView reale che neghi l'API."},
+      {"id":"R2-03","decision":"confermato e corretto","evidence":"Ripristino focus per azione, nome e regione dopo render. I refresh senza cambiamenti non ricreano i controlli. Test verifica focus su Presa dopo modifica del piano e sullo status dopo un errore iniettato."},
+      {"id":"R2-04","decision":"confermato e corretto","evidence":"Aggiornamenti emessi solo se lo snapshot cambia. Test focus/pageshow/visibilitychange sullo stesso record conserva Annulla; lo snapshot resta verificato nella transazione."},
+      {"id":"R2-05","decision":"confermato e corretto","evidence":"Le transazioni leggono i metadati dal disco senza riscrivere il form. Il salvataggio note aggiorna solo il relativo campo del record. Test inserisce X in mezzo ad abcdef e controlla selectionStart=3 dopo la persistenza."},
+      {"id":"R2-06","decision":"dimensione verificata e corretta; zoom iOS non provato","evidence":"I select ereditavano 14px. Ora hanno font-size 16px esplicito e un controllo browser della dimensione computata. Nessuna dichiarazione di prova su iPhone reale."},
+      {"id":"R2-07","decision":"parzialmente fondato e corretto","evidence":"Aggiunti gli attributi per disabilitare correzione automatica e capitalizzazione. Invio porta il focus ai risultati senza agire durante composizione. Test verifica il focus; tastiera e autocorrezione iOS reali non emulate."},
+      {"id":"R2-08","decision":"confermato con carta reale e corretto","evidence":"Il catalogo contiene Emrakul, the Exigent Doom. Query Emrakul   the ora risolve dopo normalizzazione della punteggiatura e degli spazi. Messaggi di vuoto distinti secondo nome e filtri."},
+      {"id":"R2-09","decision":"confermato e corretto","evidence":"Errore di rimozione ora porta in vista uno status con accesso al pool e al backup; le quantità restano invariate. Percorso provato con setItem che rifiuta la scrittura."},
+      {"id":"R2-10","decision":"confermato e corretto","evidence":"Plains è nel catalogo e può essere importata. Il totale e la lista delle pick ora includono le basi, mentre inferenza del piano e fase usano il progresso senza basi. Test aggiunge Plains e confronta assistente e pool."},
+      {"id":"SELF-02","decision":"confermato e corretto","evidence":"Con importazione asincrona, due click potevano accodare due volte la stessa lista. Il pulsante è disabilitato durante la transazione e il testo viene cancellato soltanto se non è stato modificato. Test tiene occupato il lock, invia due click e modifica la lista prima del completamento."}
+    ]
+  }, {
+    "round": 3,
+    "model": "claude-sonnet-5-5",
+    "decisions": [
+      {"id":"R3-01","decision":"confermato e corretto","evidence":"Svuotare il pool ora azzera assistantPlan nella stessa transazione. La conferma rende esplicite entrambe le azioni; test verifica pool vuoto e piano libero anche dopo reload."},
+      {"id":"R3-02","decision":"fallback fondato e corretto; tastiera reale non provata","evidence":"Il ripiego generico sul campo editabile è sostituito dallo status non editabile. Il focus esplicito sulla ricerca resta riservato alla tastiera. Test touch controlla activeElement dopo rimozione di un'alternativa e pick dal confronto."},
+      {"id":"R3-03","decision":"confermato e corretto","evidence":"Undo verifica una firma ordinata delle sole quantità, calcolata e confrontata dentro il lock. Piano, note e modalità restano conservati e non lo invalidano. I cambiamenti alle carte continuano a rifiutare uno snapshot precedente."},
+      {"id":"R3-04","decision":"limite confermato e chiarito","evidence":"L'assistente cerca il catalogo inglese. Etichetta, placeholder e messaggi senza risultati ora lo dicono esplicitamente; non è stata aggiunta una traduzione o un catalogo italiano."}
+    ]
+  }, {
+    "round": 4,
+    "model": "claude-sonnet-5-5",
+    "decisions": [
+      {"id":"R4-01","decision":"confermato e corretto","evidence":"Un solo colore dedotto lascia aperto un secondo colore. Le candidate devono rientrare nel dominante più al massimo un altro colore; il piano scelto manualmente resta vincolante. Test con sei pick distribuite e verifica browser delle alternative nella lista comuni."},
+      {"id":"R4-02","decision":"confermato e corretto","evidence":"Stato protetto visibile subito nell'assistente, registrazione disabilitata e link al recupero. L'azione esplicita di ripartenza archivia il raw integrale sotto una chiave per espansione e ne verifica la rilettura prima di rimuovere il principale. Test con quota rifiutata conferma che il record resta intatto; ripartenza riuscita e archivio presente anche dopo reload. Anche valori JSON primitivi incompatibili sono protetti."},
+      {"id":"R4-03","decision":"confermato e corretto senza inventare dati","evidence":"Le terre non ricevono bonus colori e mostrano il limite sul mana prodotto. I confronti che includono terre sono dichiarati parziali. Non uso l'identità di colore come sostituto dei colori prodotti. Test con due terre reali del set e verifica del bonus nullo."},
+      {"id":"R4-04","decision":"parzialmente fondato e corretto","evidence":"I risultati erano già sottolineati da card-hover.css, come mostra la prova visiva: la premessa sulla mancanza di indicazione non è confermata. Uniformato comunque lo stile dei nomi anche nel pool e nelle alternative, aggiunto aiuto sul tocco e nome accessibile dell'anteprima. Non aggiunto un secondo pulsante sulla miniatura."},
+      {"id":"R4-05","decision":"confermato e corretto","evidence":"Le azioni Presa, Confronta e Prendi questa ora includono il nome della carta nell'etichetta accessibile, conservando il testo visibile nell'etichetta."},
+      {"id":"R4-06","decision":"confermato e corretto","evidence":"Quando Altre carte scompare con il focus, il focus passa al primo risultato aggiunto da tastiera o al contenitore non editabile da puntatore. Test percorre tutte le pagine dei risultati con Invio."},
+      {"id":"R4-07","decision":"non riproducibile sul set attivo; coerenza rinforzata","evidence":"Gli insiemi dei nomi attivi erano già identici. Il renderer ora usa sempre nomi e dati del catalogo canonico per il pool, conservando metriche e campi compatibili dello snapshot. Due test Python verificano uno snapshot parziale/obsoleto e l'assenza di metriche inventate. La data del catalogo è distinta da quella statistica nel prompt."}
+    ]
+  }, {
+    "round": 5,
+    "model": "claude-sonnet-5-5",
+    "decisions": [
+      {"id":"R5-01","decision":"confermato e corretto","evidence":"Errore di accesso allo storage distinto dal record corrotto: modalità temporanea nella pagina, avviso, esportazione e nessun tentativo successivo di scrivere il record originale. Quando fallisce soltanto una scrittura, resta il rollback e viene offerta l'attivazione esplicita del lavoro temporaneo. Test con getItem rifiutato, record precedente realmente presente e lasciato intatto, esportazione della lista corrente e ritorno dell'accesso senza sovrascrittura."},
+      {"id":"R5-02","decision":"confermato e corretto","evidence":"Azzera filtri ora conserva la query; Nuova ricerca rimane l'azione che svuota il nome. Test conserva Surveillance dopo il reset dei filtri."},
+      {"id":"R5-03","decision":"ipotesi non confermata sul catalogo attivo; etichette rese esplicite","evidence":"I nomi delle guide attive includevano già i colori (per esempio Bianco blu). Le opzioni ora derivano comunque i colori dalla chiave e aggiungono il tema, senza affidarsi alla convenzione del nome. La prova a 320px ha identificato l'intrinseco del select troppo largo: aggiunti width 100%, min-width 0 e limite del contenitore."},
+      {"id":"R5-04","decision":"confermato e corretto","evidence":"L'avvertenza principale si aggiunge soltanto al verdetto di preferenza con voti disponibili e senza terre. Non duplica i messaggi di confronto parziale o incerto."},
+      {"id":"R5-05","decision":"ipotesi non confermata nel renderer; criterio uniformato","evidence":"Il catalogo normalizzato fornisce sempre il flag land, come documentato nel contratto. Il contesto e la lista comuni ora usano comunque lo stesso helper land() della valutazione. Test con tipo Land e flag assente verifica che non venga contato come magia."}
+    ]
+  }, {
+    "round": 6,
+    "model": "claude-sonnet-5-5",
+    "decisions": [
+      {"id":"R6-01","decision":"confermato e corretto","evidence":"Il contesto legge sempre il piano effettivo del controller. Se setPlan fallisce, render riallinea il selettore prima del messaggio di errore. Test con setItem rifiutato verifica selettore e piano del controller invariati."},
+      {"id":"R6-02","decision":"confermato e corretto","evidence":"Il gap per il verdetto è normalizzato a sei decimali prima di entrambe le soglie. Test verifica che 3.8 contro 3.6 e 3.6 contro 3.4 producano lo stesso scarto 0.2, mentre uno scarto reale di 0.1999 rimane sotto soglia."},
+      {"id":"SELF-03","decision":"normalizzazione del piano verificata","evidence":"Il contesto usa solo piani presenti nelle opzioni supportate. Un metadato assistantPlan non riconosciuto viene ignorato nell'interfaccia senza eliminare il pool o sovrascrivere il campo compatibile. Test carica un piano non stringa senza errori JavaScript."}
+    ]
+  }, {
+    "round": 7,
+    "model": "claude-sonnet-5-5",
+    "decisions": [
+      {"id":"R7-01","decision":"confermato e corretto","evidence":"I pulsanti con etichetta che esprime l'azione corrente (Solo assistente/Mostra la guida e Confronta/Rimuovi dal confronto) non usano più aria-pressed. L'evidenza visiva usa data-selected. Colori e attività conservano aria-pressed con etichette fisse. I test verificano l'assenza dello stato contraddittorio sui due controlli."}
+    ]
+  }, {
+    "round": 8,
+    "model": "claude-sonnet-5-5",
+    "decisions": [
+      {"id":"R8-01","decision":"confermato e corretto","evidence":"Undo da tastiera nella scheda Comuni porta il focus sullo status non editabile; nelle altre schede resta la ricerca. Nuovo test esegue pick e undo con Invio nella lista comuni."},
+      {"id":"R8-02","decision":"confermato e corretto","evidence":"L'avviso temporaneo è aggiunto ai bisogni, senza sostituire curva e consiglio operativo. Test registra nove carte in modalità temporanea e verifica entrambe le informazioni."},
+      {"id":"R8-03","decision":"confermato e corretto","evidence":"La spiegazione del contributo colori distingue una carta nei colori già scelti da una candidata ad aprire il secondo colore. Test confronta una mono rossa con una R/G quando il dominante è blu."},
+      {"id":"R8-04","decision":"rischio fondato ridotto; dispositivo reale non provato","evidence":"La regione live contiene soltanto il numero dei risultati. Le istruzioni sono in un paragrafo statico separato. Test verifica il testo breve del contatore; nessuna dichiarazione di prova con TalkBack o VoiceOver reali."}
+    ]
+  }, {
+    "round": 9,
+    "model": "claude-sonnet-5-5",
+    "decisions": [
+      {"id":"R9-01","decision":"confermato e corretto","evidence":"La rimozione di un'alternativa da puntatore riporta la ricerca in vista senza darle il focus. Test touch allarga i risultati a dodici carte, rimuove dal verdetto e verifica campo visibile e tastiera non richiesta dal focus."},
+      {"id":"R9-02","decision":"scartato con evidenza","evidence":"Il formatter esistente, draft-report.js riga 4, restituisce N/D se v==null. Non converte null in zero. Il codice non è stato modificato. Test browser apre Plains dal pool dell'assistente e verifica ALSA N/D nel dialogo. Al revisore viene fornita anche la definizione completa del formatter prima omessa dall'estratto."}
+    ]
+  }, {
+    "round": 10,
+    "model": "claude-sonnet-5-5",
+    "decisions": [
+      {"id":"R10-01","decision":"confermato e corretto","evidence":"Per le candidate al secondo colore, la prima motivazione ora contiene il ruolo documentato prima dell'indicazione Secondo colore possibile. I bisogni o le sinergie specifiche restano prioritari se presenti. Test verifica il testo specifico di una candidata con ruolo Rimozione efficiente."}
+    ]
+  }, {
+    "round": 11,
+    "model": "claude-sonnet-5-5",
+    "findings": [],
+    "result": "Nessun difetto concreto nel perimetro della review funzionale completa.",
+    "additionalVisualQA": {"id":"SELF-11","decision":"confermato e corretto","evidence":"La prova visiva a 390 px ha mostrato select largo 34.875px e contesto sovrapposto, senza overflow. La toolbar usa ora una griglia, a colonna singola sotto 600px. Misura successiva: select 328px, bottom 436.16; contesto top 446.16. Aggiunti controlli di larghezza e separazione verticale nei test a 320 e 360px. L'ultima review mirata verifica questa sola modifica CSS e il test, le uniche differenze dalla baseline 11."}
+  }, {
+    "round": 12,
+    "model": "claude-sonnet-5-5",
+    "scope": "Ultima modifica CSS e controllo responsive, uniche differenze dalla baseline funzionale 11",
+    "findings": [],
+    "result": "Nessun difetto concreto o regressione del layout finale. Cascata, breakpoint, dimensioni e focus coerenti."
+  }],
+  "status": "closed",
+  "unresolvedFoundedFindings": 0,
+  "functionalBaseline": "manifest-11.json",
+  "finalVersion": "manifest-12.json"
+}

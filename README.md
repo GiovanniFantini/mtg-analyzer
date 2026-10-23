@@ -47,6 +47,8 @@ Le procedure per gli agenti sono in quattro skill locali: [ricerca](.agents/skil
 
 ## Dati, limiti e salvataggi
 
+Nella pagina Draft della presentazione Atlas, “La prossima pick” offre un assistente per draft informali: ricerca per nome, colore, costo e tipo, registrazione nel pool Draft esistente, confronto contestuale di due carte e priorità fra le sole comuni. “Solo assistente” concentra la pagina sui controlli per telefono. I consigli sono euristiche sui voti Limited e sulle sinergie già documentate, non probabilità di vittoria o letture dei segnali del tavolo. Il piano si può scegliere manualmente o suggerire dal pool. `node verify-draft-assistant.cjs`, con le variabili browser documentate, verifica decisioni contestuali, costi ibridi e facce principali, telefono, anteprime, sincronizzazione e protezione dei salvataggi.
+
 Espansione selezionata, formato di gioco ed evento Limited sono dimensioni distinte. Cataloghi, statistiche, recensioni e prezzi hanno date e coperture proprie: rigenerare il sito non li aggiorna. Le informazioni mancanti restano esplicite e non vengono inventate per abilitare strumenti. Nuove rilevazioni economiche usano Cardmarket; i modelli storici con fonti miste conservano il proprio metodo.
 
 Pool e carte osservate sono conservati nel browser del visitatore, senza account o sincronizzazione. Cambiare origine, per esempio da un file locale al sito HTTPS, non trasferisce i salvataggi: usare esportazione e importazione dove disponibili. Replay e salvataggi incompatibili richiedono conservazione integrale prima di una nuova scrittura.

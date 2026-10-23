@@ -6,29 +6,68 @@
  const extraBasics=rules?.extraBasicLands===true;
  const copyRule=rules?.maxCopies==null?'Non applicare il limite di quattro copie del Constructed al Draft.':`Per ogni carta non base rispetta il limite del formato: ${rules.maxCopies} copie per nome.`;
  const key=EXPANSION_CONFIG.storage.draftPool, byName=new Map(cards.map(c=>[c.name,c]));
+ const archiveKey=key+':protected-backups-v1';
+ const storageReady='Il pool Draft si salva in questo browser, separatamente dal pool Sealed. Scarica la lista per conservarne una copia.';
+ const storageTemporary='Salvataggio non disponibile: le pick restano solo in questa pagina. Scarica la lista prima di chiudere o ricaricare. Eventuali dati già salvati non vengono toccati.';
  const normalize=s=>s.normalize('NFKC').replace(/[’‘]/g,"'").replace(/\s+/g,' ').trim().toLowerCase();
  const aliases=new Map();
  for(const c of cards)for(const n of [c.name,c.name.split(' // ')[0],...(c.faces||[]).map(f=>f.name)]){
   const k=normalize(n);if(!aliases.has(k))aliases.set(k,c.name);else if(aliases.get(k)!==c.name)aliases.set(k,null);
  }
  const html=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
- let pool=Object.create(null);
+ let pool=Object.create(null), writeBlocked=false, savedExtra={}, savedRaw=null, publishedRaw, publishedBlocked, temporary=false, writeFailed=false, publishedTemporary;
  const entries=()=>cards.filter(c=>pool[c.name]).sort((a,b)=>a.name.localeCompare(b.name));
  const total=()=>Object.values(pool).reduce((a,b)=>a+b,0);
+ const poolSignature=()=>JSON.stringify(Object.entries(pool).sort(([a],[b])=>a<b?-1:a>b?1:0));
  function status(text){el('status').textContent=text;}
  function save(){
-  try{localStorage.setItem(key,JSON.stringify({pool,mode:el('mode').value,notes:el('notes').value}));}
-  catch{el('storage').textContent='Salvataggio nel browser non disponibile. Scarica la lista per conservare il pool.';}
+  if(writeBlocked){status('Salvataggio precedente protetto: esportalo prima di continuare.');return false;}
+  const raw=JSON.stringify({...savedExtra,pool,mode:savedExtra.mode==='bo3'?'bo3':'bo1',notes:typeof savedExtra.notes==='string'?savedExtra.notes:''});
+  if(temporary){savedRaw=raw;el('storage').textContent=storageTemporary;return true;}
+  try{localStorage.setItem(key,raw);savedRaw=raw;writeFailed=false;el('storage').textContent=storageReady;syncBackupControls();return true;}
+  catch{writeFailed=true;el('storage').textContent='Scrittura non disponibile. La modifica non è stata registrata. Puoi continuare con il pulsante Lavora solo in questa pagina.';syncBackupControls();return false;}
  }
- try{
-  const saved=JSON.parse(localStorage.getItem(key)||'null');
-  if(saved){
-   if(!saved.pool||typeof saved.pool!=='object'||Array.isArray(saved.pool))throw Error();
-   for(const [name,n] of Object.entries(saved.pool))if(byName.has(name)&&Number.isInteger(n)&&n>0&&n<=100)pool[name]=n;
-   el('mode').value=saved.mode==='bo3'?'bo3':'bo1';
-   el('notes').value=typeof saved.notes==='string'?saved.notes.slice(0,4000):'';
+ function load(syncForm=true){
+  if(temporary)return;
+  let raw;try{raw=localStorage.getItem(key);}catch{temporary=true;writeBlocked=false;el('storage').textContent=storageTemporary;syncBackupControls();return;}
+  const wasBlocked=writeBlocked;try{
+  pool=Object.create(null);savedExtra={};writeBlocked=false;
+  savedRaw=raw;const saved=JSON.parse(savedRaw===null?'null':savedRaw);
+  if(saved!==null){
+   if(!saved||typeof saved!=='object'||Array.isArray(saved)||!saved.pool||typeof saved.pool!=='object'||Array.isArray(saved.pool)||saved.version!=null)throw Error();
+   if(Object.entries(saved.pool).some(([name,n])=>!byName.has(name)||!Number.isInteger(n)||n<1||n>100))throw Error();
+   savedExtra=saved;
+   for(const [name,n] of Object.entries(saved.pool))pool[name]=n;
   }
- }catch{el('storage').textContent='Salvataggio locale assente, non valido o non accessibile. Puoi usare le liste .txt come backup.';}
+  if(syncForm)for(const [id,value] of [['mode',savedExtra.mode==='bo3'?'bo3':'bo1'],['notes',typeof savedExtra.notes==='string'?savedExtra.notes.slice(0,4000):'']]){
+   if(document.activeElement!==el(id)&&el(id).value!==value)el(id).value=value;
+  }
+ }catch{writeBlocked=true;pool=Object.create(null);el('storage').textContent='Salvataggio precedente non leggibile: è protetto e non verrà sovrascritto. Esportalo per conservarlo.';
+  if(!el('raw-backup')){const b=document.createElement('button');b.id='dp-raw-backup';b.type='button';b.textContent='Esporta salvataggio precedente';b.onclick=()=>{try{download(localStorage.getItem(key)||'',EXPANSION_CONFIG.id+'-draft-backup.txt');}catch{status('Salvataggio non accessibile.');}};el('storage').after(b);}
+ }
+ if(wasBlocked&&!writeBlocked)el('storage').textContent=storageReady;
+ syncBackupControls();
+ }
+ function syncBackupControls(){
+  if(writeFailed&&!writeBlocked&&!temporary&&!el('temporary-mode')){const b=document.createElement('button');b.id='dp-temporary-mode';b.type='button';b.textContent='Lavora solo in questa pagina';b.onclick=()=>{if(writeBlocked)return;temporary=true;writeFailed=false;save();syncBackupControls();update();status('Modalità temporanea attiva. Scarica il pool prima di chiudere o ricaricare.');};el('storage').after(b);}
+  if(el('temporary-mode'))el('temporary-mode').hidden=temporary||writeBlocked||!writeFailed;
+  if(!el('protected-reset')&&writeBlocked){const b=document.createElement('button');b.id='dp-protected-reset';b.type='button';b.textContent='Archivia salvataggio e ricomincia';b.onclick=archiveProtected;el('storage').after(b);}
+  for(const id of ['raw-backup','protected-reset'])if(el(id))el(id).hidden=!writeBlocked;
+  try{if(localStorage.getItem(archiveKey)&&!el('archive-backups')){const b=document.createElement('button');b.id='dp-archive-backups';b.type='button';b.textContent='Scarica salvataggi archiviati';b.onclick=()=>{try{download(localStorage.getItem(archiveKey)||'',EXPANSION_CONFIG.id+'-draft-archivi.json');}catch{status('Archivio non accessibile.');}};el('storage').after(b);}}catch{}
+ }
+ async function archiveProtected(){
+  if(!window.confirm('Conservare una copia integrale del salvataggio precedente e iniziare un pool vuoto?'))return;
+  try{await locked(()=>{
+   load(false);if(!writeBlocked){update();status('Il salvataggio è già leggibile. Nessun dato sostituito.');return;}
+   const raw=localStorage.getItem(key);if(typeof raw!=='string')throw Error();
+   const previousRaw=localStorage.getItem(archiveKey),previous=previousRaw===null?{version:1,records:[]}:JSON.parse(previousRaw);
+   if(previous?.version!==1||!Array.isArray(previous.records)||previous.records.some(r=>typeof r.raw!=='string'))throw Error();
+   const archive=JSON.stringify({...previous,records:[...previous.records,{created:new Date().toISOString(),raw}]});
+   localStorage.setItem(archiveKey,archive);if(localStorage.getItem(archiveKey)!==archive)throw Error();
+   localStorage.removeItem(key);load();update();status('Salvataggio precedente archiviato. Ora puoi registrare nuove pick.');
+  });}catch{syncBackupControls();status('Backup non riuscito: il salvataggio precedente non è stato sostituito. Puoi ancora esportarlo.');}
+ }
+ load();
  function cardButton(c){return `<button type="button" class="dd-card-link" data-name="${html(c.name)}">${html(c.name)}</button>`;}
  function renderSearch(){
   const query=normalize(el('search').value), matches=query?cards.filter(c=>normalize(c.name).includes(query)):[];
@@ -45,7 +84,7 @@
   }).join('\n\n');
   const guides=Object.entries(DRAFT_DATA.drill.guides).filter(([pair])=>[...pair].every(color=>entries().some(c=>c.color.includes(color)))).map(([pair,g])=>`${pair}: ${g.name}. Tema: ${g.theme}. ${g.plan}\nRischio: ${g.risk}`).join('\n\n');
   return `Agisci come consulente esperto di Magic: The Gathering Limited. Rispondi in italiano senza usare il trattino lungo (U+2014).
-Costruisci il miglior mazzo Draft di ${EXPANSION_CONFIG.name} dal pool qui sotto. Partite: ${mode}. Il pool contiene ${total()} carte. I testi e le statistiche sono snapshot statici del sito, datati ${DRAFT_DATA.date}; non presentarli come aggiornati.
+Costruisci il miglior mazzo Draft di ${EXPANSION_CONFIG.name} dal pool qui sotto. Partite: ${mode}. Il pool contiene ${total()} carte. Catalogo e testi delle carte: ${DRAFT_DATA.catalogDate||'data non disponibile'}. Statistiche: ${DRAFT_DATA.date}. Sono snapshot statici del sito: non presentarli come aggiornati.
 
 VINCOLI
 - Usa soltanto le carte elencate e rispetta tutte le quantità, incluse le terre non base. ${extraBasics?'Puoi aggiungere liberamente Plains, Island, Swamp, Mountain e Forest.':'Non aggiungere terre base oltre alle copie presenti nel pool.'} Non presumere altre terre o altre carte. ${copyRule}
@@ -85,22 +124,50 @@ Statistiche dello snapshot: https://www.17lands.com/card_data (Premier Draft ${E
   for(const id of ['copy','download','list','clear'])el(id).disabled=!n;
   if(!rules){el('copy').disabled=true;el('download').disabled=true;status('Prompt AI non disponibile: mancano le regole del Draft. Puoi registrare ed esportare la lista del pool.');}
   el('prompt').value=prompt();renderSearch();
+  if(publishedRaw!==savedRaw||publishedBlocked!==writeBlocked||publishedTemporary!==temporary){publishedRaw=savedRaw;publishedBlocked=writeBlocked;publishedTemporary=temporary;document.dispatchEvent(new CustomEvent('draft-pool-updated',{detail:{snapshot:poolSignature()}}));}
  }
+ const locked=async task=>{
+  if(temporary||!navigator.locks?.request)return task();
+  let started=false;
+  try{return await navigator.locks.request('mtg-draft-pool:'+key,()=>{started=true;return task();});}
+  catch(error){if(!started)return task();throw error;}
+ };
+ function transact(mutate,expectedPool,returnPool=false){return locked(()=>{
+  load(false);if(writeBlocked){update();status('Salvataggio precedente protetto. Usa Esporta salvataggio precedente.');return false;}
+  if(expectedPool!=null&&poolSignature()!==expectedPool){update();status('Il pool è cambiato: annullamento precedente non disponibile.');return false;}
+  const previous={pool:{...pool},extra:savedExtra};if(mutate()===false){update();return false;}
+  if(!save()){pool=previous.pool;savedExtra=previous.extra;update();status('Modifica non salvata: il browser non permette la scrittura.');return false;}
+  update();return returnPool?poolSignature():savedRaw;
+ }).catch(()=>{load(false);update();status('Modifica non confermata. Controlla il pool prima di riprovare.');return false;});}
+ function change(name,delta,expectedPool){return transact(()=>{
+  if(!byName.has(name))return false;
+  const n=(pool[name]||0)+delta;if(n>100||n<0)return false;
+  if(n)pool[name]=n;else delete pool[name];
+ },expectedPool,true);}
+ window.DraftPool={get:()=>({...pool}),change,isBlocked:()=>writeBlocked,isTemporary:()=>temporary,getPlan:()=>savedExtra.assistantPlan||'',setPlan:plan=>transact(()=>{savedExtra={...savedExtra,assistantPlan:plan};})};
+ function refresh(){const previous=savedRaw,blocked=writeBlocked,wasTemporary=temporary;load();if(savedRaw!==previous||blocked!==writeBlocked||wasTemporary!==temporary)update();}
+ window.addEventListener('storage',e=>{if(e.key===key||e.key===null)refresh();});
+ window.addEventListener('pageshow',refresh);
+ window.addEventListener('focus',refresh);
+ document.addEventListener('visibilitychange',()=>{if(!document.hidden)refresh();});
  function download(text,name){const blob=new Blob([text],{type:'text/plain;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);}
- document.getElementById('draft-pool').addEventListener('click',e=>{
+ document.getElementById('draft-pool').addEventListener('click',async e=>{
   const b=e.target.closest('[data-dp-add],[data-dp-remove]');if(!b)return;
   const name=b.dataset.dpAdd||b.dataset.dpRemove;if(!byName.has(name))return;
-  const n=(pool[name]||0)+(b.hasAttribute('data-dp-add')?1:-1);if(n>100)return;
-  if(n>0)pool[name]=n;else delete pool[name];
-  save();update();status('Pool aggiornato: '+total()+' carte.');
+  if(!await change(name,b.hasAttribute('data-dp-add')?1:-1))return;
+  status('Pool aggiornato: '+total()+' carte.');
   // Restore keyboard focus after rendering counters/results.
   const attr=b.hasAttribute('data-dp-add')?'data-dp-add':'data-dp-remove';
   const next=[...document.querySelectorAll(`[${attr}]`)].find(x=>x.getAttribute(attr)===name&&!x.disabled);next?.focus({preventScroll:true});
  });
  el('search').addEventListener('input',renderSearch);
- for(const id of ['mode','notes'])el(id).addEventListener(id==='notes'?'input':'change',()=>{save();el('prompt').value=prompt();status('Prompt aggiornato.');});
- el('import-button').addEventListener('click',()=>{
-  const lines=el('import').value.split(/\r?\n/), staged=Object.assign(Object.create(null),pool),errors=[];let added=0;
+ for(const id of ['mode','notes'])el(id).addEventListener(id==='notes'?'input':'change',async()=>{const value=el(id).value;if(await transact(()=>{savedExtra={...savedExtra,[id]:value};}))status('Prompt aggiornato.');});
+ el('import-button').addEventListener('click',async()=>{
+  if(el('import-button').disabled)return;
+  el('import-button').disabled=true;const input=el('import').value,lines=input.split(/\r?\n/);let added=0;
+  try{
+  const result=await transact(()=>{
+  const staged=Object.assign(Object.create(null),pool),errors=[];
   lines.forEach((raw,i)=>{
    let line=raw.trim();if(!line||/^(deck|sideboard|mazzo|pool|commander|\/\/.*)$/i.test(line))return;
    const m=line.match(/^(\d+)\s*x?\s+(.+)$/i)||line.match(/^()(.+)$/);let n=m[1]?Number(m[1]):1;
@@ -108,9 +175,12 @@ Statistiche dello snapshot: https://www.17lands.com/card_data (Premier Draft ${E
    if(!name||!Number.isInteger(n)||n<1||n>100||(staged[name]||0)+n>100){errors.push(`Riga ${i+1}: ${line}`);return;}
    staged[name]=(staged[name]||0)+n;added+=n;
   });
-  if(errors.length){status('Nessuna carta importata. Correggi nomi o quantità (massimo 100 copie per carta):\n'+errors.join('\n'));return;}
-  if(!added){status('Inserisci almeno una carta nella lista.');return;}
-  pool=staged;save();update();el('import').value='';status(`Aggiunte ${added} carte al pool.`);
+  if(errors.length){status('Nessuna carta importata. Correggi nomi o quantità (massimo 100 copie per carta):\n'+errors.join('\n'));return false;}
+  if(!added){status('Inserisci almeno una carta nella lista.');return false;}
+  pool=staged;
+  });
+  if(result){if(el('import').value===input)el('import').value='';status(`Aggiunte ${added} carte al pool.`);}
+  }finally{el('import-button').disabled=false;}
  });
  el('copy').addEventListener('click',async()=>{
   try{await navigator.clipboard.writeText(prompt());status('Prompt copiato. Incollalo nella tua chat AI per ottenere lista e tagli.');}
@@ -118,6 +188,6 @@ Statistiche dello snapshot: https://www.17lands.com/card_data (Premier Draft ${E
  });
  el('download').addEventListener('click',()=>download(prompt(),EXPANSION_CONFIG.id+'-draft-prompt.txt'));
  el('list').addEventListener('click',()=>download(entries().map(c=>`${pool[c.name]} ${c.name}`).join('\n')+'\n',EXPANSION_CONFIG.id+'-draft-pool.txt'));
- el('clear').addEventListener('click',()=>{if(!window.confirm('Svuotare tutte le carte del pool Draft? Scarica prima la lista se vuoi conservarla.'))return;pool=Object.create(null);save();update();status('Pool Draft svuotato.');});
+ el('clear').addEventListener('click',async()=>{if(!window.confirm('Svuotare tutte le carte del pool Draft e azzerare il piano di colori? Scarica prima la lista se vuoi conservarla.'))return;if(await transact(()=>{pool=Object.create(null);savedExtra={...savedExtra,assistantPlan:''};}))status('Pool Draft e piano di colori azzerati.');});
  update();
 })();

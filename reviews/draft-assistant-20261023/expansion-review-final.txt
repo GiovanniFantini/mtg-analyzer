@@ -1,0 +1,12 @@
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+10 !== 1
+
+    at C:\repos\Codex\MTG\verify-expansion-review.cjs:121:10 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 10,
+  expected: 1,
+  operator: 'strictEqual',
+  diff: 'simple'
+}

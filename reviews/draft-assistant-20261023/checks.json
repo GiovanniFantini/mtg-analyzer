@@ -1,0 +1,18 @@
+{
+  "scope": "Assistente Draft informale e pool Atlas condiviso",
+  "publication": "Solo locale, nessun commit o push",
+  "checks": [
+    {"command":"python build_site.py","result":"passed","evidence":"2 espansioni, 20 pagine HTML, collegamenti locali verificati"},
+    {"command":"node verify-draft-assistant.cjs","result":"passed","evidence":"Decisioni contestuali, costi ibridi e prima faccia, filtri e prefissi, nome con punteggiatura, reset senza perdere il nome, piano persistente e azzerato con il pool, secondo colore aperto se dedotto, confronto parziale per le terre, due alternative e rifiuto della terza, pick e undo anche dopo metadati, anteprime mouse/tastiera/tocco, viewport 320/360/768/1440, scritture concorrenti, errori di quota, Web Locks rifiutati, Promise rifiutata, cursore note, import pendente con doppio click, basi nel pool, recupero dopo backup verificato e backup rifiutato senza perdita del principale, storage inaccessibile con pool temporaneo esportabile, record persistente precedente intatto e nessuna sovrascrittura al ripristino dell'accesso"},
+    {"command":"python -m unittest test_draft_assistant.py","result":"passed","evidence":"2 test: catalogo canonico contro snapshot statistico obsoleto/parziale e assenza di win rate inventati"},
+    {"command":"node verify-expansion-browser.cjs","result":"passed","evidence":"Salvataggi storici, sessioni incompatibili protette, pagine con dati mancanti e JSON pubblico, nessun errore JavaScript"},
+    {"command":"python -m unittest test_expansion_data.py","result":"failed_preexisting","errors":["test_correlated_exclusions_are_not_rejected_by_upper_bounds","test_pair_unique_counts_use_actual_pair_members"],"evidence":"unittest-working-tree-round6.txt"},
+    {"command":"Stessi unittest con expansion_data.py di HEAD caricato soltanto in memoria","result":"passed","evidence":"unittest-head-loader-round6.txt: 32 test riusciti, nessuna sostituzione del file nel workspace"},
+    {"command":"python verify-expansion-review.py","result":"failed_preexisting","evidence":"expansion-review-final.txt: scenario custom-discovery, attese 1 candidate, presenti 10, stessa anomalia rilevata prima delle correzioni"},
+    {"command":"git diff --check","result":"passed"}
+  ],
+  "visualEvidence": ["mobile-round10.png", "mobile-commons-round11.png", "mobile-layout-corrected.png"],
+  "finalLayoutCheck": "Toolbar su griglia. A 390px select 328px, fondo 436.16; contesto da 446.16. Test di larghezza >=200px e assenza di sovrapposizione a 320/360px, oltre ai controlli overflow desktop/telefono.",
+  "finalIndependentReviews": {"functional":11,"layout":12,"findings":0,"version":"manifest-12.json"},
+  "limitations": ["Nessun test su un iPhone o una WebView reali. Font, attributi della tastiera e percorsi di errore verificati nel browser o tramite iniezione controllata.", "Le euristiche utilizzano gli snapshot Limited esistenti, senza nuove acquisizioni o stime di vittoria."]
+}

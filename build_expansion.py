@@ -188,8 +188,20 @@ def data_for_page(expansion, key):
                           'basic':card['basic'],'gih':None,'n':0,'alsa':None,'rarity':card['rarity']})
         result={'cards':cards,'poolCards':cards,'pairs':[],'baseline':None,'date':expansion.data['cards'].get('date',''),**source}
         result['cards']=source.get('cards') or cards
-        result['poolCards']=source.get('poolCards') or cards
+        # Canonical names and card facts come from the active catalog, not a dated snapshot.
+        pool_stats={c['name']:c for c in source.get('poolCards',[]) or []}
+        result['poolCards']=[{**pool_stats.get(c['name'],{}),**c,
+                              **{metric:pool_stats.get(c['name'],{}).get(metric,c[metric])
+                                 for metric in ('gih','n','alsa')}} for c in cards]
+        result['catalogDate']=expansion.data['cards'].get('date','')
         result['drill']={'guides':expansion.data['archetypes'],'contexts':{},'fields':[],'colors':{},'retrieved':'',**(source.get('drill') or {})}
+        assistant_fields=('id','full','colors','cost','mv','type','rarity','basic','land','image',
+                          'community','score','role','why','condition','build')
+        assistant_cards=[{**{key:c.get(key) for key in assistant_fields},'name':c.get('full',c['name']),
+                          'shortName':c['name'],'faces':[{'name':f.get('name',''),'mana_cost':f.get('mana_cost',''),
+                          'type_line':f.get('type_line','')} for f in c.get('faces',[])]} for c in expansion.cards]
+        result['assistant']={'cards':assistant_cards,'combos':[{'cards':c['cards']} for c in expansion.data['combos']],
+                             'ratingsDate':expansion.data['ratings'].get('date','')}
         return result
     if key == 'discovery': return expansion.data['discovery']
     if key == 'draft-engine':

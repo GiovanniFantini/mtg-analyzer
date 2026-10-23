@@ -1,7 +1,27 @@
 <!doctype html>
-<html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{{name}} · Draft e pick</title><link rel="stylesheet" href="draft-report.css"></head><body>
+<html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{{name}} · Draft e pick</title><link rel="stylesheet" href="draft-report.css"><link rel="stylesheet" href="draft-assistant.css"></head><body>
 <header><a href="{{route:gallery}}#draft">← Il tavolo di {{name}}</a></header>
 <main>
+<section id="draft-assistant" class="da-panel" aria-labelledby="da-title">
+<div class="da-heading"><div><p class="eyebrow">DRAFT INFORMALE · SUL TELEFONO</p><h2 id="da-title">La prossima pick</h2></div><button id="da-focus" type="button">Solo assistente</button></div>
+<p>Registra le carte prese. Cerca due alternative e confrontale nel tuo pool.</p>
+<div class="da-toolbar"><label>Il tuo piano<select id="da-plan"><option value="">Suggerisci dal pool</option><option value="open">Resto aperto</option></select></label><p id="da-context"></p></div>
+<div id="da-needs" class="da-notice"></div>
+<div class="da-tabs" role="group" aria-label="Attività"><button type="button" data-da-tab="pick" aria-pressed="true">Registra pick</button><button type="button" data-da-tab="compare" aria-pressed="false">Confronta due</button><button type="button" data-da-tab="targets" aria-pressed="false">Comuni da cercare</button></div>
+<p id="da-status" role="status" aria-live="polite" tabindex="-1"></p>
+<div id="da-selected" aria-label="Alternative selezionate" hidden></div>
+<div id="da-finder">
+<label for="da-search">Nome inglese, anche poche lettere</label><input id="da-search" type="search" placeholder="Cerca il nome inglese…" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="search">
+<button id="da-next-search" type="button">Nuova ricerca</button>
+<details id="da-filter-panel"><summary id="da-filter-summary">Filtri rapidi: colore, costo, tipo</summary>
+<div id="da-colors" class="da-chips" role="group" aria-label="Colore della carta"></div>
+<div class="da-filters"><label>Costo<select id="da-mana"><option value="">Qualsiasi</option><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6+</option></select></label><label>Tipo<select id="da-type"><option value="">Qualsiasi</option><option value="Creature">Creatura</option><option value="Instant">Istantaneo</option><option value="Sorcery">Stregoneria</option><option value="Land">Terra</option><option value="Artifact">Artefatto</option><option value="Enchantment">Incantesimo</option><option value="Planeswalker">Planeswalker</option></select></label><button id="da-reset" type="button">Azzera filtri</button></div>
+</details><p id="da-count" class="small" role="status"></p><p id="da-finder-help" class="small">Tocca il nome per l’anteprima. Puoi cercare e registrare carte di qualsiasi rarità.</p><div id="da-results" class="da-results" tabindex="-1" aria-label="Risultati della ricerca"></div><button id="da-more" type="button" hidden>Altre carte</button>
+</div>
+<div id="da-comparison" aria-live="polite"></div><div id="da-targets" hidden></div>
+<details id="da-pool-details"><summary id="da-pool-summary">Le tue pick</summary><div id="da-pool"></div><p><a href="#draft-pool">Importa, esporta o svuota il pool</a></p></details>
+<details><summary>Come legge le scelte</summary><p>Le priorità riguardano solo comuni. Registra anche le altre rarità: contano nel pool. I suggerimenti combinano i voti Limited già presenti, colori, curva delle creature e sinergie documentate con pezzi già presi. Sono euristiche, non percentuali di vittoria. Il pool non rivela quali colori siano aperti: non registriamo le buste passate. Se il piano dedotto ha un solo colore, il secondo resta aperto. Il mana è valutato sui colori principali, senza presumere fixing o splash; per le terre controlla il mana prodotto nell’anteprima.</p><p id="da-method"></p><p>Per draft informali concordati tra i partecipanti. Nei tornei ufficiali non consultare consigli strategici durante draft e costruzione.</p></details>
+</section>
 <div class="intro"><div class="eyebrow">{{name}} / risultati e decisioni / {{draftDate}}</div><h1>Draft e pick</h1><p>Le carte da scegliere, i motori da costruire e le minacce da fermare. Analizza tutte le dieci coppie, confronta le carte e adatta le priorità alla fase del draft.</p><a href="#pick-guide">Vai alla lista rapida: pick subito e counterpick ↓</a></div>
 <nav class="report-nav" aria-label="Indice del report"><a href="#pick-guide">Pick subito e counterpick</a><a href="#draft-combos">Ho questa carta: quali combo cerco?</a><a href="#draft-pool">Il mio pool Draft / prompt AI</a><a href="#pick-baits">Rare e mitiche: i bait</a><a href="#draft-drilldown">Drilldown interattivo</a><a href="#pick-decisions">Come decidere: {{pickDecisionCount}} situazioni</a>{{reportNav}}</nav>
 <section id="draft-pool" class="report-section draft-pool">
@@ -31,4 +51,4 @@
 <p class="attribution">Immagini delle carte: Wizards of the Coast tramite Scryfall. Dati: 17Lands. Snapshot statico, non aggiornato automaticamente.</p>
 </main>
 <dialog id="draft-dialog" aria-labelledby="draft-card-title"><button id="draft-close" type="button">Chiudi ×</button><div id="draft-detail"></div></dialog>
-<script>const DRAFT_DATA=__DRAFT_DATA__;</script><script src="draft-report.js"></script><script src="draft-pool.js"></script><script src="draft-drilldown.js"></script><script src="draft-pick-guide.js"></script><script src="draft-combos.js"></script><link rel="stylesheet" href="card-hover.css"><script src="card-hover.js"></script><link rel="stylesheet" href="metric-help.css"><script src="metric-help.js"></script></body></html>
+<script>const DRAFT_DATA=__DRAFT_DATA__;</script><script src="draft-report.js"></script><script src="draft-pool.js"></script><script src="draft-advisor.js"></script><script src="draft-assistant.js"></script><script src="draft-drilldown.js"></script><script src="draft-pick-guide.js"></script><script src="draft-combos.js"></script><link rel="stylesheet" href="card-hover.css"><script src="card-hover.js"></script><link rel="stylesheet" href="metric-help.css"><script src="metric-help.js"></script></body></html>

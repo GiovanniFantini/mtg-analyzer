@@ -1,0 +1,45 @@
+.....E...................E......
+======================================================================
+ERROR: test_correlated_exclusions_are_not_rejected_by_upper_bounds (test_expansion_data.ExpansionTests.test_correlated_exclusions_are_not_rejected_by_upper_bounds)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\repos\Codex\MTG\test_expansion_data.py", line 246, in test_correlated_exclusions_are_not_rejected_by_upper_bounds
+    self.fixture(mutate)
+    ~~~~~~~~~~~~^^^^^^^^
+  File "C:\repos\Codex\MTG\test_expansion_data.py", line 29, in fixture
+    return Expansion(path)
+  File "C:\repos\Codex\MTG\expansion_data.py", line 120, in __init__
+    self.validate()
+    ~~~~~~~~~~~~~^^
+  File "C:\repos\Codex\MTG\expansion_data.py", line 261, in validate
+    if branch['weight']>0 and len(names_in_group)-max_blocked<needed:fail('gruppo insufficiente per unique o exclude: '+rule['id'])
+                                                                     ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\repos\Codex\MTG\expansion_data.py", line 163, in fail
+    def fail(message): raise ValueError(f'{self.manifest["id"]}: {message}')
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: reality-fracture: gruppo insufficiente per unique o exclude: sameAsFirst
+
+======================================================================
+ERROR: test_pair_unique_counts_use_actual_pair_members (test_expansion_data.ExpansionTests.test_pair_unique_counts_use_actual_pair_members)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\repos\Codex\MTG\test_expansion_data.py", line 259, in test_pair_unique_counts_use_actual_pair_members
+    self.fixture(lambda m,d:configure(d,3,True))
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\repos\Codex\MTG\test_expansion_data.py", line 29, in fixture
+    return Expansion(path)
+  File "C:\repos\Codex\MTG\expansion_data.py", line 120, in __init__
+    self.validate()
+    ~~~~~~~~~~~~~^^
+  File "C:\repos\Codex\MTG\expansion_data.py", line 261, in validate
+    if branch['weight']>0 and len(names_in_group)-max_blocked<needed:fail('gruppo insufficiente per unique o exclude: '+rule['id'])
+                                                                     ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\repos\Codex\MTG\expansion_data.py", line 163, in fail
+    def fail(message): raise ValueError(f'{self.manifest["id"]}: {message}')
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: reality-fracture: gruppo insufficiente per unique o exclude: pairs
+
+----------------------------------------------------------------------
+Ran 32 tests in 42.019s
+
+FAILED (errors=2)

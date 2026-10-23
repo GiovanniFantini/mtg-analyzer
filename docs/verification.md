@@ -47,6 +47,8 @@ Se il modulo è in un runtime esterno, assegnare il suo percorso effettivo a `MT
 | `verify-expansion-browser.cjs` | Salvataggi e compatibilità fra espansioni |
 | `verify-star-trek.cjs`, `verify-star-trek-review.cjs` | Preview, pool, import/export, mulligan, aggiornamento fra schede e regressioni |
 | `verify-draft-bots-browser.cjs` | Ripresa, completamento, esportazione e anteprime dei bot |
+| `verify-draft-assistant.cjs` | Confronto contestuale, costi ibridi e faccia principale, pick e annullamento, comuni, telefono, anteprime, sincronizzazione e salvataggi protetti |
+| `python -m unittest test_draft_assistant.py` | Coerenza del pool con il catalogo quando lo snapshot statistico è parziale o obsoleto, conservazione delle metriche presenti e assenza di win rate inventati |
 | `verify-prospects-browser.cjs` | Consultazione delle analisi per carta; controllo datato con conteggi fissi e scrittura di screenshot, vedere sotto |
 
 Ispezionare le route effettive negli script: conteggi storici di pagine o viewport non certificano espansioni aggiunte in seguito. Per ogni cambiamento visibile verificare le anteprime delle carte con hover, focus e tocco, anche nei risultati creati dopo il caricamento.
