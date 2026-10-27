@@ -8,6 +8,8 @@
   const isBasic = id => basicIds.includes(id);
   const basicCard = id => !!byId.get(id)?.basic||/\bBasic\b.*\bLand\b/.test(byId.get(id)?.type||'');
   const pageKey = document.body.dataset.page;
+  const catalog=pageKey==='gallery'?CatalogControls.create(DATA,EXPANSION_CONFIG.code):null;
+  if(catalog)catalog.mount($('catalog-extra-controls'),$('trk-order'));
   const modes = Object.keys(EXPANSION_CONFIG.events);
   const eventRules=(selectedMode=mode)=>EXPANSION_CONFIG.events[selectedMode];
   const handSize=()=>eventRules().mulligan.handSize;
@@ -86,6 +88,7 @@
   }
   function refresh() {
     const focus=captureFocus();renderDeck();
+    if($('catalog-onlypool')?.checked)renderCards();
     if($('trk-cards')){
       for(const row of $('trk-cards').querySelectorAll('.trk-actions')){
         const id=row.querySelector('[data-id]')?.dataset.id;
@@ -124,14 +127,14 @@
     let watch=false;
     try { watch=JSON.parse(localStorage.getItem(EXPANSION_CONFIG.storage.watch)||'[]').includes(c.id); } catch {}
     const legal=$('trk-legality')?.value;
-    return `<article class="trk-card"><h3>${ref(c)}</h3><div class="trk-meta">${esc(c.set)} #${esc(c.number)} · ${esc(c.mana||'Senza costo di mana')} · ${esc(c.rarity)} · MV ${c.cmc}</div><p>${esc(c.type)}</p><p class="trk-oracle">${esc(c.text)}</p><p><a href="${esc(c.url)}" target="_blank" rel="noopener" aria-label="Testo e dettagli: ${esc(c.name)}">Testo e dettagli ↗</a></p>${legal?`<p>Stato ${esc(legal)}: ${esc(c.legalities[legal]||'non disponibile')} (${esc(DATA.date||"data non disponibile")}).</p>`:''}${controls?actions(c):''}${pageKey==='discovery'?`<button data-op="watch" data-id="${c.id}" type="button" aria-pressed="${watch}">${watch?'Osservata':'Segui carta'}</button>`:''}${variants?`<details><summary>${c.prints.length} stampe nello snapshot</summary><p>La presenza nel catalogo non certifica l’apertura nel prodotto selezionato per questo evento. Trattamenti e idoneità vanno verificati nella guida ufficiale.</p><div class="trk-variants">${c.prints.map(p=>`<div>${p.image?`<img src="${esc(p.image)}" loading="lazy" alt="${esc(c.name)} #${esc(p.number)}">`:''}<p>#${esc(p.number)} · ${esc(p.finishes.join(', '))}</p></div>`).join('')}</div></details>`:''}</article>`;
+    return `<article class="trk-card"><h3>${ref(c)}</h3><div class="trk-meta">${esc(c.set)} #${esc(c.number)} · ${esc(c.mana||'Senza costo di mana')} · ${esc(c.rarity)} · MV ${c.cmc}</div><p>${esc(c.type)}</p>${catalog?catalog.summary(c):''}<p class="trk-oracle">${esc(c.text)}</p><p><a href="${esc(c.url)}" target="_blank" rel="noopener" aria-label="Testo e dettagli: ${esc(c.name)}">Testo e dettagli ↗</a></p>${legal?`<p>Stato ${esc(legal)}: ${esc(c.legalities[legal]||'non disponibile')} (${esc(DATA.date||"data non disponibile")}).</p>`:''}${controls?actions(c):''}${pageKey==='discovery'?`<button data-op="watch" data-id="${c.id}" type="button" aria-pressed="${watch}">${watch?'Osservata':'Segui carta'}</button>`:''}${variants?`<details><summary>${c.prints.length} stampe nello snapshot</summary><p>La presenza nel catalogo non certifica l’apertura nel prodotto selezionato per questo evento. Trattamenti e idoneità vanno verificati nella guida ufficiale.</p><div class="trk-variants">${c.prints.map(p=>`<div>${p.image?`<img src="${esc(p.image)}" loading="lazy" alt="${esc(c.name)} #${esc(p.number)}">`:''}<p>#${esc(p.number)} · ${esc(p.finishes.join(', '))}</p></div>`).join('')}</div></details>`:''}</article>`;
   }
   function filtered() {
     const q=($('trk-search')?.value||'').trim().toLocaleLowerCase();
     const color=$('trk-color')?.value, rarity=$('trk-rarity')?.value, set=$('trk-set')?.value, legal=$('trk-legality')?.value;
-    let items=DATA.cards.filter(c=>(!q||(c.name+' '+c.type+' '+c.text).toLocaleLowerCase().includes(q))&&(!rarity||c.rarity===rarity)&&(!set||c.set===set)&&(!color||(color==='C'?c.colors.length===0:color==='M'?c.colors.length>1:c.colors.includes(color)))&&(!legal||['legal','restricted'].includes(c.legalities[legal])));
+    let items=DATA.cards.filter(c=>(!catalog||catalog.extraMatches(c))&&(!$('catalog-onlypool')?.checked||state.pool[c.id])&&(!q||(c.name+' '+c.type+' '+c.text).toLocaleLowerCase().includes(q))&&(!rarity||c.rarity===rarity)&&(!set||c.set===set)&&(!color||(color==='C'?c.colors.length===0&&!c.land:color==='M'?c.colors.length>1:color==='L'?c.land:c.colors.includes(color)))&&(!legal||['legal','restricted'].includes(c.legalities[legal])));
     const order=$('trk-order')?.value;
-    items.sort((a,b)=>order==='name'?a.name.localeCompare(b.name):order==='cmc'?a.cmc-b.cmc||a.name.localeCompare(b.name):a.set.localeCompare(b.set)||Number(a.number)-Number(b.number));
+    items.sort((a,b)=>catalog?catalog.compareCards(a,b,order):order==='name'?a.name.localeCompare(b.name):order==='cmc'?a.cmc-b.cmc||a.name.localeCompare(b.name):a.set.localeCompare(b.set)||Number(a.number)-Number(b.number));
     return items;
   }
   function renderCards() {
@@ -205,7 +208,9 @@
   modeLinks();
   if($('trk-mode')){$('trk-mode').value=mode;$('trk-mode').addEventListener('change',()=>{mode=$('trk-mode').value;const url=new URL(location.href);url.searchParams.set('mode',mode);history.replaceState(null,'',url);modeLinks();load();clearHand();refresh();});}
   for(const id of ['trk-search','trk-color','trk-rarity','trk-set','trk-order','trk-legality'])$(id)?.addEventListener(id==='trk-search'?'input':'change',()=>{page=0;renderCards();});
-  $('trk-reset')?.addEventListener('click',()=>{for(const id of ['trk-search','trk-color','trk-rarity','trk-set','trk-legality'])if($(id))$(id).value='';$('trk-order').value='number';page=0;renderCards();});
+  $('catalog-onlypool')?.addEventListener('change',()=>{page=0;renderCards()});
+  if(catalog)for(const id of catalog.ids)$(id).addEventListener($(id).type==='number'?'input':'change',()=>{page=0;renderCards()});
+  $('trk-reset')?.addEventListener('click',()=>{for(const id of ['trk-search','trk-color','trk-rarity','trk-set','trk-legality'])if($(id))$(id).value='';if(catalog){catalog.reset();$('catalog-onlypool').checked=false}$('trk-order').value=catalog?'set':'number';page=0;renderCards();});
   $('trk-prev')?.addEventListener('click',()=>{page--;renderCards();});$('trk-next')?.addEventListener('click',()=>{page++;renderCards();});
   document.addEventListener('click',event=>{
     const button=event.target.closest('button[data-op]');

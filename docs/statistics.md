@@ -39,10 +39,15 @@ Nel catalogo, “Tier Draft Untapped” ordina per tier e poi alfabeticamente; l
 
 ## Filtri e ordinamenti del catalogo
 
-Il catalogo Atlas permette di ordinare per colore, valore di mana, tipo, recensioni, tier Draft e WR in mano Untapped, oltre agli ordinamenti editoriali già presenti. Per valore di mana, recensioni, tier e WR sono disponibili entrambi i versi; i dati mancanti seguono sempre quelli disponibili. I tier mantengono ordine alfabetico al loro interno.
+Il catalogo di ogni presentazione permette di ordinare per colore, valore di mana, tipo, recensioni, tier Draft e WR in mano Untapped, oltre agli ordinamenti editoriali già presenti. Per valore di mana, recensioni, tier e WR sono disponibili entrambi i versi; i dati mancanti seguono sempre quelli disponibili. I tier mantengono ordine alfabetico al loro interno.
 
 I filtri per colore, rarità, tipo, intervallo di valore di mana, stelle delle recensioni, tier e intervallo WR si combinano con ricerca, sentiment e pool personale. Recensioni e WR distinguono dati disponibili e assenti; il ranking distingue tier assegnati, campione insufficiente e carta non presente nella fonte. Se minimo e massimo si contraddicono, la selezione restituisce zero risultati; “Azzera filtri” ripristina l’intero catalogo.
 
 `build_expansion.catalog_data` espone la WR in mano del provider Untapped soltanto se la metrica è pubblica. I valori null e lo zero reale restano distinti. Le altre metriche, incluse quelle bloccate o sospette, non vengono usate come sostituti. Fonte, data, filtri e partite riportate accompagnano i dati; la data della WR non viene sostituita con quella del ranking. La vista non acquisisce nuovi snapshot né modifica le valutazioni o il motore Draft.
 
 Controlli specifici: `python -m unittest test_catalog_statistics.py` e `node verify-catalog-filters.cjs`, con le variabili browser descritte in [verification.md](verification.md). Il controllo browser verifica ordinamenti, filtri combinati, dati assenti, reset, anteprime e larghezze 1440, 768 e 390 px. Screenshot e rapporto vanno in `MTG_QA_DIR` o in una cartella temporanea.
+
+
+I cataloghi Atlas e Preview usano `catalog-controls.js` e `catalog-controls.css` per i controlli, la composizione dei filtri e gli ordinamenti. La presentazione conserva il proprio renderer delle schede e i propri salvataggi. I controlli senza misure utilizzabili restano visibili con la dicitura “dati assenti” e gli ordinamenti non applicabili sono disabilitati; una nota riepiloga le lacune. Le funzioni si attivano dai dati senza condizioni sul nome del set. Anche i filtri per valutazione Sealed, sentiment e solo pool personale sono presenti in entrambe le presentazioni.
+
+`node verify-shared-catalog.cjs` controlla il catalogo Preview senza recensioni, tier o WR, e verifica con una fixture che l’aggiunta di tali dati abiliti controlli e ordinamenti senza cambiamenti al template. Verifica anche zero reale, dati null, filtri combinati e anteprime su desktop, tablet e telefono. Eseguire insieme a `verify-catalog-filters.cjs` per la regressione Atlas.

@@ -282,7 +282,8 @@ def build(expansion, dest):
         if filename in written: raise ValueError('Due pagine scrivono lo stesso URL: '+filename)
         (dest/filename).write_text(content,encoding='utf-8');written.add(filename)
     # Runtime preview data keeps its existing DOM contract; the document is the same catalog.
-    preview = {**expansion.data['cards'],'cards':expansion.cards}
+    preview = {**expansion.data['cards'],'cards':expansion.cards,
+               'catalogWinRates':catalog_data(expansion)['catalogWinRates']}
     (dest/'expansion-data.js').write_text('const DATA='+js(preview)+';\n',encoding='utf-8')
     for pattern in ('*.css','*.js'):
         for path in ROOT.glob(pattern):
