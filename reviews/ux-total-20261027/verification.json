@@ -1,0 +1,168 @@
+{
+  "date": "2026-10-27",
+  "baseline": "607f6a3b30f3332e17b0f4710f72542f2adaa7c8",
+  "status": "Verifiche prepubblicazione concluse. La pubblicazione delle sole correzioni UX è stata autorizzata da Giovanni.",
+  "independentReview": {
+    "model": "claude-sonnet-5-5",
+    "rounds": 1,
+    "candidateFindings": 21,
+    "remainingInOtherLocalDraftWork": [
+      "UX-10",
+      "UX-11"
+    ],
+    "zeroFindingsClaimed": false
+  },
+  "tests": {
+    "offlineBuild": "pass, local links verified",
+    "dataTests": {
+      "total": 43,
+      "firstRunPassed": 42,
+      "copyExpectationUpdatedAndRerunPassed": 1,
+      "note": "Il primo run aveva un solo assert sulla precedente etichetta Guida Sealed. Aggiornato a Guida Sealed completa e rieseguito con esito positivo; gli altri 42 casi erano passati."
+    },
+    "responsive": {
+      "pages": 19,
+      "responsiveChecks": 95,
+      "widths": [
+        320,
+        360,
+        768,
+        1024,
+        1440
+      ],
+      "draft": [
+        {
+          "width": 360,
+          "stableCardWidth": 144,
+          "uniformPicksChecked": 14,
+          "completedPicks": 42,
+          "review": true
+        },
+        {
+          "width": 768,
+          "stableCardWidth": 155.5,
+          "uniformPicksChecked": 14,
+          "completedPicks": 42,
+          "review": true
+        },
+        {
+          "width": 1440,
+          "stableCardWidth": 168,
+          "uniformPicksChecked": 14,
+          "completedPicks": 42,
+          "review": true
+        }
+      ],
+      "reducedMotion": true,
+      "staticContentWithoutJS": true,
+      "errors": [],
+      "missing": []
+    },
+    "starTrekRoutes": "30 responsive checks and complete pool/deck flows passed",
+    "sharedCatalog": "Data-dependent controls, combined filters, and zero versus missing metrics passed",
+    "savedRecords": "Historical Sealed and incompatible Draft records preserved; missing feature states verified via public JSON",
+    "uxRegression": "Mode isolation, copy controls, keyboard pagination, Escape in nested preview/dialog, keyboard copy focus, hash navigation, mobile inert, Discovery context notes and watch persistence passed",
+    "allRouteAudit": {
+      "routes": 23,
+      "widths": [
+        1440,
+        390
+      ],
+      "browserCases": 49,
+      "errors": []
+    }
+  },
+  "metrics": [
+    {
+      "page": "star-trek/gallery",
+      "width": 1440,
+      "firstControlBefore": 645,
+      "firstControlAfter": 433,
+      "firstImageBefore": 1285,
+      "firstImageAfter": 950
+    },
+    {
+      "page": "star-trek/draft",
+      "width": 1440,
+      "firstControlBefore": 1184,
+      "firstControlAfter": 567,
+      "firstImageBefore": 2655,
+      "firstImageAfter": 2050
+    },
+    {
+      "page": "star-trek/pool",
+      "width": 1440,
+      "firstControlBefore": 595,
+      "firstControlAfter": 567,
+      "firstImageBefore": 1549,
+      "firstImageAfter": 1521
+    },
+    {
+      "page": "star-trek/simulator",
+      "width": 1440,
+      "firstControlBefore": 747,
+      "firstControlAfter": 626,
+      "firstImageBefore": 0,
+      "firstImageAfter": 0
+    },
+    {
+      "page": "star-trek/discovery",
+      "width": 1440,
+      "firstControlBefore": 716,
+      "firstControlAfter": 642,
+      "firstImageBefore": 995,
+      "firstImageAfter": 921
+    },
+    {
+      "page": "star-trek/gallery",
+      "width": 390,
+      "firstControlBefore": 710,
+      "firstControlAfter": 407,
+      "firstImageBefore": 1959,
+      "firstImageAfter": 1188
+    },
+    {
+      "page": "star-trek/draft",
+      "width": 390,
+      "firstControlBefore": 1694,
+      "firstControlAfter": 527,
+      "firstImageBefore": 4128,
+      "firstImageAfter": 2973
+    },
+    {
+      "page": "star-trek/pool",
+      "width": 390,
+      "firstControlBefore": 622,
+      "firstControlAfter": 527,
+      "firstImageBefore": 2207,
+      "firstImageAfter": 2112
+    },
+    {
+      "page": "star-trek/simulator",
+      "width": 390,
+      "firstControlBefore": 980,
+      "firstControlAfter": 638,
+      "firstImageBefore": 0,
+      "firstImageAfter": 0
+    },
+    {
+      "page": "star-trek/discovery",
+      "width": 390,
+      "firstControlBefore": 945,
+      "firstControlAfter": 845,
+      "firstImageBefore": 1420,
+      "firstImageAfter": 1320
+    }
+  ],
+  "excludedWorkingChanges": [
+    "docs/verification.md",
+    "draft-assistant.js",
+    "expansion_data.py",
+    "expansions/reality-fracture/sources.json",
+    "expansions/reality-fracture/statistics.json",
+    "site_navigation.py",
+    "templates/atlas/draft.html",
+    "verify-draft-assistant.cjs"
+  ],
+  "knownBaselineReviewFixture": "verify-expansion-review.cjs has a pre-existing hardcoded Standard count 1 versus actual 10; recorded in the prior Star Trek verification, not rerun as a claim of success."
+}

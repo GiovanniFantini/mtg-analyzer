@@ -133,7 +133,7 @@ class ExpansionTests(unittest.TestCase):
 
     def test_missing_sections_show_their_notice_on_host_page(self):
         e=self.fixture(lambda m,d:d['guides'].pop('sealed'))
-        self.assertIn('Guida Sealed: non disponibile',availability_notice(e,'gallery'))
+        self.assertIn('Guida Sealed completa: non disponibile',availability_notice(e,'gallery'))
 
     def test_disabled_atlas_tools_can_render_their_notice(self):
         def mutate(m,d):

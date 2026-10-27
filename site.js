@@ -9,6 +9,8 @@
     document.body.classList.toggle('site-menu-open', open);
     backdrop.hidden = !open;
     sidebar.inert = mobile.matches && !open;
+    const pageBody=document.querySelector('.site-body');
+    if(pageBody)pageBody.inert=mobile.matches&&open;
   };
   toggle.addEventListener('click', () => {
     const open = toggle.getAttribute('aria-expanded') !== 'true';
@@ -60,8 +62,10 @@
     });
     document.querySelector('#empty').hidden = n > 0;
   });
+
   const top = document.querySelector('.site-to-top');
   const updateTop = () => { top.hidden = scrollY < 650; };
+  top.addEventListener('click',event=>{event.preventDefault();window.scrollTo({top:0});document.querySelector('main').focus({preventScroll:true});});
   addEventListener('scroll', updateTop, {passive:true}); updateTop();
 
   // Prepare offscreen content only; never dim content already painted in view.

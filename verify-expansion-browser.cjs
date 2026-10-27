@@ -38,13 +38,14 @@ const base=process.env.MTG_SITE_URL||'http://127.0.0.1:8871/';
   await page.locator('#start').click();
   assert.deepEqual(await page.evaluate(()=>JSON.parse(localStorage.getItem('mtg-draft-table-fra-v1'))),record);
   await page.goto(base+'sets/star-trek/draft.html');
+  await page.locator('.feature-availability>summary').click();
   assert.match(await page.locator('.feature-availability').innerText(),/Statistiche.*non disponibile/s);
   const runtime=await (await context.request.get(base+'sets/star-trek/data/runtime.json')).json();
   assert.equal(runtime.events.picktwo.picksPerTurn,2);
   assert.equal(runtime.events.picktwo.seats,4);
   assert.equal(runtime.availability.draftTable.available,false);
   await page.goto(base+'sets/star-trek/draft-engine.html');
-  assert.match(await page.locator('main').innerText(),/Profilo di collazione/);
+  assert.match(await page.locator('main').innerText(),/dati ancora incompleti/);assert.ok(runtime.availability.draftTable.missing.some(reason=>reason.includes('Profilo di collazione')));
   assert.deepEqual(errors,[]);
   console.log('PASS: historical Sealed saves preserved; incompatible Draft save preserved; missing-feature pages and public JSON; no JavaScript errors.');
  }finally{await browser.close();}

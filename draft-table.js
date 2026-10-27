@@ -5,7 +5,7 @@
  const data=rootData.formats?.[eventId]||rootData,E=DraftEngine,$=id=>document.getElementById(id);
  const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
  $('format').innerHTML=Object.entries(rootData.formats||{draft:rootData}).map(([id,f])=>`<option value="${esc(id)}">${esc(f.name)}</option>`).join('')+(rootData.unavailableFormats||[]).map(f=>`<option disabled>${esc(f.name)}: non disponibile</option>`).join('');
- const unavailable=document.createElement('div');unavailable.id='unavailable-formats';unavailable.innerHTML=(rootData.unavailableFormats||[]).map(f=>`<p>${esc(f.name)}: non disponibile. ${esc(f.missing.join(' '))}</p>`).join('');$('format').closest('.settings').after(unavailable);$('format').setAttribute('aria-describedby',unavailable.id);
+ const unavailable=document.createElement('div');unavailable.id='unavailable-formats';unavailable.innerHTML=(rootData.unavailableFormats||[]).length?`<details><summary>Altri formati non disponibili</summary>${rootData.unavailableFormats.map(f=>`<p>${esc(f.name)}: non disponibile.</p>`).join('')}</details>`:'';$('format').closest('.settings').after(unavailable);$('format').setAttribute('aria-describedby',unavailable.id);
  $('format').value=rootData.formats?.[eventId]?eventId:(rootData.defaultEvent||'draft');
  $('format').addEventListener('change',()=>{const url=new URL(location.href);url.searchParams.set('event',$('format').value);location.href=url.href;});
 

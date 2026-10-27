@@ -39,7 +39,7 @@ function mount(target,order){
  for(const [type,label] of Object.entries(CATALOG_TYPES))if(DATA.cards.some(c=>cardTypes(c).includes(type))){const option=document.createElement('option');option.value=type;option.textContent=label;$('catalog-type').append(option)}
  for(const tier of TIERS){const option=document.createElement('option');option.value=tier;option.textContent='Tier '+tier;option.disabled=!DATA.cards.some(c=>c.untappedPickOrder?.tier===tier);$('catalog-tier').append(option)}
  const availability={untapped:hasRank,'untapped-reverse':hasRank,wr:hasWR,'wr-asc':hasWR,community:hasReviews,'community-asc':hasReviews,score:hasScore,sentiment:DATA.cards.some(c=>c.sentiment?.index!=null),combo:hasCombos};
- for(const [key,available] of Object.entries(availability)){const option=order.querySelector(`[value="${key}"]`);option.disabled=!available;if(!available)option.textContent+=' (dati assenti)'}
+ for(const [key,available] of Object.entries(availability)){const option=order.querySelector(`[value="${key}"]`);option.disabled=!available;option.hidden=!available;if(!available)option.textContent+=' (dati assenti)'}
  for(const id of ['review-min','review-max'])$(id).disabled=!hasReviews;
  for(const id of ['wr-min','wr-max'])$(id).disabled=!hasWR;
  $('catalog-tier').querySelector('[value="ranked"]').disabled=!hasRank;
@@ -52,8 +52,23 @@ function mount(target,order){
  $('wr-data').querySelector('[value="present"]').disabled=!hasWR;
  const missing=[!hasReviews&&'recensioni',!hasRank&&'ranking Draft',!hasWR&&'WR in mano',!hasScore&&'valutazioni Sealed',!hasSentiment&&'sentiment'].filter(Boolean);
  const status=document.createElement('p');status.id='catalog-data-status';status.className='catalog-data-status';status.textContent=missing.length?'Dati non disponibili: '+missing.join(', ')+'. Le valutazioni mancanti restano N/D.':'';target.append(status);
+ // A catalog already inside a filter panel needs no second disclosure level.
+ if(!target.closest('details')){
+  const filters=target.querySelector('.catalog-extra-filters'),core=document.createElement('div');
+  core.className='catalog-core-filters';
+  core.append($('catalog-type').closest('label'),$('mana-min').closest('fieldset'));
+  const advanced=document.createElement('details'),summary=document.createElement('summary');
+  advanced.className='catalog-advanced-filters';summary.textContent='Valutazioni, ranking e WR';
+  advanced.append(summary,filters);target.replaceChildren(core,advanced,status);
+  if(!hasScore&&!hasCombos)$('rating').closest('label').hidden=true;
+  if(!hasSentiment)$('catalog-sentiment').closest('label').hidden=true;
+  if(!hasReviews)$('review-min').closest('fieldset').hidden=true;
+  if(!DATA.cards.some(c=>c.untappedPickOrder))$('catalog-tier').closest('label').hidden=true;
+  if(!hasWR)$('wr-filters').hidden=true;
+  advanced.hidden=[...filters.children].every(node=>node.hidden);
+ }
  const requested=new URLSearchParams(location.search).get('order');if(requested&&[...order.options].some(o=>o.value===requested&&!o.disabled))order.value=requested;
 }
-function summary(c){const rank=c.untappedPickOrder,row=wrSource.cards[c.id],wr=winRate(c);return `<p class="catalog-metrics">Recensioni: ${c.community==null?'N/D':esc(c.community)+' / 5'}<br>Ranking Draft: ${rank?.tier?'tier '+esc(rank.tier):rank?.status==='low_match_volume'?'campione insufficiente':'N/D'}<br>WR in mano: ${wr==null?'N/D':wr.toLocaleString('it-IT')+'%'}${rank?.retrieved?'<br>Ranking: '+esc(rank.retrieved):''}${row?'<br><a href="'+esc(row.url)+'" target="_blank" rel="noopener">Untapped, '+esc(wrSource.retrieved)+'</a>':''}</p>`}
+function summary(c){if(!hasReviews&&!hasRank&&!hasWR)return '';const rank=c.untappedPickOrder,row=wrSource.cards[c.id],wr=winRate(c);return `<p class="catalog-metrics">Recensioni: ${c.community==null?'N/D':esc(c.community)+' / 5'}<br>Ranking Draft: ${rank?.tier?'tier '+esc(rank.tier):rank?.status==='low_match_volume'?'campione insufficiente':'N/D'}<br>WR in mano: ${wr==null?'N/D':wr.toLocaleString('it-IT')+'%'}${rank?.retrieved?'<br>Ranking: '+esc(rank.retrieved):''}${row?'<br><a href="'+esc(row.url)+'" target="_blank" rel="noopener">Untapped, '+esc(wrSource.retrieved)+'</a>':''}</p>`}
 return {mount,ids,extraMatches,compareCards,winRate,cardTypes,wrSource,hasRank,hasWR,summary,reset(){for(const id of ids)$(id).value=''}};
 }};

@@ -52,3 +52,6 @@ body.site-layout{color-scheme:light;-webkit-font-smoothing:antialiased;backgroun
 :root{color-scheme:light}
 .site-page-combos .intro{max-width:none}
 @media print{body.site-layout,.site-layout .site-hero,.site-layout .report-section,.site-layout .trk-panel{background:white;color:#183744;box-shadow:none}.site-layout .site-hero *{color:#183744!important}.site-enter{animation:none}}
+
+/* Keep technical availability details after the user task. */
+.site-layout .feature-availability{margin:24px 0 12px;font-size:13px;padding:12px 16px;border:1px solid var(--site-line);border-radius:6px;background:transparent}.feature-availability>summary{cursor:pointer;min-height:24px}.feature-availability li{margin-block:8px}

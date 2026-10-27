@@ -1,0 +1,172 @@
+{
+  "baseline": {
+    "head": "607f6a3b30f3332e17b0f4710f72542f2adaa7c8",
+    "scope": "Home e tutte le route FRA e TRK, desktop, telefono, menu, dialoghi, gerarchia e comandi",
+    "workingChanges": "Escluse dalla baseline. Conservate nella cartella principale."
+  },
+  "independentReviewModel": [
+    "claude-sonnet-5-5"
+  ],
+  "reviewerToolsEnabled": false,
+  "scope": "Review di tutte le route della versione pubblicata e correzioni UI sul relativo checkout isolato. Modifiche di altre attività escluse.",
+  "decisions": [
+    {
+      "id": "UX-1",
+      "priority": "P1",
+      "finding": "Elenco di funzioni non disponibili prima del titolo, scritto come backlog e con una chiave interna visibile",
+      "decision": "confermato_corretto",
+      "reason": "Elenco tecnico spostato dopo lo strumento, chiuso in un dettaglio; nessuna chiave interna nella UI. Prerequisiti originali conservati in availability.json."
+    },
+    {
+      "id": "UX-2",
+      "priority": "P2",
+      "finding": "Avvisi di indisponibilità contraddetti dal contenuto della stessa pagina e ripetuti più volte",
+      "decision": "parzialmente_fondato_corretto",
+      "reason": "Chiarita la distinzione tra catalogo interattivo/statistiche e contenuti editoriali consultabili. Non introdotto uno stato nuovo nel contratto dei dati per una modifica UX."
+    },
+    {
+      "id": "UX-3",
+      "priority": "P1",
+      "finding": "Pagine Star Trek: timbro di aggiornamento al posto della descrizione, banner ripetuto e novità datate in primo piano",
+      "decision": "confermato_corretto",
+      "reason": "Descrizioni operative, stato catalogo compatto solo dove pertinente; rimosso il riquadro Novità del 22 ottobre dalla panoramica. Cronologia e fonti restano nei riferimenti."
+    },
+    {
+      "id": "UX-4",
+      "priority": "P2",
+      "finding": "FRA: blocchi «Aggiornamento» e date nei titoli prima dei contenuti d'uso, con date contraddittorie",
+      "decision": "confermato_corretto_con_rinvio_UX11",
+      "reason": "Guida Sealed prima degli aggiornamenti; titoli orientati ai piani; eliminate date generiche obsolete dalla panoramica. Il tema Draft pubblicato è registrato in UX-11."
+    },
+    {
+      "id": "UX-5",
+      "priority": "P1",
+      "finding": "Catalogo FRA: ogni scheda ripete metadati datati e documentazione metodologica già presenti nelle note di pagina",
+      "decision": "confermato_corretto",
+      "reason": "Preview compatte con tier, WR e sintesi; metadati e confronto delle fonti conservati nel dialogo e nelle note pertinenti."
+    },
+    {
+      "id": "UX-6",
+      "priority": "P2",
+      "finding": "Catalogo FRA: tre controlli per aprire lo stesso dialogo e fino a otto comandi per scheda",
+      "decision": "parzialmente_fondato_corretto",
+      "reason": "Rimosso il terzo pulsante che apriva lo stesso dialogo. Immagine e nome restano accessibili: sono due affordance utili, non due funzionalità diverse. Tolta la didascalia ripetuta sotto ogni immagine."
+    },
+    {
+      "id": "UX-7",
+      "priority": "P2",
+      "finding": "Star Trek: quattro pulsanti Pool e Mazzo su ogni scheda, ripetuti nel banco di costruzione",
+      "decision": "confermato_corretto",
+      "reason": "L’elenco registra copie del pool; i comandi Mazzo compaiono solo nel banco, anche dopo aggiornamenti dinamici. Nessun dettaglio stampe per una singola stampa."
+    },
+    {
+      "id": "UX-8",
+      "priority": "P2",
+      "finding": "Catalogo Star Trek: tredici filtri e ordinamenti per dati che non esistono, più tre righe N/D per ogni scheda",
+      "decision": "confermato_corretto",
+      "reason": "Campi e ordinamenti senza dati nascosti, controlli mantenuti nel contratto DOM; tipo e mana restano disponibili. Una nota di copertura sostituisce le righe N/D ripetute in ogni carta."
+    },
+    {
+      "id": "UX-9",
+      "priority": "P2",
+      "finding": "Star Trek: «Pool e mazzo Sealed» e «Draft e pick» sono lo stesso banco, con modalità che si trascina da una pagina all'altra",
+      "decision": "confermato_corretto",
+      "reason": "Sealed apre Sealed; Draft apre Draft/Pick-Two. La barra laterale non eredita la modalità. Il collegamento dal catalogo mantiene invece il contesto esplicito. Chiavi e record invariati."
+    },
+    {
+      "id": "UX-10",
+      "priority": "P2",
+      "finding": "Draft FRA: due ricerche per aggiungere al pool e tre nomi diversi per la stessa azione",
+      "decision": "confermato_sulla_baseline_altra_attivita_locale",
+      "reason": "La ricerca rapida e la gestione del pool hanno contesti parzialmente diversi. Nella versione pubblicata risultano mescolate. Il template locale di un’altra attività le separa già in viste: preservato, escluso da questo diff."
+    },
+    {
+      "id": "UX-11",
+      "priority": "P2",
+      "finding": "Draft FRA: l'assistente precede il titolo, un'etichetta per telefono su desktop e l'avviso sui tornei nascosto",
+      "decision": "confermato_sulla_baseline_altra_attivita_locale",
+      "reason": "Titolo, navigazione per attività e assistente sono già riorganizzati nelle modifiche locali preesistenti di templates/atlas/draft.html. Non incluse automaticamente; resta da verificare l’avviso sui tornei in quella revisione."
+    },
+    {
+      "id": "UX-12",
+      "priority": "P2",
+      "finding": "Dialogo scheda FRA: analisi di prezzo e legalità prima del giudizio Limited, blocchi duplicati e nome accessibile generico",
+      "decision": "confermato_corretto",
+      "reason": "Giudizio Limited prima; formati e prezzi in un dettaglio; dialogo denominato dalla carta. Escape chiude prima l’anteprima interna, poi il dialogo. Flusso verificato."
+    },
+    {
+      "id": "UX-13",
+      "priority": "P2",
+      "finding": "Quattro viste FRA sullo stesso documento a hash: scroll non riportato in alto, titolo documento fisso",
+      "decision": "ipotesi_verificata_e_corretta",
+      "reason": "Titolo e focus seguono la vista a hash; la navigazione riparte dall’inizio. Torna all’inizio non modifica più l’hash e la vista sopravvive al reload."
+    },
+    {
+      "id": "UX-14",
+      "priority": "P2",
+      "finding": "Home: ambito dei tre compiti ambiguo e più link verso le stesse destinazioni",
+      "decision": "parzialmente_fondato_corretto",
+      "reason": "Ambito Reality Fracture esplicito nel titolo dei compiti della home. Collegamenti dei set derivati dai nomi reali dei manifest. Rimossi timbri generici non attendibili."
+    },
+    {
+      "id": "UX-15",
+      "priority": "P2",
+      "finding": "Tavolo Draft con bot non è raggiungibile da home e panoramica FRA; su Star Trek è in menu come pagina vuota",
+      "decision": "parzialmente_fondato_corretto",
+      "reason": "Aggiunto il tavolo bot alla panoramica Atlas. Conservati i collegamenti alle pagine non disponibili: il contratto richiede le stesse route per i set, con stato onesto e collegamento al catalogo. Nessuna promessa di arrivo."
+    },
+    {
+      "id": "UX-16",
+      "priority": "P3",
+      "finding": "Panoramica Star Trek: nove tessere equivalenti con eyebrow che ripete il titolo e invito identico",
+      "decision": "confermato_corretto",
+      "reason": "Panoramica Preview suddivisa in Limited, esplorazione e riferimenti, con inviti specifici."
+    },
+    {
+      "id": "UX-17",
+      "priority": "P2",
+      "finding": "Star Trek: elenchi da dodici carte con paginatore solo in fondo e nessuna gestione di scroll o focus",
+      "decision": "confermato_corretto",
+      "reason": "Il cambio pagina porta conteggio e focus all’inizio del nuovo elenco. Non aggiunti pulsanti duplicati in alto."
+    },
+    {
+      "id": "UX-18",
+      "priority": "P3",
+      "finding": "Etichette diverse per strumenti equivalenti tra i due set e per lo stesso modulo",
+      "decision": "parzialmente_fondato_corretto",
+      "reason": "Uniformato Segui carta. Conservate le differenze dei nomi per funzioni effettivamente diverse: simulare buste e provare una mano non sono equivalenti."
+    },
+    {
+      "id": "UX-19",
+      "priority": "P3",
+      "finding": "Controlli flottanti e menu mobile: un solo overlay per pagina, ma menu quasi modale senza isolamento del resto",
+      "decision": "ipotesi_verificata_e_corretta",
+      "reason": "Un solo controllo flottante, non duplicato. Conservato perché utile nelle guide lunghe. Menu mobile isola il contenuto con inert; Escape ripristina l’interazione."
+    },
+    {
+      "id": "UX-20",
+      "priority": "P3",
+      "finding": "Catalogo FRA: scorciatoie che duplicano i filtri, reset silenzioso e focus perso dopo + o −",
+      "decision": "ipotesi_verificata_e_corretta",
+      "reason": "La scorciatoia sentiment conserva gli altri filtri. Dopo + e meno il focus rimane sul controllo o sul conteggio quando la scheda scompare."
+    },
+    {
+      "id": "UX-21",
+      "priority": "P3",
+      "finding": "Discovery FRA: la stessa avvertenza sul campione ripetuta su ogni scheda",
+      "decision": "confermato_corretto",
+      "reason": "Cautela e finestra del campione mostrate una volta sopra i risultati pertinenti. Evidenze complete e link conservati nelle singole voci JSON, senza cambiare i risultati."
+    }
+  ],
+  "notClaimed": "Non è una dichiarazione di zero rilievi. UX-10 e UX-11 restano da integrare e verificare con la revisione Draft già in lavorazione locale.",
+  "references": [
+    {
+      "title": "Progressive Disclosure, Nielsen Norman Group",
+      "url": "https://www.nngroup.com/articles/progressive-disclosure/"
+    },
+    {
+      "title": "Modal Dialog Pattern, W3C WAI APG",
+      "url": "https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/"
+    }
+  ]
+}

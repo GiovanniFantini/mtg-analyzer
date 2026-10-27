@@ -1,0 +1,433 @@
+{
+  "findings": [
+    {
+      "id": "UX-1",
+      "priority": "P1",
+      "title": "Elenco di funzioni non disponibili prima del titolo, scritto come backlog e con una chiave interna visibile",
+      "files": [
+        "build_expansion.py (availability_notice, render_page)",
+        "site_navigation.py (unavailable_page)",
+        "templates/atlas/draft-engine.html",
+        "dati availability delle espansioni"
+      ],
+      "pages": [
+        "sets/star-trek/fonti.html",
+        "sets/star-trek/draft.html",
+        "sets/star-trek/catalogo.html",
+        "sets/star-trek/analisi.html",
+        "sets/star-trek/simulatore.html",
+        "sets/star-trek/draft-engine.html",
+        "sets/reality-fracture/Reality-Fracture-Analisi.html",
+        "sets/reality-fracture/Reality-Fracture-Draft-Engine.html"
+      ],
+      "scenario": "Chi apre Draft e pick di Star Trek per registrare un pick legge prima otto righe «non disponibile. Manca: ...», poi titolo e strumento. Su Fonti e aggiornamenti le righe sono tredici. È molto probabilmente il «diario di bordo» che Giovanni vede su ogni pagina.",
+      "evidence": "Prova DOM: l'apertura di draft.html inizia con «Guida Draft e archetipi: non disponibile. Manca: Guida Draft.» e prosegue per otto voci. fonti.html inizia con tredici voci, tra cui «Guida Sealed: non disponibile. Manca: Guida Sealed in guides.fragments.gallery.strategy.», cioè un percorso interno del codice. Tavolo Draft con bot elenca come mancanti «Risoluzione delle probabilità pubblicate come <1% e verifica della ricetta» e «Corrispondenza fra stampe della busta Draft e carte del catalogo». Sul draft engine FRA, nel pannello di setup, compare la stessa frase per Star Trek. Primo controllo utile (firstInteractiveY): 1183.9 px su desktop e 1694.2 px su telefono per ST Draft, contro 595 e 622 px per ST Sealed. Deduzione dai sorgenti: availability_notice() viene inserito con re.sub subito dopo il tag main, quindi prima dell'h1. Per page=='method' la funzione belongs() restituisce True per ogni funzione.",
+      "impact": "Il compito principale finisce sotto una lista di prerequisiti tecnici che l'utente non può risolvere. La chiave interna e il gergo di collazione danno un'impressione di cantiere. Su telefono servono due schermate di scroll prima del primo comando.",
+      "suggestedFix": "In build_expansion.render_page inserire l'avviso dopo il blocco intro (h1 e paragrafo), non subito dopo main. Renderlo come un solo details chiuso, «Funzioni non ancora disponibili (N)», con le sole etichette e un link a Fonti. I prerequisiti tecnici restano in data/availability.json (già emesso) e, se utili, in un details dentro «Stato dei contenuti» di fonti.html. Sostituire il testo con la chiave interna con una frase leggibile («Guida Sealed non ancora disponibile»). Nel draft engine FRA ridurre unavailableFormats a una riga «Star Trek: non ancora disponibile». Nessun dato viene inventato: le funzioni restano segnalate come assenti.",
+      "certainty": "confirmed"
+    },
+    {
+      "id": "UX-2",
+      "priority": "P2",
+      "title": "Avvisi di indisponibilità contraddetti dal contenuto della stessa pagina e ripetuti più volte",
+      "files": [
+        "build_expansion.py (availability_notice)",
+        "dati availability (flag combos, draftStatistics)",
+        "templates/preview/analysis.html (analysis.panel-0)",
+        "templates/preview/combos.html (combos.examples)"
+      ],
+      "pages": [
+        "sets/star-trek/sinergie.html",
+        "sets/star-trek/draft.html",
+        "sets/star-trek/analisi.html",
+        "sets/star-trek/fonti.html"
+      ],
+      "scenario": "Chi legge «Combo e sinergie: non disponibile» in cima a Sinergie e sequenze non capisce se la pagina sotto vada considerata affidabile. Chi cerca il valore del box trova la stessa assenza spiegata tre volte.",
+      "evidence": "Prova DOM: sinergie.html apre con «Combo e sinergie: non disponibile. Manca: Combo e sequenze documentate.» e poi presenta «Sinergie documentate dalle carte» con tre sequenze e «Dieci piani di colore da provare». draft.html dichiara «Statistiche e confronto Draft: non disponibile» mentre offre «Confronta due carte». analisi.html mostra l'avviso sul ricavo atteso in testa, poi «Valore atteso e probabilità di profitto: non disponibili...» nel pannello, e fonti.html ripete «il valore atteso del box resta non calcolabile».",
+      "impact": "Lo stato della funzione è incerto (assente o parziale) e il messaggio è duplicato. L'utente perde fiducia anche nelle parti valide.",
+      "suggestedFix": "Introdurre lo stato «parziale» nel flag availability e mostrare l'avviso solo per le funzioni totalmente assenti. Per quelle parziali basta un'etichetta breve nel titolo della sezione («esempi testuali, non catalogo completo»). Dove un pannello spiega già l'assenza, non emettere anche l'avviso in testa (analysis.panel-0 o availability_notice, non entrambi). Lasciare l'elenco completo solo su fonti.html.",
+      "certainty": "confirmed"
+    },
+    {
+      "id": "UX-3",
+      "priority": "P1",
+      "title": "Pagine Star Trek: timbro di aggiornamento al posto della descrizione, banner ripetuto e novità datate in primo piano",
+      "files": [
+        "templates/preview/gallery.html",
+        "templates/preview/draft.html",
+        "templates/preview/pool.html",
+        "templates/preview/simulator.html",
+        "templates/preview/combos.html",
+        "templates/preview/analysis.html",
+        "templates/preview/discovery.html",
+        "templates/preview/rules.html",
+        "templates/preview/method.html",
+        "templates/preview/set.html",
+        "frammenti editoriali star-trek (*.copy-0, set.hero)"
+      ],
+      "pages": [
+        "tutte le route sets/star-trek/*",
+        "sets/star-trek/index.html"
+      ],
+      "scenario": "In ogni pagina TRK lo spazio dopo il titolo, che dovrebbe dire a cosa serve lo strumento, contiene solo una data. Subito sotto c'è un banner identico.",
+      "evidence": "Prova DOM: il paragrafo introduttivo è la stessa stringa «Anteprima aggiornata al 27 ottobre 2026.» in nove pagine (catalogo, draft, sealed, simulatore, sinergie, analisi, discovery, regole, fonti). Segue sempre «Catalogo parziale · I dati mancanti non sono valutazioni negative. Disponibilità e fonti», anche su regole.html, dove non cambia nessuna scelta, e su fonti.html, dove il link punta alla pagina stessa (deduzione dai template: href=fonti.html). La panoramica ST ha un blocco «Novità del 22 ottobre: 30 carte in più nel catalogo. Presentazioni Commander dal 26 al 29 ottobre e Magic Spotlight Limited a Lille...». Il blocco è datato 22 ottobre su una pagina datata 27 ottobre, e fonti.html parla di «55 carte in più dello snapshot del 22 ottobre». fonti.html contiene anche uno storico di presentazioni Commander, disponibilità europea e intervista di design.",
+      "impact": "La pagina non spiega il proprio scopo, mentre le novità, che non guidano pick o costruzione, occupano la zona più visibile. La cifra stantia (30 contro 55) mina la credibilità della data.",
+      "suggestedFix": "Sostituire i copy-0 con una frase d'uso già presente nel sito (ad esempio la descrizione della tessera sulla panoramica: «Registra i pick, confronta le carte e costruisci il mazzo»). Mostrare la data una sola volta, dentro il banner, come «Dati al 27 ottobre 2026». Mostrare il banner «Catalogo parziale» solo su catalogo, draft, sealed, simulatore e discovery, e togliere il link a sé stesso su fonti.html. Sulla panoramica tenere una riga con Prerelease 6 novembre e uscita 13 novembre, che incide sulle scelte, e sostituire «Novità del 22 ottobre» con un link a Fonti e aggiornamenti. I conteggi vanno derivati dai dati, non scritti a mano. Le notizie restano su fonti.html in un details «Aggiornamenti», senza perdere contenuti.",
+      "certainty": "confirmed"
+    },
+    {
+      "id": "UX-4",
+      "priority": "P2",
+      "title": "FRA: blocchi «Aggiornamento» e date nei titoli prima dei contenuti d'uso, con date contraddittorie",
+      "files": [
+        "templates/atlas/gallery.html (gallery.updates, ordine delle sezioni, openWorkspace)",
+        "templates/atlas/combos.html (combos.guideLinks, combos.copy-0)",
+        "templates/atlas/draft.html (eyebrow con draftDate)",
+        "templates/atlas/set.html (set.copy-2, set.copy-3, set.copy-4)",
+        "home-template.html"
+      ],
+      "pages": [
+        "Reality-Fracture-Sealed.html#strategy",
+        "Reality-Fracture-Combo.html",
+        "Reality-Fracture-Draft.html",
+        "sets/reality-fracture/index.html",
+        "index.html"
+      ],
+      "scenario": "Chi apre «Guida Sealed» vuole il piano di costruzione. Trova prima un blocco datato come un diario, e l'h1 arriva più in basso.",
+      "evidence": "Prova DOM: la pagina #strategy inizia con «AGGIORNAMENTO · 22 SETTEMBRE 2026 / Strategie promettenti, punti deboli e contromosse.». L'h1 «Partirei da un midrange di due colori.» compare solo dopo la tabella dei piani, la carta spiegata Proft e le finestre di interazione. Combo apre con «Aggiornamento del 22 settembre: nella guida trovi strategie...» tra introduzione e filtri. Draft ha l'eyebrow «REALITY FRACTURE / RISULTATI E DECISIONI / 16 OTTOBRE 2026». La panoramica FRA mostra «Contenuti aggiornati al 18 ottobre 2026» e sotto le tessere «Dati e guida del 16 ottobre 2026» e «Ricerca del 18 ottobre 2026». Il catalogo però riporta ranking Untapped al 2026-10-27 e Discovery «22 OTTOBRE 2026», quindi la data in evidenza è smentita dalle pagine. Deduzione dai sorgenti: in openWorkspace la sezione updates viene mostrata insieme a strategy e, nel DOM, la precede.",
+      "impact": "Gerarchia invertita nella guida strategica. La data dichiarata «ultimo aggiornamento» è inaffidabile, e le date a livello di pagina fanno concorrenza al contenuto.",
+      "suggestedFix": "Nel template gallery.html mettere gallery.strategy prima di gallery.updates, così l'h1 e la guida di base aprono la pagina. La tabella dei piani (contenuto strategico) resta intera, con intestazione «Piani e contromosse» e la data come didascalia piccola. In combos.copy-0 togliere il prefisso «Aggiornamento del 22 settembre:» e lasciare una riga «Guida ai piani e alle contromosse». Togliere draftDate dall'eyebrow di Draft: le date degli snapshot sono già nelle sezioni di statistica. Nella home e nella panoramica derivare «ultimo aggiornamento» dalla data più recente delle sezioni, oppure eliminarlo e tenere le date solo nelle singole sezioni.",
+      "certainty": "confirmed"
+    },
+    {
+      "id": "UX-5",
+      "priority": "P1",
+      "title": "Catalogo FRA: ogni scheda ripete metadati datati e documentazione metodologica già presenti nelle note di pagina",
+      "files": [
+        "templates/atlas/gallery.html (untappedRank, untappedWinRate, preview, body)",
+        "sentiment-ui.js (Sentiment.note, non fornito)",
+        "catalog-controls.js (summary)"
+      ],
+      "pages": [
+        "Reality-Fracture-Sealed.html (catalogo)"
+      ],
+      "scenario": "Chi scorre le 24 schede visibili legge quattro sistemi di valutazione (recensioni, Sealed, tier Untapped con WR, sentiment) e, per ciascuno, fonti, filtri e date identiche.",
+      "evidence": "Prova DOM: ogni scheda include «Draft Untapped: tier D+ / Premier Draft ... In Hand WR · 2026-10-27», identico per tutte, e «2026-10-22 · 10.000 partite riportate». Le schede con sentiment aggiungono «Editoriale · Preliminare · 1 documento», «Come leggere questo indice», «Fonti del sentiment» e «Confronto delle fonti (n)». «1 autore · preliminare» compare due volte per scheda. Generous Revival, senza dati, mostra un paragrafo: «Indice n.d.: nessuna sintesi qualitativa disponibile nella raccolta del 25 settembre 2026...». Le stesse informazioni su filtri e date esistono già nel details di pagina «Fonti e date di ranking e win rate» (untapped-ranking-note). Il testo «Tocca la carta per ingrandire» è ripetuto sotto ogni immagine.",
+      "impact": "Il sistema funge da diario in ogni scheda. Il segnale utile (tier, WR, sentiment in una riga) si perde in testo identico ripetuto, e la pagina arriva a 9992 px su desktop e 18469 px su telefono con sole 24 schede.",
+      "suggestedFix": "Nella griglia mostrare il tier come «Tier D+» e il WR come «WR 50,6% (10.000 partite)» senza riga di filtri né data: quelle restano nella nota di pagina e nel dialogo. Per il sentiment usare nella griglia solo badge, indice e frase breve; spostare «Come leggere questo indice», «Fonti del sentiment» e «Confronto delle fonti» nel solo dialogo, con una variante compact di Sentiment.note. Se manca la sintesi, nella griglia non scrivere nulla (il caveat «n.d. non significa carta debole» è già in pagina). Togliere la didascalia «Tocca la carta per ingrandire» e metterla una volta nella catalog-note. Nessun dato viene eliminato: cambia solo il livello di visualizzazione. Il file sentiment-ui.js non è stato fornito: la parte sul sentiment è dedotta dal testo del DOM.",
+      "certainty": "confirmed"
+    },
+    {
+      "id": "UX-6",
+      "priority": "P2",
+      "title": "Catalogo FRA: tre controlli per aprire lo stesso dialogo e fino a otto comandi per scheda",
+      "files": [
+        "templates/atlas/gallery.html (figure.imagebutton, card-title, card-actions)",
+        "sentiment-ui.js"
+      ],
+      "pages": [
+        "Reality-Fracture-Sealed.html (catalogo, desktop e telefono)"
+      ],
+      "scenario": "Un utente da tastiera che percorre il catalogo si ferma tre volte su ciascuna scheda prima del pulsante utile, più i tre disclosure del sentiment.",
+      "evidence": "Prova DOM: per Academic Ascent l'elenco comandi è «(immagine)», «−», «+», «Academic Ascent» (nome), «Come leggere questo indice», «Fonti del sentiment», «Confronto delle fonti (1)», «Analisi, prezzi e fonti», cioè otto stop, per 24 schede circa 190. Deduzione dai sorgenti: l'immagine (data-zoom), il nome (card-title con data-zoom) e «Analisi, prezzi e fonti» (data-zoom) eseguono la stessa azione, aprire il dialogo.",
+      "impact": "Sensazione di «bottoni dappertutto»: i comandi equivalenti non hanno una gerarchia e i disclosure documentali stanno nello stesso livello dei comandi di pool.",
+      "suggestedFix": "Tenere il nome come comando primario (è già un button). Dare all'immagine tabindex=-1 e rimuovere il suo aria-label ridondante, mantenendo il click per il mouse. Chiamare l'azione esplicita «Dettagli» solo se serve uno stato diverso. I tre details del sentiment passano nel dialogo (vedi UX-5). Il pool resta, con i pulsanti − e + accanto al conteggio.",
+      "certainty": "confirmed"
+    },
+    {
+      "id": "UX-7",
+      "priority": "P2",
+      "title": "Star Trek: quattro pulsanti Pool e Mazzo su ogni scheda, ripetuti nel banco di costruzione",
+      "files": [
+        "star-trek.js (actions, card, refresh, renderDeck)",
+        "star-trek.css (.trk-actions)",
+        "templates/preview/gallery.html",
+        "templates/preview/draft.html",
+        "templates/preview/pool.html"
+      ],
+      "pages": [
+        "sets/star-trek/catalogo.html",
+        "sets/star-trek/draft.html",
+        "sets/star-trek/sealed.html"
+      ],
+      "scenario": "Chi sfoglia il catalogo per aggiungere carte al pool vede per ogni carta Pool −, Pool +, Mazzo −, Mazzo +, più «N stampe» e «Analisi...».",
+      "evidence": "Prova DOM: nell'elenco comandi di catalogo, draft e sealed ogni scheda ha «Analisi, formati, prezzi e fonti», due controlli senza etichetta, «Pool −», «Pool +», «Mazzo −», «Mazzo +», «1 stampe nello snapshot», cioè otto per scheda, 96 per pagina da 12. Deduzione dai sorgenti: renderDeck() mostra già, per ogni carta nel pool, gli stessi controlli con actions(c) dentro #trk-deck. Il testo «1 stampe» viene da una summary emessa anche per una sola stampa.",
+      "impact": "Il pulsante Mazzo non serve finché il pool è vuoto, ed è duplicato dal banco. La distinzione Pool e Mazzo non è chiara a chi entra dal catalogo. Il carico visivo di comandi è alto.",
+      "suggestedFix": "In star-trek.js dare ad actions(c, {deck}) un parametro e chiamarlo con deck:false da card(), lasciando deck:true solo nell'elenco #trk-deck. In refresh(), che riscrive le righe .trk-actions con row.outerHTML=actions(...), conservare il flag in un data-attribute della riga. Emettere la summary sulle stampe solo se c.prints.length>1 e correggere il plurale («1 stampa»). Anche il disclaimer all'interno resta, solo per le carte con più stampe.",
+      "certainty": "confirmed"
+    },
+    {
+      "id": "UX-8",
+      "priority": "P2",
+      "title": "Catalogo Star Trek: tredici filtri e ordinamenti per dati che non esistono, più tre righe N/D per ogni scheda",
+      "files": [
+        "catalog-controls.js (mount, summary)",
+        "star-trek.js (card)",
+        "templates/preview/gallery.html"
+      ],
+      "pages": [
+        "sets/star-trek/catalogo.html"
+      ],
+      "scenario": "Chi vuole filtrare per colore e rarità si trova davanti un pannello pieno di controlli che non possono funzionare.",
+      "evidence": "Prova DOM: l'apertura del catalogo elenca Valutazione Sealed, Sentiment, Valore di mana, Recensioni, Ranking Draft Untapped e WR in mano con tutte le opzioni, e «Dati non disponibili: recensioni, ranking Draft, WR in mano, valutazioni Sealed, sentiment». Otto opzioni di ordinamento terminano con «(dati assenti)». Ogni scheda ha «Recensioni: N/D», «Ranking Draft: N/D», «WR in mano: N/D». Deduzione dai sorgenti: mount() disabilita opzioni e campi con option.disabled=!available invece di ometterli.",
+      "impact": "Comandi non utilizzabili in primo piano e rumore ripetuto su 248 schede. Rischio di leggere N/D come giudizio negativo, cosa che il sito stesso esclude.",
+      "suggestedFix": "In CatalogControls.mount costruire il markup a gruppi e omettere un gruppo quando hasScore, hasSentiment, hasReviews, hasRank o hasWR è falso. Omettere le opzioni di ordinamento senza dati invece di disabilitarle con il suffisso. Far restituire a summary(c) una stringa vuota quando nessuna delle tre metriche esiste nel dataset. Resta la sola riga «Dati non disponibili: ...» già generata. Nessun dato nuovo viene creato e FRA resta invariato.",
+      "certainty": "confirmed"
+    },
+    {
+      "id": "UX-9",
+      "priority": "P2",
+      "title": "Star Trek: «Pool e mazzo Sealed» e «Draft e pick» sono lo stesso banco, con modalità che si trascina da una pagina all'altra",
+      "files": [
+        "star-trek.js (mode, modeLinks, sessionStorage)",
+        "templates/preview/draft.html",
+        "templates/preview/pool.html",
+        "templates/preview/simulator.html",
+        "expansion manifest (etichette presentation.pages)"
+      ],
+      "pages": [
+        "sets/star-trek/sealed.html",
+        "sets/star-trek/draft.html",
+        "sets/star-trek/simulatore.html"
+      ],
+      "scenario": "Chi passa da Draft a «Pool e mazzo Sealed» dalla barra laterale può ritrovarsi a modificare il pool Draft sotto un titolo che dice Sealed.",
+      "evidence": "Prova DOM: sealed.html ha h1 «Pool e mazzo Sealed» ma la regola mostrata è «Star Trek · Booster Draft: almeno 40 carte...». Lo stesso testo compare in simulatore.html. In entrambe il selettore offre Sealed, Draft, Pick-Two Draft. Draft e Sealed contengono lo stesso pannello «Il tuo banco di costruzione». Deduzione dai sorgenti: dopo aver visitato draft.html, mode viene salvata in sessionStorage; modeLinks() aggiunge ?mode=draft a tutti i link verso le pagine di strumento, compresi quelli della barra laterale, e init di mode legge la modalità richiesta o ricordata prima del default della pagina.",
+      "impact": "Etichetta di navigazione e dato effettivo non coincidono. I pool sono salvati separatamente per modalità, per cui i contenuti finiscono nel contenitore sbagliato senza che l'utente se ne accorga.",
+      "suggestedFix": "In star-trek.js impostare la modalità per pagina: draft per draft.html, sealed per sealed.html. Considerare sessionStorage e ?mode solo per catalogo e simulatore. Limitare modeLinks ai link nel contenuto (non alla barra laterale). Sulla pagina Draft il selettore offre solo Draft e Pick-Two; su Sealed non serve. L'h1 e la regola devono seguire la modalità attiva.",
+      "certainty": "confirmed"
+    },
+    {
+      "id": "UX-10",
+      "priority": "P2",
+      "title": "Draft FRA: due ricerche per aggiungere al pool e tre nomi diversi per la stessa azione",
+      "files": [
+        "templates/atlas/draft.html",
+        "draft-assistant.js (non fornito)",
+        "prospects-ui.js",
+        "star-trek.js"
+      ],
+      "pages": [
+        "Reality-Fracture-Draft.html",
+        "sets/star-trek/discovery.html",
+        "Reality-Fracture-Discovery.html"
+      ],
+      "scenario": "Chi vuole registrare una carta pescata trova due campi di ricerca nella stessa pagina e non sa quale usare.",
+      "evidence": "Prova DOM: l'assistente (in cima) ha «Nome inglese, anche poche lettere» con risultati e «Presa +1», e «Le tue pick (0) · correggi quantità». La sezione «Il tuo pool» più in basso ha «Cerca nel catalogo del set... Premi + per aggiungere una copia» e «Il tuo pool 0 carte». Il link nell'assistente («Importa, esporta o svuota il pool», verso #draft-pool) suggerisce stato condiviso. Gli stessi concetti usano «Presa +1», «+», «Pool +/Mazzo +», «Aggiungi alle osservate» e «Segui carta».",
+      "impact": "Due strade per la stessa azione e vocabolario non uniforme, con rischio di non capire dove finisce la carta.",
+      "suggestedFix": "Tenere una sola ricerca di inserimento: la sezione «Il tuo pool» può richiamare lo stesso componente dell'assistente, oppure l'assistente può includere il campo di incolla. Usare «Aggiungi» o «+1» ovunque per il pool e un solo verbo per la lista carte da tenere d'occhio (ad esempio «Osserva» per FRA e ST). Il testo dell'assistente deve restare nei file di dati, non nel codice, e il link dell'assistente al pool (#draft-pool) va mantenuto.",
+      "certainty": "hypothesis"
+    },
+    {
+      "id": "UX-11",
+      "priority": "P2",
+      "title": "Draft FRA: l'assistente precede il titolo, un'etichetta per telefono su desktop e l'avviso sui tornei nascosto",
+      "files": [
+        "templates/atlas/draft.html",
+        "site_navigation.py (ramo draft)",
+        "draft-assistant.css (non fornito)"
+      ],
+      "pages": [
+        "Reality-Fracture-Draft.html (desktop e telefono)"
+      ],
+      "scenario": "Su desktop l'utente vede «DRAFT INFORMALE · SUL TELEFONO» prima di sapere in quale pagina si trova.",
+      "evidence": "Prova DOM: l'apertura inizia con «DRAFT INFORMALE · SUL TELEFONO / La prossima pick / Solo assistente» e solo dopo molti risultati arriva «REALITY FRACTURE / RISULTATI E DECISIONI / 16 OTTOBRE 2026 / Draft e pick». Altezza della pagina: 48424 px su desktop e 73219 px su telefono. «Solo assistente» non spiega cosa nasconde. Deduzione dai sorgenti: l'avviso «Per draft informali concordati tra i partecipanti. Nei tornei ufficiali non consultare consigli strategici durante draft e costruzione» sta dentro il details chiuso «Come legge le scelte».",
+      "impact": "L'etichetta riferita al dispositivo è scorretta su desktop. Il titolo di pagina è oltre la prima lista. Una regola che incide su come usare lo strumento è visibile solo a chi apre un details.",
+      "suggestedFix": "Sostituire l'eyebrow con «Draft informale. Non usare nei tornei ufficiali», sempre visibile ma breve. Mettere l'h1 della pagina prima dell'assistente (il template draft.html ha già intro e panel: invertirli). Rinominare «Solo assistente» in «Nascondi la guida» e usare aria-pressed. Tenere in coda le sezioni lunghe della guida dietro details chiusi con titoli visibili (pick, combo, bait, drilldown, report): il contenuto non cambia, ma la pagina si scorre per intestazioni.",
+      "certainty": "confirmed"
+    },
+    {
+      "id": "UX-12",
+      "priority": "P2",
+      "title": "Dialogo scheda FRA: analisi di prezzo e legalità prima del giudizio Limited, blocchi duplicati e nome accessibile generico",
+      "files": [
+        "templates/atlas/gallery.html (body(), dialog#zoom, handler Esc)",
+        "prospects-ui.js",
+        "card-hover.js"
+      ],
+      "pages": [
+        "Reality-Fracture-Sealed.html (dialogo scheda)"
+      ],
+      "scenario": "Chi apre Emrakul per decidere se giocarla nel Sealed trova prima la tabella di legalità su nove formati e i prezzi Cardmarket.",
+      "evidence": "Prova DOM: il testo del dialogo segue questo ordine: «Utilizzo e prospettive di prezzo» con tabella di formati e prezzo, poi «Fonti e limiti dell'analisi», poi «RECENSIONI LIMITED... ANALISI SEALED...», poi «Chiusura ramp» e «NEL TUO POOL / QUANDO CAMBIA». Ratings, tier, WR e sentiment ripetono quanto è già sulla scheda dietro. Deduzione dai sorgenti: dialog aria-label è fisso («Carta ingrandita»). Il gestore Escape di card-hover.js chiama hide() senza fermare l'evento, quindi con anteprima fissata dentro il dialogo Esc potrebbe chiudere anteprima e dialogo insieme (da verificare).",
+      "impact": "In una pagina dedicata al Limited, il materiale Constructed e di prezzo ha la priorità. L'accessibilità non annuncia il nome della carta.",
+      "suggestedFix": "In body() spostare CardProspects.render(...) dopo il blocco «Nel tuo pool / quando cambia» e racchiuderlo in details chiuso «Constructed, formati e prezzi». Tutti i dati restano. Non ripetere nel dialogo i blocchi già visibili sulla scheda (rating, tier, WR) o raggrupparli in una riga. Impostare aria-labelledby sul titolo della carta all'apertura. In card-hover.js, se un'anteprima è aperta, chiudere solo quella su Esc (event.preventDefault() e stopPropagation), poi il dialogo al secondo Esc.",
+      "certainty": "confirmed"
+    },
+    {
+      "id": "UX-13",
+      "priority": "P2",
+      "title": "Quattro viste FRA sullo stesso documento a hash: scroll non riportato in alto, titolo documento fisso",
+      "files": [
+        "templates/atlas/gallery.html (openWorkspace, hashchange)",
+        "site.js (sync, click della sidebar, .site-to-top)",
+        "site_navigation.py (PAGES, href #gallery/#pool/#strategy/#method)"
+      ],
+      "pages": [
+        "Reality-Fracture-Sealed.html",
+        "Reality-Fracture-Sealed.html#pool",
+        "#strategy",
+        "#method"
+      ],
+      "scenario": "Chi è a metà catalogo e clicca «Il mio pool Sealed» nella barra laterale cambia sezione ma resta alla stessa posizione di scroll.",
+      "evidence": "Deduzione dai sorgenti: openWorkspace nasconde le sezioni inattive con hidden e non fa scroll. Il browser prova a scorrere sull'elemento #pool quando è ancora nascosto, e poi l'altezza passa da circa 10000 px (catalogo) a 1253 px (pool). Il <title> resta «Reality Fracture · Catalogo e pool Sealed» per tutte e quattro le viste. Il pulsante «↑» è un link a #site-content, che cambia l'URL: ricaricando, la vista torna al catalogo (openWorkspace('#site-content') ripiega su #gallery). Prova DOM correlata: le quattro route hanno h1 diversi sotto lo stesso file.",
+      "impact": "Dopo il click la pagina può apparire vuota o sul fondo. Cronologia e titolo non distinguono le viste, e un reload perde la sezione.",
+      "suggestedFix": "In openWorkspace, dopo aver scambiato le sezioni, chiamare window.scrollTo({top:0}) (o scrollIntoView sulla sezione) e spostare il focus sull'h1 della vista; aggiornare document.title con l'etichetta di navigazione. Rendere «↑» un button che fa scroll e focus su main senza cambiare l'hash (in site.js, preventDefault).",
+      "certainty": "hypothesis"
+    },
+    {
+      "id": "UX-14",
+      "priority": "P2",
+      "title": "Home: ambito dei tre compiti ambiguo e più link verso le stesse destinazioni",
+      "files": [
+        "home-template.html",
+        "build della home (placeholder __PRIMARY_*__, __EXPANSIONS__)",
+        "site.css (.site-hero-note)"
+      ],
+      "pages": [
+        "index.html (desktop e telefono)"
+      ],
+      "scenario": "Chi arriva per Star Trek legge «Preparati al Draft, costruisci il tuo Sealed...», poi tre compiti che portano solo a Reality Fracture.",
+      "evidence": "Prova DOM: il lead generico («Tutti gli strumenti del set») è accompagnato da una nota TRK con tre link: «Scopri Star Trek →», «Prepara Draft e Sealed →», «Continua con Reality Fracture →». Sotto, «Cosa vuoi fare?» ha come sottotitolo «Strumenti di Reality Fracture. Per gli altri set scegli la sezione dedicata tra le espansioni.». Le schede espansione ripetono «Esplora il set →», più due link chiamati «Metagame e carte» e «Guida Draft» anche per TRK. Su ST «Guida Draft» è «non disponibile» e «Metagame documentato» è «non disponibile». Dalla home si arriva alla stessa panoramica per due strade.",
+      "impact": "Il compito sembra valere per tutto il sito ma è riservato a un set. Dieci link in un'unica schermata, con etichette che per TRK promettono guide che non esistono.",
+      "suggestedFix": "Titolare la sezione «Cosa vuoi fare con Reality Fracture?» oppure aggiungere un selettore a due voci (FRA, TRK) che cambia le tre tessere. Il generatore ha già i placeholder per set primario. Nelle schede espansione generare i link secondari dal manifest e ometterli o rinominarli quando la guida non c'è («Draft e pick» invece di «Guida Draft» per TRK). Tenere un solo pulsante principale per set e declassare «Continua con...» a link secondario o rimuoverlo.",
+      "certainty": "confirmed"
+    },
+    {
+      "id": "UX-15",
+      "priority": "P2",
+      "title": "Tavolo Draft con bot non è raggiungibile da home e panoramica FRA; su Star Trek è in menu come pagina vuota",
+      "files": [
+        "templates/atlas/set.html",
+        "site_navigation.py (configured_shell, nav)",
+        "build_expansion.py (draft-engine aggiunto a pages)",
+        "manifest presentation.groups"
+      ],
+      "pages": [
+        "sets/reality-fracture/index.html",
+        "index.html",
+        "sets/star-trek/draft-engine.html",
+        "menu mobile ST"
+      ],
+      "scenario": "Chi vuole fare pratica di draft con i bot trova l'unico accesso nella barra laterale; chi usa il menu ST può aprire una pagina che dice solo «non disponibile».",
+      "evidence": "Prova DOM: la panoramica FRA ha «Al tavolo Limited» con Draft e pick, Il mio pool, Simulatore Sealed, ma non Tavolo Draft con bot. Il menu mobile ST elenca «Tavolo Draft con bot» tra le voci attive, e draft-engine.html ha come contenuto un solo avviso di indisponibilità. Il draft engine non appare nemmeno nelle tessere della home.",
+      "impact": "Strumento di punta poco scopribile. Una voce di menu senza esito aumenta i clic a vuoto.",
+      "suggestedFix": "In templates/atlas/set.html aggiungere nella riga PRATICA una tessera «Tavolo Draft con bot» con {{route:draft-engine}}, mostrata solo se availability.draftTable è vero. Per ST, in configured_shell rendere le voci non disponibili come testo con etichetta «in arrivo» (senza link), mantenendo la pagina per URL diretti.",
+      "certainty": "confirmed"
+    },
+    {
+      "id": "UX-16",
+      "priority": "P3",
+      "title": "Panoramica Star Trek: nove tessere equivalenti con eyebrow che ripete il titolo e invito identico",
+      "files": [
+        "templates/preview/set.html",
+        "manifest presentation.groups (ST)"
+      ],
+      "pages": [
+        "sets/star-trek/index.html"
+      ],
+      "scenario": "Chi arriva su Star Trek non vede un punto di partenza né quali strumenti sono parziali.",
+      "evidence": "Prova DOM: nove tessere con eyebrow «TRK / Catalogo carte» seguito dal titolo «Catalogo carte» (idem per le altre) e lo stesso invito «Apri lo strumento →» ripetuto nove volte. La panoramica FRA invece ha «Da dove cominciare» e gruppi. La sezione ST non distingue Limited, esplorazione e riferimenti.",
+      "impact": "Gerarchia piatta e ripetizione di testo. Navigando da tastiera o con lettore di schermo ogni link ha lo stesso testo finale.",
+      "suggestedFix": "Raggruppare come FRA (Limited: Draft e pick, Sealed, Prova il mazzo; Capire il set: Catalogo, Analisi, Sinergie, Constructed; Riferimenti: Regole, Fonti). Sostituire l'eyebrow con la categoria. Usare inviti specifici derivati dalla pagina («Registra i pick →», «Costruisci il mazzo →»). Segnare «parziale» sulle tessere con funzioni incomplete, senza nasconderle.",
+      "certainty": "confirmed"
+    },
+    {
+      "id": "UX-17",
+      "priority": "P2",
+      "title": "Star Trek: elenchi da dodici carte con paginatore solo in fondo e nessuna gestione di scroll o focus",
+      "files": [
+        "star-trek.js (renderCards, trk-prev, trk-next)",
+        "templates/preview/gallery.html",
+        "templates/preview/draft.html",
+        "templates/preview/pool.html",
+        "templates/preview/discovery.html"
+      ],
+      "pages": [
+        "sets/star-trek/catalogo.html",
+        "sets/star-trek/draft.html",
+        "sets/star-trek/sealed.html",
+        "sets/star-trek/discovery.html"
+      ],
+      "scenario": "Per consultare 248 carte l'utente deve scorrere pagine da 6727 px (desktop) o 13354 px (telefono), premere «Successive» in fondo e poi tornare su.",
+      "evidence": "Prova DOM: «Precedenti / Pagina 1 di 21 / Successive» è l'ultimo elemento. Altezze: catalogo 6727 e 13354 px, draft 10846 e 19782 px, sealed 6131 e 11894 px. Deduzione dai sorgenti: i click su trk-prev e trk-next incrementano page e chiamano renderCards() senza scroll né focus sul nuovo elenco. FRA usa invece «Mostra altre 24 carte».",
+      "impact": "Dopo «Successive» l'utente resta in fondo alla nuova pagina. Il confronto fra carte è lento e il paginatore non è raggiungibile dall'inizio.",
+      "suggestedFix": "In renderCards, dopo un cambio pagina, fare scroll a #trk-count e spostare il focus sul conteggio (tabindex=-1). Duplicare il paginatore sopra l'elenco o sostituirlo con «Mostra altre 24 carte» come in FRA. Non cambia dati né salvataggi.",
+      "certainty": "confirmed"
+    },
+    {
+      "id": "UX-18",
+      "priority": "P3",
+      "title": "Etichette diverse per strumenti equivalenti tra i due set e per lo stesso modulo",
+      "files": [
+        "site_navigation.py (PAGES)",
+        "manifest presentation.pages di FRA e TRK",
+        "prospects-ui.js e star-trek.js (etichette moduli)",
+        "templates/atlas/set.html",
+        "templates/preview/set.html"
+      ],
+      "pages": [
+        "menu e panoramiche FRA e TRK",
+        "pagine Discovery e catalogo"
+      ],
+      "scenario": "Chi conosce Reality Fracture cerca «Il mio pool Sealed» e su Star Trek trova «Pool e mazzo Sealed».",
+      "evidence": "Prova DOM: FRA «Il mio pool Sealed», «Simulatore Sealed», «Combo e sinergie», «Metagame e carte», «Analisi del set», «Fonti e metodo». TRK «Pool e mazzo Sealed», «Prova il mazzo», «Sinergie e sequenze», «Constructed», «Analisi e box», «Fonti e aggiornamenti». Le sezioni di analisi della scheda si chiamano «Analisi, prezzi e fonti» (FRA catalogo), «Analisi, formati, prezzi e fonti» (ST) e «Analisi per formato, prezzi e fonti» (FRA discovery). Su TRK «Regole del formato» è l'ultima voce dopo Constructed, lontano da Draft e Sealed. Nota: «Prova il mazzo» (mano iniziale) e «Simulatore Sealed» (apertura buste) sono funzioni diverse con nomi vicini.",
+      "impact": "Ricorrenza di concetti diversi per le stesse funzioni, con ricerca mentale ripetuta tra i set.",
+      "suggestedFix": "Allineare le etichette nei manifest e in PAGES (stessi nomi per pool, sinergie, analisi, fonti, constructed) e un solo titolo per il modulo CardProspects.render. Portare Regole del formato accanto a Draft e Sealed nel gruppo Limited. Chiamare «Prova la mano» la funzione di ST per distinguerla dal simulatore di buste.",
+      "certainty": "confirmed"
+    },
+    {
+      "id": "UX-19",
+      "priority": "P3",
+      "title": "Controlli flottanti e menu mobile: un solo overlay per pagina, ma menu quasi modale senza isolamento del resto",
+      "files": [
+        "site.js (setMenu, keydown, sidebar.inert)",
+        "site.css (.site-to-top, .site-backdrop, .site-menu-open)",
+        "site_navigation.py (nav e site-to-top)"
+      ],
+      "pages": [
+        "tutte le pagine",
+        "menu mobile"
+      ],
+      "scenario": "Giovanni segnala bottoni dell'overlay in ogni pagina: il DOM mostra un solo comando flottante, quindi la sensazione di troppi pulsanti viene soprattutto dai gruppi nelle schede (UX-6 e UX-7).",
+      "evidence": "Prova DOM: topControls è 1 in tutte le pagine; il «↑» è nascosto al caricamento e visibile dopo lo scroll (visibleTopControls 0). Su telefono, a #strategy e #method è visibile subito. Deduzione dai sorgenti: all'apertura del menu mobile ci sono backdrop, overflow hidden sul body, focus nel pannello, Escape che chiude e riporta il focus a ☰ Menu, e un focus trap manuale. Non c'è però role=dialog/aria-modal né inert sul resto della pagina (sidebar.inert vale solo per la sidebar chiusa), quindi un lettore di schermo può uscire dal menu. Il cerchio 44x44 a bottom:12px, right:12px potrebbe coprire controlli allineati a destra (da verificare su telefono).",
+      "impact": "Il comando «↑» è utile su pagine da 48000 e 73000 px e va mantenuto. Il menu è visivamente modale ma non dal punto di vista assistivo (riferimento APG).",
+      "suggestedFix": "Mantenere «↑». Aprendo il menu mobile impostare inert sul contenitore .site-body (il fratello dell'aside) e rimuoverlo alla chiusura, così il focus trap manuale diventa superfluo. Oppure trattarlo come disclosure non modale e togliere backdrop e blocco dello scroll. Controllare su telefono che il «↑» non copra controlli finali di riga.",
+      "certainty": "hypothesis"
+    },
+    {
+      "id": "UX-20",
+      "priority": "P3",
+      "title": "Catalogo FRA: scorciatoie che duplicano i filtri, reset silenzioso e focus perso dopo + o −",
+      "files": [
+        "templates/atlas/gallery.html (focus-sentiment, poolfilter, onlypool, controls())"
+      ],
+      "pages": [
+        "Reality-Fracture-Sealed.html",
+        "Reality-Fracture-Sealed.html#pool"
+      ],
+      "scenario": "Chi ha già impostato colore e rarità e preme «Mostra le carte con sentiment» perde i filtri senza avviso.",
+      "evidence": "Prova DOM: il pulsante «Mostra le carte con sentiment» in testa ripete il filtro Sentiment del pannello. «Mostra solo le mie carte» (pool) ripete «Solo il mio pool». Deduzione dai sorgenti: focus-sentiment.onclick chiama reset() prima di applicare il filtro. Il click su + o − sostituisce poolcontrol con outerHTML senza ripristinare il focus (a differenza di star-trek.js, che usa captureFocus e restoreFocus).",
+      "impact": "Doppio comando per la stessa azione, perdita di stato e, da tastiera o con lettori di schermo, contesto perso a ogni copia aggiunta.",
+      "suggestedFix": "Eliminare reset() dal pulsante sentiment e impostare solo il filtro, oppure chiamarlo «Solo con sentiment». Dopo + o −, aggiornare il testo del conteggio con aria-live e rimettere il focus sul pulsante premuto (o riusare captureFocus/restoreFocus).",
+      "certainty": "hypothesis"
+    },
+    {
+      "id": "UX-21",
+      "priority": "P3",
+      "title": "Discovery FRA: la stessa avvertenza sul campione ripetuta su ogni scheda",
+      "files": [
+        "templates/atlas/discovery.html",
+        "discovery.js e dati discovery (non forniti)"
+      ],
+      "pages": [
+        "Reality-Fracture-Discovery.html"
+      ],
+      "scenario": "Chi legge le 17 schede incontra sempre la stessa frase di cautela prima dei numeri.",
+      "evidence": "Prova DOM: ogni scheda riporta «Campione Postboard dal 25 settembre, rilevato il 22 ottobre; le presenze non sono una percentuale di vittorie.». La legenda in pagina dice già «Una fotografia, non un feed in tempo reale... adozione e piazzamenti non misurano il contributo causale di una carta». La data 22 ottobre compare anche nell'eyebrow e nell'avviso.",
+      "impact": "Rumore ripetuto su una pagina da 6317 px (desktop) e 12478 px (telefono). L'avviso è importante ma perde valore se è identico ovunque.",
+      "suggestedFix": "Lasciare una volta nel blocco iniziale l'avvertenza completa (campione, finestra, «non win rate»). Nelle schede conservare solo i numeri («Standard 10 liste, Modern 64 liste») con un breve suffisso «presenze nel campione». Mantenere i link alle fonti. L'avviso sui limiti, che incide sulla scelta, resta visibile.",
+      "certainty": "confirmed"
+    }
+  ],
+  "summary": "Review basata solo sulle prove DOM fornite dal committente e sulla lettura dei sorgenti; non ho visitato il sito né eseguito test. Non erano disponibili sentiment-ui.js, draft-assistant.js, discovery.js, i manifest e il generatore della home: dove li riguardo lo segnalo. Sul «diario di bordo» le cause sono tre. La prima è l'elenco «non disponibile. Manca: ...» inserito prima dell'h1 su ogni pagina Star Trek, con una chiave interna visibile e messaggi che contraddicono il contenuto (UX-1, UX-2). La seconda è il timbro «Anteprima aggiornata al 27 ottobre 2026» al posto della descrizione, con banner ripetuto e novità datate in primo piano (UX-3, UX-4). La terza è la ripetizione di date, filtri e spiegazioni di metodo dentro ogni scheda del catalogo FRA (UX-5, UX-21). Sul «bottoni su ogni pagina dell'overlay»: il DOM mostra un solo comando flottante (il «↑»), mentre la sensazione di troppi pulsanti viene dai gruppi per scheda (otto stop per scheda su FRA e su ST, UX-6, UX-7) e dai filtri senza dati (UX-8). Poi ci sono quattro problemi di coerenza e compito: modalità che si trascina tra Sealed e Draft su ST (UX-9), doppio inserimento nel Draft FRA e assistente prima del titolo (UX-10, UX-11), dialogo scheda con prezzo e legalità prima del giudizio Limited (UX-12), scroll non riportato in alto tra le quattro viste FRA su un unico documento (UX-13). Sui menu il comportamento è corretto (Esc, ritorno del focus al trigger, focus nel pannello) ma manca l'isolamento del resto della pagina (UX-19). Da preservare: dati delle carte, pool e salvataggi, esempi strategici, avvisi che incidono sulle scelte (catalogo parziale, date di prerelease e uscita ST, avviso sui tornei, caveat Arena, «presenze non sono win rate») e la segnalazione onesta delle funzioni assenti. Le correzioni sono tutte puntuali su template, codice condiviso e frammenti editoriali; non serve inventare dati né riscrivere le pagine. Priorità consigliata: UX-1, UX-3, UX-5 e UX-2, poi UX-9, UX-12, UX-17, UX-7, UX-8."
+}

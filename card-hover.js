@@ -77,7 +77,7 @@
   document.addEventListener('focusin',event=>{const t=target(event.target);if(t)show(t);});
   document.addEventListener('focusout',()=>{if(!pinned)hide();});
   document.addEventListener('keydown',event=>{
-    if(event.key==='Escape')hide();
+    if(event.key==='Escape'){if(active&&!preview.hidden){event.preventDefault();event.stopPropagation()}hide();}
     const t=target(event.target);
     if(t && !t.closest('a,button') && ['Enter',' '].includes(event.key)){event.preventDefault();show(t,null,true);}
   });

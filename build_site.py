@@ -21,7 +21,7 @@ def homepage(expansions):
         base=f'sets/{slug}/'
         discovery=item['presentation']['pages']['discovery']['url']
         draft=item['presentation']['pages']['draft']['url']
-        cards.append(f'''<article class="set" data-set="{e((item['name']+' '+item['code']).lower())}"><div class="set-head"><span>{e(item['code'])}</span><h3>{e(item['name'])}</h3></div><div class="set-body"><p>{e(item['description'])}</p><p class="small">Ultimo aggiornamento dei contenuti: {e(item['date'])}. Le singole sezioni riportano le proprie date.</p><div class="links"><a class="primary" href="{url}">Esplora il set →</a><a href="{base}{discovery}">Metagame e carte</a><a href="{base}{draft}">Guida Draft</a></div></div></article>''')
+        cards.append(f'''<article class="set" data-set="{e((item['name']+' '+item['code']).lower())}"><div class="set-head"><span>{e(item['code'])}</span><h3>{e(item['name'])}</h3></div><div class="set-body"><p>{e(item['description'])}</p><div class="links"><a class="primary" href="{url}">Esplora il set →</a><a href="{base}{discovery}">{e(item['presentation']['pages']['discovery']['label'])}</a><a href="{base}{draft}">{e(item['presentation']['pages']['draft']['label'])}</a></div></div></article>''')
     primary=next((item for item in expansions if item.get('home',{}).get('quickTools')),expansions[0] if expansions else None)
     featured=next((item for item in expansions if item.get('home',{}).get('featured')),expansions[-1] if expansions else None)
     def route(item,key):

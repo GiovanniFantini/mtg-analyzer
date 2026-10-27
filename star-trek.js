@@ -17,7 +17,7 @@
   const requestedMode = new URLSearchParams(location.search).get('mode');
   let rememberedMode;
   try { rememberedMode=sessionStorage.getItem(EXPANSION_CONFIG.storage.mode); } catch {}
-  let mode = modes.includes(requestedMode) ? requestedMode : pageKey==='draft'&&modes.includes('draft') ? 'draft' : modes.includes(rememberedMode) ? rememberedMode : modes.includes('sealed')?'sealed':modes[0]||null;
+  let mode = pageKey==='pool'&&modes.includes('sealed') ? 'sealed' : pageKey==='draft'&&modes.includes('draft') ? (requestedMode==='picktwo'&&modes.includes('picktwo')?'picktwo':'draft') : modes.includes(requestedMode) ? requestedMode : modes.includes(rememberedMode) ? rememberedMode : modes.includes('sealed')?'sealed':modes[0]||null;
   let page = 0, state = empty(), storageError = '';
   const memoryStates=new Map();
   let hand = [], library = [], fullDeck = [], bottom = [], mulligans = 0, kept = false;
@@ -32,8 +32,9 @@
     if(!mode)return;
     try { sessionStorage.setItem(EXPANSION_CONFIG.storage.mode,mode); } catch {}
     const modePaths=new Set(['gallery','pool','simulator','draft'].map(key=>EXPANSION_CONFIG.routes[key]).filter(Boolean).map(route=>new URL(route,location.href).pathname));
-    for(const link of document.querySelectorAll('a[href]')){
+    for(const link of document.querySelectorAll('main a[href]')){
       const url=new URL(link.href);
+      if(url.pathname===new URL(EXPANSION_CONFIG.routes.pool,location.href).pathname&&mode!=='sealed')url.pathname=new URL(EXPANSION_CONFIG.routes.draft,location.href).pathname;
       if(url.origin===location.origin&&url.pathname.startsWith(location.pathname.slice(0,location.pathname.lastIndexOf('/')+1))&&modePaths.has(url.pathname)){
         url.searchParams.set('mode',mode);link.setAttribute('href',url.pathname+url.search+url.hash);
       }
@@ -92,7 +93,7 @@
     if($('trk-cards')){
       for(const row of $('trk-cards').querySelectorAll('.trk-actions')){
         const id=row.querySelector('[data-id]')?.dataset.id;
-        if(byId.has(id))row.outerHTML=actions(byId.get(id));
+        if(byId.has(id))row.outerHTML=actions(byId.get(id),row.dataset.deckControls==='true');
       }
     }
     restoreFocus(focus);status();
@@ -119,15 +120,15 @@
     if(target&&!target.disabled){if(!target.matches('button,input,select,[tabindex]'))target.tabIndex=-1;target.focus({preventScroll:true});}
   }
   const ref = c => `<span class="card-reference" tabindex="0" role="button" data-card-preview="${esc(c.name)}" aria-label="Mostra ${esc(c.name)}">${esc(c.name)}</span>`;
-  function actions(c) {
+  function actions(c, deckControls=false) {
     if(!eventRules())return '';
-    return `<div class="trk-actions"><span>Pool: ${state.pool[c.id]||0}</span><button type="button" data-op="pool-minus" data-id="${c.id}" aria-label="Rimuovi una copia dal pool: ${esc(c.name)}" ${!state.pool[c.id]?'disabled':''}>Pool −</button><button type="button" data-op="pool-plus" data-id="${c.id}" aria-label="Aggiungi una copia al pool: ${esc(c.name)}">Pool +</button><span>Mazzo: ${state.deck[c.id]||0}</span><button type="button" data-op="deck-minus" data-id="${c.id}" aria-label="Rimuovi dal mazzo: ${esc(c.name)}" ${!state.deck[c.id]?'disabled':''}>Mazzo −</button><button type="button" data-op="deck-plus" data-id="${c.id}" aria-label="Aggiungi al mazzo: ${esc(c.name)}" ${(state.deck[c.id]||0)>=Math.min(state.pool[c.id]||0,basicCard(c.id)||eventRules().maxCopies==null?999:eventRules().maxCopies)?'disabled':''}>Mazzo +</button></div>`;
+    return `<div class="trk-actions" data-deck-controls="${deckControls}"><span>Pool: ${state.pool[c.id]||0}</span><button type="button" data-op="pool-minus" data-id="${c.id}" aria-label="Rimuovi una copia dal pool: ${esc(c.name)}" ${!state.pool[c.id]?'disabled':''}>Pool −</button><button type="button" data-op="pool-plus" data-id="${c.id}" aria-label="Aggiungi una copia al pool: ${esc(c.name)}">Pool +</button>${deckControls?`<span>Mazzo: ${state.deck[c.id]||0}</span><button type="button" data-op="deck-minus" data-id="${c.id}" aria-label="Rimuovi dal mazzo: ${esc(c.name)}" ${!state.deck[c.id]?'disabled':''}>Mazzo −</button><button type="button" data-op="deck-plus" data-id="${c.id}" aria-label="Aggiungi al mazzo: ${esc(c.name)}" ${(state.deck[c.id]||0)>=Math.min(state.pool[c.id]||0,basicCard(c.id)||eventRules().maxCopies==null?999:eventRules().maxCopies)?'disabled':''}>Mazzo +</button>`:''}</div>`;
   }
   function card(c, controls=false, variants=false) {
     let watch=false;
     try { watch=JSON.parse(localStorage.getItem(EXPANSION_CONFIG.storage.watch)||'[]').includes(c.id); } catch {}
     const legal=$('trk-legality')?.value;
-    return `<article class="trk-card">${variants&&c.image?`<img class="trk-card-image" src="${esc(c.image)}" width="488" height="680" loading="lazy" decoding="async" alt="${esc(c.name)}" data-card-preview="${esc(c.name)}" tabindex="0" role="button" aria-label="Mostra immagine ingrandita: ${esc(c.name)}">`:''}<h3>${ref(c)}</h3><div class="trk-meta">${esc(c.set)} #${esc(c.number)} · ${esc(c.mana||'Senza costo di mana')} · ${esc(c.rarity)} · MV ${c.cmc}</div><p>${esc(c.type)}</p>${catalog?catalog.summary(c):''}<p class="trk-oracle">${esc(c.text)}</p><p><a href="${esc(c.url)}" target="_blank" rel="noopener" aria-label="Testo e dettagli: ${esc(c.name)}">Testo e dettagli ↗</a></p>${legal?`<p>Stato ${esc(legal)}: ${esc(legality(c,legal)||'non disponibile')} (${$('trk-legality-scope')?.value==='release'?'ammissibilità prevista all’uscita':esc(DATA.date||'data non disponibile')}).</p>`:''}${c.prospects&&window.CardProspects?`<details class="trk-prospects"><summary>Analisi, formati, prezzi e fonti</summary>${window.CardProspects.render(c,DATA.prospectSources||[])}</details>`:''}${controls?actions(c):''}${pageKey==='discovery'?`<button data-op="watch" data-id="${c.id}" type="button" aria-pressed="${watch}">${watch?'Osservata':'Segui carta'}</button>`:''}${variants?`<details><summary>${c.prints.length} stampe nello snapshot</summary><p>La presenza nel catalogo non certifica l’apertura nel prodotto selezionato per questo evento. Trattamenti e idoneità vanno verificati nella guida ufficiale.</p><div class="trk-variants">${c.prints.map(p=>`<div>${p.image?`<img src="${esc(p.image)}" loading="lazy" alt="${esc(c.name)} #${esc(p.number)}">`:''}<p>#${esc(p.number)} · ${esc(p.finishes.join(', '))}</p></div>`).join('')}</div></details>`:''}</article>`;
+    return `<article class="trk-card">${variants&&c.image?`<img class="trk-card-image" src="${esc(c.image)}" width="488" height="680" loading="lazy" decoding="async" alt="${esc(c.name)}" data-card-preview="${esc(c.name)}" tabindex="0" role="button" aria-label="Mostra immagine ingrandita: ${esc(c.name)}">`:''}<h3>${ref(c)}</h3><div class="trk-meta">${esc(c.set)} #${esc(c.number)} · ${esc(c.mana||'Senza costo di mana')} · ${esc(c.rarity)} · MV ${c.cmc}</div><p>${esc(c.type)}</p>${catalog?catalog.summary(c):''}<p class="trk-oracle">${esc(c.text)}</p><p><a href="${esc(c.url)}" target="_blank" rel="noopener" aria-label="Testo e dettagli: ${esc(c.name)}">Testo e dettagli ↗</a></p>${legal?`<p>Stato ${esc(legal)}: ${esc(legality(c,legal)||'non disponibile')} (${$('trk-legality-scope')?.value==='release'?'ammissibilità prevista all’uscita':esc(DATA.date||'data non disponibile')}).</p>`:''}${c.prospects&&window.CardProspects?`<details class="trk-prospects"><summary>Analisi, formati, prezzi e fonti</summary>${window.CardProspects.render(c,DATA.prospectSources||[])}</details>`:''}${controls?actions(c):''}${pageKey==='discovery'?`<button data-op="watch" data-id="${c.id}" type="button" aria-pressed="${watch}">${watch?'Osservata':'Segui carta'}</button>`:''}${variants&&c.prints.length>1?`<details><summary>${c.prints.length} stampe nello snapshot</summary><p>La presenza nel catalogo non certifica l’apertura nel prodotto selezionato per questo evento. Trattamenti e idoneità vanno verificati nella guida ufficiale.</p><div class="trk-variants">${c.prints.map(p=>`<div>${p.image?`<img src="${esc(p.image)}" loading="lazy" alt="${esc(c.name)} #${esc(p.number)}">`:''}<p>#${esc(p.number)} · ${esc(p.finishes.join(', '))}</p></div>`).join('')}</div></details>`:''}</article>`;
   }
   function legality(c,format) { return $('trk-legality-scope')?.value==='release' ? c.prospects?.formats?.[format]?.releaseEligibility?.status||c.legalities[format] : c.legalities[format]; }
   function filtered() {
@@ -138,6 +139,7 @@
     items.sort((a,b)=>catalog?catalog.compareCards(a,b,order):order==='name'?a.name.localeCompare(b.name):order==='cmc'?a.cmc-b.cmc||a.name.localeCompare(b.name):a.set.localeCompare(b.set)||Number(a.number)-Number(b.number));
     return items;
   }
+  function focusPage(){const count=$('trk-count');count.tabIndex=-1;count.scrollIntoView({block:'start'});count.focus({preventScroll:true});}
   function renderCards() {
     if (!$('trk-cards')) return;
     const items=filtered(),pages=Math.max(1,Math.ceil(items.length/12)); page=Math.min(page,pages-1);
@@ -166,7 +168,7 @@
     if($('trk-new-hand')) $('trk-new-hand').disabled=total<eventRules().minDeckSize;
     if($('trk-storage-status')) $('trk-storage-status').textContent=storageError;
     if(!$('trk-deck')) return;
-    $('trk-deck').innerHTML=Object.keys(state.pool).length?DATA.cards.filter(c=>state.pool[c.id]>0).map(c=>`<div class="trk-card"><h3>${ref(c)}</h3>${actions(c)}</div>`).join(''):'<p>Il pool è vuoto. Cerca le carte qui sotto e aggiungi le copie.</p>';
+    $('trk-deck').innerHTML=Object.keys(state.pool).length?DATA.cards.filter(c=>state.pool[c.id]>0).map(c=>`<div class="trk-card"><h3>${ref(c)}</h3>${actions(c,true)}</div>`).join(''):'<p>Il pool è vuoto. Cerca le carte qui sotto e aggiungi le copie.</p>';
     $('trk-basics').innerHTML=basics.map((name,i)=>`<label>${esc(name)} aggiunte<input type="number" min="0" max="999" step="1" value="${state.basics[basicIds[i]]||0}" data-basic="${basicIds[i]}" aria-label="${esc(name)} aggiunte al mazzo" ${eventRules().extraBasicLands?'':'disabled'}></label>`).join('');
     const curve=Array(8).fill(0);
     entries.filter(x=>!x.c.type.includes('Land')).forEach(x=>curve[Math.min(7,Math.floor(x.c.cmc))]+=x.n);
@@ -212,7 +214,7 @@
   $('catalog-onlypool')?.addEventListener('change',()=>{page=0;renderCards()});
   if(catalog)for(const id of catalog.ids)$(id).addEventListener($(id).type==='number'?'input':'change',()=>{page=0;renderCards()});
   $('trk-reset')?.addEventListener('click',()=>{for(const id of ['trk-search','trk-color','trk-rarity','trk-set','trk-legality'])if($(id))$(id).value='';if($('trk-legality-scope'))$('trk-legality-scope').value='snapshot';if(catalog){catalog.reset();$('catalog-onlypool').checked=false}$('trk-order').value=catalog?'set':'number';page=0;renderCards();});
-  $('trk-prev')?.addEventListener('click',()=>{page--;renderCards();});$('trk-next')?.addEventListener('click',()=>{page++;renderCards();});
+  $('trk-prev')?.addEventListener('click',()=>{page--;renderCards();focusPage();});$('trk-next')?.addEventListener('click',()=>{page++;renderCards();focusPage();});
   document.addEventListener('click',event=>{
     const button=event.target.closest('button[data-op]');
     if(button){

@@ -178,11 +178,12 @@ def availability_notice(expansion, page):
         target=pages.get(value['page'],{})
         if value['page']=='rules' and not target:target=pages.get('method',{})
         return value['page']==page or page=='method' or (target.get('url','').split('#')[0]==host and bool(host)) or (page=='draft' and value['page']=='draft-engine') or (key=='sentiment' and page=='gallery')
-    missing = [value for key,value in expansion.availability.items()
+    missing = [dict(value, featureKey=key) for key,value in expansion.availability.items()
                if not value['available'] and belongs(key,value)]
     if not missing: return ''
-    rows = ''.join('<li>'+html.escape(v['label'])+': non disponibile. Manca: '+html.escape(' '.join(v['missing']))+'</li>' for v in missing)
-    return '<aside class="notice feature-availability" aria-label="Funzionalità non disponibili"><ul>'+rows+'</ul></aside>'
+    labels={'combos':'Catalogo interattivo delle sinergie','draftStatistics':'Statistiche Draft','draftGuide':'Guida Draft completa','sealedGuide':'Guida Sealed completa'}
+    rows = ''.join('<li>'+html.escape(labels.get(v['featureKey'],v['label']))+': non disponibile.</li>' for v in missing)
+    return '<details class="notice feature-availability"><summary>Disponibilità degli strumenti: '+str(len(missing))+' '+('funzione non disponibile' if len(missing)==1 else 'funzioni non disponibili')+'</summary><ul>'+rows+'</ul><p><a href="data/availability.json">Dettagli dei dati mancanti (JSON)</a></p></details>'
 
 
 def data_for_page(expansion, key):
@@ -252,14 +253,14 @@ def render_page(expansion, key, page):
     content = configured_routes(content,expansion)
     notice = availability_notice(expansion,key)
     if notice:
-        content = re.sub(r'(<main\b[^>]*>)',lambda m:m[0]+notice,content,count=1)
+        content = content.replace('</main>',notice+'</main>',1)
     if re.search(r'__(?:DATA|DRAFT_DATA|DISCOVERY_DATA|DRAFT_ENGINE)__|\{\{(?:fragment|route):',content):
         raise ValueError(f'{expansion.manifest["id"]}/{key}: segnaposti non risolti')
     return content
 
 
 def unavailable_page(expansion,key,label,feature):
-    return shell('<!doctype html><html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+html.escape(expansion.manifest['name']+' · '+label)+'</title></head><body><main><h1>'+html.escape(label)+'</h1>'+availability_notice(expansion,key)+'</main></body></html>',key,expansion={**expansion.manifest,'minimal':True})
+    return shell('<!doctype html><html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+html.escape(expansion.manifest['name']+' · '+label)+'</title></head><body><main><h1>'+html.escape(label)+'</h1><p>Questo strumento richiede dati ancora incompleti per questa espansione.</p><p><a href="'+html.escape(expansion.manifest['presentation']['pages']['gallery']['url'],quote=True)+'">Consulta il catalogo delle carte</a></p>'+availability_notice(expansion,key)+'</main></body></html>',key,expansion={**expansion.manifest,'minimal':True})
 
 
 def build(expansion, dest):
