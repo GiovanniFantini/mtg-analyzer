@@ -34,4 +34,15 @@ python import_untapped_pick_order.py research/reality-fracture-20261027/untapped
 
 La cattura conserva filtri, testo della pagina e gruppi di carte. L'importatore associa tutte le righe al catalogo, rifiuta duplicati e nomi sconosciuti e salva uno snapshot normalizzato con hash dell'input. Aggiorna soltanto `ratings.cards.<catalogId>.untappedPickOrder` e `sources.externalRankings.untappedPickOrder`, preservando gli altri dati. `tierOrder` è l'indice del tier nella scala pubblica, con S per primo; non è un voto numerico. Il gruppo Low Match Volume conserva `tier: null` e `status: low_match_volume`. Le carte assenti non ricevono dati stimati.
 
-Nel catalogo, “Tier Draft Untapped” ordina per tier e poi alfabeticamente; le carte senza tier seguono quelle classificate. Ogni scheda acquisita mostra tier, fonte, data e contesto. La scorciatoia “Mostra ranking Draft Untapped” e il parametro `?order=untapped` attivano lo stesso ordinamento. La data delle recensioni, le stelle, i pesi dei bot, i dati 17Lands e le revisioni dei replay restano distinti. La build continua a usare soltanto file locali.
+Nel catalogo, “Tier Draft Untapped” ordina per tier e poi alfabeticamente; le carte senza tier seguono quelle classificate. Ogni scheda acquisita mostra tier, fonte, data e contesto. Il parametro `?order=untapped` attiva direttamente questo ordinamento. La selezione avviene dal menu comune del catalogo, senza un pulsante aggiuntivo. La data delle recensioni, le stelle, i pesi dei bot, i dati 17Lands e le revisioni dei replay restano distinti. La build continua a usare soltanto file locali.
+
+
+## Filtri e ordinamenti del catalogo
+
+Il catalogo Atlas permette di ordinare per colore, valore di mana, tipo, recensioni, tier Draft e WR in mano Untapped, oltre agli ordinamenti editoriali già presenti. Per valore di mana, recensioni, tier e WR sono disponibili entrambi i versi; i dati mancanti seguono sempre quelli disponibili. I tier mantengono ordine alfabetico al loro interno.
+
+I filtri per colore, rarità, tipo, intervallo di valore di mana, stelle delle recensioni, tier e intervallo WR si combinano con ricerca, sentiment e pool personale. Recensioni e WR distinguono dati disponibili e assenti; il ranking distingue tier assegnati, campione insufficiente e carta non presente nella fonte. Se minimo e massimo si contraddicono, la selezione restituisce zero risultati; “Azzera filtri” ripristina l’intero catalogo.
+
+`build_expansion.catalog_data` espone la WR in mano del provider Untapped soltanto se la metrica è pubblica. I valori null e lo zero reale restano distinti. Le altre metriche, incluse quelle bloccate o sospette, non vengono usate come sostituti. Fonte, data, filtri e partite riportate accompagnano i dati; la data della WR non viene sostituita con quella del ranking. La vista non acquisisce nuovi snapshot né modifica le valutazioni o il motore Draft.
+
+Controlli specifici: `python -m unittest test_catalog_statistics.py` e `node verify-catalog-filters.cjs`, con le variabili browser descritte in [verification.md](verification.md). Il controllo browser verifica ordinamenti, filtri combinati, dati assenti, reset, anteprime e larghezze 1440, 768 e 390 px. Screenshot e rapporto vanno in `MTG_QA_DIR` o in una cartella temporanea.

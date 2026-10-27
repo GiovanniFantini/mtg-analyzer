@@ -137,7 +137,16 @@ def catalog_data(expansion):
           'userCards':sum(s.get('kind')=='utenti' for s in covered),
           'reviewCards':sum(s.get('kind')=='recensione' for s in covered),
           'mixedCards':sum(s.get('kind')=='misto' for s in covered)}
+    snapshot = (d['statistics'].get('draft') or {}).get('externalSources', {}).get('untapped') or {}
+    public_wr = snapshot.get('metrics', {}).get('inHandWinRate', {}).get('status') == 'public'
+    public_games = snapshot.get('metrics', {}).get('games', {}).get('status') == 'public'
+    win_rates = {row['catalogId']: {'value': row['metrics']['inHandWinRate'],
+                                  'games': row['metrics'].get('games') if public_games else None,
+                                  'url': row['sourceUrl']}
+                 for row in snapshot.get('cards', [])} if public_wr else {}
     return {'date':d['cards'].get('date',''),'cards':cards,
+            'catalogWinRates': {'provider': snapshot.get('provider'), 'retrieved': snapshot.get('retrieved'),
+                               'filters': snapshot.get('filters', {}), 'cards': win_rates},
             'stats':d['statistics'].get('catalog',[]),'scale':d['ratings'].get('scale',{}),
             'combos':d['combos'],'sentimentMeta':meta,
             'prospectSources':d['sources'].get('research',{}).get('sources',[]),
