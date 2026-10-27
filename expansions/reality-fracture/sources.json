@@ -578,5 +578,70 @@
       "inputSha256": "9c7f09d6924d9f3e6ff663caa3379c17f1b36389836d0afe85238000011822d5",
       "note": "Statistiche pubbliche per carta; filtri, valori mancanti e limiti conservati nello snapshot."
     }
+  },
+  "externalRankings": {
+    "untappedPickOrder": {
+      "provider": "Untapped.gg",
+      "url": "https://mtga.untapped.gg/limited/draft/reality-fracture/pick-order",
+      "retrieved": "2026-10-27",
+      "filters": {
+        "format": "Premier Draft",
+        "event": "Latest Event",
+        "ranks": "Bronze–Platinum",
+        "archetype": "All Archetypes",
+        "tiering": "In Hand WR"
+      },
+      "inputSha256": "8bde36e7d8dcef24f45be2cc441c2493cbf088f0b30c18f44022a63db709d8be",
+      "tierOrder": [
+        "S",
+        "A+",
+        "A",
+        "A-",
+        "B+",
+        "B",
+        "B-",
+        "C+",
+        "C",
+        "C-",
+        "D+",
+        "D",
+        "D-",
+        "F"
+      ],
+      "limitations": [
+        "Tier statistici In Hand WR di Arena, distinti dai voti editoriali e dalle recensioni.",
+        "Il gruppo Low Match Volume resta senza tier; le carte assenti non ricevono stime.",
+        "La posizione visualizzata entro un tier non viene interpretata come un voto o una priorità numerica.",
+        "Nessuna conversione in stelle, modifica dei pesi dei bot o dei replay."
+      ],
+      "coverage": {
+        "catalogCards": 295,
+        "observedCards": 290,
+        "rankedCards": 283,
+        "lowMatchVolumeCards": 7,
+        "missingCards": [
+          {
+            "catalogId": "fra-281",
+            "name": "Plains"
+          },
+          {
+            "catalogId": "fra-283",
+            "name": "Island"
+          },
+          {
+            "catalogId": "fra-285",
+            "name": "Swamp"
+          },
+          {
+            "catalogId": "fra-287",
+            "name": "Mountain"
+          },
+          {
+            "catalogId": "fra-289",
+            "name": "Forest"
+          }
+        ]
+      }
+    }
   }
 }

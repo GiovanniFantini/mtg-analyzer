@@ -23,3 +23,15 @@ python import_untapped_statistics.py research/reality-fracture-20261022/untapped
 ```
 
 Lo script conserva lo snapshot datato e l'hash dell'input, aggiornando soltanto `statistics.draft.externalSources.untapped` e `sources.externalStatistics.untapped`. La build non acquisisce dati online. Per un nuovo aggiornamento serve una nuova cattura pubblica, rispettando i limiti di accesso. Le condizioni specifiche della cattura del 22 ottobre sono nel [resoconto datato](history/2026-10-22.md).
+
+## Pick order Untapped
+
+I tier pubblici della pagina Pick Order hanno un'importazione distinta dalle metriche Card Data:
+
+```sh
+python import_untapped_pick_order.py research/reality-fracture-20261027/untapped-pick-order-dom.json --expansion expansions/reality-fracture --apply
+```
+
+La cattura conserva filtri, testo della pagina e gruppi di carte. L'importatore associa tutte le righe al catalogo, rifiuta duplicati e nomi sconosciuti e salva uno snapshot normalizzato con hash dell'input. Aggiorna soltanto `ratings.cards.<catalogId>.untappedPickOrder` e `sources.externalRankings.untappedPickOrder`, preservando gli altri dati. `tierOrder` è l'indice del tier nella scala pubblica, con S per primo; non è un voto numerico. Il gruppo Low Match Volume conserva `tier: null` e `status: low_match_volume`. Le carte assenti non ricevono dati stimati.
+
+Nel catalogo, “Tier Draft Untapped” ordina per tier e poi alfabeticamente; le carte senza tier seguono quelle classificate. Ogni scheda acquisita mostra tier, fonte, data e contesto. La scorciatoia “Mostra ranking Draft Untapped” e il parametro `?order=untapped` attivano lo stesso ordinamento. La data delle recensioni, le stelle, i pesi dei bot, i dati 17Lands e le revisioni dei replay restano distinti. La build continua a usare soltanto file locali.
