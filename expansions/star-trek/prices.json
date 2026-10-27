@@ -1,6 +1,26 @@
 {
   "available": false,
   "missing": [
-    "Prezzi EUR e minimi Cardmarket assenti nello snapshot."
-  ]
+    "Collazione eseguibile e copertura completa di stampe e finiture assenti: valore atteso del box non calcolabile."
+  ],
+  "references": {
+    "date": "2026-10-27",
+    "source": "Cardmarket",
+    "currency": "EUR",
+    "metric": "From",
+    "finishFilter": "any",
+    "catalogCards": 248,
+    "cardsWithFrom": 201,
+    "extraProductsObserved": 168,
+    "unmatchedProducts": 0,
+    "nonfoilCoverage": 0,
+    "foilCoverage": 0,
+    "snapshot": "research/star-trek-20261027/cardmarket-normalized.json",
+    "limitations": [
+      "Prezzi richiesti in prevendita, non ricavi realizzati.",
+      "Il minimo senza filtro di finitura non è un prezzo non foil o foil.",
+      "Le versioni V.n non sono equiparate a uno specifico numero di stampa senza verifica.",
+      "La lettura diretta successiva di Type-2 Phaser prevale sul listino, conservato come osservazione precedente."
+    ]
+  }
 }

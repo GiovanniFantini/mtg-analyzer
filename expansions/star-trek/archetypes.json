@@ -1,1 +1,256 @@
-{}
+{
+  "WU": {
+    "name": "Bianco blu",
+    "theme": "Ingressi e Spacecraft",
+    "core": [
+      "Hemmer, Fixing What Is Broken",
+      "Constable Odo"
+    ],
+    "support": [
+      "Federation Probe",
+      "Open Communications",
+      "Emergency Medical Hologram"
+    ],
+    "plan": "Sviluppa creature economiche, poi riutilizza gli ingressi. Hemmer seleziona una carta quando viene tappato, anche per station; Odo può fermare un attaccante oppure creare due Indizi. Gli Indizi richiedono due mana ciascuno per pescare.",
+    "risk": "Tappare una creatura per station può togliere un bloccante; proteggere le navi solo nel proprio turno non copre il turno avversario.",
+    "early": "Sviluppa una curva di creature e fonti coerente con i due colori.",
+    "middle": "Sviluppa creature economiche, poi riutilizza gli ingressi. Hemmer seleziona una carta quando viene tappato, anche per station; Odo può fermare un attaccante oppure creare due Indizi. Gli Indizi richiedono due mana ciascuno per pescare.",
+    "late": "Tappare una creatura per station può togliere un bloccante; proteggere le navi solo nel proprio turno non copre il turno avversario.",
+    "status": "ipotesi_editoriale_di_anteprima",
+    "date": "2026-10-27",
+    "sources": [
+      "scryfall-api",
+      "wizards-mechanics"
+    ],
+    "limitations": [
+      "Non è un archetipo certificato da partite o dal catalogo completo. Nessuna priorità di pick numerica assegnata."
+    ]
+  },
+  "UB": {
+    "name": "Blu nero",
+    "theme": "Dilemmi e selezione",
+    "core": [
+      "Seven of Nine",
+      "Lore, Positronic Provocateur"
+    ],
+    "support": [
+      "Open Communications",
+      "Federation Probe"
+    ],
+    "plan": "Seven of Nine fa pescare quando scegli uno o più modi. Lore offre un dilemma all’ingresso: sorvegliare 2 cerca le risorse, oppure il modo evasivo aiuta a chiudere un attacco.",
+    "risk": "La densità di dilemmi conta più del semplice numero di magie. Non aggiungere un terzo colore per un solo enabler senza fonti sufficienti.",
+    "early": "Sviluppa una curva di creature e fonti coerente con i due colori.",
+    "middle": "Seven of Nine fa pescare quando scegli uno o più modi. Lore offre un dilemma all’ingresso: sorvegliare 2 cerca le risorse, oppure il modo evasivo aiuta a chiudere un attacco.",
+    "late": "La densità di dilemmi conta più del semplice numero di magie. Non aggiungere un terzo colore per un solo enabler senza fonti sufficienti.",
+    "status": "ipotesi_editoriale_di_anteprima",
+    "date": "2026-10-27",
+    "sources": [
+      "scryfall-api",
+      "wizards-mechanics"
+    ],
+    "limitations": [
+      "Non è un archetipo certificato da partite o dal catalogo completo. Nessuna priorità di pick numerica assegnata."
+    ]
+  },
+  "BR": {
+    "name": "Nero rosso",
+    "theme": "Pedine sacrificabili",
+    "core": [
+      "L'Rell, Fierce Visionary",
+      "Gowron, Eager for Battle"
+    ],
+    "support": [
+      "The Duras Sisters",
+      "Munitions Enthusiast"
+    ],
+    "plan": "L'Rell crea un Klingon prima degli attaccanti. Dopo il combattimento puoi sacrificarlo a Gowron prima che venga sacrificato alla fine del turno: Gowron ottiene travolgere e, trattandosi di un Klingon, peschi e perdi una vita.",
+    "risk": "Le carte che richiedono sacrifici hanno bisogno di corpi disponibili. La pedina delle Duras Sisters non ha una scadenza, quella di L'Rell sì.",
+    "early": "Sviluppa una curva di creature e fonti coerente con i due colori.",
+    "middle": "L'Rell crea un Klingon prima degli attaccanti. Dopo il combattimento puoi sacrificarlo a Gowron prima che venga sacrificato alla fine del turno: Gowron ottiene travolgere e, trattandosi di un Klingon, peschi e perdi una vita.",
+    "late": "Le carte che richiedono sacrifici hanno bisogno di corpi disponibili. La pedina delle Duras Sisters non ha una scadenza, quella di L'Rell sì.",
+    "status": "ipotesi_editoriale_di_anteprima",
+    "date": "2026-10-27",
+    "sources": [
+      "scryfall-api",
+      "wizards-mechanics"
+    ],
+    "limitations": [
+      "Non è un archetipo certificato da partite o dal catalogo completo. Nessuna priorità di pick numerica assegnata."
+    ]
+  },
+  "RG": {
+    "name": "Rosso verde",
+    "theme": "Landfall e pressione",
+    "core": [
+      "Dal R'El, Augment Orphan",
+      "Cleveland Booker, Empath"
+    ],
+    "support": [
+      "Hit It!"
+    ],
+    "plan": "Gioca terre per creare Worm con Booker e ottenere mana con Dal. Hit It! offre rapidità e può mettere una terra tappata dal mazzo sul campo, innescando landfall.",
+    "risk": "I Worm non possono bloccare. Sacrificare una terra a Dal costa tre mana e può ritardare le magie costose.",
+    "early": "Sviluppa una curva di creature e fonti coerente con i due colori.",
+    "middle": "Gioca terre per creare Worm con Booker e ottenere mana con Dal. Hit It! offre rapidità e può mettere una terra tappata dal mazzo sul campo, innescando landfall.",
+    "late": "I Worm non possono bloccare. Sacrificare una terra a Dal costa tre mana e può ritardare le magie costose.",
+    "status": "ipotesi_editoriale_di_anteprima",
+    "date": "2026-10-27",
+    "sources": [
+      "scryfall-api",
+      "wizards-mechanics"
+    ],
+    "limitations": [
+      "Non è un archetipo certificato da partite o dal catalogo completo. Nessuna priorità di pick numerica assegnata."
+    ]
+  },
+  "GW": {
+    "name": "Verde bianco",
+    "theme": "Segnalini e attacchi",
+    "core": [
+      "The Doctor, EMH",
+      "Phlox, Unorthodox Doctor"
+    ],
+    "support": [
+      "Emergency Medical Hologram"
+    ],
+    "plan": "Metti segnalini prima di The Doctor: all’ingresso ne aggiunge uno a un bersaglio, poi uno a ogni tua creatura che abbia un segnalino. Phlox fa pescare quando una di queste creature infligge danno da combattimento a un giocatore.",
+    "risk": "Le creature devono collegare con il giocatore. La crescita del campo non sostituisce rimozioni ed evasione.",
+    "early": "Sviluppa una curva di creature e fonti coerente con i due colori.",
+    "middle": "Metti segnalini prima di The Doctor: all’ingresso ne aggiunge uno a un bersaglio, poi uno a ogni tua creatura che abbia un segnalino. Phlox fa pescare quando una di queste creature infligge danno da combattimento a un giocatore.",
+    "late": "Le creature devono collegare con il giocatore. La crescita del campo non sostituisce rimozioni ed evasione.",
+    "status": "ipotesi_editoriale_di_anteprima",
+    "date": "2026-10-27",
+    "sources": [
+      "scryfall-api",
+      "wizards-mechanics"
+    ],
+    "limitations": [
+      "Non è un archetipo certificato da partite o dal catalogo completo. Nessuna priorità di pick numerica assegnata."
+    ]
+  },
+  "WB": {
+    "name": "Bianco nero",
+    "theme": "Creature artefatto",
+    "core": [
+      "Locutus, the One Who Speaks",
+      "Zero, Incorporeal Sensate"
+    ],
+    "support": [
+      "Borg Cube"
+    ],
+    "plan": "Locutus potenzia solo le creature artefatto; dalla mano può invece infliggere due danni a una creatura e far guadagnare due vite. Borg Cube è una chiusura da valutare quando hai davvero creature artefatto per ridurne il costo.",
+    "risk": "Tesori e altri artefatti non creatura non riducono Borg Cube. Zero tassa la carta esiliata, ma non la impedisce per sempre.",
+    "early": "Sviluppa una curva di creature e fonti coerente con i due colori.",
+    "middle": "Locutus potenzia solo le creature artefatto; dalla mano può invece infliggere due danni a una creatura e far guadagnare due vite. Borg Cube è una chiusura da valutare quando hai davvero creature artefatto per ridurne il costo.",
+    "late": "Tesori e altri artefatti non creatura non riducono Borg Cube. Zero tassa la carta esiliata, ma non la impedisce per sempre.",
+    "status": "ipotesi_editoriale_di_anteprima",
+    "date": "2026-10-27",
+    "sources": [
+      "scryfall-api",
+      "wizards-mechanics"
+    ],
+    "limitations": [
+      "Non è un archetipo certificato da partite o dal catalogo completo. Nessuna priorità di pick numerica assegnata."
+    ]
+  },
+  "UR": {
+    "name": "Blu rosso",
+    "theme": "Magie prima del combattimento",
+    "core": [
+      "Gray and Adira, Forever Joined",
+      "Spock, Always Your Friend"
+    ],
+    "support": [
+      "Open Communications",
+      "Munitions Enthusiast"
+    ],
+    "plan": "Spock cerca una carta non creatura e non terra tra le prime quattro. Dopo una magia non creatura nella fase principale, Gray and Adira possono copiare una tua creatura all’inizio del combattimento.",
+    "risk": "Servono sia creature da copiare sia magie da lanciare in tempo. La copia viene sacrificata alla prossima sottofase finale.",
+    "early": "Sviluppa una curva di creature e fonti coerente con i due colori.",
+    "middle": "Spock cerca una carta non creatura e non terra tra le prime quattro. Dopo una magia non creatura nella fase principale, Gray and Adira possono copiare una tua creatura all’inizio del combattimento.",
+    "late": "Servono sia creature da copiare sia magie da lanciare in tempo. La copia viene sacrificata alla prossima sottofase finale.",
+    "status": "ipotesi_editoriale_di_anteprima",
+    "date": "2026-10-27",
+    "sources": [
+      "scryfall-api",
+      "wizards-mechanics"
+    ],
+    "limitations": [
+      "Non è un archetipo certificato da partite o dal catalogo completo. Nessuna priorità di pick numerica assegnata."
+    ]
+  },
+  "BG": {
+    "name": "Nero verde",
+    "theme": "Cimitero e recupero",
+    "core": [
+      "Vash, Freelance Archaeologist",
+      "Daniels, Temporal Agent"
+    ],
+    "support": [],
+    "plan": "Vash sorveglia al mantenimento e fa pescare quando una carta lascia il tuo cimitero, una volta per turno. Daniels riprende una creatura in mano all’ingresso; dal cimitero può essere messo in fondo al mazzo per due mana, facendo uscire un’altra carta dal cimitero.",
+    "risk": "Daniels non rianima sul campo. Recuperare carte richiede tempo e non risolve da solo la pressione avversaria.",
+    "early": "Sviluppa una curva di creature e fonti coerente con i due colori.",
+    "middle": "Vash sorveglia al mantenimento e fa pescare quando una carta lascia il tuo cimitero, una volta per turno. Daniels riprende una creatura in mano all’ingresso; dal cimitero può essere messo in fondo al mazzo per due mana, facendo uscire un’altra carta dal cimitero.",
+    "late": "Daniels non rianima sul campo. Recuperare carte richiede tempo e non risolve da solo la pressione avversaria.",
+    "status": "ipotesi_editoriale_di_anteprima",
+    "date": "2026-10-27",
+    "sources": [
+      "scryfall-api",
+      "wizards-mechanics"
+    ],
+    "limitations": [
+      "Non è un archetipo certificato da partite o dal catalogo completo. Nessuna priorità di pick numerica assegnata."
+    ]
+  },
+  "RW": {
+    "name": "Rosso bianco",
+    "theme": "Forza otto e attacchi",
+    "core": [
+      "Kirk, Commanding Officer",
+      "Worf, Honor-Bound Warrior"
+    ],
+    "support": [
+      "Kira Nerys, Firebrand",
+      "Munitions Enthusiast"
+    ],
+    "plan": "Sviluppa forza totale otto prima dell’attacco: Kirk esilia una carta giocabile nel turno e Worf raddoppia la propria forza. Kira dà +1/+1 temporaneo alle altre creature che entrano.",
+    "risk": "Le carte esiliate da Kirk richiedono ancora mana e tempi normali. Kira fa entrare una creatura attaccante solo se ne controlli già una attaccante.",
+    "early": "Sviluppa una curva di creature e fonti coerente con i due colori.",
+    "middle": "Sviluppa forza totale otto prima dell’attacco: Kirk esilia una carta giocabile nel turno e Worf raddoppia la propria forza. Kira dà +1/+1 temporaneo alle altre creature che entrano.",
+    "late": "Le carte esiliate da Kirk richiedono ancora mana e tempi normali. Kira fa entrare una creatura attaccante solo se ne controlli già una attaccante.",
+    "status": "ipotesi_editoriale_di_anteprima",
+    "date": "2026-10-27",
+    "sources": [
+      "scryfall-api",
+      "wizards-mechanics"
+    ],
+    "limitations": [
+      "Non è un archetipo certificato da partite o dal catalogo completo. Nessuna priorità di pick numerica assegnata."
+    ]
+  },
+  "GU": {
+    "name": "Verde blu",
+    "theme": "Terre con nomi diversi",
+    "core": [
+      "The Traveler",
+      "D'Vana Tendi, Optimistic Ensign"
+    ],
+    "support": [
+      "All Good Things..."
+    ],
+    "plan": "The Traveler cresce con i nomi diversi delle tue terre, non con il loro numero totale. Tendi può STAPpare un altro permanente, compresa una terra, e nel finale permette di sorvegliare pagando tre mana.",
+    "risk": "Aggiungere terre di altri colori solo per il nome può peggiorare la consistenza. All Good Things... offre risorse, ma costa cinque mana e non sviluppa subito il campo.",
+    "early": "Sviluppa una curva di creature e fonti coerente con i due colori.",
+    "middle": "The Traveler cresce con i nomi diversi delle tue terre, non con il loro numero totale. Tendi può STAPpare un altro permanente, compresa una terra, e nel finale permette di sorvegliare pagando tre mana.",
+    "late": "Aggiungere terre di altri colori solo per il nome può peggiorare la consistenza. All Good Things... offre risorse, ma costa cinque mana e non sviluppa subito il campo.",
+    "status": "ipotesi_editoriale_di_anteprima",
+    "date": "2026-10-27",
+    "sources": [
+      "scryfall-api",
+      "wizards-mechanics"
+    ],
+    "limitations": [
+      "Non è un archetipo certificato da partite o dal catalogo completo. Nessuna priorità di pick numerica assegnata."
+    ]
+  }
+}

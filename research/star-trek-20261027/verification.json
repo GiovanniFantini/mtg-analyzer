@@ -1,0 +1,43 @@
+{
+  "date": "2026-10-27",
+  "scope": "Star Trek preview data and shared prospects presentation",
+  "validationCheckout": "staged files plus HEAD, excluding unrelated working changes",
+  "passed": {
+    "offlineBuild": true,
+    "unitTests": 43,
+    "starTrekResponsiveRoutes": 30,
+    "sharedCatalogFilters": true,
+    "researchCardsDesktopAndMobile": true,
+    "previews": [
+      "mouse",
+      "keyboard",
+      "touch"
+    ],
+    "historicalAndIncompatibleSaveProtection": true,
+    "javascriptErrors": 0,
+    "localAssetErrors": 0
+  },
+  "knownUnrelatedFailure": {
+    "script": "verify-expansion-review.cjs",
+    "line": 121,
+    "fixture": "custom-discovery, Reality Fracture",
+    "actual": 10,
+    "expected": 1,
+    "reason": "Historical hardcoded Standard candidate count. Both the fixture and Reality Fracture datasets are unchanged by this activity."
+  },
+  "limitations": [
+    "Preview catalog remains partial.",
+    "No observed Limited WR or expert pick order available.",
+    "Cardmarket minima do not provide verified foil/nonfoil coverage or box EV."
+  ],
+  "reproduction": [
+    "python refresh-star-trek-20261027.py --from-snapshot",
+    "python enrich_star_trek_20261027.py",
+    "python build_site.py",
+    "python -m unittest test_expansion_data.py test_catalog_statistics.py test_untapped_pick_order.py test_star_trek_research.py",
+    "node verify-star-trek-research.cjs",
+    "node verify-shared-catalog.cjs",
+    "node verify-star-trek.cjs",
+    "node verify-expansion-browser.cjs"
+  ]
+}

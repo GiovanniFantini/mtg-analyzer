@@ -1,4 +1,1247 @@
 {
-  "cards": {},
-  "scale": {}
+  "cards": {
+    "d209b948-9afb-4fd1-a961-72c87282878c": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 5/5 da {4}{W}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Interagisce con le pescate: verifica chi pesca, gli eventuali scarti e i costi richiesti prima di considerarlo vantaggio netto.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "34f34409-326d-4994-a0ea-1a69aa278f03": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 4/5 da {2}{B}{B}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Interagisce con le pescate: verifica chi pesca, gli eventuali scarti e i costi richiesti prima di considerarlo vantaggio netto.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "d3b2d8a2-d3bc-448c-9cf6-6bead6010c28": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 2/2 da {1}{G}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "1e9b0fd6-5aae-401a-8df5-d94ce6442696": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 1/4 da {2}{B}{R}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Le pedine richiedono le condizioni scritte nell’abilità: controlla quantità, momento di creazione e durata prima di contarle nella pressione o nella difesa.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "17784f90-89a1-47a5-83ef-ae60dfc30bd1": {
+      "role": "Mana e nomi delle terre",
+      "why": "Valuta i colori effettivamente prodotti e le condizioni d’ingresso del testo. Il nome diverso può sostenere strange new worlds, ma non rende conveniente aggiungere un colore che il mazzo non sa utilizzare.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "9356aee1-3d2b-4d17-8863-663e1ddf56f3": {
+      "role": "Interazione",
+      "why": "Stregoneria da {1}{W}: richiede una tua fase principale e pila vuota. Confronta l’impatto del turno con il costo di tenere mana per le altre giocate. L’interazione dipende dal bersaglio legale e dalle sue restrizioni. Valuta cosa resta sul campo o in mano dopo la risoluzione, non soltanto il costo stampato.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "6f0b814b-94e6-48f2-9ccf-c376ca03bba3": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 2/3 da {1}{W}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Le pedine richiedono le condizioni scritte nell’abilità: controlla quantità, momento di creazione e durata prima di contarle nella pressione o nella difesa.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "deb26a1b-2b83-4da2-a2e5-31c17a57eb1e": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 1/1 da {1}{W}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Le pedine richiedono le condizioni scritte nell’abilità: controlla quantità, momento di creazione e durata prima di contarle nella pressione o nella difesa.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "10af9cd9-1700-48f9-97e1-61e239536fef": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 2/2 da {1}{W}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "f997ad8a-6903-47b1-83af-837b3b55a3d4": {
+      "role": "Motore di dilemmi",
+      "why": "Trasforma i dilemmi affrontati nel tuo turno in pedine Officer alla fine del turno. Il corpo da due mana è utilizzabile senza impegnare cinque colori: l’attivazione multicolore è un progetto separato, non una ragione per peggiorare subito la base di mana.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "04624f75-5981-4607-aa8f-706554f826e1": {
+      "role": "Officer e navi",
+      "why": "Potenzia le altre creature e produce Officer quando lanci creature o Spacecraft. La ricerca della nave richiede sette Officer STAPpati: prima assicurati di sviluppare il campo, senza contarla come accelerazione immediata al terzo turno.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "1c4afb0d-6d6e-4d21-9fe0-5621cd2fd27c": {
+      "role": "Interazione",
+      "why": "Stregoneria da {1}{W}: richiede una tua fase principale e pila vuota. Confronta l’impatto del turno con il costo di tenere mana per le altre giocate. La scelta di uno o più modi è un dilemma e può sostenere Seven of Nine o Sisko; più modi della stessa scelta non sono dilemmi distinti. Non tutti i modi hanno necessariamente un bersaglio legale.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "85b67121-340f-4cff-a26d-2160aa923ec3": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 2/1 da {W}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "35906166-71d1-4089-bbe4-4055edb81fb0": {
+      "role": "Permanente di supporto",
+      "why": "Permanente da {2}{W}: considera separatamente costo iniziale, abilità attivate e risorse necessarie prima di ottenere un vantaggio. Le pedine richiedono le condizioni scritte nell’abilità: controlla quantità, momento di creazione e durata prima di contarle nella pressione o nella difesa.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "cf612cbe-7af8-48fd-875e-a669e05cfb49": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 2/2 da {1}{W}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "b860f64c-e830-49ea-a478-5dc87e8a3be1": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 3/3 da {3}{W}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "5fe6f4ae-3fb1-4df6-8760-88c8666068df": {
+      "role": "Crescita con guadagno vite",
+      "why": "Raddoppia le innescate dei tuoi permanenti causate dal guadagno vite, non la quantità di vite guadagnate. Più piccoli eventi di guadagno vite fanno crescere Crusher; senza supporto resta una creatura da tre mana con corpo 2/2.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "df8a0737-5841-4c17-b567-e9296541c3c9": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 2/2 da {2}{W}{W}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "8170dcbb-9879-414c-819d-ea2658ff770c": {
+      "role": "Ingresso riutilizzabile",
+      "why": "Costa un mana bianco e mette un segnalino su una tua creatura bersaglio, facendoti guadagnare una vita. Con Open Communications dal cimitero spendi quattro mana totali per riprenderlo e rilanciarlo, non un mana soltanto.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "f409e869-ea1a-4e08-b19e-949436d01cc1": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 6/6 da {5}{W}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Strange new worlds conta i nomi diversi delle terre, non i tipi base: ripetere Forest non aumenta quel conteggio.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "3759f1de-eda1-4f09-b12b-ea5f5fc731d7": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 3/2 da {3}{W}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. La scelta di uno o più modi è un dilemma e può sostenere Seven of Nine o Sisko; più modi della stessa scelta non sono dilemmi distinti. Non tutti i modi hanno necessariamente un bersaglio legale.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "28914782-92f4-407f-beb6-5e290a49000c": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 4/5 da {3}{W}{W}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "b572be16-ad13-4f9f-bcf6-085f81e5292c": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 3/3 da {2}{W}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "3f04c38b-d6bd-405f-b69c-009df87801dd": {
+      "role": "Permanente di supporto",
+      "why": "Permanente da {2}{W}: considera separatamente costo iniziale, abilità attivate e risorse necessarie prima di ottenere un vantaggio. L’interazione dipende dal bersaglio legale e dalle sue restrizioni. Valuta cosa resta sul campo o in mano dopo la risoluzione, non soltanto il costo stampato.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "31e3f39f-8b18-4316-984f-4d57d2d480ca": {
+      "role": "Rimbalzo e vantaggio",
+      "why": "Può riprendere un tuo altro artefatto o creatura e ricompensa il ritorno in mano anche alle altre sottofasi finali. Con Federation Probe o Emergency Medical Hologram riusi gli ingressi; considera il mana per rilanciare il permanente, non solo il valore della pescata.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "b19ce6f2-7778-4779-8173-973eb7ee0b02": {
+      "role": "Vittoria alternativa",
+      "why": "Sono gli avversari a scegliere se pescare e rinunciare all’attacco: non garantisce dodici segnalini. Il piano deve reggere anche quando gli avversari rifiutano la proposta o rimuovono l’incantesimo prima della tua manutenzione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "509f255f-c3ee-4836-a583-d018060d0c4d": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 4/3 da {2}{W}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "4b36f8e2-ba7d-4bc7-890f-dd6ab73eef17": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 2/2 da {1}{W}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "be3dd0c8-32c2-4a56-9290-1fc9e366bae2": {
+      "role": "Chiusura per creature artefatto",
+      "why": "Il doppio attacco riguarda solo le creature artefatto. Aumenta molto la pressione di un campo Borg già sviluppato, ma un 2/3 da quattro mana senza altre creature del tipo richiesto offre poco impatto immediato.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "f4831eee-fef6-4fef-a174-400a25d0837d": {
+      "role": "Interazione",
+      "why": "Stregoneria da {1}{W}: richiede una tua fase principale e pila vuota. Confronta l’impatto del turno con il costo di tenere mana per le altre giocate. Beam me up consente un secondo lancio dal cimitero pagando il costo scritto e riprendendo una tua creatura come parte del costo; la magia sarà poi esiliata. Non cambia i tempi del suo tipo di carta.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "42258216-fe2b-42d0-a6ce-76ecf8104c10": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 2/2 da {2}{W}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "53aaa919-d08f-4b76-8583-bc2d4635f991": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 2/2 da {4}{W}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Federation conta i tipi delle creature non Borg; nessuno dei tipi su una creatura Borg contribuisce. Diversificare i tipi richiede creature che restino utili anche da sole.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "4da9b548-898d-431b-8aa5-9cb7bf579219": {
+      "role": "Interazione economica",
+      "why": "Tre danni possono colpire soltanto una creatura attaccante. Per liberare la strada contro un bloccante devi scegliere il modo che tappa e stordisce: guadagni tempo ma non elimini definitivamente la minaccia.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "0e14940b-87e1-4139-8f30-3629b3ad3a59": {
+      "role": "Interazione",
+      "why": "Istantaneo da {1}{W}: puoi scegliere la finestra di risposta, ma restano tutti i limiti e i bersagli indicati dal testo. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "4b5b0864-7ddd-497d-a7d6-a31c49bb9c7b": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 4/4 da {4}{W}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "1397e7d5-4aa4-4c8d-8957-845579b775f7": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 2/1 da {1}{W}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "beffaea5-beeb-4d4e-aca3-82c698caf6f8": {
+      "role": "Interazione",
+      "why": "Stregoneria da {1}{W}: richiede una tua fase principale e pila vuota. Confronta l’impatto del turno con il costo di tenere mana per le altre giocate. La scelta di uno o più modi è un dilemma e può sostenere Seven of Nine o Sisko; più modi della stessa scelta non sono dilemmi distinti. Non tutti i modi hanno necessariamente un bersaglio legale.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "887614f9-f12f-47bc-ae56-1438cd7cad10": {
+      "role": "Interazione",
+      "why": "Stregoneria da {1}{W}: richiede una tua fase principale e pila vuota. Confronta l’impatto del turno con il costo di tenere mana per le altre giocate. Beam me up consente un secondo lancio dal cimitero pagando il costo scritto e riprendendo una tua creatura come parte del costo; la magia sarà poi esiliata. Non cambia i tempi del suo tipo di carta.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "fc76eddd-8f2a-45e3-95d2-3074d971effb": {
+      "role": "Pedine da preparare",
+      "why": "Moltiplica le copie a ogni tua manutenzione ma non può bloccare. Richiede tempo e un modo di utilizzare o potenziare le pedine; non risolve da solo una posizione difensiva in svantaggio.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "0529c6fa-a35f-4d33-b274-93446ce68419": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 4/5 da {4}{W}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "5e2958fd-ede6-4563-babc-4924d3e95754": {
+      "role": "Nave con supporto immediato",
+      "why": "I tre Officer arrivano subito con la nave; volare e legame vitale richiedono invece sei segnalini carica. Valuta quali creature puoi tappare per station senza rinunciare a blocchi indispensabili.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "9f4ae54b-f77d-43df-87d5-792ac0905058": {
+      "role": "Nave da preparare",
+      "why": "Spacecraft da {3}{W}: le fasce 8 richiedono segnalini carica prima di ottenere le abilità corrispondenti. Station tappa un’altra creatura e ha tempi da stregoneria: considera la perdita di attacchi o blocchi mentre prepari la nave.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "8e90e417-65ca-48bc-a32d-b93976519fe9": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 2/2 da {1}{W}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "535c0280-fdb5-4ff8-8608-c2f98b8a7ffc": {
+      "role": "Permanente di supporto",
+      "why": "Permanente da {2}{U}: considera separatamente costo iniziale, abilità attivate e risorse necessarie prima di ottenere un vantaggio. Interagisce con le pescate: verifica chi pesca, gli eventuali scarti e i costi richiesti prima di considerarlo vantaggio netto.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "f77ea393-4142-4c06-8bb3-589ca74a7338": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 5/6 da {5}{U}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "64e39ec9-358a-4aa0-a7e9-164e8aa0b236": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 3/3 da {3}{U}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "8656291d-8de7-4341-b1ee-0fcd65d629a4": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 2/1 da {1}{U}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Interagisce con le pescate: verifica chi pesca, gli eventuali scarti e i costi richiesti prima di considerarlo vantaggio netto.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "9f1d416c-60de-4796-a513-097d1d9a2305": {
+      "role": "Interazione",
+      "why": "Istantaneo da {2}{U}: puoi scegliere la finestra di risposta, ma restano tutti i limiti e i bersagli indicati dal testo. La scelta di uno o più modi è un dilemma e può sostenere Seven of Nine o Sisko; più modi della stessa scelta non sono dilemmi distinti. Non tutti i modi hanno necessariamente un bersaglio legale.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "010630c6-5d7b-43e0-90a9-3e3cef9a4e6b": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 0/1 da {1}{U}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Interagisce con le pescate: verifica chi pesca, gli eventuali scarti e i costi richiesti prima di considerarlo vantaggio netto.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "5dabb7c1-8937-42b0-87c6-1cc7af46aaae": {
+      "role": "Interazione",
+      "why": "Stregoneria da {4}{U}{U}: richiede una tua fase principale e pila vuota. Confronta l’impatto del turno con il costo di tenere mana per le altre giocate. Strange new worlds conta i nomi diversi delle terre, non i tipi base: ripetere Forest non aumenta quel conteggio.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "af03149b-9307-443c-aefa-69bda52607ba": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 3/3 da {4}{U}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "275257ea-3c72-4ca9-b2fc-e50efa071bdb": {
+      "role": "Interazione",
+      "why": "Stregoneria da {1}{U}: richiede una tua fase principale e pila vuota. Confronta l’impatto del turno con il costo di tenere mana per le altre giocate. Beam me up consente un secondo lancio dal cimitero pagando il costo scritto e riprendendo una tua creatura come parte del costo; la magia sarà poi esiliata. Non cambia i tempi del suo tipo di carta.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "7d7e232f-e4f9-41db-a2d9-cfe88721b7a9": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 1/5 da {3}{U}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Strange new worlds conta i nomi diversi delle terre, non i tipi base: ripetere Forest non aumenta quel conteggio.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "947729a8-f8b0-4e08-9a87-6602af0e3c0a": {
+      "role": "Nave da preparare",
+      "why": "Spacecraft da {3}{U}: le fasce 6 richiedono segnalini carica prima di ottenere le abilità corrispondenti. Station tappa un’altra creatura e ha tempi da stregoneria: considera la perdita di attacchi o blocchi mentre prepari la nave.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "6fc7401f-66fe-4d17-be2f-afcf892be740": {
+      "role": "Corpo economico e selezione",
+      "why": "Il corpo 1/1 volante costa un mana blu e l’ingresso offre sorvegliare 1 oppure un bonus temporaneo a un’altra tua creatura. Con Miles O’Brien puoi riusare l’ingresso; il punteggio automatico Constructed non prova un primo pick assoluto.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "6c18f853-684b-42f6-8bc6-e86596131ab1": {
+      "role": "Interazione",
+      "why": "Istantaneo da {3}{U}: puoi scegliere la finestra di risposta, ma restano tutti i limiti e i bersagli indicati dal testo. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "38c43f30-0e01-4dcd-88fc-f1de318a5e29": {
+      "role": "Interazione",
+      "why": "Istantaneo da {1}{U}: puoi scegliere la finestra di risposta, ma restano tutti i limiti e i bersagli indicati dal testo. Il testo restringe cosa puoi neutralizzare: una risposta a un’abilità non è intercambiabile con un counter per qualsiasi magia.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "eaa47a9b-79ad-4f42-a98b-dcf76138207c": {
+      "role": "Nave da preparare",
+      "why": "Spacecraft da {4}{U}: le fasce 8 richiedono segnalini carica prima di ottenere le abilità corrispondenti. Station tappa un’altra creatura e ha tempi da stregoneria: considera la perdita di attacchi o blocchi mentre prepari la nave.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "39426cd1-8c0d-4ec6-8747-f0693080f8f2": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 3/3 da {4}{U}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Federation conta i tipi delle creature non Borg; nessuno dei tipi su una creatura Borg contribuisce. Diversificare i tipi richiede creature che restino utili anche da sole.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "a7285536-6cc1-448e-839a-606d585fbd9d": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 5/6 da {4}{U}{U}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "76f52fad-8db2-42f0-8e12-f4341e4c8680": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 4/3 da {4}{U}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "492ba01e-c0fa-414c-95fd-df5b59212d2a": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 1/2 da {1}{U}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Interagisce con le pescate: verifica chi pesca, gli eventuali scarti e i costi richiesti prima di considerarlo vantaggio netto.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "2b7ac3e8-0a7d-4b8a-a6a6-4cacc9b4f9de": {
+      "role": "Valore con una scadenza",
+      "why": "I modi si esauriscono: prepara un modo di far lasciare il campo all’incantesimo prima di dover scegliere la sconfitta. Non è vantaggio gratuito da inserire senza un’uscita; il ritorno in mano o il sacrificio devono essere disponibili nei tempi corretti.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "ebe988c1-96e0-4a99-86b5-d948837545de": {
+      "role": "Segnalini e pescate",
+      "why": "Cresce per le magie non creatura lanciate da qualsiasi giocatore. La pescata richiede un mana e tre segnalini rimossi dalle tue creature: spendere tutti i segnalini può ridurre la pressione del campo.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "cb3b4cfe-fd8d-4a26-905e-8ccd30f033a3": {
+      "role": "Accelerazione di station",
+      "why": "Raddoppia i segnalini carica sui tuoi artefatti, non tutti i segnalini del mazzo. Affiancalo a Spacecraft con fasce utili già alle prime soglie; da solo non crea creature né produce segnalini.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "a9368972-4697-4a10-97e3-324149a26fba": {
+      "role": "Interazione",
+      "why": "Stregoneria da {3}{U}: richiede una tua fase principale e pila vuota. Confronta l’impatto del turno con il costo di tenere mana per le altre giocate. La scelta di uno o più modi è un dilemma e può sostenere Seven of Nine o Sisko; più modi della stessa scelta non sono dilemmi distinti. Non tutti i modi hanno necessariamente un bersaglio legale.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "74e02bdf-a074-4356-9d06-0df01dd2df66": {
+      "role": "Permanente di supporto",
+      "why": "Permanente da {U}: considera separatamente costo iniziale, abilità attivate e risorse necessarie prima di ottenere un vantaggio. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "869bde03-8813-43a9-9df5-a21c62511b4b": {
+      "role": "Motore di pescata",
+      "why": "Il raddoppio delle pescate vale subito, ma non aggiunge una carta all’ingresso. Un 2/4 da quattro mana richiede protezione o la possibilità di pescare nello stesso turno per non perdere tempo contro una rimozione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "d89f34e4-8628-4faf-89e6-c9c16023ae8b": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 2/4 da {2}{U}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Interagisce con le pescate: verifica chi pesca, gli eventuali scarti e i costi richiesti prima di considerarlo vantaggio netto.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "b08c5b86-4f84-46a3-877f-bbf71ec17adb": {
+      "role": "Selezione e riutilizzo",
+      "why": "Pesca una carta per un mana blu. Beam me up richiede tre mana e il ritorno di una tua creatura come costo; essendo una stregoneria, non può salvarla in risposta a una rimozione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "e614f97b-da8e-4569-9bdd-f76371c66836": {
+      "role": "Nave per magie non creatura",
+      "why": "Le magie non creatura aggiungono cariche solo mentre la nave non è una creatura; anche antimalocchio dipende da questa condizione. Una volta raggiunta la fascia da otto cariche cambia il profilo di protezione: non conservarlo come se fosse permanente.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "5068eba6-ccf0-45f2-b0db-40f787ee3308": {
+      "role": "Interazione",
+      "why": "Stregoneria da {3}{U}{U}: richiede una tua fase principale e pila vuota. Confronta l’impatto del turno con il costo di tenere mana per le altre giocate. La scelta di uno o più modi è un dilemma e può sostenere Seven of Nine o Sisko; più modi della stessa scelta non sono dilemmi distinti. Non tutti i modi hanno necessariamente un bersaglio legale.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "8e5057ae-165c-4fe4-b712-a638b7eea038": {
+      "role": "Riutilizzo del cimitero",
+      "why": "Concede beam me up durante la tua fase principale, ma ciò consente di lanciare dal cimitero soltanto istantanei e stregonerie. Scotty non può essere ripreso come costo di questa abilità; paga comunque il costo della magia e riprendi un’altra creatura.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "af9c9b8a-0713-4904-8e86-2b3331ec5495": {
+      "role": "Selezione e terre diverse",
+      "why": "Prima di cinque nomi di terra, la pescata della prima fase principale è seguita da uno scarto. A cinque nomi diventa vantaggio netto; la trasformazione in 7/9 richiede invece sette nomi e sette mana, quindi non confondere le due soglie.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "e6973668-4ea7-4920-82a5-73abfc1c9fd5": {
+      "role": "Interazione su abilità",
+      "why": "Il modo di neutralizzazione riguarda abilità attivate o innescate, non magie. L’altro modo tappa e stordisce un artefatto o una creatura: un intervento temporaneo utile con lampo, non una rimozione definitiva.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "5d2016ed-3ea0-4938-b95e-ee582307e475": {
+      "role": "Nave da preparare",
+      "why": "Spacecraft da {2}{U}: le fasce 5 richiedono segnalini carica prima di ottenere le abilità corrispondenti. Station tappa un’altra creatura e ha tempi da stregoneria: considera la perdita di attacchi o blocchi mentre prepari la nave.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "cd24de4f-ce88-4fbb-9e8d-93ea7c260b4c": {
+      "role": "Interazione",
+      "why": "Istantaneo da {1}{U}: puoi scegliere la finestra di risposta, ma restano tutti i limiti e i bersagli indicati dal testo. La scelta di uno o più modi è un dilemma e può sostenere Seven of Nine o Sisko; più modi della stessa scelta non sono dilemmi distinti. Non tutti i modi hanno necessariamente un bersaglio legale.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "5ca4e8c4-8358-49be-bafb-85849bf9bd01": {
+      "role": "Permanente di supporto",
+      "why": "Saga da {2}{U}: il vantaggio è distribuito fra capitoli e turni; non sommare gli effetti come se fossero disponibili tutti all’ingresso. Interagisce con le pescate: verifica chi pesca, gli eventuali scarti e i costi richiesti prima di considerarlo vantaggio netto.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "f50ec16b-13f5-4e20-ae09-9c7dee9d223b": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 5/7 da {6}{U}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. La scelta di uno o più modi è un dilemma e può sostenere Seven of Nine o Sisko; più modi della stessa scelta non sono dilemmi distinti. Non tutti i modi hanno necessariamente un bersaglio legale.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "fea67446-f413-4a8c-b79a-49172e798fff": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 2/3 da {2}{U}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "42c77c4d-90bb-45d6-a9e0-36704b5a2b11": {
+      "role": "Minaccia o interazione",
+      "why": "Lo scarto da tre mana offre un effetto -4/-4 senza aspettare di lanciare una creatura da sette mana. Scegli quale funzione serve al pool: tenere sempre Armus come chiusura può lasciare scoperti i turni iniziali.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "18832d7a-9a1f-45f1-a0f9-8e768a36af07": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 2/4 da {3}{B}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "b28b4fe9-1a35-48c1-8818-f6f786b04e3e": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 2/2 da {2}{B}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Interagisce con le pescate: verifica chi pesca, gli eventuali scarti e i costi richiesti prima di considerarlo vantaggio netto.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "1000d26e-7a29-48df-806f-9eb7d4e1082d": {
+      "role": "Permanente di supporto",
+      "why": "Equipaggiamento da {2}{B}: il costo di lancio non comprende quello di equipaggiare. Serve una creatura utile e il tempo per spostarlo con i normali tempi da stregoneria. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "0e0e15d9-bd29-495a-9975-d1bd2ebb4bff": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 1/1 da {1}{B}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "87bcc935-e7e7-4e98-a23c-01c5a9b7cfcd": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 2/2 da {3}{B}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Le pedine richiedono le condizioni scritte nell’abilità: controlla quantità, momento di creazione e durata prima di contarle nella pressione o nella difesa.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "cfdef803-6f7a-4055-8d51-8e8c60953928": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 4/4 da {4}{B}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Le pedine richiedono le condizioni scritte nell’abilità: controlla quantità, momento di creazione e durata prima di contarle nella pressione o nella difesa.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "d9806ba7-8af4-4e8e-9238-7bc40c6bee0b": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura */2 da {1}{B}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "4f8a70cb-2487-4e6d-9a3f-c6c5313b8e82": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 3/2 da {2}{B}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. La scelta di uno o più modi è un dilemma e può sostenere Seven of Nine o Sisko; più modi della stessa scelta non sono dilemmi distinti. Non tutti i modi hanno necessariamente un bersaglio legale.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "ae5ee92a-5915-49ce-aa4c-611ab711b2ef": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 2/2 da {2}{B}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. La scelta di uno o più modi è un dilemma e può sostenere Seven of Nine o Sisko; più modi della stessa scelta non sono dilemmi distinti. Non tutti i modi hanno necessariamente un bersaglio legale.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "aeec05f1-43ea-4012-82d8-cded5494535d": {
+      "role": "Permanente di supporto",
+      "why": "Permanente da {6}{B}{B}: considera separatamente costo iniziale, abilità attivate e risorse necessarie prima di ottenere un vantaggio. L’assimilazione rende la creatura una creatura artefatto Borg e le toglie gli altri tipi; questo modifica sia affinità sia federation.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "c06c17c2-203c-4b4a-8564-f29bc41c9eb5": {
+      "role": "Interazione",
+      "why": "Istantaneo da {1}{B}: puoi scegliere la finestra di risposta, ma restano tutti i limiti e i bersagli indicati dal testo. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "c83465bd-f95f-4c57-b9ce-925a85b45276": {
+      "role": "Dilemmi e pressione",
+      "why": "Ogni dilemma innesca perdita di due vite per ogni avversario e guadagno di due per te. I modi di una sola magia restano un unico dilemma: per più innescate occorrono eventi distinti.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "6349eecb-dabd-4dcb-a8fb-c8ee66f61461": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 5/4 da {4}{B}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "72217c2e-4f6b-41da-8de1-bb6892d3c452": {
+      "role": "Sacrificio per Klingon",
+      "why": "Pagare un mana e sacrificare una creatura potenzia ogni tuo Klingon. Serve una massa critica di Klingon e materiale sacrificabile; senza un campo da far crescere il sacrificio consuma risorse senza recuperarle.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "31932df4-0be8-45c4-8b22-84119d9c20ba": {
+      "role": "Motore rischioso di fine turno",
+      "why": "Protegge dalla sconfitta per vite esaurite mentre resta sul campo e fa perdere tre vite prima della pescata. A zero vite, una rimozione di Georgiou può essere letale: le dieci pedine non rendono sicuro quel piano.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "4c4559a5-a7a4-4a40-8a8f-e7375c741748": {
+      "role": "Interazione",
+      "why": "Istantaneo da {B}: puoi scegliere la finestra di risposta, ma restano tutti i limiti e i bersagli indicati dal testo. Interagisce con le pescate: verifica chi pesca, gli eventuali scarti e i costi richiesti prima di considerarlo vantaggio netto.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "654ce8c5-b329-4046-9728-7fa276bc8695": {
+      "role": "Tesori e sacrifici",
+      "why": "Produce un Tesoro alla morte di un’altra creatura, al massimo una volta per turno. Il limite vale anche se muoiono molte creature insieme: non modellarlo come una conversione illimitata di pedine in mana.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "ee7150d1-8b38-4387-9b9c-a40180430170": {
+      "role": "Interazione",
+      "why": "Istantaneo da {3}{B}: puoi scegliere la finestra di risposta, ma restano tutti i limiti e i bersagli indicati dal testo. L’interazione dipende dal bersaglio legale e dalle sue restrizioni. Valuta cosa resta sul campo o in mano dopo la risoluzione, non soltanto il costo stampato.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "8e6ae6ed-065c-47bd-a3c6-69b2608e7ddc": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 4/4 da {4}{B}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Interagisce con le pescate: verifica chi pesca, gli eventuali scarti e i costi richiesti prima di considerarlo vantaggio netto.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "e277ed07-2113-4465-a45c-a64490814c1d": {
+      "role": "Interazione",
+      "why": "Istantaneo da {2}{B}: puoi scegliere la finestra di risposta, ma restano tutti i limiti e i bersagli indicati dal testo. La scelta di uno o più modi è un dilemma e può sostenere Seven of Nine o Sisko; più modi della stessa scelta non sono dilemmi distinti. Non tutti i modi hanno necessariamente un bersaglio legale.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "90c78f79-982f-4acd-a8ba-0c6ce115a248": {
+      "role": "Permanente di supporto",
+      "why": "Saga da {3}{B}{B}: il vantaggio è distribuito fra capitoli e turni; non sommare gli effetti come se fossero disponibili tutti all’ingresso. Interagisce con le pescate: verifica chi pesca, gli eventuali scarti e i costi richiesti prima di considerarlo vantaggio netto.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "16a5ed42-ee86-4dcb-b8ea-239ac2b13d67": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 3/1 da {1}{B}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "d2a86d0c-a4fe-434c-a45c-812cdec9169f": {
+      "role": "Vantaggio da risorse sacrificabili",
+      "why": "Il sacrificio facoltativo di un altro artefatto o creatura converte una risorsa in due carte. Puoi lanciare Khan dall’esilio pagando i costi ordinari, senza una finestra o un costo gratuito aggiunti dalla sua abilità.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "7145e1b7-b991-4651-b21d-0620cb017090": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 2/5 da {3}{B}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "f1e28022-b06b-4efb-9f85-c36d8302ef99": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 2/3 da {2}{B}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "523c244b-7292-40c7-8b12-27106fffe63f": {
+      "role": "Recupero di creature artefatto",
+      "why": "Rilancia una creatura artefatto dal cimitero una volta durante ciascuno dei tuoi turni. Non è un’autorizzazione a lanciarla a velocità di istantaneo e il segnalino finalità limita la ripetizione quando morirà.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "98cbac1d-7896-4c63-a265-03bc5d670fa6": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 1/1 da {B}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Interagisce con le pescate: verifica chi pesca, gli eventuali scarti e i costi richiesti prima di considerarlo vantaggio netto.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "49975689-85f8-4221-bb11-3d3f68a1a7ac": {
+      "role": "Interazione",
+      "why": "Stregoneria da {1}{B}: richiede una tua fase principale e pila vuota. Confronta l’impatto del turno con il costo di tenere mana per le altre giocate. La scelta di uno o più modi è un dilemma e può sostenere Seven of Nine o Sisko; più modi della stessa scelta non sono dilemmi distinti. Non tutti i modi hanno necessariamente un bersaglio legale.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "4849f2f8-0c0e-470d-a4f5-76547a9570a0": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 6/5 da {4}{B}{B}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. La scelta di uno o più modi è un dilemma e può sostenere Seven of Nine o Sisko; più modi della stessa scelta non sono dilemmi distinti. Non tutti i modi hanno necessariamente un bersaglio legale.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "31c7453e-33b8-4eb6-abac-28cdb35fb993": {
+      "role": "Selezione della mano avversaria",
+      "why": "Sostituisce una carta non terra scelta nella mano avversaria con una pescata. Offre informazione e può togliere un pezzo chiave, ma non equivale a uno scarto senza compensazione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "b1012ac3-77f8-4384-b947-84c094d6b59e": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 2/1 da {B}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "abfdfae5-61aa-42d6-9c8e-83fda59de233": {
+      "role": "Permanente di supporto",
+      "why": "Permanente da {1}{B}: considera separatamente costo iniziale, abilità attivate e risorse necessarie prima di ottenere un vantaggio. Interagisce con le pescate: verifica chi pesca, gli eventuali scarti e i costi richiesti prima di considerarlo vantaggio netto.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "6cb1c3fb-033a-4de5-ad07-69d9ad0ca5ae": {
+      "role": "Scarto con scelta modale",
+      "why": "È una stregoneria nera da un mana con modi diversi, quindi può attivare i payoff dei dilemmi. Verifica il modo scelto e i suoi costi sul testo: il voto automatico 3,5/5 resta una previsione Constructed, non una statistica Draft.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "edaa05ba-8b15-4156-b725-1e0c418a9ae5": {
+      "role": "Recupero con nave",
+      "why": "L’ingresso recupera una creatura di valore di mana massimo quattro anche prima della fascia da dieci cariche. Il segnalino finalità ne limita il riuso; l’attacco richiede prima di rendere la nave una creatura.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "1033a0cb-1a00-46c4-83d5-68a6eac85feb": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 2/1 da {1}{R}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "2375e6e4-bea2-4fa2-b0d5-467e3076962c": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 2/3 da {2}{R}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "19edde54-153f-46b8-8a8d-a20fdef0667f": {
+      "role": "Modalità per il campo",
+      "why": "Ingresso e attacco permettono una scelta fra selezione, Officer e potenziamento. Solo con mano vuota puoi scegliere più modi; il primo modo scarta prima di pescare e non diventa una pescata aggiuntiva quando hai altre carte.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "9a71aa6c-2d5f-468d-b588-252fae37ccbb": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 3/3 da {2}{R}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "1d41aacf-e15d-4457-b12a-c71bcdb7b5de": {
+      "role": "Permanente di supporto",
+      "why": "Permanente da {1}{R}: considera separatamente costo iniziale, abilità attivate e risorse necessarie prima di ottenere un vantaggio. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "5e696f9a-425c-470a-870e-10d2ba3bb27d": {
+      "role": "Nave da combattimento",
+      "why": "La fascia da tre cariche genera un Klingon 2/1 con rapidità al tuo combattimento; otto cariche servono per la nave volante. Le pedine spariscono alla prossima sottofase finale: puoi attaccare o sacrificarle prima, ma non contarle come bloccanti futuri.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "c9bc1a28-8d3c-4d9f-a67d-b044cfe9d6c1": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 4/3 da {3}{R}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "8b2514e5-4124-4f6c-b6b7-24c0ab3d3971": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 3/3 da {3}{R}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "3fdba8ee-6dfe-480d-b84a-43922229d9b4": {
+      "role": "Permanente di supporto",
+      "why": "Permanente da {2}{R}{R}: considera separatamente costo iniziale, abilità attivate e risorse necessarie prima di ottenere un vantaggio. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "e8ac0742-15f5-4cf0-888f-f1c2c97fc144": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 7/6 da {4}{R}{R}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "c7d8ed66-d66e-42fd-9c3e-8c2d8194e009": {
+      "role": "Interazione",
+      "why": "Stregoneria da {7}{R}{R}: richiede una tua fase principale e pila vuota. Confronta l’impatto del turno con il costo di tenere mana per le altre giocate. Federation conta i tipi delle creature non Borg; nessuno dei tipi su una creatura Borg contribuisce. Diversificare i tipi richiede creature che restino utili anche da sole.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "45b1a19b-6a0c-4534-9106-99c2e5fc30d6": {
+      "role": "Interazione",
+      "why": "Istantaneo da {X}{R}: puoi scegliere la finestra di risposta, ma restano tutti i limiti e i bersagli indicati dal testo. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "b7ea2089-abcd-4e60-8201-93801eae5084": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 5/4 da {4}{R}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "ed3b80eb-8915-4428-89b8-90f4278f2733": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 4/3 da {2}{R}{R}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "e56472ec-6ae8-48b2-a4ce-0ed154161c06": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 2/2 da {1}{R}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "0013f005-2b49-48a4-8a74-9bbdadc88c9f": {
+      "role": "Curva aggressiva",
+      "why": "Un 3/2 con travolgere per due mana sostiene un piano aggressivo. La morte infligge un solo danno a un bersaglio: può rifinire una creatura già danneggiata, non sostituisce una rimozione completa.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "e47c340d-b20b-4103-955b-3f76424c43f8": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 4/4 da {5}{R}{R}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Strange new worlds conta i nomi diversi delle terre, non i tipi base: ripetere Forest non aumenta quel conteggio.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "f1f77fb4-2c83-4cbf-894e-624abe6cd95f": {
+      "role": "Interazione",
+      "why": "Istantaneo da {1}{R}: puoi scegliere la finestra di risposta, ma restano tutti i limiti e i bersagli indicati dal testo. La scelta di uno o più modi è un dilemma e può sostenere Seven of Nine o Sisko; più modi della stessa scelta non sono dilemmi distinti. Non tutti i modi hanno necessariamente un bersaglio legale.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "2c2fdeff-a0c6-44cb-9603-4a9865f62985": {
+      "role": "Interazione",
+      "why": "Stregoneria da {R}: richiede una tua fase principale e pila vuota. Confronta l’impatto del turno con il costo di tenere mana per le altre giocate. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "fba54c2d-a664-4e4c-b9d4-e24cf2523ab9": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 2/2 da {1}{R}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "46ce40e9-b7fb-4f40-a7ab-f8a2234d1d63": {
+      "role": "Interazione",
+      "why": "Istantaneo da {2}{R}: puoi scegliere la finestra di risposta, ma restano tutti i limiti e i bersagli indicati dal testo. Interagisce con le pescate: verifica chi pesca, gli eventuali scarti e i costi richiesti prima di considerarlo vantaggio netto.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "6866f0a4-5fe6-40d9-bbfc-6f116f4e415d": {
+      "role": "Copie dall’esilio",
+      "why": "La carta non terra esiliata riceve l’abilità, che resta utilizzabile anche se Q lascia il campo. Ogni attivazione esilia una carta dalla mano, il lancio della copia richiede il pagamento dei costi e non esiste un limite scritto di una volta per turno.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "61703e94-cb57-44d8-b37b-7b14b3cfd86d": {
+      "role": "Tesori con una restrizione",
+      "why": "Accumula Tesori a ogni manutenzione, ma impedisce di sacrificarli finché resta sul campo. I Tesori normali non sono creature artefatto e non riducono il costo di Borg Cube tramite affinità.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "5cbe6066-07f8-45de-b3b4-b8590d111b0d": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 3/3 da {5}{R}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "584cf0fd-112a-4ca6-9c0e-1f3228a7d325": {
+      "role": "Interazione",
+      "why": "Stregoneria da {1}{R}: richiede una tua fase principale e pila vuota. Confronta l’impatto del turno con il costo di tenere mana per le altre giocate. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "1b248ef5-ec57-481d-b47a-357d3867054f": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 4/4 da {4}{R}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "a066eeb1-61fc-448b-bbab-650d672652ad": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 5/3 da {2}{R}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "1a9607a2-58cb-4bb8-b454-4813528221f8": {
+      "role": "Pressione e risorsa differita",
+      "why": "La morte permette di giocare la carta esiliata fino alla fine del tuo prossimo turno. La copia dal cimitero costa tre mana, si attiva solo come stregoneria e viene sacrificata alla prossima sottofase finale: pianifica quando spendere il vantaggio.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "7c1fd7c6-2f3d-496f-9f09-660a13ef923f": {
+      "role": "Terre temporanee",
+      "why": "Le due terre arrivano a ogni tuo combattimento, ma vanno sacrificate alla successiva sottofase finale. Danno mana e innescate terraferma nel turno, non accelerazione permanente garantita; un sacrificio prima della fine può sfruttarle meglio.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "dfff6f8f-b038-4619-8190-7a6918afab1e": {
+      "role": "Finestra offensiva",
+      "why": "Prende temporaneamente creature con valore di mana massimo tre, una per avversario. Se non chiudi la partita o non hai un sacrificio utile, quelle creature tornano: non trattarlo come furto permanente.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "22249955-0741-470e-bc2b-f32d4510849b": {
+      "role": "Interazione distribuita",
+      "why": "Il primo capitolo infligge quattro danni prima del furto al combattimento: se la creatura muore, non rimane nulla da prendere. Il terzo capitolo lascia all’avversario la scelta di un permanente non pedina da sacrificare.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "37f3eda9-3242-4d62-846f-935543d8f4fd": {
+      "role": "Interazione",
+      "why": "Stregoneria da {2}{G}: richiede una tua fase principale e pila vuota. Confronta l’impatto del turno con il costo di tenere mana per le altre giocate. Beam me up consente un secondo lancio dal cimitero pagando il costo scritto e riprendendo una tua creatura come parte del costo; la magia sarà poi esiliata. Non cambia i tempi del suo tipo di carta.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "98a752ff-f041-4032-9f3f-c6c4007f10f1": {
+      "role": "Permanente di supporto",
+      "why": "Saga da {2}{G}: il vantaggio è distribuito fra capitoli e turni; non sommare gli effetti come se fossero disponibili tutti all’ingresso. Interagisce con le pescate: verifica chi pesca, gli eventuali scarti e i costi richiesti prima di considerarlo vantaggio netto.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "6e13c619-706d-4c77-bc7d-187df0fd054a": {
+      "role": "Interazione",
+      "why": "Stregoneria da {6}{G}{G}: richiede una tua fase principale e pila vuota. Confronta l’impatto del turno con il costo di tenere mana per le altre giocate. Strange new worlds conta i nomi diversi delle terre, non i tipi base: ripetere Forest non aumenta quel conteggio.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "85df3564-5134-4dc2-9021-40ec84ee6d08": {
+      "role": "Federation e due corpi",
+      "why": "Archer porta Porthos e quindi aumenta la diversità dei tipi disponibili. Il potenziamento richiede mana verde, tap e tempi da stregoneria: non è un trick da combattimento a sorpresa.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "d77d1895-ce02-4302-87c9-649e852fd0ea": {
+      "role": "Esplorare e terre",
+      "why": "Esplorare su ogni tua creatura in ingresso seleziona le pescate, trova terre o mette segnalini. La terra aggiuntiva richiede comunque una terra da giocare: non garantisce da sola una crescita continua del mana.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "745633e6-8635-4d99-8a4e-edc5d500bb3d": {
+      "role": "Terre dalla cima",
+      "why": "Dimensioni e consistenza migliorano con nomi di terra diversi. Giocare terre dalla cima non aumenta il numero ordinario di terre giocabili: occorre un’altra abilità, come Janeway, per superare quel limite.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "d5e9b04f-4a97-4da1-bf86-3715fc75ab23": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 4/4 da {4}{G}{G}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "d4030d30-4c24-458c-87a9-c2f80bb68d27": {
+      "role": "Interazione",
+      "why": "Stregoneria da {1}{G}: richiede una tua fase principale e pila vuota. Confronta l’impatto del turno con il costo di tenere mana per le altre giocate. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "76b7e1ee-43f0-4b56-822a-71b064c9201b": {
+      "role": "Interazione",
+      "why": "Istantaneo da {2}{G}: puoi scegliere la finestra di risposta, ma restano tutti i limiti e i bersagli indicati dal testo. La scelta di uno o più modi è un dilemma e può sostenere Seven of Nine o Sisko; più modi della stessa scelta non sono dilemmi distinti. Non tutti i modi hanno necessariamente un bersaglio legale.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "d151c8ed-58bf-4b82-a993-1d81f789aa0e": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 3/1 da {2}{G}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "046c4052-4c3c-4207-b44e-e9a98a8c017f": {
+      "role": "Segnalini e protezione",
+      "why": "Raddoppia i segnalini messi sulle tue creature; antimalocchio protegge soltanto le altre tue creature che hanno segnalini. M’Benga non protegge sé stesso con la propria prima abilità.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "26f7e903-2a00-4878-b8b7-d5abe35c9526": {
+      "role": "Interazione",
+      "why": "Stregoneria da {2}{G}: richiede una tua fase principale e pila vuota. Confronta l’impatto del turno con il costo di tenere mana per le altre giocate. Beam me up consente un secondo lancio dal cimitero pagando il costo scritto e riprendendo una tua creatura come parte del costo; la magia sarà poi esiliata. Non cambia i tempi del suo tipo di carta.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "81229e0a-8413-40cf-8087-9d580cbb21c3": {
+      "role": "Interazione",
+      "why": "Istantaneo da {1}{G}: puoi scegliere la finestra di risposta, ma restano tutti i limiti e i bersagli indicati dal testo. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "0d830d0c-3339-49cc-8527-4f4edf787925": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 3/3 da {2}{G}{G}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Le pedine richiedono le condizioni scritte nell’abilità: controlla quantità, momento di creazione e durata prima di contarle nella pressione o nella difesa.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "8f91e7aa-a2d4-42ed-a959-3acd621679a5": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 2/2 da {4}{G}{G}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Le pedine richiedono le condizioni scritte nell’abilità: controlla quantità, momento di creazione e durata prima di contarle nella pressione o nella difesa.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "ad1d8eca-e3bf-479f-a442-bcd8c31bfe7f": {
+      "role": "Interazione",
+      "why": "Istantaneo da {G}: puoi scegliere la finestra di risposta, ma restano tutti i limiti e i bersagli indicati dal testo. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "67601646-f906-4824-9269-3cf89766d25f": {
+      "role": "Accelerazione progressiva",
+      "why": "Aggiunge un segnalino e poi mana verde nella prima fase principale. Prima di investire in carte molto costose, considera che è una creatura piccola esposta alle rimozioni; l’abilità da scarto offre invece due segnalini a una creatura bersaglio.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "f0c1c97f-b8e1-49ec-b369-3d2694c33f29": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 2/2 da {1}{G}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Interagisce con le pescate: verifica chi pesca, gli eventuali scarti e i costi richiesti prima di considerarlo vantaggio netto.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "89b9efc8-d1cd-4b2a-acf3-4f0dd1629167": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 1/1 da {G}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "eb9a3b52-62ad-467f-b62a-0273ceee48e5": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 6/6 da {3}{G}{G}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "00f4cab8-b135-4118-8e3a-92097178abb6": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 4/3 da {3}{G}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Le pedine richiedono le condizioni scritte nell’abilità: controlla quantità, momento di creazione e durata prima di contarle nella pressione o nella difesa.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "59a4c4cf-07b4-4009-bbea-7da7b31f09a1": {
+      "role": "Permanente di supporto",
+      "why": "Permanente da {2}{G}: considera separatamente costo iniziale, abilità attivate e risorse necessarie prima di ottenere un vantaggio. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "d4c1dbc8-23d8-49e0-bc2d-d005e9215172": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 2/2 da {2}{G}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "2f32de5c-4d85-42bc-b1bf-f762a46e5efc": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 4/4 da {4}{G}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "306002e6-d68d-47ad-879b-e6060efebeff": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 2/3 da {2}{G}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Le pedine richiedono le condizioni scritte nell’abilità: controlla quantità, momento di creazione e durata prima di contarle nella pressione o nella difesa.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "101b2387-58a1-4ef9-8395-0024713e217b": {
+      "role": "Interazione",
+      "why": "Istantaneo da {G}: puoi scegliere la finestra di risposta, ma restano tutti i limiti e i bersagli indicati dal testo. La scelta di uno o più modi è un dilemma e può sostenere Seven of Nine o Sisko; più modi della stessa scelta non sono dilemmi distinti. Non tutti i modi hanno necessariamente un bersaglio legale.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "13dbfe3f-1e04-4c4f-953c-7c949dba9d33": {
+      "role": "Nave con discover",
+      "why": "Discover 5 all’ingresso fornisce valore prima di caricare la nave. Per ripetere l’effetto attaccando servono sei cariche e un attacco possibile: il valore iniziale e quello futuro hanno tempi diversi.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "a9df60bf-f327-4d50-ab4d-99324fc2dcfe": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 1/3 da {1}{G}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "5fdff691-686d-4ce0-bd12-eea676a648b4": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 3/2 da {2}{G}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "61dc9770-1e29-49fa-a31b-b63b5f0496fb": {
+      "role": "Permanente di supporto",
+      "why": "Saga da {3}{G}{U}: il vantaggio è distribuito fra capitoli e turni; non sommare gli effetti come se fossero disponibili tutti all’ingresso. Interagisce con le pescate: verifica chi pesca, gli eventuali scarti e i costi richiesti prima di considerarlo vantaggio netto.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "a59b854c-0e04-4581-b9d3-1516263d7ace": {
+      "role": "Affinità e assimilazione",
+      "why": "L’affinità conta creature artefatto, non artefatti generici o normali Tesori. Il primo ingresso di solito esilia una creatura perché non c’è ancora una carta esiliata da assimilare; i successivi ingressi o attacchi possono trasformare quell’esilio in un tuo Borg.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "47c9ef8c-7ba7-4702-bd8c-5fedc59c8166": {
+      "role": "Permanente di supporto",
+      "why": "Saga da {3}{W}{B}: il vantaggio è distribuito fra capitoli e turni; non sommare gli effetti come se fossero disponibili tutti all’ingresso. Interagisce con le pescate: verifica chi pesca, gli eventuali scarti e i costi richiesti prima di considerarlo vantaggio netto.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "b80879d3-5abd-47e5-8b8c-61db120854e4": {
+      "role": "Terraferma e pressione",
+      "why": "Ogni terra in ingresso crea un 2/2 che non può bloccare. Will Riker o Janeway possono aumentare il numero di ingressi, ma il piano richiede una difesa diversa dalle pedine Worm.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "74b58f31-7634-4b51-a900-6fbfccfb3cd2": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 4/3 da {3}{W/U}{W/U}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. La scelta di uno o più modi è un dilemma e può sostenere Seven of Nine o Sisko; più modi della stessa scelta non sono dilemmi distinti. Non tutti i modi hanno necessariamente un bersaglio legale.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "7cecf129-3df9-4ebf-b194-28d1b34faaab": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 3/3 da {1}{R}{G}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Interagisce con le pescate: verifica chi pesca, gli eventuali scarti e i costi richiesti prima di considerarlo vantaggio netto.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "2e44a02f-af94-4696-b979-cdf68285c87a": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 3/1 da {2}{B/G}{B/G}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "3b04f5b9-40d9-49aa-a38d-0f946401263c": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 3/3 da {3}{G/W}{G/W}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "03973bad-1b3c-4488-a23e-232b192c95cc": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 3/2 da {B/R}{B/R}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Le pedine richiedono le condizioni scritte nell’abilità: controlla quantità, momento di creazione e durata prima di contarle nella pressione o nella difesa.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "6bb42689-b169-43cb-b787-f0e348063cd6": {
+      "role": "STAP e selezione",
+      "why": "Può STAPpare un altro permanente, anche una terra o una creatura utile a caricare una nave. Il costo di tap rende rilevante la debolezza da evocazione; sorvegliare costa tre mana e non pesca una carta.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "40616029-e1a8-4e7c-bc7b-e381779c57cc": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 3/3 da {2}{B}{R}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Interagisce con le pescate: verifica chi pesca, gli eventuali scarti e i costi richiesti prima di considerarlo vantaggio netto.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "34a39862-c18b-4c1b-8920-207627c40934": {
+      "role": "Copie temporanee",
+      "why": "La copia arriva all’inizio del tuo combattimento solo se hai già lanciato una magia non creatura nel turno. Serve un bersaglio creatura tuo: la copia non è leggendaria, ha rapidità e va sacrificata alla prossima sottofase finale.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "83d8e98d-ab97-40b1-820a-2d193a5ed261": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 2/3 da {W}{U}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Interagisce con le pescate: verifica chi pesca, gli eventuali scarti e i costi richiesti prima di considerarlo vantaggio netto.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "62361438-3da4-4ce9-95b8-fc361b824f58": {
+      "role": "Permanente di supporto",
+      "why": "Permanente da {1}{R}{G}: considera separatamente costo iniziale, abilità attivate e risorse necessarie prima di ottenere un vantaggio. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "0de3aad2-5f4c-4437-b0b3-4b867309528d": {
+      "role": "Permanente di supporto",
+      "why": "Saga da {3}{G}{W}: il vantaggio è distribuito fra capitoli e turni; non sommare gli effetti come se fossero disponibili tutti all’ingresso. Interagisce con le pescate: verifica chi pesca, gli eventuali scarti e i costi richiesti prima di considerarlo vantaggio netto.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "ff9f5bbb-43c4-481e-9bd7-db9f246355ae": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 4/3 da {1}{R}{W}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "e85ad29a-ebd6-4f81-af99-556deaedbfe0": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 3/3 da {1}{R}{W}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. L’interazione dipende dal bersaglio legale e dalle sue restrizioni. Valuta cosa resta sul campo o in mano dopo la risoluzione, non soltanto il costo stampato.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "ff6bc9f5-5a83-42d9-b1a4-f0979aed28ad": {
+      "role": "Interazione",
+      "why": "Stregoneria da {5}{W}{U}: richiede una tua fase principale e pila vuota. Confronta l’impatto del turno con il costo di tenere mana per le altre giocate. Interagisce con le pescate: verifica chi pesca, gli eventuali scarti e i costi richiesti prima di considerarlo vantaggio netto.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "46ba09a7-42e4-42cd-911c-71d0ade01180": {
+      "role": "Creature artefatto",
+      "why": "Il bonus riguarda solo le creature artefatto. L’abilità da scarto offre due danni a una creatura e due vite per due mana: valuta se serve subito l’interazione invece del potenziamento permanente.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "ee712451-01de-4486-9048-fafb5aa5a584": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 2/3 da {1}{U/B}{U/B}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. La scelta di uno o più modi è un dilemma e può sostenere Seven of Nine o Sisko; più modi della stessa scelta non sono dilemmi distinti. Non tutti i modi hanno necessariamente un bersaglio legale.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "ea684e78-483c-4b89-b184-b2aeede83cc7": {
+      "role": "Pedine e sacrifici",
+      "why": "La pedina Klingon ha rapidità ma scade alla prossima sottofase finale. Puoi pagarne il sacrificio dopo il combattimento per sorvegliare, senza considerarla una risorsa permanente per i turni successivi.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "007d08e8-4db2-47d1-ba39-8bb8efa491a1": {
+      "role": "Interazione",
+      "why": "Stregoneria da {1}{U}{B}: richiede una tua fase principale e pila vuota. Confronta l’impatto del turno con il costo di tenere mana per le altre giocate. Le pedine richiedono le condizioni scritte nell’abilità: controlla quantità, momento di creazione e durata prima di contarle nella pressione o nella difesa.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "b04cb333-ca7a-464f-a084-03cf8f468baf": {
+      "role": "Segnalini e danni al giocatore",
+      "why": "Le tue creature con segnalini devono infliggere danno da combattimento a un giocatore per farti pescare. Mettere un segnalino su un bloccante non basta: servono anche attacchi o evasione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "3c037865-d38c-48da-aee9-308975e12638": {
+      "role": "Payoff dei dilemmi",
+      "why": "Pesca una carta quando affronti un dilemma. Una scelta con più modi è comunque un solo dilemma; le normali scelte di colore o bersaglio non sono modi e non fanno pescare.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "bdfe5809-17d4-4239-a9ee-6accdef99035": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 2/2 da {U}{R}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "b61718eb-dc6a-4199-b7c7-42eccf4158e8": {
+      "role": "Terre con nomi diversi",
+      "why": "La forza cresce con i nomi diversi delle tue terre, non con il numero di terre o di tipi di terra base. Conserva cautela e raggiungere anche quando la forza è piccola: valuta il blocco insieme alla resistenza stampata.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "ec5a9dde-b89d-4c54-8563-4a7170f5cefd": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 2/4 da {1}{B}{G}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Interagisce con le pescate: verifica chi pesca, gli eventuali scarti e i costi richiesti prima di considerarlo vantaggio netto.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "2ecda53d-ac24-4b28-aed8-2a5fb1449f85": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 1/1 da {R/W}{R/W}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "83f426db-3b25-4407-afd0-0465e3900c24": {
+      "role": "Permanente di supporto",
+      "why": "Saga da {1}{U}{R}: il vantaggio è distribuito fra capitoli e turni; non sommare gli effetti come se fossero disponibili tutti all’ingresso. Interagisce con le pescate: verifica chi pesca, gli eventuali scarti e i costi richiesti prima di considerarlo vantaggio netto.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "746e494e-fdc4-415e-8a82-d35e11ebeccb": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 2/2 da {1}{W/B}{W/B}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "ca6f43d8-1498-4a13-b1cc-2d135b24a8b6": {
+      "role": "Chiusura con pulizia del campo",
+      "why": "Distrugge le creature non artefatto solo se è stata lanciata, non quando viene semplicemente rianimata o messa sul campo da un effetto. Un mazzo di creature artefatto può sfruttare l’asimmetria, ma deve prima raggiungere otto mana.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "9fc49a69-f80c-478f-b237-66f155c0c09a": {
+      "role": "Corpo e sinergie",
+      "why": "Creatura 2/1 da {2}. La curva e il ruolo sul campo vanno valutati insieme all’abilità, senza dedurre la forza dalla rarità. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "14442f5b-0bad-4c58-b268-d775787571d8": {
+      "role": "Chiusura per mazzi di permanenti",
+      "why": "Costa nove mana e mette sul campo i permanenti esiliati dalle prime quattro carte già all’ingresso. La composizione del mazzo conta più della sola rarità: molte magie non permanente riducono il valore del motore.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "95fd897e-9086-42c4-8e0d-61bb02333c5f": {
+      "role": "Rimozione selettiva per valore di mana",
+      "why": "Sunburst conta i colori effettivamente spesi per lanciarlo, mentre il valore di mana dell’artefatto sul campo è zero. L’attivazione distrugge i permanenti non terra col valore di mana uguale al numero di cariche: attenzione anche ai tuoi.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "ecf28b5d-a719-47d4-8ad9-d24b6297ebde": {
+      "role": "Recupero di permanenti",
+      "why": "Permette di giocare un permanente dal cimitero una volta durante ciascuno dei tuoi turni, pagando i costi e rispettando i tempi. Il riferimento a fuori dal gioco non crea una riserva in Commander ordinario; nei formati da torneo valgono le regole della sideboard.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "a91b8eb4-d4f7-4e24-ae49-1f51e610c7ca": {
+      "role": "Copie di pedine",
+      "why": "Crea subito un Cibo; per copiare un bersaglio serve che sia una pedina, due mana e tap. La copia entra tappata: non può essere usata come se fosse già STAPpata per attaccare o per un costo di tap.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "6f2e8083-29af-4cdb-a2cb-216b2f3f5616": {
+      "role": "Permanente di supporto",
+      "why": "Permanente da {2}: considera separatamente costo iniziale, abilità attivate e risorse necessarie prima di ottenere un vantaggio. La scelta di uno o più modi è un dilemma e può sostenere Seven of Nine o Sisko; più modi della stessa scelta non sono dilemmi distinti. Non tutti i modi hanno necessariamente un bersaglio legale.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "1385679f-bdcd-4d7e-8266-1df0e36cc2da": {
+      "role": "Permanente di supporto",
+      "why": "Equipaggiamento da {1}: il costo di lancio non comprende quello di equipaggiare. Serve una creatura utile e il tempo per spostarlo con i normali tempi da stregoneria. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "9d4d3682-e904-412d-b8ae-734962865dfb": {
+      "role": "Permanente di supporto",
+      "why": "Equipaggiamento da {2}: il costo di lancio non comprende quello di equipaggiare. Serve una creatura utile e il tempo per spostarlo con i normali tempi da stregoneria. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "d95af032-3efd-40c7-8229-ade9d974934f": {
+      "role": "Nave e accesso a una carta",
+      "why": "La prima aggiunta di cariche di ogni turno esilia una carta giocabile soltanto quel turno, con costi e tempi normali. Station richiede tempi da stregoneria: avere l’innescata su più turni richiede altre fonti di segnalini.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "6a2df97a-341d-4bc4-9f5c-661b6ca78fd0": {
+      "role": "Permanente di supporto",
+      "why": "Permanente da {2}: considera separatamente costo iniziale, abilità attivate e risorse necessarie prima di ottenere un vantaggio. Profilo preliminare basato sul testo Oracle. L’efficacia va verificata nel mazzo e contro il formato completo: mancano ancora risultati con l’espansione.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "79134f5e-94db-4a40-ba75-2569b839cf35": {
+      "role": "Mana e nomi delle terre",
+      "why": "Valuta i colori effettivamente prodotti e le condizioni d’ingresso del testo. Il nome diverso può sostenere strange new worlds, ma non rende conveniente aggiungere un colore che il mazzo non sa utilizzare.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "93d7f6e7-b6b0-48f3-891a-73970826af3b": {
+      "role": "Mana e nomi delle terre",
+      "why": "Valuta i colori effettivamente prodotti e le condizioni d’ingresso del testo. Il nome diverso può sostenere strange new worlds, ma non rende conveniente aggiungere un colore che il mazzo non sa utilizzare.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "43985bbc-a0f6-4812-984e-392bc8562633": {
+      "role": "Mana e nomi delle terre",
+      "why": "Offre due colori e i tipi di terra base stampati; per entrare STAPpata devi pagare due vite. Utile al fixing, con un costo concreto contro mazzi aggressivi.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "20283c4a-f1f0-42f0-bc08-6da87474426b": {
+      "role": "Mana e nomi delle terre",
+      "why": "Offre due colori e i tipi di terra base stampati; per entrare STAPpata devi pagare due vite. Utile al fixing, con un costo concreto contro mazzi aggressivi.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "aff720b4-b8ef-46ea-9a3d-e101999e6526": {
+      "role": "Mana e nomi delle terre",
+      "why": "Valuta i colori effettivamente prodotti e le condizioni d’ingresso del testo. Il nome diverso può sostenere strange new worlds, ma non rende conveniente aggiungere un colore che il mazzo non sa utilizzare.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "c75d87b0-7de9-4c50-b781-9749d67c1e07": {
+      "role": "Mana e nomi delle terre",
+      "why": "Valuta i colori effettivamente prodotti e le condizioni d’ingresso del testo. Il nome diverso può sostenere strange new worlds, ma non rende conveniente aggiungere un colore che il mazzo non sa utilizzare.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "a8bcc930-3efe-4595-b164-f5985e1dc289": {
+      "role": "Mana e nomi delle terre",
+      "why": "L’ingresso STAPpato richiede almeno altre due terre già sotto il tuo controllo. Il modo bonus è legato a quell’ingresso: non presumere di averlo al primo turno.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "2e0753ad-7f76-4d26-8e87-6f201378f333": {
+      "role": "Mana e nomi delle terre",
+      "why": "Valuta i colori effettivamente prodotti e le condizioni d’ingresso del testo. Il nome diverso può sostenere strange new worlds, ma non rende conveniente aggiungere un colore che il mazzo non sa utilizzare.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "73864fcc-1bde-4bc0-831e-2b93e546e417": {
+      "role": "Mana e nomi delle terre",
+      "why": "Offre due colori e i tipi di terra base stampati; per entrare STAPpata devi pagare due vite. Utile al fixing, con un costo concreto contro mazzi aggressivi.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "f1750962-a87c-49f6-b731-02ae971ac6ea": {
+      "role": "Mana e nomi delle terre",
+      "why": "Offre due colori e i tipi di terra base stampati; per entrare STAPpata devi pagare due vite. Utile al fixing, con un costo concreto contro mazzi aggressivi.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "47e3aa22-8806-408f-b93e-0d0b800866f6": {
+      "role": "Mana e nomi delle terre",
+      "why": "Valuta i colori effettivamente prodotti e le condizioni d’ingresso del testo. Il nome diverso può sostenere strange new worlds, ma non rende conveniente aggiungere un colore che il mazzo non sa utilizzare.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "975ec9a3-6f20-4177-8211-82526e092538": {
+      "role": "Mana e nomi delle terre",
+      "why": "Offre due colori e i tipi di terra base stampati; per entrare STAPpata devi pagare due vite. Utile al fixing, con un costo concreto contro mazzi aggressivi.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "cab718af-8e6f-4766-856e-3a61ba98f94d": {
+      "role": "Mana e nomi delle terre",
+      "why": "Valuta i colori effettivamente prodotti e le condizioni d’ingresso del testo. Il nome diverso può sostenere strange new worlds, ma non rende conveniente aggiungere un colore che il mazzo non sa utilizzare.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "800d0f33-31c9-43da-a649-8860646eca1f": {
+      "role": "Mana e nomi delle terre",
+      "why": "L’ingresso STAPpato richiede almeno altre due terre già sotto il tuo controllo. Il modo bonus è legato a quell’ingresso: non presumere di averlo al primo turno.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "365a4644-74f4-4af9-81ab-0d328ca5edce": {
+      "role": "Mana e nomi delle terre",
+      "why": "Valuta i colori effettivamente prodotti e le condizioni d’ingresso del testo. Il nome diverso può sostenere strange new worlds, ma non rende conveniente aggiungere un colore che il mazzo non sa utilizzare.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "14c4ad24-7f38-409b-8ef0-341f233982da": {
+      "role": "Mana e nomi delle terre",
+      "why": "Valuta i colori effettivamente prodotti e le condizioni d’ingresso del testo. Il nome diverso può sostenere strange new worlds, ma non rende conveniente aggiungere un colore che il mazzo non sa utilizzare.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "45181cb8-2090-4471-ba90-e5a8f04d525f": {
+      "role": "Mana e nomi delle terre",
+      "why": "Offre due colori e i tipi di terra base stampati; per entrare STAPpata devi pagare due vite. Utile al fixing, con un costo concreto contro mazzi aggressivi.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "a4f31512-a91c-42e0-9929-5069386c3c71": {
+      "role": "Mana e nomi delle terre",
+      "why": "Valuta i colori effettivamente prodotti e le condizioni d’ingresso del testo. Il nome diverso può sostenere strange new worlds, ma non rende conveniente aggiungere un colore che il mazzo non sa utilizzare.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "de8ebef9-fa0e-42df-a1bc-5c4b86d1bdd1": {
+      "role": "Mana e nomi delle terre",
+      "why": "Valuta i colori effettivamente prodotti e le condizioni d’ingresso del testo. Il nome diverso può sostenere strange new worlds, ma non rende conveniente aggiungere un colore che il mazzo non sa utilizzare.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "17039058-822d-409f-938c-b727a366ba63": {
+      "role": "Mana e nomi delle terre",
+      "why": "Offre due colori e i tipi di terra base stampati; per entrare STAPpata devi pagare due vite. Utile al fixing, con un costo concreto contro mazzi aggressivi.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "16052b52-ade1-406f-a06b-ce7ea607fb63": {
+      "role": "Mana e nomi delle terre",
+      "why": "Offre due colori e i tipi di terra base stampati; per entrare STAPpata devi pagare due vite. Utile al fixing, con un costo concreto contro mazzi aggressivi.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "1a28a83a-de27-4aaa-b35f-1e7075fc1e43": {
+      "role": "Mana e nomi delle terre",
+      "why": "Valuta i colori effettivamente prodotti e le condizioni d’ingresso del testo. Il nome diverso può sostenere strange new worlds, ma non rende conveniente aggiungere un colore che il mazzo non sa utilizzare.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "f413a83d-a40d-434c-b20a-4c707c0527fa": {
+      "role": "Mana e nomi delle terre",
+      "why": "Offre due colori e i tipi di terra base stampati; per entrare STAPpata devi pagare due vite. Utile al fixing, con un costo concreto contro mazzi aggressivi.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "6e5d4bbd-4999-4acd-8775-25e02d901035": {
+      "role": "Mana e nomi delle terre",
+      "why": "Valuta i colori effettivamente prodotti e le condizioni d’ingresso del testo. Il nome diverso può sostenere strange new worlds, ma non rende conveniente aggiungere un colore che il mazzo non sa utilizzare.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "b38fcf9a-464a-432a-b13c-9a206d52dcd9": {
+      "role": "Mana e nomi delle terre",
+      "why": "L’ingresso STAPpato richiede almeno altre due terre già sotto il tuo controllo. Il modo bonus è legato a quell’ingresso: non presumere di averlo al primo turno.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "c7b6bc1f-9161-415e-a097-d9c8cd81d4ae": {
+      "role": "Mana e nomi delle terre",
+      "why": "Valuta i colori effettivamente prodotti e le condizioni d’ingresso del testo. Il nome diverso può sostenere strange new worlds, ma non rende conveniente aggiungere un colore che il mazzo non sa utilizzare.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "fc9ec820-4245-4a96-b009-5308a818ca58": {
+      "role": "Mana e nomi delle terre",
+      "why": "Offre due colori e i tipi di terra base stampati; per entrare STAPpata devi pagare due vite. Utile al fixing, con un costo concreto contro mazzi aggressivi.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "bc71ebf6-2056-41f7-be35-b2e5c34afa99": {
+      "role": "Fonte di mana",
+      "why": "Terra base: produce il mana indicato senza un costo di vita. Le copie dello stesso nome contano come un solo nome per strange new worlds; non ricevono un voto di potenza.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "b2c6aa39-2d2a-459c-a555-fb48ba993373": {
+      "role": "Fonte di mana",
+      "why": "Terra base: produce il mana indicato senza un costo di vita. Le copie dello stesso nome contano come un solo nome per strange new worlds; non ricevono un voto di potenza.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "56719f6a-1a6c-4c0a-8d21-18f7d7350b68": {
+      "role": "Fonte di mana",
+      "why": "Terra base: produce il mana indicato senza un costo di vita. Le copie dello stesso nome contano come un solo nome per strange new worlds; non ricevono un voto di potenza.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "a3fb7228-e76b-4e96-a40e-20b5fed75685": {
+      "role": "Fonte di mana",
+      "why": "Terra base: produce il mana indicato senza un costo di vita. Le copie dello stesso nome contano come un solo nome per strange new worlds; non ricevono un voto di potenza.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "b34bb2dc-c1af-4d77-b0b3-a0fb342a5fc6": {
+      "role": "Fonte di mana",
+      "why": "Terra base: produce il mana indicato senza un costo di vita. Le copie dello stesso nome contano come un solo nome per strange new worlds; non ricevono un voto di potenza.",
+      "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    }
+  },
+  "scale": {},
+  "date": "27/10/2026",
+  "method": "Profili editoriali basati su Oracle, senza voti numerici Limited o conversione dei modelli Constructed."
 }

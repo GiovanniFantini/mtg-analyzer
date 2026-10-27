@@ -283,7 +283,8 @@ def build(expansion, dest):
         (dest/filename).write_text(content,encoding='utf-8');written.add(filename)
     # Runtime preview data keeps its existing DOM contract; the document is the same catalog.
     preview = {**expansion.data['cards'],'cards':expansion.cards,
-               'catalogWinRates':catalog_data(expansion)['catalogWinRates']}
+               'catalogWinRates':catalog_data(expansion)['catalogWinRates'],
+               'prospectSources':catalog_data(expansion)['prospectSources']}
     (dest/'expansion-data.js').write_text('const DATA='+js(preview)+';\n',encoding='utf-8')
     for pattern in ('*.css','*.js'):
         for path in ROOT.glob(pattern):
