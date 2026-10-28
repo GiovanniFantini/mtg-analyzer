@@ -1,0 +1,50 @@
+{
+  "date": "2026-10-28",
+  "profileCorrections": {
+    "Emergency Medical Hologram": "Costa un mana bianco. All’ingresso mette un segnalino su una creatura bersaglio, anche avversaria o su se stesso, e fa guadagnare una vita. Con Open Communications dal cimitero spendi quattro mana totali per riprenderlo e rilanciarlo. L’innescata richiede un bersaglio legale per risolvere.",
+    "Federation Probe": "Il corpo 1/1 volante costa un mana blu. All’ingresso scegli fra sorvegliare 1 e dare +1/+1 fino a fine turno a una creatura bersaglio, compresa la Probe stessa o una creatura avversaria. Con Miles O’Brien puoi riusare l’ingresso; il punteggio automatico Constructed non prova un primo pick assoluto.",
+    "Peace in Our Time": "All’inizio del combattimento di ogni giocatore, quel giocatore può pescare rinunciando ad attaccare nel turno: la scelta riguarda anche te. Ciascuna accettazione aggiunge un segnalino pace, ma non garantisce la vittoria: servono almeno dodici segnalini alla tua manutenzione e l’incantesimo deve restare sul campo.",
+    "Borg Cube": "L’affinità conta creature artefatto, non artefatti generici o normali Tesori. All’ingresso normalmente esilia una creatura; un attacco successivo può assimilare una carta creatura esiliata con quella stessa nave. Se lascia il campo e rientra è un nuovo oggetto: perde il collegamento alle carte esiliate dalla sua esistenza precedente (CR 400.7 e 607).",
+    "Amok Time": "Il primo capitolo fa lottare una tua creatura bersaglio con fino a una creatura bersaglio avversaria. Il secondo fa guadagnare tre vite e il terzo recupera una carta creatura dal tuo cimitero in mano. La Saga non fa pescare: la menzione della sottofase di acquisizione nel promemoria indica quando aggiungere un segnalino sapere.",
+    "Genesis Effect": "Per {4}{R}, infligge sei danni a una creatura bersaglio e distrugge una tua terra bersaglio, poi crea New Planet tappata che produce qualsiasi colore. Per lanciarla servono entrambi i bersagli. Il nome diverso può aiutare strange new worlds, ma la nuova terra non fornisce mana immediatamente."
+  },
+  "catalogCorrections": [
+    {
+      "id": "492ba01e-c0fa-414c-95fd-df5b59212d2a",
+      "name": "Jett Reno, Problem Solver",
+      "date": "2026-10-28",
+      "field": "text",
+      "source": "printed-card-proofreading",
+      "sourceUrl": "https://cards.scryfall.io/normal/front/6/d/6dc34d44-397a-4dda-a8e3-0c2ff7da110f.jpg?1793013033",
+      "evidence": "research/star-trek-20261028-audit/67.jpg",
+      "rawValue": "+1/1 counter",
+      "correctedValue": "+1/+1 counter",
+      "kind": "snapshot_transcription_correction",
+      "note": "Correzione locale del refuso nella trascrizione Scryfall, verificata sull’immagine della carta. Non è un’errata ufficiale."
+    },
+    {
+      "id": "5b8e8ef2-2f04-4485-ae12-08f52dac81a2",
+      "name": "Culber and Stamets, Star-Crossed",
+      "date": "2026-10-28",
+      "field": "type",
+      "source": "printed-card-proofreading",
+      "rawValue": "Legendary Creature Human Doctor Artificer",
+      "correctedValue": "Legendary Creature : Human Doctor Artificer",
+      "evidence": "research/star-trek-20261028-audit/191.jpg",
+      "kind": "type_separator_normalization"
+    },
+    {
+      "id": "007d08e8-4db2-47d1-ba39-8bb8efa491a1",
+      "name": "Mirror Universe Intrusion",
+      "date": "2026-10-28",
+      "field": "text",
+      "source": "printed-card-proofreading",
+      "sourceUrl": "https://cards.scryfall.io/normal/front/3/5/3507f99b-15fb-4f66-9484-8e8115e7f5de.jpg?1792668526",
+      "evidence": "research/star-trek-20261028-audit/248.jpg",
+      "rawValue": "pay an additional 4 as",
+      "correctedValue": "pay an additional {4}{U}{B} as",
+      "kind": "snapshot_transcription_correction",
+      "note": "Correzione locale del refuso nella trascrizione Scryfall, verificata sull’immagine della carta. Non è un’errata ufficiale."
+    }
+  ]
+}

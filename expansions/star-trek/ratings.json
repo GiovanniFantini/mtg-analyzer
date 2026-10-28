@@ -92,7 +92,7 @@
     },
     "8170dcbb-9879-414c-819d-ea2658ff770c": {
       "role": "Ingresso riutilizzabile",
-      "why": "Costa un mana bianco e mette un segnalino su una tua creatura bersaglio, facendoti guadagnare una vita. Con Open Communications dal cimitero spendi quattro mana totali per riprenderlo e rilanciarlo, non un mana soltanto.",
+      "why": "Costa un mana bianco. All’ingresso mette un segnalino su una creatura bersaglio, anche avversaria o su se stesso, e fa guadagnare una vita. Con Open Communications dal cimitero spendi quattro mana totali per riprenderlo e rilanciarlo. L’innescata richiede un bersaglio legale per risolvere.",
       "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
     },
     "f409e869-ea1a-4e08-b19e-949436d01cc1": {
@@ -127,7 +127,7 @@
     },
     "b19ce6f2-7778-4779-8173-973eb7ee0b02": {
       "role": "Vittoria alternativa",
-      "why": "Sono gli avversari a scegliere se pescare e rinunciare all’attacco: non garantisce dodici segnalini. Il piano deve reggere anche quando gli avversari rifiutano la proposta o rimuovono l’incantesimo prima della tua manutenzione.",
+      "why": "All’inizio del combattimento di ogni giocatore, quel giocatore può pescare rinunciando ad attaccare nel turno: la scelta riguarda anche te. Ciascuna accettazione aggiunge un segnalino pace, ma non garantisce la vittoria: servono almeno dodici segnalini alla tua manutenzione e l’incantesimo deve restare sul campo.",
       "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
     },
     "509f255f-c3ee-4836-a583-d018060d0c4d": {
@@ -272,7 +272,7 @@
     },
     "6fc7401f-66fe-4d17-be2f-afcf892be740": {
       "role": "Corpo economico e selezione",
-      "why": "Il corpo 1/1 volante costa un mana blu e l’ingresso offre sorvegliare 1 oppure un bonus temporaneo a un’altra tua creatura. Con Miles O’Brien puoi riusare l’ingresso; il punteggio automatico Constructed non prova un primo pick assoluto.",
+      "why": "Il corpo 1/1 volante costa un mana blu. All’ingresso scegli fra sorvegliare 1 e dare +1/+1 fino a fine turno a una creatura bersaglio, compresa la Probe stessa o una creatura avversaria. Con Miles O’Brien puoi riusare l’ingresso; il punteggio automatico Constructed non prova un primo pick assoluto.",
       "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
     },
     "6c18f853-684b-42f6-8bc6-e86596131ab1": {
@@ -737,7 +737,7 @@
     },
     "98a752ff-f041-4032-9f3f-c6c4007f10f1": {
       "role": "Permanente di supporto",
-      "why": "Saga da {2}{G}: il vantaggio è distribuito fra capitoli e turni; non sommare gli effetti come se fossero disponibili tutti all’ingresso. Interagisce con le pescate: verifica chi pesca, gli eventuali scarti e i costi richiesti prima di considerarlo vantaggio netto.",
+      "why": "Il primo capitolo fa lottare una tua creatura bersaglio con fino a una creatura bersaglio avversaria. Il secondo fa guadagnare tre vite e il terzo recupera una carta creatura dal tuo cimitero in mano. La Saga non fa pescare: la menzione della sottofase di acquisizione nel promemoria indica quando aggiungere un segnalino sapere.",
       "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
     },
     "6e13c619-706d-4c77-bc7d-187df0fd054a": {
@@ -882,7 +882,7 @@
     },
     "a59b854c-0e04-4581-b9d3-1516263d7ace": {
       "role": "Affinità e assimilazione",
-      "why": "L’affinità conta creature artefatto, non artefatti generici o normali Tesori. Il primo ingresso di solito esilia una creatura perché non c’è ancora una carta esiliata da assimilare; i successivi ingressi o attacchi possono trasformare quell’esilio in un tuo Borg.",
+      "why": "L’affinità conta creature artefatto, non artefatti generici o normali Tesori. All’ingresso normalmente esilia una creatura; un attacco successivo può assimilare una carta creatura esiliata con quella stessa nave. Se lascia il campo e rientra è un nuovo oggetto: perde il collegamento alle carte esiliate dalla sua esistenza precedente (CR 400.7 e 607).",
       "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
     },
     "47c9ef8c-7ba7-4702-bd8c-5fedc59c8166": {
@@ -1239,9 +1239,94 @@
       "role": "Fonte di mana",
       "why": "Terra base: produce il mana indicato senza un costo di vita. Le copie dello stesso nome contano come un solo nome per strange new worlds; non ricevono un voto di potenza.",
       "condition": "Anteprima: verifica curva, base di mana, densità degli enabler e testo dei bersagli. Nessun voto numerico Limited assegnato."
+    },
+    "2da322e6-a8e2-4d7a-bd34-54a3dfa85940": {
+      "role": "Corpi e copie",
+      "why": "Cerca altre copie dello stesso nome e le mette in mano, senza lanciarle gratis. In Limited il vantaggio dipende dalle copie effettivamente raccolte: una sola copia non trova rinforzi.",
+      "condition": "Profilo editoriale preliminare, senza voto Limited o risultati osservati."
+    },
+    "4450d4e0-2825-4536-bb0f-f3a36f1f682c": {
+      "role": "Ricerca e riutilizzo",
+      "why": "Per {1}{W} cerca un’Aura, un Equipaggiamento o una Spacecraft e la mette in mano. Richiede poi il mana per lanciarla; beam me up permette un secondo uso dal cimitero pagando {3}{W} e riprendendo una propria creatura.",
+      "condition": "Profilo editoriale preliminare, senza voto Limited o risultati osservati."
+    },
+    "727e98cc-b295-47f9-9d3d-bcf38c9f56d2": {
+      "role": "Esilio temporaneo e Indizio",
+      "why": "Il primo capitolo esilia fino a un artefatto o una creatura non pedina; il terzo restituisce la carta sotto il controllo del proprietario. È interazione temporanea o un modo per riutilizzare un ingresso, con un Indizio nel mezzo che richiede altri due mana per pescare.",
+      "condition": "Profilo editoriale preliminare, senza voto Limited o risultati osservati."
+    },
+    "d090131d-428c-4a98-afc5-595b9bc7adce": {
+      "role": "Equipaggiamenti e navi",
+      "why": "Attacco improvviso aiuta in combattimento. Per pescare quando Sulu viene tappato serve che un Equipaggiamento o una Spacecraft sia già entrato sotto il tuo controllo in quel turno; station può tapparlo senza attaccare, ma richiede una nave e tempi da stregoneria.",
+      "condition": "Profilo editoriale preliminare, senza voto Limited o risultati osservati."
+    },
+    "d41ff489-7d74-4b06-b3a1-638f3e3303d1": {
+      "role": "Magie prima dell’attacco",
+      "why": "Difensore limita gli attacchi finché non lanci una magia non creatura nel turno. La condizione permette di attaccare, senza dare rapidità o eliminare il bisogno di mantenere una buona densità di magie di supporto.",
+      "condition": "Profilo editoriale preliminare, senza voto Limited o risultati osservati."
+    },
+    "e7d22ef6-a926-4964-bfd6-f7345b20e74e": {
+      "role": "Controllo dei bloccanti",
+      "why": "L’abilità tappa una creatura e costa {4}{U} più il tap. Strange new worlds riduce solo la parte generica in base ai nomi diversi delle terre: restano almeno {U} e il tap; cinque terre con lo stesso nome riducono di uno.",
+      "condition": "Profilo editoriale preliminare, senza voto Limited o risultati osservati."
+    },
+    "663e120a-a74f-47fb-aa0a-9d1a75db626e": {
+      "role": "Neutralizzazione parziale",
+      "why": "Per {1}{B} toglie quattro punti di forza e impedisce di bloccare, senza rimuovere le abilità della creatura. Con almeno sette carte nel tuo cimitero, l’innescata al mantenimento può esiliarla: prima della soglia resta sul campo.",
+      "condition": "Profilo editoriale preliminare, senza voto Limited o risultati osservati."
+    },
+    "0cbf0f7a-7f5e-4819-9a9f-f655f92fd5f1": {
+      "role": "Carte che lasciano il cimitero",
+      "why": "Attaccando puoi esiliare fino a una carta da un cimitero. Per creare il Romulano 2/2 tappato deve uscire una carta dal tuo cimitero: esiliare quella avversaria non basta. Uscite simultanee di più carte producono una sola innescata.",
+      "condition": "Profilo editoriale preliminare, senza voto Limited o risultati osservati."
+    },
+    "eae07535-487b-48ac-b99e-b4b62286254c": {
+      "role": "Morti e danno progressivo",
+      "why": "Ogni creatura che muore aggiunge un segnalino missione e fa perdere vita all’avversario bersagliato. Dalla settima in poi la perdita è di due: servono morti effettive, non soltanto sacrifici di artefatti non creatura.",
+      "condition": "Profilo editoriale preliminare, senza voto Limited o risultati osservati."
+    },
+    "ec763f36-3504-4bfe-8481-1a7d0bff8d8e": {
+      "role": "Rimozione e terra sostitutiva",
+      "why": "Per {4}{R}, infligge sei danni a una creatura bersaglio e distrugge una tua terra bersaglio, poi crea New Planet tappata che produce qualsiasi colore. Per lanciarla servono entrambi i bersagli. Il nome diverso può aiutare strange new worlds, ma la nuova terra non fornisce mana immediatamente.",
+      "condition": "Profilo editoriale preliminare, senza voto Limited o risultati osservati."
+    },
+    "22b86863-c992-405b-949a-bdf8859884ef": {
+      "role": "Pressione e morti",
+      "why": "Potenzia le altre tue creature di +1/+0 anche mentre è solo un artefatto. Le morti aggiungono cariche soltanto finché non è una creatura; a dieci cariche diventa una minaccia volante. Station richiede di rinunciare al tap di un’altra creatura.",
+      "condition": "Profilo editoriale preliminare, senza voto Limited o risultati osservati."
+    },
+    "5b8e8ef2-2f04-4485-ae12-08f52dac81a2": {
+      "role": "Dilemma e mana",
+      "why": "All’ingresso scegli fra un segnalino +1/+1 su una creatura bersaglio e due mana di un solo colore. Il mana può sostenere una seconda giocata nello stesso turno, senza restare disponibile per i turni successivi.",
+      "condition": "Profilo editoriale preliminare, senza voto Limited o risultati osservati."
+    },
+    "0157faee-f307-43c0-b308-bbf36ce02e32": {
+      "role": "Recupero e protezione",
+      "why": "Lampo permette di scegliere il momento dell’ingresso. Un modo recupera in mano un permanente non Doctor; l’altro prepara il ritorno di un’altra creatura solo se muore in quel turno, alla prossima sottofase finale. Non protegge dall’esilio.",
+      "condition": "Profilo editoriale preliminare, senza voto Limited o risultati osservati."
+    },
+    "b6a21e53-6f62-4874-b9cc-84ae177a0da6": {
+      "role": "Protezione con lampo",
+      "why": "Può entrare in risposta a una rimozione e dare anti-malocchio a un’altra tua creatura fino a fine turno. Non protegge se stesso con l’innescata e non ferma effetti che non bersagliano.",
+      "condition": "Profilo editoriale preliminare, senza voto Limited o risultati osservati."
+    },
+    "8de259a9-99d0-4f07-8dbc-f065e3af352b": {
+      "role": "Incantesimi e Saghe",
+      "why": "Fa pescare quando lanci un incantesimo; una Saga aggiunge anche due danni a ogni avversario. L’abilità da due mana aggiunge un segnalino del tipo già presente su un tuo incantesimo, solo come stregoneria: il piano richiede densità e tre colori affidabili.",
+      "condition": "Profilo editoriale preliminare, senza voto Limited o risultati osservati."
+    },
+    "5a8ae1c0-1935-4d03-aa94-9e9088650821": {
+      "role": "Crescita e terre dal cimitero",
+      "why": "Il primo investimento da {1} lo rende Scout 3/4 e aggiunge sorvegliare 2 quando viene tappato. Solo dopo puoi pagare {3} per renderlo Officer e giocare terre dal cimitero, con una terra aggiuntiva per turno. I passaggi richiedono mana oltre al costo iniziale.",
+      "condition": "Profilo editoriale preliminare, senza voto Limited o risultati osservati."
+    },
+    "4ccc91f2-4d6e-4d64-b438-3d8b4361040a": {
+      "role": "Fixing e nave",
+      "why": "Per tre mana offre una fonte di qualsiasi colore, utile per magie successive. A sei cariche ottiene volare e cautela come creatura; station costa il tap di un’altra creatura. Diventare creatura rende rilevante la debolezza da evocazione per la sua abilità di mana con tap.",
+      "condition": "Profilo editoriale preliminare, senza voto Limited o risultati osservati."
     }
   },
   "scale": {},
-  "date": "27/10/2026",
+  "date": "28/10/2026",
   "method": "Profili editoriali basati su Oracle, senza voti numerici Limited o conversione dei modelli Constructed."
 }
