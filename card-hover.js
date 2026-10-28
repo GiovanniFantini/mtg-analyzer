@@ -2,7 +2,7 @@
 // Shared card previews for the report, catalog, analysis and simulator.
 (() => {
   const source = typeof DRAFT_DATA !== 'undefined' ? [...(DRAFT_DATA.poolCards || []), ...DRAFT_DATA.cards] : typeof DATA !== 'undefined' ? [...DATA.cards,...(DATA.previewCards||[])] : [];
-  if (!Array.isArray(source) || !source.length) return;
+  if (!Array.isArray(source)) return;
   const cards = new Map();
   for (const card of source) {
     if (!card.image) continue;
@@ -18,7 +18,7 @@
   const escape = s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   const normalize = s => s.replace(/’/g, "'");
   const normalized = new Map([...cards].map(([name, card]) => [normalize(name), card]));
-  function buildPattern(){const names=[...cards.keys()].sort((a,b)=>b.length-a.length).map(n=>escape(n).replace(/['’]/g,"['’]"));return new RegExp('(?<![\\p{L}\\p{N}])(?:'+names.join('|')+')(?![\\p{L}\\p{N}])','gu')}
+  function buildPattern(){const names=[...cards.keys()].sort((a,b)=>b.length-a.length).map(n=>escape(n).replace(/['’]/g,"['’]"));return names.length?new RegExp('(?<![\\p{L}\\p{N}])(?:'+names.join('|')+')(?![\\p{L}\\p{N}])','gu'):null}
   let pattern = buildPattern();
   const preview = document.createElement('div');
   preview.id = 'mtg-card-preview'; preview.setAttribute('role','tooltip');
@@ -29,6 +29,7 @@
   let active=null, pinned=false, framePending=false, scrollTimer=null, resumeHover=null;
   const skip='script,style,noscript,textarea,input,select,option,code,pre,.card-reference,#mtg-card-preview,[contenteditable="true"]';
   function annotate(root) {
+    if(!pattern)return;
     if(root.nodeType!==Node.ELEMENT_NODE || root.closest(skip))return;
     const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode(node){return node.parentElement?.closest(skip)?NodeFilter.FILTER_REJECT:NodeFilter.FILTER_ACCEPT}});
     const nodes=[];while(walker.nextNode())nodes.push(walker.currentNode);

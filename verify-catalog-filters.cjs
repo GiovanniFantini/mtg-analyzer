@@ -7,6 +7,21 @@ const assert=require('node:assert/strict');const fs=require('node:fs');const os=
  try{
   const page=await browser.newPage({viewport:{width:1440,height:1000}});page.on('pageerror',e=>errors.push(e.message));
   await page.goto(url,{waitUntil:'domcontentloaded'});await page.locator('#cards .card').first().waitFor();
+  await page.locator('.site-catalog-filters').evaluate(panel=>panel.open=true);
+  const filterSummary=page.locator('.site-catalog-filters summary');
+  await page.locator('#rating').selectOption('4');
+  assert.equal(await filterSummary.innerText(),'Filtri del catalogo (1 attivi)');
+  await page.locator('[data-rarity="rare"]').click();
+  assert.equal(await filterSummary.innerText(),'Filtri del catalogo (1 attivi)');
+  await page.locator('#reset').click();
+  await page.waitForFunction(()=>document.querySelector('.site-catalog-filters summary').textContent==='Filtri del catalogo');
+  await page.goto(url.replace('#gallery','#sentiment'));
+  assert.equal(await page.locator('.site-catalog-filters summary').innerText(),'Filtri del catalogo (1 attivi)');
+  await page.goto(url.replace('#gallery','#pool'));
+  await page.locator('#poolfilter').click();
+  assert.equal(await page.locator('.site-catalog-filters summary').innerText(),'Filtri del catalogo');
+  await page.locator('#reset').click();
+  await page.locator('.site-catalog-filters').evaluate(panel=>panel.open=true);
   assert.equal(await page.getByRole('button',{name:'Mostra ranking Draft Untapped'}).count(),0);
   const visible=()=>page.evaluate(()=>filtered.map(c=>({id:c.id,mv:c.mv,colors:c.colors,type:c.type,review:c.community,tier:c.untappedPickOrder?.tier,wr:winRate(c)})));
   for(const order of ['color','type','mana','mana-desc','community','community-asc','untapped','untapped-reverse','wr','wr-asc']){

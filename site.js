@@ -38,6 +38,42 @@
   setMenu(false);
   const advanced = document.querySelector('.site-catalog-filters');
   if (advanced && matchMedia('(max-width: 700px)').matches) advanced.open = false;
+  // The same card query works from every workspace, including links shared by users.
+  const applyCardQuery = () => {
+    const query = new URLSearchParams(location.search).get('q');
+    const input = document.querySelector('#search, #trk-search');
+    if (query && input && document.querySelector('#cards, #trk-cards')) {
+      input.value = query;
+      input.dispatchEvent(new Event('input', {bubbles:true}));
+      if (document.querySelector('#gallery')) location.hash = 'gallery';
+    }
+  };
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', applyCardQuery);
+  else applyCardQuery();
+
+  // Long pages get a compact section directory. Editorial content stays visible
+  // without JavaScript; this index only adds shortcuts to existing sections.
+  const main = document.querySelector('main');
+  const sections = [...main.querySelectorAll('section[id], article[id]')].filter(section =>
+    section.querySelector(':scope > h2, :scope > div > h2') && !section.closest('[hidden]'));
+  if (sections.length >= 4 && !main.querySelector('.draft-workspace-nav')) {
+    const directory = document.createElement('details');
+    directory.className = 'site-section-directory';
+    const summary = document.createElement('summary');
+    summary.textContent = 'In questa pagina: scegli una sezione';
+    const links = document.createElement('nav');
+    links.setAttribute('aria-label', 'Sezioni della pagina');
+    for (const section of sections) {
+      const heading = section.querySelector(':scope > h2, :scope > div > h2');
+      const link = document.createElement('a');
+      link.href = '#'+section.id;
+      link.textContent = heading.textContent.trim();
+      links.append(link);
+    }
+    directory.append(summary, links);
+    const workspace = main.querySelector('.site-workspace-bar');
+    if (workspace) workspace.after(directory); else main.prepend(directory);
+  }
   const sync = () => {
     if (location.hash === '#site-content') return;
     let active = null;

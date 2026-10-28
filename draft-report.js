@@ -21,7 +21,9 @@ function drawColors(){
 function showCard(name){
  const c=DRAFT_DATA.cards.find(c=>c.name===name)||(DRAFT_DATA.poolCards||[]).find(c=>c.name===name);if(!c)return;
  const oracle=c.faces?.length?c.faces.map(f=>f.name+' '+f.mana_cost+'\n'+f.oracle_text).join('\n\n'):c.oracle;
- q('draft-detail').innerHTML=`<h2 id="draft-card-title">${esc(c.name)}</h2><div class="detail-grid"><img src="${esc(c.image)}" alt="${esc(c.name)}"><div><p><strong>GIH WR ${c.gih==null?'N/D':fmt(c.gih*100)+'%'}</strong><br>${fmt(c.n,0)} osservazioni GIH · ALSA ${fmt(c.alsa)}</p><p class="oracle">${esc((oracle||'Consulta il testo aggiornato su Scryfall.').replace(/\u2014/g, ':'))}</p><p><a href="${esc(c.url)}" target="_blank" rel="noopener">Oracle e immagine su Scryfall ↗</a></p><p>Premier Draft · ${esc(DRAFT_DATA.date)}</p></div></div>`;
+ const hasStatistics=DRAFT_DATA.statisticsAvailable&&Number.isFinite(c.n)&&c.n>0;
+ const metrics=hasStatistics?`<p><strong>GIH WR ${c.gih==null?'N/D':fmt(c.gih*100)+'%'}</strong><br>${fmt(c.n,0)} osservazioni GIH · ALSA ${fmt(c.alsa)}</p>`:`<p>Statistiche Draft non disponibili per ${DRAFT_DATA.statisticsAvailable?'questa carta':'questo set'}.</p>`;
+ q('draft-detail').innerHTML=`<h2 id="draft-card-title">${esc(c.name)}</h2><div class="detail-grid"><img src="${esc(c.image)}" alt="${esc(c.name)}"><div>${metrics}<p class="oracle">${esc((oracle||'Consulta il testo aggiornato su Scryfall.').replace(/\u2014/g, ':'))}</p><p><a href="${esc(c.url)}" target="_blank" rel="noopener">Oracle e immagine su Scryfall ↗</a></p>${hasStatistics?'<p>Statistiche Draft · '+esc(DRAFT_DATA.statisticsDate)+'</p>':''}</div></div>`;
  if(window.DraftDrilldown)q('draft-detail').insertAdjacentHTML('beforeend',window.DraftDrilldown.detail(name));
  q('draft-dialog').showModal();
 }

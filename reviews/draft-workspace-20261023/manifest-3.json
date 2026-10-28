@@ -1,0 +1,52 @@
+{
+  "round": "3",
+  "head": "bd34106933ba08042378c6742ca01169d068d121",
+  "files": {
+    "templates/atlas/draft.html": "55e55958f7301d0f017ad0a0c7039e00eebb021aabac0ac3fc112ab0c8e12591",
+    "draft-workspace.js": "976869e60ac8e7796804d40fa8e8586e4997566630604786f8f26416d35ee512",
+    "draft-workspace.css": "5a3eccb875037d5569c8706a4ac65b5218b797f8bc6e87a6b36513226c129468",
+    "site_navigation.py": "827da56b9c58b8c5d8fce3d304de48317cac1f10f65b0d14e8096a5eafbe3851",
+    "draft-assistant.js": "0811850fed9f320ffdcf0c37b23637e0981f2acfc983f67531b1bf7afdd22aad",
+    "verify-draft-workspace.cjs": "b582689dbbcb345888345e853acfd8234047741bc9882781b971b794803d3bcb",
+    "verify-draft-assistant.cjs": "96175a76821db8527da0032ee2b97d0d2efb996dee653b0caa7ac7275be18438",
+    "draft-assistant.css": "c733a4d9882ef8bfb3b0d2e87bd53b23b3c2ce15d3b022c7f6726e59aa3288c4",
+    "draft-report.css": "d14cff2722b8b46fce9772ecd3e44950ddcc1cd769ef9ccb66ad757a0eb6441a",
+    "draft-report.js": "3e2f2903745ac6c4934443f618798f5fb7e20dafa0a13517d30d9854bd13bce4",
+    "draft-pool.js": "796dc64d818f7c84e6a4b409cc9d42f27fa478798b76d530ac2bb50e8feb2556",
+    "card-hover.js": "7906b4b8e6875e1ad94b6b3bb4655a2e70f24789a1c321bbb06244813049357b",
+    "card-hover.css": "1085709a18110fe3ed060910db2c54017343d57e26dff92fa287c6429ed11af8",
+    "site.css": "5a48ccae9aa5a932d4fd3717ae635ecf01be787ec06179682c7f489e271ef3df",
+    "site.js": "ee0c4cd6dd5d3946f1f69b797a54445c1c359ffba2e685d7122a99d27f645d78",
+    "templates/atlas/draft-drilldown-statistics.html": "0fe4807ea3326776c4234c248ff68a6b313a3817acf4c409652bde28b95f6e61",
+    "templates/atlas/draft-cards-statistics.html": "6e7b3ab101c9ea5a1bd5f9c69386b5fd5b23e2e6aa91bfd4791f3a74efdcde69",
+    "docs/verification.md": "1fec6cc380a5f9cc9f5d931b50edc5f74c2095f02177897a6fa8deaf4386b308"
+  },
+  "mode": "final-incremental",
+  "baseline": "manifest-2.json",
+  "changedSinceBaseline": [
+    "draft-workspace.css",
+    "draft-workspace.js",
+    "verify-draft-assistant.cjs",
+    "verify-draft-workspace.cjs"
+  ],
+  "requestSha256": "a62f1d527272fcc10b2b0888146f833a012741e1760f823091f6619960d59e77",
+  "modelUsage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 2,
+      "outputTokens": 36718,
+      "cacheReadInputTokens": 1568,
+      "cacheCreationInputTokens": 71978,
+      "webSearchRequests": 0,
+      "costUSD": 0.6552528,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 33796,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "is_error": false,
+  "returncode": 0,
+  "responseSha256": "95dca92a01d053de24f906c6bd6a60f7ea77c4e363926d808f2df13df28942b5"
+}

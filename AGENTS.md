@@ -19,7 +19,8 @@
 | Attività | Riferimento da leggere |
 | --- | --- |
 | Contratti JSON, nuova espansione, renderer, collazione, disponibilità o salvataggi | [Architettura](docs/architecture.md) |
-| Ricerca, ranking, recensioni, estrazione per carta, prospettive, prezzi o box | [Skill mtg-research](.agents/skills/mtg-research/SKILL.md) |
+| Inserimento di una nuova espansione e riuso delle fonti | [Skill mtg-new-set](.agents/skills/mtg-new-set/SKILL.md) |
+| Ricerca, ranking, recensioni, pool e mazzi Limited, sinergie, confronti fra draft, estrazione per carta, prospettive, prezzi o box | [Skill mtg-research](.agents/skills/mtg-research/SKILL.md) |
 | Scelte sospette o modifica delle politiche dei bot Draft | [Skill mtg-draft-bots](.agents/skills/mtg-draft-bots/SKILL.md) |
 | Restyling o miglioramento generale dell'esperienza | [Skill mtg-site-ux](.agents/skills/mtg-site-ux/SKILL.md) |
 | Review indipendente richiesta, Sonnet o cicli di correzione | [Skill mtg-review](.agents/skills/mtg-review/SKILL.md) |

@@ -13,6 +13,7 @@ def js(value):
 
 
 def event_summary(expansion, key):
+    key=expansion.resolve_event_id(key)
     event=expansion.data['limited']['events'][key]
     product=expansion.data['products']['products'][event['product']]
     directions=', '.join('sinistra' if d==1 else 'destra' for d in event['directions'])
@@ -48,13 +49,15 @@ def render_tokens(content, expansion):
         if kind == 'id': return m['id']
         if kind == 'draftSeed': return html.escape(expansion.data['ui'].get('draftSeed',m['id']+'-tavolo-1'),quote=True)
         if kind == 'draftDate': return html.escape(expansion.data['statistics'].get('draft',{}).get('date') or 'statistiche non ancora disponibili')
+        if kind == 'draftAttribution':
+            return 'Statistiche: snapshot locale con date e fonti nelle sezioni dedicate.' if expansion.availability['draftStatistics']['available'] else 'Statistiche Draft non disponibili per questo set.'
         if kind == 'pickDecisionCount':return str(sum(len(group['cases']) for group in expansion.data['guides'].get('pickDecisions',[])))
         if kind == 'packageCount':return str(len(expansion.data['guides'].get('draftCombos',{}).get('packages',[])))
         if kind == 'mainCardCount':return str(sum(c['set']==m['code'] for c in expansion.cards))
         if kind == 'bonusCardCount':return str(sum(c['set']!=m['code'] for c in expansion.cards))
         if kind == 'discoveryCount':return str(len(expansion.data['discovery'].get('cards',[])))
         if kind == 'discoveryFormatCount':return str(len({f for c in expansion.data['discovery'].get('cards',[]) for f in c.get('formats',[])}))
-        if kind == 'eventValue':return html.escape(str(expansion.data['limited']['events'].get(key.split('.')[0],{}).get(key.split('.')[1],'N/D')))
+        if kind == 'eventValue':return html.escape(str(expansion.data['limited']['events'].get(expansion.resolve_event_id(key.split('.')[0]),{}).get(key.split('.')[1],'N/D')))
         if kind == 'discoveryOptions':
             codes=sorted({c['product'] for c in expansion.data['discovery'].get('cards',[])})
             return '<option value="">Tutti i prodotti</option>'+''.join('<option value="'+html.escape(code,quote=True)+'">Solo '+html.escape(code)+'</option>' for code in codes)
@@ -81,12 +84,14 @@ def render_tokens(content, expansion):
             if key=='defaultDraft':key=next(id_ for id_,event in expansion.data['limited']['events'].items() if event['kind']=='draft' and expansion.draft_event_availability(id_)['available'])
             return html.escape(event_summary(expansion,key))
         if kind == 'sealedSummary':
-            event=expansion.data['limited']['events']['sealed']
-            product=expansion.product_for('sealed')
+            event_id=expansion.default_event_id('sealed')
+            event=expansion.data['limited']['events'][event_id]
+            product=expansion.product_for(event_id)
             return html.escape(f"{event['packsPerPlayer']} {product['name']} · {event['packsPerPlayer']*product['packSize']} carte · mazzo da almeno {event['minDeckSize']}")
         if kind in ('sealedRules','sealedProductNote'):
-            event=expansion.data['limited']['events']['sealed']
-            if kind=='sealedProductNote':return html.escape('Simulazione del prodotto '+expansion.product_for('sealed')['name']+'. Non è una simulazione di partita o delle procedure di torneo.')
+            event_id=expansion.default_event_id('sealed')
+            event=expansion.data['limited']['events'][event_id]
+            if kind=='sealedProductNote':return html.escape('Simulazione del prodotto '+expansion.product_for(event_id)['name']+'. Non è una simulazione di partita o delle procedure di torneo.')
             words={1:'una',2:'due',3:'tre',4:'quattro',5:'cinque',6:'sei'}
             text=f"Apri {words.get(event['packsPerPlayer'],event['packsPerPlayer'])} buste e costruisci un mazzo di almeno {event['minDeckSize']} carte. "
             text+=('Puoi aggiungere liberamente Pianure, Isole, Paludi, Montagne e Foreste. ' if event.get('extraBasicLands') else 'Non aggiungere terre base oltre a quelle del pool. ')
@@ -101,11 +106,13 @@ def render_tokens(content, expansion):
                 cells=''.join('<tr><td>'+html.escape(group)+'</td><td>'+('&lt;1' if rate is None else str(rate).replace('.',','))+'%</td></tr>' for group,rate in values.items())
                 rows.append('<details><summary>'+html.escape(labels.get(slot,slot))+'</summary><div class="trk-table-wrap"><table><thead><tr><th>Gruppo</th><th>Frequenza pubblicata</th></tr></thead><tbody>'+cells+'</tbody></table></div></details>')
             return ''.join(rows)
-        if kind == 'route': return html.escape(pages.get(key, {'url':key+'.html'})['url'],quote=True)
+        if kind == 'route':
+            fallback={'workbench':'draft','practice':'simulator'}.get(key,key)
+            return html.escape(pages.get(key,pages.get(fallback,{'url':key+'.html'}))['url'],quote=True)
         if kind in ('fragment','optionalFragment'):
             value = fragments.get(key)
             if key=='gallery.strategy' and not expansion.availability['sealedGuide']['available']:
-                return '<section id="strategy"><h2>Guida Sealed</h2>'+availability_notice(expansion,'strategy')+'</section>'
+                return '<section id="strategy"><h2>Guida Sealed</h2><p>La guida è in preparazione. Consulta i dati da completare nella disponibilità degli strumenti.</p></section>'
             if key=='gallery.method' and not value:
                 return '<section id="method"><h2>Fonti e metodo</h2><p>Le fonti disponibili sono riportate nelle schede delle carte e nei documenti dell’espansione.</p>{{sourceGroup:gallery}}</section>'
             if value is None and (kind=='optionalFragment' or key.startswith('draft.report-')):return ''
@@ -182,7 +189,7 @@ def availability_notice(expansion, page):
                if not value['available'] and belongs(key,value)]
     if not missing: return ''
     labels={'combos':'Catalogo interattivo delle sinergie','draftStatistics':'Statistiche Draft','draftGuide':'Guida Draft completa','sealedGuide':'Guida Sealed completa'}
-    rows = ''.join('<li>'+html.escape(labels.get(v['featureKey'],v['label']))+': non disponibile.</li>' for v in missing)
+    rows = ''.join('<li>'+html.escape(labels.get(v['featureKey'],v['label']))+': non disponibile. Occorre completare:<ul>'+''.join('<li>'+html.escape(reason)+'</li>' for reason in v['missing'])+'</ul></li>' for v in missing)
     return '<details class="notice feature-availability"><summary>Disponibilità degli strumenti: '+str(len(missing))+' '+('funzione non disponibile' if len(missing)==1 else 'funzioni non disponibili')+'</summary><ul>'+rows+'</ul><p><a href="data/availability.json">Dettagli dei dati mancanti (JSON)</a></p></details>'
 
 
@@ -204,8 +211,11 @@ def data_for_page(expansion, key):
                               **{metric:pool_stats.get(c['name'],{}).get(metric,c[metric])
                                  for metric in ('gih','n','alsa')}} for c in cards]
         result['catalogDate']=expansion.data['cards'].get('date','')
+        result['statisticsAvailable']=expansion.availability['draftStatistics']['available']
+        result['statisticsDate']=source.get('date','') if result['statisticsAvailable'] else ''
+        if not result['statisticsAvailable']:result['date']=''
         result['drill']={'guides':expansion.data['archetypes'],'contexts':{},'fields':[],'colors':{},'retrieved':'',**(source.get('drill') or {})}
-        assistant_fields=('id','full','colors','cost','mv','type','rarity','basic','land','image',
+        assistant_fields=('id','full','colors','cost','mv','type','rarity','basic','land','image','oracle',
                           'community','score','role','why','condition','build')
         assistant_cards=[{**{key:c.get(key) for key in assistant_fields},'name':c.get('full',c['name']),
                           'shortName':c['name'],'faces':[{'name':f.get('name',''),'mana_cost':f.get('mana_cost',''),
@@ -213,7 +223,13 @@ def data_for_page(expansion, key):
         result['assistant']={'cards':assistant_cards,'combos':[{'cards':c['cards']} for c in expansion.data['combos']],
                              'ratingsDate':expansion.data['ratings'].get('date','')}
         return result
-    if key == 'discovery': return expansion.data['discovery']
+    if key == 'discovery':
+        discovery=expansion.data['discovery']
+        requested={card['name'] for card in discovery.get('cards',[])}
+        previews=list(discovery.get('previews') or [])
+        known={card.get('name') for card in previews if card.get('image')}
+        previews.extend(card for card in expansion.cards if card['name'] in requested and card['name'] not in known)
+        return {**discovery,'previews':previews,'watchNames':{card['id']:card['name'] for card in expansion.cards}}
     if key == 'draft-engine':
         from expansion_data import load_expansions
         states={key:expansion.draft_event_availability(key) for key,event in expansion.data['limited']['events'].items() if event['kind']=='draft'}
@@ -230,15 +246,25 @@ def data_for_page(expansion, key):
         data['unavailableFormats'] += [{'name':other.manifest['name'],'missing':other.availability['draftTable']['missing']} for other in load_expansions() if other.manifest['id']!=expansion.manifest['id'] and not other.availability['draftTable']['available']]
         return data
     data = catalog_data(expansion)
+    if key=='combos' and '/preview/' in expansion.manifest['presentation']['pages']['gallery'].get('template',''):
+        event=expansion.default_event_id('sealed')
+        if event:data['poolSource']={'key':expansion.manifest['storage']['poolPrefix']+event+'-v1','nested':True,'event':event}
     if key == 'simulator' and expansion.availability['sealedSimulator']['available']:
-        data['format']=expansion.draft_format('sealed')
+        data['format']=expansion.draft_format(expansion.default_event_id('sealed'))
     return data
 
 
 def render_page(expansion, key, page):
     content = confined(ROOT,page['template']).read_text(encoding='utf-8')
     content = render_tokens(content,expansion)
+    if not expansion.availability['sentiment']['available']:
+        content=re.sub(r'(<section\b[^>]*\bid="sentiment")',r'\1 hidden',content,count=1)
     data = {} if '/preview/' in page['template'] else data_for_page(expansion,key)
+    if page.get('editorialPrefix'):
+        prefix=page['editorialPrefix']
+        fragments=expansion.data['guides'].get('fragments',{})
+        editorial=''.join(render_tokens(value,expansion) for name,value in fragments.items() if name.startswith(prefix+'.panel-') or name==prefix+'.examples')
+        if editorial:content=content.replace('</main>','<details class="notice"><summary>Approfondimenti e sequenze del set</summary>'+editorial+'</details></main>',1)
     for marker in ('__DATA__','__DRAFT_DATA__','__DISCOVERY_DATA__','__DRAFT_ENGINE__'):
         content = content.replace(marker,js(data))
     runtime = '<script>const EXPANSION_CONFIG='+js(expansion.runtime())+';</script>'
@@ -251,7 +277,19 @@ def render_page(expansion, key, page):
     presentation={**expansion.manifest['presentation'],'style':'atlas' if '/atlas/' in page['template'] else 'preview'}
     content = shell(content,key,expansion={**expansion.manifest,'presentation':presentation,'sentimentAvailable':expansion.availability['sentiment']['available'],'storageNote':expansion.data['ui'].get('storageNote','Pool e carte osservate si salvano in questo browser.')})
     content = configured_routes(content,expansion)
+    if page.get('controllerPage'):
+        content=content.replace('data-page="'+key+'"','data-page="'+page['controllerPage']+'"',1)
     notice = availability_notice(expansion,key)
+    if key=='set':
+        ready=sum(value['available'] for value in expansion.availability.values())
+        rows=[]
+        for value in expansion.availability.values():
+            target=expansion.manifest['presentation']['pages'].get(value['page'])
+            label=html.escape(value['label'])
+            if target:label='<a href="'+html.escape(target['url'],quote=True)+'">'+label+'</a>'
+            detail='Disponibile' if value['available'] else 'Occorre completare: '+'; '.join(value['missing'])
+            rows.append('<tr><th scope="row">'+label+'</th><td>'+html.escape(detail)+'</td></tr>')
+        notice+='<details class="notice feature-availability"><summary>Strumenti del set: '+str(ready)+' disponibili, '+str(len(expansion.availability)-ready)+' da completare</summary><div class="tablewrap"><table><thead><tr><th>Strumento</th><th>Disponibilità e dati necessari</th></tr></thead><tbody>'+''.join(rows)+'</tbody></table></div></details>'
     if notice:
         content = content.replace('</main>',notice+'</main>',1)
     if re.search(r'__(?:DATA|DRAFT_DATA|DISCOVERY_DATA|DRAFT_ENGINE)__|\{\{(?:fragment|route):',content):
@@ -269,6 +307,9 @@ def build(expansion, dest):
     # Every expansion exposes the same feature contract, including unavailable tools.
     if 'draft-engine' not in pages:
         pages['draft-engine']={'label':'Tavolo Draft con bot','url':'draft-engine.html','template':'templates/atlas/draft-engine.html'}
+    # A presentation cannot hide a ready shared feature. Keep the lightweight
+    # preview pages until their real inputs exist, then use the common renderer.
+    prepare_shared_pages(expansion)
     page_requirement = {'draft-engine':'draftTable','simulator':'sealedSimulator',
                         'gallery':'catalog','analysis':'analysis','combos':'combos','discovery':'discovery'}
     written = set()
@@ -306,3 +347,29 @@ def build(expansion, dest):
         if source.is_dir(): shutil.copytree(source,dest/source.name)
         else: shutil.copy2(source,dest/source.name)
     return written
+
+
+def prepare_shared_pages(expansion):
+    pages=expansion.manifest['presentation']['pages']
+    routes={
+        'draft':('draftGuide','draftStatistics','draftDrilldown','pickGuide','pickBaits','pickDecisions','draftCombos'),
+        'combos':('combos',),'discovery':('discovery',),
+        'analysis':('analysis',),'simulator':('sealedSimulator',)}
+    for key,features in routes.items():
+        page=pages.get(key)
+        if page and '/preview/' in page.get('template','') and any(expansion.availability[f]['available'] for f in features):
+            if key=='draft':
+                pages.setdefault('workbench',{'label':'Pool e mazzo Draft','url':'draft-workbench.html','template':page['template'],'controllerPage':'draft'})
+                for _,members in expansion.manifest['presentation']['groups']:
+                    if 'draft' in members and 'workbench' not in members:members.append('workbench')
+            if key=='simulator':
+                pages.setdefault('practice',{'label':'Prova il mazzo','url':'practice.html','template':page['template'],'controllerPage':'simulator'})
+                page['label']='Simulatore Sealed'
+                for _,members in expansion.manifest['presentation']['groups']:
+                    if 'simulator' in members and 'practice' not in members:members.append('practice')
+            page['template']='templates/atlas/'+key+'.html'
+            page['editorialPrefix']=key
+    if 'strategy' not in pages:
+        pages['strategy']={'label':'Guida Sealed','url':'strategy.html','template':'templates/shared/sealed-guide.html'}
+        for _,members in expansion.manifest['presentation']['groups']:
+            if 'pool' in members and 'strategy' not in members:members.append('strategy');break

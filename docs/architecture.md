@@ -36,6 +36,14 @@ La homepage deriva percorsi e nomi dal registro. `home.featured` e `home.quickTo
 
 ## Analisi per carta e prezzi
 
+La selezione degli eventi predefiniti deriva dal loro `kind` e dalla disponibilità effettiva, senza imporre che la chiave del registro sia `draft` o `sealed`. Il runtime espone `defaultEvents` e `eventAvailability`; l'ID del profilo dentro l'evento resta distinto dalla sua chiave nel registro. La disponibilità di ogni funzione conserva `requested`, `dataReady`, `requirements` e le lacune leggibili anche quando non è richiesta.
+
+Una presentazione di anteprima passa ai renderer condivisi per Draft, combo, discovery, analisi e simulazione quando i dati necessari diventano disponibili. La prova della mano iniziale resta in una pagina separata quando si attiva il simulatore Sealed. Le guide Sealed hanno una route condivisa anche per set privi del relativo contenuto. La panoramica mostra la matrice degli strumenti, con ciò che serve a completare quelli non disponibili.
+
+Quando si attivano le viste condivise, il banco manuale Draft e la prova del mazzo mantengono route separate e i salvataggi precedenti. I frammenti editoriali della preview rimangono consultabili negli approfondimenti. Le chiavi opzionali dei pool condivisi sono isolate per espansione anche se non erano dichiarate nel manifest di anteprima.
+
+Il [torneo locale](tournament.md) è uno strumento trasversale e non dipende dai dataset di espansione. Il suo JSON versionato è separato dai pool personali e dai replay dei bot.
+
 Le analisi aggiuntive risiedono in `cards.json: cards[].prospects`; `prospectsDate` è una data di ricerca distinta da quella del catalogo, dai voti e dalla revisione funzionale dei replay. Il contratto è in `schemas/prospects.schema.json`, con campi aggiuntivi compatibili. `prospects-ui.js` è il renderer condiviso; l'assenza di `prospects` mantiene la scheda ordinaria.
 
 L'oggetto distingue `date`, `kind`, `summary`, `gameplayReview`, `oracle`, `formats`, `tournamentObservations`, `commanderObservations`, `price`, `sources` e `limitations`. Una valutazione in `formats.<formato>` separa `legality`, `evidence`, `prospect` e `confidence`; l'eventuale indice `observation` rimanda alle osservazioni di torneo. I riferimenti di `sources` si risolvono nel registro `sources.json: research.sources`. Lo schema resta il riferimento per campi richiesti, tipi e valori ammessi.
@@ -122,6 +130,14 @@ Le chiavi derivano da `expansion.json: storage`, non dal nome del set nel contro
 Prima di sostituire lo stato, l'importazione controlla versione, espansione, modalità, identità e quantità. Le modifiche rileggono lo stato aggiornato; Web Locks, se disponibili, serializzano le scritture dello stesso pool. Gli eventi `storage` e `pageshow` aggiornano le pagine aperte. Conservare questi comportamenti fra schede e la protezione dei salvataggi illeggibili. Quando la persistenza fallisce, mantenere esplicito il carattere temporaneo del lavoro e l'accesso all'esportazione. I controlli pertinenti sono elencati in [verification.md](verification.md).
 
 Durante le anteprime il solo flag Scryfall `booster` non dimostra l'idoneità di una carta al prodotto. Verificare composizione e trattamenti con le fonti del prodotto prima di completare la collazione o abilitare stime.
+
+## Lettura delle sinergie del pool
+
+L'assistente Atlas espone `Come funziona il pool`, una lettura delle pick registrate e del piano colori corrente, distinta da una lista finale da 40 carte. Il payload `assistant.cards` conserva anche il testo `oracle` canonico. `draft-advisor.js: profile` riconosce alcuni pattern espliciti, escludendo i reminder fra parentesi; `poolAnalysis` collega fonti e beneficiari compatibili con il piano. Le osservazioni riguardano guadagno di vite, scry/surveil e condizioni legate alle abilità di lealtà. Modi diversi non vengono sommati come un unico effetto di rimozione e guadagno vite.
+
+Le quantità contano separatamente carte che entrano preparate, carte che possono creare pedine creatura e carte con flashback. I gruppi possono sovrapporsi e non rappresentano creature già disponibili. Cicloterra base e produttori di mana di qualsiasi colore sono elencati anche fuori piano, con i loro vincoli; non equivalgono a fonti immediatamente utilizzabili. I simboli colorati fuori piano rispettano i costi ibridi e la faccia principale. Le terre e le forme di fixing non riconosciute richiedono una verifica manuale, senza dichiarare automaticamente sostenibile uno splash.
+
+Il riconoscimento è parziale, non un interprete completo di Oracle: ogni collegamento offre le anteprime delle carte per controllare bersagli, costi e timing. Queste osservazioni non cambiano voti, win rate, priorità numeriche dei pick o politiche dei bot. Non importano risultati personali e ricordano di separare Quick, Premier e Traditional nei confronti. Anche il prompt esportato da `draft-pool.js` richiede di ricostruire sviluppo, stabilizzazione, risorse e chiusure, valutare ruoli simultanei e diversificazione delle bombe, distinguere risorse future e fixing e calibrare i giudizi sui risultati. Verifiche mirate: `node verify-pool-analysis.cjs`, `node verify-pool-analysis-browser.cjs` con le variabili browser descritte in [verification.md](verification.md), e `python -m unittest test_draft_assistant.py`.
 
 ## Aggiungere un'espansione
 

@@ -17,6 +17,58 @@
  const land=c=>c.land===true||/\bLand\b/.test(primary(c).type_line||c.type||'');
  const candidatePlans=ctx=>ctx.flexibleSecond?[ctx.plan,...[...'WUBRG'].filter(x=>!ctx.plan.includes(x)).map(x=>ctx.plan+x)]:[ctx.plan];
  const compatible=(c,ctx)=>candidatePlans(ctx).some(p=>fits(c,p));
+ // Recognize only explicit Oracle patterns. These observations do not change ratings.
+ function profile(c){
+  const raw=c.oracle||c.text||(c.faces||[]).map(f=>f.oracle_text||'').join('\n');
+  const text=raw.replace(/\([^)]*\)/g,'');
+  const interaction=t=>/\b(?:destroy|exile) target (?:creature|nonland permanent)|\bsacrifices a creature|\bdeals? \d+ damage to (?:any target|target [^\n.]*creature)|\breturn target creature|\btarget creature gets -\d+\/-\d+|doesn't untap during its controller's untap step/i.test(t);
+  const life=t=>/\byou gain (?:\d+|X|that much) life\b|\blifelink\b/i.test(t);
+  return {
+   known:!!raw,interaction:interaction(text),life:life(text),lifePayoff:/\bwhenever you gain life\b/i.test(text),
+   lifeInteraction:text.split(/\n|[•]/).some(t=>interaction(t)&&life(t)),
+   selection:/\b(?:surveil|scry) \d+\b/i.test(text),
+   selectionPayoff:/\bwhenever you (?:scry|surveil)\b|if you've scried or surveilled this turn/i.test(text),
+   loyalty:/\bempower [A-Za-z]+ \d+\b/i.test(text)||/\bPlaneswalker\b/.test(primary(c).type_line||c.type||''),
+   loyaltyPayoff:/if you've activated a loyalty ability this turn/i.test(text),
+   cycling:/\bbasic landcycling\b/i.test(text),
+   fixing:/\badd (?:one mana of any color|[^\n.]*mana of that color)/i.test(text),
+   prepared:/\benters prepared\b/i.test(text),flashback:/\bflashback\b/i.test(text),
+   tokens:/\bcreate (?:a|an|two|three|\d+) [^\n.]*creature tokens?\b/i.test(text)
+  };
+ }
+ function poolAnalysis(ctx,pool){
+  const entries=ctx.picked.filter(c=>!land(c)).map(card=>({card,quantity:pool[card.name],...profile(card)}));
+  const playable=entries.filter(e=>compatible(e.card,ctx));
+  const select=key=>playable.filter(e=>e[key]);
+  const count=list=>list.reduce((n,e)=>n+e.quantity,0);
+  const observations=[];
+  function connection(title,sources,targets,text){
+   const pairs=sources.flatMap(s=>targets.filter(t=>t.card.id!==s.card.id).map(t=>[s,t]));
+   if(!pairs.length)return;
+   const participating=list=>list.filter(e=>pairs.some(pair=>pair.includes(e)));
+   observations.push({title,text,sources:participating(sources),targets:participating(targets)});
+  }
+  connection('Vite che sviluppano il campo',select('life'),select('lifePayoff'),
+   'Il guadagno di vite può attivare queste ricompense e sostenere la corsa ai danni. Controlla condizioni, modi scelti e frequenza nelle anteprime.');
+  connection('Selezione con un beneficio aggiuntivo',select('selection'),select('selectionPayoff'),
+   'Scry e surveil possono attivare le ricompense presenti. Controlla il momento di attivazione e gli eventuali costi: filtrare non equivale a pescare carte aggiuntive.');
+  connection('Dalle abilità di lealtà agli attacchi',select('loyalty'),select('loyaltyPayoff'),
+   'Queste carte danno accesso ad abilità di lealtà. Attivane una prima di attaccare per soddisfare la condizione della ricompensa.');
+  const bridge=select('lifeInteraction');
+  if(bridge.length)observations.push({title:'Interagire e guadagnare tempo',sources:bridge,targets:[],
+   text:'Queste carte hanno un effetto che interagisce con le creature e fa guadagnare vite. Possono aiutare ad arrivare alle chiusure; bersagli e condizioni restano da verificare.'});
+  const resources={prepared:count(select('prepared')),tokens:count(select('tokens')),flashback:count(select('flashback'))};
+  const fixing=entries.filter(e=>e.cycling||e.fixing);
+  const outside=ctx.plan?entries.filter(e=>!compatible(e.card,ctx)).map(e=>{
+   const cost=primary(e.card).mana_cost??e.card.cost??'';
+   const symbols=[...cost.matchAll(/\{([^}]+)\}/g)].filter(m=>{
+    const options=m[1].split('/');
+    return options.some(x=>/^[WUBRG]$/.test(x))&&!options.includes('2')&&!options.includes('P')&&!options.some(x=>ctx.plan.includes(x));
+   }).map(m=>m[0]);
+   return {...e,symbols:symbols.join(''),repeated:symbols.some((s,i)=>/^\{[WUBRG]\}$/.test(s)&&symbols.indexOf(s)!==i)};
+  }):[];
+  return {observations,resources,fixing,outside,missing:count(entries.filter(e=>!e.known))};
+ }
  function context(cards,pool,chosen=''){
   const picked=cards.filter(c=>pool[c.name]>0),total=picked.reduce((n,c)=>n+pool[c.name],0),progress=picked.filter(c=>!c.basic).reduce((n,c)=>n+pool[c.name],0);
   const weights=Object.fromEntries([...'WUBRG'].map(x=>[x,0]));
@@ -56,6 +108,6 @@
   return text[key]||best.reasons[0];
  }
  const comparisonGap=(best,other)=>Math.round((best.value-other.value)*1e6)/1e6;
- const api={colors,mana,creature,fits,compatible,land,rating,context,evaluate,explain,comparisonGap};
+ const api={colors,mana,creature,fits,compatible,land,rating,context,evaluate,explain,comparisonGap,profile,poolAnalysis};
  if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.DraftAdvisor=api;
 })(globalThis);

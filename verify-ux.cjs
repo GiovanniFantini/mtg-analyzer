@@ -28,6 +28,7 @@ const pages=['','sets/reality-fracture/index.html',...['Sealed','Draft','Draft-E
   const draft='sets/reality-fracture/Reality-Fracture-Draft-Engine.html';
   const widths=[];
   for(const width of [360,768,1440]){
+   await page.evaluate(()=>localStorage.clear());
    await page.setViewportSize({width,height:960});await visit(draft);await page.locator('#start').click();
    let firstWidth;
    for(let pick=0;pick<14;pick++){
@@ -47,12 +48,14 @@ const pages=['','sets/reality-fracture/index.html',...['Sealed','Draft','Draft-E
    widths.push({width,stableCardWidth:firstWidth,uniformPicksChecked:14,completedPicks:42,review:true});
   }
   await page.emulateMedia({reducedMotion:'reduce'});
+  await page.evaluate(()=>localStorage.clear());
   await visit(draft);await page.locator('#start').click();
   assert.equal(await page.locator('.draft-card').first().evaluate(e=>getComputedStyle(e).animationName),'none');
   await page.emulateMedia({reducedMotion:'no-preference'});
   for(const width of [390,1440]){
    await page.setViewportSize({width,height:960});
    for(const [name,path] of [['home',''],['draft',draft],['guida','sets/reality-fracture/Reality-Fracture-Draft.html'],['star-trek','sets/star-trek/index.html']]){
+    if(name==='draft')await page.evaluate(()=>localStorage.clear());
     await visit(path);if(name==='draft')await page.locator('#start').click();
     await page.waitForTimeout(550);
     await page.screenshot({path:`ux-${name}-${width}-preview.png`,fullPage:name==='home'});

@@ -43,7 +43,9 @@ Modificare i sorgenti e i template. `dist/` e le pagine generate non sono sorgen
 | Riprendere ricerca e verifiche datate | [Resoconti del 22 ottobre 2026](docs/history/2026-10-22.md), poi snapshot e registri effettivi |
 | Capire dove scrivere nuove istruzioni o documentazione | [Criteri di manutenzione](docs/documentation.md) |
 
-Le procedure per gli agenti sono in quattro skill locali: [ricerca](.agents/skills/mtg-research/SKILL.md), [bot Draft](.agents/skills/mtg-draft-bots/SKILL.md), [UX](.agents/skills/mtg-site-ux/SKILL.md) e [review indipendente](.agents/skills/mtg-review/SKILL.md). [AGENTS.md](AGENTS.md) stabilisce quando usarle e contiene i vincoli permanenti. Le preferenze personali generali appartengono al file globale di Codex.
+Le procedure per gli agenti sono nelle skill locali: [ricerca](.agents/skills/mtg-research/SKILL.md), [nuova espansione e inventario fonti](.agents/skills/mtg-new-set/SKILL.md), [bot Draft](.agents/skills/mtg-draft-bots/SKILL.md), [UX](.agents/skills/mtg-site-ux/SKILL.md) e [review indipendente](.agents/skills/mtg-review/SKILL.md). [AGENTS.md](AGENTS.md) stabilisce quando usarle e contiene i vincoli permanenti. Le preferenze personali generali appartengono al file globale di Codex.
+
+Il [gestore torneo Draft locale](docs/tournament.md), raggiungibile da Home e dal menu, gestisce da 2 a 8 giocatori con qualsiasi set: iscrizioni, turni alla svizzera, risultati, timer e classifica. Non richiede i dati di una specifica espansione.
 
 ## Dati, limiti e salvataggi
 

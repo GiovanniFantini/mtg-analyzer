@@ -86,8 +86,13 @@ def build():
         shutil.rmtree(DIST)
     DIST.mkdir()
     (DIST/'index.html').write_text(home,encoding='utf-8')
+    tournament=shell((ROOT/'tournament-template.html').read_text(encoding='utf-8'),'home',root=True,expansions=expansions)
+    tournament=tournament.replace('class="site-home" href="index.html" aria-current="page"','class="site-home" href="index.html"')
+    tournament=tournament.replace('class="site-tournament" href="tournament.html"','class="site-tournament" href="tournament.html" aria-current="page"')
+    tournament=tournament.replace('<span id="site-page-label">Home</span>','<span id="site-page-label">Torneo Draft</span>')
+    (DIST/'tournament.html').write_text(tournament,encoding='utf-8')
     (DIST/'.nojekyll').touch()
-    for name in ['site.css','site.js','favicon.svg']:
+    for name in ['site.css','site.js','favicon.svg','tournament.css','tournament-engine.js','tournament-ui.js']:
         shutil.copy2(ROOT/name,DIST/name)
     shutil.copytree(ROOT/'schemas',DIST/'schemas')
     for expansion in loaded:

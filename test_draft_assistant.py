@@ -32,6 +32,13 @@ class DraftAssistantDataTests(unittest.TestCase):
         self.assertEqual(len(data['poolCards']), len(expansion.cards))
         self.assertTrue(all(c['gih'] is None and c['n'] == 0 for c in data['poolCards']))
 
+    def test_assistant_keeps_canonical_oracle_for_pool_analysis(self):
+        data = data_for_page(self.expansion, 'draft')
+        canonical = {c['full']: c['oracle'] for c in self.expansion.cards}
+        self.assertTrue(data['assistant']['cards'])
+        for card in data['assistant']['cards']:
+            self.assertEqual(card['oracle'], canonical[card['name']])
+
 
 if __name__ == '__main__':
     unittest.main()

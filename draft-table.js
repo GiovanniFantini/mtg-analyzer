@@ -5,7 +5,7 @@
  const data=rootData.formats?.[eventId]||rootData,E=DraftEngine,$=id=>document.getElementById(id);
  const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
  $('format').innerHTML=Object.entries(rootData.formats||{draft:rootData}).map(([id,f])=>`<option value="${esc(id)}">${esc(f.name)}</option>`).join('')+(rootData.unavailableFormats||[]).map(f=>`<option disabled>${esc(f.name)}: non disponibile</option>`).join('');
- const unavailable=document.createElement('div');unavailable.id='unavailable-formats';unavailable.innerHTML=(rootData.unavailableFormats||[]).length?`<details><summary>Altri formati non disponibili</summary>${rootData.unavailableFormats.map(f=>`<p>${esc(f.name)}: non disponibile.</p>`).join('')}</details>`:'';$('format').closest('.settings').after(unavailable);$('format').setAttribute('aria-describedby',unavailable.id);
+ const unavailable=document.createElement('div');unavailable.id='unavailable-formats';unavailable.innerHTML=(rootData.unavailableFormats||[]).length?`<details><summary>Altri eventi e set: dati da completare</summary>${rootData.unavailableFormats.map(f=>`<p>${esc(f.name)}: non disponibile. Occorre completare:</p><ul>${(f.missing||[]).map(reason=>`<li>${esc(reason)}</li>`).join('')}</ul>`).join('')}</details>`:'';$('format').closest('.settings').after(unavailable);$('format').setAttribute('aria-describedby',unavailable.id);
  $('format').value=rootData.formats?.[eventId]?eventId:(rootData.defaultEvent||'draft');
  $('format').addEventListener('change',()=>{const url=new URL(location.href);url.searchParams.set('event',$('format').value);location.href=url.href;});
 
@@ -34,8 +34,10 @@
  }).join('');
  function recovery(raw){if(recoveryURL)URL.revokeObjectURL(recoveryURL);recoveryURL=URL.createObjectURL(new Blob([raw],{type:'application/json'}));}
  function status(message){for(const id of ['save-status','draft-status']){const node=$(id);node.textContent=message;if(recoveryURL){const link=document.createElement('a');link.href=recoveryURL;link.download='draft-'+EXPANSION_CONFIG.id+'-precedente.json';link.textContent=' Scarica il salvataggio precedente';node.append(link);}}}
- try{const raw=localStorage.getItem(key);if(raw){incompatibleRaw=raw;const record=JSON.parse(raw);E.replay(data,record);saved=record;incompatibleRaw=null;backupKey=record.previousSaveKey||null;if(backupKey){const previous=localStorage.getItem(backupKey);if(previous!==null)recovery(previous);}$('resume').hidden=false;status('Hai un draft salvato in questo browser.');}}catch{if(incompatibleRaw!==null)recovery(incompatibleRaw);status('Salvataggio precedente non leggibile. Prima di salvare un nuovo draft ne conserveremo una copia separata.');}
- function persist(){try{
+ let raw=null,storageReadable=true;
+ try{raw=localStorage.getItem(key);}catch{storageAvailable=false;storageReadable=false;status('Memoria del browser non accessibile: sessione temporanea. Usa Esporta sessione prima di chiudere.');}
+ if(storageReadable)try{if(raw!==null){incompatibleRaw=raw;const record=JSON.parse(raw);E.replay(data,record);saved=record;incompatibleRaw=null;backupKey=record.previousSaveKey||null;if(backupKey){try{const previous=localStorage.getItem(backupKey);if(previous!==null)recovery(previous);}catch{}}$('resume').hidden=false;status('Hai un draft salvato in questo browser.');}}catch{if(incompatibleRaw!==null)recovery(incompatibleRaw);status('Salvataggio precedente non leggibile. Prima di salvare un nuovo draft ne conserveremo una copia separata.');}
+ function persist(){if(!storageReadable){status('Memoria del browser non accessibile: sessione temporanea. Usa Esporta sessione prima di chiudere.');return;}try{
   if(incompatibleRaw!==null){
    backupKey=key+'-incompatible-'+Date.now()+'-'+Math.random().toString(36).slice(2);
    localStorage.setItem(backupKey,incompatibleRaw);
@@ -44,7 +46,7 @@
   }
   const record=session.export();if(backupKey)record.previousSaveKey=backupKey;localStorage.setItem(key,JSON.stringify(record));saved=record;storageAvailable=true;
   status('Draft salvato in questo browser.'+(backupKey?' Il salvataggio precedente è conservato separatamente.':''));
- }catch{storageAvailable=false;status('Salvataggio non disponibile: usa Esporta sessione. Il salvataggio precedente è conservato.');}}
+ }catch{storageAvailable=false;status('Salvataggio non disponibile: usa Esporta sessione.'+(saved||backupKey||incompatibleRaw!==null?' Il salvataggio precedente è conservato.':' La sessione resta temporanea.'));}}
  function render(){
   $('setup').hidden=true;$('table').hidden=false;$('review').hidden=!session.complete;
   $('progress').textContent=session.complete?'Draft completato':`Busta ${session.round}/${data.rounds} · Pick ${session.pick}/${Math.ceil(data.packSize/data.picksPerTurn)}`;

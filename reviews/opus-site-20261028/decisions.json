@@ -1,0 +1,282 @@
+{
+  "date": "2026-10-28",
+  "requestedModel": "opus",
+  "effectiveModel": "claude-opus-5-5",
+  "status": "final_review_pending_session_limit",
+  "zeroFindingsConfirmed": false,
+  "rounds": [
+    {
+      "round": 1,
+      "model": [
+        "claude-opus-5-5"
+      ],
+      "findings": [
+        {
+          "id": "R1",
+          "priority": "P2",
+          "file": "simulator.js",
+          "title": "Nuovo Sealed sovrascrive un salvataggio incompatibile senza backup né download",
+          "status": "confirmed_fixed",
+          "decision": "Confermato in browser: originale sovrascritto, zero backup. Corretto con backup integrale e readback prima del reset, download recuperabile dopo reload e blocco su errore. Test failure/success/reload PASS."
+        },
+        {
+          "id": "R2",
+          "priority": "P2",
+          "file": "templates/atlas/analysis.html",
+          "title": "Analisi condivisa di un set preview: il link alla scheda della carta apre il catalogo non filtrato",
+          "status": "confirmed_fixed",
+          "decision": "Confermato in browser: ?card valido lasciava query vuota e12 carte generiche. Controller preview ora risolve ID al nome e filtra; analisi non promette simulazioni combo se dati assenti. Link valido su fixture condivisa PASS."
+        },
+        {
+          "id": "R3",
+          "priority": "P3",
+          "file": "star-trek.js",
+          "title": "Dopo la conversione condivisa, i link preview portano al Draft Atlas invece che al banco con il pool preview",
+          "status": "confirmed_fixed",
+          "decision": "Confermato dal percorso route e chiavi pool diverse. Link al banco Draft usa workbench, prova mano usa practice, fallback agli indirizzi originali prima attivazione. Browser con pool reale conservato e visibile PASS."
+        },
+        {
+          "id": "R4",
+          "priority": "P3",
+          "file": "templates/atlas/combos.html",
+          "title": "Combo condivise in un set preview leggono una chiave sealedPool che nessuna pagina scrive",
+          "status": "confirmed_fixed",
+          "decision": "Confermato: gallery preview scrive record nested su poolPrefix, combos leggeva una chiave mai scritta. Adattatore in sola lettura poolSource per renderer combo e CTA diretta alla modalità Sealed. Browser filtro Complete nel mio pool PASS."
+        },
+        {
+          "id": "R5",
+          "priority": "P3",
+          "file": "catalog-controls.js",
+          "title": "Il contatore dei filtri attivi ripristina un titolo superato e conta un filtro rarità non sincronizzato",
+          "status": "confirmed_fixed",
+          "decision": "Confermato in browser: titolo Filtri del catalogo tornava al vecchio titolo alla prima selezione. Titolo iniziale corretto, esclusi input hidden dal conteggio e reset aggiornato dopo gli handler. Browser titolo/conteggio/reset PASS."
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "model": [
+        "claude-opus-5-5"
+      ],
+      "findings": [
+        {
+          "id": "R6",
+          "priority": "P3",
+          "file": "simulator.js",
+          "title": "Con lo storage non accessibile, Nuovo Sealed è bloccato in modo permanente e mostra un messaggio falso",
+          "status": "confirmed_fixed",
+          "decision": "Confermato ramo getItem SecurityError. Distinto storage inaccessibile da record incompatibile: sessione temporanea e nuovo Sealed disponibili, nessuna scrittura quando non si può leggere lo storage. Aggiunto scenario browser getter bloccato."
+        },
+        {
+          "id": "R7",
+          "priority": "P3",
+          "file": "catalog-controls.js",
+          "title": "Il contatore dei filtri attivi non segue le modifiche programmatiche del catalogo Atlas",
+          "status": "confirmed_fixed",
+          "decision": "Confermato: reset() interno e filtro sentiment non emettevano eventi. CatalogControls espone refresh e il renderer lo richiama dopo tutte le modifiche, comprese quelle programmatiche. Aggiunte regressioni hash sentiment e Mostra il mio pool."
+        },
+        {
+          "id": "R8",
+          "priority": "P3",
+          "file": "draft-pool.js",
+          "title": "Il prompt AI e l'attribuzione citano statistiche 17Lands anche quando il set non ne ha",
+          "status": "confirmed_fixed",
+          "decision": "Confermato nel prompt e footer: data catalogo attribuita a statistiche e fonte 17Lands anche senza dati. Runtime distingue statisticsAvailable/statisticsDate; assenza esplicita e nessuna attribuzione falsa. Consiglio su interpretazione di GIH N/D rimane valido come criterio, non prova di dati presenti."
+        },
+        {
+          "id": "R9",
+          "priority": "P3",
+          "file": "build_expansion.py",
+          "title": "Avviso di disponibilità della Guida Sealed duplicato sulla stessa pagina",
+          "status": "confirmed_fixed",
+          "decision": "Confermato: doppia chiamata availability_notice nel frammento e nel renderer. Il frammento mancante indica guida in preparazione; avviso unico nel renderer. Test conta una sola feature-availability nella pagina strategy."
+        },
+        {
+          "id": "R10",
+          "priority": "P3",
+          "file": "tournament-engine.js",
+          "title": "Torneo non concludibile se restano meno di due giocatori attivi",
+          "status": "confirmed_fixed",
+          "decision": "Confermato: nessuna chiusura dopo ritiri sotto due attivi. Ora azione esplicita per chiudere, solo dopo tutti i risultati correnti, con endedEarly compatibile nello schema; turni annunciati preservati. Validazione impedisce chiusura anticipata con almeno due attivi."
+        },
+        {
+          "id": "R11",
+          "priority": "P3",
+          "file": "tournament-engine.js",
+          "title": "Possibili falsi spareggi per arrotondamento floating point in OMW/OGW",
+          "status": "confirmed_fixed",
+          "decision": "Ipotesi CONFERMATA con torneo valido6 giocatori/3 turni. A/B 7 punti, stesso GW e medesimi avversari: OMW 0.40518518518518515 contro0.40518518518518526 per somma in ordine diverso. Comparator comune con tolleranza1e-9 per sort ed ex aequo UI. Test scenario concreto e differenze reali preservate."
+        }
+      ]
+    },
+    {
+      "round": 3,
+      "model": [
+        "claude-opus-5-5"
+      ],
+      "findings": [
+        {
+          "id": "R12",
+          "priority": "P3",
+          "file": "templates/atlas/analysis.html",
+          "title": "Il dettaglio carta dell'analisi condivisa non mostra testo e tipo delle carte senza facce",
+          "status": "confirmed_fixed",
+          "decision": "Confermato su carta reale TRK senza faces: Oracle nel JSON assente nel dialogo. Renderer usa fallback con tipo, costo, eventuali statistiche e oracle; browser confronta testo completo. Campi power/toughness opzionali non stampano undefined."
+        },
+        {
+          "id": "R13",
+          "priority": "P3",
+          "file": "star-trek.js",
+          "title": "Con la modalità Draft memorizzata, i link 'Pool e mazzo Sealed' della navigazione portano al banco Draft",
+          "status": "confirmed_fixed",
+          "decision": "Confermato: il link laterale Sealed cambiava pathname in Draft. Solo i collegamenti contestuali marcati data-pool-workbench seguono modalità Draft; le voci esplicite Sealed restano sul Sealed. WeakMap conserva destinazione originale per cambi modalità ripetuti. Browser Draft->Sealed PASS."
+        },
+        {
+          "id": "R14",
+          "priority": "P3",
+          "file": "draft-report.js",
+          "title": "Il dialogo della carta attribuisce contesto Premier Draft e zero osservazioni quando il set non ha statistiche",
+          "status": "confirmed_fixed",
+          "decision": "Confermato nel dialogo condiviso senza statistiche. La scheda ora dice Statistiche Draft non disponibili per questo set, senza zero osservazioni o falso contesto Premier. Anche carte senza campione in set parzialmente coperti dichiarano dati per carta mancanti. Browser dialogo da pool PASS."
+        },
+        {
+          "id": "R15",
+          "priority": "P3",
+          "file": "templates/atlas/analysis.html",
+          "title": "Sezione sentiment con affermazioni specifiche di Reality Fracture nell'analisi di un set senza sentiment",
+          "status": "partially_founded_fixed",
+          "decision": "La condizione ipotizzata con JavaScript è scartata: sentiment-ui.js mount nasconde già la sezione. Resta un difetto vero senza JavaScript: riproduzione sulla fixture no-sentiment con JS disabilitato -> sezione visibile. Ora hidden nel markup server. Le frasi specifiche FRA sono spostate in nuovi frammenti compatibili di guides.json FRA; altri set non le ereditano. Browser prima visibile/dopo nascosto PASS. Incluso sentiment-ui.js nel prossimo input per completare il contesto."
+        }
+      ]
+    },
+    {
+      "round": 4,
+      "model": [
+        "claude-opus-5-5"
+      ],
+      "findings": [
+        {
+          "id": "R16",
+          "priority": "P2",
+          "file": "templates/atlas/gallery.html",
+          "title": "Un pool Sealed salvato ma non valido viene sovrascritto alla prima modifica, senza backup",
+          "status": "confirmed_fixed",
+          "decision": "Confermato nel codice precedente: cleanPool eliminava voci sconosciute/invalidanti e save sovrascriveva. Ora validazione integrale del record, modifiche solo temporanee se incompatibile, download originale e archivio versionato con raw completo/readback prima della sostituzione esplicita. Test JSON troncato, ID rimosso, quantità101, backup fallito/riuscito, download e reload PASS."
+        },
+        {
+          "id": "R17",
+          "priority": "P3",
+          "file": "star-trek.js",
+          "title": "Le pagine Pool Sealed e Draft offrono modalità di altro tipo che non vengono mantenute",
+          "status": "confirmed_fixed",
+          "decision": "Confermato: selettore poteva scegliere tipo incompatibile poi perso al reload. allowedModes ora limita Pool agli eventi Sealed e Draft/workbench a eventi Draft. Query valida del tipo corretto mantenuta anche per un secondo Sealed; se tipo assente modalitànull e regole mancanti esplicite. Gallery/practice consentono tutti gli eventi."
+        },
+        {
+          "id": "R18",
+          "priority": "P3",
+          "file": "expansion_data.py",
+          "title": "Un simulatore Sealed attivato in una presentazione preview può usare la chiave di storage 'undefined'",
+          "status": "confirmed_fixed",
+          "decision": "Confermato su manifest preview valido privo sealedSimulator. Proprietà storage genera chiave <id>-sealed-simulator-v1 senza cambiare chiavi esplicite; collisioni già controllate da load_expansions sulle chiavi risolte. Test due preview con key assente e chiave esplicita preservata PASS."
+        },
+        {
+          "id": "R19",
+          "priority": "P3",
+          "file": "draft-table.js",
+          "title": "Senza storage accessibile il tavolo Draft dichiara un salvataggio precedente che non esiste",
+          "status": "confirmed_fixed",
+          "decision": "Confermato il catch confondeva SecurityError e record incompatibile. Lettura memoria distinta dalla validazione; in caso di memoria inaccessibile tavolo Draft funziona temporaneamente e invita a Esporta sessione. Persistenza non tenta di sovrascrivere record non leggibili per mancanza accesso. Browser avvio Draft con getter bloccato PASS."
+        },
+        {
+          "id": "R20",
+          "priority": "P3",
+          "file": "tournament-ui.js",
+          "title": "Salvare un risultato azzera i valori non ancora salvati negli altri incontri del turno",
+          "status": "confirmed_fixed",
+          "decision": "Confermato: render ricostruiva moduli dai soli risultati salvati. Map locale dei valori non inviati per torneo/turno/coppia, rimossa per il solo incontro salvato dopo scrittura riuscita. Altri risultati digitati preservati durante render; avanzamento bloccato finché ci sono modifiche non salvate. Browser compila due tavoli, salva primo, verifica secondo intatto PASS desktop/touch."
+        }
+      ]
+    },
+    {
+      "round": 5,
+      "model": [
+        "claude-opus-5-5"
+      ],
+      "findings": [
+        {
+          "id": "R21",
+          "priority": "P3",
+          "file": "discovery.js",
+          "title": "Dopo la conversione condivisa della discovery di un set preview, le carte osservate salvate non risultano più seguite",
+          "status": "confirmed_fixed",
+          "decision": "Confermato ID preview contro nomi Atlas sulla stessa chiave. data_for_page passa watchNames ID->nome; lettura compatibile normalizza identità note e conserva token sconosciuti. Preview riconosce sia nomi sia ID per mantenere compatibilità al ritorno. Nessuna rinomina chiavi. Record watch malformati non vengono sovrascritti: fallback temporaneo e download raw."
+        },
+        {
+          "id": "R22",
+          "priority": "P3",
+          "file": "templates/atlas/discovery.html",
+          "title": "Discovery condivisa senza discovery.previews: anteprime delle carte e vista Tutte le analisi non funzionano",
+          "status": "confirmed_fixed",
+          "decision": "Confermato previews facoltativo: TypeError nel template e nel caricamento analisi. Adattatore ricava immagini disponibili dal catalogo per le carte citate e mantiene le anteprime esplicite. Template fallback[], CardHover registra listener anche quando inizialmente vuoto e non crea regex di nomi vuoti: nuove anteprime dopo caricamento supportate."
+        },
+        {
+          "id": "R23",
+          "priority": "P3",
+          "file": "templates/atlas/analysis.html",
+          "title": "La ricerca Cerca nome, sottotipo, testo non trova tipi e sottotipi nei set il cui oracle non contiene la riga del tipo",
+          "status": "confirmed_fixed",
+          "decision": "Confermato match() non considera c.type e funziona per FRA solo perché Oracle include metadati. Aggiunti tipo e type_line delle facce alla ricerca analisi e galleria Atlas. Fixture con token esclusivamente nel tipo per verificare indipendenza dall’Oracle."
+        },
+        {
+          "id": "R24",
+          "priority": "P3",
+          "file": ".agents/skills/mtg-new-set/scripts/inventory_sources.py",
+          "title": "L'inventario attribuisce a un set le cartelle di ricerca di un altro set il cui slug inizia allo stesso modo",
+          "status": "confirmed_fixed",
+          "decision": "Confermato glob per prefisso attribuisce audit del set figlio al principale. Owner delle directory tramite slug registrato completo più specifico seguito da data8cifre, con suffisso opzionale. Conservato star-trek-20261028-audit (reale). Inventario resta115 URL FRA/46 TRK. Test due set con slug prefissati e slug numerico datato PASS."
+        }
+      ]
+    },
+    {
+      "round": 6,
+      "status": "blocked_by_session_limit",
+      "modelUsage": {},
+      "error": "You've hit your session limit · resets 4:50pm (Europe/Rome)",
+      "reviewCompleted": false
+    }
+  ],
+  "independentFindings": [
+    {
+      "id": "LOCAL-1",
+      "file": "templates/shared/sealed-guide.html",
+      "status": "confirmed_fixed",
+      "issue": "La guida condivisa caricava card-hover.js senza DATA, impedendo le anteprime delle carte quando il contenuto Sealed era disponibile.",
+      "reproduction": "check_guide.py costruisce una copia temporanea della presentazione preview con guides.sealed=true e una carta reale nel frammento gallery.strategy.",
+      "before": {
+        "references": 0,
+        "mouse": false,
+        "keyboard": false,
+        "touch": false
+      },
+      "after": {
+        "references": 1,
+        "mouse": true,
+        "keyboard": true,
+        "touch": true
+      },
+      "fix": "Incorporato il catalogo normalizzato con il marcatore __DATA__ prima di caricare card-hover.js."
+    }
+  ],
+  "followupValidation": [
+    "R12: fields power/toughness may be empty strings, now omitted from the type line. Mobile Oracle/type browser check passed.",
+    "R21: unknown watch strings use own-property alias lookup and remain preserved, including toString.",
+    "R22: empty preview registry accepts later mtg-card-data and never generates empty card references. Browser late registry check passed."
+  ],
+  "resume": {
+    "status": "final_review_pending_session_limit",
+    "lastCompletedRound": 5,
+    "nextRunArgument": 7,
+    "resetLocal": "2026-10-28 16:50 Europe/Rome",
+    "zeroFindingsConfirmed": false
+  }
+}

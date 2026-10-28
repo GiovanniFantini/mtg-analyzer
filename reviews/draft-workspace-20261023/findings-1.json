@@ -1,0 +1,113 @@
+{
+  "findings": [
+    {
+      "id": "R1-01",
+      "priority": "P1",
+      "file": "draft-assistant.css",
+      "line": 9,
+      "title": "Nomi carta quasi invisibili nelle alternative selezionate e nell'elenco delle pick",
+      "scenario": "Nella scheda Confronta due, dopo aver scelto una carta, il riquadro 'Alternativa 1' mostra il nome in verde chiarissimo su sfondo quasi bianco. Lo stesso accade nell'elenco 'Le tue pick' aperto, dentro #da-pool.",
+      "evidence": "draft-assistant.css:9 imposta '#draft-assistant .da-name{color:#c6f6e0!important}' (specificità 1,1,0, con !important). draft-workspace.css:52 sovrascrive il colore solo per '#draft-assistant .da-card .da-name'. I nomi in '#da-selected .da-selection' (sfondo #f3f9f5, workspace.css:56) e in '#da-pool .da-pool-row' (sfondo bianco) non stanno dentro '.da-card'. Mantengono quindi #c6f6e0 !important su sfondo chiaro, con contrasto circa 1,3:1. Anche la sottolineatura punteggiata ha lo stesso colore. Le card dei risultati e del confronto sono coperte dalla regola del workspace e non mostrano il problema.",
+      "impact": "Nella schermata principale del confronto, il nome della carta scelta e l'elenco delle pick da correggere sono illeggibili. È una regressione della palette chiara.",
+      "suggested_fix": "In draft-workspace.css sostituire il selettore con '#draft-assistant .da-name{color:#146e79!important}' per coprire tutti i contesti, oppure aggiungere '#draft-assistant :is(#da-selected,#da-pool) .da-name'. In alternativa togliere il colore !important dalla regola scura in draft-assistant.css.",
+      "certainty": "certain"
+    },
+    {
+      "id": "R1-02",
+      "priority": "P2",
+      "file": "draft-workspace.js",
+      "line": 49,
+      "title": "Tornando indietro all'URL senza hash la vista resta quella precedente",
+      "scenario": "L'utente apre la pagina senza hash (vista Assistente), tocca 'Statistiche' (#draft-drilldown) e usa Indietro o il gesto di ritorno del telefono. L'URL torna senza hash, ma il contenuto resta quello delle Statistiche e il link attivo resta 'Statistiche'.",
+      "evidence": "Il gestore 'hashchange' agisce solo se hashTarget() restituisce un elemento. Con hash vuoto getElementById('') dà null e non succede nulla. Il test verify-draft-workspace.cjs:62 parte da url+'#draft-assistant', quindi la prima voce della cronologia ha sempre un hash valido e questo caso non è coperto.",
+      "impact": "La cronologia, esplicitamente richiesta, non è coerente per il percorso più comune: apertura, cambio vista, Indietro. L'URL e la vista divergono, e aria-current segnala una vista sbagliata.",
+      "suggested_fix": "In hashchange, se l'hash è vuoto o non appartiene a nessun pannello (esclusi casi come #site-content), chiamare reveal(panels.get('assistant')) e non fare scrollIntoView. Aggiungere un test: goto(url), clic su Statistiche, goBack, verifica che #draft-assistant sia visibile e che aria-current sia su Assistente.",
+      "certainty": "certain"
+    },
+    {
+      "id": "R1-03",
+      "priority": "P2",
+      "file": "draft-workspace.css",
+      "line": 12,
+      "title": "Offset di scorrimento incoerenti con la navigazione sticky: bersagli e focus possono finire sotto di essa",
+      "scenario": "Su telefono, dopo aver scorso l'elenco dei risultati, l'utente tocca 'Presa +1'. Il codice chiama $('status').scrollIntoView({block:'nearest'}), che porta il messaggio con 'Annulla ultima aggiunta' nella zona coperta dalla barra sticky. Lo stesso vale per il confronto completo ($('comparison').scrollIntoView({block:'start'}), assistant.js:90). Con la tastiera, Maiusc+Tab verso l'alto può lasciare l'elemento focalizzato sotto la navigazione.",
+      "evidence": "La nav è sticky a top calc(var(--site-top)+8px), z-index 24, sfondo opaco, alta circa 80px su desktop e circa 125px su mobile a 2x2. Il suo bordo inferiore sta quindi attorno a 155px (desktop) o 195px (mobile). Gli offset introdotti per le sezioni sono 180px e 222px (workspace.css:12 e 71). Restano invece 80-90px per #da-comparison (draft-assistant.css:5), #da-results (6), #da-status (11) e #da-search (3), più html{scroll-padding-top:90px} in site.css. Il browser somma scroll-padding e scroll-margin, quindi l'esito dipende dal motore e dall'altezza reale della nav. Il test usa solo r.bottom>0&&r.top<innerHeight, che non rileva la copertura. Nel file, inoltre, la regola '.site-page-draft .draft-report-details{scroll-margin-top:88px}' (riga 19) è inerte: ':is(#draft-assistant,.report-section,.draft-report-details)' alla riga 12 ha specificità d'id e vince.",
+      "impact": "Il feedback di una pick, l'annullamento e il verdetto del confronto possono restare nascosti sotto la nav. Il focus da tastiera può essere oscurato (WCAG 2.4.11).",
+      "suggested_fix": "Definire una variabile con l'altezza della nav (barra più nav più margine). Usarla per scroll-padding-top del documento sulla pagina Draft, ad esempio con html:has(.draft-workspace-nav), e per scroll-margin-top di tutti i bersagli #da-*. Rimuovere la dichiarazione inerte a riga 19. Aggiungere un test che verifichi che l'elemento bersaglio sia sotto il bordo inferiore della nav, non solo dentro il viewport.",
+      "certainty": "hypothesis"
+    },
+    {
+      "id": "R1-04",
+      "priority": "P2",
+      "file": "draft-workspace.css",
+      "line": 86,
+      "title": "Stampa invertita per il pool: appare nelle viste in cui è nascosto e sparisce in quella del pool",
+      "scenario": "Stampa dalla vista Il mio pool: la sezione del pool non esce. Stampa dalle viste Assistente, Guida o Statistiche: il pool, con note e testo del prompt, viene aggiunto alla stampa.",
+      "evidence": "draft-report.css contiene '@media print{.draft-pool{display:none}}' (senza !important). workspace.css:86 impone '.site-page-draft #draft-pool[hidden]{display:block!important}' solo quando l'elemento è hidden. Con il pool visibile vince '.draft-pool{display:none}'. Con il pool hidden vince la regola con !important e id (1,2,0 contro 0,2,0 di '.site-layout [hidden]').",
+      "impact": "Comportamento di stampa contraddittorio. Dati personali e note finiscono nella stampa quando l'utente si aspetta una guida o delle statistiche. Dalla vista pool la stampa non contiene nulla di quella vista.",
+      "suggested_fix": "Decidere una politica unica. Se il pool non va stampato, togliere '.site-page-draft #draft-pool[hidden]' dall'override e aggiungere '.site-page-draft #draft-pool{display:none!important}' in print. Se deve stamparsi, annullare '.draft-pool{display:none}' con una regola più forte.",
+      "certainty": "certain"
+    },
+    {
+      "id": "R1-05",
+      "priority": "P3",
+      "file": "templates/atlas/draft.html",
+      "line": 55,
+      "title": "Il report ora è in un details chiuso e in stampa il suo contenuto scompare",
+      "scenario": "Stampa dalla vista Guida: i frammenti draft.report-0..7 stavano prima sempre visibili nel flusso. Ora sono dentro #draft-report, chiuso per default.",
+      "evidence": "Le regole di stampa (draft-workspace.css:86, draft-report.css) forzano la visibilità dei pannelli, ma non aprono il details. Nei browser il contenuto di un details chiuso non viene stampato. Nessun codice apre #draft-report prima della stampa.",
+      "impact": "Rispetto a prima la stampa perde il report e le fonti. Il punto riguarda anche la nota editoriale sulle fonti.",
+      "suggested_fix": "Nel blocco print usare, dove supportato, 'details.draft-report-details::details-content{content-visibility:visible;display:block}'. In alternativa aprire il details su beforeprint e ripristinarlo su afterprint.",
+      "certainty": "hypothesis"
+    },
+    {
+      "id": "R1-06",
+      "priority": "P2",
+      "file": "templates/atlas/draft.html",
+      "line": 54,
+      "title": "Le situazioni di scelta escono da .report e perdono anteprime per gli alias e larghezza del testo",
+      "scenario": "In 'Come decidere' si citano le carte con nomi abbreviati registrati in EXPANSION_CONFIG.ui.cardAliases. In precedenza {{guide:pickDecisions}} stava dentro <div class='report'>. Ora è un fratello delle altre guide.",
+      "evidence": "card-hover.js:36 annota un alias solo se il nodo ha come antenato '.report,#dd-guide,#dd-stage'. Spostando pickDecisions fuori da .report, gli alias in quel testo non ricevono più l'anteprima. Anche '.report p,.report li{max-width:900px}' non si applica più. Non ho visibile il testo generato né la lista degli alias di FRA, quindi l'impatto effettivo dipende da questi dati.",
+      "impact": "Possibile regressione silenziosa dell'anteprima per le carte citate con alias nelle situazioni di scelta. Il test delle anteprime non copre #pick-decisions.",
+      "suggested_fix": "Aggiungere '#pick-decisions' alla lista di closest in card-hover.js:36, oppure avvolgere {{guide:pickDecisions}} in un contenitore con classe 'report'. Aggiungere un controllo su un alias presente in quella sezione.",
+      "certainty": "hypothesis"
+    },
+    {
+      "id": "R1-07",
+      "priority": "P3",
+      "file": "site_navigation.py",
+      "line": 97,
+      "title": "Indice del report avvolto in un secondo details con etichetta fuorviante, dentro #draft-report",
+      "scenario": "L'utente apre 'Approfondisci il formato: report e fonti' e trova un altro details chiuso, 'In questa pagina: indice della guida Draft', che racchiude i link del report.",
+      "evidence": "La build, per key=='draft', avvolge il primo <nav class='report-nav'> in <details class='site-page-index'>. Il template ora ha quel nav solo dentro #draft-report. draft-workspace.css:21 ('.draft-report-details .site-page-index{border:0;padding:0}') attenua l'aspetto ma non rimuove il doppio livello. L'etichetta parla di 'guida Draft' mentre il nav indicizza il report. Il secondo replace della riga 98 non trova più il suo bersaglio.",
+      "impact": "Due aperture per raggiungere i link del report e un'etichetta imprecisa. È codice residuo del vecchio layout.",
+      "suggested_fix": "Rimuovere o limitare il ramo key=='draft' in site_navigation.py, perché il template ha già il proprio details. In ogni caso eliminare il replace che non trova più il bersaglio.",
+      "certainty": "certain"
+    },
+    {
+      "id": "R1-08",
+      "priority": "P3",
+      "file": "draft-assistant.js",
+      "line": 62,
+      "title": "Il pannello Piano e curva viene riaperto a ogni render in modalità temporanea o salvataggio protetto",
+      "scenario": "In modalità 'solo in questa pagina' l'utente chiude 'Piano e curva' per recuperare spazio sul telefono. A ogni pick, annullamento o evento draft-pool-updated il pannello si riapre e sposta tutto il contenuto sotto.",
+      "evidence": "render() esegue sempre 'if(blocked||temporary)$('plan-panel').open=true'. La condizione non distingue la prima apparizione dello stato da un render successivo.",
+      "impact": "Salti di layout durante l'uso rapido, proprio mentre l'utente registra le pick, e impossibilità di tenere chiuso il pannello.",
+      "suggested_fix": "Aprire il pannello solo quando lo stato passa a blocked o temporary, ad esempio con una variabile precedente, e rispettare poi la scelta dell'utente. L'avviso resta comunque visibile nel summary tramite #da-context.",
+      "certainty": "certain"
+    },
+    {
+      "id": "R1-09",
+      "priority": "P2",
+      "file": "draft-workspace.css",
+      "line": 11,
+      "title": "Navigazione sticky a due righe troppo ingombrante su telefono con tastiera o in orizzontale",
+      "scenario": "Su un telefono, l'utente tocca il campo di ricerca dell'assistente. La tastiera lascia circa 300px di viewport visivo. Barra del sito (60px) e navigazione sticky a 2x2 (circa 125px) ne occupano oltre la metà. In orizzontale (circa 360px di altezza) occupano più di metà schermo.",
+      "evidence": "workspace.css:11 rende la nav sticky ovunque con top=var(--site-top)+8px. A max-width:700px la griglia è 2x2 (riga 67), con padding 10px e un sottotitolo per voce. I controlli del test sono a viewport alti 960px e controllano solo nav.y>=60 e nav.y+height<300. Non c'è simulazione di tastiera o di altezza ridotta. Non ho misure reali dell'altezza della nav, quindi l'ingombro è stimato.",
+      "impact": "Il caso d'uso principale è cercare una carta sul telefono durante il draft. Con la tastiera aperta restano poche righe di risultati e il campo può essere compresso contro la nav.",
+      "suggested_fix": "A max-width:700px o max-height:500px usare position:static, oppure una nav compatta a una riga senza sottotitoli. Valutare anche di non mantenerla sticky quando un input interno ha il focus. Aggiungere un test con viewport 390x340.",
+      "certainty": "hypothesis"
+    }
+  ],
+  "summary": "Dalla lettura delle sorgenti emergono nove punti. Il più grave è certo: nell'assistente i nomi delle carte in '#da-selected' e '#da-pool' mantengono il colore chiaro !important della palette scura, quindi sono quasi illeggibili su sfondo chiaro (R1-01). Anche la cronologia ha un buco certo: Indietro verso l'URL senza hash lascia la vista sbagliata (R1-02). Anche la stampa del pool è invertita rispetto all'intenzione di draft-report.css (R1-04). Restano da verificare nel browser tre ipotesi: offset di scorrimento rispetto alla nav sticky (R1-03), perdita delle anteprime per alias in pickDecisions (R1-06) e ingombro della nav su telefono con tastiera (R1-09). Il resto sono rifiniture: stampa del details chiuso, doppio details residuo e riapertura forzata del pannello piano. Non ho riaperto le decisioni confutate e non chiedo nuovi dati né refactoring. I test dell'autore non coprono gli scenari indicati: Indietro senza hash, contrasto dei nomi fuori dalle card, copertura da parte della nav, stampa e tastiera su schermo. Non ho visitato la pagina né visto screenshot."
+}

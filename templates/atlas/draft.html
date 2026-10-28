@@ -1,18 +1,25 @@
 <!doctype html>
-<html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{{name}} · Draft e pick</title><link rel="stylesheet" href="draft-report.css"><link rel="stylesheet" href="draft-assistant.css"></head><body>
+<html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{{name}} · Draft e pick</title><link rel="stylesheet" href="draft-report.css"><link rel="stylesheet" href="draft-assistant.css"><link rel="stylesheet" href="draft-workspace.css"></head><body>
 <header><a href="{{route:gallery}}#draft">← Il tavolo di {{name}}</a></header>
 <main>
+<div class="intro draft-workspace-intro"><div class="eyebrow">{{name}} · Draft</div><h1>Ogni pick, un piano.</h1><p>Confronta le alternative, costruisci il tuo pool o prepara il prossimo draft.</p></div>
+<nav class="draft-workspace-nav" aria-label="Attività Draft">
+<a href="#draft-assistant" data-draft-view="assistant">Assistente<span>La prossima scelta</span></a>
+<a href="#pick-guide" data-draft-view="guide">Guida ai pick<span>Priorità e sinergie</span></a>
+<a href="#draft-pool" data-draft-view="pool">Il mio pool<span>Lista e analisi AI</span></a>
+<a href="#draft-drilldown" data-draft-view="data">Statistiche<span>Carte e archetipi</span></a>
+</nav>
 <section id="draft-assistant" class="da-panel" aria-labelledby="da-title">
-<div class="da-heading"><div><p class="eyebrow">DRAFT INFORMALE · SUL TELEFONO</p><h2 id="da-title">La prossima pick</h2></div><button id="da-focus" type="button">Solo assistente</button></div>
+<div class="da-heading"><div><p class="eyebrow">Durante un draft informale</p><h2 id="da-title">La prossima pick</h2></div><button id="da-focus" type="button">Solo assistente</button></div>
 <p>Registra le carte prese. Cerca due alternative e confrontale nel tuo pool.</p>
-<div class="da-toolbar"><label>Il tuo piano<select id="da-plan"><option value="">Suggerisci dal pool</option><option value="open">Resto aperto</option></select></label><p id="da-context"></p></div>
-<div id="da-needs" class="da-notice"></div>
+<details id="da-plan-panel"><summary>Piano e curva <span id="da-context"></span></summary><div class="da-toolbar"><label>Il tuo piano<select id="da-plan"><option value="">Suggerisci dal pool</option><option value="open">Resto aperto</option></select></label></div>
+<div id="da-needs" class="da-notice"></div></details>
 <div class="da-tabs" role="group" aria-label="Attività"><button type="button" data-da-tab="pick" aria-pressed="true">Registra pick</button><button type="button" data-da-tab="compare" aria-pressed="false">Confronta due</button><button type="button" data-da-tab="targets" aria-pressed="false">Comuni da cercare</button></div>
 <p id="da-status" role="status" aria-live="polite" tabindex="-1"></p>
 <div id="da-selected" aria-label="Alternative selezionate" hidden></div>
 <div id="da-finder">
-<label for="da-search">Nome inglese, anche poche lettere</label><input id="da-search" type="search" placeholder="Cerca il nome inglese…" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="search">
-<button id="da-next-search" type="button">Nuova ricerca</button>
+<label for="da-search">Cerca una carta</label><div class="da-search-row"><input id="da-search" type="search" placeholder="Nome inglese, anche poche lettere…" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="search">
+<button id="da-next-search" type="button">Nuova ricerca</button></div>
 <details id="da-filter-panel"><summary id="da-filter-summary">Filtri rapidi: colore, costo, tipo</summary>
 <div id="da-colors" class="da-chips" role="group" aria-label="Colore della carta"></div>
 <div class="da-filters"><label>Costo<select id="da-mana"><option value="">Qualsiasi</option><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6+</option></select></label><label>Tipo<select id="da-type"><option value="">Qualsiasi</option><option value="Creature">Creatura</option><option value="Instant">Istantaneo</option><option value="Sorcery">Stregoneria</option><option value="Land">Terra</option><option value="Artifact">Artefatto</option><option value="Enchantment">Incantesimo</option><option value="Planeswalker">Planeswalker</option></select></label><button id="da-reset" type="button">Azzera filtri</button></div>
@@ -22,8 +29,6 @@
 <details id="da-pool-details"><summary id="da-pool-summary">Le tue pick</summary><div id="da-pool"></div><p><a href="#draft-pool">Importa, esporta o svuota il pool</a></p></details>
 <details><summary>Come legge le scelte</summary><p>Le priorità riguardano solo comuni. Registra anche le altre rarità: contano nel pool. I suggerimenti combinano i voti Limited già presenti, colori, curva delle creature e sinergie documentate con pezzi già presi. Sono euristiche, non percentuali di vittoria. Il pool non rivela quali colori siano aperti: non registriamo le buste passate. Se il piano dedotto ha un solo colore, il secondo resta aperto. Il mana è valutato sui colori principali, senza presumere fixing o splash; per le terre controlla il mana prodotto nell’anteprima.</p><p id="da-method"></p><p>Per draft informali concordati tra i partecipanti. Nei tornei ufficiali non consultare consigli strategici durante draft e costruzione.</p></details>
 </section>
-<div class="intro"><div class="eyebrow">{{name}} / risultati e decisioni / {{draftDate}}</div><h1>Draft e pick</h1><p>Le carte da scegliere, i motori da costruire e le minacce da fermare. Analizza tutte le dieci coppie, confronta le carte e adatta le priorità alla fase del draft.</p><a href="#pick-guide">Vai alla lista rapida: pick subito e counterpick ↓</a></div>
-<nav class="report-nav" aria-label="Indice del report"><a href="#pick-guide">Pick subito e counterpick</a><a href="#draft-combos">Ho questa carta: quali combo cerco?</a><a href="#draft-pool">Il mio pool Draft / prompt AI</a><a href="#pick-baits">Rare e mitiche: i bait</a><a href="#draft-drilldown">Drilldown interattivo</a><a href="#pick-decisions">Come decidere: {{pickDecisionCount}} situazioni</a>{{reportNav}}</nav>
 <section id="draft-pool" class="report-section draft-pool">
 <div class="eyebrow">Dal pool al mazzo</div><h2>Le tue pick, un piano di gioco</h2>
 <p>Inserisci tutte le carte del draft, anche quelle fuori colore. Genera un prompt da incollare nella tua AI per scegliere le {{eventValue:draft.minDeckSize}} carte, valutare le sinergie e motivare ogni taglio. L'analisi si svolge nella chat AI, dopo l'esportazione.</p>
@@ -41,14 +46,20 @@
 <p id="dp-status" role="status" aria-live="polite"></p><details id="dp-preview"><summary>Leggi o copia manualmente il prompt</summary><label for="dp-prompt">Prompt completo, pronto da incollare</label><textarea id="dp-prompt" rows="16" readonly></textarea></details>
 </div></div></section>
 
+<div data-draft-panel="guide">
+<nav class="draft-guide-nav" aria-label="Argomenti della guida"><a href="#pick-guide">Priorità</a><a href="#draft-combos">Combo da cercare</a><a href="#pick-baits">Rare da valutare</a><a href="#pick-decisions">Situazioni di scelta</a><a href="#draft-report">Report e fonti</a></nav>
 {{guide:pickGuide}}
 {{guide:draftCombos}}
 {{guide:pickBaits}}
+<div class="report">{{guide:pickDecisions}}</div>
+<details id="draft-report" class="draft-report-details"><summary>Approfondisci il formato: report e fonti</summary><p class="small">Snapshot del {{draftDate}}. Risultati osservati e valutazioni editoriali restano distinti.</p><nav class="report-nav" aria-label="Indice del report">{{reportNav}}</nav><div class="report">{{optionalFragment:draft.report-0}}{{optionalFragment:draft.report-1}}{{optionalFragment:draft.report-2}}{{optionalFragment:draft.report-3}}{{optionalFragment:draft.report-4}}{{optionalFragment:draft.report-5}}{{optionalFragment:draft.report-6}}{{optionalFragment:draft.report-7}}</div></details>
+</div>
+<div data-draft-panel="data">
+<nav class="draft-guide-nav" aria-label="Viste statistiche"><a href="#draft-drilldown">Confronto per archetipo</a><a href="#card-statistics">Tutte le carte</a></nav>
 {{draftStatistics:drilldown}}
-
-<div class="report">{{optionalFragment:draft.report-0}}{{optionalFragment:draft.report-1}}{{optionalFragment:draft.report-2}}{{optionalFragment:draft.report-3}}{{optionalFragment:draft.report-4}}{{optionalFragment:draft.report-5}}{{optionalFragment:draft.report-6}}{{guide:pickDecisions}}{{optionalFragment:draft.report-7}}</div>
 {{draftStatistics:cards}}
-<p class="attribution">Immagini delle carte: Wizards of the Coast tramite Scryfall. Dati: 17Lands. Snapshot statico, non aggiornato automaticamente.</p>
+</div>
+<p class="attribution">Immagini delle carte: Wizards of the Coast tramite Scryfall. {{draftAttribution}} Snapshot statico, non aggiornato automaticamente.</p>
 </main>
 <dialog id="draft-dialog" aria-labelledby="draft-card-title"><button id="draft-close" type="button">Chiudi ×</button><div id="draft-detail"></div></dialog>
-<script>const DRAFT_DATA=__DRAFT_DATA__;</script><script src="draft-report.js"></script><script src="draft-pool.js"></script><script src="draft-advisor.js"></script><script src="draft-assistant.js"></script><script src="draft-drilldown.js"></script><script src="draft-pick-guide.js"></script><script src="draft-combos.js"></script><link rel="stylesheet" href="card-hover.css"><script src="card-hover.js"></script><link rel="stylesheet" href="metric-help.css"><script src="metric-help.js"></script></body></html>
+<script>const DRAFT_DATA=__DRAFT_DATA__;</script><script src="draft-workspace.js"></script><script src="draft-report.js"></script><script src="draft-pool.js"></script><script src="draft-advisor.js"></script><script src="draft-assistant.js"></script><script src="draft-drilldown.js"></script><script src="draft-pick-guide.js"></script><script src="draft-combos.js"></script><link rel="stylesheet" href="card-hover.css"><script src="card-hover.js"></script><link rel="stylesheet" href="metric-help.css"><script src="metric-help.js"></script></body></html>

@@ -7,6 +7,7 @@ function group(c){return c.land?'L':c.colors.length>1?'M':c.colors[0]||'C'}
 const CATALOG_TYPES={Creature:'Creatura',Instant:'Istantaneo',Sorcery:'Stregoneria',Artifact:'Artefatto',Enchantment:'Incantesimo',Planeswalker:'Planeswalker',Land:'Terra',Battle:'Battaglia',Kindred:'Affine'};
 const TIERS=['S','A+','A','A-','B+','B','B-','C+','C','C-','D+','D','D-','F'];
 const wrSource=DATA.catalogWinRates||{cards:{}};
+let refreshFilters=()=>{};
 function winRate(c){const value=wrSource.cards[c.id]?.value;return Number.isFinite(value)?value:null}
 function rangeMatches(value,minId,maxId){const min=$(minId).value,max=$(maxId).value;if(min===''&&max==='')return true;return Number.isFinite(value)&&(min===''||value>=Number(min))&&(max===''||value<=Number(max))}
 function cardTypes(c){return Object.keys(CATALOG_TYPES).filter(type=>new RegExp('\\b'+type+'\\b').test(c.type.split(' // ')[0].split(' — ')[0]))}
@@ -66,9 +67,24 @@ function mount(target,order){
   if(!DATA.cards.some(c=>c.untappedPickOrder))$('catalog-tier').closest('label').hidden=true;
   if(!hasWR)$('wr-filters').hidden=true;
   advanced.hidden=[...filters.children].every(node=>node.hidden);
+ } else {
+  const core=document.createElement('div');core.className='catalog-core-filters';
+  core.append($('catalog-type').closest('label'),$('mana-min').closest('fieldset'));
+  target.closest('details').before(core);
+ }
+ const help=document.createElement('p');help.className='catalog-data-status';
+ help.textContent='I filtri si combinano tra loro. Colore, tipo, rarità e mana valgono per tutte le carte. Le metriche Draft e Sealed si riferiscono a eventi e fonti diversi.';
+ target.prepend(help);
+ const disclosure=target.closest('details')||target.querySelector('.catalog-advanced-filters');
+ if(disclosure){
+  const heading=disclosure.querySelector('summary'),title=heading.textContent;
+  const update=()=>{const active=[...disclosure.querySelectorAll('input:not([type="hidden"]),select')].filter(input=>!input.disabled&&(['checkbox','radio'].includes(input.type)?input.checked:input.value!=='')).length;heading.textContent=title+(active?' ('+active+' attivi)':'')};
+  refreshFilters=update;
+  for(const event of ['input','change'])disclosure.addEventListener(event,update);
+  document.querySelector('#reset,#trk-reset')?.addEventListener('click',()=>setTimeout(update,0));
  }
  const requested=new URLSearchParams(location.search).get('order');if(requested&&[...order.options].some(o=>o.value===requested&&!o.disabled))order.value=requested;
 }
 function summary(c){if(!hasReviews&&!hasRank&&!hasWR)return '';const rank=c.untappedPickOrder,row=wrSource.cards[c.id],wr=winRate(c);return `<p class="catalog-metrics">Recensioni: ${c.community==null?'N/D':esc(c.community)+' / 5'}<br>Ranking Draft: ${rank?.tier?'tier '+esc(rank.tier):rank?.status==='low_match_volume'?'campione insufficiente':'N/D'}<br>WR in mano: ${wr==null?'N/D':wr.toLocaleString('it-IT')+'%'}${rank?.retrieved?'<br>Ranking: '+esc(rank.retrieved):''}${row?'<br><a href="'+esc(row.url)+'" target="_blank" rel="noopener">Untapped, '+esc(wrSource.retrieved)+'</a>':''}</p>`}
-return {mount,ids,extraMatches,compareCards,winRate,cardTypes,wrSource,hasRank,hasWR,summary,reset(){for(const id of ids)$(id).value=''}};
+return {mount,ids,extraMatches,compareCards,winRate,cardTypes,wrSource,hasRank,hasWR,summary,refresh(){refreshFilters()},reset(){for(const id of ids)$(id).value='';refreshFilters()}};
 }};

@@ -1,0 +1,77 @@
+{
+  "findings": [
+    {
+      "id": "R2-01",
+      "priority": "P3",
+      "file": "draft-workspace.css",
+      "line": 49,
+      "title": "Il placeholder della ricerca è appena sotto la soglia di contrasto 4.5:1",
+      "scenario": "Aprire la vista Assistente su qualunque larghezza e guardare il campo di ricerca vuoto (#da-search).",
+      "evidence": "Cascata: #draft-assistant :is(button,select,input) (riga 30) imposta background #fff, poi #draft-assistant #da-search::placeholder (specificità 1,1,1, dopo draft-assistant.css) imposta color #657b80. Calcolo WCAG: luminanza circa 0.185 contro 1.0 del bianco, rapporto circa 4.47:1. Il controllo readable() dell'autore copre solo .da-name, quindi non intercetta il placeholder.",
+      "impact": "Il testo guida 'Nome inglese, anche poche lettere…' non raggiunge AA per un soffio. Il difetto è piccolo ma visibile su schermi poco luminosi.",
+      "suggested_fix": "Usare per il placeholder lo stesso colore del testo secondario già impiegato nel pannello (#536a74, circa 5.9:1 su bianco) oppure var(--site-muted).",
+      "certainty": "certain"
+    },
+    {
+      "id": "R2-02",
+      "priority": "P3",
+      "file": "draft-workspace.css",
+      "line": 15,
+      "title": "La vista corrente nella navigazione Draft si distingue solo con colore di sfondo e ombra",
+      "scenario": "Windows con Contrasto elevato o forced-colors attivo: aprire la pagina Draft e osservare .draft-workspace-nav.",
+      "evidence": ".draft-workspace-nav a ha border:1px solid transparent e a[aria-current] cambia solo background (white), border-color (#c6d9d4), box-shadow e color. In forced-colors sfondi e ombre vengono sostituiti dai colori di sistema, quindi gli stati corrente e non corrente restano quasi identici. site.css gestisce forced-colors solo per le select dei controlli. L'ambiente di lavoro dichiarato è Windows 11, dove questa modalità è comune.",
+      "impact": "Chi usa Contrasto elevato non vede in quale delle quattro viste si trova. L'informazione è esposta solo ad aria-current per gli screen reader.",
+      "suggested_fix": "Aggiungere @media(forced-colors:active){.draft-workspace-nav a[aria-current]{border-color:Highlight;border-width:2px;text-decoration:underline}}, usando un indicatore non basato sul colore (bordo più spesso o sottolineatura).",
+      "certainty": "hypothesis"
+    },
+    {
+      "id": "R2-03",
+      "priority": "P3",
+      "file": "draft-workspace.js",
+      "line": 41,
+      "title": "Ogni resize del visual viewport riporta in vista il campo attivo, anche per zoom a pizzico o scorrimento volontario",
+      "scenario": "Su telefono, mettere il focus su #da-search o #dd-search, poi fare pinch-zoom o far comparire e scomparire la barra del browser mentre si leggono i risultati più in basso.",
+      "evidence": "updateViewport è registrata su window resize e su visualViewport resize e chiama keepFocusedFieldVisible senza distinguere la causa. La funzione fa window.scrollBy(...,{behavior:'instant'}) ogni volta che il campo focalizzato esce dalla fascia calcolata. Il test dell'autore ridimensiona il viewport una volta (390x340) e non copre zoom a pizzico né eventi resize ripetuti con campo ancora focalizzato.",
+      "impact": "La pagina può tornare di scatto al campo mentre l'utente sta leggendo o ingrandendo. Chi ingrandisce per accessibilità è il più colpito. È un'ipotesi: dipende dagli eventi resize emessi dal browser mobile.",
+      "suggested_fix": "Ignorare gli eventi con visualViewport.scale !== 1. Riposizionare solo dopo focusin o quando l'altezza del visual viewport diminuisce (tastiera aperta), non a ogni resize.",
+      "certainty": "hypothesis"
+    },
+    {
+      "id": "R2-04",
+      "priority": "P3",
+      "file": "draft-workspace.css",
+      "line": 69,
+      "title": "Checkbox e select vengono trattati come campi con tastiera: la navigazione sticky sparisce al tocco",
+      "scenario": "A 390 px, nella vista Statistiche, toccare 'Includi terre' o 'Costi lanciabili nei due colori', oppure aprire una select. Su Chrome Android il checkbox riceve il focus.",
+      "evidence": "La regola @media(max-width:700px) .site-page-draft:has(main :is(input,textarea,select):focus) .draft-workspace-nav{position:static} si applica anche a input[type=checkbox] e a select. Lo stesso vale per field?.matches('input,textarea,select') in keepFocusedFieldVisible (draft-workspace.js:14). Checkbox e select non aprono una tastiera su schermo che sottragga altezza.",
+      "impact": "La barra delle viste torna statica e scompare dal viewport finché il focus resta sul controllo. Subito dopo un filtro l'utente non può cambiare vista senza risalire la pagina. In più il checkbox viene riposizionato per nulla. È un'ipotesi: dipende dal comportamento del focus al tocco nei singoli browser.",
+      "suggested_fix": "Limitare selettore CSS e controllo JS ai campi di testo: textarea e input:not([type=checkbox],[type=radio],[type=button],[type=submit],[type=range]). Escludere anche select, che usa un selettore nativo.",
+      "certainty": "hypothesis"
+    },
+    {
+      "id": "R2-05",
+      "priority": "P3",
+      "file": "draft-workspace.js",
+      "line": 94,
+      "title": "Con Indietro e Avanti la vista cambia ma il focus non segue e il cambio non è annunciato",
+      "scenario": "Da tastiera, con il focus in un controllo della vista Assistente (per esempio #da-search), premere Alt+Freccia sinistra per tornare a una vista precedente come la Guida.",
+      "evidence": "Il ramo hashchange chiama reveal(target) senza moveFocus e poi scrollIntoView. Il pannello contenente l'elemento attivo riceve hidden (display:none !important da site.css), quindi il focus cade su body. I clic sui link usano invece reveal(target,true) e spostano il focus, per cui il comportamento è diverso tra i due percorsi. Nessuna region live annuncia la nuova vista e il title non cambia.",
+      "impact": "Chi usa tastiera o screen reader perde il punto di lavoro dopo Indietro e Avanti e non sa quale vista sia attiva. La navigazione per link, già corretta, non ha questo problema. È un'ipotesi: l'esatto ripristino del focus dipende dal browser.",
+      "suggested_fix": "Nel ramo hashchange, se document.activeElement è dentro un pannello che sta per essere nascosto (o è body), chiamare reveal(target,true). In alternativa spostare il focus sul titolo del pannello con tabindex=-1.",
+      "certainty": "hypothesis"
+    },
+    {
+      "id": "R2-06",
+      "priority": "P3",
+      "file": "draft-workspace.css",
+      "line": 72,
+      "title": "Su telefono la navigazione sticky a due righe occupa circa 200 px fissi",
+      "scenario": "Aprire la pagina a 360x640 o 375x667 (non coperto dal ramo max-height:550px) e scorrere una qualsiasi vista.",
+      "evidence": "A max-width:700px .draft-workspace-nav è una griglia 2x2 con sottotitoli di 11 px, e .site-page-draft .draft-workspace-nav resta position:sticky (top = --site-top + 8px). Le misure dell'autore danno barra 60 px + nav circa 136 px, cioè circa 204 px fissi. Su 667 px di altezza resta circa il 69% per il contenuto, e la tastiera su schermo riduce ancora lo spazio. Il passaggio a static avviene solo sotto 550 px di altezza o con un campo focalizzato.",
+      "impact": "Meno spazio per risultati e confronto sui telefoni piccoli. È una scelta progettuale che l'autore ha già mitigato in parte, ma non misurata nei viewport 600-700 px di altezza. Il giudizio è soggettivo.",
+      "suggested_fix": "Sotto 700 px nascondere i sottotitoli span (con aria-hidden o display:none) per portare la nav a circa 2x44 px. In alternativa renderla sticky solo dopo aver scorso oltre l'intestazione, oppure estendere il passaggio a static a max-height:700px.",
+      "certainty": "hypothesis"
+    }
+  ],
+  "summary": "Non emergono difetti bloccanti né regressioni funzionali di priorità P1 o P2 nelle parti esaminate. Cascata CSS, apertura dei details da URL diretto, cronologia con hash vuoto, stampa con report aperto e ripristinato, e pool protetto sono coerenti con il codice. Restano sei rilievi P3: un contrasto di 4.47:1 sul placeholder (certo), indicazione della vista corrente assente in forced-colors, riposizionamento aggressivo del campo attivo su resize e zoom, selettore di campo troppo ampio che include checkbox e select, focus non seguito dopo Indietro e Avanti, e ingombro della nav sticky su telefoni piccoli. Cinque sono ipotesi, perché dipendono dal comportamento dei browser mobile o da preferenze di sistema che non posso verificare dai soli sorgenti. Dichiarazioni dell'autore come overflow assente, anteprime dopo il caricamento e fallback statico non sono rimesse in discussione: non ho prove nuove contro di esse."
+}

@@ -38,6 +38,7 @@ assert(A.comparisonGap({value:3.7999},{value:3.6})<.2);
 if(!process.env.MTG_PLAYWRIGHT_MODULE)throw Error('Set MTG_PLAYWRIGHT_MODULE');
 const {chromium}=require(process.env.MTG_PLAYWRIGHT_MODULE);
 const base=process.env.MTG_SITE_URL;if(!base)throw Error('Set MTG_SITE_URL');
+const show=async(p,view)=>{const link=p.locator(`[data-draft-view="${view}"]`);if(await link.getAttribute('aria-current')!=='location')await link.click();};
 const waitCount=(p,n)=>p.waitForFunction(n=>document.getElementById('da-context').textContent.startsWith(n+' carte'),n);
 (async()=>{
 const browser=await chromium.launch({headless:true,channel:process.env.MTG_BROWSER_CHANNEL||'msedge'});
@@ -84,9 +85,10 @@ try{
  assert.equal(await page.locator('#dp-total').innerText(),'1 carte');
  await page.reload();assert.match(await page.locator('#da-context').innerText(),/1 carte/);
  await page.locator('[data-da-tab="compare"]').click();
+ await page.locator('#da-search').fill('Surveillance');
  assert.equal(await page.locator('#da-results [data-da-compare]').first().getAttribute('aria-pressed'),null);
  for(const query of ['Surveillance','Mindseeker']){await page.locator('#da-search').fill(query);await page.locator('#da-results [data-da-compare]').click();}
- await page.locator('#da-plan').selectOption('WU');
+ await page.locator('#da-plan-panel').evaluate(e=>e.open=true);await page.locator('#da-plan').selectOption('WU');
  await page.waitForFunction(()=>DraftPool.getPlan()==='WU');
  await page.reload();assert.equal(await page.locator('#da-plan').inputValue(),'WU');
  await page.locator('[data-da-tab="compare"]').click();
@@ -122,8 +124,8 @@ try{
  await page.locator('#da-pool-details').evaluate(e=>e.open=true);
  await page.locator('#da-pool-details a').click();
  assert(await page.locator('#draft-pool').isVisible(),'Focused mode reveals pool before following export/import link');
- await page.locator('#da-focus').click();
- for(const width of [320,360,768,1440]){await page.setViewportSize({width,height:900});assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),`No overflow at ${width}`);if(width<=600){const layout=await page.evaluate(()=>{const select=document.getElementById('da-plan').getBoundingClientRect(),text=document.getElementById('da-context').getBoundingClientRect();return {width:select.width,overlap:text.top<select.bottom};});assert(layout.width>=200,`Plan control remains usable at ${width}`);assert.equal(layout.overlap,false,`Context follows the plan control at ${width}`);}}
+ await show(page,'assistant');await page.locator('#da-focus').click();await page.locator('#da-plan-panel').evaluate(e=>e.open=true);
+ for(const width of [320,360,768,1440]){await page.setViewportSize({width,height:900});assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),`No overflow at ${width}`);if(width<=600){const layout=await page.evaluate(()=>{const select=document.getElementById('da-plan').getBoundingClientRect(),text=document.getElementById('da-context').getBoundingClientRect();return {width:select.width,overlap:text.bottom>select.top};});assert(layout.width>=200,`Plan control remains usable at ${width}`);assert.equal(layout.overlap,false,`Context precedes the plan control at ${width}`);}}
  await page.setViewportSize({width:390,height:844});
  await page.screenshot({path:require('node:path').join(require('node:os').tmpdir(),'mtg-assistant-mobile.png'),fullPage:true});
  const beforeConcurrent=await page.evaluate(()=>Object.values(DraftPool.get()).reduce((n,q)=>n+q,0));
@@ -142,14 +144,14 @@ try{
  await page.evaluate(()=>window.removeEventListener('storage',window.blockPoolStorage,{capture:true}));
  const stable=await page.evaluate(()=>localStorage.getItem(EXPANSION_CONFIG.storage.draftPool));
  await page.evaluate(()=>{const original=Storage.prototype.setItem;window.restorePoolWrites=()=>{Storage.prototype.setItem=original;};Storage.prototype.setItem=function(){throw new DOMException('Quota exhausted','QuotaExceededError');};});
- const savedPlan=await page.evaluate(()=>DraftPool.getPlan());await page.locator('#da-plan').selectOption('R');
+ const savedPlan=await page.evaluate(()=>DraftPool.getPlan());await page.locator('#da-plan-panel').evaluate(e=>e.open=true);await page.locator('#da-plan').selectOption('R');
  await page.waitForFunction(()=>document.getElementById('da-status').textContent.includes('Piano non salvato'));
  assert.equal(await page.locator('#da-plan').inputValue(),savedPlan);assert.equal(await page.evaluate(()=>DraftPool.getPlan()),savedPlan);
  await page.locator('#da-pool-details').evaluate(e=>e.open=true);
  await page.locator('#da-pool [data-da-remove]').first().click();
  await page.waitForFunction(()=>document.getElementById('da-status').textContent.includes('Rimozione non salvata'));
  assert.equal(await page.evaluate(()=>localStorage.getItem(EXPANSION_CONFIG.storage.draftPool)),stable);
- await page.locator('#da-focus').click();
+ await page.locator('#da-focus').click();await show(page,'pool');
  await page.locator('#dp-import').evaluate(e=>e.closest('details').open=true);
  await page.locator('#dp-import').fill('1 Campus Crier');await page.locator('#dp-import-button').click();
  await page.waitForFunction(()=>document.getElementById('dp-status').textContent.includes('Modifica non salvata'));
@@ -170,15 +172,17 @@ try{
  await mobile.locator('#da-search').fill('Surveillance');assert(await mobile.locator('#da-results [data-da-pick]').isDisabled());
  assert.match(await mobile.locator('#da-context').innerText(),/Salvataggio precedente protetto/);
  assert.equal(await mobile.evaluate(()=>localStorage.getItem(EXPANSION_CONFIG.storage.draftPool)),'{"broken":true}');
- assert(await mobile.locator('#dp-raw-backup').isVisible());
+ await mobile.evaluate(()=>{window.recoveryTrace=[];for(const type of ['pointerdown','pointerup','click','focusin'])document.addEventListener(type,e=>window.recoveryTrace.push({type,target:e.target.id||e.target.tagName,y:scrollY}),true);});
  await mobile.locator('#da-needs a').tap();
+ try{await mobile.locator('#dp-raw-backup').waitFor({state:'visible'});}catch(error){console.error(await mobile.evaluate(()=>({url:location.href,active:document.querySelector('.draft-workspace-nav [aria-current]')?.dataset.draftView,trace:window.recoveryTrace,focus:document.activeElement.id,backupHidden:document.getElementById('dp-raw-backup').hidden})));throw error;}
+ assert(await mobile.locator('#dp-raw-backup').isVisible());
  await mobile.evaluate(()=>{const original=Storage.prototype.setItem;window.restoreBackupWrites=()=>{Storage.prototype.setItem=original;};Storage.prototype.setItem=()=>{throw Error('Quota');};});
  mobile.once('dialog',d=>d.accept());await mobile.locator('#dp-protected-reset').tap();await mobile.waitForFunction(()=>document.getElementById('dp-status').textContent.includes('Backup non riuscito'));
  assert.equal(await mobile.evaluate(()=>localStorage.getItem(EXPANSION_CONFIG.storage.draftPool)),'{"broken":true}');
  await mobile.evaluate(()=>window.restoreBackupWrites());mobile.once('dialog',d=>d.accept());await mobile.locator('#dp-protected-reset').tap();await mobile.waitForFunction(()=>!DraftPool.isBlocked());
  assert.equal(await mobile.evaluate(()=>JSON.parse(localStorage.getItem(EXPANSION_CONFIG.storage.draftPool+':protected-backups-v1')).records[0].raw),'{"broken":true}');
  await mobile.reload();assert(await mobile.locator('#dp-archive-backups').isVisible());
- await mobile.evaluate(()=>localStorage.removeItem(EXPANSION_CONFIG.storage.draftPool));await mobile.reload();
+ await mobile.evaluate(()=>localStorage.removeItem(EXPANSION_CONFIG.storage.draftPool));await mobile.reload();await show(mobile,'assistant');
  await mobile.locator('[data-da-tab="compare"]').tap();
  for(const q of ['Surveillance','Mindseeker']){await mobile.locator('#da-search').fill(q);await mobile.locator('#da-results [data-da-compare]').tap();}
  await mobile.locator('#da-search').fill('');await mobile.locator('#da-comparison [data-da-unselect]').first().tap();
@@ -191,7 +195,7 @@ try{
  const fallback=await edge.evaluate(async()=>{const original=navigator.locks.request;navigator.locks.request=()=>Promise.reject(new DOMException('Denied','SecurityError'));try{return !!await DraftPool.change('Plains',1);}finally{navigator.locks.request=original;}});
  assert(fallback);await waitCount(edge,1);await edge.locator('#da-pool-details').evaluate(e=>e.open=true);assert.match(await edge.locator('#da-pool').innerText(),/Plains/);assert.equal(await edge.locator('#dp-total').innerText(),'1 carte');
  await edge.locator('#da-pool [data-name="Plains"]').click();await edge.locator('#draft-dialog').waitFor({state:'visible'});assert.match(await edge.locator('#draft-detail').innerText(),/ALSA N\/D/);await edge.locator('#draft-close').click();
- await edge.locator('#dp-notes').fill('abcdef');await edge.waitForFunction(()=>JSON.parse(localStorage.getItem(EXPANSION_CONFIG.storage.draftPool)).notes==='abcdef');
+ await show(edge,'pool');await edge.locator('#dp-notes').fill('abcdef');await edge.waitForFunction(()=>JSON.parse(localStorage.getItem(EXPANSION_CONFIG.storage.draftPool)).notes==='abcdef');
  await edge.locator('#dp-notes').evaluate(e=>{e.focus();e.setSelectionRange(2,2);e.setRangeText('X',2,2,'end');e.dispatchEvent(new Event('input'));});
  await edge.waitForFunction(()=>JSON.parse(localStorage.getItem(EXPANSION_CONFIG.storage.draftPool)).notes==='abXcdef');
  assert.equal(await edge.locator('#dp-notes').evaluate(e=>e.selectionStart),3);
@@ -201,7 +205,7 @@ try{
  await edge.locator('#dp-import').fill('1 Unsummon');await edge.evaluate(()=>window.releaseImport());
  await edge.waitForFunction(()=>!document.getElementById('dp-import-button').disabled);
  assert.equal(await edge.evaluate(()=>DraftPool.get()['Campus Crier']),1);assert.equal(await edge.locator('#dp-import').inputValue(),'1 Unsummon');
- await edge.locator('#da-search').fill('Surveillance');await edge.locator('#da-results [data-da-pick]').focus();
+ await show(edge,'assistant');await edge.locator('#da-search').fill('Surveillance');await edge.locator('#da-results [data-da-pick]').focus();
  await edge.evaluate(()=>DraftPool.setPlan('U'));assert.equal(await edge.evaluate(()=>document.activeElement.dataset.daPick),'Surveillance Phantasm');
  await edge.evaluate(()=>{window.restoreChange=DraftPool.change;DraftPool.change=()=>Promise.reject(Error('Injected failure'));});
  await edge.locator('#da-results [data-da-pick]').press('Enter');
@@ -210,21 +214,21 @@ try{
  await edge.evaluate(()=>{DraftPool.change=window.restoreChange;});
  assert.equal(await edge.evaluate(async()=>{const old=await DraftPool.change('Campus Crier',1);await DraftPool.change('Unsummon',1);return await DraftPool.change('Campus Crier',-1,old);}),false,'A changed card pool rejects stale undo');
  await edge.evaluate(()=>DraftPool.setPlan('WU'));
- edge.once('dialog',d=>d.accept());await edge.locator('#dp-clear').click();
+ await show(edge,'pool');edge.once('dialog',d=>d.accept());await edge.locator('#dp-clear').click();
  await edge.waitForFunction(()=>Object.keys(DraftPool.get()).length===0&&DraftPool.getPlan()==='');
- await edge.reload();assert.equal(await edge.locator('#da-plan').inputValue(),'');await waitCount(edge,0);
+ await edge.reload();await show(edge,'assistant');assert.equal(await edge.locator('#da-plan').inputValue(),'');await waitCount(edge,0);
  await edge.evaluate(async()=>{const cs=DRAFT_DATA.assistant.cards;const blue=cs.find(c=>!c.basic&&c.colors.length===1&&c.colors[0]==='U'&&DraftAdvisor.rating(c)>=3.5);for(let i=0;i<3;i++)await DraftPool.change(blue.name,1);for(const color of ['R','W','G']){const c=cs.find(c=>!c.basic&&c.colors.length===1&&c.colors[0]===color&&DraftAdvisor.rating(c)>=2&&DraftAdvisor.rating(c)<=3);await DraftPool.change(c.name,1);}});
  assert.match(await edge.locator('#da-context').innerText(),/secondo colore aperto/);
  await edge.locator('[data-da-tab="targets"]').click();
  assert(await edge.locator('#da-targets [data-name]').evaluateAll(ns=>ns.some(n=>!DraftAdvisor.fits(DRAFT_DATA.assistant.cards.find(c=>c.name===n.dataset.name),'U'))));
- edge.once('dialog',d=>d.accept());await edge.locator('#dp-clear').click();await waitCount(edge,0);
- await edge.locator('[data-da-tab="compare"]').click();for(const q of ['Fatehold Annex','Deserted Beach']){await edge.locator('#da-search').fill(q);await edge.locator('#da-results [data-da-compare]').click();}
+ await show(edge,'pool');edge.once('dialog',d=>d.accept());await edge.locator('#dp-clear').click();await waitCount(edge,0);
+ await show(edge,'assistant');await edge.locator('[data-da-tab="compare"]').click();for(const q of ['Fatehold Annex','Deserted Beach']){await edge.locator('#da-search').fill(q);await edge.locator('#da-results [data-da-compare]').click();}
  assert.match(await edge.locator('#da-comparison').innerText(),/Confronto parziale: controlla il mana prodotto/);
- await edge.locator('[data-da-tab="pick"]').click();await edge.locator('#da-search').fill('');await edge.locator('#da-more').focus();
+ await edge.locator('[data-da-tab="pick"]').click();await edge.locator('#da-search').fill('');await edge.locator('[data-da-browse]').click();await edge.locator('#da-more').focus();
  while(await edge.locator('#da-more').isVisible())await edge.locator('#da-more').press('Enter');
  assert(await edge.evaluate(()=>document.activeElement.hasAttribute('data-name')||document.activeElement.id==='da-results'));
  for(const raw of ['false','0','""']){await edge.evaluate(raw=>localStorage.setItem(EXPANSION_CONFIG.storage.draftPool,raw),raw);await edge.reload();assert(await edge.evaluate(()=>DraftPool.isBlocked()));assert.equal(await edge.evaluate(()=>localStorage.getItem(EXPANSION_CONFIG.storage.draftPool)),raw);}
- await edge.evaluate(()=>localStorage.setItem(EXPANSION_CONFIG.storage.draftPool,JSON.stringify({pool:{},assistantPlan:{obsolete:true}})));await edge.reload();assert.equal(await edge.locator('#da-plan').inputValue(),'');assert.match(await edge.locator('#da-context').innerText(),/Colori ancora aperti/);
+ await edge.evaluate(()=>localStorage.setItem(EXPANSION_CONFIG.storage.draftPool,JSON.stringify({pool:{},assistantPlan:{obsolete:true}})));await edge.reload();await show(edge,'assistant');assert.equal(await edge.locator('#da-plan').inputValue(),'');assert.match(await edge.locator('#da-context').innerText(),/Colori ancora aperti/);
  const memoryContext=await browser.newContext();
  await memoryContext.addInitScript(()=>{const original=Storage.prototype.getItem;const raw=JSON.stringify({pool:{'Campus Crier':1},mode:'bo1',notes:'existing'});localStorage.setItem('fra-draft-pool-v1',raw);window.readStoredPool=()=>original.call(localStorage,'fra-draft-pool-v1');window.restoreStorageRead=()=>{Storage.prototype.getItem=original;};Storage.prototype.getItem=()=>{throw new DOMException('Storage denied','SecurityError');};});
  const memory=await memoryContext.newPage();memory.on('pageerror',e=>errors.push(e.message));await memory.goto(url);
@@ -232,8 +236,10 @@ try{
  await memory.locator('#da-search').fill('Surveillance');await memory.locator('#da-results [data-da-pick]').click();await waitCount(memory,1);
  await memory.evaluate(()=>DraftPool.change('Hexhaven Battalion',8));await waitCount(memory,9);
  assert.match(await memory.locator('#da-needs').innerText(),/creature a costo 0–2/);assert.match(await memory.locator('#da-needs').innerText(),/Pick temporanee/);
+ await memory.locator('#da-plan-panel').evaluate(e=>e.open=false);await memory.evaluate(()=>DraftPool.change('Unsummon',1));
+ assert.equal(await memory.locator('#da-plan-panel').evaluate(e=>e.open),false,'Temporary pool updates respect a collapsed plan panel');
  assert.equal(await memory.evaluate(()=>JSON.parse(window.readStoredPool()).pool['Campus Crier']),1);assert.equal(await memory.evaluate(()=>JSON.parse(window.readStoredPool()).pool['Surveillance Phantasm']),undefined);
- const [download]=await Promise.all([memory.waitForEvent('download'),memory.locator('#dp-list').click()]);
+ await show(memory,'pool');const [download]=await Promise.all([memory.waitForEvent('download'),memory.locator('#dp-list').click()]);
  assert.match(require('node:fs').readFileSync(await download.path(),'utf8'),/1 Surveillance Phantasm/);
  await memory.evaluate(()=>{window.restoreStorageRead();window.dispatchEvent(new Event('focus'));});assert.equal(await memory.evaluate(()=>DraftPool.get()['Surveillance Phantasm']),1);
  assert.deepEqual(errors,[]);await memoryContext.close();await edgeContext.close();await touch.close();await context.close();

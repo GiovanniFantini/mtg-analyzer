@@ -121,6 +121,15 @@ class Expansion:
         self.availability = self.capabilities()
 
     @property
+    def storage(self):
+        """Supply shared-page pool keys without renaming existing saved records."""
+        storage=dict(self.manifest['storage'])
+        for kind in ('draft','sealed'):
+            storage.setdefault(kind+'Pool',self.manifest['id']+'-'+kind+'-pool-v1')
+        storage.setdefault('sealedSimulator',self.manifest['id']+'-sealed-simulator-v1')
+        return storage
+
+    @property
     def cards(self):
         ratings = self.data['ratings'].get('cards',{})
         sentiments = self.data['sentiment'].get('cards',{})
@@ -142,6 +151,18 @@ class Expansion:
             card.update(combos=[c['id'] for c in found],comboFamilies=len(families),comboScore=int(score*2+.5)/2 if score is not None else None)
             result.append(card)
         return result
+
+    def default_event_id(self, kind):
+        """Prefer a usable event of this kind, keeping historical IDs when possible."""
+        events=self.data['limited']['events']
+        candidates=[key for key,event in events.items() if event['kind']==kind]
+        if kind in candidates:candidates.remove(kind);candidates.insert(0,kind)
+        return next((key for key in candidates if self.event_availability(key)['available']),candidates[0] if candidates else None)
+
+    def resolve_event_id(self, event_id):
+        if event_id not in self.data['limited']['events'] and event_id in ('draft','sealed'):
+            return self.default_event_id(event_id)
+        return event_id
 
     def product_for(self,event_id):
         event=self.data['limited']['events'].get(event_id)
@@ -227,9 +248,13 @@ class Expansion:
                 if len(members)!=len(set(members)):fail(f'stampe duplicate nel gruppo {group}')
             aliases = {}
             minimum_counts={}
+            maximum_counts={}
+            possible_names={}
+            guaranteed_names={}
             printings={c['id']:c for c in self.data['printings']['cards']}
             for a,b in recipe.get('partners',[]):
                 if a==b or a not in printings or b not in printings or printings[a]['rarity']!=printings[b]['rarity']:fail('coppia non valida')
+            pair_ids=dict(recipe.get('partners',[]));pair_ids.update({b:a for a,b in recipe.get('partners',[])})
             length = 0
             for rule in recipe['recipe']:
                 if rule['id'] in aliases:fail('identificatore slot duplicato')
@@ -240,6 +265,8 @@ class Expansion:
                     if rule['chance']>0:
                         if minimum_counts[rule['target']]<rule.get('count',1):fail('sostituzione senza carte sufficienti: '+rule['id'])
                         minimum_counts[rule['target']]-=rule.get('count',1)
+                        if rule['chance']==1:maximum_counts[rule['target']]-=rule.get('count',1)
+                        guaranteed_names[rule['target']]=set()
                 else: length += rule.get('count',1) * (2 if rule['op']=='pair' else 1)
                 for previous in rule.get('exclude',[]):
                     if previous not in aliases: fail('esclusione di slot non ancora estratto')
@@ -247,9 +274,29 @@ class Expansion:
                 for branch in rule['branches']:
                     if branch['weight']<0 or branch['group'] not in groups: fail('ramo slot non valido')
                     names_in_group={printings[id_]['full'] for id_ in groups[branch['group']]}
-                    if rule.get('unique') and branch['weight']>0 and len(names_in_group)<rule.get('count',1):fail('gruppo insufficiente per estrazione unique: '+rule['id'])
+                    exclusions=[previous for previous in rule.get('exclude',[]) if maximum_counts[previous]>0]
+                    # Only guaranteed exclusions are a safe static bound. Other
+                    # draws may be correlated, so execute those paths below.
+                    blocked=set().union(*(names_in_group & guaranteed_names[previous] for previous in exclusions)) if exclusions else set()
+                    needed=rule.get('count',1) if rule.get('unique') else 1
+                    capacity=len(names_in_group-blocked)
+                    if rule.get('unique') and rule['op']=='pair':
+                        capacity=len({frozenset((printings[id_]['full'],printings[pair_ids[id_]]['full'])) for id_ in groups[branch['group']] if id_ in pair_ids and printings[id_]['full'] not in blocked})
+                    if branch['weight']>0 and capacity<needed:fail('gruppo insufficiente per unique o exclude: '+rule['id'])
                 aliases[rule['id']]=rule
                 minimum_counts[rule['id']]=(rule.get('count',1) if rule['op']=='replace' and rule['chance']==1 else 0) if rule['op']=='replace' else rule.get('count',1)*(2 if rule['op']=='pair' else 1)
+                maximum_counts[rule['id']]=0 if rule['op']=='replace' and rule['chance']==0 else rule.get('count',1)*(2 if rule['op']=='pair' else 1)
+                members={id_ for branch in rule['branches'] if branch['weight']>0 for id_ in groups[branch['group']]}
+                always_excluded=set().union(*(guaranteed_names[previous] for previous in rule.get('exclude',[]))) if rule.get('exclude') else set()
+                members={id_ for id_ in members if printings[id_]['full'] not in always_excluded}
+                guarantees=set()
+                if rule['op']=='pair':
+                    pairs=[{printings[id_]['full'],printings[pair_ids[id_]]['full']} for id_ in members if id_ in pair_ids]
+                    if pairs:guarantees=set.intersection(*pairs)
+                if rule['op']=='pair':members.update(pair_ids[id_] for id_ in list(members) if id_ in pair_ids)
+                possible_names[rule['id']]={printings[id_]['full'] for id_ in members}
+                if rule['op']!='pair' and (len(possible_names[rule['id']])==1 or rule.get('unique') and len(possible_names[rule['id']])==rule.get('count',1)):guarantees=possible_names[rule['id']].copy()
+                guaranteed_names[rule['id']]=set() if rule['op']=='replace' and rule['chance']<1 else guarantees
             if length != product['packSize']: fail('ricetta incompatibile con dimensione busta')
             partners = dict(recipe.get('partners',[]))
             partners.update({b:a for a,b in recipe.get('partners',[])})
@@ -275,40 +322,50 @@ class Expansion:
             if Path(page['url'].split('#')[0]).name != page['url'].split('#')[0]: fail(f'URL pagina non valido: {key}')
             if 'template' in page and not confined(ROOT,page['template']).is_file(): fail(f'template mancante: {key}')
 
-    def draft_event_availability(self,event_id):
+    def event_availability(self,event_id):
         event=self.data['limited']['events'].get(event_id)
         product=self.product_for(event_id)
         recipe=product.get('collation') or {}
         ids=self.product_printings(event_id)
         catalog=self.printing_catalog()
         missing=[]
-        if not event or event['kind']!='draft':missing.append(REASONS['limited:draft'])
+        kind=event['kind'] if event else 'draft'
+        if not event:missing.append(REASONS['limited:'+kind])
         if not self.data['cards'].get('complete'):missing.append(REASONS['completeCards'])
-        if not recipe.get('verified'):missing.extend([REASONS['collation'],*product.get('missing',[])])
-        if not ids or any(not catalog.get(id_) for id_ in ids):missing.append(REASONS['catalogMapping:draft'])
-        if not ids or any(not catalog.get(id_) or not (catalog[id_].get('basic') or catalog[id_].get('score') is not None) for id_ in ids):missing.append(REASONS['ratingsComplete'])
-        if not self.data['archetypes']:missing.append(REASONS['archetypes'])
+        if not recipe.get('verified'):missing.extend([REASONS['collation:sealed' if kind=='sealed' else 'collation'],*product.get('missing',[])])
+        if not ids or any(not catalog.get(id_) for id_ in ids):missing.append(REASONS['catalogMapping:'+kind])
+        missing.extend('Stampa senza carta del catalogo: '+id_+'.' for id_ in sorted(ids) if not catalog.get(id_))
+        if kind=='draft':
+            if not ids or any(not catalog.get(id_) or not (catalog[id_].get('basic') or catalog[id_].get('score') is not None) for id_ in ids):missing.append(REASONS['ratingsComplete'])
+            if not self.data['archetypes']:missing.append(REASONS['archetypes'])
         return {'available':not missing,'missing':list(dict.fromkeys(missing))}
+
+    def draft_event_availability(self,event_id):
+        event=self.data['limited']['events'].get(event_id)
+        if not event or event['kind']!='draft':return {'available':False,'missing':[REASONS['limited:draft']]}
+        return self.event_availability(event_id)
 
     def capabilities(self):
         d = self.data
-        product = self.product_for('draft')
+        defaults={kind:self.default_event_id(kind) for kind in ('draft','sealed')}
+        product = self.product_for(defaults['draft'])
         recipe = product.get('collation')
         ratings = d['ratings'].get('cards',{})
         catalog=self.printing_catalog()
-        active_draft=self.product_printings('draft')
+        active_draft=self.product_printings(defaults['draft'])
         present = {key: bool(value) for key,value in d.items()}
         present.update(cards=bool(self.cards), completeCards=d['cards'].get('complete',False),
                        collation=bool(recipe and recipe.get('verified')),
                        ratingsComplete=bool(active_draft) and all(catalog.get(id_) and (catalog[id_].get('basic') or catalog[id_].get('score') is not None) for id_ in active_draft),
                        prices=d['prices'].get('available',False),sentiment=bool(d['sentiment'].get('cards')),
                        discovery=bool(d['discovery'].get('cards')),limited=bool(d['limited']['events']))
-        sealed=d['limited']['events'].get('sealed')
+        sealed=d['limited']['events'].get(defaults['sealed'])
         sealed_product=d['products']['products'].get(sealed['product'],{}) if sealed else {}
         present['collation:sealed']=bool(sealed_product.get('collation',{}).get('verified')) if sealed_product.get('collation') else False
         for doc in ('limited','statistics','guides'):
             values = d[doc].get('events',{}) if doc=='limited' else d[doc]
             present.update({doc+':'+key:bool(value) for key,value in values.items()})
+        for kind,event_id in defaults.items():present['limited:'+kind]=bool(event_id)
         stats=d['statistics'].get('draft') or {}
         present['statistics:draft']=bool(stats.get('cards')) and any(c.get('gih') is not None and c.get('n',0)>0 for c in stats.get('cards',[]))
         drill=stats.get('drill') or {}
@@ -321,7 +378,7 @@ class Expansion:
         present['guides:pickDecisions']=any(group.get('cases') for group in guides.get('pickDecisions',[]))
         present['guides:draftCombos']=bool((guides.get('draftCombos') or {}).get('packages'))
         for event_id in ('draft','sealed'):
-            ids=self.product_printings(event_id)
+            ids=self.product_printings(defaults[event_id])
             present['catalogMapping:'+event_id]=bool(ids) and all(catalog.get(id_) for id_ in ids)
         result = {}
         for key,(label,page,requires) in FEATURES.items():
@@ -331,14 +388,16 @@ class Expansion:
             for item in requires:
                 if present.get(item):continue
                 if item in ('collation','collation:sealed'):
-                    extras.extend(self.product_for('sealed' if item.endswith(':sealed') else 'draft').get('missing',[]))
+                    extras.extend(self.product_for(defaults['sealed' if item.endswith(':sealed') else 'draft']).get('missing',[]))
                 elif item=='prices':extras.extend(d['prices'].get('missing',[]))
                 elif item.startswith('catalogMapping:'):
-                    ids=self.product_printings(item.split(':')[1])
+                    ids=self.product_printings(defaults[item.split(':')[1]])
                     extras.extend('Stampa senza carta del catalogo: '+id_+'.' for id_ in sorted(ids) if not catalog.get(id_))
             missing=list(dict.fromkeys(missing+extras))
-            result[key] = {'available': bool(setting.get('requested') and not missing), 'label':label,'page':page,
-                           'missing':missing if setting.get('requested') else ['Funzionalità non prevista per questa espansione.']}
+            requested=bool(setting.get('requested'))
+            result[key] = {'available': bool(requested and not missing), 'label':label,'page':page,
+                           'requested':requested,'dataReady':not missing,'requirements':list(requires),
+                           'missing':missing if requested else ['Abilitare features.'+key+'.requested nel manifest.',*missing]}
         if self.manifest['features'].get('draftTable',{}).get('requested'):
             events=[self.draft_event_availability(key) for key,event in d['limited']['events'].items() if event['kind']=='draft']
             ready=any(event['available'] for event in events)
@@ -346,6 +405,7 @@ class Expansion:
         return result
 
     def draft_format(self, event_id='draft'):
+        event_id=self.resolve_event_id(event_id)
         event = self.data['limited']['events'][event_id]
         product = self.data['products']['products'][event['product']]
         archetypes = self.data['archetypes']
@@ -379,9 +439,11 @@ class Expansion:
 
     def runtime(self):
         return {'schemaVersion':1,'id':self.manifest['id'],'name':self.manifest['name'],'code':self.manifest['code'],
-                'storage':self.manifest['storage'],'events':self.data['limited']['events'],
+                'storage':self.storage,'events':self.data['limited']['events'],
                 'routes':{key:p['url'] for key,p in self.manifest['presentation']['pages'].items()},
-                'availability':self.availability,'ui':self.data['ui']}
+                'availability':self.availability,'ui':self.data['ui'],
+                'defaultEvents':{kind:self.default_event_id(kind) for kind in ('draft','sealed')},
+                'eventAvailability':{key:self.event_availability(key) for key in self.data['limited']['events']}}
 
 
 def load_expansions():
@@ -389,7 +451,7 @@ def load_expansions():
     if len({e.manifest['id'] for e in expansions}) != len(expansions): raise ValueError('Espansioni duplicate')
     storage={}
     for expansion in expansions:
-        spec=expansion.manifest['storage']
+        spec=expansion.storage
         keys=[v for k,v in spec.items() if k!='poolPrefix']
         if 'poolPrefix' in spec:
             keys.extend(spec['poolPrefix']+mode+'-v1' for mode in expansion.data['limited']['events'])

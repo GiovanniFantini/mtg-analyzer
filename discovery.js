@@ -7,7 +7,8 @@
  const levels=Object.fromEntries(levelOrder.map((label,i)=>[label,i]));
  let watched=new Set(),format='Tutti',storage=true,view='selected',limit=24,allCards=null,sources=[],loading=null,researchWarning='';
  const byName=new Map();
- try{const saved=JSON.parse(localStorage.getItem(key)||'[]');if(Array.isArray(saved))watched=new Set(saved.filter(x=>typeof x==='string'))}catch{storage=false}
+ let rawWatch=null;
+ try{rawWatch=localStorage.getItem(key);const saved=rawWatch===null?[]:JSON.parse(rawWatch);if(!Array.isArray(saved)||saved.some(x=>typeof x!=='string'))throw Error('Osservate non leggibili');const aliases=DISCOVERY.watchNames||{};watched=new Set(saved.map(value=>Object.hasOwn(aliases,value)?aliases[value]:value));}catch{storage=false;if(rawWatch!==null){const link=document.createElement('a');link.href=URL.createObjectURL(new Blob([rawWatch],{type:'application/json'}));link.download=EXPANSION_CONFIG.id+'-osservate-originali.json';link.textContent='Scarica il salvataggio originale delle osservate';$('storage-status').after(link);}}
  function storageNote(){$('storage-status').textContent=storage?'':'Salvataggio nel browser non disponibile: le osservate restano attive solo finché questa pagina è aperta.'}
  storageNote();
  const url=window.__portableURL||new URL(location.href),q=new URLSearchParams(url.search);
@@ -88,7 +89,7 @@
   try{await loadResearch();const card=byName.get(details.dataset.prospect);content.innerHTML=card?CardProspects.render(card,sources):'<p>L’analisi completa non è disponibile per questa carta.</p>';details.dataset.loaded='true'}
   catch(error){content.textContent=error.message}
  },true);
- $('results').addEventListener('click',e=>{if(e.target.closest('[data-reset]'))return reset();const b=e.target.closest('[data-save]');if(!b)return;const n=b.dataset.save;watched.has(n)?watched.delete(n):watched.add(n);try{localStorage.setItem(key,JSON.stringify([...watched]))}catch{storage=false;storageNote()}render();const replacement=[...document.querySelectorAll('[data-save]')].find(x=>x.dataset.save===n);(replacement||$('saved')).focus()});
+ $('results').addEventListener('click',e=>{if(e.target.closest('[data-reset]'))return reset();const b=e.target.closest('[data-save]');if(!b)return;const n=b.dataset.save;watched.has(n)?watched.delete(n):watched.add(n);try{if(storage)localStorage.setItem(key,JSON.stringify([...watched]))}catch{storage=false;storageNote()}render();const replacement=[...document.querySelectorAll('[data-save]')].find(x=>x.dataset.save===n);(replacement||$('saved')).focus()});
  $('copy').onclick=async()=>{let u=filterURL();if(window.parent!==window){try{const outer=new URL(window.parent.location.href);outer.hash='discovery';for(const id of ['format','level','product','sort','q','view'])outer.searchParams.delete('discovery_'+id);for(const [k,v]of u.searchParams)outer.searchParams.set('discovery_'+k,v);u=outer}catch{}}try{await navigator.clipboard.writeText(u.href);$('share-status').textContent='Link copiato. Le osservate restano personali.'}catch{$('share-status').textContent='Copia questo link:';const input=document.createElement('input');input.value=u.href;input.setAttribute('aria-label','Link ai filtri');$('share-status').append(input);input.focus();input.select()}};
  if(q.get('view')==='all'){
   $('research-view').value='all';

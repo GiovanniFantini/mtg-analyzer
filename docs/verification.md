@@ -48,6 +48,7 @@ Se il modulo è in un runtime esterno, assegnare il suo percorso effettivo a `MT
 | `verify-star-trek.cjs`, `verify-star-trek-review.cjs` | Preview, pool, import/export, mulligan, aggiornamento fra schede e regressioni |
 | `verify-draft-bots-browser.cjs` | Ripresa, completamento, esportazione e anteprime dei bot |
 | `verify-draft-assistant.cjs` | Confronto contestuale, costi ibridi e faccia principale, pick e annullamento, comuni, telefono, anteprime, sincronizzazione e salvataggi protetti |
+| `verify-draft-workspace.cjs` | Quattro viste Draft, collegamenti diretti, cronologia, sei larghezze, tastiera, tocco, anteprime dinamiche e contenuti senza JavaScript. Screenshot e rapporto nella cartella temporanea, oppure in `MTG_QA_DIR` |
 | `python -m unittest test_draft_assistant.py` | Coerenza del pool con il catalogo quando lo snapshot statistico è parziale o obsoleto, conservazione delle metriche presenti e assenza di win rate inventati |
 | `verify-prospects-browser.cjs` | Consultazione delle analisi per carta; controllo datato con conteggi fissi e scrittura di screenshot, vedere sotto |
 
@@ -56,6 +57,8 @@ Ispezionare le route effettive negli script: conteggi storici di pagine o viewpo
 Prima di eseguire controlli datati, verificare anche le destinazioni dei rapporti e degli screenshot. `verify-prospects-browser.cjs` assume il catalogo della propria acquisizione e scrive quattro PNG in `research/reality-fracture-20261022/`, sovrascrivendo quelli omonimi se avviato dalla radice del repository. I percorsi degli screenshot sono relativi alla cartella di lavoro: per una verifica nuova avviare lo script tramite il suo percorso assoluto da una cartella temporanea, mantenendo `MTG_SITE_URL` e `MTG_PLAYWRIGHT_MODULE` configurati. Non sostituire le evidenze storiche e non ripristinare automaticamente file che potrebbero contenere lavoro di altre attività. Questo script non è una verifica generica della completezza di cataloghi successivi.
 
 ## Git e pubblicazione
+
+Per il torneo locale usare `node test-tournament.cjs` e `node verify-tournament-browser.cjs`. Il secondo richiede `MTG_SITE_URL`, `MTG_PLAYWRIGHT_MODULE` e, se serve, `MTG_BROWSER_CHANNEL`: copre desktop e tocco, torneo completo, timer dopo ricaricamento, classifica, export/import, recupero di JSON incompatibili e backup fallito. `python -m unittest test_shared_features.py` verifica che dati pronti nelle presentazioni di anteprima raggiungano i renderer condivisi; `python audit-expansion-capabilities.py` stampa requisiti e lacune per tutti i set.
 
 Il workflow `.github/workflows/` esegue build e pubblicazione di `dist/` a ogni push su `main` e su avvio manuale. Un errore di build impedisce il deploy. La build pubblica `schemas/`, le pagine e i dati runtime, i manifest e i dataset sotto `sets/<slug>/data/`. Inoltre copia in ciascun set ogni file `*.js` e `*.css` presente nella radice del repository, anche se non è dichiarato come asset. I JSON delle espansioni, gli schemi e questi file sono quindi pubblici, non un luogo per annotazioni private.
 

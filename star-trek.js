@@ -11,13 +11,18 @@
   const catalog=pageKey==='gallery'?CatalogControls.create(DATA,EXPANSION_CONFIG.code):null;
   if(catalog)catalog.mount($('catalog-extra-controls'),$('trk-order'));
   const modes = Object.keys(EXPANSION_CONFIG.events);
+  const defaultSealed=EXPANSION_CONFIG.defaultEvents?.sealed||modes.find(id=>EXPANSION_CONFIG.events[id].kind==='sealed');
+  const defaultDraft=EXPANSION_CONFIG.defaultEvents?.draft||modes.find(id=>EXPANSION_CONFIG.events[id].kind==='draft');
   const eventRules=(selectedMode=mode)=>EXPANSION_CONFIG.events[selectedMode];
   const handSize=()=>eventRules().mulligan.handSize;
   const bottomCount=()=>Math.max(0,mulligans-eventRules().mulligan.freeMulligans);
   const requestedMode = new URLSearchParams(location.search).get('mode');
   let rememberedMode;
   try { rememberedMode=sessionStorage.getItem(EXPANSION_CONFIG.storage.mode); } catch {}
-  let mode = pageKey==='pool'&&modes.includes('sealed') ? 'sealed' : pageKey==='draft'&&modes.includes('draft') ? (requestedMode==='picktwo'&&modes.includes('picktwo')?'picktwo':'draft') : modes.includes(requestedMode) ? requestedMode : modes.includes(rememberedMode) ? rememberedMode : modes.includes('sealed')?'sealed':modes[0]||null;
+  const pageKind=pageKey==='pool'?'sealed':pageKey==='draft'?'draft':null;
+  const allowedModes=modes.filter(id=>!pageKind||EXPANSION_CONFIG.events[id].kind===pageKind);
+  const preferredMode=pageKind==='sealed'?defaultSealed:defaultDraft;
+  let mode=allowedModes.includes(requestedMode)?requestedMode:pageKind?(preferredMode||null):allowedModes.includes(rememberedMode)?rememberedMode:defaultSealed||allowedModes[0]||null;
   let page = 0, state = empty(), storageError = '';
   const memoryStates=new Map();
   let hand = [], library = [], fullDeck = [], bottom = [], mulligans = 0, kept = false;
@@ -28,13 +33,16 @@
     if(!target){target=document.createElement('p');target.id='trk-storage-status';target.setAttribute('role','status');target.setAttribute('aria-live','polite');document.querySelector('main').prepend(target);}
     target.textContent=message;
   }
+  const contextualHrefs=new WeakMap();
   function modeLinks() {
     if(!mode)return;
     try { sessionStorage.setItem(EXPANSION_CONFIG.storage.mode,mode); } catch {}
-    const modePaths=new Set(['gallery','pool','simulator','draft'].map(key=>EXPANSION_CONFIG.routes[key]).filter(Boolean).map(route=>new URL(route,location.href).pathname));
-    for(const link of document.querySelectorAll('main a[href]')){
-      const url=new URL(link.href);
-      if(url.pathname===new URL(EXPANSION_CONFIG.routes.pool,location.href).pathname&&mode!=='sealed')url.pathname=new URL(EXPANSION_CONFIG.routes.draft,location.href).pathname;
+    const modePaths=new Set(['gallery','pool','simulator','draft','workbench','practice'].map(key=>EXPANSION_CONFIG.routes[key]).filter(Boolean).map(route=>new URL(route,location.href).pathname));
+    for(const link of document.querySelectorAll('a[href]')){
+      if(link.hasAttribute('data-pool-workbench')&&!contextualHrefs.has(link))contextualHrefs.set(link,link.href);
+      const url=new URL(contextualHrefs.get(link)||link.href);
+      if(link.hasAttribute('data-pool-workbench')&&url.pathname===new URL(EXPANSION_CONFIG.routes.pool,location.href).pathname&&eventRules().kind==='draft')url.pathname=new URL(EXPANSION_CONFIG.routes.workbench||EXPANSION_CONFIG.routes.draft,location.href).pathname;
+      if(link.closest('main')&&EXPANSION_CONFIG.routes.practice&&url.pathname===new URL(EXPANSION_CONFIG.routes.simulator,location.href).pathname)url.pathname=new URL(EXPANSION_CONFIG.routes.practice,location.href).pathname;
       if(url.origin===location.origin&&url.pathname.startsWith(location.pathname.slice(0,location.pathname.lastIndexOf('/')+1))&&modePaths.has(url.pathname)){
         url.searchParams.set('mode',mode);link.setAttribute('href',url.pathname+url.search+url.hash);
       }
@@ -126,7 +134,7 @@
   }
   function card(c, controls=false, variants=false) {
     let watch=false;
-    try { watch=JSON.parse(localStorage.getItem(EXPANSION_CONFIG.storage.watch)||'[]').includes(c.id); } catch {}
+    try { watch=JSON.parse(localStorage.getItem(EXPANSION_CONFIG.storage.watch)||'[]').some(value=>value===c.id||value===c.name); } catch {}
     const legal=$('trk-legality')?.value;
     return `<article class="trk-card">${variants&&c.image?`<img class="trk-card-image" src="${esc(c.image)}" width="488" height="680" loading="lazy" decoding="async" alt="${esc(c.name)}" data-card-preview="${esc(c.name)}" tabindex="0" role="button" aria-label="Mostra immagine ingrandita: ${esc(c.name)}">`:''}<h3>${ref(c)}</h3><div class="trk-meta">${esc(c.set)} #${esc(c.number)} · ${esc(c.mana||'Senza costo di mana')} · ${esc(c.rarity)} · MV ${c.cmc}</div><p>${esc(c.type)}</p>${catalog?catalog.summary(c):''}<p class="trk-oracle">${esc(c.text)}</p><p><a href="${esc(c.url)}" target="_blank" rel="noopener" aria-label="Testo e dettagli: ${esc(c.name)}">Testo e dettagli ↗</a></p>${legal?`<p>Stato ${esc(legal)}: ${esc(legality(c,legal)||'non disponibile')} (${$('trk-legality-scope')?.value==='release'?'ammissibilità prevista all’uscita':esc(DATA.date||'data non disponibile')}).</p>`:''}${c.prospects&&window.CardProspects?`<details class="trk-prospects"><summary>Analisi, formati, prezzi e fonti</summary>${window.CardProspects.render(c,DATA.prospectSources||[])}</details>`:''}${controls?actions(c):''}${pageKey==='discovery'?`<button data-op="watch" data-id="${c.id}" type="button" aria-pressed="${watch}">${watch?'Osservata':'Segui carta'}</button>`:''}${variants&&c.prints.length>1?`<details><summary>${c.prints.length} stampe nello snapshot</summary><p>La presenza nel catalogo non certifica l’apertura nel prodotto selezionato per questo evento. Trattamenti e idoneità vanno verificati nella guida ufficiale.</p><div class="trk-variants">${c.prints.map(p=>`<div>${p.image?`<img src="${esc(p.image)}" loading="lazy" alt="${esc(c.name)} #${esc(p.number)}">`:''}<p>#${esc(p.number)} · ${esc(p.finishes.join(', '))}</p></div>`).join('')}</div></details>`:''}</article>`;
   }
@@ -206,7 +214,7 @@
     $('trk-draw').disabled=!kept||!library.length;
     restoreFocus(focus);
   }
-  if($('trk-mode')){const select=$('trk-mode');for(const option of [...select.options])if(!modes.includes(option.value))option.remove();for(const id of modes)if(![...select.options].some(option=>option.value===id))select.add(new Option(EXPANSION_CONFIG.events[id].name,id));select.disabled=!modes.length;}
+  if($('trk-mode')){const select=$('trk-mode'),allowed=allowedModes;for(const option of [...select.options])if(!allowed.includes(option.value))option.remove();for(const id of allowed)if(![...select.options].some(option=>option.value===id))select.add(new Option(EXPANSION_CONFIG.events[id].name,id));select.disabled=!allowed.length;}
   load();
   modeLinks();
   if($('trk-mode')){$('trk-mode').value=mode;$('trk-mode').addEventListener('change',()=>{mode=$('trk-mode').value;const url=new URL(location.href);url.searchParams.set('mode',mode);history.replaceState(null,'',url);modeLinks();load();clearHand();refresh();});}
@@ -220,7 +228,7 @@
     if(button){
       const id=button.dataset.id,op=button.dataset.op;if(!byId.has(id))return;
       if(op==='watch'){
-        try{const ids=new Set(JSON.parse(localStorage.getItem(EXPANSION_CONFIG.storage.watch)||'[]'));if(ids.has(id))ids.delete(id);else ids.add(id);localStorage.setItem(EXPANSION_CONFIG.storage.watch,JSON.stringify([...ids]));button.setAttribute('aria-pressed',String(ids.has(id)));button.textContent=ids.has(id)?'Osservata':'Segui carta';}catch{button.textContent='Memoria non disponibile';}return;
+        try{const saved=JSON.parse(localStorage.getItem(EXPANSION_CONFIG.storage.watch)||'[]');if(!Array.isArray(saved)||saved.some(value=>typeof value!=='string'))throw Error('Osservate non leggibili');const ids=new Set(saved),name=byId.get(id)?.name||id;if(ids.has(id)||ids.has(name)){ids.delete(id);ids.delete(name);}else ids.add(id);localStorage.setItem(EXPANSION_CONFIG.storage.watch,JSON.stringify([...ids]));button.setAttribute('aria-pressed',String(ids.has(id)||ids.has(name)));button.textContent=ids.has(id)||ids.has(name)?'Osservata':'Segui carta';}catch{button.textContent='Memoria non disponibile';}return;
       }
       const group=op.startsWith('pool')?'pool':'deck',delta=op.endsWith('plus')?1:-1;
       changeState(next=>{
@@ -271,5 +279,7 @@
     const counts={};DATA.cards.forEach(c=>counts[c.rarity]=(counts[c.rarity]||0)+1);
     $('trk-statistics').innerHTML='<div class="trk-stat-grid">'+Object.entries(counts).map(([r,n])=>`<p><span>${n}</span>${esc(r)}</p>`).join('')+'</div><p>'+DATA.print_count+' stampe, '+DATA.cards.length+' carte distinte nel catalogo '+(DATA.complete?'completo':'parziale')+'.</p>';
   }
+  const linkedCard=byId.get(new URLSearchParams(location.search).get('card'));
+  if(linkedCard&&$('trk-search')){$('trk-search').value=linkedCard.name;page=0;}
   renderCards();renderDeck();renderCompare();
 })();

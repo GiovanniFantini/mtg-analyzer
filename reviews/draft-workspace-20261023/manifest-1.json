@@ -1,0 +1,44 @@
+{
+  "round": "1",
+  "head": "bd34106933ba08042378c6742ca01169d068d121",
+  "files": {
+    "templates/atlas/draft.html": "75aabe251e87dfd4f174b1cb0b704db46b4a4a4ee12272bc5bc20522f76819a2",
+    "draft-workspace.js": "5077502fa1149d2e99dd0f3a899d6e273e8b207b8426a055016531a565cff8b1",
+    "draft-workspace.css": "99b69231068f4b851a26975c64774c3480d54da10c6634d2567c30c01c951001",
+    "draft-assistant.js": "d85ba9d637d5ba9bd183cde52e6b5facebf8a8a8641a57aa2f968af561085818",
+    "verify-draft-workspace.cjs": "e98833d153ea58ebc2a564ea57113d62972ea1366feecf97d84442833975fa4f",
+    "verify-draft-assistant.cjs": "bde5ec1097ae3c107edd289bf143abf8693265f422494153a7e9c8a49f9f9731",
+    "draft-assistant.css": "c733a4d9882ef8bfb3b0d2e87bd53b23b3c2ce15d3b022c7f6726e59aa3288c4",
+    "draft-report.css": "d14cff2722b8b46fce9772ecd3e44950ddcc1cd769ef9ccb66ad757a0eb6441a",
+    "draft-report.js": "3e2f2903745ac6c4934443f618798f5fb7e20dafa0a13517d30d9854bd13bce4",
+    "draft-pool.js": "796dc64d818f7c84e6a4b409cc9d42f27fa478798b76d530ac2bb50e8feb2556",
+    "card-hover.js": "7906b4b8e6875e1ad94b6b3bb4655a2e70f24789a1c321bbb06244813049357b",
+    "card-hover.css": "1085709a18110fe3ed060910db2c54017343d57e26dff92fa287c6429ed11af8",
+    "site.css": "5a48ccae9aa5a932d4fd3717ae635ecf01be787ec06179682c7f489e271ef3df",
+    "site.js": "ee0c4cd6dd5d3946f1f69b797a54445c1c359ffba2e685d7122a99d27f645d78",
+    "site_navigation.py": "f261012d05248cfaf8d539c1e565ffd3a2f49ddb2eca7e62fce29ea51f086594",
+    "templates/atlas/draft-drilldown-statistics.html": "0fe4807ea3326776c4234c248ff68a6b313a3817acf4c409652bde28b95f6e61",
+    "templates/atlas/draft-cards-statistics.html": "6e7b3ab101c9ea5a1bd5f9c69386b5fd5b23e2e6aa91bfd4791f3a74efdcde69",
+    "docs/verification.md": "1fec6cc380a5f9cc9f5d931b50edc5f74c2095f02177897a6fa8deaf4386b308"
+  },
+  "requestSha256": "6599d3a47922f5c4dedf32cca2edbcbaa32068825f6fb0341b052dd65dd9710c",
+  "modelUsage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 2,
+      "outputTokens": 28019,
+      "cacheReadInputTokens": 649,
+      "cacheCreationInputTokens": 104500,
+      "webSearchRequests": 0,
+      "costUSD": 0.6982588999999999,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 22553,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "is_error": false,
+  "returncode": 0,
+  "responseSha256": "0ed496b8c3399c22b5ef60a0c3af99f320cd578ab2d256b05c9a794845d4d574"
+}

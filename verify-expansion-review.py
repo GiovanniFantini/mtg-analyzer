@@ -19,6 +19,10 @@ class QuietHandler(SimpleHTTPRequestHandler):
 
 with tempfile.TemporaryDirectory(prefix='mtg-review-') as temporary:
     directory=Path(temporary)
+    if os.environ.get('MTG_REVIEW_FIXTURE_DIR'):
+        directory=Path(os.environ['MTG_REVIEW_FIXTURE_DIR'])
+        directory.mkdir(parents=True,exist_ok=True)
+        if any(directory.iterdir()):raise ValueError('La cartella delle fixture deve essere vuota')
     originals=load_expansions()
     fixtures={}
     def fixture(name,source_index,mutate):
@@ -31,7 +35,7 @@ with tempfile.TemporaryDirectory(prefix='mtg-review-') as temporary:
         for key,path in manifest['datasets'].items():(source/path).write_text(json.dumps(data[key]),encoding='utf-8')
         path=source/'expansion.json';path.write_text(json.dumps(manifest),encoding='utf-8')
         expansion=Expansion(path);build(expansion,directory/'sets'/manifest['id'])
-        fixtures[name]={'base':'sets/'+manifest['id']+'/','routes':{k:v['url'] for k,v in manifest['presentation']['pages'].items()}}
+        fixtures[name]={'base':'sets/'+manifest['id']+'/','routes':{k:v['url'] for k,v in expansion.manifest['presentation']['pages'].items()}}
     def renamed(m,d):
         m.update(name='Review Atlas',code='TST')
         for card in d['discovery']['cards']:
@@ -49,6 +53,7 @@ with tempfile.TemporaryDirectory(prefix='mtg-review-') as temporary:
     fixture('empty-discovery',0,lambda m,d:d.update(discovery={'cards':[],'previews':[]}))
     def preview(m,d):
         d['limited']['events']['sealed'].update(maxCopies=1,extraBasicLands=False)
+        d['limited']['events']['sealed-extra']={**d['limited']['events']['sealed'],'id':'alternate-sealed','name':'Alternate Sealed'}
         for page in m['presentation']['pages'].values():page['url']='review-'+page['url']
     fixture('preview',1,preview)
     fixture('no-events',1,lambda m,d:d['limited'].update(events={}))
@@ -66,6 +71,7 @@ with tempfile.TemporaryDirectory(prefix='mtg-review-') as temporary:
         d['guides']['fragments']={k:v for k,v in d['guides']['fragments'].items() if not k.startswith('draft.report-')}
     fixture('structured-guide',0,structured)
     def discovery(m,d):
+        for card in d['discovery']['cards'][1:]:card['formats']=[fmt for fmt in card['formats'] if fmt!='Standard']
         d['discovery']['cards'][0].update(formats=['Standard'],level='Verificata')
         d['ui']['discoveryLevels']=['Verificata','Confermata','Emergente','Preliminare']
         d['ui']['bonusCode']='XYZ'
@@ -98,6 +104,14 @@ with tempfile.TemporaryDirectory(prefix='mtg-review-') as temporary:
         d['guides']['fragments']={}
         d['ui'].pop('searchExample',None)
     fixture('generic-preview',1,generic_preview)
+    def shared_preview(m,d):
+        hero=d['guides'].get('fragments',{}).get('set.hero','')
+        d.update(copy.deepcopy(originals[0].data))
+        d['guides']['fragments']['set.hero']=hero
+        d['guides']['fragments']['gallery.strategy']+='<p>'+d['cards']['cards'][0]['name']+'</p>'
+        d['discovery'].pop('previews',None)
+        m['code']=originals[0].manifest['code']
+    fixture('shared-preview',1,shared_preview)
     for file in ('site.css','site.js'):shutil.copy2(ROOT/file,directory/file)
     (directory/'fixtures.json').write_text(json.dumps(fixtures),encoding='utf-8')
     handler=partial(QuietHandler,directory=str(directory))

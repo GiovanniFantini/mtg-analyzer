@@ -1,6 +1,20 @@
 """Shared navigation for the static website, without nested scroll areas."""
 import re
 
+
+def workspace_navigation(content, catalog_url, set_name):
+    """A consistent route to card search, with no format assumption."""
+    import html
+    e = html.escape
+    action = catalog_url.split('#')[0]
+    toolbar = ('<div class="site-workspace-bar"><form class="site-card-search" role="search" '
+               'aria-label="Cerca carte nel set" action="'+e(action, quote=True)+'" method="get">'
+               '<label for="site-card-query">Cerca carte in '+e(set_name)+'</label>'
+               '<div><input id="site-card-query" name="q" type="search" placeholder="Nome, tipo o testo della carta" '
+               'required><button type="submit">Cerca carte</button></div></form>'
+               '<a class="site-catalog-link" href="'+e(catalog_url, quote=True)+'">Apri tutto il catalogo →</a></div>')
+    return content.replace('<main id="site-content" tabindex="-1">', '<main id="site-content" tabindex="-1">'+toolbar, 1)
+
 PAGES = {
     'home': ('Home', 'index.html'),
     'set': ('Panoramica', 'index.html'),
@@ -37,15 +51,10 @@ def shell(content, key, root=False, expansion=None, expansions=None):
         for index,item in enumerate(expansions):
             base='sets/'+item['id']+'/'
             pages=item['presentation']['pages']
-            if index==0:
-                groups.append('<div class="site-set-label"><span>ESPANSIONE</span><strong>'+e(item['name'])+' <small>'+e(item['code'])+'</small></strong></div>')
-                others=''.join('<a href="sets/'+other['id']+'/'+e(other['presentation']['pages']['set']['url'],quote=True)+'">'+e(other['name'])+(' · anteprima' if other.get('status')=='preview' else '')+'</a>' for other in expansions[1:])
-                groups.append(others+'<nav>')
-                for title,keys in item['presentation']['groups']:
-                    links=''.join('<a data-page="'+id_+'" href="'+base+e(pages[id_]['url'],quote=True)+'">'+e(pages[id_]['label'])+'</a>' for id_ in keys if id_ in pages)
-                    groups.append('<div class="site-nav-group"><p>'+e(title)+'</p>'+links+'</div>')
-                groups.append('</nav>')
-        aside='<aside class="site-sidebar" id="site-sidebar" aria-label="Navigazione principale"><a class="site-home" href="index.html" aria-current="page">⌂ Home</a>'+''.join(groups)+'<p class="site-storage-note">Pool e carte osservate si salvano in questo browser.</p></aside>'
+            if index==0:groups.append('<div class="site-nav-group"><p>Espansioni</p>')
+            groups.append('<a href="'+base+e(pages['set']['url'],quote=True)+'">'+e(item['name'])+(' · anteprima' if item.get('status')=='preview' else '')+'</a>')
+        if expansions:groups.append('</div>')
+        aside='<aside class="site-sidebar" id="site-sidebar" aria-label="Navigazione principale"><a class="site-home" href="index.html" aria-current="page">⌂ Home</a><a class="site-tournament" href="tournament.html">Gestisci un torneo Draft</a>'+''.join(groups)+'<p class="site-storage-note">Pool e carte osservate si salvano in questo browser.</p></aside>'
         return re.sub(r'<aside class="site-sidebar".*?</aside>',lambda _:aside,output,count=1,flags=re.S)
     if expansion is not None:
         return configured_shell(content, key, expansion)
@@ -62,7 +71,7 @@ def shell(content, key, root=False, expansion=None, expansions=None):
         groups.append(f'<div class="site-nav-group"><p>{title}</p>{"".join(links)}</div>')
     navigation = f'''<a class="site-skip" href="#site-content">Vai al contenuto</a>
 <div class="site-bar"><a class="site-brand" href="{home}"><span class="site-mark" aria-hidden="true">M<span>✦</span></span><span>MTG <b>Analyzer</b></span></a><span class="site-bar-note">Il tuo tavolo di Magic</span><button class="site-menu-toggle" type="button" aria-expanded="false" aria-controls="site-sidebar">☰ Menu</button></div>
-<div class="site-backdrop" hidden></div><aside class="site-sidebar" id="site-sidebar" aria-label="Navigazione principale"><a class="site-home" href="{home}"{' aria-current="page"' if root else ''}>⌂ Home</a><div class="site-set-label"><span>ESPANSIONE</span><strong>Reality Fracture <small>FRA</small></strong></div><nav>{''.join(groups)}</nav><p class="site-storage-note">Pool e carte osservate si salvano in questo browser.</p></aside>
+<div class="site-backdrop" hidden></div><aside class="site-sidebar" id="site-sidebar" aria-label="Navigazione principale"><a class="site-home" href="{home}"{' aria-current="page"' if root else ''}>⌂ Home</a><a class="site-tournament" href="{asset}tournament.html">Gestisci un torneo Draft</a><div class="site-set-label"><span>ESPANSIONE</span><strong>Reality Fracture <small>FRA</small></strong></div><nav>{''.join(groups)}</nav><p class="site-storage-note">Pool e carte osservate si salvano in questo browser.</p></aside>
 <div class="site-body"><nav class="site-breadcrumb" aria-label="Percorso">{('<span id="site-page-label">Home</span>' if root else f'<a href="{home}">Home</a><span aria-hidden="true">/</span><a href="index.html">Reality Fracture</a><span aria-hidden="true">/</span><span id="site-page-label">{PAGES[key][0]}</span>')}</nav>'''
     if key not in ['home', 'set']:
         if key in ['analysis', 'combos']:
@@ -83,7 +92,10 @@ def shell(content, key, root=False, expansion=None, expansions=None):
         order = re.search(r'<select id="order".*?</select>', toolbar, re.S)[0]
         filters, status = toolbar.removeprefix('<div class="toolbar">').rsplit('<div class="statusrow">', 1)
         filters = filters.replace(search, '').replace(order, '')
-        toolbar = f'<div class="toolbar"><div class="tools site-catalog-search">{search}{order}</div><details class="site-catalog-filters" open><summary>Filtra per colore, rarità e valutazione</summary>{filters}</details><div class="statusrow">{status}'
+        basic = re.findall(r'<div class="filters".*?</div>', filters, re.S)
+        for item in basic:
+            filters = filters.replace(item, '', 1)
+        toolbar = f'<div class="toolbar"><div class="tools site-catalog-search">{search}{order}</div>{"".join(basic)}<details class="site-catalog-filters"><summary>Filtri del catalogo</summary><p class="site-filter-help">Colore, rarità, tipo e mana descrivono la carta. Stelle Sealed, ranking Draft e win rate valgono nel rispettivo contesto: non misurano la legalità Constructed.</p>{filters}</details><div class="statusrow">{status}'
         content = content[:start] + toolbar + content[end:]
         content = content.replace('<title>Reality Fracture · Atlante Sealed completo</title>', '<title>Reality Fracture · Catalogo e pool Sealed</title>')
         redirects = ','.join(f"'{id_}':'{PAGES[id_][1]}'" for id_ in ['draft','analysis','simulator','combos','discovery'])
@@ -93,7 +105,7 @@ def shell(content, key, root=False, expansion=None, expansions=None):
         content = content.replace("$('combos').querySelector('iframe').src=a.getAttribute('href');$('zoom').close();location.hash='combos';openWorkspace('#combos')", "location.href=a.getAttribute('href')")
         for section in ['gallery','pool','strategy','method']:
             content = re.sub(r'(<section\b[^>]*\bid="'+section+r'"[^>]*>.*?)<h2>(.*?)</h2>', r'\1<h1>\2</h1>', content, count=1, flags=re.S)
-    if key == 'draft':
+    if key == 'draft' and 'class="draft-workspace-nav"' not in content:
         content = re.sub(r'(<nav class="report-nav".*?</nav>)', r'<details class="site-page-index"><summary>In questa pagina: indice della guida Draft</summary>\1</details>', content, count=1, flags=re.S)
         content = content.replace('<a href="#pick-guide">Vai alla lista rapida: pick subito e counterpick ↓</a>', '<nav class="site-local-nav" aria-label="Accessi rapidi Draft"><a href="#pick-guide">Pick rapidi</a><a href="#draft-pool">Il mio pool Draft</a><a href="#draft-drilldown">Confronta le carte</a><a href="#card-statistics">Statistiche</a></nav>')
     change_set = 'sets/star-trek/index.html' if root else '../star-trek/index.html'
@@ -118,7 +130,7 @@ def expansion_shell(content, key, expansion):
         groups.append(f'<div class="site-nav-group"><p>{e(title)}</p>{links}</div>')
     nav = f'''<a class="site-skip" href="#site-content">Vai al contenuto</a>
 <div class="site-bar"><a class="site-brand" href="../../index.html"><span class="site-mark" aria-hidden="true">M<span>✦</span></span><span>MTG <b>Analyzer</b></span></a><span class="site-bar-note">Il tuo tavolo di Magic</span><button class="site-menu-toggle" type="button" aria-expanded="false" aria-controls="site-sidebar">☰ Menu</button></div>
-<div class="site-backdrop" hidden></div><aside class="site-sidebar" id="site-sidebar" aria-label="Navigazione principale"><a class="site-home" href="../../index.html">⌂ Home</a><div class="site-set-label"><span>ESPANSIONE</span><strong>{e(expansion['name'])}<small>{e(expansion['code'])} · Anteprima</small></strong></div><a href="../reality-fracture/index.html">Reality Fracture</a><nav>{''.join(groups)}</nav><p class="site-storage-note">Pool Star Trek separati da Reality Fracture. Esporta i salvataggi per conservarli.</p></aside>
+<div class="site-backdrop" hidden></div><aside class="site-sidebar" id="site-sidebar" aria-label="Navigazione principale"><a class="site-home" href="../../index.html">⌂ Home</a><a class="site-tournament" href="../../tournament.html">Gestisci un torneo Draft</a><div class="site-set-label"><span>ESPANSIONE</span><strong>{e(expansion['name'])}<small>{e(expansion['code'])} · Anteprima</small></strong></div><a href="../reality-fracture/index.html">Reality Fracture</a><nav>{''.join(groups)}</nav><p class="site-storage-note">Pool Star Trek separati da Reality Fracture. Esporta i salvataggi per conservarli.</p></aside>
 <div class="site-body"><nav class="site-breadcrumb" aria-label="Percorso"><a href="../../index.html">Home</a><span>/</span><a href="index.html">Star Trek</a><span>/</span><span id="site-page-label">{e(pages[key][0])}</span></nav>'''
     content = content.replace('<main>', '<main id="site-content" tabindex="-1">', 1)
     content = content.replace('</head>', icon_links('../../') + '<link rel="stylesheet" href="../../site.css"></head>', 1)
@@ -162,11 +174,13 @@ def configured_shell(content, key, expansion):
     storage_note=expansion.get('storageNote','Pool e carte osservate si salvano in questo browser.')
     nav=f'''<a class="site-skip" href="#site-content">Vai al contenuto</a>
 <div class="site-bar"><a class="site-brand" href="../../index.html"><span class="site-mark" aria-hidden="true">M<span>✦</span></span><span>MTG <b>Analyzer</b></span></a><span class="site-bar-note">Il tuo tavolo di Magic</span><button class="site-menu-toggle" type="button" aria-expanded="false" aria-controls="site-sidebar">☰ Menu</button></div>
-<div class="site-backdrop" hidden></div><aside class="site-sidebar" id="site-sidebar" aria-label="Navigazione principale"><a class="site-home" href="../../index.html">⌂ Home</a><div class="site-set-label"><span>ESPANSIONE</span><strong>{e(expansion['name'])}<small>{e(expansion['code'])}{' · Anteprima' if expansion.get('status')=='preview' else ''}</small></strong></div>{''.join(others)}<nav>{''.join(groups)}</nav><p class="site-storage-note">{e(storage_note)}</p></aside>
+<div class="site-backdrop" hidden></div><aside class="site-sidebar" id="site-sidebar" aria-label="Navigazione principale"><a class="site-home" href="../../index.html">⌂ Home</a><a class="site-tournament" href="../../tournament.html">Gestisci un torneo Draft</a><div class="site-set-label"><span>ESPANSIONE</span><strong>{e(expansion['name'])}<small>{e(expansion['code'])}{' · Anteprima' if expansion.get('status')=='preview' else ''}</small></strong></div>{''.join(others)}<nav>{''.join(groups)}</nav><p class="site-storage-note">{e(storage_note)}</p></aside>
 <div class="site-body"><nav class="site-breadcrumb" aria-label="Percorso"><a href="../../index.html">Home</a><span aria-hidden="true">/</span><a href="{e(overview_url,quote=True)}">{e(expansion['name'])}</a><span aria-hidden="true">/</span><span id="site-page-label">{e(pages[key]['label'])}</span></nav>'''
     if adapt_atlas:
         content=re.sub(r'<a class="site-skip".*?(?=<main)',lambda _:nav,content,count=1,flags=re.S)
     else:
         content=content.replace('<main',nav+'<main',1)
         content=content.replace('</body>','</div></body>',1)
+    if key != 'gallery':
+        content = workspace_navigation(content, pages['gallery']['url']+('#gallery' if presentation['style']=='atlas' else ''), expansion['name'])
     return content

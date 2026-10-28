@@ -1,0 +1,229 @@
+{
+  "scope": "UX della pagina Draft Atlas, navigazione, accessibilità e conservazione delle funzioni",
+  "rounds": [
+    {
+      "round": "1",
+      "model": [
+        "claude-sonnet-5-5"
+      ],
+      "findings": [
+        {
+          "id": "R1-01",
+          "priority": "P1",
+          "decision": "confermato",
+          "evidence": "Computed color rgb(198,246,224) su fondo chiaro nelle alternative e nelle pick.",
+          "fix": "Override del colore per tutti i .da-name, contrasto minimo 4.5:1 verificato nei due contesti.",
+          "status": "corretto"
+        },
+        {
+          "id": "R1-02",
+          "priority": "P2",
+          "decision": "confermato",
+          "evidence": "Riprodotto: Indietro a URL senza hash lasciava attiva Guida. Coincide con LOCAL-01.",
+          "fix": "Ripristino Assistente per hash vuoto; test avanti/indietro.",
+          "status": "corretto"
+        },
+        {
+          "id": "R1-03",
+          "priority": "P2",
+          "decision": "confermato",
+          "evidence": "390x844: nav bottom 203.97px, confronto top 170.20px e status top 180.27px, quindi coperti.",
+          "fix": "Scroll-padding calcolato su barra e nav effettive, margine uniforme 12px. Controllo del feedback rispetto ai bordi delle barre.",
+          "status": "corretto"
+        },
+        {
+          "id": "R1-04",
+          "priority": "P2",
+          "decision": "confermato",
+          "evidence": "Cascata print dipendente da [hidden] rendeva il pool stampabile nelle viste sbagliate.",
+          "fix": "Pool escluso dalla stampa in tutti gli stati, come prima del restyling.",
+          "status": "corretto"
+        },
+        {
+          "id": "R1-05",
+          "priority": "P3",
+          "decision": "confermato",
+          "evidence": "Report chiuso per default e figli non visibili in stampa; nuova regressione.",
+          "fix": "Apertura in beforeprint e ripristino dello stato precedente in afterprint.",
+          "status": "corretto"
+        },
+        {
+          "id": "R1-06",
+          "priority": "P2",
+          "decision": "parzialmente fondato",
+          "evidence": "Regressione confermata per alias realmente abbreviati Kiora e Crusher. Oculus, Recruitment e Healer risultano sottostringhe anche di nomi completi: la loro presenza nel textContent non dimostra un alias abbreviato mancante.",
+          "fix": "Contenitore .report ripristinato per le situazioni di scelta. Test anteprime Kiora con mouse, tastiera e tocco.",
+          "status": "corretto"
+        },
+        {
+          "id": "R1-07",
+          "priority": "P3",
+          "decision": "confermato",
+          "evidence": "Il wrapper legacy site-page-index veniva generato dentro il nuovo details report.",
+          "fix": "Adattamento automatico dell’indice limitato ai template senza draft-workspace-nav, preservando quelli legacy.",
+          "status": "corretto"
+        },
+        {
+          "id": "R1-08",
+          "priority": "P3",
+          "decision": "confermato",
+          "evidence": "render riapriva il piano ad ogni aggiornamento del pool temporaneo.",
+          "fix": "Apertura solo al passaggio a uno stato di avviso diverso. Test: chiusura manuale conservata dopo altra pick temporanea.",
+          "status": "corretto"
+        },
+        {
+          "id": "R1-09",
+          "priority": "P2",
+          "decision": "confermato nel viewport ridotto",
+          "evidence": "390x340: nav alta 135.97px, bordo inferiore 203.97px; campo ricerca arrivava oltre il viewport. Non si dichiara una prova su tastiera fisica iOS.",
+          "fix": "Nav scorrevole con la pagina ad altezza ridotta e durante modifica dei campi su telefono. visualViewport intercetta anche riduzioni senza resize del layout. Test 390x340.",
+          "status": "corretto"
+        }
+      ],
+      "validation": {
+        "build": "passed, 20 HTML pages and local links",
+        "workspace": "passed, 24 responsive checks plus targeted regressions",
+        "assistant": "passed, including persistent temporary-panel collapse and protected-pool touch recovery after LOCAL-03 fix"
+      }
+    },
+    {
+      "round": "2",
+      "model": [
+        "claude-sonnet-5-5"
+      ],
+      "findings": [
+        {
+          "id": "R2-01",
+          "priority": "P3",
+          "decision": "confermato e corretto",
+          "evidence": "Placeholder #657b80 su bianco con contrasto circa4.47:1. Portato a #536a74, con verifica del colore effettivo della pseudo-classe."
+        },
+        {
+          "id": "R2-02",
+          "priority": "P3",
+          "decision": "confermato e corretto",
+          "evidence": "In forced-colors i quattro link avevano lo stesso bordo, nessuna ombra né sottolineatura. Aggiunti sottolineatura e outline di sistema alla vista attiva, senza cambiare geometria."
+        },
+        {
+          "id": "R2-03",
+          "priority": "P3",
+          "decision": "confermato e corretto",
+          "evidence": "Con catalogo aperto e ricerca ancora focalizzata, uno scroll volontario verso il fondo veniva annullato da resize e da pageScaleFactor=2: scrollBy -1835.34px. Ora nessun riallineamento durante zoom, resize con altezza uguale o in crescita. Si riallinea solo su focusin o calo di altezza oltre80px, compatibile con apertura tastiera."
+        },
+        {
+          "id": "R2-04",
+          "priority": "P3",
+          "decision": "confermato e corretto",
+          "evidence": "Focus su dd-lands in pagina appena aperta a390px rendeva statica la nav. Limitato il trattamento ai campi testuali; checkbox e select mantengono la nav. Se è già attivo draft-editing dopo una ricerca, resta deliberatamente fino alla navigazione per evitare LOCAL-03."
+        },
+        {
+          "id": "R2-05",
+          "priority": "P3",
+          "decision": "confermato e corretto",
+          "evidence": "Indietro verso Guida con focus nella ricerca lasciava activeElement=BODY. Ora hashchange sposta il focus al bersaglio solo se il pannello attivo viene nascosto o il focus è sul body, preservando il focus della vista corrente negli altri casi."
+        },
+        {
+          "id": "R2-06",
+          "priority": "P3",
+          "decision": "scartato come preferenza progettuale",
+          "evidence": "Il revisore stesso lo definisce soggettivo e non indica un comando irraggiungibile o contenuto troncato nei viewport600-700px. La nav persistente conserva i quattro accessi; su schermi bassi e durante ricerca scorre con la pagina. Non si cambia di nuovo la gerarchia in assenza di un difetto concreto."
+        }
+      ],
+      "validation": {
+        "build": "passed: 20 HTML pages and local links",
+        "workspace": "passed: 24 responsive checks, contrast, forced-colors, history focus, no scroll on zoom, short viewport, print, mouse/keyboard/touch previews",
+        "assistant": "passed: contextual comparisons, undo, synchronization and protected/temporary saves"
+      }
+    },
+    {
+      "round": "3",
+      "mode": "incremental on changes since full round 2",
+      "model": [
+        "claude-sonnet-5-5"
+      ],
+      "findings": [
+        {
+          "id": "R3-01",
+          "priority": "P3",
+          "decision": "confermato e corretto",
+          "evidence": "La regola di stampa focalizzata ora ripristina anche h1/introduzione e attribuzione; estese le asserzioni del test."
+        },
+        {
+          "id": "R3-02",
+          "priority": "P3",
+          "decision": "parzialmente fondato, corretto",
+          "evidence": "La posizione della nav poteva tornare sticky oltre700px quando il viewport risaliva. Non si afferma una prova con tastiera reale iPad. Stato statico conservato fino alla navigazione anche quando attivato da viewport bassa; test touch1024x600->1024x340->1024x600."
+        },
+        {
+          "id": "R3-03",
+          "priority": "P3",
+          "decision": "scartato con prova browser",
+          "evidence": "Ordine reale: draft-report.css, draft-assistant.css, draft-workspace.css, ../../site.css. In forced-colors, link corrente senza focus: outline2px offset-3px; con focus-visible: outline3px offset3px. Il focus è distinguibile. Aggiunta regressione senza modificare la cascata già corretta."
+        },
+        {
+          "id": "R3-04",
+          "priority": "P3",
+          "decision": "scartato con prova browser",
+          "evidence": "La condizione ipotetica sull’ordine dei fogli non si verifica. A390px il padding reale di pick-guide è top18px, lati16px. Aggiunte verifiche del padding delle tre viste alle larghezze mobili, senza CSS aggiuntivo."
+        }
+      ],
+      "validation": {
+        "build": "passed, 20 HTML pages and local links",
+        "workspace": "passed, including focused print title/attribution and tablet keyboard transition",
+        "assistant": "passed"
+      }
+    },
+    {
+      "round": "4",
+      "mode": "final incremental review on changes since round 3; all other reviewed inputs matched hashes",
+      "model": [
+        "claude-sonnet-5-5"
+      ],
+      "findings": [],
+      "summary": "Nessun problema concreto riproducibile nelle due correzioni del giro 4. Il giudizio si basa su sorgenti ed evidenze testuali; non ho visitato la pagina né visto screenshot. R3-01, stampa focalizzata: la regola `body.site-page-draft.da-focused #site-content>:is([data-draft-panel],.attribution,.draft-workspace-intro)` ha specificità (1,3,1) e batte `body.da-focused main>*:not(#draft-assistant)` (1,1,2) e `.site-layout [hidden]` (0,2,0), tutte con !important. Titolo, attribuzione e pannelli editoriali tornano quindi visibili in stampa. Fuori dalla modalità focalizzata, `.site-page-draft [data-draft-panel][hidden]` (0,3,0) batte `.site-layout [hidden]`. Assistente e pool restano esclusi dalla stampa, perché `#draft-assistant` e `.site-page-draft #draft-pool` sono nascosti da una regola con !important a cui nessun override si applica. Il report viene aperto in beforeprint e ripristinato in afterprint, e l'esistenza del bersaglio `#site-content` è coperta dalle asserzioni sul titolo e sull'attribuzione. R3-02, nav statica su tablet: `.site-page-draft.draft-editing .draft-workspace-nav` (0,3,0) batte `.site-page-draft .draft-workspace-nav` (0,2,0). Il test 1024x600, 1024x340, 1024x600 verifica che la classe resti dopo il ritorno all'altezza normale e venga rimossa da `reveal()` alla navigazione. Il toggle di `draft-short-viewport` dentro `updateScrollOffset` non innesca cicli con il MutationObserver, perché `classList.toggle` con stato invariato non muta l'attributo. Un caso residuo, che non segnalo come difetto: su desktop con altezza ridotta (ad esempio DevTools ancorati in basso) la nav resta statica dopo il ripristino finché non si naviga. Questo rientra nel compromesso già deciso con LOCAL-03. Non ho trovato regressioni su focus, cronologia, scroll da zoom o cascata dei fogli, con l'ordine dei fogli verificato dall'autore."
+    }
+  ],
+  "authorFindings": [
+    {
+      "id": "LOCAL-01",
+      "decision": "confermato e corretto",
+      "scenario": "Aprire URL senza hash, passare alla guida, tornare indietro. La guida restava visibile con URL iniziale.",
+      "cause": "hashchange ignorava target nullo con hash vuoto.",
+      "fix": "Il ritorno a hash vuoto attiva la vista assistente.",
+      "validation": "verify-draft-workspace.cjs: emptyHashHistory, indietro e avanti verificati."
+    },
+    {
+      "id": "LOCAL-02",
+      "decision": "confermato e corretto",
+      "scenario": "Attivare Solo assistente e stampare. Guida e statistiche nascoste dalla maggiore specificità della regola da-focused.",
+      "fix": "Override di stampa specifico per le viste editoriali e mantenimento del pool escluso dalla stampa, come prima del restyling.",
+      "validation": "verify-draft-workspace.cjs: focusedPrint, guida e statistiche visibili, pool nascosto."
+    },
+    {
+      "id": "LOCAL-03",
+      "decision": "confermato e corretto",
+      "scenario": "Con movimento standard, ricerca su telefono, poi tocco del link di recupero pool. Pointerdown e pointerup raggiungevano A, ma focusin ripristinava la nav sticky e click veniva indirizzato a site-content. Il link non si attivava.",
+      "cause": "La regola :has(input:focus) cambiava la posizione della nav durante la sequenza touch. Riprodotto nella suite completa e in una ripetizione autonoma su tre.",
+      "fix": "Stato draft-editing mantenuto anche dopo blur, fino alla navigazione esplicita. La nav resta statica durante la sequenza di tocco; comportamento ripristinato sul cambio attività.",
+      "validation": "verify-draft-workspace.cjs and complete verify-draft-assistant.cjs passed after the fix"
+    }
+  ],
+  "final": {
+    "status": "closed",
+    "openConfirmedFindings": 0,
+    "lastReviewFindings": 0,
+    "reviewedSourceUnchanged": true,
+    "validation": {
+      "build": "passed",
+      "workspace": "passed, 24 responsive checks plus targeted regression cases",
+      "assistant": "passed",
+      "syntaxAndDiff": "passed"
+    },
+    "limits": [
+      "Sonnet reviewed sources and textual evidence; browser checks and screenshot inspection were performed by the author.",
+      "Touch and keyboard viewport behavior tested with Edge emulation; no claim of a physical iPad/iPhone keyboard test.",
+      "Preexisting collation unit-test failures remain outside scope."
+    ],
+    "publication": "local changes only; no commit or push"
+  }
+}

@@ -1,12 +1,13 @@
 ---
 name: mtg-research
-description: Ricercare e integrare aggiornamenti, recensioni, statistiche per carta e prospettive di gioco o prezzo delle espansioni MTG. Usare anche per aggiornare il valore di un box.
+description: Ricercare e integrare aggiornamenti, recensioni, statistiche per carta e prospettive di gioco o prezzo delle espansioni MTG. Valutare pool e mazzi Limited, comprese sinergie e confronti fra draft. Usare anche per aggiornare il valore di un box.
 ---
 
 # Ricerca e arricchimento MTG
 
 ## Scegliere il percorso
 
+- Valutazione di pool o mazzi Limited, sinergie e confronti fra draft: leggere [Valutare le sinergie Limited](references/limited-synergies.md). Per testi e interazioni applicare le verifiche Oracle della sezione Recensioni.
 - Aggiornamenti e recensioni: seguire il flusso comune e la sezione Recensioni.
 - Statistiche per carta: leggere `docs/statistics.md` per il contratto e le definizioni.
 - Prospettive complete: applicare la sezione Analisi complete; leggere `docs/economics.md` per i valori economici.

@@ -83,6 +83,42 @@ class ExpansionTests(unittest.TestCase):
         self.assertFalse(e.availability['draftTable']['available'])
         self.assertTrue(e.availability['sealedSimulator']['available'])
 
+    def test_event_ids_do_not_define_their_kind(self):
+        def mutate(m,d):
+            for old,new in (('draft','weekend-draft'),('sealed','prerelease')):
+                event=d['limited']['events'].pop(old);event['id']=new
+                d['limited']['events'][new]=event
+        e=self.fixture(mutate)
+        self.assertTrue(e.availability['sealedSimulator']['available'])
+        self.assertTrue(e.availability['draftTable']['available'])
+        self.assertEqual(e.default_event_id('sealed'),'prerelease')
+        self.assertEqual(e.draft_format('sealed')['id'],'prerelease')
+        self.assertEqual(e.runtime()['defaultEvents']['draft'],'weekend-draft')
+        self.assertTrue(e.runtime()['eventAvailability']['prerelease']['available'])
+
+    def test_ready_sealed_product_is_selected_independently(self):
+        def mutate(m,d):
+            event=copy.deepcopy(d['limited']['events']['sealed']);event['id']='other-sealed'
+            d['limited']['events']['other-sealed']=event
+            d['products']['products']['unfinished']={'name':'Unfinished','packSize':14,'collation':None,'missing':['Ricetta da verificare.']}
+            d['limited']['events']['sealed']['product']='unfinished'
+        e=self.fixture(mutate)
+        self.assertTrue(e.availability['sealedSimulator']['available'])
+        self.assertEqual(e.default_event_id('sealed'),'other-sealed')
+        self.assertFalse(e.runtime()['eventAvailability']['sealed']['available'])
+        self.assertIn('Ricetta da verificare.',e.runtime()['eventAvailability']['sealed']['missing'])
+
+    def test_disabled_feature_keeps_its_data_requirements(self):
+        def mutate(m,d):
+            m['features']['discovery']['requested']=False
+            d['discovery']['cards']=[]
+        e=self.fixture(mutate)
+        state=e.availability['discovery']
+        self.assertFalse(state['dataReady'])
+        self.assertFalse(state['requested'])
+        self.assertEqual(state['requirements'],['discovery'])
+        self.assertIn('Risultati e analisi del metagame.',state['missing'])
+
     def test_external_statistics_are_preserved_without_changing_replay(self):
         snapshot = self.source.data['statistics']['draft']['externalSources']['untapped']
         self.assertEqual(len(snapshot['cards']), 290)
@@ -108,6 +144,39 @@ class ExpansionTests(unittest.TestCase):
     def test_required_storage_keys_are_validated(self):
         with self.assertRaisesRegex(ValueError,'storage mancanti: draftPool'):
             self.fixture(lambda m,d:m['storage'].pop('draftPool'))
+
+    def test_shared_preview_pool_storage_is_isolated_and_preserves_explicit_keys(self):
+        original=load_expansions()[1]
+        self.source=original
+        first=self.fixture(lambda m,d:m.update(id='preview-one'))
+        second=self.fixture(lambda m,d:m.update(id='preview-two'))
+        first.manifest['storage'].pop('sealedSimulator',None)
+        second.manifest['storage'].pop('sealedSimulator',None)
+        self.assertEqual(first.runtime()['storage']['sealedSimulator'],'preview-one-sealed-simulator-v1')
+        self.assertNotEqual(first.runtime()['storage']['sealedSimulator'],second.runtime()['storage']['sealedSimulator'])
+        for kind in ('draft','sealed'):
+            field=kind+'Pool'
+            self.assertEqual(first.runtime()['storage'][field],'preview-one-'+kind+'-pool-v1')
+            self.assertNotEqual(first.runtime()['storage'][field],second.runtime()['storage'][field])
+            self.assertNotIn(field,first.manifest['storage'])
+        explicit=self.fixture(lambda m,d:m['storage'].update(draftPool='previous-draft-save',sealedPool='previous-sealed-save'))
+        self.assertEqual(explicit.runtime()['storage']['draftPool'],'previous-draft-save')
+        self.assertEqual(explicit.runtime()['storage']['sealedPool'],'previous-sealed-save')
+        self.assertEqual(explicit.runtime()['storage']['sealedSimulator'],original.manifest['storage']['sealedSimulator'])
+
+    def test_generated_pool_keys_participate_in_collision_validation(self):
+        from unittest.mock import patch
+        first=self.fixture(lambda m,d:m.update(id='first'))
+        def mutate(m,d):
+            m.update(id='second')
+            m['storage']={key:'second-'+value for key,value in m['storage'].items()}
+            m['storage']['watch']='first-sealed-pool-v1'
+        second=self.fixture(mutate)
+        first.manifest['storage'].pop('sealedPool')
+        registry=[{'manifest':'first.json'},{'manifest':'second.json'}]
+        with patch('expansion_data.read_json',return_value=registry),patch('expansion_data.Expansion',side_effect=[first,second]):
+            with self.assertRaisesRegex(ValueError,'salvataggio condivisa'):
+                load_expansions()
 
     def test_empty_containers_are_not_data(self):
         def mutate(m,d):

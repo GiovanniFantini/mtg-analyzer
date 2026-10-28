@@ -1,0 +1,53 @@
+{
+  "findings": [
+    {
+      "id": "R3-01",
+      "priority": "P3",
+      "file": "draft-workspace.css",
+      "line": 93,
+      "title": "In modalità Solo assistente la stampa perde l'attribuzione e il titolo della pagina",
+      "scenario": "Attivare Solo assistente (body.da-focused) e stampare. Le guide e le statistiche tornano visibili, ma il paragrafo p.attribution (Wizards of the Coast tramite Scryfall, dati 17Lands) e l'introduzione con l'h1 non compaiono.",
+      "evidence": "draft-assistant.css ha `body.da-focused main>*:not(#draft-assistant){display:none!important}`, con specificità (1,1,2). La regola di stampa aggiunta per LOCAL-02 ripristina solo `body.site-page-draft.da-focused #site-content>[data-draft-panel]`. Né `.attribution` né `.draft-workspace-intro` hanno una regola di ripristino in @media print. verify-draft-workspace.cjs (righe 119-127) controlla guida, statistiche, pool ed estensione del report, ma non l'attribuzione. È un'inferenza dai sorgenti: presuppone che `main` sia `#site-content`, come fa già la regola esistente. Non l'ho verificata in un browser.",
+      "impact": "La stampa dalla modalità focalizzata contiene dati e immagini senza il credito alle fonti e senza intestazione. Nella stampa normale il credito c'è, quindi il comportamento è incoerente tra le due modalità e il credito viene perso proprio nel percorso toccato dalla correzione LOCAL-02.",
+      "suggested_fix": "Nel blocco @media print aggiungere `body.site-page-draft.da-focused #site-content>:is(.attribution,.draft-workspace-intro){display:block!important}`, con specificità sufficiente a battere la regola da-focused. Estendere il test di stampa focalizzata con una verifica di visibilità di `.attribution`.",
+      "certainty": "certain"
+    },
+    {
+      "id": "R3-02",
+      "priority": "P3",
+      "file": "draft-workspace.js",
+      "line": 44,
+      "title": "La correzione LOCAL-03 copre solo larghezze fino a 700px: sopra, il toggle di draft-short-viewport può ripetere lo stesso salto della nav",
+      "scenario": "Tablet o telefono con larghezza sopra 700px (ad esempio iPad o Android in orizzontale, o tablet piccoli) e tastiera su schermo aperta. visualViewport.height scende sotto 550 e updateScrollOffset aggiunge draft-short-viewport, quindi la nav diventa static. L'utente tocca un link vicino al bordo superiore, ad esempio quello di recupero nel messaggio #da-needs. Il campo perde il focus, la tastiera si chiude, l'altezza risale e la classe viene rimossa. La nav torna sticky tra pointerdown e click.",
+      "evidence": "La causa descritta in LOCAL-03 è un cambio di posizione della nav durante la sequenza di tocco. Il mantenimento di draft-editing è limitato a `matchMedia('(max-width:700px)')` (riga 44), e la regola CSS `.draft-editing .draft-workspace-nav{position:static}` è dentro la stessa media query (riga 69). Il toggle di draft-short-viewport (riga 29) non ha un equivalente persistente. I test del tocco usano solo 390px. Non l'ho riprodotto: è un'ipotesi dedotta dalla stessa meccanica.",
+      "impact": "Su tablet con tastiera aperta il link toccato può non attivarsi, o il click può cadere su un altro elemento, come descritto in LOCAL-03.",
+      "suggested_fix": "Mantenere lo stato statico finché non c'è navigazione esplicita anche quando la causa è la viewport bassa. Ad esempio, applicare draft-editing se un campo testuale ha il focus e (max-width:700px o altezza < 550), senza rimuoverlo sul resize, e spostare nella stessa condizione la regola CSS `position:static` fuori dalla media query di larghezza. In alternativa, congelare draft-short-viewport mentre un campo testuale ha avuto il focus dall'ultima navigazione. Aggiungere un test touch con viewport 1024x600 che riduce l'altezza a 340.",
+      "certainty": "hypothesis"
+    },
+    {
+      "id": "R3-03",
+      "priority": "P3",
+      "file": "draft-workspace.css",
+      "line": 70,
+      "title": "In forced-colors la vista attiva può perdere l'indicatore di focus da tastiera",
+      "scenario": "Con forced-colors attivo, navigare con Tab fino al link della vista corrente (aria-current).",
+      "evidence": "`.draft-workspace-nav a[aria-current]` (0,2,1, riga 70) imposta `outline:2px solid Highlight;outline-offset:-3px`. Il focus ring condiviso di site.css è `.site-layout :is(a,button,input,select,summary):focus-visible`, anch'esso (0,2,1). A parità di specificità decide l'ordine dei fogli, che dal template non si può verificare. Se draft-workspace.css segue site.css, il link corrente e focalizzato mostra lo stesso outline interno del link corrente non focalizzato. Il test forced-colors (righe 50-53 di verify-draft-workspace.cjs) controlla solo l'outline senza focus.",
+      "impact": "Un utente da tastiera con forced-colors non distingue il focus dallo stato corrente sulla tab attiva. Non può quindi sapere dove si trova il focus, e la cosa riguarda proprio il link che riceve il focus dopo la navigazione.",
+      "suggested_fix": "Dentro @media(forced-colors:active) aggiungere `.draft-workspace-nav a[aria-current]:focus-visible{outline:3px solid Highlight;outline-offset:3px}`, che ha specificità (0,3,1) e supera il caso di pari peso. Estendere il test con focus e forcedColors.",
+      "certainty": "hypothesis"
+    },
+    {
+      "id": "R3-04",
+      "priority": "P3",
+      "file": "draft-workspace.css",
+      "line": 20,
+      "title": "Il padding mobile delle sezioni report può essere sovrascritto per ordine dei fogli",
+      "scenario": "Telefono a 320 o 390px: pool, guide e statistiche usano `.report-section`.",
+      "evidence": "`.site-page-draft .report-section{...margin-block:24px;padding:28px}` ha specificità (0,2,0). La regola mobile di site.css `@media(max-width:700px){.site-layout :is(.report-section,.trk-panel){padding:18px 16px}}` ha la stessa specificità (0,2,0), e analogamente quella a 760px con `margin-block:20px`. Per #draft-assistant esiste un override mobile esplicito (riga 76), mentre per `.report-section` no: la riga 87 copre solo `.draft-report-details`. Se draft-workspace.css segue site.css, a 320px restano 28px di padding laterale su ogni sezione, con circa 236px di contenuto. I controlli di overflow non lo rilevano.",
+      "impact": "Contenuto stretto e margini incoerenti tra assistente (20px 16px) e le altre viste su telefoni piccoli. Il difetto compare solo se l'ordine dei fogli è sfavorevole.",
+      "suggested_fix": "Aggiungere in `@media(max-width:700px)` la regola `.site-page-draft .report-section{padding:18px 16px;margin-block:20px}`. In alternativa alzare la specificità della regola desktop con `main` o `:where` per non dipendere dall'ordine.",
+      "certainty": "hypothesis"
+    }
+  ],
+  "summary": "Nessun P1 o P2. Le correzioni R2 e LOCAL-03 sono coerenti nei percorsi testati: la nav statica persiste fino alla navigazione esplicita, il guard su zoom e resize a pari altezza funziona, e il focus alla cronologia segue la logica attesa. L'unico difetto certo è la perdita di attribuzione e intestazione nella stampa in modalità Solo assistente, perché la correzione LOCAL-02 ripristina solo i pannelli. Restano tre ipotesi P3 non riprodotte: l'analogo di LOCAL-03 sopra 700px, il focus della tab attiva in forced-colors e il padding mobile delle sezioni report, tutte legate a parità di specificità o a soglie di larghezza fuori dai test."
+}
