@@ -188,5 +188,73 @@
         "status": "acquired"
       }
     ]
+  },
+  "externalStatistics": {
+    "draft17landsPublic": {
+      "provider": "17Lands public datasets",
+      "url": "https://www.17lands.com/public_datasets",
+      "retrieved": "2026-10-28",
+      "filters": {
+        "event": "PremierDraft",
+        "ranks": "Tutti i ranghi nel dataset",
+        "archetype": "Tutti gli archetipi",
+        "period": "Intero dataset pubblico; aggiornamento Wed, 08 Apr 2026 22:00:52 GMT"
+      },
+      "derivation": {
+        "datasetUrl": "https://17lands-public.s3.amazonaws.com/analysis_data/game_data/game_data_public.TMT.PremierDraft.csv.gz",
+        "sha256": "399f35cf89b4ad09ba811df0bc60936a5b443432f2fbad84d6264b597b49e4a9",
+        "compressedBytes": 13216842,
+        "lastModified": "Wed, 08 Apr 2026 22:00:52 GMT",
+        "games": 180204,
+        "wins": 102358,
+        "license": "CC BY 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Each game counts once per card if opening_hand + drawn > 0, irrespective of copies. Rate = wins / observed games * 100. Includes all ranks and archetypes in this complete public file; not the current live aggregate."
+      },
+      "coverage": {
+        "catalogCards": 215,
+        "matchedCards": 214,
+        "withWinRate": 214,
+        "missingCatalogIds": [
+          "6c517308-831b-4e41-a82c-02ddf6383a0c"
+        ],
+        "unmatchedSourceNames": [
+          "Bespoke B?"
+        ]
+      }
+    },
+    "sealed17landsPublic": {
+      "provider": "17Lands public datasets",
+      "url": "https://www.17lands.com/public_datasets",
+      "retrieved": "2026-10-28",
+      "filters": {
+        "event": "Sealed",
+        "ranks": "Tutti i ranghi nel dataset",
+        "archetype": "Tutti gli archetipi",
+        "period": "Intero dataset pubblico; aggiornamento Wed, 08 Apr 2026 22:00:49 GMT"
+      },
+      "derivation": {
+        "datasetUrl": "https://17lands-public.s3.amazonaws.com/analysis_data/game_data/game_data_public.TMT.Sealed.csv.gz",
+        "sha256": "7bc33d282f12f34281c838f91975f7db43d1ddb628d7d10e898349928ed598e6",
+        "compressedBytes": 2275534,
+        "lastModified": "Wed, 08 Apr 2026 22:00:49 GMT",
+        "games": 28250,
+        "wins": 16255,
+        "license": "CC BY 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Each game counts once per card if opening_hand + drawn > 0, irrespective of copies. Rate = wins / observed games * 100. Includes all ranks and archetypes in this complete public file; not the current live aggregate."
+      },
+      "coverage": {
+        "catalogCards": 215,
+        "matchedCards": 214,
+        "withWinRate": 214,
+        "missingCatalogIds": [
+          "6c517308-831b-4e41-a82c-02ddf6383a0c"
+        ],
+        "unmatchedSourceNames": [
+          "Bespoke B?"
+        ]
+      }
+    }
   }
 }

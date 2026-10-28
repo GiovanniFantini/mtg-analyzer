@@ -179,5 +179,161 @@
         "status": "acquired"
       }
     ]
+  },
+  "externalStatistics": {
+    "sealed17landsPublic": {
+      "provider": "17Lands public datasets",
+      "url": "https://www.17lands.com/public_datasets",
+      "retrieved": "2026-10-28",
+      "filters": {
+        "event": "Sealed",
+        "ranks": "Tutti i ranghi nel dataset",
+        "archetype": "Tutti gli archetipi",
+        "period": "Intero dataset pubblico; aggiornamento Mon, 27 Jul 2026 18:11:25 GMT"
+      },
+      "derivation": {
+        "datasetUrl": "https://17lands-public.s3.amazonaws.com/analysis_data/game_data/game_data_public.MSH.Sealed.csv.gz",
+        "sha256": "4b622a7ec2057e7d1726e11746ba6830519bb9bcf76e9fa832fb5a6d06c4a082",
+        "compressedBytes": 4975860,
+        "lastModified": "Mon, 27 Jul 2026 18:11:25 GMT",
+        "games": 52331,
+        "wins": 30399,
+        "license": "CC BY 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Each game counts once per card if opening_hand + drawn > 0, irrespective of copies. Rate = wins / observed games * 100. Includes all ranks and archetypes in this complete public file; not the current live aggregate."
+      },
+      "coverage": {
+        "catalogCards": 375,
+        "matchedCards": 334,
+        "withWinRate": 330,
+        "missingCatalogIds": [
+          "61237530-ad49-469c-a952-67c92315708e",
+          "3f995518-b12a-4623-9ab3-b79a5cef3cba",
+          "e0dbbdcf-84e1-494f-8b8c-0a094f603fa9",
+          "4cea42fd-035e-4b8f-8b1d-ff363b694f14",
+          "add7d3ce-aa58-4da0-8c2a-cfd01c3a8975",
+          "ec191a2f-12b1-438b-b2fe-f88fb82d9b87",
+          "5d587b65-8c90-41e3-96e0-ecb3bbfb0ac7",
+          "5a0b9b21-4d7f-4b02-aef1-3598eae2f581",
+          "2bb8ede7-ca50-4df8-aa30-f1b14520163f",
+          "4266ac5c-40dc-4fe3-9f42-e03cea5277ea",
+          "9a581f34-521c-4d28-96d4-be1e8dbc30b8",
+          "e23cbf2a-c07b-4202-826d-9b3c4a35a02e",
+          "deda48c4-527f-4367-83ed-3b3c30beaab8",
+          "75b75aaf-499d-47b0-ab6d-873240b641b2",
+          "5df07a06-e585-412d-a6db-cb5a78a68b6e",
+          "ac1042e0-af4d-42b0-9d43-34b3fa5daf92",
+          "3b4d51b9-f99e-4253-83d7-4dc6ef9bbe41",
+          "d7706745-60fd-4fdb-9083-931b05a3e2b1",
+          "cf10e116-d1da-4570-be0e-c597a9e75d72",
+          "0db3f148-4ede-4134-b2e0-2bb513d9cefc",
+          "82d69044-8d8c-4ae3-853e-de180f4706ca",
+          "d7b0a0d5-a9fe-49ea-9250-8825b36accc0",
+          "3e560cb9-3036-46a2-a5c7-edb04d0095b7",
+          "eea57be1-032d-40ec-8091-92f89670e4a1",
+          "c47d09a5-a6d2-4bc2-bf65-b32e3c897c49",
+          "7ebd1f51-2db6-4c3f-95cb-8035a410a8e8",
+          "08eb1bef-b00d-490b-a631-2849e0d1fd8e",
+          "e473a591-9aae-4af2-9b25-96820b317df8",
+          "291ffa45-f395-420f-8862-9a685b65ce69",
+          "8066310c-dcd6-465b-a0ae-44c8602367de",
+          "2f8e351a-ce09-4f7d-8b4e-bcffcab66aa1",
+          "33ba9e5a-d078-4a47-b181-0ca7d1596919",
+          "a6e83b7b-07df-4ff0-8942-8fdb3f1502f9",
+          "77e2f5ac-5c0d-4503-b8ab-fee00eaaa4a3",
+          "255544be-db0f-4dcc-8787-f05652cd2684",
+          "96c20d6f-6272-42f1-bfda-308ce7c4206a",
+          "0c9c514f-f506-4b2c-af58-79922834cde7",
+          "dcc41152-ca20-40d6-82ac-6b7fcd471a42",
+          "10c51d68-9a69-4784-9ce1-d6beaafa3ed3",
+          "5a2f6ccf-af93-4922-973d-6abfeb4d7cfc",
+          "71c9ed41-8832-440d-a455-f52f284e8d14"
+        ],
+        "unmatchedSourceNames": [
+          "Bruce Banner",
+          "Jennifer Walters",
+          "King T'Challa",
+          "Monica Rambeau",
+          "Tony Stark"
+        ]
+      }
+    },
+    "draft17landsPublic": {
+      "provider": "17Lands public datasets",
+      "url": "https://www.17lands.com/public_datasets",
+      "retrieved": "2026-10-28",
+      "filters": {
+        "event": "PremierDraft",
+        "ranks": "Tutti i ranghi nel dataset",
+        "archetype": "Tutti gli archetipi",
+        "period": "Intero dataset pubblico; aggiornamento Mon, 27 Jul 2026 18:11:30 GMT"
+      },
+      "derivation": {
+        "datasetUrl": "https://17lands-public.s3.amazonaws.com/analysis_data/game_data/game_data_public.MSH.PremierDraft.csv.gz",
+        "sha256": "8a6bd93a5d50554a3d87703e93624d09e638dc6dd03eda12be9c3f2925484edf",
+        "compressedBytes": 31463893,
+        "lastModified": "Mon, 27 Jul 2026 18:11:30 GMT",
+        "games": 377514,
+        "wins": 211723,
+        "license": "CC BY 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Each game counts once per card if opening_hand + drawn > 0, irrespective of copies. Rate = wins / observed games * 100. Includes all ranks and archetypes in this complete public file; not the current live aggregate."
+      },
+      "coverage": {
+        "catalogCards": 375,
+        "matchedCards": 334,
+        "withWinRate": 334,
+        "missingCatalogIds": [
+          "61237530-ad49-469c-a952-67c92315708e",
+          "3f995518-b12a-4623-9ab3-b79a5cef3cba",
+          "e0dbbdcf-84e1-494f-8b8c-0a094f603fa9",
+          "4cea42fd-035e-4b8f-8b1d-ff363b694f14",
+          "add7d3ce-aa58-4da0-8c2a-cfd01c3a8975",
+          "ec191a2f-12b1-438b-b2fe-f88fb82d9b87",
+          "5d587b65-8c90-41e3-96e0-ecb3bbfb0ac7",
+          "5a0b9b21-4d7f-4b02-aef1-3598eae2f581",
+          "2bb8ede7-ca50-4df8-aa30-f1b14520163f",
+          "4266ac5c-40dc-4fe3-9f42-e03cea5277ea",
+          "9a581f34-521c-4d28-96d4-be1e8dbc30b8",
+          "e23cbf2a-c07b-4202-826d-9b3c4a35a02e",
+          "deda48c4-527f-4367-83ed-3b3c30beaab8",
+          "75b75aaf-499d-47b0-ab6d-873240b641b2",
+          "5df07a06-e585-412d-a6db-cb5a78a68b6e",
+          "ac1042e0-af4d-42b0-9d43-34b3fa5daf92",
+          "3b4d51b9-f99e-4253-83d7-4dc6ef9bbe41",
+          "d7706745-60fd-4fdb-9083-931b05a3e2b1",
+          "cf10e116-d1da-4570-be0e-c597a9e75d72",
+          "0db3f148-4ede-4134-b2e0-2bb513d9cefc",
+          "82d69044-8d8c-4ae3-853e-de180f4706ca",
+          "d7b0a0d5-a9fe-49ea-9250-8825b36accc0",
+          "3e560cb9-3036-46a2-a5c7-edb04d0095b7",
+          "eea57be1-032d-40ec-8091-92f89670e4a1",
+          "c47d09a5-a6d2-4bc2-bf65-b32e3c897c49",
+          "7ebd1f51-2db6-4c3f-95cb-8035a410a8e8",
+          "08eb1bef-b00d-490b-a631-2849e0d1fd8e",
+          "e473a591-9aae-4af2-9b25-96820b317df8",
+          "291ffa45-f395-420f-8862-9a685b65ce69",
+          "8066310c-dcd6-465b-a0ae-44c8602367de",
+          "2f8e351a-ce09-4f7d-8b4e-bcffcab66aa1",
+          "33ba9e5a-d078-4a47-b181-0ca7d1596919",
+          "a6e83b7b-07df-4ff0-8942-8fdb3f1502f9",
+          "77e2f5ac-5c0d-4503-b8ab-fee00eaaa4a3",
+          "255544be-db0f-4dcc-8787-f05652cd2684",
+          "96c20d6f-6272-42f1-bfda-308ce7c4206a",
+          "0c9c514f-f506-4b2c-af58-79922834cde7",
+          "dcc41152-ca20-40d6-82ac-6b7fcd471a42",
+          "10c51d68-9a69-4784-9ce1-d6beaafa3ed3",
+          "5a2f6ccf-af93-4922-973d-6abfeb4d7cfc",
+          "71c9ed41-8832-440d-a455-f52f284e8d14"
+        ],
+        "unmatchedSourceNames": [
+          "Bruce Banner",
+          "Jennifer Walters",
+          "King T'Challa",
+          "Monica Rambeau",
+          "Tony Stark"
+        ]
+      }
+    }
   }
 }

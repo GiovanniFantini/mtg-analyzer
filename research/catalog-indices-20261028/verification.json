@@ -1,0 +1,35 @@
+{
+  "date": "2026-10-28",
+  "scope": "Six catalog indices for every registered expansion: Draft WR, Sealed WR, Standard/Pioneer/Modern/Pauper prospects",
+  "expansions": 21,
+  "availablePublicDatasets": 38,
+  "observedGames": 13435578,
+  "cardWinRates": {
+    "draft": 5437,
+    "sealed": 5398
+  },
+  "coverage": "catalog-coverage.json",
+  "sourceInventory": "public-datasets-source.json",
+  "source": "https://www.17lands.com/public_datasets",
+  "license": "CC BY 4.0",
+  "limitations": [
+    "No usable public game datasets were returned for Star Trek or Marvel Spider-Man. Their WR controls remain visible with missing values.",
+    "Constructed indices expose existing format-specific assessments. No new complete Constructed review was fabricated; unreviewed formats remain N/D.",
+    "New WR snapshots use complete historical public game files, not current live 17Lands aggregate filters. Providers and events remain distinct."
+  ],
+  "verification": {
+    "offlineBuild": "21 expansions, 290 HTML pages; local links verified",
+    "unitTests": "48 expansion/shared/draft assistant tests, 7 catalog statistics/metrics tests, 1 public aggregation test passed",
+    "nodeTests": "Event populations, zero/null, current bans, missing format assessments, Commander isolation and format details passed",
+    "numericAudit": "All imported card rates independently recomputed from win/game counts and count bounds verified",
+    "browser": {
+      "allExpansionIndices": "21 expansions passed; filters, sorting, sample sizes, four formats and saved records preserved",
+      "legacyCatalogRegression": "10 sorts, combined/reset/missing filters, 1440/768/390 px, mouse/keyboard/touch passed",
+      "errors": [],
+      "reports": [
+        "browser/report.json",
+        "filters-regression/report.json"
+      ]
+    }
+  }
+}

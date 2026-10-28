@@ -179,5 +179,107 @@
         "status": "acquired"
       }
     ]
+  },
+  "externalStatistics": {
+    "sealed17landsPublic": {
+      "provider": "17Lands public datasets",
+      "url": "https://www.17lands.com/public_datasets",
+      "retrieved": "2026-10-28",
+      "filters": {
+        "event": "Sealed",
+        "ranks": "Tutti i ranghi nel dataset",
+        "archetype": "Tutti gli archetipi",
+        "period": "Intero dataset pubblico; aggiornamento Mon, 18 May 2026 20:28:07 GMT"
+      },
+      "derivation": {
+        "datasetUrl": "https://17lands-public.s3.amazonaws.com/analysis_data/game_data/game_data_public.ECL.Sealed.csv.gz",
+        "sha256": "333a54019e913f5ca86a86ae500ad2521ba07eec2618e794257a3433279f1758",
+        "compressedBytes": 3130430,
+        "lastModified": "Mon, 18 May 2026 20:28:07 GMT",
+        "games": 35915,
+        "wins": 20270,
+        "license": "CC BY 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Each game counts once per card if opening_hand + drawn > 0, irrespective of copies. Rate = wins / observed games * 100. Includes all ranks and archetypes in this complete public file; not the current live aggregate."
+      },
+      "coverage": {
+        "catalogCards": 298,
+        "matchedCards": 286,
+        "withWinRate": 283,
+        "missingCatalogIds": [
+          "cb7d5bbb-4f68-4e38-8bb0-a95af21b24c8",
+          "b2d9d5ca-7e15-437a-bdfc-5972b42148fe",
+          "1dab370a-1067-4d94-be1f-10362d4abf5a",
+          "70adc870-f0db-4d4b-863b-673c2c258751",
+          "1f51adf8-8234-4dae-aedf-7633310d5111",
+          "7d7faefe-9c0d-45b6-8ea4-5fa666762a2c",
+          "2094f9b6-ce84-47d9-8819-81db14ba483f",
+          "19cba6be-7291-4788-9241-87dad3b68363",
+          "eb96c335-9ed3-4f7d-b07a-185ff4044976",
+          "28d37803-d3f9-4806-9a0b-79362a517a7a",
+          "307fdde3-43f6-4d80-884a-4a85314ab8e4",
+          "ec75b840-420d-4512-a74a-d70f19be0085"
+        ],
+        "unmatchedSourceNames": [
+          "Ashling, Rekindled",
+          "Brigid, Clachan's Heart",
+          "Eirdu, Carrier of Dawn",
+          "Grub, Storied Matriarch",
+          "Oko, Lorwyn Liege",
+          "Sygg, Wanderwine Wisdom",
+          "Trystan, Callous Cultivator"
+        ]
+      }
+    },
+    "draft17landsPublic": {
+      "provider": "17Lands public datasets",
+      "url": "https://www.17lands.com/public_datasets",
+      "retrieved": "2026-10-28",
+      "filters": {
+        "event": "PremierDraft",
+        "ranks": "Tutti i ranghi nel dataset",
+        "archetype": "Tutti gli archetipi",
+        "period": "Intero dataset pubblico; aggiornamento Mon, 18 May 2026 20:28:10 GMT"
+      },
+      "derivation": {
+        "datasetUrl": "https://17lands-public.s3.amazonaws.com/analysis_data/game_data/game_data_public.ECL.PremierDraft.csv.gz",
+        "sha256": "54b94edb0702dbcf20aa943d0e7da5a7987cf20232864083953e61b95b38ff48",
+        "compressedBytes": 42752573,
+        "lastModified": "Mon, 18 May 2026 20:28:10 GMT",
+        "games": 536566,
+        "wins": 295045,
+        "license": "CC BY 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Each game counts once per card if opening_hand + drawn > 0, irrespective of copies. Rate = wins / observed games * 100. Includes all ranks and archetypes in this complete public file; not the current live aggregate."
+      },
+      "coverage": {
+        "catalogCards": 298,
+        "matchedCards": 286,
+        "withWinRate": 286,
+        "missingCatalogIds": [
+          "cb7d5bbb-4f68-4e38-8bb0-a95af21b24c8",
+          "b2d9d5ca-7e15-437a-bdfc-5972b42148fe",
+          "1dab370a-1067-4d94-be1f-10362d4abf5a",
+          "70adc870-f0db-4d4b-863b-673c2c258751",
+          "1f51adf8-8234-4dae-aedf-7633310d5111",
+          "7d7faefe-9c0d-45b6-8ea4-5fa666762a2c",
+          "2094f9b6-ce84-47d9-8819-81db14ba483f",
+          "19cba6be-7291-4788-9241-87dad3b68363",
+          "eb96c335-9ed3-4f7d-b07a-185ff4044976",
+          "28d37803-d3f9-4806-9a0b-79362a517a7a",
+          "307fdde3-43f6-4d80-884a-4a85314ab8e4",
+          "ec75b840-420d-4512-a74a-d70f19be0085"
+        ],
+        "unmatchedSourceNames": [
+          "Ashling, Rekindled",
+          "Brigid, Clachan's Heart",
+          "Eirdu, Carrier of Dawn",
+          "Grub, Storied Matriarch",
+          "Oko, Lorwyn Liege",
+          "Sygg, Wanderwine Wisdom",
+          "Trystan, Callous Cultivator"
+        ]
+      }
+    }
   }
 }

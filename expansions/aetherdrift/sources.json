@@ -196,5 +196,65 @@
       "Lo studio esteso non è completo: dieci editori o servizi sono stati cercati, ma pagine mancanti o bloccate non contano come analisi acquisite. Restano da completare recensioni per carta, adozione Constructed/Commander e prezzi Cardmarket."
     ],
     "scopeAudit": "research/aetherdrift-20261028/scope-and-gaps.json"
+  },
+  "externalStatistics": {
+    "sealed17landsPublic": {
+      "provider": "17Lands public datasets",
+      "url": "https://www.17lands.com/public_datasets",
+      "retrieved": "2026-10-28",
+      "filters": {
+        "event": "Sealed",
+        "ranks": "Tutti i ranghi nel dataset",
+        "archetype": "Tutti gli archetipi",
+        "period": "Intero dataset pubblico; aggiornamento Sun, 23 Mar 2025 16:16:00 GMT"
+      },
+      "derivation": {
+        "datasetUrl": "https://17lands-public.s3.amazonaws.com/analysis_data/game_data/game_data_public.DFT.Sealed.csv.gz",
+        "sha256": "a122c131ea1f020f0b80779180ad281fd23daf74b179ef3a756da10691810c64",
+        "compressedBytes": 4059507,
+        "lastModified": "Sun, 23 Mar 2025 16:16:00 GMT",
+        "games": 45375,
+        "wins": 25915,
+        "license": "CC BY 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Each game counts once per card if opening_hand + drawn > 0, irrespective of copies. Rate = wins / observed games * 100. Includes all ranks and archetypes in this complete public file; not the current live aggregate."
+      },
+      "coverage": {
+        "catalogCards": 286,
+        "matchedCards": 286,
+        "withWinRate": 286,
+        "missingCatalogIds": [],
+        "unmatchedSourceNames": []
+      }
+    },
+    "draft17landsPublic": {
+      "provider": "17Lands public datasets",
+      "url": "https://www.17lands.com/public_datasets",
+      "retrieved": "2026-10-28",
+      "filters": {
+        "event": "PremierDraft",
+        "ranks": "Tutti i ranghi nel dataset",
+        "archetype": "Tutti gli archetipi",
+        "period": "Intero dataset pubblico; aggiornamento Sun, 23 Mar 2025 16:16:14 GMT"
+      },
+      "derivation": {
+        "datasetUrl": "https://17lands-public.s3.amazonaws.com/analysis_data/game_data/game_data_public.DFT.PremierDraft.csv.gz",
+        "sha256": "734325afbe5c023245e7769fab66c88dcf241407666becb06b956d7fee13a28b",
+        "compressedBytes": 67859327,
+        "lastModified": "Sun, 23 Mar 2025 16:16:14 GMT",
+        "games": 857667,
+        "wins": 470912,
+        "license": "CC BY 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Each game counts once per card if opening_hand + drawn > 0, irrespective of copies. Rate = wins / observed games * 100. Includes all ranks and archetypes in this complete public file; not the current live aggregate."
+      },
+      "coverage": {
+        "catalogCards": 286,
+        "matchedCards": 286,
+        "withWinRate": 286,
+        "missingCatalogIds": [],
+        "unmatchedSourceNames": []
+      }
+    }
   }
 }

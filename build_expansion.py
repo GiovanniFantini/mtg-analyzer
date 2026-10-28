@@ -145,6 +145,7 @@ def manual_pool_source(expansion, kind):
 
 
 def catalog_data(expansion):
+    from catalog_metrics import catalog_performance
     d = expansion.data
     cards=expansion.cards
     covered=[c['sentiment'] for c in cards if c.get('sentiment')]
@@ -160,6 +161,7 @@ def catalog_data(expansion):
                                   'url': row['sourceUrl']}
                  for row in snapshot.get('cards', [])} if public_wr else {}
     return {'date':d['cards'].get('date',''),'cards':cards,
+            'catalogPerformance': catalog_performance(d['statistics']),
             'catalogWinRates': {'provider': snapshot.get('provider'), 'retrieved': snapshot.get('retrieved'),
                                'filters': snapshot.get('filters', {}), 'cards': win_rates},
             'stats':d['statistics'].get('catalog',[]),'scale':d['ratings'].get('scale',{}),
@@ -344,6 +346,7 @@ def build(expansion, dest):
     # Runtime preview data keeps its existing DOM contract; the document is the same catalog.
     preview = {**expansion.data['cards'],'cards':expansion.cards,
                'catalogWinRates':catalog_data(expansion)['catalogWinRates'],
+               'catalogPerformance':catalog_data(expansion)['catalogPerformance'],
                'prospectSources':catalog_data(expansion)['prospectSources']}
     (dest/'expansion-data.js').write_text('const DATA='+js(preview)+';\n',encoding='utf-8')
     for pattern in ('*.css','*.js'):

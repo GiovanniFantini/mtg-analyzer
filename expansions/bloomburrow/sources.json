@@ -294,5 +294,93 @@
         "status": "acquired"
       }
     ]
+  },
+  "externalStatistics": {
+    "sealed17landsPublic": {
+      "provider": "17Lands public datasets",
+      "url": "https://www.17lands.com/public_datasets",
+      "retrieved": "2026-10-28",
+      "filters": {
+        "event": "Sealed",
+        "ranks": "Tutti i ranghi nel dataset",
+        "archetype": "Tutti gli archetipi",
+        "period": "Intero dataset pubblico; aggiornamento Sat, 07 Sep 2024 02:40:48 GMT"
+      },
+      "derivation": {
+        "datasetUrl": "https://17lands-public.s3.amazonaws.com/analysis_data/game_data/game_data_public.BLB.Sealed.csv.gz",
+        "sha256": "51df7e77f003343c09b597dacafa6011097b9a15ff29b16c7adbdcc32976566b",
+        "compressedBytes": 4361853,
+        "lastModified": "Sat, 07 Sep 2024 02:40:48 GMT",
+        "games": 50658,
+        "wins": 28110,
+        "license": "CC BY 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Each game counts once per card if opening_hand + drawn > 0, irrespective of copies. Rate = wins / observed games * 100. Includes all ranks and archetypes in this complete public file; not the current live aggregate."
+      },
+      "coverage": {
+        "catalogCards": 289,
+        "matchedCards": 276,
+        "withWinRate": 275,
+        "missingCatalogIds": [
+          "390c96b3-68da-4a42-89ab-d9ccc79ce0dd",
+          "6441abd3-320b-424a-9753-61e3581fe1a9",
+          "230b9aef-bd9c-4332-ace4-b5b065bac6d8",
+          "7d171802-2604-45a5-a0f2-ab5afa1db5d5",
+          "e7e7d174-eb7c-41ad-a241-cfbfdc71e3a7",
+          "52a258be-39e3-4689-b2d0-7c353ce7d574",
+          "c6440439-7178-4a97-9e18-7fdef4b02678",
+          "c2cad902-ffd2-4bab-b114-b4b6df2ac6b3",
+          "e70722d6-b4d5-45c2-9488-9a5eb0bdb9bd",
+          "53a73200-b798-4bfd-a431-8b94e17b70be",
+          "f21b5fc1-7611-44ac-ad8d-1f0c6d4fc9a3",
+          "ecfa2cc9-e427-4104-bad7-b0294e392b1f",
+          "89e43510-c444-4b2e-b2a0-528dcc09c899"
+        ],
+        "unmatchedSourceNames": []
+      }
+    },
+    "draft17landsPublic": {
+      "provider": "17Lands public datasets",
+      "url": "https://www.17lands.com/public_datasets",
+      "retrieved": "2026-10-28",
+      "filters": {
+        "event": "PremierDraft",
+        "ranks": "Tutti i ranghi nel dataset",
+        "archetype": "Tutti gli archetipi",
+        "period": "Intero dataset pubblico; aggiornamento Sat, 07 Sep 2024 02:41:07 GMT"
+      },
+      "derivation": {
+        "datasetUrl": "https://17lands-public.s3.amazonaws.com/analysis_data/game_data/game_data_public.BLB.PremierDraft.csv.gz",
+        "sha256": "61fed2a4db5854ca9f247eba9ea4176cf70a25ee253024928963335d32dbf281",
+        "compressedBytes": 69271450,
+        "lastModified": "Sat, 07 Sep 2024 02:41:07 GMT",
+        "games": 931230,
+        "wins": 508475,
+        "license": "CC BY 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Each game counts once per card if opening_hand + drawn > 0, irrespective of copies. Rate = wins / observed games * 100. Includes all ranks and archetypes in this complete public file; not the current live aggregate."
+      },
+      "coverage": {
+        "catalogCards": 289,
+        "matchedCards": 276,
+        "withWinRate": 276,
+        "missingCatalogIds": [
+          "390c96b3-68da-4a42-89ab-d9ccc79ce0dd",
+          "6441abd3-320b-424a-9753-61e3581fe1a9",
+          "230b9aef-bd9c-4332-ace4-b5b065bac6d8",
+          "7d171802-2604-45a5-a0f2-ab5afa1db5d5",
+          "e7e7d174-eb7c-41ad-a241-cfbfdc71e3a7",
+          "52a258be-39e3-4689-b2d0-7c353ce7d574",
+          "c6440439-7178-4a97-9e18-7fdef4b02678",
+          "c2cad902-ffd2-4bab-b114-b4b6df2ac6b3",
+          "e70722d6-b4d5-45c2-9488-9a5eb0bdb9bd",
+          "53a73200-b798-4bfd-a431-8b94e17b70be",
+          "f21b5fc1-7611-44ac-ad8d-1f0c6d4fc9a3",
+          "ecfa2cc9-e427-4104-bad7-b0294e392b1f",
+          "89e43510-c444-4b2e-b2a0-528dcc09c899"
+        ],
+        "unmatchedSourceNames": []
+      }
+    }
   }
 }

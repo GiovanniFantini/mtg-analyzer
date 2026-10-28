@@ -5,6 +5,7 @@ window.CardProspects=(()=>{
  const formatLabels={standard:'Standard',pioneer:'Pioneer',modern:'Modern',legacy:'Legacy',vintage:'Vintage',pauper:'Pauper',commander:'Commander',cedh:'cEDH',duel:'Duel Commander',historic:'Historic',timeless:'Timeless',alchemy:'Alchemy',brawl:'Brawl',standardbrawl:'Standard Brawl',competitivebrawl:'Competitive Brawl',paupercommander:'Pauper Commander',oathbreaker:'Oathbreaker',penny:'Penny Dreadful',gladiator:'Gladiator',oldschool:'Old School',premodern:'Premodern',predh:'PreDH',tlr:'TLR',draft:'Draft',sealed:'Sealed','pick_two':'Pick-Two'};
  const legalityLabels={legal:'Legale',restricted:'Limitata',banned:'Vietata',not_legal:'Non legale',unknown:'Da verificare',product_dependent:'Dipende dal prodotto'};
  const evidenceLabels={non_documentata:'Dati insufficienti',non_legale:'Non applicabile',non_verificata:'Da verificare',liste_documentate:'Liste documentate',recensione:'Recensione da verificare nei risultati',liste_pubblicate_non_agonistiche:'Liste pubblicate, non risultati agonistici',recensioni:'Recensioni Limited',profilo_editoriale_precedente:'Valutazione editoriale precedente',nessuna_valutazione_specifica_nuova:'Nessuna nuova valutazione specifica',risultato_di_torneo:'Risultato di torneo',elenco_popolari_beta:'Segnalazione in un elenco beta',regole_ufficiali:'Regole ufficiali'};
+ const prospectLabels={adozione_ripetuta:'Adozione ripetuta',adozione_documentata:'Adozione documentata',prime_presenze:'Prime presenze',anteprima_da_testare:'Anteprima da testare',da_verificare:'Da verificare',non_applicabile:'Non applicabile'};
  const money=value=>value==null?'Dato non disponibile':new Intl.NumberFormat('it-IT',{style:'currency',currency:'EUR'}).format(value);
  function date(value){if(!value)return 'Data non indicata';const parsed=new Date(value+'T12:00:00');return Number.isNaN(parsed.getTime())?esc(value):parsed.toLocaleDateString('it-IT',{day:'numeric',month:'long',year:'numeric'})}
  function href(value){try{const url=new URL(value,location.href);return ['http:','https:'].includes(url.protocol)?esc(url.href):''}catch{return ''}}
@@ -19,7 +20,7 @@ window.CardProspects=(()=>{
   if(assessment.tournament){const t=assessment.tournament;finding+=` ${t.placing}° posto a ${t.event}, ${date(t.date)}, ${t.players} partecipanti.`}
   if(assessment.rule)finding=`L'effetto non funziona nelle regole ordinarie di questo formato (regola ${assessment.rule}).`;
   const examples=row?.deckExamples?.slice(0,2).map(r=>link(r.url,r.label)).join(' · ');
-  return `<tr><th scope="row">${esc(formatLabels[key]||key)}</th><td>${esc(legalityLabels[assessment.legality]||'Da verificare')}${assessment.releaseEligibility?`<p>Prevista dal ${date(assessment.releaseEligibility.date)}: ${esc(legalityLabels[assessment.releaseEligibility.status]||'Da verificare')}</p>`:''}</td><td>${esc(finding)}${assessment.note?`<p>${esc(assessment.note)}</p>`:''}${examples?`<p>${examples}</p>`:''}</td></tr>`;
+  return `<tr><th scope="row">${esc(formatLabels[key]||key)}</th><td>${esc(legalityLabels[assessment.legality]||'Da verificare')}${assessment.releaseEligibility?`<p>Prevista dal ${date(assessment.releaseEligibility.date)}: ${esc(legalityLabels[assessment.releaseEligibility.status]||'Da verificare')}</p>`:''}</td><td>${esc(prospectLabels[assessment.prospect]||'Da verificare')}</td><td>${esc(finding)}${assessment.note?`<p>${esc(assessment.note)}</p>`:''}${examples?`<p>${examples}</p>`:''}</td></tr>`;
  }
  function priceHTML(price){
   if(!price)return '<p>Non sono disponibili riferimenti di prezzo verificati per questa carta.</p>';
@@ -37,7 +38,7 @@ window.CardProspects=(()=>{
   const p=card?.prospects;if(!p)return '';
   const sourceMap=new Map(sourceRegistry.map(source=>[source.id,source]));
   const primary=['standard','pioneer','modern','legacy','vintage','pauper','commander','cedh','duel'];
-  const table=keys=>`<div class="prospect-table" role="region" tabindex="0" aria-label="Analisi per formato"><table><thead><tr><th>Formato</th><th>Legalità</th><th>Riscontri e limiti</th></tr></thead><tbody>${keys.filter(key=>p.formats?.[key]).map(key=>formatRow(key,p.formats[key],p)).join('')}</tbody></table></div>`;
+  const table=keys=>`<div class="prospect-table" role="region" tabindex="0" aria-label="Analisi per formato"><table><thead><tr><th>Formato</th><th>Legalità</th><th>Prospettiva</th><th>Riscontri e limiti</th></tr></thead><tbody>${keys.filter(key=>p.formats?.[key]).map(key=>formatRow(key,p.formats[key],p)).join('')}</tbody></table></div>`;
   const other=Object.keys(p.formats||{}).filter(key=>!primary.includes(key));
   const priceBody=priceHTML(p.price);
   const sources=(p.sources||[]).map(id=>sourceMap.get(id)).filter(Boolean);

@@ -5,9 +5,14 @@ from urllib.parse import urlsplit
 
 
 def validate_external_statistics(statistics, catalog):
-    sources = (statistics.get('draft') or {}).get('externalSources', {})
+    for kind in ('draft','sealed'):
+        validate_provider_snapshots(statistics.get(kind) or {},catalog,kind)
+
+
+def validate_provider_snapshots(statistics, catalog, kind):
+    sources = statistics.get('externalSources', {})
     def fail(message):
-        raise ValueError('statistics.draft.externalSources: ' + message)
+        raise ValueError('statistics.'+kind+'.externalSources: ' + message)
     if not isinstance(sources, dict):
         fail('deve essere un oggetto')
     by_id = {card['id']: card for card in catalog}

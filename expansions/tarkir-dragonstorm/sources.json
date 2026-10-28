@@ -166,5 +166,133 @@
       "Lo studio esteso non è completo: dieci editori o servizi sono stati cercati, ma pagine mancanti o bloccate non contano come analisi acquisite. Restano da completare recensioni per carta, adozione Constructed/Commander e prezzi Cardmarket."
     ],
     "scopeAudit": "research/tarkir-dragonstorm-20261028/scope-and-gaps.json"
+  },
+  "externalStatistics": {
+    "sealed17landsPublic": {
+      "provider": "17Lands public datasets",
+      "url": "https://www.17lands.com/public_datasets",
+      "retrieved": "2026-10-28",
+      "filters": {
+        "event": "Sealed",
+        "ranks": "Tutti i ranghi nel dataset",
+        "archetype": "Tutti gli archetipi",
+        "period": "Intero dataset pubblico; aggiornamento Tue, 20 May 2025 02:14:24 GMT"
+      },
+      "derivation": {
+        "datasetUrl": "https://17lands-public.s3.amazonaws.com/analysis_data/game_data/game_data_public.TDM.Sealed.csv.gz",
+        "sha256": "c7ba9dc62cd3dd441d5794853584696fda6fb19b6894764680359d10ba8254e8",
+        "compressedBytes": 3817991,
+        "lastModified": "Tue, 20 May 2025 02:14:24 GMT",
+        "games": 41108,
+        "wins": 23540,
+        "license": "CC BY 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Each game counts once per card if opening_hand + drawn > 0, irrespective of copies. Rate = wins / observed games * 100. Includes all ranks and archetypes in this complete public file; not the current live aggregate."
+      },
+      "coverage": {
+        "catalogCards": 292,
+        "matchedCards": 273,
+        "withWinRate": 273,
+        "missingCatalogIds": [
+          "312f7072-3bf8-449f-bfb7-93727ef26c66",
+          "b1d21a9a-6b0c-4fbc-a427-81be885d326b",
+          "f890bdc7-32e6-4492-bac7-7cabf54a8bfd",
+          "a147b94f-dfcf-44ce-8a73-b2fe6c4efc0e",
+          "0d4b46a3-847a-44a7-9f68-2cb4657cad61",
+          "0ec92c44-7cf0-48a5-a3ca-bc633496d887",
+          "10e0a9a3-f63a-4f92-a083-9d181580e498",
+          "d8b43b00-f4d1-436c-bf3f-6d414cd4ce38",
+          "bd78e8ae-e927-40e7-9580-966c5e81f53c",
+          "3988dc76-072c-4f43-849d-2e73c6f6ff58",
+          "317744d1-ed78-4b53-a4d8-8c7ecfd9c4ae",
+          "2999e3b1-6510-42b2-9429-28c07a64a44f",
+          "56a25eb1-bdb8-4f86-8d9a-3055ad1b2a13",
+          "b3aecdfc-9d37-4f1f-9123-fc07b669d747",
+          "484b5580-b179-4dce-8bdf-d714eb4635e5",
+          "9cf54062-7b5b-4e46-ae1e-fab7e419a9fa",
+          "4981dc79-4efd-40e1-9fc1-c08e284aff22",
+          "081f2de5-251a-41c9-a62f-11487f54d355",
+          "53b11c30-1c4e-4238-9d42-2e1480df60c1"
+        ],
+        "unmatchedSourceNames": [
+          "Bloomvine Regent",
+          "Dirgur Island Dragon",
+          "Disruptive Stormbrood",
+          "Feral Deathgorger",
+          "Marang River Regent",
+          "Purging Stormbrood",
+          "Riling Dawnbreaker",
+          "Runescale Stormbrood",
+          "Sagu Wildling",
+          "Scavenger Regent",
+          "Stormshriek Feral",
+          "Twinmaw Stormbrood",
+          "Whirlwing Stormbrood"
+        ]
+      }
+    },
+    "draft17landsPublic": {
+      "provider": "17Lands public datasets",
+      "url": "https://www.17lands.com/public_datasets",
+      "retrieved": "2026-10-28",
+      "filters": {
+        "event": "PremierDraft",
+        "ranks": "Tutti i ranghi nel dataset",
+        "archetype": "Tutti gli archetipi",
+        "period": "Intero dataset pubblico; aggiornamento Tue, 20 May 2025 02:14:28 GMT"
+      },
+      "derivation": {
+        "datasetUrl": "https://17lands-public.s3.amazonaws.com/analysis_data/game_data/game_data_public.TDM.PremierDraft.csv.gz",
+        "sha256": "e2e679168818d67d812972343ba541d626d0f57140bc22955e09dd07bc2086e4",
+        "compressedBytes": 45818734,
+        "lastModified": "Tue, 20 May 2025 02:14:28 GMT",
+        "games": 552428,
+        "wins": 303928,
+        "license": "CC BY 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Each game counts once per card if opening_hand + drawn > 0, irrespective of copies. Rate = wins / observed games * 100. Includes all ranks and archetypes in this complete public file; not the current live aggregate."
+      },
+      "coverage": {
+        "catalogCards": 292,
+        "matchedCards": 273,
+        "withWinRate": 273,
+        "missingCatalogIds": [
+          "312f7072-3bf8-449f-bfb7-93727ef26c66",
+          "b1d21a9a-6b0c-4fbc-a427-81be885d326b",
+          "f890bdc7-32e6-4492-bac7-7cabf54a8bfd",
+          "a147b94f-dfcf-44ce-8a73-b2fe6c4efc0e",
+          "0d4b46a3-847a-44a7-9f68-2cb4657cad61",
+          "0ec92c44-7cf0-48a5-a3ca-bc633496d887",
+          "10e0a9a3-f63a-4f92-a083-9d181580e498",
+          "d8b43b00-f4d1-436c-bf3f-6d414cd4ce38",
+          "bd78e8ae-e927-40e7-9580-966c5e81f53c",
+          "3988dc76-072c-4f43-849d-2e73c6f6ff58",
+          "317744d1-ed78-4b53-a4d8-8c7ecfd9c4ae",
+          "2999e3b1-6510-42b2-9429-28c07a64a44f",
+          "56a25eb1-bdb8-4f86-8d9a-3055ad1b2a13",
+          "b3aecdfc-9d37-4f1f-9123-fc07b669d747",
+          "484b5580-b179-4dce-8bdf-d714eb4635e5",
+          "9cf54062-7b5b-4e46-ae1e-fab7e419a9fa",
+          "4981dc79-4efd-40e1-9fc1-c08e284aff22",
+          "081f2de5-251a-41c9-a62f-11487f54d355",
+          "53b11c30-1c4e-4238-9d42-2e1480df60c1"
+        ],
+        "unmatchedSourceNames": [
+          "Bloomvine Regent",
+          "Dirgur Island Dragon",
+          "Disruptive Stormbrood",
+          "Feral Deathgorger",
+          "Marang River Regent",
+          "Purging Stormbrood",
+          "Riling Dawnbreaker",
+          "Runescale Stormbrood",
+          "Sagu Wildling",
+          "Scavenger Regent",
+          "Stormshriek Feral",
+          "Twinmaw Stormbrood",
+          "Whirlwing Stormbrood"
+        ]
+      }
+    }
   }
 }

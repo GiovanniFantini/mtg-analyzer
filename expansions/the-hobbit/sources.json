@@ -179,5 +179,137 @@
         "status": "acquired"
       }
     ]
+  },
+  "externalStatistics": {
+    "sealed17landsPublic": {
+      "provider": "17Lands public datasets",
+      "url": "https://www.17lands.com/public_datasets",
+      "retrieved": "2026-10-28",
+      "filters": {
+        "event": "Sealed",
+        "ranks": "Tutti i ranghi nel dataset",
+        "archetype": "Tutti gli archetipi",
+        "period": "Intero dataset pubblico; aggiornamento Thu, 01 Oct 2026 13:16:56 GMT"
+      },
+      "derivation": {
+        "datasetUrl": "https://17lands-public.s3.amazonaws.com/analysis_data/game_data/game_data_public.HOB.Sealed.csv.gz",
+        "sha256": "867b30f6d4e4b1038c471fb66da1d9d434956f530a2f13b318fd35cb37f7f0e0",
+        "compressedBytes": 4496858,
+        "lastModified": "Thu, 01 Oct 2026 13:16:56 GMT",
+        "games": 59310,
+        "wins": 33928,
+        "license": "CC BY 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Each game counts once per card if opening_hand + drawn > 0, irrespective of copies. Rate = wins / observed games * 100. Includes all ranks and archetypes in this complete public file; not the current live aggregate."
+      },
+      "coverage": {
+        "catalogCards": 193,
+        "matchedCards": 176,
+        "withWinRate": 176,
+        "missingCatalogIds": [
+          "6b8e6435-7de4-41d5-bc7d-8e24c11897d0",
+          "3aa29fe8-1687-486f-b4df-c04977869ab1",
+          "5cc0f994-5048-4898-926e-b56cbc97e0ca",
+          "8bff0aa6-16d9-4c83-b598-ef00a3b33d2c",
+          "6a109b3e-9f5b-4625-abb7-6b992c10530b",
+          "4202a678-a5f4-47f9-9c18-e88ab9ad20a4",
+          "2d838feb-89f2-4cdb-a5ab-ec880f28d873",
+          "6cfaa182-3fec-4907-8814-b4d29c33cec3",
+          "c87f6004-e1cf-42b2-9647-322bc4939339",
+          "9b0d29a1-7da9-4fb3-8536-8ff8d8acae0b",
+          "5793b8eb-2fc5-454d-8fa2-20346fef167a",
+          "419ca9e5-8413-4378-a4ef-eda5a1024218",
+          "804589b7-3ef9-473d-97cc-c61a2d41f70d",
+          "481870ee-d1f7-421b-86e1-570ea933bbbc",
+          "a56a88ba-fcfa-4b56-bdae-a080b297b871",
+          "a5cfbfde-783e-46ca-b3cf-11f16209d6cb",
+          "15ae4d50-be2f-412c-bb6b-b0a06b60474a"
+        ],
+        "unmatchedSourceNames": [
+          "An Unexpected Party",
+          "Beorn, Reluctant Host",
+          "Bilbo Baggins, Burglar",
+          "Bilbo, Luckwearer",
+          "Bofur, Reliable Guardian",
+          "Gandalf, Goblins' Bane",
+          "Glamdring, Foe-hammer",
+          "Glóin the Mighty",
+          "Gollum, Silent Slinker",
+          "Great Ugly-Looking Goblin",
+          "Lake-town Mariners",
+          "Most Decrepit Old Bird",
+          "My Precious",
+          "Smaug, the Great Calamity",
+          "The Arkenstone",
+          "Thranduil, Sindarin Liege",
+          "Velvetwing Butterflies"
+        ]
+      }
+    },
+    "draft17landsPublic": {
+      "provider": "17Lands public datasets",
+      "url": "https://www.17lands.com/public_datasets",
+      "retrieved": "2026-10-28",
+      "filters": {
+        "event": "PremierDraft",
+        "ranks": "Tutti i ranghi nel dataset",
+        "archetype": "Tutti gli archetipi",
+        "period": "Intero dataset pubblico; aggiornamento Thu, 01 Oct 2026 13:17:00 GMT"
+      },
+      "derivation": {
+        "datasetUrl": "https://17lands-public.s3.amazonaws.com/analysis_data/game_data/game_data_public.HOB.PremierDraft.csv.gz",
+        "sha256": "1ca977bb415ac8fce04b889b9b2d93a6540cf21a033dfa9fb0907af443000676",
+        "compressedBytes": 22072331,
+        "lastModified": "Thu, 01 Oct 2026 13:17:00 GMT",
+        "games": 323114,
+        "wins": 181467,
+        "license": "CC BY 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Each game counts once per card if opening_hand + drawn > 0, irrespective of copies. Rate = wins / observed games * 100. Includes all ranks and archetypes in this complete public file; not the current live aggregate."
+      },
+      "coverage": {
+        "catalogCards": 193,
+        "matchedCards": 176,
+        "withWinRate": 176,
+        "missingCatalogIds": [
+          "6b8e6435-7de4-41d5-bc7d-8e24c11897d0",
+          "3aa29fe8-1687-486f-b4df-c04977869ab1",
+          "5cc0f994-5048-4898-926e-b56cbc97e0ca",
+          "8bff0aa6-16d9-4c83-b598-ef00a3b33d2c",
+          "6a109b3e-9f5b-4625-abb7-6b992c10530b",
+          "4202a678-a5f4-47f9-9c18-e88ab9ad20a4",
+          "2d838feb-89f2-4cdb-a5ab-ec880f28d873",
+          "6cfaa182-3fec-4907-8814-b4d29c33cec3",
+          "c87f6004-e1cf-42b2-9647-322bc4939339",
+          "9b0d29a1-7da9-4fb3-8536-8ff8d8acae0b",
+          "5793b8eb-2fc5-454d-8fa2-20346fef167a",
+          "419ca9e5-8413-4378-a4ef-eda5a1024218",
+          "804589b7-3ef9-473d-97cc-c61a2d41f70d",
+          "481870ee-d1f7-421b-86e1-570ea933bbbc",
+          "a56a88ba-fcfa-4b56-bdae-a080b297b871",
+          "a5cfbfde-783e-46ca-b3cf-11f16209d6cb",
+          "15ae4d50-be2f-412c-bb6b-b0a06b60474a"
+        ],
+        "unmatchedSourceNames": [
+          "An Unexpected Party",
+          "Beorn, Reluctant Host",
+          "Bilbo Baggins, Burglar",
+          "Bilbo, Luckwearer",
+          "Bofur, Reliable Guardian",
+          "Gandalf, Goblins' Bane",
+          "Glamdring, Foe-hammer",
+          "Glóin the Mighty",
+          "Gollum, Silent Slinker",
+          "Great Ugly-Looking Goblin",
+          "Lake-town Mariners",
+          "Most Decrepit Old Bird",
+          "My Precious",
+          "Smaug, the Great Calamity",
+          "The Arkenstone",
+          "Thranduil, Sindarin Liege",
+          "Velvetwing Butterflies"
+        ]
+      }
+    }
   }
 }

@@ -8,13 +8,13 @@ from build_expansion import catalog_data
 class CatalogStatisticsTests(unittest.TestCase):
     def fixture(self, status='public'):
         source = {'provider': 'Untapped.gg', 'retrieved': '2026-10-22',
-                  'filters': {'event': 'Premier Draft'},
-                  'metrics': {'inHandWinRate': {'status': status}, 'games': {'status': 'public'}},
+                  'url':'https://example.com/statistics','filters': {'event': 'Premier Draft'},
+                  'metrics': {'inHandWinRate': {'label':'In-hand WR','unit':'percent','status': status}, 'games': {'status': 'public'}},
                   'cards': [{'catalogId': 'one', 'sourceUrl': 'https://example.com/one',
                              'metrics': {'inHandWinRate': 0.0, 'games': 100}},
                             {'catalogId': 'two', 'sourceUrl': 'https://example.com/two',
                              'metrics': {'inHandWinRate': None, 'games': 10}}]}
-        return SimpleNamespace(cards=[{'id': 'one'}, {'id': 'two'}, {'id': 'three'}],
+        return SimpleNamespace(default_event_id=lambda kind:None, manifest={'storage':{}},cards=[{'id': 'one'}, {'id': 'two'}, {'id': 'three'}],
                                data={'cards': {}, 'sentiment': {}, 'statistics': {'draft': {'externalSources': {'untapped': source}}},
                                      'ratings': {}, 'combos': [], 'sources': {}, 'discovery': {}})
 

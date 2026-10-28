@@ -1,0 +1,3586 @@
+{
+  "schemaVersion": 1,
+  "provider": "17Lands public datasets",
+  "url": "https://www.17lands.com/public_datasets",
+  "retrieved": "2026-10-28",
+  "rateUnit": "percent",
+  "filters": {
+    "event": "PremierDraft",
+    "ranks": "Tutti i ranghi nel dataset",
+    "archetype": "Tutti gli archetipi",
+    "period": "Intero dataset pubblico; aggiornamento Wed, 03 Sep 2025 12:42:21 GMT"
+  },
+  "metrics": {
+    "inHandWinRate": {
+      "label": "GIH WR: partite vinte quando la carta era nella mano iniziale o pescata",
+      "unit": "percent",
+      "status": "public"
+    },
+    "games": {
+      "label": "Partite con la carta nella mano iniziale o pescata",
+      "unit": "games",
+      "status": "public"
+    },
+    "wins": {
+      "label": "Vittorie nelle partite del campione GIH",
+      "unit": "games",
+      "status": "public"
+    }
+  },
+  "cards": [
+    {
+      "catalogId": "35372b69-6086-44e0-9f7c-681e362e5142",
+      "name": "Anticausal Vestige",
+      "sourceName": "Anticausal Vestige",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 59.946014845917375,
+        "games": 13337,
+        "wins": 7995
+      }
+    },
+    {
+      "catalogId": "02e8e540-8aa3-4e6a-9a11-c3949cab5f0f",
+      "name": "Tezzeret, Cruel Captain",
+      "sourceName": "Tezzeret, Cruel Captain",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 53.22853688029021,
+        "games": 4135,
+        "wins": 2201
+      }
+    },
+    {
+      "catalogId": "82ae4f7b-8122-4af6-8079-888eabf1a11e",
+      "name": "All-Fates Stalker",
+      "sourceName": "All-Fates Stalker",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 60.07918866351764,
+        "games": 28792,
+        "wins": 17298
+      }
+    },
+    {
+      "catalogId": "4fb36405-cd28-432f-b0a4-e74ff8be928d",
+      "name": "Astelli Reclaimer",
+      "sourceName": "Astelli Reclaimer",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 57.01202060675443,
+        "games": 8735,
+        "wins": 4980
+      }
+    },
+    {
+      "catalogId": "43706295-afd6-442c-8828-8cf978152701",
+      "name": "Auxiliary Boosters",
+      "sourceName": "Auxiliary Boosters",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 55.28457859563551,
+        "games": 31573,
+        "wins": 17455
+      }
+    },
+    {
+      "catalogId": "c45f11cd-a0aa-4d14-aa21-57f0969f3e2b",
+      "name": "Banishing Light",
+      "sourceName": "Banishing Light",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 58.23832578478838,
+        "games": 57627,
+        "wins": 33561
+      }
+    },
+    {
+      "catalogId": "ce503869-8130-4afe-9691-4e90376b4bc4",
+      "name": "Beyond the Quiet",
+      "sourceName": "Beyond the Quiet",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 59.15735167669819,
+        "games": 9304,
+        "wins": 5504
+      }
+    },
+    {
+      "catalogId": "e7f7541a-5910-4f33-8c1d-3507ce3a426e",
+      "name": "Brightspear Zealot",
+      "sourceName": "Brightspear Zealot",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 54.23636926889715,
+        "games": 12912,
+        "wins": 7003
+      }
+    },
+    {
+      "catalogId": "b3c1e5e3-4e6b-456a-958c-7a75c38f8183",
+      "name": "Cosmogrand Zenith",
+      "sourceName": "Cosmogrand Zenith",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 63.73644429838975,
+        "games": 6086,
+        "wins": 3879
+      }
+    },
+    {
+      "catalogId": "5a041722-9483-469f-9c17-7f0253b0db50",
+      "name": "Dawnstrike Vanguard",
+      "sourceName": "Dawnstrike Vanguard",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 52.78218069575373,
+        "games": 11987,
+        "wins": 6327
+      }
+    },
+    {
+      "catalogId": "eeff069f-427b-42ad-afb1-36f0e547fb74",
+      "name": "Dockworker Drone",
+      "sourceName": "Dockworker Drone",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 54.77373131595211,
+        "games": 43687,
+        "wins": 23929
+      }
+    },
+    {
+      "catalogId": "c7e8c830-77ae-437f-8e28-ce61c5fde6b6",
+      "name": "Dual-Sun Adepts",
+      "sourceName": "Dual-Sun Adepts",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 56.876076933823875,
+        "games": 21473,
+        "wins": 12213
+      }
+    },
+    {
+      "catalogId": "f8931132-391f-4f16-b480-0a245ab2ec21",
+      "name": "Dual-Sun Technique",
+      "sourceName": "Dual-Sun Technique",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 51.92367359602854,
+        "games": 6446,
+        "wins": 3347
+      }
+    },
+    {
+      "catalogId": "fc98b2d4-86fc-4c47-b2a7-1f3c89463607",
+      "name": "Emergency Eject",
+      "sourceName": "Emergency Eject",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 53.79554655870445,
+        "games": 11856,
+        "wins": 6378
+      }
+    },
+    {
+      "catalogId": "7e1fe101-f634-41e5-9aa4-e8d7474535dc",
+      "name": "Exalted Sunborn",
+      "sourceName": "Exalted Sunborn",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 58.013593510195136,
+        "games": 4561,
+        "wins": 2646
+      }
+    },
+    {
+      "catalogId": "826c0455-a6ce-43ad-bd5c-0a5df169da90",
+      "name": "Exosuit Savior",
+      "sourceName": "Exosuit Savior",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 53.06944773643043,
+        "games": 25314,
+        "wins": 13434
+      }
+    },
+    {
+      "catalogId": "88cc6328-a035-4f74-b786-390e5c7c324c",
+      "name": "Flight-Deck Coordinator",
+      "sourceName": "Flight-Deck Coordinator",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 54.88378725224583,
+        "games": 14026,
+        "wins": 7698
+      }
+    },
+    {
+      "catalogId": "a9ddfcbc-0f84-4315-aaa3-ca54ff64d7de",
+      "name": "Focus Fire",
+      "sourceName": "Focus Fire",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 57.290897071975735,
+        "games": 51434,
+        "wins": 29467
+      }
+    },
+    {
+      "catalogId": "6f7c63ae-5df3-410f-8643-b8c69133ca9d",
+      "name": "Haliya, Guided by Light",
+      "sourceName": "Haliya, Guided by Light",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 59.800664451827245,
+        "games": 9933,
+        "wins": 5940
+      }
+    },
+    {
+      "catalogId": "0b934241-4d6b-4b9c-99f1-c49cb387cf56",
+      "name": "Hardlight Containment",
+      "sourceName": "Hardlight Containment",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 52.51202565473009,
+        "games": 3742,
+        "wins": 1965
+      }
+    },
+    {
+      "catalogId": "d0b4e925-1d59-41a1-bc06-9982695d778f",
+      "name": "Honor",
+      "sourceName": "Honor",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 56.388795893315475,
+        "games": 17922,
+        "wins": 10106
+      }
+    },
+    {
+      "catalogId": "05a6ab03-f0b9-4738-a5f9-5d95bb22de75",
+      "name": "Honored Knight-Captain",
+      "sourceName": "Honored Knight-Captain",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 56.591547953690025,
+        "games": 20989,
+        "wins": 11878
+      }
+    },
+    {
+      "catalogId": "34334971-c1b7-4506-a6dd-77f66b3ae4e7",
+      "name": "Knight Luminary",
+      "sourceName": "Knight Luminary",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 58.11780086212988,
+        "games": 56604,
+        "wins": 32897
+      }
+    },
+    {
+      "catalogId": "635245e9-c27f-4a51-a6f1-bae62e696542",
+      "name": "Lightstall Inquisitor",
+      "sourceName": "Lightstall Inquisitor",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 58.005444196980946,
+        "games": 8082,
+        "wins": 4688
+      }
+    },
+    {
+      "catalogId": "0cc59b5a-65fa-47cc-8ac7-b7c3f533a782",
+      "name": "Lumen-Class Frigate",
+      "sourceName": "Lumen-Class Frigate",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 60.38081288905163,
+        "games": 10924,
+        "wins": 6596
+      }
+    },
+    {
+      "catalogId": "c1236731-0d33-4705-8077-3cf58acf9a39",
+      "name": "Luxknight Breacher",
+      "sourceName": "Luxknight Breacher",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 51.85734216951517,
+        "games": 11468,
+        "wins": 5947
+      }
+    },
+    {
+      "catalogId": "b1f40c4c-a955-4d9c-8225-251fa4159124",
+      "name": "Pinnacle Starcage",
+      "sourceName": "Pinnacle Starcage",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 48.21937321937322,
+        "games": 1404,
+        "wins": 677
+      }
+    },
+    {
+      "catalogId": "8d989cdc-cbd7-4b71-9589-59618597ac8a",
+      "name": "Pulsar Squadron Ace",
+      "sourceName": "Pulsar Squadron Ace",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 55.645044610561854,
+        "games": 20735,
+        "wins": 11538
+      }
+    },
+    {
+      "catalogId": "8c38e4cb-918b-4493-872b-66c90dcfd339",
+      "name": "Radiant Strike",
+      "sourceName": "Radiant Strike",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 55.88415653919054,
+        "games": 35876,
+        "wins": 20049
+      }
+    },
+    {
+      "catalogId": "c08c7bf9-a2ed-45c6-8b48-15122d9d9e37",
+      "name": "Rayblade Trooper",
+      "sourceName": "Rayblade Trooper",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 58.8501421307603,
+        "games": 24977,
+        "wins": 14699
+      }
+    },
+    {
+      "catalogId": "3bbdba38-2b99-4226-98e3-6d2580345d6d",
+      "name": "Reroute Systems",
+      "sourceName": "Reroute Systems",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 52.593507410021175,
+        "games": 11336,
+        "wins": 5962
+      }
+    },
+    {
+      "catalogId": "6fe86bfb-c67d-4df9-88c9-f083091f4cda",
+      "name": "Rescue Skiff",
+      "sourceName": "Rescue Skiff",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 53.03843490304709,
+        "games": 11552,
+        "wins": 6127
+      }
+    },
+    {
+      "catalogId": "ebf3a6dd-a447-46f9-8b10-091ac8cbaa18",
+      "name": "Scout for Survivors",
+      "sourceName": "Scout for Survivors",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 51.497881046324714,
+        "games": 6843,
+        "wins": 3524
+      }
+    },
+    {
+      "catalogId": "9d298847-2d02-4593-b4d3-c5b722edac1e",
+      "name": "Seam Rip",
+      "sourceName": "Seam Rip",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 54.690636977550646,
+        "games": 10958,
+        "wins": 5993
+      }
+    },
+    {
+      "catalogId": "dec91ec3-42d3-4922-96f0-dbb50a576084",
+      "name": "The Seriema",
+      "sourceName": "The Seriema",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 60.23189278723084,
+        "games": 6641,
+        "wins": 4000
+      }
+    },
+    {
+      "catalogId": "2a0accba-85d4-4aa4-a70c-80fcce48c261",
+      "name": "Squire's Lightblade",
+      "sourceName": "Squire's Lightblade",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 53.949110163259306,
+        "games": 6799,
+        "wins": 3668
+      }
+    },
+    {
+      "catalogId": "1226e575-aa78-4c68-be1d-6e5c2dc6315b",
+      "name": "Starfield Shepherd",
+      "sourceName": "Starfield Shepherd",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 58.640024083690825,
+        "games": 26574,
+        "wins": 15583
+      }
+    },
+    {
+      "catalogId": "1e571246-aadc-4d1f-a284-9a529e150fe0",
+      "name": "Starfighter Pilot",
+      "sourceName": "Starfighter Pilot",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 54.28037278866008,
+        "games": 35838,
+        "wins": 19453
+      }
+    },
+    {
+      "catalogId": "238cb1db-6c41-4fe1-bc34-340048dfde18",
+      "name": "Starport Security",
+      "sourceName": "Starport Security",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 53.92489787883262,
+        "games": 20319,
+        "wins": 10957
+      }
+    },
+    {
+      "catalogId": "83719626-3ff8-4566-9911-88212e753c69",
+      "name": "Sunstar Chaplain",
+      "sourceName": "Sunstar Chaplain",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 60.90297790585975,
+        "games": 11451,
+        "wins": 6974
+      }
+    },
+    {
+      "catalogId": "93b0e6e5-9fb6-4342-9322-1a4cc09a7a76",
+      "name": "Sunstar Expansionist",
+      "sourceName": "Sunstar Expansionist",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 57.98154878389712,
+        "games": 25039,
+        "wins": 14518
+      }
+    },
+    {
+      "catalogId": "5f60b09d-9814-4a36-a57d-59b0e04c1c2f",
+      "name": "Sunstar Lightsmith",
+      "sourceName": "Sunstar Lightsmith",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 56.64176948788842,
+        "games": 24233,
+        "wins": 13726
+      }
+    },
+    {
+      "catalogId": "2cb0984f-dc8b-4bb3-a4fd-8d6d4ae20198",
+      "name": "Wedgelight Rammer",
+      "sourceName": "Wedgelight Rammer",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 54.785864732038384,
+        "games": 12819,
+        "wins": 7023
+      }
+    },
+    {
+      "catalogId": "8d72b00c-5043-4630-949a-fc17eeb962bc",
+      "name": "Weftblade Enhancer",
+      "sourceName": "Weftblade Enhancer",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 54.33146007846464,
+        "games": 28293,
+        "wins": 15372
+      }
+    },
+    {
+      "catalogId": "f5973fd3-d6bc-48f1-8a44-57d2a6dda228",
+      "name": "Zealous Display",
+      "sourceName": "Zealous Display",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 51.37327188940092,
+        "games": 5425,
+        "wins": 2787
+      }
+    },
+    {
+      "catalogId": "4feeebea-aa55-4599-ab5a-4e41a54d0dfd",
+      "name": "Annul",
+      "sourceName": "Annul",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 51.46753631781797,
+        "games": 6746,
+        "wins": 3472
+      }
+    },
+    {
+      "catalogId": "3554f0c7-ea73-43e9-a061-bbb8ef6abce1",
+      "name": "Atomic Microsizer",
+      "sourceName": "Atomic Microsizer",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 50.208159866777684,
+        "games": 2402,
+        "wins": 1206
+      }
+    },
+    {
+      "catalogId": "4d3b5d73-694c-4f9a-8b4f-d8d8c58c8d65",
+      "name": "Cerebral Download",
+      "sourceName": "Cerebral Download",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 55.36417535811659,
+        "games": 23107,
+        "wins": 12793
+      }
+    },
+    {
+      "catalogId": "51077a54-15cf-4088-8e84-088d72e8e861",
+      "name": "Cloudsculpt Technician",
+      "sourceName": "Cloudsculpt Technician",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 52.29269632070291,
+        "games": 14568,
+        "wins": 7618
+      }
+    },
+    {
+      "catalogId": "6723b891-6013-4ec6-b439-2233d270dc48",
+      "name": "Codecracker Hound",
+      "sourceName": "Codecracker Hound",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 60.21615934578322,
+        "games": 41821,
+        "wins": 25183
+      }
+    },
+    {
+      "catalogId": "a16a6555-2e3a-4587-aacd-0307d696b26c",
+      "name": "Consult the Star Charts",
+      "sourceName": "Consult the Star Charts",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 57.28898128898129,
+        "games": 12025,
+        "wins": 6889
+      }
+    },
+    {
+      "catalogId": "7bfb33b6-e2bf-498f-8c58-ae21a840cf75",
+      "name": "Cryogen Relic",
+      "sourceName": "Cryogen Relic",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 59.16807306661372,
+        "games": 80584,
+        "wins": 47680
+      }
+    },
+    {
+      "catalogId": "7b62b1e2-9e43-4a66-a647-7e5de2871f2a",
+      "name": "Cryoshatter",
+      "sourceName": "Cryoshatter",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 56.58321325648415,
+        "games": 66624,
+        "wins": 37698
+      }
+    },
+    {
+      "catalogId": "77fdbf32-b5f4-4346-846d-d8e0e53e6e53",
+      "name": "Desculpting Blast",
+      "sourceName": "Desculpting Blast",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 57.62445359916978,
+        "games": 31799,
+        "wins": 18324
+      }
+    },
+    {
+      "catalogId": "c5f7d2fe-628b-4493-8281-0e5f91ce5d61",
+      "name": "Divert Disaster",
+      "sourceName": "Divert Disaster",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 57.160872431286,
+        "games": 34891,
+        "wins": 19944
+      }
+    },
+    {
+      "catalogId": "b52ba87f-3ac7-4f32-901c-d089df979f94",
+      "name": "Emissary Escort",
+      "sourceName": "Emissary Escort",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 57.423741271591325,
+        "games": 10884,
+        "wins": 6250
+      }
+    },
+    {
+      "catalogId": "abc83e0a-0ae5-4087-a751-058a1ba6a920",
+      "name": "Gigastorm Titan",
+      "sourceName": "Gigastorm Titan",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 57.40182208264668,
+        "games": 32161,
+        "wins": 18461
+      }
+    },
+    {
+      "catalogId": "769f7d13-a312-4d79-8639-6ae248452448",
+      "name": "Illvoi Galeblade",
+      "sourceName": "Illvoi Galeblade",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 55.13700748438176,
+        "games": 32334,
+        "wins": 17828
+      }
+    },
+    {
+      "catalogId": "2db4ed41-0426-4d7f-bb43-e43392bed83b",
+      "name": "Illvoi Infiltrator",
+      "sourceName": "Illvoi Infiltrator",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 54.78243902439024,
+        "games": 25625,
+        "wins": 14038
+      }
+    },
+    {
+      "catalogId": "efb3d961-543c-4404-b4ed-1cb28ee411b3",
+      "name": "Illvoi Light Jammer",
+      "sourceName": "Illvoi Light Jammer",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 55.79236672889442,
+        "games": 19284,
+        "wins": 10759
+      }
+    },
+    {
+      "catalogId": "d0ae9fc7-1802-4806-9996-1f1f458ff6a7",
+      "name": "Illvoi Operative",
+      "sourceName": "Illvoi Operative",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 54.18117899807949,
+        "games": 30721,
+        "wins": 16645
+      }
+    },
+    {
+      "catalogId": "6d9d7979-97af-4c85-86f5-1b3704f74e8b",
+      "name": "Lost in Space",
+      "sourceName": "Lost in Space",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 56.685704126758374,
+        "games": 44999,
+        "wins": 25508
+      }
+    },
+    {
+      "catalogId": "3fd46726-095e-4eb2-a804-eeeb988eee1d",
+      "name": "Mechan Assembler",
+      "sourceName": "Mechan Assembler",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 54.005225169375194,
+        "games": 22583,
+        "wins": 12196
+      }
+    },
+    {
+      "catalogId": "a1fe1d39-42c8-41d0-8bf0-46973e4b07d4",
+      "name": "Mechan Navigator",
+      "sourceName": "Mechan Navigator",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 55.87481348280216,
+        "games": 26137,
+        "wins": 14604
+      }
+    },
+    {
+      "catalogId": "745b2119-4d9f-431f-89b9-10ad48b6dc47",
+      "name": "Mechan Shieldmate",
+      "sourceName": "Mechan Shieldmate",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 53.22858463218922,
+        "games": 23803,
+        "wins": 12670
+      }
+    },
+    {
+      "catalogId": "0cb8d8ce-329a-4a97-b3d8-796703ebcb37",
+      "name": "Mechanozoa",
+      "sourceName": "Mechanozoa",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 55.84418365598766,
+        "games": 46696,
+        "wins": 26077
+      }
+    },
+    {
+      "catalogId": "0f2d12fc-38a0-42e6-9caa-7c18bfcf0011",
+      "name": "Mental Modulation",
+      "sourceName": "Mental Modulation",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 54.02848321880291,
+        "games": 20082,
+        "wins": 10850
+      }
+    },
+    {
+      "catalogId": "82add0a0-e402-4b31-b101-81c0bf332015",
+      "name": "Mm'menon, the Right Hand",
+      "sourceName": "Mm'menon, the Right Hand",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 50.76092971776425,
+        "games": 7228,
+        "wins": 3669
+      }
+    },
+    {
+      "catalogId": "f2a56007-5bca-4edf-9cc4-5f77a273636c",
+      "name": "Moonlit Meditation",
+      "sourceName": "Moonlit Meditation",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 41.18257261410788,
+        "games": 964,
+        "wins": 397
+      }
+    },
+    {
+      "catalogId": "380f16d6-ad43-4e0d-9645-6abde6248182",
+      "name": "Mouth of the Storm",
+      "sourceName": "Mouth of the Storm",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 58.6232440737489,
+        "games": 36448,
+        "wins": 21367
+      }
+    },
+    {
+      "catalogId": "3eeae8c3-7939-4c79-92f0-fbdb9c1b71d3",
+      "name": "Nanoform Sentinel",
+      "sourceName": "Nanoform Sentinel",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 54.6851178609124,
+        "games": 25581,
+        "wins": 13989
+      }
+    },
+    {
+      "catalogId": "120be808-ff3b-4fca-96a1-4db6b9825856",
+      "name": "Quantum Riddler",
+      "sourceName": "Quantum Riddler",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 66.51292802236199,
+        "games": 7155,
+        "wins": 4759
+      }
+    },
+    {
+      "catalogId": "517d1b00-7ec4-489a-ac52-657da24a6379",
+      "name": "Scour for Scrap",
+      "sourceName": "Scour for Scrap",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 54.810568295114656,
+        "games": 12036,
+        "wins": 6597
+      }
+    },
+    {
+      "catalogId": "5b2de056-5c27-44d6-871d-909411bd52dd",
+      "name": "Selfcraft Mechan",
+      "sourceName": "Selfcraft Mechan",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 57.21918207428035,
+        "games": 61766,
+        "wins": 35342
+      }
+    },
+    {
+      "catalogId": "e8fbe740-05ec-4ced-bb9d-3084c8c2b631",
+      "name": "Sinister Cryologist",
+      "sourceName": "Sinister Cryologist",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 47.994825355756795,
+        "games": 3092,
+        "wins": 1484
+      }
+    },
+    {
+      "catalogId": "b862a9f8-2361-4220-99bd-ae2530905195",
+      "name": "Specimen Freighter",
+      "sourceName": "Specimen Freighter",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 56.505967704189096,
+        "games": 25638,
+        "wins": 14487
+      }
+    },
+    {
+      "catalogId": "8a1a0476-7145-4493-97e5-4fc05c85e476",
+      "name": "Starbreach Whale",
+      "sourceName": "Starbreach Whale",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 53.76058041112454,
+        "games": 33080,
+        "wins": 17784
+      }
+    },
+    {
+      "catalogId": "deca0b2a-e7f3-444a-883d-7c41dd62c9cc",
+      "name": "Starfield Vocalist",
+      "sourceName": "Starfield Vocalist",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 54.37796594398437,
+        "games": 10747,
+        "wins": 5844
+      }
+    },
+    {
+      "catalogId": "27d1a010-5790-4b35-9fdc-0e366eed021d",
+      "name": "Starwinder",
+      "sourceName": "Starwinder",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 57.18302194812262,
+        "games": 11026,
+        "wins": 6305
+      }
+    },
+    {
+      "catalogId": "ca468b86-f31a-4cd7-a574-eb984bc4bc3e",
+      "name": "Steelswarm Operator",
+      "sourceName": "Steelswarm Operator",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 53.056956575224504,
+        "games": 16258,
+        "wins": 8626
+      }
+    },
+    {
+      "catalogId": "fba6332c-acba-43f9-877c-ca6c5328aae9",
+      "name": "Synthesizer Labship",
+      "sourceName": "Synthesizer Labship",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 59.91535205848403,
+        "games": 12995,
+        "wins": 7786
+      }
+    },
+    {
+      "catalogId": "efc96d54-d6e1-49b6-b4c2-70b997776548",
+      "name": "Tractor Beam",
+      "sourceName": "Tractor Beam",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 58.75847708022624,
+        "games": 35537,
+        "wins": 20881
+      }
+    },
+    {
+      "catalogId": "e8978214-c853-453d-872d-af56bdaaa3d7",
+      "name": "Unravel",
+      "sourceName": "Unravel",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 55.37124230351322,
+        "games": 13805,
+        "wins": 7644
+      }
+    },
+    {
+      "catalogId": "e23cc5fd-afe4-480c-8858-ed80a082584e",
+      "name": "Uthros Psionicist",
+      "sourceName": "Uthros Psionicist",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 57.55361698107266,
+        "games": 31753,
+        "wins": 18275
+      }
+    },
+    {
+      "catalogId": "1f93887f-35c5-472f-83d0-54227b3bd1d2",
+      "name": "Uthros Scanship",
+      "sourceName": "Uthros Scanship",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 57.08762886597938,
+        "games": 25608,
+        "wins": 14619
+      }
+    },
+    {
+      "catalogId": "39d48ddd-4529-4284-9da3-5272ad362b9b",
+      "name": "Weftwalking",
+      "sourceName": "Weftwalking",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 58.506629448709,
+        "games": 7165,
+        "wins": 4192
+      }
+    },
+    {
+      "catalogId": "33063d26-37f7-4e35-8da2-5770dfabdc41",
+      "name": "Alpharael, Stonechosen",
+      "sourceName": "Alpharael, Stonechosen",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 50.1628664495114,
+        "games": 1842,
+        "wins": 924
+      }
+    },
+    {
+      "catalogId": "dcde5f27-e2f0-4d2a-afa3-f300896ec4b1",
+      "name": "Archenemy's Charm",
+      "sourceName": "Archenemy's Charm",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 57.03413009870377,
+        "games": 8409,
+        "wins": 4796
+      }
+    },
+    {
+      "catalogId": "6f717a3f-c6db-4e8d-8b62-6361ab33d000",
+      "name": "Beamsaw Prospector",
+      "sourceName": "Beamsaw Prospector",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 55.52806187910114,
+        "games": 54558,
+        "wins": 30295
+      }
+    },
+    {
+      "catalogId": "b157330a-2652-4ed9-b8fa-8e72b4eda15c",
+      "name": "Blade of the Swarm",
+      "sourceName": "Blade of the Swarm",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 53.554619767153824,
+        "games": 4037,
+        "wins": 2162
+      }
+    },
+    {
+      "catalogId": "7389fe88-f6ff-4497-a037-9ca283fb89e3",
+      "name": "Chorale of the Void",
+      "sourceName": "Chorale of the Void",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 48.254033081478454,
+        "games": 4897,
+        "wins": 2363
+      }
+    },
+    {
+      "catalogId": "becca990-ab2e-4aa4-be7d-293ec727cb08",
+      "name": "Comet Crawler",
+      "sourceName": "Comet Crawler",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 54.63370241164872,
+        "games": 19779,
+        "wins": 10806
+      }
+    },
+    {
+      "catalogId": "fac87b49-a0cd-42d5-b30a-efc6d5526fc3",
+      "name": "Dark Endurance",
+      "sourceName": "Dark Endurance",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 52.686762778505894,
+        "games": 3052,
+        "wins": 1608
+      }
+    },
+    {
+      "catalogId": "cecb4936-14ca-49f9-b209-6519cab54b30",
+      "name": "Decode Transmissions",
+      "sourceName": "Decode Transmissions",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 52.954356846473026,
+        "games": 24100,
+        "wins": 12762
+      }
+    },
+    {
+      "catalogId": "25520d5a-1a83-42cc-8ace-8b1156019d64",
+      "name": "Depressurize",
+      "sourceName": "Depressurize",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 56.993798909732746,
+        "games": 64021,
+        "wins": 36488
+      }
+    },
+    {
+      "catalogId": "153265b4-0ca4-4245-9226-dd1a083ec91c",
+      "name": "Dubious Delicacy",
+      "sourceName": "Dubious Delicacy",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 61.0301602536137,
+        "games": 34383,
+        "wins": 20984
+      }
+    },
+    {
+      "catalogId": "c69ed7c7-1f49-4299-b3e6-75150258ac59",
+      "name": "Elegy Acolyte",
+      "sourceName": "Elegy Acolyte",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 65.55830150527972,
+        "games": 13353,
+        "wins": 8754
+      }
+    },
+    {
+      "catalogId": "3754fc20-7aaa-437d-97df-d6cf1c29586c",
+      "name": "Embrace Oblivion",
+      "sourceName": "Embrace Oblivion",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 56.17116752910737,
+        "games": 49472,
+        "wins": 27789
+      }
+    },
+    {
+      "catalogId": "cc59796b-9025-44b6-a188-cf6684ebffb9",
+      "name": "Entropic Battlecruiser",
+      "sourceName": "Entropic Battlecruiser",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 52.97608010383831,
+        "games": 5393,
+        "wins": 2857
+      }
+    },
+    {
+      "catalogId": "cbb1b46f-72e0-4c2f-8012-74529bd29a0d",
+      "name": "Faller's Faithful",
+      "sourceName": "Faller's Faithful",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 58.07065217391305,
+        "games": 29440,
+        "wins": 17096
+      }
+    },
+    {
+      "catalogId": "e94b130d-3547-43c5-a319-5ebc571c2e2d",
+      "name": "Fell Gravship",
+      "sourceName": "Fell Gravship",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 60.03963830050787,
+        "games": 32292,
+        "wins": 19388
+      }
+    },
+    {
+      "catalogId": "b3872341-d711-407b-85e4-46ccb99988e1",
+      "name": "Gravblade Heavy",
+      "sourceName": "Gravblade Heavy",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 50.89208633093525,
+        "games": 6950,
+        "wins": 3537
+      }
+    },
+    {
+      "catalogId": "cfa6c57f-a193-48cc-9764-d8348548a111",
+      "name": "Gravkill",
+      "sourceName": "Gravkill",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 56.43356190969077,
+        "games": 61832,
+        "wins": 34894
+      }
+    },
+    {
+      "catalogId": "2a968f01-36ef-4cf6-b1db-630c9cde2064",
+      "name": "Gravpack Monoist",
+      "sourceName": "Gravpack Monoist",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 57.12978806308977,
+        "games": 59027,
+        "wins": 33722
+      }
+    },
+    {
+      "catalogId": "817b5b18-beb5-48c8-aa45-0515ff9ca5da",
+      "name": "Hullcarver",
+      "sourceName": "Hullcarver",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 56.20217892789439,
+        "games": 43783,
+        "wins": 24607
+      }
+    },
+    {
+      "catalogId": "ac80cf18-0707-4358-bdd4-0c2b90d0a1d9",
+      "name": "Hylderblade",
+      "sourceName": "Hylderblade",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 54.84871993793639,
+        "games": 14179,
+        "wins": 7777
+      }
+    },
+    {
+      "catalogId": "e468d528-6cf0-4563-9da2-e388ba56cb9d",
+      "name": "Hymn of the Faller",
+      "sourceName": "Hymn of the Faller",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 52.04791785510553,
+        "games": 17530,
+        "wins": 9124
+      }
+    },
+    {
+      "catalogId": "e9d30cca-ea33-418f-bba3-5103f1dbd751",
+      "name": "Insatiable Skittermaw",
+      "sourceName": "Insatiable Skittermaw",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 52.24206604137222,
+        "games": 15566,
+        "wins": 8132
+      }
+    },
+    {
+      "catalogId": "6860556a-6c34-4c41-89ea-f0bc495a159c",
+      "name": "Lightless Evangel",
+      "sourceName": "Lightless Evangel",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 53.934370387192004,
+        "games": 17614,
+        "wins": 9500
+      }
+    },
+    {
+      "catalogId": "957ae7aa-98d6-402a-9b20-e3e5b7e8dfe3",
+      "name": "Monoist Circuit-Feeder",
+      "sourceName": "Monoist Circuit-Feeder",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 59.450128282284375,
+        "games": 31571,
+        "wins": 18769
+      }
+    },
+    {
+      "catalogId": "acc503e2-5c3a-4200-beb0-7d193d6c869e",
+      "name": "Monoist Sentry",
+      "sourceName": "Monoist Sentry",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 53.62598770851624,
+        "games": 11390,
+        "wins": 6108
+      }
+    },
+    {
+      "catalogId": "f3666a08-d449-496f-969a-bf21d4afbd77",
+      "name": "Perigee Beckoner",
+      "sourceName": "Perigee Beckoner",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 56.770425545421844,
+        "games": 47257,
+        "wins": 26828
+      }
+    },
+    {
+      "catalogId": "837d710a-652f-4c60-a52d-d786231160a4",
+      "name": "Requiem Monolith",
+      "sourceName": "Requiem Monolith",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 55.79831932773109,
+        "games": 10710,
+        "wins": 5976
+      }
+    },
+    {
+      "catalogId": "baeff907-017e-4dee-aae1-19dfaab309de",
+      "name": "Scrounge for Eternity",
+      "sourceName": "Scrounge for Eternity",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 50.4,
+        "games": 7500,
+        "wins": 3780
+      }
+    },
+    {
+      "catalogId": "e99d6fc0-dcf2-4b25-81c2-02c230a36246",
+      "name": "Sothera, the Supervoid",
+      "sourceName": "Sothera, the Supervoid",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 53.64438839848676,
+        "games": 3965,
+        "wins": 2127
+      }
+    },
+    {
+      "catalogId": "396bca07-82ba-49b7-b79e-7784b3a06d48",
+      "name": "Sunset Saboteur",
+      "sourceName": "Sunset Saboteur",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 61.59563173062339,
+        "games": 13186,
+        "wins": 8122
+      }
+    },
+    {
+      "catalogId": "b67cdb6e-9a3b-4887-924d-318faa3c443d",
+      "name": "Susurian Dirgecraft",
+      "sourceName": "Susurian Dirgecraft",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 54.74457215836526,
+        "games": 15660,
+        "wins": 8573
+      }
+    },
+    {
+      "catalogId": "beb97e7b-0ae7-4b08-9ceb-6a7f825bcd49",
+      "name": "Susurian Voidborn",
+      "sourceName": "Susurian Voidborn",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 55.057559478127395,
+        "games": 19545,
+        "wins": 10761
+      }
+    },
+    {
+      "catalogId": "2a8f583c-88b6-4797-b93e-3086845fc326",
+      "name": "Swarm Culler",
+      "sourceName": "Swarm Culler",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 52.641233821381256,
+        "games": 29437,
+        "wins": 15496
+      }
+    },
+    {
+      "catalogId": "79f9525a-4cb7-411e-b7b5-2113e93bcbc3",
+      "name": "Temporal Intervention",
+      "sourceName": "Temporal Intervention",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 52.31270358306189,
+        "games": 3070,
+        "wins": 1606
+      }
+    },
+    {
+      "catalogId": "33410410-72f2-49c4-9e63-a72202cd075a",
+      "name": "Timeline Culler",
+      "sourceName": "Timeline Culler",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 56.33574592200497,
+        "games": 18514,
+        "wins": 10430
+      }
+    },
+    {
+      "catalogId": "78c8bc60-1378-4028-8ab1-3286e459bffb",
+      "name": "Tragic Trajectory",
+      "sourceName": "Tragic Trajectory",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 57.73704617553754,
+        "games": 28370,
+        "wins": 16380
+      }
+    },
+    {
+      "catalogId": "bbcc1d84-9772-475d-924a-75bb54c9bc20",
+      "name": "Umbral Collar Zealot",
+      "sourceName": "Umbral Collar Zealot",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 57.73243271917106,
+        "games": 28277,
+        "wins": 16325
+      }
+    },
+    {
+      "catalogId": "e96c986c-684c-4546-a9c9-b6b903bda101",
+      "name": "Virus Beetle",
+      "sourceName": "Virus Beetle",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 56.9985401459854,
+        "games": 68500,
+        "wins": 39044
+      }
+    },
+    {
+      "catalogId": "6119c016-01b2-44f3-9550-6988324c1d1f",
+      "name": "Voidforged Titan",
+      "sourceName": "Voidforged Titan",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 53.266676469146695,
+        "games": 20403,
+        "wins": 10868
+      }
+    },
+    {
+      "catalogId": "4f50bb47-cc4d-4b81-b5f1-817ca8744d12",
+      "name": "Vote Out",
+      "sourceName": "Vote Out",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 56.199037428901,
+        "games": 25141,
+        "wins": 14129
+      }
+    },
+    {
+      "catalogId": "c0838f25-2193-4305-b73a-bf0c0bb4981a",
+      "name": "Xu-Ifit, Osteoharmonist",
+      "sourceName": "Xu-Ifit, Osteoharmonist",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 55.16329346826127,
+        "games": 8696,
+        "wins": 4797
+      }
+    },
+    {
+      "catalogId": "59cf9f4d-54cd-4cda-9726-65e16100ab46",
+      "name": "Zero Point Ballad",
+      "sourceName": "Zero Point Ballad",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 57.64417385421952,
+        "games": 11826,
+        "wins": 6817
+      }
+    },
+    {
+      "catalogId": "29492df8-3077-4ded-a6e2-51d3bd4669b4",
+      "name": "Bombard",
+      "sourceName": "Bombard",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 54.73217788650158,
+        "games": 43331,
+        "wins": 23716
+      }
+    },
+    {
+      "catalogId": "d96f1c41-3d11-48a8-b962-db46a2d054de",
+      "name": "Cut Propulsion",
+      "sourceName": "Cut Propulsion",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 56.45072100046791,
+        "games": 23509,
+        "wins": 13271
+      }
+    },
+    {
+      "catalogId": "ea713f35-6442-4388-8839-2714374fb4b6",
+      "name": "Debris Field Crusher",
+      "sourceName": "Debris Field Crusher",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 53.28802351212344,
+        "games": 10888,
+        "wins": 5802
+      }
+    },
+    {
+      "catalogId": "fc779971-24e2-46a8-86be-16f0b244a3d2",
+      "name": "Devastating Onslaught",
+      "sourceName": "Devastating Onslaught",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 57.06793206793207,
+        "games": 4004,
+        "wins": 2285
+      }
+    },
+    {
+      "catalogId": "b9d3b6e8-47c8-49e3-b204-8b659e127bde",
+      "name": "Drill Too Deep",
+      "sourceName": "Drill Too Deep",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 49.43639291465379,
+        "games": 2484,
+        "wins": 1228
+      }
+    },
+    {
+      "catalogId": "fa232943-818b-4944-be60-2d80c806bf62",
+      "name": "Frontline War-Rager",
+      "sourceName": "Frontline War-Rager",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 49.95654872749845,
+        "games": 8055,
+        "wins": 4024
+      }
+    },
+    {
+      "catalogId": "cfee64ef-d22d-4024-bc65-59cbd1731d1c",
+      "name": "Full Bore",
+      "sourceName": "Full Bore",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 52.73396424815983,
+        "games": 3804,
+        "wins": 2006
+      }
+    },
+    {
+      "catalogId": "5bbce9fb-401f-4e78-acd5-9d3b506687fd",
+      "name": "Galvanizing Sawship",
+      "sourceName": "Galvanizing Sawship",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 49.89826119126896,
+        "games": 10812,
+        "wins": 5395
+      }
+    },
+    {
+      "catalogId": "b68010e2-7810-43cb-a52e-e73b1834e54e",
+      "name": "Invasive Maneuvers",
+      "sourceName": "Invasive Maneuvers",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 56.20309459835078,
+        "games": 21586,
+        "wins": 12132
+      }
+    },
+    {
+      "catalogId": "7a5a7e89-50e3-43cb-af93-d7d80a630c11",
+      "name": "Kav Landseeker",
+      "sourceName": "Kav Landseeker",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 56.58222549977079,
+        "games": 50173,
+        "wins": 28389
+      }
+    },
+    {
+      "catalogId": "1da2a740-e4ff-4661-ba57-39b15c58e26e",
+      "name": "Kavaron Harrier",
+      "sourceName": "Kavaron Harrier",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 56.5381666849195,
+        "games": 18262,
+        "wins": 10325
+      }
+    },
+    {
+      "catalogId": "617038a8-0544-4d0e-8ff1-c786e60ecd59",
+      "name": "Kavaron Skywarden",
+      "sourceName": "Kavaron Skywarden",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 52.359882005899706,
+        "games": 10170,
+        "wins": 5325
+      }
+    },
+    {
+      "catalogId": "f5e92cdd-75df-499e-94f7-22287f1000b3",
+      "name": "Kavaron Turbodrone",
+      "sourceName": "Kavaron Turbodrone",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 52.221817992827816,
+        "games": 19241,
+        "wins": 10048
+      }
+    },
+    {
+      "catalogId": "5a22024c-2c0f-4487-98d1-ee89cf3dba89",
+      "name": "Lithobraking",
+      "sourceName": "Lithobraking",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 51.85976152340274,
+        "games": 5619,
+        "wins": 2914
+      }
+    },
+    {
+      "catalogId": "474c067f-eb24-4ae8-b4c0-f6f8e24cdb2a",
+      "name": "Melded Moxite",
+      "sourceName": "Melded Moxite",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 56.409702339149696,
+        "games": 37022,
+        "wins": 20884
+      }
+    },
+    {
+      "catalogId": "3ddc240a-62df-4773-98d7-48a9adaf1846",
+      "name": "Memorial Team Leader",
+      "sourceName": "Memorial Team Leader",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 54.159378036929056,
+        "games": 10290,
+        "wins": 5573
+      }
+    },
+    {
+      "catalogId": "a14ecd13-325a-4555-b1dd-d0d0d0826031",
+      "name": "Memorial Vault",
+      "sourceName": "Memorial Vault",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 52.957283680175244,
+        "games": 1826,
+        "wins": 967
+      }
+    },
+    {
+      "catalogId": "7b80b9c9-a871-4c04-b8be-feb81a900591",
+      "name": "Molecular Modifier",
+      "sourceName": "Molecular Modifier",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 55.460571145388094,
+        "games": 16143,
+        "wins": 8953
+      }
+    },
+    {
+      "catalogId": "0ee509dd-9fba-4b6d-a9d4-cc8bf5822ddd",
+      "name": "Nebula Dragon",
+      "sourceName": "Nebula Dragon",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 56.91798383694135,
+        "games": 30811,
+        "wins": 17537
+      }
+    },
+    {
+      "catalogId": "424af0d0-398c-4d78-9ad5-2171bf1bcbd1",
+      "name": "Nova Hellkite",
+      "sourceName": "Nova Hellkite",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 62.19745777468222,
+        "games": 11486,
+        "wins": 7144
+      }
+    },
+    {
+      "catalogId": "2dc7cc17-5319-4694-99c6-8c56a0b40a44",
+      "name": "Orbital Plunge",
+      "sourceName": "Orbital Plunge",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 57.55558346941339,
+        "games": 63688,
+        "wins": 36656
+      }
+    },
+    {
+      "catalogId": "90209957-95db-4b59-979a-316d14ef876c",
+      "name": "Oreplate Pangolin",
+      "sourceName": "Oreplate Pangolin",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 53.780771586037964,
+        "games": 40825,
+        "wins": 21956
+      }
+    },
+    {
+      "catalogId": "d2948913-817b-4715-92d5-ed3cde347be7",
+      "name": "Pain for All",
+      "sourceName": "Pain for All",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 54.577913797500635,
+        "games": 7842,
+        "wins": 4280
+      }
+    },
+    {
+      "catalogId": "a1a1834b-76c2-4496-b8c5-18b69ab34c4c",
+      "name": "Plasma Bolt",
+      "sourceName": "Plasma Bolt",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 55.839896428956735,
+        "games": 46345,
+        "wins": 25879
+      }
+    },
+    {
+      "catalogId": "4b146c78-403f-48c8-941d-41114498bb89",
+      "name": "Possibility Technician",
+      "sourceName": "Possibility Technician",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 61.2075056920782,
+        "games": 12737,
+        "wins": 7796
+      }
+    },
+    {
+      "catalogId": "b7b2fa48-cd2d-42ea-afd8-8cbd7a1bcdab",
+      "name": "Red Tiger Mechan",
+      "sourceName": "Red Tiger Mechan",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 50.73920756948551,
+        "games": 10146,
+        "wins": 5148
+      }
+    },
+    {
+      "catalogId": "830d5532-3b24-470e-912f-f0f5df1cb530",
+      "name": "Remnant Elemental",
+      "sourceName": "Remnant Elemental",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 52.59959486833221,
+        "games": 7405,
+        "wins": 3895
+      }
+    },
+    {
+      "catalogId": "3edd0515-dcc4-4cb5-8b54-9c00173d8a6d",
+      "name": "Rig for War",
+      "sourceName": "Rig for War",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 52.4153248195447,
+        "games": 3602,
+        "wins": 1888
+      }
+    },
+    {
+      "catalogId": "1111173b-ea49-4de4-b5b0-07d768c626b9",
+      "name": "Roving Actuator",
+      "sourceName": "Roving Actuator",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 53.534714534240074,
+        "games": 6323,
+        "wins": 3385
+      }
+    },
+    {
+      "catalogId": "91d7a4c2-1a4b-4e9f-b543-225b6906752f",
+      "name": "Ruinous Rampage",
+      "sourceName": "Ruinous Rampage",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 44.60093896713615,
+        "games": 426,
+        "wins": 190
+      }
+    },
+    {
+      "catalogId": "7ce58765-d2f4-4fbf-8635-580c9400ff2e",
+      "name": "Rust Harvester",
+      "sourceName": "Rust Harvester",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 58.688123854145445,
+        "games": 9818,
+        "wins": 5762
+      }
+    },
+    {
+      "catalogId": "155dcf54-8fdb-4715-97dc-4eb5d3d80d78",
+      "name": "Slagdrill Scrapper",
+      "sourceName": "Slagdrill Scrapper",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 54.62353729167487,
+        "games": 25381,
+        "wins": 13864
+      }
+    },
+    {
+      "catalogId": "2a34c71b-8d3c-435b-9cf8-4902f997d10d",
+      "name": "Systems Override",
+      "sourceName": "Systems Override",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 56.61196911196911,
+        "games": 8288,
+        "wins": 4692
+      }
+    },
+    {
+      "catalogId": "44607ed3-9523-40ac-9f61-0edd011cf762",
+      "name": "Tannuk, Steadfast Second",
+      "sourceName": "Tannuk, Steadfast Second",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 54.8150240045185,
+        "games": 3541,
+        "wins": 1941
+      }
+    },
+    {
+      "catalogId": "1d18dc06-16f0-4a3b-8d52-dbf4aa2c393d",
+      "name": "Terminal Velocity",
+      "sourceName": "Terminal Velocity",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 46.76470588235294,
+        "games": 1020,
+        "wins": 477
+      }
+    },
+    {
+      "catalogId": "13fe3358-fd68-4245-a2ad-aa9200cf4655",
+      "name": "Terrapact Intimidator",
+      "sourceName": "Terrapact Intimidator",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 60.038325976114706,
+        "games": 29223,
+        "wins": 17545
+      }
+    },
+    {
+      "catalogId": "dbb25585-6048-4a85-828e-675bf0da6508",
+      "name": "Territorial Bruntar",
+      "sourceName": "Territorial Bruntar",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 56.10606060606061,
+        "games": 19800,
+        "wins": 11109
+      }
+    },
+    {
+      "catalogId": "36afe3b1-43a2-47b4-bc0a-24efb1e2e5a0",
+      "name": "Vaultguard Trooper",
+      "sourceName": "Vaultguard Trooper",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 53.79177871686515,
+        "games": 13015,
+        "wins": 7001
+      }
+    },
+    {
+      "catalogId": "9e5957f4-1cae-4989-8b40-27fc6e2fcf5e",
+      "name": "Warmaker Gunship",
+      "sourceName": "Warmaker Gunship",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 61.97819049241779,
+        "games": 11738,
+        "wins": 7275
+      }
+    },
+    {
+      "catalogId": "a058f1a6-318c-4bba-981e-ace079ada806",
+      "name": "Weapons Manufacturing",
+      "sourceName": "Weapons Manufacturing",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 48.99306701881809,
+        "games": 3029,
+        "wins": 1484
+      }
+    },
+    {
+      "catalogId": "cddb48cc-8eb1-47ce-90f0-7aad1e93e2c4",
+      "name": "Weftstalker Ardent",
+      "sourceName": "Weftstalker Ardent",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 53.85282067444059,
+        "games": 12692,
+        "wins": 6835
+      }
+    },
+    {
+      "catalogId": "8d5cd0be-4337-4aba-a4f6-5adab7735a73",
+      "name": "Zookeeper Mechan",
+      "sourceName": "Zookeeper Mechan",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 56.39423667538302,
+        "games": 56981,
+        "wins": 32134
+      }
+    },
+    {
+      "catalogId": "bf05e378-7a0c-49e3-8c6e-c0fd56796434",
+      "name": "Atmospheric Greenhouse",
+      "sourceName": "Atmospheric Greenhouse",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 51.050503448822646,
+        "games": 12613,
+        "wins": 6439
+      }
+    },
+    {
+      "catalogId": "800ee479-c1dc-4dd0-9b98-436c78997958",
+      "name": "Bioengineered Future",
+      "sourceName": "Bioengineered Future",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 45.1574332403348,
+        "games": 2509,
+        "wins": 1133
+      }
+    },
+    {
+      "catalogId": "6d73a4a8-5d52-4c12-a96a-45cd202bcc62",
+      "name": "Biosynthic Burst",
+      "sourceName": "Biosynthic Burst",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 57.34327332101577,
+        "games": 46546,
+        "wins": 26691
+      }
+    },
+    {
+      "catalogId": "2ee859bd-d99c-4b1d-9372-7ff4fc1e8c6a",
+      "name": "Blooming Stinger",
+      "sourceName": "Blooming Stinger",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 56.080626238147445,
+        "games": 51993,
+        "wins": 29158
+      }
+    },
+    {
+      "catalogId": "08b1d019-65ab-4dea-9076-041fd6338a35",
+      "name": "Broodguard Elite",
+      "sourceName": "Broodguard Elite",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 53.731540084388186,
+        "games": 15168,
+        "wins": 8150
+      }
+    },
+    {
+      "catalogId": "a8a77351-9115-470f-8141-222c1916b337",
+      "name": "Close Encounter",
+      "sourceName": "Close Encounter",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 57.206097604512514,
+        "games": 28011,
+        "wins": 16024
+      }
+    },
+    {
+      "catalogId": "e0a104c5-61fb-4733-97ab-a31a15a49443",
+      "name": "Diplomatic Relations",
+      "sourceName": "Diplomatic Relations",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 57.18220076742171,
+        "games": 64632,
+        "wins": 36958
+      }
+    },
+    {
+      "catalogId": "1beb7566-305e-4091-bdc4-cf4c789ac05a",
+      "name": "Drix Fatemaker",
+      "sourceName": "Drix Fatemaker",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 54.5936644946546,
+        "games": 35451,
+        "wins": 19354
+      }
+    },
+    {
+      "catalogId": "90741ec9-6893-42d4-b510-8664666094e3",
+      "name": "Edge Rover",
+      "sourceName": "Edge Rover",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 57.93332456601789,
+        "games": 30416,
+        "wins": 17621
+      }
+    },
+    {
+      "catalogId": "64fb2981-86ed-478a-89cd-c6bb078a5bc7",
+      "name": "Eumidian Terrabotanist",
+      "sourceName": "Eumidian Terrabotanist",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 57.16358360536815,
+        "games": 27570,
+        "wins": 15760
+      }
+    },
+    {
+      "catalogId": "011bd7d8-6d60-482a-91b7-d3f0aad13b71",
+      "name": "Eusocial Engineering",
+      "sourceName": "Eusocial Engineering",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 57.43364910357786,
+        "games": 25546,
+        "wins": 14672
+      }
+    },
+    {
+      "catalogId": "2934c9c8-d23a-462b-83d5-94e88c8663ac",
+      "name": "Famished Worldsire",
+      "sourceName": "Famished Worldsire",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 55.612998522895126,
+        "games": 4062,
+        "wins": 2259
+      }
+    },
+    {
+      "catalogId": "c72d85e9-a0bc-4f73-8d73-c58843577f4e",
+      "name": "Frenzied Baloth",
+      "sourceName": "Frenzied Baloth",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 56.73049028140412,
+        "games": 6894,
+        "wins": 3911
+      }
+    },
+    {
+      "catalogId": "9dc9559f-cece-4c85-807c-158291666007",
+      "name": "Fungal Colossus",
+      "sourceName": "Fungal Colossus",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 55.66309646656941,
+        "games": 28103,
+        "wins": 15643
+      }
+    },
+    {
+      "catalogId": "85b898d2-050f-49a2-87af-07d54d105336",
+      "name": "Galactic Wayfarer",
+      "sourceName": "Galactic Wayfarer",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 58.600200632764874,
+        "games": 77754,
+        "wins": 45564
+      }
+    },
+    {
+      "catalogId": "ce7a8eec-a029-4ee1-b2d6-405d903d4640",
+      "name": "Gene Pollinator",
+      "sourceName": "Gene Pollinator",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 57.906778456728716,
+        "games": 70370,
+        "wins": 40749
+      }
+    },
+    {
+      "catalogId": "fcde173a-6314-4904-bddd-68b2ab1e4867",
+      "name": "Germinating Wurm",
+      "sourceName": "Germinating Wurm",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 56.48129505094028,
+        "games": 49666,
+        "wins": 28052
+      }
+    },
+    {
+      "catalogId": "d3291c51-e963-4970-813d-9a06a47aa71e",
+      "name": "Glacier Godmaw",
+      "sourceName": "Glacier Godmaw",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 60.22706464017579,
+        "games": 32766,
+        "wins": 19734
+      }
+    },
+    {
+      "catalogId": "e320abed-f145-42d3-b402-4f82e3a56389",
+      "name": "Harmonious Grovestrider",
+      "sourceName": "Harmonious Grovestrider",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 58.89799695907979,
+        "games": 30254,
+        "wins": 17819
+      }
+    },
+    {
+      "catalogId": "c14137a4-2d44-444c-ad50-e2edf9380571",
+      "name": "Hemosymbic Mite",
+      "sourceName": "Hemosymbic Mite",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 54.636319845857415,
+        "games": 8304,
+        "wins": 4537
+      }
+    },
+    {
+      "catalogId": "e6c1ed0c-0c0d-47a7-8ebc-67854cb226e0",
+      "name": "Icecave Crasher",
+      "sourceName": "Icecave Crasher",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 56.36095919225915,
+        "games": 47540,
+        "wins": 26794
+      }
+    },
+    {
+      "catalogId": "d9482aab-6ddf-48e1-84fa-b13d5ff81e69",
+      "name": "Icetill Explorer",
+      "sourceName": "Icetill Explorer",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 51.913308499830684,
+        "games": 5906,
+        "wins": 3066
+      }
+    },
+    {
+      "catalogId": "809df0ea-deff-47b9-83df-cc1f360d377e",
+      "name": "Intrepid Tenderfoot",
+      "sourceName": "Intrepid Tenderfoot",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 55.200534121798846,
+        "games": 41938,
+        "wins": 23150
+      }
+    },
+    {
+      "catalogId": "d6083f43-58dc-46fc-aeff-347b1080417b",
+      "name": "Larval Scoutlander",
+      "sourceName": "Larval Scoutlander",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 59.65535844625686,
+        "games": 31511,
+        "wins": 18798
+      }
+    },
+    {
+      "catalogId": "24553e98-29a9-47e3-91c7-9add708d9ad1",
+      "name": "Lashwhip Predator",
+      "sourceName": "Lashwhip Predator",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 55.41572323732294,
+        "games": 18991,
+        "wins": 10524
+      }
+    },
+    {
+      "catalogId": "0d2c95bd-79af-4a23-b265-62cc0b164e3e",
+      "name": "Loading Zone",
+      "sourceName": "Loading Zone",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 40.65040650406504,
+        "games": 1230,
+        "wins": 500
+      }
+    },
+    {
+      "catalogId": "df61aa0c-effc-4d57-be19-876a82c41d33",
+      "name": "Meltstrider Eulogist",
+      "sourceName": "Meltstrider Eulogist",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 54.1985299576806,
+        "games": 13469,
+        "wins": 7300
+      }
+    },
+    {
+      "catalogId": "d75629cb-91e2-46fa-9c80-6feb29e1ceb8",
+      "name": "Meltstrider's Gear",
+      "sourceName": "Meltstrider's Gear",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 50.19973368841545,
+        "games": 1502,
+        "wins": 754
+      }
+    },
+    {
+      "catalogId": "53c08af4-b975-4d9d-baba-73e6727f2778",
+      "name": "Meltstrider's Resolve",
+      "sourceName": "Meltstrider's Resolve",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 59.00339750849377,
+        "games": 30022,
+        "wins": 17714
+      }
+    },
+    {
+      "catalogId": "f32302f1-b54f-4489-9d0b-9b771e59da06",
+      "name": "Mightform Harmonizer",
+      "sourceName": "Mightform Harmonizer",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 59.43413391557496,
+        "games": 10992,
+        "wins": 6533
+      }
+    },
+    {
+      "catalogId": "209c591a-4ab2-4e89-9523-a7b766cf4e51",
+      "name": "Ouroboroid",
+      "sourceName": "Ouroboroid",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 67.27039589677833,
+        "games": 6239,
+        "wins": 4197
+      }
+    },
+    {
+      "catalogId": "a70d0877-1a1e-436b-bf8c-0ff6df9efc6a",
+      "name": "Pull Through the Weft",
+      "sourceName": "Pull Through the Weft",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 49.88446726572529,
+        "games": 3895,
+        "wins": 1943
+      }
+    },
+    {
+      "catalogId": "703ad0f3-bd05-42b0-85fb-0cd37807dc91",
+      "name": "Sami's Curiosity",
+      "sourceName": "Sami's Curiosity",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 54.58282140064783,
+        "games": 44765,
+        "wins": 24434
+      }
+    },
+    {
+      "catalogId": "2fc7946d-37b0-4dc8-9daa-8d2204d8e4d2",
+      "name": "Seedship Agrarian",
+      "sourceName": "Seedship Agrarian",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 57.06388206388206,
+        "games": 27676,
+        "wins": 15793
+      }
+    },
+    {
+      "catalogId": "d060d95f-f33a-4fc0-b002-c394d4cd82ce",
+      "name": "Seedship Impact",
+      "sourceName": "Seedship Impact",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 58.588597391176904,
+        "games": 27292,
+        "wins": 15990
+      }
+    },
+    {
+      "catalogId": "bbece737-bd4f-4dc8-bf5c-f77930246ab1",
+      "name": "Shattered Wings",
+      "sourceName": "Shattered Wings",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 52.090553793968,
+        "games": 13561,
+        "wins": 7064
+      }
+    },
+    {
+      "catalogId": "dfea9941-3675-4c0f-bc4d-981c28deed36",
+      "name": "Skystinger",
+      "sourceName": "Skystinger",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 53.855436991869915,
+        "games": 15744,
+        "wins": 8479
+      }
+    },
+    {
+      "catalogId": "dc0cb4b6-cc20-49ea-84b2-2f3af3b0a19e",
+      "name": "Sledge-Class Seedship",
+      "sourceName": "Sledge-Class Seedship",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 56.693609497347815,
+        "games": 7918,
+        "wins": 4489
+      }
+    },
+    {
+      "catalogId": "7cbbab6c-43ae-4e50-97ce-532a3316591a",
+      "name": "Tapestry Warden",
+      "sourceName": "Tapestry Warden",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 54.27862020040791,
+        "games": 11277,
+        "wins": 6121
+      }
+    },
+    {
+      "catalogId": "26008c7d-5dbe-4da2-b475-4dd307e7bc68",
+      "name": "Terrasymbiosis",
+      "sourceName": "Terrasymbiosis",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 48.1,
+        "games": 3000,
+        "wins": 1443
+      }
+    },
+    {
+      "catalogId": "0b7f934f-8eb4-408b-a55f-245ec5cc4a8a",
+      "name": "Thawbringer",
+      "sourceName": "Thawbringer",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 56.489903204272366,
+        "games": 47936,
+        "wins": 27079
+      }
+    },
+    {
+      "catalogId": "349a2211-2b23-418d-a1ef-1c72ad2e171d",
+      "name": "Alpharael, Dreaming Acolyte",
+      "sourceName": "Alpharael, Dreaming Acolyte",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 59.09581299768816,
+        "games": 19465,
+        "wins": 11503
+      }
+    },
+    {
+      "catalogId": "7edcef2c-029c-46bd-bfeb-ff56a57dd63a",
+      "name": "Biomechan Engineer",
+      "sourceName": "Biomechan Engineer",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 60.78264309405715,
+        "games": 32863,
+        "wins": 19975
+      }
+    },
+    {
+      "catalogId": "127c221f-94e7-4a0e-a7a6-79ef399862d3",
+      "name": "Biotech Specialist",
+      "sourceName": "Biotech Specialist",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 60.15146799460525,
+        "games": 9639,
+        "wins": 5798
+      }
+    },
+    {
+      "catalogId": "5e07d3c6-60a5-44d1-a926-6414be85bd50",
+      "name": "Cosmogoyf",
+      "sourceName": "Cosmogoyf",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 37.07865168539326,
+        "games": 89,
+        "wins": 33
+      }
+    },
+    {
+      "catalogId": "994ca692-7138-4dcb-bf46-5da530f86036",
+      "name": "Dyadrine, Synthesis Amalgam",
+      "sourceName": "Dyadrine, Synthesis Amalgam",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 57.530413625304135,
+        "games": 8220,
+        "wins": 4729
+      }
+    },
+    {
+      "catalogId": "40f0ecf7-f49e-46ff-aa5b-9ff5361b72c5",
+      "name": "Genemorph Imago",
+      "sourceName": "Genemorph Imago",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 62.49718616342763,
+        "games": 13327,
+        "wins": 8329
+      }
+    },
+    {
+      "catalogId": "683d6eba-7f98-4105-b318-7f2290012f32",
+      "name": "Haliya, Ascendant Cadet",
+      "sourceName": "Haliya, Ascendant Cadet",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 55.397275430468156,
+        "games": 14461,
+        "wins": 8011
+      }
+    },
+    {
+      "catalogId": "5688894a-bbec-476b-ae2e-94000be258d0",
+      "name": "Infinite Guideline Station",
+      "sourceName": "Infinite Guideline Station",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 46.900269541778975,
+        "games": 371,
+        "wins": 174
+      }
+    },
+    {
+      "catalogId": "198211af-f413-4e9b-9baf-4b4fcb81eadc",
+      "name": "Interceptor Mechan",
+      "sourceName": "Interceptor Mechan",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 57.411821941133546,
+        "games": 20555,
+        "wins": 11801
+      }
+    },
+    {
+      "catalogId": "5546c044-5826-48c3-9d28-866f3c3c5f2c",
+      "name": "Mm'menon, Uthros Exile",
+      "sourceName": "Mm'menon, Uthros Exile",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 53.30971730221574,
+        "games": 14397,
+        "wins": 7675
+      }
+    },
+    {
+      "catalogId": "42d5034f-18f0-4d57-9840-6be52c286247",
+      "name": "Mutinous Massacre",
+      "sourceName": "Mutinous Massacre",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 60.445352839931154,
+        "games": 9296,
+        "wins": 5619
+      }
+    },
+    {
+      "catalogId": "3c922347-f05f-40a4-bbee-6bc02a1e0de5",
+      "name": "Pinnacle Emissary",
+      "sourceName": "Pinnacle Emissary",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 58.46704374927854,
+        "games": 8663,
+        "wins": 5065
+      }
+    },
+    {
+      "catalogId": "011374c3-f69d-4573-8c32-5bd0fe083d6a",
+      "name": "Ragost, Deft Gastronaut",
+      "sourceName": "Ragost, Deft Gastronaut",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 50.886874260938114,
+        "games": 2537,
+        "wins": 1291
+      }
+    },
+    {
+      "catalogId": "75c38cc9-07de-46d4-8195-f04b2b7e0fee",
+      "name": "Sami, Ship's Engineer",
+      "sourceName": "Sami, Ship's Engineer",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 52.010443864229764,
+        "games": 7660,
+        "wins": 3984
+      }
+    },
+    {
+      "catalogId": "bed64207-9193-4770-8f8f-e3203289d5a6",
+      "name": "Sami, Wildcat Captain",
+      "sourceName": "Sami, Wildcat Captain",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 50.46801872074883,
+        "games": 1282,
+        "wins": 647
+      }
+    },
+    {
+      "catalogId": "1abc176f-2ccf-4371-b4b5-030dd99ff7fc",
+      "name": "Seedship Broodtender",
+      "sourceName": "Seedship Broodtender",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 55.27522935779817,
+        "games": 13516,
+        "wins": 7471
+      }
+    },
+    {
+      "catalogId": "a34012e3-ec7a-4713-a2c2-f8efff49e364",
+      "name": "Singularity Rupture",
+      "sourceName": "Singularity Rupture",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 59.362475533600524,
+        "games": 10729,
+        "wins": 6369
+      }
+    },
+    {
+      "catalogId": "edb8dc2a-ddce-48fa-b57e-0e57c87c6671",
+      "name": "Space-Time Anomaly",
+      "sourceName": "Space-Time Anomaly",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 53.45651481363492,
+        "games": 3139,
+        "wins": 1678
+      }
+    },
+    {
+      "catalogId": "ba9f6d16-ee3e-4fbb-b78a-6292188eb61f",
+      "name": "Station Monitor",
+      "sourceName": "Station Monitor",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 59.00651831872331,
+        "games": 22245,
+        "wins": 13126
+      }
+    },
+    {
+      "catalogId": "49554198-549b-4066-86ce-77a03fda0a2f",
+      "name": "Syr Vondam, Sunstar Exemplar",
+      "sourceName": "Syr Vondam, Sunstar Exemplar",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 60.39628793579132,
+        "games": 7974,
+        "wins": 4816
+      }
+    },
+    {
+      "catalogId": "ea954205-5ff5-493b-bf30-6212042c2bc9",
+      "name": "Syr Vondam, the Lucent",
+      "sourceName": "Syr Vondam, the Lucent",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 57.74068698597001,
+        "games": 16536,
+        "wins": 9548
+      }
+    },
+    {
+      "catalogId": "52498b7b-0389-4e7b-b29f-7ac86aab9229",
+      "name": "Tannuk, Memorial Ensign",
+      "sourceName": "Tannuk, Memorial Ensign",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 56.60924081976714,
+        "games": 18981,
+        "wins": 10745
+      }
+    },
+    {
+      "catalogId": "3a5ed010-cb17-45df-b169-ebc807dae534",
+      "name": "All-Fates Scroll",
+      "sourceName": "All-Fates Scroll",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 54.917284654877356,
+        "games": 17530,
+        "wins": 9627
+      }
+    },
+    {
+      "catalogId": "4bb8f2ef-4398-4a07-9130-5005356a3b4a",
+      "name": "Bygone Colossus",
+      "sourceName": "Bygone Colossus",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 45.777111444277864,
+        "games": 2001,
+        "wins": 916
+      }
+    },
+    {
+      "catalogId": "8ef269a0-1cb9-4901-81e6-43db3ae3756c",
+      "name": "Chrome Companion",
+      "sourceName": "Chrome Companion",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 53.24796848066978,
+        "games": 20305,
+        "wins": 10812
+      }
+    },
+    {
+      "catalogId": "0efe5342-42b7-4f49-b4b4-d77055508c4d",
+      "name": "Dauntless Scrapbot",
+      "sourceName": "Dauntless Scrapbot",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 57.12748789671867,
+        "games": 37180,
+        "wins": 21240
+      }
+    },
+    {
+      "catalogId": "6133355c-3dcf-466a-b771-fe6c44d4fa4d",
+      "name": "Dawnsire, Sunstar Dreadnought",
+      "sourceName": "Dawnsire, Sunstar Dreadnought",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 48.92221180880975,
+        "games": 3201,
+        "wins": 1566
+      }
+    },
+    {
+      "catalogId": "f5360880-2849-45d6-b1aa-08c7e01083af",
+      "name": "The Dominion Bracelet",
+      "sourceName": "The Dominion Bracelet",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 49.618849618849616,
+        "games": 1443,
+        "wins": 716
+      }
+    },
+    {
+      "catalogId": "a451a459-18e0-4c53-a171-3e9da534ebf1",
+      "name": "The Endstone",
+      "sourceName": "The Endstone",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 55.776892430278885,
+        "games": 6526,
+        "wins": 3640
+      }
+    },
+    {
+      "catalogId": "1bb90ab9-43b9-4991-806a-0afc4d8caf5f",
+      "name": "The Eternity Elevator",
+      "sourceName": "The Eternity Elevator",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 45.72490706319702,
+        "games": 269,
+        "wins": 123
+      }
+    },
+    {
+      "catalogId": "5541cdd2-84a6-4667-83eb-fffbe5b3cd3d",
+      "name": "Extinguisher Battleship",
+      "sourceName": "Extinguisher Battleship",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 58.30218456682449,
+        "games": 12039,
+        "wins": 7019
+      }
+    },
+    {
+      "catalogId": "a26064bb-c568-4ed6-86db-3aab69b050db",
+      "name": "Nutrient Block",
+      "sourceName": "Nutrient Block",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 55.443763168485596,
+        "games": 42241,
+        "wins": 23420
+      }
+    },
+    {
+      "catalogId": "bf784de8-5ae2-4c07-92bb-a5b7f593b773",
+      "name": "Pinnacle Kill-Ship",
+      "sourceName": "Pinnacle Kill-Ship",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 57.004344048653344,
+        "games": 57550,
+        "wins": 32806
+      }
+    },
+    {
+      "catalogId": "9b4278ea-6cd8-45ad-b024-daf3dedd29e0",
+      "name": "Survey Mechan",
+      "sourceName": "Survey Mechan",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 56.23404767637852,
+        "games": 20765,
+        "wins": 11677
+      }
+    },
+    {
+      "catalogId": "1817f1b5-960a-435c-bdec-8cc8cbcb3358",
+      "name": "Thaumaton Torpedo",
+      "sourceName": "Thaumaton Torpedo",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 50.538243626062325,
+        "games": 5295,
+        "wins": 2676
+      }
+    },
+    {
+      "catalogId": "85caf659-7b43-462e-a342-34703d46eb57",
+      "name": "Thrumming Hivepool",
+      "sourceName": "Thrumming Hivepool",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 58.18658128365595,
+        "games": 13742,
+        "wins": 7996
+      }
+    },
+    {
+      "catalogId": "4120fcfc-3547-4774-a15d-b9cccac04e76",
+      "name": "Virulent Silencer",
+      "sourceName": "Virulent Silencer",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 49.26979246733282,
+        "games": 3903,
+        "wins": 1923
+      }
+    },
+    {
+      "catalogId": "9ace282a-5901-4d36-ad21-17eb88bc5138",
+      "name": "Wurmwall Sweeper",
+      "sourceName": "Wurmwall Sweeper",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 54.03558848536378,
+        "games": 32932,
+        "wins": 17795
+      }
+    },
+    {
+      "catalogId": "c634273a-94b0-4104-9d10-ae522ece1fc7",
+      "name": "Adagia, Windswept Bastion",
+      "sourceName": "Adagia, Windswept Bastion",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 56.72559569561876,
+        "games": 3903,
+        "wins": 2214
+      }
+    },
+    {
+      "catalogId": "3c750d5a-f743-41ff-b5ba-02025ca0bec2",
+      "name": "Breeding Pool",
+      "sourceName": "Breeding Pool",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 56.796769851951545,
+        "games": 8916,
+        "wins": 5064
+      }
+    },
+    {
+      "catalogId": "247670d2-a7cd-4ed7-9c77-704c7962b815",
+      "name": "Command Bridge",
+      "sourceName": "Command Bridge",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 53.5019930041487,
+        "games": 49172,
+        "wins": 26308
+      }
+    },
+    {
+      "catalogId": "2fa09104-acbe-4410-b101-2fe6ac28efde",
+      "name": "Evendo, Waking Haven",
+      "sourceName": "Evendo, Waking Haven",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 51.15931189229619,
+        "games": 1337,
+        "wins": 684
+      }
+    },
+    {
+      "catalogId": "8c542ea4-98c3-4c2d-9066-205ab7aa697a",
+      "name": "Godless Shrine",
+      "sourceName": "Godless Shrine",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 54.82844004244782,
+        "games": 5654,
+        "wins": 3100
+      }
+    },
+    {
+      "catalogId": "60f3ca25-9dcc-4781-bf7b-ab6736d8db29",
+      "name": "Kavaron, Memorial World",
+      "sourceName": "Kavaron, Memorial World",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 57.50051303098707,
+        "games": 4873,
+        "wins": 2802
+      }
+    },
+    {
+      "catalogId": "8b4e2642-3c87-4708-b9b4-2e7f7359ac7d",
+      "name": "Sacred Foundry",
+      "sourceName": "Sacred Foundry",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 52.29181665466763,
+        "games": 4167,
+        "wins": 2179
+      }
+    },
+    {
+      "catalogId": "a997ff9f-045a-44a2-983d-f36414cef1ab",
+      "name": "Secluded Starforge",
+      "sourceName": "Secluded Starforge",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 59.52364933055238,
+        "games": 14863,
+        "wins": 8847
+      }
+    },
+    {
+      "catalogId": "69be21b4-c613-47c6-ba57-f4785861af3e",
+      "name": "Stomping Ground",
+      "sourceName": "Stomping Ground",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 56.10665929814866,
+        "games": 7238,
+        "wins": 4061
+      }
+    },
+    {
+      "catalogId": "aefb8c0d-2bc6-4bec-851e-0137b4abfb22",
+      "name": "Susur Secundi, Void Altar",
+      "sourceName": "Susur Secundi, Void Altar",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 52.477064220183486,
+        "games": 3270,
+        "wins": 1716
+      }
+    },
+    {
+      "catalogId": "11da39d6-cfa6-498d-91b1-11454cc7e5a3",
+      "name": "Uthros, Titanic Godcore",
+      "sourceName": "Uthros, Titanic Godcore",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 50.990990990990994,
+        "games": 1110,
+        "wins": 566
+      }
+    },
+    {
+      "catalogId": "5b8170dc-6a90-46fc-9989-7575f3d402b5",
+      "name": "Watery Grave",
+      "sourceName": "Watery Grave",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 55.17983032620385,
+        "games": 8369,
+        "wins": 4618
+      }
+    },
+    {
+      "catalogId": "089ae01b-e042-4255-b0ee-17d8f416a8d9",
+      "name": "Plains",
+      "sourceName": "Plains",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 55.54144157977266,
+        "games": 214917,
+        "wins": 119368
+      }
+    },
+    {
+      "catalogId": "76313c69-8ec7-49e3-a34e-ade26097284c",
+      "name": "Island",
+      "sourceName": "Island",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 55.66818043313056,
+        "games": 272389,
+        "wins": 151634
+      }
+    },
+    {
+      "catalogId": "3e724e54-a622-4c77-8183-5a397a7c14a9",
+      "name": "Swamp",
+      "sourceName": "Swamp",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 55.34124749142228,
+        "games": 247152,
+        "wins": 136777
+      }
+    },
+    {
+      "catalogId": "3204f401-1bcb-4d97-b15d-113a5d3c3e9f",
+      "name": "Mountain",
+      "sourceName": "Mountain",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 55.314330835870884,
+        "games": 220357,
+        "wins": 121889
+      }
+    },
+    {
+      "catalogId": "8335b9f1-e726-423b-8ba7-6151448ab3fd",
+      "name": "Forest",
+      "sourceName": "Forest",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 56.20102108905821,
+        "games": 257764,
+        "wins": 144866
+      }
+    },
+    {
+      "catalogId": "3afebe8a-9f21-4260-8e93-1ab1dff13c09",
+      "name": "Ancient Tomb",
+      "sourceName": "Ancient Tomb",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 55.23114355231144,
+        "games": 822,
+        "wins": 454
+      }
+    },
+    {
+      "catalogId": "75a02940-4930-4cd6-ba20-a88efd6e82ce",
+      "name": "Blast Zone",
+      "sourceName": "Blast Zone",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 55.502008032128515,
+        "games": 1245,
+        "wins": 691
+      }
+    },
+    {
+      "catalogId": "765fad0a-50fe-4e19-87a1-c3ec70937f61",
+      "name": "Blinkmoth Nexus",
+      "sourceName": "Blinkmoth Nexus",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 58.1657848324515,
+        "games": 2835,
+        "wins": 1649
+      }
+    },
+    {
+      "catalogId": "02a16e1e-1ea8-49af-9cde-2166134f7bdc",
+      "name": "Bonders' Enclave",
+      "sourceName": "Bonders' Enclave",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 57.155361050328224,
+        "games": 2285,
+        "wins": 1306
+      }
+    },
+    {
+      "catalogId": "f74406a2-61f5-4ee4-bfea-8ba74f186e91",
+      "name": "Cascading Cataracts",
+      "sourceName": "Cascading Cataracts",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 46.71916010498688,
+        "games": 381,
+        "wins": 178
+      }
+    },
+    {
+      "catalogId": "d6ca2f32-dd29-4fd5-9d36-253209230ebd",
+      "name": "Cathedral of War",
+      "sourceName": "Cathedral of War",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 56.82119205298013,
+        "games": 2265,
+        "wins": 1287
+      }
+    },
+    {
+      "catalogId": "ca60d7c8-4ceb-46c8-85be-30ba5879b130",
+      "name": "Celestial Colonnade",
+      "sourceName": "Celestial Colonnade",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 62.20626631853786,
+        "games": 3064,
+        "wins": 1906
+      }
+    },
+    {
+      "catalogId": "1617ef81-5815-47e1-9532-2af791bbd5b3",
+      "name": "Contested War Zone",
+      "sourceName": "Contested War Zone",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 39.130434782608695,
+        "games": 69,
+        "wins": 27
+      }
+    },
+    {
+      "catalogId": "a2184faf-6fa0-4d3c-b811-814beffe4320",
+      "name": "Creeping Tar Pit",
+      "sourceName": "Creeping Tar Pit",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 60.98971722365039,
+        "games": 3112,
+        "wins": 1898
+      }
+    },
+    {
+      "catalogId": "be6c67b2-4142-4bb4-a707-6dba787f811e",
+      "name": "Crystal Quarry",
+      "sourceName": "Crystal Quarry",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 56.2043795620438,
+        "games": 274,
+        "wins": 154
+      }
+    },
+    {
+      "catalogId": "463d8132-fe98-4b71-b6a8-0feb4d40a391",
+      "name": "Deserted Temple",
+      "sourceName": "Deserted Temple",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 48.0,
+        "games": 50,
+        "wins": 24
+      }
+    },
+    {
+      "catalogId": "6d9b32b9-837f-438f-b0dd-1f8fb74b9e6b",
+      "name": "Dust Bowl",
+      "sourceName": "Dust Bowl",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 61.702127659574465,
+        "games": 94,
+        "wins": 58
+      }
+    },
+    {
+      "catalogId": "b8a61e4e-e51f-4175-be3a-1f71fefc966f",
+      "name": "Echoing Deeps",
+      "sourceName": "Echoing Deeps",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 47.51131221719457,
+        "games": 221,
+        "wins": 105
+      }
+    },
+    {
+      "catalogId": "010abd40-3f9c-44bc-8570-d539750c3cd7",
+      "name": "Eldrazi Temple",
+      "sourceName": "Eldrazi Temple",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 56.0,
+        "games": 75,
+        "wins": 42
+      }
+    },
+    {
+      "catalogId": "0d79548c-bcef-46b5-929c-efbaf72cb29e",
+      "name": "Endless Sands",
+      "sourceName": "Endless Sands",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 53.46666666666667,
+        "games": 750,
+        "wins": 401
+      }
+    },
+    {
+      "catalogId": "930ff1c5-7f34-47b8-8e8b-720909cc6a69",
+      "name": "Gemstone Caverns",
+      "sourceName": "Gemstone Caverns",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 51.973684210526315,
+        "games": 304,
+        "wins": 158
+      }
+    },
+    {
+      "catalogId": "38900352-9087-4842-9a99-aceb862e5d70",
+      "name": "Grove of the Burnwillows",
+      "sourceName": "Grove of the Burnwillows",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 52.92553191489362,
+        "games": 752,
+        "wins": 398
+      }
+    },
+    {
+      "catalogId": "229c383b-305b-44b1-ba0f-fbe95bbd633f",
+      "name": "High Market",
+      "sourceName": "High Market",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 53.41317365269461,
+        "games": 835,
+        "wins": 446
+      }
+    },
+    {
+      "catalogId": "d9bb686f-d66d-4de3-9497-a7d23d5c87b7",
+      "name": "Hissing Quagmire",
+      "sourceName": "Hissing Quagmire",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 58.19540843566471,
+        "games": 1873,
+        "wins": 1090
+      }
+    },
+    {
+      "catalogId": "4c65f0c0-e771-4236-a3aa-02a0104eb4bc",
+      "name": "Inkmoth Nexus",
+      "sourceName": "Inkmoth Nexus",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 51.63551401869159,
+        "games": 856,
+        "wins": 442
+      }
+    },
+    {
+      "catalogId": "06b24278-4d20-4d74-8be8-c8078e0a1873",
+      "name": "Inventors' Fair",
+      "sourceName": "Inventors' Fair",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 56.011315417256014,
+        "games": 707,
+        "wins": 396
+      }
+    },
+    {
+      "catalogId": "5766b7ed-eb92-4c53-a5ad-577b5466ff6f",
+      "name": "Lavaclaw Reaches",
+      "sourceName": "Lavaclaw Reaches",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 59.491916859122405,
+        "games": 2165,
+        "wins": 1288
+      }
+    },
+    {
+      "catalogId": "e2fdbc99-7696-434e-bbc5-366393ea7f04",
+      "name": "Lotus Field",
+      "sourceName": "Lotus Field",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 46.12403100775194,
+        "games": 258,
+        "wins": 119
+      }
+    },
+    {
+      "catalogId": "d75fb845-e000-4f5d-9546-1fd610726aa2",
+      "name": "Lumbering Falls",
+      "sourceName": "Lumbering Falls",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 58.76685934489403,
+        "games": 2595,
+        "wins": 1525
+      }
+    },
+    {
+      "catalogId": "a374b6ef-bd75-4eae-ac7a-09332b0a653d",
+      "name": "Mana Confluence",
+      "sourceName": "Mana Confluence",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 54.57627118644068,
+        "games": 590,
+        "wins": 322
+      }
+    },
+    {
+      "catalogId": "cc67cb3d-76ae-4394-9f45-41865b12edf5",
+      "name": "Meteor Crater",
+      "sourceName": "Meteor Crater",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 49.056603773584904,
+        "games": 371,
+        "wins": 182
+      }
+    },
+    {
+      "catalogId": "eebffbb3-5421-40e4-af92-999d8eb504f4",
+      "name": "Mirrorpool",
+      "sourceName": "Mirrorpool",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 54.97835497835498,
+        "games": 231,
+        "wins": 127
+      }
+    },
+    {
+      "catalogId": "b13486fe-e5c7-47bf-abe7-d252fd4db459",
+      "name": "Mutavault",
+      "sourceName": "Mutavault",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 58.372093023255815,
+        "games": 1290,
+        "wins": 753
+      }
+    },
+    {
+      "catalogId": "2520c11e-5751-493e-bdae-defe2e05e448",
+      "name": "Mystifying Maze",
+      "sourceName": "Mystifying Maze",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 52.44338498212157,
+        "games": 839,
+        "wins": 440
+      }
+    },
+    {
+      "catalogId": "08fb8639-a0bb-4ad7-86b0-46116a078556",
+      "name": "Needle Spires",
+      "sourceName": "Needle Spires",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 57.70750988142292,
+        "games": 1265,
+        "wins": 730
+      }
+    },
+    {
+      "catalogId": "352b132b-7f97-46e3-8efd-238cb7f87b29",
+      "name": "Nesting Grounds",
+      "sourceName": "Nesting Grounds",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 49.044585987261144,
+        "games": 314,
+        "wins": 154
+      }
+    },
+    {
+      "catalogId": "bf41d9f3-4e77-4b93-b153-d0aeb01ac312",
+      "name": "Petrified Field",
+      "sourceName": "Petrified Field",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 45.0,
+        "games": 80,
+        "wins": 36
+      }
+    },
+    {
+      "catalogId": "c5653373-d4ed-4211-9393-c7839d2d0a73",
+      "name": "Plaza of Heroes",
+      "sourceName": "Plaza of Heroes",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 55.172413793103445,
+        "games": 145,
+        "wins": 80
+      }
+    },
+    {
+      "catalogId": "feaffb58-26e0-4f14-80af-681b785bb059",
+      "name": "Power Depot",
+      "sourceName": "Power Depot",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 49.88986784140969,
+        "games": 908,
+        "wins": 453
+      }
+    },
+    {
+      "catalogId": "ed878350-ebc3-419b-9dd9-384e44906569",
+      "name": "Raging Ravine",
+      "sourceName": "Raging Ravine",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 58.37279380111924,
+        "games": 2323,
+        "wins": 1356
+      }
+    },
+    {
+      "catalogId": "2b4e8ad6-7a60-43d6-a402-c91284993c14",
+      "name": "Reflecting Pool",
+      "sourceName": "Reflecting Pool",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 52.42914979757085,
+        "games": 494,
+        "wins": 259
+      }
+    },
+    {
+      "catalogId": "c287ec37-c54e-4df8-a7be-50d6c4ffc744",
+      "name": "Scavenger Grounds",
+      "sourceName": "Scavenger Grounds",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 47.142857142857146,
+        "games": 140,
+        "wins": 66
+      }
+    },
+    {
+      "catalogId": "7f39bc7a-129e-4d52-8024-396c06906a45",
+      "name": "Shambling Vent",
+      "sourceName": "Shambling Vent",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 58.28819068255688,
+        "games": 1846,
+        "wins": 1076
+      }
+    },
+    {
+      "catalogId": "75ea63a8-3046-4578-a190-72efa34f8d88",
+      "name": "Stirring Wildwood",
+      "sourceName": "Stirring Wildwood",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 58.23591923485654,
+        "games": 1882,
+        "wins": 1096
+      }
+    },
+    {
+      "catalogId": "62aa232c-6034-4417-95a6-77b3a81c505c",
+      "name": "Strip Mine",
+      "sourceName": "Strip Mine",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 55.17515923566879,
+        "games": 1256,
+        "wins": 693
+      }
+    },
+    {
+      "catalogId": "a12a9d09-7b6a-4207-96db-0d968cbdc09c",
+      "name": "Sunken Citadel",
+      "sourceName": "Sunken Citadel",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 57.81315458734814,
+        "games": 2387,
+        "wins": 1380
+      }
+    },
+    {
+      "catalogId": "2b4ee0e7-7528-4fdc-a768-055d2c097f05",
+      "name": "Swarmyard",
+      "sourceName": "Swarmyard",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 59.04198062432723,
+        "games": 1858,
+        "wins": 1097
+      }
+    },
+    {
+      "catalogId": "97b4d936-a7d6-4d43-87b5-0378f57e9e61",
+      "name": "Terrain Generator",
+      "sourceName": "Terrain Generator",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 53.84615384615385,
+        "games": 312,
+        "wins": 168
+      }
+    },
+    {
+      "catalogId": "dc03cbbf-6157-48ee-9687-c91513a95f18",
+      "name": "Thespian's Stage",
+      "sourceName": "Thespian's Stage",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 52.577319587628864,
+        "games": 194,
+        "wins": 102
+      }
+    },
+    {
+      "catalogId": "89d53010-d85f-48e4-bf75-c02e8942f508",
+      "name": "Wandering Fumarole",
+      "sourceName": "Wandering Fumarole",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 57.001484413656605,
+        "games": 2021,
+        "wins": 1152
+      }
+    },
+    {
+      "catalogId": "f461d613-518f-41cf-b08f-0778d40d3cf7",
+      "name": "Warping Wail",
+      "sourceName": "Warping Wail",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 42.10526315789474,
+        "games": 19,
+        "wins": 8
+      }
+    },
+    {
+      "catalogId": "d0269de7-f273-44ac-806b-a36a5cfc6812",
+      "name": "Deafening Silence",
+      "sourceName": "Deafening Silence",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 33.333333333333336,
+        "games": 21,
+        "wins": 7
+      }
+    },
+    {
+      "catalogId": "c89a70e9-c180-483d-8a76-951b52162fda",
+      "name": "Robe of Stars",
+      "sourceName": "Robe of Stars",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 45.45454545454545,
+        "games": 154,
+        "wins": 70
+      }
+    },
+    {
+      "catalogId": "506dab4a-9b63-4f9f-897f-7bb06fea871f",
+      "name": "Nexus of Fate",
+      "sourceName": "Nexus of Fate",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 52.922077922077925,
+        "games": 924,
+        "wins": 489
+      }
+    },
+    {
+      "catalogId": "3f92e3ed-32f7-40e0-952d-08ca524579c3",
+      "name": "Paradox Haze",
+      "sourceName": "Paradox Haze",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 20.0,
+        "games": 5,
+        "wins": 1
+      }
+    },
+    {
+      "catalogId": "ef4c2c08-0a4d-4588-bc35-078da7120937",
+      "name": "Darkness",
+      "sourceName": "Darkness",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 45.0,
+        "games": 60,
+        "wins": 27
+      }
+    },
+    {
+      "catalogId": "d8b965ea-1b8e-475a-be58-78c0f815ea87",
+      "name": "Magus of the Moon",
+      "sourceName": "Magus of the Moon",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 50.0,
+        "games": 22,
+        "wins": 11
+      }
+    },
+    {
+      "catalogId": "a53c6a0e-9bbc-4a7b-8059-bc20806823d9",
+      "name": "Burgeoning",
+      "sourceName": "Burgeoning",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 46.22641509433962,
+        "games": 106,
+        "wins": 49
+      }
+    },
+    {
+      "catalogId": "b090cb9e-fcdd-4fc2-8e5d-b63511f83a13",
+      "name": "Green Sun's Zenith",
+      "sourceName": "Green Sun's Zenith",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 57.02479338842975,
+        "games": 847,
+        "wins": 483
+      }
+    },
+    {
+      "catalogId": "9f1ae7a8-cb6a-4877-810a-f51a3951e7c3",
+      "name": "Sliver Overlord",
+      "sourceName": "Sliver Overlord",
+      "sourceUrl": "https://www.17lands.com/public_datasets",
+      "metrics": {
+        "inHandWinRate": 75.0,
+        "games": 12,
+        "wins": 9
+      }
+    }
+  ],
+  "coverage": {
+    "catalogCards": 321,
+    "matchedCards": 321,
+    "withWinRate": 321,
+    "missingCatalogIds": [],
+    "unmatchedSourceNames": []
+  },
+  "derivation": {
+    "datasetUrl": "https://17lands-public.s3.amazonaws.com/analysis_data/game_data/game_data_public.EOE.PremierDraft.csv.gz",
+    "sha256": "130e7e7580a1cb4b4f635411d187a078bc7bdd9dd3436ef5ff7535e14cadaf1b",
+    "compressedBytes": 45587793,
+    "lastModified": "Wed, 03 Sep 2025 12:42:21 GMT",
+    "games": 563418,
+    "wins": 311657,
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "method": "Each game counts once per card if opening_hand + drawn > 0, irrespective of copies. Rate = wins / observed games * 100. Includes all ranks and archetypes in this complete public file; not the current live aggregate."
+  },
+  "limitations": [
+    "La WR descrive le partite osservate, non la probabilità causale di vittoria della carta.",
+    "Nessuna soglia minima applicata: consultare il campione, soprattutto quando è piccolo.",
+    "Carte assenti o mai viste in mano conservano WR null. Il dataset pubblico ha una propria finestra storica."
+  ]
+}

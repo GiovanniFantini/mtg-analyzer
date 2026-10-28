@@ -577,6 +577,64 @@
       "snapshot": "research/reality-fracture-20261023/untapped-card-data-20261023.json",
       "inputSha256": "29a268d8be3e7ed8a507e06a5218db4a09827b3865c31e227ff4f670d4e3f1c1",
       "note": "Statistiche pubbliche per carta; filtri, valori mancanti e limiti conservati nello snapshot."
+    },
+    "sealed17landsPublic": {
+      "provider": "17Lands public datasets",
+      "url": "https://www.17lands.com/public_datasets",
+      "retrieved": "2026-10-28",
+      "filters": {
+        "event": "Sealed",
+        "ranks": "Tutti i ranghi nel dataset",
+        "archetype": "Tutti gli archetipi",
+        "period": "Intero dataset pubblico; aggiornamento Mon, 19 Oct 2026 16:20:07 GMT"
+      },
+      "derivation": {
+        "datasetUrl": "https://17lands-public.s3.amazonaws.com/analysis_data/game_data/game_data_public.FRA.Sealed.csv.gz",
+        "sha256": "86e11afa0450c208bfb9e0ff5b761151bcd6855766247bc42e08c6522ad6cba9",
+        "compressedBytes": 5649096,
+        "lastModified": "Mon, 19 Oct 2026 16:20:07 GMT",
+        "games": 60525,
+        "wins": 34318,
+        "license": "CC BY 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Each game counts once per card if opening_hand + drawn > 0, irrespective of copies. Rate = wins / observed games * 100. Includes all ranks and archetypes in this complete public file; not the current live aggregate."
+      },
+      "coverage": {
+        "catalogCards": 295,
+        "matchedCards": 295,
+        "withWinRate": 292,
+        "missingCatalogIds": [],
+        "unmatchedSourceNames": []
+      }
+    },
+    "draft17landsPublic": {
+      "provider": "17Lands public datasets",
+      "url": "https://www.17lands.com/public_datasets",
+      "retrieved": "2026-10-28",
+      "filters": {
+        "event": "PremierDraft",
+        "ranks": "Tutti i ranghi nel dataset",
+        "archetype": "Tutti gli archetipi",
+        "period": "Intero dataset pubblico; aggiornamento Mon, 19 Oct 2026 16:20:14 GMT"
+      },
+      "derivation": {
+        "datasetUrl": "https://17lands-public.s3.amazonaws.com/analysis_data/game_data/game_data_public.FRA.PremierDraft.csv.gz",
+        "sha256": "a350666bfd293bd14601105af0187f13353b16fa86e81307432a7b3a9a0bbfdc",
+        "compressedBytes": 24570968,
+        "lastModified": "Mon, 19 Oct 2026 16:20:14 GMT",
+        "games": 297964,
+        "wins": 165143,
+        "license": "CC BY 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Each game counts once per card if opening_hand + drawn > 0, irrespective of copies. Rate = wins / observed games * 100. Includes all ranks and archetypes in this complete public file; not the current live aggregate."
+      },
+      "coverage": {
+        "catalogCards": 295,
+        "matchedCards": 295,
+        "withWinRate": 295,
+        "missingCatalogIds": [],
+        "unmatchedSourceNames": []
+      }
     }
   },
   "externalRankings": {

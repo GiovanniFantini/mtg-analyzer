@@ -138,5 +138,65 @@
         "status": "acquired"
       }
     ]
+  },
+  "externalStatistics": {
+    "sealed17landsPublic": {
+      "provider": "17Lands public datasets",
+      "url": "https://www.17lands.com/public_datasets",
+      "retrieved": "2026-10-28",
+      "filters": {
+        "event": "Sealed",
+        "ranks": "Tutti i ranghi nel dataset",
+        "archetype": "Tutti gli archetipi",
+        "period": "Intero dataset pubblico; aggiornamento Wed, 30 Oct 2024 01:43:37 GMT"
+      },
+      "derivation": {
+        "datasetUrl": "https://17lands-public.s3.amazonaws.com/analysis_data/game_data/game_data_public.DSK.Sealed.csv.gz",
+        "sha256": "210cba18522a08aaa18cb260c53ea594cc66d897e464b9218c9697e962e65b6f",
+        "compressedBytes": 4812974,
+        "lastModified": "Wed, 30 Oct 2024 01:43:37 GMT",
+        "games": 55079,
+        "wins": 30768,
+        "license": "CC BY 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Each game counts once per card if opening_hand + drawn > 0, irrespective of copies. Rate = wins / observed games * 100. Includes all ranks and archetypes in this complete public file; not the current live aggregate."
+      },
+      "coverage": {
+        "catalogCards": 286,
+        "matchedCards": 286,
+        "withWinRate": 286,
+        "missingCatalogIds": [],
+        "unmatchedSourceNames": []
+      }
+    },
+    "draft17landsPublic": {
+      "provider": "17Lands public datasets",
+      "url": "https://www.17lands.com/public_datasets",
+      "retrieved": "2026-10-28",
+      "filters": {
+        "event": "PremierDraft",
+        "ranks": "Tutti i ranghi nel dataset",
+        "archetype": "Tutti gli archetipi",
+        "period": "Intero dataset pubblico; aggiornamento Wed, 30 Oct 2024 01:44:09 GMT"
+      },
+      "derivation": {
+        "datasetUrl": "https://17lands-public.s3.amazonaws.com/analysis_data/game_data/game_data_public.DSK.PremierDraft.csv.gz",
+        "sha256": "9aca1d2f8b3f010fa48b2293c27b4fe0eb6ff5e040f020b9ad703bedd9996a0d",
+        "compressedBytes": 77145600,
+        "lastModified": "Wed, 30 Oct 2024 01:44:09 GMT",
+        "games": 1011949,
+        "wins": 551329,
+        "license": "CC BY 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Each game counts once per card if opening_hand + drawn > 0, irrespective of copies. Rate = wins / observed games * 100. Includes all ranks and archetypes in this complete public file; not the current live aggregate."
+      },
+      "coverage": {
+        "catalogCards": 286,
+        "matchedCards": 286,
+        "withWinRate": 286,
+        "missingCatalogIds": [],
+        "unmatchedSourceNames": []
+      }
+    }
   }
 }

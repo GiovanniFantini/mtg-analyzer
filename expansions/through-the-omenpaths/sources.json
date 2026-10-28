@@ -177,5 +177,99 @@
       "Lo studio esteso non è completo: dieci editori o servizi sono stati cercati, ma pagine mancanti o bloccate non contano come analisi acquisite. Restano da completare recensioni per carta, adozione Constructed/Commander e prezzi Cardmarket."
     ],
     "scopeAudit": "research/through-the-omenpaths-20261028/scope-and-gaps.json"
+  },
+  "externalStatistics": {
+    "draft17landsPublic": {
+      "provider": "17Lands public datasets",
+      "url": "https://www.17lands.com/public_datasets",
+      "retrieved": "2026-10-28",
+      "filters": {
+        "event": "PickTwoDraft",
+        "ranks": "Tutti i ranghi nel dataset",
+        "archetype": "Tutti gli archetipi",
+        "period": "Intero dataset pubblico; aggiornamento Thu, 30 Oct 2025 19:41:09 GMT"
+      },
+      "derivation": {
+        "datasetUrl": "https://17lands-public.s3.amazonaws.com/analysis_data/game_data/game_data_public.OM1.PickTwoDraft.csv.gz",
+        "sha256": "ada5f566697270734b3c92af83b5e4dcde8054387d057d054c7b694bf161c73e",
+        "compressedBytes": 16764157,
+        "lastModified": "Thu, 30 Oct 2025 19:41:09 GMT",
+        "games": 198140,
+        "wins": 109993,
+        "license": "CC BY 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Each game counts once per card if opening_hand + drawn > 0, irrespective of copies. Rate = wins / observed games * 100. Includes all ranks and archetypes in this complete public file; not the current live aggregate."
+      },
+      "coverage": {
+        "catalogCards": 228,
+        "matchedCards": 223,
+        "withWinRate": 223,
+        "missingCatalogIds": [
+          "2ec821c3-3e5c-4af8-a6ef-e2e77aa8668c",
+          "da13a060-36ee-41e9-bab1-af8ddcc893b8",
+          "42a3589f-f09e-4298-b1ae-7165de65bfb8",
+          "a301083a-9130-4384-a355-efe7050871ca",
+          "7feb1493-b73e-4ee3-968e-d69806360952"
+        ],
+        "unmatchedSourceNames": [
+          "Cren, Undercity Dreamer",
+          "Forest",
+          "Goben, Gene-Splice Savant",
+          "Island",
+          "Mountain",
+          "Nia, Skysail Storyteller",
+          "Plains",
+          "Surris, Spidersilk Innovator",
+          "Swamp",
+          "Viggo, Enforcer of Ig's Crossing"
+        ]
+      }
+    },
+    "sealed17landsPublic": {
+      "provider": "17Lands public datasets",
+      "url": "https://www.17lands.com/public_datasets",
+      "retrieved": "2026-10-28",
+      "filters": {
+        "event": "Sealed",
+        "ranks": "Tutti i ranghi nel dataset",
+        "archetype": "Tutti gli archetipi",
+        "period": "Intero dataset pubblico; aggiornamento Thu, 30 Oct 2025 19:40:31 GMT"
+      },
+      "derivation": {
+        "datasetUrl": "https://17lands-public.s3.amazonaws.com/analysis_data/game_data/game_data_public.OM1.Sealed.csv.gz",
+        "sha256": "d8532884116e8eb15a24c13d361733febcc60ae23971199b3f9b58113c6433d6",
+        "compressedBytes": 2531992,
+        "lastModified": "Thu, 30 Oct 2025 19:40:31 GMT",
+        "games": 29961,
+        "wins": 17384,
+        "license": "CC BY 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Each game counts once per card if opening_hand + drawn > 0, irrespective of copies. Rate = wins / observed games * 100. Includes all ranks and archetypes in this complete public file; not the current live aggregate."
+      },
+      "coverage": {
+        "catalogCards": 228,
+        "matchedCards": 223,
+        "withWinRate": 220,
+        "missingCatalogIds": [
+          "2ec821c3-3e5c-4af8-a6ef-e2e77aa8668c",
+          "da13a060-36ee-41e9-bab1-af8ddcc893b8",
+          "42a3589f-f09e-4298-b1ae-7165de65bfb8",
+          "a301083a-9130-4384-a355-efe7050871ca",
+          "7feb1493-b73e-4ee3-968e-d69806360952"
+        ],
+        "unmatchedSourceNames": [
+          "Cren, Undercity Dreamer",
+          "Forest",
+          "Goben, Gene-Splice Savant",
+          "Island",
+          "Mountain",
+          "Nia, Skysail Storyteller",
+          "Plains",
+          "Surris, Spidersilk Innovator",
+          "Swamp",
+          "Viggo, Enforcer of Ig's Crossing"
+        ]
+      }
+    }
   }
 }
