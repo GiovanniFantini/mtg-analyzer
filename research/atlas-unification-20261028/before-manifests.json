@@ -1,0 +1,523 @@
+{
+  "reality-fracture": {
+    "style": "atlas",
+    "storage": {
+      "sealedPool": "fra-sealed-pool-v1",
+      "draftPool": "fra-draft-pool-v1",
+      "sealedSimulator": "fra-sealed-simulator-v1",
+      "draftTable": "mtg-draft-table-fra-v1",
+      "watch": "mtg-fra-discovery-watch-v1"
+    },
+    "routes": {
+      "gallery": "Reality-Fracture-Sealed.html",
+      "draft": "Reality-Fracture-Draft.html",
+      "analysis": "Reality-Fracture-Analisi.html",
+      "simulator": "Reality-Fracture-Simulatore.html",
+      "combos": "Reality-Fracture-Combo.html",
+      "discovery": "Reality-Fracture-Discovery.html",
+      "draft-engine": "Reality-Fracture-Draft-Engine.html",
+      "set": "index.html",
+      "pool": "Reality-Fracture-Sealed.html#pool",
+      "strategy": "Reality-Fracture-Sealed.html#strategy",
+      "method": "Reality-Fracture-Sealed.html#method"
+    }
+  },
+  "star-trek": {
+    "style": "preview",
+    "storage": {
+      "poolPrefix": "mtg-trk-",
+      "mode": "mtg-trk-mode-v1",
+      "watch": "mtg-trk-watch-v1",
+      "draftTable": "mtg-draft-table-trk-v1",
+      "sealedSimulator": "trk-sealed-simulator-v1"
+    },
+    "routes": {
+      "set": "index.html",
+      "gallery": "catalogo.html",
+      "draft": "draft.html",
+      "pool": "sealed.html",
+      "simulator": "simulatore.html",
+      "combos": "sinergie.html",
+      "analysis": "analisi.html",
+      "discovery": "discovery.html",
+      "rules": "regole.html",
+      "method": "fonti.html",
+      "draft-engine": "draft-engine.html"
+    }
+  },
+  "the-hobbit": {
+    "style": "preview",
+    "storage": {
+      "poolPrefix": "mtg-the-hobbit-",
+      "mode": "mtg-the-hobbit-mode-v1",
+      "watch": "mtg-the-hobbit-watch-v1",
+      "draftTable": "mtg-the-hobbit-draftTable-v1",
+      "sealedSimulator": "mtg-the-hobbit-sealedSimulator-v1",
+      "draftPool": "mtg-the-hobbit-draftPool-v1",
+      "sealedPool": "mtg-the-hobbit-sealedPool-v1"
+    },
+    "routes": {
+      "set": "index.html",
+      "gallery": "catalogo.html",
+      "draft": "draft.html",
+      "pool": "sealed.html",
+      "simulator": "simulatore.html",
+      "combos": "sinergie.html",
+      "analysis": "analisi.html",
+      "discovery": "discovery.html",
+      "rules": "regole.html",
+      "method": "fonti.html",
+      "draft-engine": "draft-engine.html"
+    }
+  },
+  "marvel-super-heroes": {
+    "style": "preview",
+    "storage": {
+      "poolPrefix": "mtg-marvel-super-heroes-",
+      "mode": "mtg-marvel-super-heroes-mode-v1",
+      "watch": "mtg-marvel-super-heroes-watch-v1",
+      "draftTable": "mtg-marvel-super-heroes-draftTable-v1",
+      "sealedSimulator": "mtg-marvel-super-heroes-sealedSimulator-v1",
+      "draftPool": "mtg-marvel-super-heroes-draftPool-v1",
+      "sealedPool": "mtg-marvel-super-heroes-sealedPool-v1"
+    },
+    "routes": {
+      "set": "index.html",
+      "gallery": "catalogo.html",
+      "draft": "draft.html",
+      "pool": "sealed.html",
+      "simulator": "simulatore.html",
+      "combos": "sinergie.html",
+      "analysis": "analisi.html",
+      "discovery": "discovery.html",
+      "rules": "regole.html",
+      "method": "fonti.html",
+      "draft-engine": "draft-engine.html"
+    }
+  },
+  "secrets-of-strixhaven": {
+    "style": "preview",
+    "storage": {
+      "poolPrefix": "mtg-secrets-of-strixhaven-",
+      "mode": "mtg-secrets-of-strixhaven-mode-v1",
+      "watch": "mtg-secrets-of-strixhaven-watch-v1",
+      "draftTable": "mtg-secrets-of-strixhaven-draftTable-v1",
+      "sealedSimulator": "mtg-secrets-of-strixhaven-sealedSimulator-v1",
+      "draftPool": "mtg-secrets-of-strixhaven-draftPool-v1",
+      "sealedPool": "mtg-secrets-of-strixhaven-sealedPool-v1"
+    },
+    "routes": {
+      "set": "index.html",
+      "gallery": "catalogo.html",
+      "draft": "draft.html",
+      "pool": "sealed.html",
+      "simulator": "simulatore.html",
+      "combos": "sinergie.html",
+      "analysis": "analisi.html",
+      "discovery": "discovery.html",
+      "rules": "regole.html",
+      "method": "fonti.html",
+      "draft-engine": "draft-engine.html"
+    }
+  },
+  "teenage-mutant-ninja-turtles": {
+    "style": "preview",
+    "storage": {
+      "poolPrefix": "mtg-teenage-mutant-ninja-turtles-",
+      "mode": "mtg-teenage-mutant-ninja-turtles-mode-v1",
+      "watch": "mtg-teenage-mutant-ninja-turtles-watch-v1",
+      "draftTable": "mtg-teenage-mutant-ninja-turtles-draftTable-v1",
+      "sealedSimulator": "mtg-teenage-mutant-ninja-turtles-sealedSimulator-v1",
+      "draftPool": "mtg-teenage-mutant-ninja-turtles-draftPool-v1",
+      "sealedPool": "mtg-teenage-mutant-ninja-turtles-sealedPool-v1"
+    },
+    "routes": {
+      "set": "index.html",
+      "gallery": "catalogo.html",
+      "draft": "draft.html",
+      "pool": "sealed.html",
+      "simulator": "simulatore.html",
+      "combos": "sinergie.html",
+      "analysis": "analisi.html",
+      "discovery": "discovery.html",
+      "rules": "regole.html",
+      "method": "fonti.html",
+      "draft-engine": "draft-engine.html"
+    }
+  },
+  "lorwyn-eclipsed": {
+    "style": "preview",
+    "storage": {
+      "poolPrefix": "mtg-lorwyn-eclipsed-",
+      "mode": "mtg-lorwyn-eclipsed-mode-v1",
+      "watch": "mtg-lorwyn-eclipsed-watch-v1",
+      "draftTable": "mtg-lorwyn-eclipsed-draftTable-v1",
+      "sealedSimulator": "mtg-lorwyn-eclipsed-sealedSimulator-v1",
+      "draftPool": "mtg-lorwyn-eclipsed-draftPool-v1",
+      "sealedPool": "mtg-lorwyn-eclipsed-sealedPool-v1"
+    },
+    "routes": {
+      "set": "index.html",
+      "gallery": "catalogo.html",
+      "draft": "draft.html",
+      "pool": "sealed.html",
+      "simulator": "simulatore.html",
+      "combos": "sinergie.html",
+      "analysis": "analisi.html",
+      "discovery": "discovery.html",
+      "rules": "regole.html",
+      "method": "fonti.html",
+      "draft-engine": "draft-engine.html"
+    }
+  },
+  "avatar-the-last-airbender": {
+    "style": "preview",
+    "storage": {
+      "poolPrefix": "mtg-avatar-the-last-airbender-",
+      "mode": "mtg-avatar-the-last-airbender-mode-v1",
+      "watch": "mtg-avatar-the-last-airbender-watch-v1",
+      "draftTable": "mtg-avatar-the-last-airbender-draftTable-v1",
+      "sealedSimulator": "mtg-avatar-the-last-airbender-sealedSimulator-v1",
+      "draftPool": "mtg-avatar-the-last-airbender-draftPool-v1",
+      "sealedPool": "mtg-avatar-the-last-airbender-sealedPool-v1"
+    },
+    "routes": {
+      "set": "index.html",
+      "gallery": "catalogo.html",
+      "draft": "draft.html",
+      "pool": "sealed.html",
+      "simulator": "simulatore.html",
+      "combos": "sinergie.html",
+      "analysis": "analisi.html",
+      "discovery": "discovery.html",
+      "rules": "regole.html",
+      "method": "fonti.html",
+      "draft-engine": "draft-engine.html"
+    }
+  },
+  "through-the-omenpaths": {
+    "style": "preview",
+    "storage": {
+      "poolPrefix": "mtg-through-the-omenpaths-",
+      "mode": "mtg-through-the-omenpaths-mode-v1",
+      "watch": "mtg-through-the-omenpaths-watch-v1",
+      "draftTable": "mtg-through-the-omenpaths-draftTable-v1",
+      "sealedSimulator": "mtg-through-the-omenpaths-sealedSimulator-v1",
+      "draftPool": "mtg-through-the-omenpaths-draftPool-v1",
+      "sealedPool": "mtg-through-the-omenpaths-sealedPool-v1"
+    },
+    "routes": {
+      "set": "index.html",
+      "gallery": "catalogo.html",
+      "draft": "draft.html",
+      "pool": "sealed.html",
+      "simulator": "simulatore.html",
+      "combos": "sinergie.html",
+      "analysis": "analisi.html",
+      "discovery": "discovery.html",
+      "rules": "regole.html",
+      "method": "fonti.html",
+      "draft-engine": "draft-engine.html"
+    }
+  },
+  "marvel-spider-man": {
+    "style": "preview",
+    "storage": {
+      "poolPrefix": "mtg-marvel-spider-man-",
+      "mode": "mtg-marvel-spider-man-mode-v1",
+      "watch": "mtg-marvel-spider-man-watch-v1",
+      "draftTable": "mtg-marvel-spider-man-draftTable-v1",
+      "sealedSimulator": "mtg-marvel-spider-man-sealedSimulator-v1",
+      "draftPool": "mtg-marvel-spider-man-draftPool-v1",
+      "sealedPool": "mtg-marvel-spider-man-sealedPool-v1"
+    },
+    "routes": {
+      "set": "index.html",
+      "gallery": "catalogo.html",
+      "draft": "draft.html",
+      "pool": "sealed.html",
+      "simulator": "simulatore.html",
+      "combos": "sinergie.html",
+      "analysis": "analisi.html",
+      "discovery": "discovery.html",
+      "rules": "regole.html",
+      "method": "fonti.html",
+      "draft-engine": "draft-engine.html"
+    }
+  },
+  "edge-of-eternities": {
+    "style": "preview",
+    "storage": {
+      "poolPrefix": "mtg-edge-of-eternities-",
+      "mode": "mtg-edge-of-eternities-mode-v1",
+      "watch": "mtg-edge-of-eternities-watch-v1",
+      "draftTable": "mtg-edge-of-eternities-draftTable-v1",
+      "sealedSimulator": "mtg-edge-of-eternities-sealedSimulator-v1",
+      "draftPool": "mtg-edge-of-eternities-draftPool-v1",
+      "sealedPool": "mtg-edge-of-eternities-sealedPool-v1"
+    },
+    "routes": {
+      "set": "index.html",
+      "gallery": "catalogo.html",
+      "draft": "draft.html",
+      "pool": "sealed.html",
+      "simulator": "simulatore.html",
+      "combos": "sinergie.html",
+      "analysis": "analisi.html",
+      "discovery": "discovery.html",
+      "rules": "regole.html",
+      "method": "fonti.html",
+      "draft-engine": "draft-engine.html"
+    }
+  },
+  "final-fantasy": {
+    "style": "preview",
+    "storage": {
+      "poolPrefix": "mtg-final-fantasy-",
+      "mode": "mtg-final-fantasy-mode-v1",
+      "watch": "mtg-final-fantasy-watch-v1",
+      "draftTable": "mtg-final-fantasy-draftTable-v1",
+      "sealedSimulator": "mtg-final-fantasy-sealedSimulator-v1",
+      "draftPool": "mtg-final-fantasy-draftPool-v1",
+      "sealedPool": "mtg-final-fantasy-sealedPool-v1"
+    },
+    "routes": {
+      "set": "index.html",
+      "gallery": "catalogo.html",
+      "draft": "draft.html",
+      "pool": "sealed.html",
+      "simulator": "simulatore.html",
+      "combos": "sinergie.html",
+      "analysis": "analisi.html",
+      "discovery": "discovery.html",
+      "rules": "regole.html",
+      "method": "fonti.html",
+      "draft-engine": "draft-engine.html"
+    }
+  },
+  "tarkir-dragonstorm": {
+    "style": "preview",
+    "storage": {
+      "poolPrefix": "mtg-tarkir-dragonstorm-",
+      "mode": "mtg-tarkir-dragonstorm-mode-v1",
+      "watch": "mtg-tarkir-dragonstorm-watch-v1",
+      "draftTable": "mtg-tarkir-dragonstorm-draftTable-v1",
+      "sealedSimulator": "mtg-tarkir-dragonstorm-sealedSimulator-v1",
+      "draftPool": "mtg-tarkir-dragonstorm-draftPool-v1",
+      "sealedPool": "mtg-tarkir-dragonstorm-sealedPool-v1"
+    },
+    "routes": {
+      "set": "index.html",
+      "gallery": "catalogo.html",
+      "draft": "draft.html",
+      "pool": "sealed.html",
+      "simulator": "simulatore.html",
+      "combos": "sinergie.html",
+      "analysis": "analisi.html",
+      "discovery": "discovery.html",
+      "rules": "regole.html",
+      "method": "fonti.html",
+      "draft-engine": "draft-engine.html"
+    }
+  },
+  "aetherdrift": {
+    "style": "preview",
+    "storage": {
+      "poolPrefix": "mtg-aetherdrift-",
+      "mode": "mtg-aetherdrift-mode-v1",
+      "watch": "mtg-aetherdrift-watch-v1",
+      "draftTable": "mtg-aetherdrift-draftTable-v1",
+      "sealedSimulator": "mtg-aetherdrift-sealedSimulator-v1",
+      "draftPool": "mtg-aetherdrift-draftPool-v1",
+      "sealedPool": "mtg-aetherdrift-sealedPool-v1"
+    },
+    "routes": {
+      "set": "index.html",
+      "gallery": "catalogo.html",
+      "draft": "draft.html",
+      "pool": "sealed.html",
+      "simulator": "simulatore.html",
+      "combos": "sinergie.html",
+      "analysis": "analisi.html",
+      "discovery": "discovery.html",
+      "rules": "regole.html",
+      "method": "fonti.html",
+      "draft-engine": "draft-engine.html"
+    }
+  },
+  "foundations": {
+    "style": "preview",
+    "storage": {
+      "poolPrefix": "mtg-foundations-",
+      "mode": "mtg-foundations-mode-v1",
+      "watch": "mtg-foundations-watch-v1",
+      "draftTable": "mtg-foundations-draftTable-v1",
+      "sealedSimulator": "mtg-foundations-sealedSimulator-v1",
+      "draftPool": "mtg-foundations-draftPool-v1",
+      "sealedPool": "mtg-foundations-sealedPool-v1"
+    },
+    "routes": {
+      "set": "index.html",
+      "gallery": "catalogo.html",
+      "draft": "draft.html",
+      "pool": "sealed.html",
+      "simulator": "simulatore.html",
+      "combos": "sinergie.html",
+      "analysis": "analisi.html",
+      "discovery": "discovery.html",
+      "rules": "regole.html",
+      "method": "fonti.html",
+      "draft-engine": "draft-engine.html"
+    }
+  },
+  "duskmourn": {
+    "style": "preview",
+    "storage": {
+      "poolPrefix": "mtg-duskmourn-",
+      "mode": "mtg-duskmourn-mode-v1",
+      "watch": "mtg-duskmourn-watch-v1",
+      "draftTable": "mtg-duskmourn-draftTable-v1",
+      "sealedSimulator": "mtg-duskmourn-sealedSimulator-v1",
+      "draftPool": "mtg-duskmourn-draftPool-v1",
+      "sealedPool": "mtg-duskmourn-sealedPool-v1"
+    },
+    "routes": {
+      "set": "index.html",
+      "gallery": "catalogo.html",
+      "draft": "draft.html",
+      "pool": "sealed.html",
+      "simulator": "simulatore.html",
+      "combos": "sinergie.html",
+      "analysis": "analisi.html",
+      "discovery": "discovery.html",
+      "rules": "regole.html",
+      "method": "fonti.html",
+      "draft-engine": "draft-engine.html"
+    }
+  },
+  "bloomburrow": {
+    "style": "preview",
+    "storage": {
+      "poolPrefix": "mtg-bloomburrow-",
+      "mode": "mtg-bloomburrow-mode-v1",
+      "watch": "mtg-bloomburrow-watch-v1",
+      "draftTable": "mtg-bloomburrow-draftTable-v1",
+      "sealedSimulator": "mtg-bloomburrow-sealedSimulator-v1",
+      "draftPool": "mtg-bloomburrow-draftPool-v1",
+      "sealedPool": "mtg-bloomburrow-sealedPool-v1"
+    },
+    "routes": {
+      "set": "index.html",
+      "gallery": "catalogo.html",
+      "draft": "draft.html",
+      "pool": "sealed.html",
+      "simulator": "simulatore.html",
+      "combos": "sinergie.html",
+      "analysis": "analisi.html",
+      "discovery": "discovery.html",
+      "rules": "regole.html",
+      "method": "fonti.html",
+      "draft-engine": "draft-engine.html"
+    }
+  },
+  "outlaws-of-thunder-junction": {
+    "style": "preview",
+    "storage": {
+      "poolPrefix": "mtg-outlaws-of-thunder-junction-",
+      "mode": "mtg-outlaws-of-thunder-junction-mode-v1",
+      "watch": "mtg-outlaws-of-thunder-junction-watch-v1",
+      "draftTable": "mtg-outlaws-of-thunder-junction-draftTable-v1",
+      "sealedSimulator": "mtg-outlaws-of-thunder-junction-sealedSimulator-v1",
+      "draftPool": "mtg-outlaws-of-thunder-junction-draftPool-v1",
+      "sealedPool": "mtg-outlaws-of-thunder-junction-sealedPool-v1"
+    },
+    "routes": {
+      "set": "index.html",
+      "gallery": "catalogo.html",
+      "draft": "draft.html",
+      "pool": "sealed.html",
+      "simulator": "simulatore.html",
+      "combos": "sinergie.html",
+      "analysis": "analisi.html",
+      "discovery": "discovery.html",
+      "rules": "regole.html",
+      "method": "fonti.html",
+      "draft-engine": "draft-engine.html"
+    }
+  },
+  "murders-at-karlov-manor": {
+    "style": "preview",
+    "storage": {
+      "poolPrefix": "mtg-murders-at-karlov-manor-",
+      "mode": "mtg-murders-at-karlov-manor-mode-v1",
+      "watch": "mtg-murders-at-karlov-manor-watch-v1",
+      "draftTable": "mtg-murders-at-karlov-manor-draftTable-v1",
+      "sealedSimulator": "mtg-murders-at-karlov-manor-sealedSimulator-v1",
+      "draftPool": "mtg-murders-at-karlov-manor-draftPool-v1",
+      "sealedPool": "mtg-murders-at-karlov-manor-sealedPool-v1"
+    },
+    "routes": {
+      "set": "index.html",
+      "gallery": "catalogo.html",
+      "draft": "draft.html",
+      "pool": "sealed.html",
+      "simulator": "simulatore.html",
+      "combos": "sinergie.html",
+      "analysis": "analisi.html",
+      "discovery": "discovery.html",
+      "rules": "regole.html",
+      "method": "fonti.html",
+      "draft-engine": "draft-engine.html"
+    }
+  },
+  "lost-caverns-of-ixalan": {
+    "style": "preview",
+    "storage": {
+      "poolPrefix": "mtg-lost-caverns-of-ixalan-",
+      "mode": "mtg-lost-caverns-of-ixalan-mode-v1",
+      "watch": "mtg-lost-caverns-of-ixalan-watch-v1",
+      "draftTable": "mtg-lost-caverns-of-ixalan-draftTable-v1",
+      "sealedSimulator": "mtg-lost-caverns-of-ixalan-sealedSimulator-v1",
+      "draftPool": "mtg-lost-caverns-of-ixalan-draftPool-v1",
+      "sealedPool": "mtg-lost-caverns-of-ixalan-sealedPool-v1"
+    },
+    "routes": {
+      "set": "index.html",
+      "gallery": "catalogo.html",
+      "draft": "draft.html",
+      "pool": "sealed.html",
+      "simulator": "simulatore.html",
+      "combos": "sinergie.html",
+      "analysis": "analisi.html",
+      "discovery": "discovery.html",
+      "rules": "regole.html",
+      "method": "fonti.html",
+      "draft-engine": "draft-engine.html"
+    }
+  },
+  "wilds-of-eldraine": {
+    "style": "preview",
+    "storage": {
+      "poolPrefix": "mtg-wilds-of-eldraine-",
+      "mode": "mtg-wilds-of-eldraine-mode-v1",
+      "watch": "mtg-wilds-of-eldraine-watch-v1",
+      "draftTable": "mtg-wilds-of-eldraine-draftTable-v1",
+      "sealedSimulator": "mtg-wilds-of-eldraine-sealedSimulator-v1",
+      "draftPool": "mtg-wilds-of-eldraine-draftPool-v1",
+      "sealedPool": "mtg-wilds-of-eldraine-sealedPool-v1"
+    },
+    "routes": {
+      "set": "index.html",
+      "gallery": "catalogo.html",
+      "draft": "draft.html",
+      "pool": "sealed.html",
+      "simulator": "simulatore.html",
+      "combos": "sinergie.html",
+      "analysis": "analisi.html",
+      "discovery": "discovery.html",
+      "rules": "regole.html",
+      "method": "fonti.html",
+      "draft-engine": "draft-engine.html"
+    }
+  }
+}

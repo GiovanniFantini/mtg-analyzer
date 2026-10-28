@@ -147,6 +147,11 @@ def configured_shell(content, key, expansion):
     adapt_atlas = presentation['style'] == 'atlas' and not expansion.get('minimal')
     if adapt_atlas:
         content = shell(content,key if key in PAGES else 'set')
+        def page_identity(match):
+            attrs=re.sub(r'\sdata-page="[^"]*"','',match[1])
+            if key not in PAGES:attrs=attrs.replace('site-page-set','site-page-'+key)
+            return '<body'+attrs+' data-page="'+key+'">'
+        content=re.sub(r'<body\b([^>]*)>',page_identity,content,count=1)
         ids=set(re.findall(r'\bid=[\'"]([^\'"]+)[\'"]',content))
         if not expansion.get('sentimentAvailable',True):ids.discard('sentiment')
         def local_nav(match):

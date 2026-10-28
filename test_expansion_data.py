@@ -147,7 +147,12 @@ class ExpansionTests(unittest.TestCase):
 
     def test_shared_preview_pool_storage_is_isolated_and_preserves_explicit_keys(self):
         original=load_expansions()[1]
-        self.source=original
+        self.source=copy.deepcopy(original)
+        for field in ('draftPool','sealedPool'):
+            self.source.manifest['storage'].pop(field,None)
+        self.source.manifest['presentation']['style']='preview'
+        for key in ('gallery','draft','combos','discovery','simulator'):
+            self.source.manifest['presentation']['pages'][key]['template']='templates/preview/'+key+'.html'
         first=self.fixture(lambda m,d:m.update(id='preview-one'))
         second=self.fixture(lambda m,d:m.update(id='preview-two'))
         first.manifest['storage'].pop('sealedSimulator',None)

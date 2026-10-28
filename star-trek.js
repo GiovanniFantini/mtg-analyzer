@@ -57,7 +57,7 @@
     const rules=eventRules(selectedMode);
     if(!rules)throw Error('Regole del formato non disponibili.');
     if (!value || typeof value !== 'object') throw Error('Salvataggio non valido.');
-    const next = {pool:validCounts(value.pool),deck:validCounts(value.deck),basics:validCounts(value.basics)};
+    const next = {...value,pool:validCounts(value.pool),deck:validCounts(value.deck),basics:validCounts(value.basics)};
     if(!rules.extraBasicLands&&Object.keys(next.basics).length)throw Error('Terre base aggiuntive non previste dal profilo.');
     for(const [id,n] of Object.entries(next.deck))if(!basicCard(id)&&rules.maxCopies!=null&&n>rules.maxCopies)throw Error('Limite di copie del formato superato.');
     for (const [id,n] of Object.entries(next.deck)) if (n>(next.pool[id]||0)) throw Error('Il mazzo supera le copie nel pool.');

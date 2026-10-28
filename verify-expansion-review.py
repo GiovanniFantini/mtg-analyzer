@@ -28,6 +28,18 @@ with tempfile.TemporaryDirectory(prefix='mtg-review-') as temporary:
     def fixture(name,source_index,mutate):
         original=originals[source_index]
         manifest=copy.deepcopy(original.manifest);data=copy.deepcopy(original.data)
+        if source_index==1:
+            # Explicitly retain historical preview fixtures after the live sets
+            # move to Atlas. These scenarios still exercise old saved records.
+            pages=manifest['presentation']['pages']
+            if 'practice' in pages:pages['simulator']['url']=pages['practice']['url']
+            for key in ('set','gallery','draft','pool','simulator','combos','analysis','discovery','rules','method'):
+                pages[key]['template']='templates/preview/'+key+'.html'
+                pages[key].pop('manualPool',None)
+            for key in ('practice','workbench'):pages.pop(key,None)
+            manifest['presentation']['style']='preview'
+            for _,members in manifest['presentation']['groups']:
+                members[:]=[key for key in members if key in pages]
         manifest['id']='review-'+name
         manifest['storage']={k:'review-'+name+'-'+v for k,v in manifest['storage'].items()}
         mutate(manifest,data)

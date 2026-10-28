@@ -7,8 +7,8 @@
 const DATA=__DATA__,byId=Object.fromEntries(DATA.cards.map(c=>[c.id,c])),byCombo=Object.fromEntries(DATA.combos.map(c=>[c.id,c]));
 const $=id=>document.getElementById(id),esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let pool={},limit=6,cardFilter=new URLSearchParams(location.search).get('card'),steps={};
-function readPool(){try{const source=DATA.poolSource,record=JSON.parse(localStorage.getItem(source?.key||EXPANSION_CONFIG.storage.sealedPool)||'{}')||{};pool=source?.nested?record.pool||{}:record}catch{pool={}}}readPool();
-if(DATA.poolSource){const link=document.querySelector('[data-pool-gallery]'),url=new URL(link.href,location.href);url.searchParams.set('mode',DATA.poolSource.event);url.hash='';link.href=url.href;}
+function readPool(){try{const source=DATA.poolSource,mode=new URLSearchParams(location.search).get('mode'),record=JSON.parse(localStorage.getItem(source?.keys?.[mode]||source?.key||EXPANSION_CONFIG.storage.sealedPool)||'{}')||{};pool=source?.nested?record.pool||{}:record}catch{pool={}}}readPool();
+if(DATA.poolSource){const link=document.querySelector('[data-pool-gallery]'),url=new URL(link.href,location.href);url.searchParams.set('mode',DATA.poolSource.event);url.hash='pool';link.href=url.href;}
 function owned(c){return c.cards.filter(id=>Number(pool[id])>0).length}
 function stars(n){return `<span class="stars" aria-label="${n} stelle su 5">${'★'.repeat(Math.floor(n))}${n%1?'½':''}${'☆'.repeat(5-Math.ceil(n))} <b>${n}/5</b></span>`}
 function sim(c){let n=steps[c.id]||0,s=c.steps[n-1];return `<div class="label">Simulazione guidata · ${n?'passaggio '+n:'stato iniziale'}</div><h3>${n?esc(s.action):'Prepara il tavolo'}</h3><p aria-live="polite">${esc(n?s.state:c.ready)}</p><div class="simcontrols"><button data-step="-1" data-id="${c.id}" ${n?'':'disabled'} aria-label="Indietro: ${esc(c.title)}">←</button><button class="primary" data-step="1" data-id="${c.id}" ${n===c.steps.length?'disabled':''}>Avanti →</button><button data-start="${c.id}">Ricomincia</button><span>${n}/${c.steps.length}</span></div>`}

@@ -1,11 +1,16 @@
 'use strict';
 (() => {
  const el=id=>document.getElementById('dp-'+id), cards=DRAFT_DATA.poolCards;
- const rules=EXPANSION_CONFIG.events[EXPANSION_CONFIG.defaultEvents?.draft||'draft'];
+ const requestedMode=new URLSearchParams(location.search).get('mode');
+ const selectedMode=EXPANSION_CONFIG.events[requestedMode]?.kind==='draft'?requestedMode:EXPANSION_CONFIG.defaultEvents?.draft||'draft';
+ const rules=EXPANSION_CONFIG.events[selectedMode];
  const deckSize=rules?.minDeckSize||40;
  const extraBasics=rules?.extraBasicLands===true;
  const copyRule=rules?.maxCopies==null?'Non applicare il limite di quattro copie del Constructed al Draft.':`Per ogni carta non base rispetta il limite del formato: ${rules.maxCopies} copie per nome.`;
- const key=EXPANSION_CONFIG.storage.draftPool, byName=new Map(cards.map(c=>[c.name,c]));
+ const source=DRAFT_DATA.poolSource;
+ const key=source?.keys?.[selectedMode]||source?.key||EXPANSION_CONFIG.storage.draftPool, byName=new Map(cards.map(c=>[c.name,c]));
+ const identities=source?.identities||cards;
+ const byId=new Map(identities.map(c=>[c.id,c]));
  const archiveKey=key+':protected-backups-v1';
  const storageReady='Il pool Draft si salva in questo browser, separatamente dal pool Sealed. Scarica la lista per conservarne una copia.';
  const storageTemporary='Salvataggio non disponibile: le pick restano solo in questa pagina. Scarica la lista prima di chiudere o ricaricare. Eventuali dati già salvati non vengono toccati.';
@@ -22,7 +27,10 @@
  function status(text){el('status').textContent=text;}
  function save(){
   if(writeBlocked){status('Salvataggio precedente protetto: esportalo prima di continuare.');return false;}
-  const raw=JSON.stringify({...savedExtra,pool,mode:savedExtra.mode==='bo3'?'bo3':'bo1',notes:typeof savedExtra.notes==='string'?savedExtra.notes:''});
+  const adapted=source?.nested?ManualPoolRecord.withNamedPool(savedExtra,pool,identities):null;
+  const counts=adapted?.pool||pool;
+  const deck=adapted?.deck||savedExtra.deck;
+  const raw=JSON.stringify({...savedExtra,...(source?.nested?{deck:deck||{},basics:savedExtra.basics||{}}:{}),pool:counts,mode:savedExtra.mode==='bo3'?'bo3':'bo1',notes:typeof savedExtra.notes==='string'?savedExtra.notes:''});
   if(temporary){savedRaw=raw;el('storage').textContent=storageTemporary;return true;}
   try{localStorage.setItem(key,raw);savedRaw=raw;writeFailed=false;el('storage').textContent=storageReady;syncBackupControls();return true;}
   catch{writeFailed=true;el('storage').textContent='Scrittura non disponibile. La modifica non è stata registrata. Puoi continuare con il pulsante Lavora solo in questa pagina.';syncBackupControls();return false;}
@@ -34,10 +42,11 @@
   pool=Object.create(null);savedExtra={};writeBlocked=false;
   savedRaw=raw;const saved=JSON.parse(savedRaw===null?'null':savedRaw);
   if(saved!==null){
-   if(!saved||typeof saved!=='object'||Array.isArray(saved)||!saved.pool||typeof saved.pool!=='object'||Array.isArray(saved.pool)||saved.version!=null)throw Error();
-   if(Object.entries(saved.pool).some(([name,n])=>!byName.has(name)||!Number.isInteger(n)||n<1||n>100))throw Error();
+   if(!saved||typeof saved!=='object'||Array.isArray(saved)||!saved.pool||typeof saved.pool!=='object'||Array.isArray(saved.pool)||!source?.nested&&saved.version!=null)throw Error();
+   if(source?.nested)ManualPoolRecord.validate(saved,identities);
+   if(Object.entries(saved.pool).some(([name,n])=>!(source?.nested?byId:byName).has(name)||!Number.isInteger(n)||n<1||n>(source?.nested?999:100)))throw Error();
    savedExtra=saved;
-   for(const [name,n] of Object.entries(saved.pool))pool[name]=n;
+   for(const [name,n] of Object.entries(saved.pool)){const display=source?.nested?byId.get(name).name:name;pool[display]=(pool[display]||0)+n;}
   }
   if(syncForm)for(const [id,value] of [['mode',savedExtra.mode==='bo3'?'bo3':'bo1'],['notes',typeof savedExtra.notes==='string'?savedExtra.notes.slice(0,4000):'']]){
    if(document.activeElement!==el(id)&&el(id).value!==value)el(id).value=value;

@@ -1,0 +1,11 @@
+/* Manual deck workbenches share Atlas navigation and keep their original records. */
+.atlas-manual label{display:flex;flex-direction:column;gap:6px;font-size:14px;max-width:100%}
+.atlas-manual input,.atlas-manual select,.atlas-manual button{font:inherit;min-height:44px;padding:9px 12px;border:1px solid #a9bdcb;border-radius:5px;background:white;color:#173349;max-width:100%}
+.atlas-manual button{cursor:pointer}.atlas-manual button:disabled{opacity:.5;cursor:default}
+.atlas-manual .trk-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.atlas-manual .trk-card h3{font:24px/1.2 Georgia,serif}.atlas-manual .trk-card p{font-size:14px}
+.atlas-manual .trk-card{background:white;border:1px solid #c6d2dc;padding:20px;border-radius:9px}
+.atlas-manual table{border-collapse:collapse;width:100%;text-align:left}.atlas-manual th,.atlas-manual td{padding:10px;border-bottom:1px solid #c6d2dc}
+.atlas-manual details{padding:14px 0}.atlas-manual summary{cursor:pointer;min-height:32px}
+.atlas-manual input[type=number]{width:85px}
+@media(max-width:700px){.atlas-manual .trk-cards{grid-template-columns:1fr}.atlas-manual .trk-controls input,.atlas-manual .trk-controls select{width:100%}}

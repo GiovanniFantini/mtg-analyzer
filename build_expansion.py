@@ -136,6 +136,14 @@ def render_tokens(content, expansion):
     raise ValueError('Riferimenti circolari nei contenuti')
 
 
+def manual_pool_source(expansion, kind):
+    """Keep ID-based pool/deck records at their existing keys across layouts."""
+    event = expansion.default_event_id(kind)
+    prefix = expansion.manifest['storage'].get('poolPrefix')
+    return {'key': prefix+event+'-v1', 'nested': True, 'event': event,
+            'keys':{key:prefix+key+'-v1' for key in expansion.data['limited']['events']}} if prefix and event else None
+
+
 def catalog_data(expansion):
     d = expansion.data
     cards=expansion.cards
@@ -157,7 +165,8 @@ def catalog_data(expansion):
             'stats':d['statistics'].get('catalog',[]),'scale':d['ratings'].get('scale',{}),
             'combos':d['combos'],'sentimentMeta':meta,
             'prospectSources':d['sources'].get('research',{}).get('sources',[]),
-            'previewCards':d['discovery'].get('previews',[])}
+            'previewCards':d['discovery'].get('previews',[]),
+            'poolSource':manual_pool_source(expansion, 'sealed')}
 
 
 def configured_routes(content, expansion):
@@ -198,11 +207,15 @@ def data_for_page(expansion, key):
         source=expansion.data['statistics'].get('draft') or {}
         cards=[]
         for card in expansion.cards:
-            cards.append({'name':card.get('full',card['name']),'cost':card['cost'],'mv':card['mv'],
+            cards.append({'id':card['id'],'name':card.get('full',card['name']),'cost':card['cost'],'mv':card['mv'],
                           'type':card['type'],'color':''.join(card['colors']),'oracle':card['oracle'],
                           'faces':card.get('faces',[]),'power':card.get('power'),'toughness':card.get('toughness'),
                           'image':card['image'],'url':card['url'],'set':card['set'],'number':card['number'],
                           'basic':card['basic'],'gih':None,'n':0,'alsa':None,'rarity':card['rarity']})
+        identities=[{'id':card['id'],'name':card['name']} for card in cards]
+        distinct={}
+        for card in cards:distinct.setdefault(card['name'],card)
+        cards=list(distinct.values())
         result={'cards':cards,'poolCards':cards,'pairs':[],'baseline':None,'date':expansion.data['cards'].get('date',''),**source}
         result['cards']=source.get('cards') or cards
         # Canonical names and card facts come from the active catalog, not a dated snapshot.
@@ -222,6 +235,8 @@ def data_for_page(expansion, key):
                           'type_line':f.get('type_line','')} for f in c.get('faces',[])]} for c in expansion.cards]
         result['assistant']={'cards':assistant_cards,'combos':[{'cards':c['cards']} for c in expansion.data['combos']],
                              'ratingsDate':expansion.data['ratings'].get('date','')}
+        result['poolSource']=manual_pool_source(expansion, 'draft')
+        if result['poolSource']:result['poolSource']['identities']=identities
         return result
     if key == 'discovery':
         discovery=expansion.data['discovery']
@@ -229,7 +244,7 @@ def data_for_page(expansion, key):
         previews=list(discovery.get('previews') or [])
         known={card.get('name') for card in previews if card.get('image')}
         previews.extend(card for card in expansion.cards if card['name'] in requested and card['name'] not in known)
-        return {**discovery,'previews':previews,'watchNames':{card['id']:card['name'] for card in expansion.cards}}
+        return {'cards':[],**discovery,'previews':previews,'watchNames':{card['id']:card['name'] for card in expansion.cards}}
     if key == 'draft-engine':
         from expansion_data import load_expansions
         states={key:expansion.draft_event_availability(key) for key,event in expansion.data['limited']['events'].items() if event['kind']=='draft'}
@@ -246,9 +261,6 @@ def data_for_page(expansion, key):
         data['unavailableFormats'] += [{'name':other.manifest['name'],'missing':other.availability['draftTable']['missing']} for other in load_expansions() if other.manifest['id']!=expansion.manifest['id'] and not other.availability['draftTable']['available']]
         return data
     data = catalog_data(expansion)
-    if key=='combos' and '/preview/' in expansion.manifest['presentation']['pages']['gallery'].get('template',''):
-        event=expansion.default_event_id('sealed')
-        if event:data['poolSource']={'key':expansion.manifest['storage']['poolPrefix']+event+'-v1','nested':True,'event':event}
     if key == 'simulator' and expansion.availability['sealedSimulator']['available']:
         data['format']=expansion.draft_format(expansion.default_event_id('sealed'))
     return data
@@ -274,11 +286,14 @@ def render_page(expansion, key, page):
     if key=='simulator' and expansion.manifest['presentation']['style']=='atlas':
         content = content.replace('<script src="simulator.js">','<script src="draft-engine.js"></script><script src="simulator.js">')
     # Historical presentation adapters remain, but all identity and navigation are configured.
-    presentation={**expansion.manifest['presentation'],'style':'atlas' if '/atlas/' in page['template'] else 'preview'}
+    style='atlas' if '/atlas/' in page['template'] else 'preview' if '/preview/' in page['template'] else expansion.manifest['presentation']['style']
+    presentation={**expansion.manifest['presentation'],'style':style}
     content = shell(content,key,expansion={**expansion.manifest,'presentation':presentation,'sentimentAvailable':expansion.availability['sentiment']['available'],'storageNote':expansion.data['ui'].get('storageNote','Pool e carte osservate si salvano in questo browser.')})
     content = configured_routes(content,expansion)
     if page.get('controllerPage'):
         content=content.replace('data-page="'+key+'"','data-page="'+page['controllerPage']+'"',1)
+    if page.get('manualPool'):
+        content=content.replace('class="site-layout ', 'class="site-layout atlas-manual ',1)
     notice = availability_notice(expansion,key)
     if key=='set':
         ready=sum(value['available'] for value in expansion.availability.values())
@@ -290,6 +305,9 @@ def render_page(expansion, key, page):
             detail='Disponibile' if value['available'] else 'Occorre completare: '+'; '.join(value['missing'])
             rows.append('<tr><th scope="row">'+label+'</th><td>'+html.escape(detail)+'</td></tr>')
         notice+='<details class="notice feature-availability"><summary>Strumenti del set: '+str(ready)+' disponibili, '+str(len(expansion.availability)-ready)+' da completare</summary><div class="tablewrap"><table><thead><tr><th>Strumento</th><th>Disponibilità e dati necessari</th></tr></thead><tbody>'+''.join(rows)+'</tbody></table></div></details>'
+        hero=expansion.data['guides'].get('fragments',{}).get('set.hero')
+        if hero and '/atlas/' in page['template']:
+            notice+='<details class="notice"><summary>Informazioni sull’espansione</summary>'+render_tokens(hero,expansion)+'</details>'
     if notice:
         content = content.replace('</main>',notice+'</main>',1)
     if re.search(r'__(?:DATA|DRAFT_DATA|DISCOVERY_DATA|DRAFT_ENGINE)__|\{\{(?:fragment|route):',content):
@@ -311,7 +329,7 @@ def build(expansion, dest):
     # preview pages until their real inputs exist, then use the common renderer.
     prepare_shared_pages(expansion)
     page_requirement = {'draft-engine':'draftTable','simulator':'sealedSimulator',
-                        'gallery':'catalog','analysis':'analysis','combos':'combos','discovery':'discovery'}
+                        'gallery':'catalog','analysis':'analysis'}
     written = set()
     for key,page in pages.items():
         if 'template' not in page: continue

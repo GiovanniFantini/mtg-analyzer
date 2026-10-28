@@ -11,6 +11,15 @@ class SharedFeaturesTest(unittest.TestCase):
         expansions = {item.manifest['id']: item for item in load_expansions()}
         cls.ready = expansions['reality-fracture']
         cls.preview = expansions['star-trek']
+        cls.preview = copy.deepcopy(cls.preview)
+        cls.preview.manifest['presentation']['style']='preview'
+        pages=cls.preview.manifest['presentation']['pages']
+        for key in ('set','gallery','draft','pool','simulator','combos','analysis','discovery','rules','method'):
+            pages[key]['template']='templates/preview/'+key+'.html'
+        for key in ('workbench','practice'):
+            pages.pop(key,None)
+        for _,members in cls.preview.manifest['presentation']['groups']:
+            members[:]=[key for key in members if key in pages]
 
     def fixture(self):
         expansion=copy.deepcopy(self.ready)

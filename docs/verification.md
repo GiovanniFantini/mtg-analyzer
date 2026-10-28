@@ -42,6 +42,7 @@ Se il modulo è in un runtime esterno, assegnare il suo percorso effettivo a `MT
 
 | Script | Ambito |
 | --- | --- |
+| `verify-atlas-expansions.cjs` (anche `verify-expansion-catalogs.cjs`) | Tutte le espansioni registrate: shell Atlas, route, salvataggi manuali, eventi alternativi, anteprime mouse/tastiera/tocco e layout desktop/telefono. Accetta slug opzionali e `MTG_QA_DIR` |
 | `verify-site.cjs` | Navigazione e strumenti Atlas, vecchi collegamenti |
 | `verify-ux.cjs` | Layout delle route elencate nello script, più larghezze, movimento ridotto, Draft e contenuti senza JavaScript |
 | `verify-expansion-browser.cjs` | Salvataggi e compatibilità fra espansioni |
@@ -67,3 +68,5 @@ Un asset dichiarato nel manifest può essere un file oppure una directory: nel s
 Una richiesta sullo stato Git non autorizza commit o push. Rileggere modifiche tracciate, file non tracciati, esclusioni rilevanti e commit locali; fare `git fetch` prima di dichiarare cosa manca sul remoto. Distinguere il lavoro corrente dalle modifiche di altre chat, verificare i file inclusi e le dipendenze locali non versionate prima di un push autorizzato. `ev-*` e `docs/local/` restano privati.
 
 Per dichiarare il sito aggiornato verificare il workflow GitHub Pages del commit pertinente. Push riuscito, deploy riuscito e risorse online verificate sono esiti distinti. I limiti dell'hosting vanno ricontrollati sulle fonti ufficiali quando rilevanti; una misura locale non è una misura del traffico reale.
+
+La migrazione Atlas è coperta anche da `python -m unittest test_atlas_migration.py` e `node test-pool-record.cjs`. Le fixture preview in `test_shared_features.py` e `verify-expansion-review.py` verificano la compatibilità storica; i vecchi script dedicati alla preview Star Trek non sono il controllo generale delle espansioni Atlas correnti.

@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-28",
+  "scope": "Interfaccia Atlas per tutte le 21 espansioni registrate",
+  "expansions": 21,
+  "runtimeRoutes": 291,
+  "htmlPages": 290,
+  "browserReport": "browser/report.json",
+  "baseline": "before-manifests.json",
+  "checks": {
+    "offlineBuild": "passed",
+    "expansionDataAndDraftAssistant": "40 tests passed",
+    "atlasMigrationAndSharedFeatures": "13 tests passed",
+    "poolRecord": "passed",
+    "expansionEngine": "passed",
+    "draftEngine": "passed",
+    "collationContract": "passed",
+    "expansionReview": "19 isolated fixtures passed",
+    "expansionBrowser": "passed",
+    "catalogFilters": "passed",
+    "allExpansionBrowser": "21 expansions passed, no JavaScript errors, mouse/keyboard/touch previews, desktop/mobile"
+  },
+  "preservation": {
+    "manualRecords": "Original keys, pool, deck, basic lands, notes and compatible extension fields retained across 20 migrated sets; duplicate-name printing IDs preserved. Reality Fracture retains its original records.",
+    "routes": "Existing links retained; manual workbenches and hand testing remain available.",
+    "dataAvailability": "Missing catalog/research/collation data remain explicit; no ratings, probabilities or statistics fabricated.",
+    "pipeline": "No CI/CD files changed."
+  },
+  "reference": {
+    "url": "https://www.w3.org/WAI/WCAG22/Understanding/consistent-navigation",
+    "use": "Consistent navigation reference; no claim of complete accessibility conformance."
+  }
+}

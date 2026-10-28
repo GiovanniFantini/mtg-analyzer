@@ -24,62 +24,86 @@
     "limited": "limited.json"
   },
   "presentation": {
-    "style": "preview",
+    "style": "atlas",
     "pages": {
       "set": {
         "label": "Panoramica",
         "url": "index.html",
-        "template": "templates/preview/set.html"
+        "template": "templates/atlas/set.html"
       },
       "gallery": {
         "label": "Catalogo carte",
         "url": "catalogo.html",
-        "template": "templates/preview/gallery.html"
+        "template": "templates/atlas/gallery.html"
       },
       "draft": {
         "label": "Draft e pick",
         "url": "draft.html",
-        "template": "templates/preview/draft.html"
+        "template": "templates/atlas/draft.html",
+        "editorialPrefix": "draft"
       },
       "pool": {
         "label": "Pool e mazzo Sealed",
         "url": "sealed.html",
-        "template": "templates/preview/pool.html"
+        "template": "templates/atlas/pool.html",
+        "manualPool": true
       },
       "simulator": {
-        "label": "Prova il mazzo",
-        "url": "simulatore.html",
-        "template": "templates/preview/simulator.html"
+        "label": "Simulatore Sealed",
+        "url": "sealed-simulator.html",
+        "template": "templates/atlas/simulator.html"
       },
       "combos": {
         "label": "Sinergie e sequenze",
         "url": "sinergie.html",
-        "template": "templates/preview/combos.html"
+        "template": "templates/atlas/combos.html",
+        "editorialPrefix": "combos"
       },
       "analysis": {
         "label": "Analisi e box",
         "url": "analisi.html",
-        "template": "templates/preview/analysis.html"
+        "template": "templates/atlas/analysis.html",
+        "editorialPrefix": "analysis"
       },
       "discovery": {
         "label": "Constructed",
         "url": "discovery.html",
-        "template": "templates/preview/discovery.html"
+        "template": "templates/atlas/discovery.html",
+        "editorialPrefix": "discovery"
       },
       "rules": {
         "label": "Regole del formato",
         "url": "regole.html",
-        "template": "templates/preview/rules.html"
+        "template": "templates/atlas/rules.html"
       },
       "method": {
         "label": "Fonti e aggiornamenti",
         "url": "fonti.html",
-        "template": "templates/preview/method.html"
+        "template": "templates/atlas/method.html"
       },
       "draft-engine": {
         "label": "Tavolo Draft con bot",
         "url": "draft-engine.html",
         "template": "templates/atlas/draft-engine.html"
+      },
+      "workbench": {
+        "label": "Pool e mazzo Draft",
+        "url": "draft-workbench.html",
+        "template": "templates/atlas/workbench.html",
+        "controllerPage": "draft",
+        "manualPool": true
+      },
+      "practice": {
+        "label": "Prova il mazzo",
+        "url": "simulatore.html",
+        "template": "templates/atlas/practice.html",
+        "controllerPage": "simulator",
+        "manualPool": true
+      },
+      "strategy": {
+        "label": "Guida Sealed",
+        "url": "strategy.html",
+        "template": "templates/shared/sealed-guide.html"
       }
     },
     "groups": [
@@ -95,9 +119,17 @@
         "Limited",
         [
           "draft",
+          "workbench",
           "draft-engine",
+          "strategy",
           "pool",
           "simulator",
+          "practice"
+        ]
+      ],
+      [
+        "Sinergie",
+        [
           "combos"
         ]
       ],
@@ -121,7 +153,9 @@
     "mode": "mtg-trk-mode-v1",
     "watch": "mtg-trk-watch-v1",
     "draftTable": "mtg-draft-table-trk-v1",
-    "sealedSimulator": "trk-sealed-simulator-v1"
+    "sealedSimulator": "trk-sealed-simulator-v1",
+    "sealedPool": "star-trek-sealedPool-v1",
+    "draftPool": "star-trek-draftPool-v1"
   },
   "assets": [
     "star-trek-cards-20261021.json",
