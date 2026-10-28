@@ -44,6 +44,7 @@ Se il modulo è in un runtime esterno, assegnare il suo percorso effettivo a `MT
 | --- | --- |
 | `verify-atlas-expansions.cjs` (anche `verify-expansion-catalogs.cjs`) | Tutte le espansioni registrate: shell Atlas, route, salvataggi manuali, eventi alternativi, anteprime mouse/tastiera/tocco e layout desktop/telefono. Accetta slug opzionali e `MTG_QA_DIR` |
 | `verify-catalog-indices.cjs` | Indici WR Draft/Sealed, fonti ed eventi, campioni minimi, prospettive Standard/Pioneer/Modern/Pauper e legalità per tutte le espansioni registrate, con conservazione dei salvataggi |
+| `verify-tournament-prospects.cjs` | Tutti i cataloghi e metagame registrati: indici numerici per quattro formati, filtri, zero/N/D, campioni, segnali, analisi complete, fonti e anteprime mouse/tastiera/tocco |
 | `verify-site.cjs` | Navigazione e strumenti Atlas, vecchi collegamenti |
 | `verify-ux.cjs` | Layout delle route elencate nello script, più larghezze, movimento ridotto, Draft e contenuti senza JavaScript |
 | `verify-expansion-browser.cjs` | Salvataggi e compatibilità fra espansioni |

@@ -1,0 +1,98 @@
+{
+  "date": "2026-10-28",
+  "scope": "Measured tournament indices for Standard, Pioneer, Modern and Pauper across every registered expansion; populate Constructed discovery",
+  "sourcePages": 139,
+  "events": 128,
+  "publishedDecklists": 4952,
+  "recentDecklists": 4007,
+  "historicalProTours": [
+    {
+      "id": "pt-mkm-2024",
+      "name": "Pro Tour Murders at Karlov Manor",
+      "date": "2024-02-23",
+      "format": "pioneer",
+      "kind": "historical-pro-tour",
+      "publishedCoverage": "complete-field-published-in-parts",
+      "players": 258,
+      "pages": [
+        "https://magic.gg/decklists/pro-tour-murders-at-karlov-manor-pioneer-decklists-a-d",
+        "https://magic.gg/decklists/pro-tour-murders-at-karlov-manor-pioneer-decklists-o-s",
+        "https://magic.gg/decklists/pro-tour-murders-at-karlov-manor-pioneer-decklists-e-j",
+        "https://magic.gg/decklists/pro-tour-murders-at-karlov-manor-pioneer-decklists-t-z",
+        "https://magic.gg/decklists/pro-tour-murders-at-karlov-manor-pioneer-decklists-k-n"
+      ],
+      "publishedDecks": 258
+    },
+    {
+      "id": "pt-sos-2026",
+      "name": "Pro Tour Secrets of Strixhaven",
+      "date": "2026-05-01",
+      "format": "standard",
+      "kind": "historical-pro-tour",
+      "publishedCoverage": "complete-field-published-in-parts",
+      "players": null,
+      "pages": [
+        "https://magic.gg/decklists/pro-tour-secrets-of-strixhaven-standard-decklists-a-f",
+        "https://magic.gg/decklists/pro-tour-secrets-of-strixhaven-standard-decklists-s-z",
+        "https://magic.gg/decklists/pro-tour-secrets-of-strixhaven-standard-decklists-g-l",
+        "https://magic.gg/decklists/pro-tour-secrets-of-strixhaven-standard-decklists-m-r"
+      ],
+      "publishedDecks": 325
+    },
+    {
+      "id": "pt-msh-2026",
+      "name": "Pro Tour Magic: The Gathering | Marvel Super Heroes",
+      "date": "2026-07-17",
+      "format": "modern",
+      "kind": "historical-pro-tour",
+      "publishedCoverage": "complete-field-published-in-parts",
+      "players": null,
+      "pages": [
+        "https://magic.gg/decklists/pro-tour-marvel-super-heroes-modern-decklists-a-e",
+        "https://magic.gg/decklists/pro-tour-marvel-super-heroes-modern-decklists-l-p",
+        "https://magic.gg/decklists/pro-tour-marvel-super-heroes-modern-decklists-r-z",
+        "https://magic.gg/decklists/pro-tour-marvel-super-heroes-modern-decklists-f-k"
+      ],
+      "publishedDecks": 362
+    }
+  ],
+  "formatIndices": 26636,
+  "metagameSelections": 890,
+  "method": "published-deck-share-v1",
+  "references": [
+    "inventory.json",
+    "acquisition.json",
+    "coverage.json",
+    "index-audit.json",
+    "card-facts.json"
+  ],
+  "limitations": [
+    "Score is a share of the published, eligible lists. It is not a card win rate, forecast or complete population metagame share.",
+    "Historical Pro Tours remain outside the recent score. A pre-release event does not create an observed absence.",
+    "Published tournament placements are counted only when available. Missing ranks remain null in source examples.",
+    "Watch/repeated-use labels describe observations and do not predict future competitive or price success."
+  ],
+  "verification": {
+    "offlineBuild": "21 expansions, 290 HTML pages; local links verified",
+    "unitTests": "68 tests passed for expansion contracts, shared features, migration, catalog metrics, tournament model and source parsers",
+    "nodeModelTests": "Tournament/legacy score separation, observed zero, bans, event isolation and format details passed",
+    "localDraftTournament": "Original UI file restored byte-for-byte; tournament unit and desktop/touch browser tests passed",
+    "catalogRegression": "10 existing sorts and combined/reset/missing filters, 1440/768/390 px and mouse/keyboard/touch passed",
+    "numericAudit": "All 26,636 stored tournament indices validated against count/range/status invariants",
+    "browser": {
+      "expansions": 21,
+      "numericSorting": "four formats, ascending/descending, zero before missing",
+      "filters": "format, numeric bounds, sample size, observed zero and watch signals",
+      "discovery": "all 21 selections populated and all-analysis view loaded",
+      "savedRecords": "filtering did not modify browser storage",
+      "previews": [
+        "mouse",
+        "keyboard",
+        "touch"
+      ],
+      "errors": [],
+      "report": "browser/report.json",
+      "imageHandling": "Images blocked during repeated filter checks; real discovery images used for visual and preview checks on representative expansions."
+    }
+  }
+}

@@ -28,7 +28,7 @@ try{for(const m of manifests){const p=await b.newPage({viewport:{width:1440,heig
  for(const format of ['standard','pioneer','modern','pauper']){
   await p.locator('#prospect-format').selectOption(format);await p.locator('#prospect-legality').selectOption('legal');
   assert.ok(await p.evaluate(f=>filtered.every(c=>['legal','restricted'].includes(c.legalities?.[f]||c.prospects?.formats?.[f]?.legality)),format));
-  await p.locator('#prospect-state').selectOption('documented');assert.ok(await p.evaluate(f=>filtered.every(c=>c.prospects?.formats?.[f]?.evidence&&!['non_documentata','non_verificata','non_legale'].includes(c.prospects.formats[f].evidence)),format));
+  await p.locator('#prospect-state').selectOption('documented');assert.ok(await p.evaluate(f=>filtered.every(c=>c.prospects?.formats?.[f]?.tournamentIndex?c.prospects.formats[f].tournamentIndex.score>0:c.prospects?.formats?.[f]?.evidence&&!['non_documentata','non_verificata','non_legale'].includes(c.prospects.formats[f].evidence)),format));
   await p.locator('#reset').click();
  }
  await p.locator('#sealed-wr-data').selectOption('missing');assert.ok(await p.evaluate(()=>filtered.every(c=>catalog.indices.rate(c,'sealed')==null)));await p.locator('#reset').click();

@@ -200,6 +200,8 @@ class Expansion:
             if type(setting.get('requested')) is not bool:fail('requested deve essere booleano: '+feature)
         ids = [c['id'] for c in self.data['cards']['cards']]
         if len(ids) != len(set(ids)): fail('identità carta duplicate')
+        from tournament_index import validate_card_indices
+        validate_card_indices(self.data['cards']['cards'])
         from statistics_data import validate_external_statistics
         validate_external_statistics(self.data['statistics'], self.data['cards']['cards'])
         if not set(self.data['ratings'].get('cards',{})) <= set(ids): fail('valutazione di carta inesistente')
