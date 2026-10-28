@@ -1,0 +1,183 @@
+{
+  "date": "2026-10-28",
+  "links": {
+    "scryfall-ecl": "https://api.scryfall.com/sets/ecl",
+    "collecting": "https://magic.wizards.com/en/news/feature/collecting-lorwyn-eclipsed",
+    "mechanics": "https://magic.wizards.com/en/news/feature/lorwyn-eclipsed-mechanics",
+    "product": "https://magic.wizards.com/en/products/lorwyn-eclipsed",
+    "draft-guide": "https://draftsim.com/mtg-ecl-draft-guide/",
+    "sealed-guide": "https://draftsim.com/mtg-ecl-sealed-guide/",
+    "limited-review": "https://draftsim.com/mtg-ecl-limited-set-review/",
+    "17lands-card-data": "https://www.17lands.com/card_ratings/data?expansion=ECL&format=PremierDraft&start_date=2023-01-01&end_date=2026-10-28",
+    "17lands-usage": "https://www.17lands.com/usage_guidelines",
+    "Lorwyn-Eclipsed": "https://www.cardmarket.com/en/Magic/Expansions/Lorwyn-Eclipsed",
+    "edhrec": "https://edhrec.com/sets/ecl",
+    "mtggoldfish": "https://www.mtggoldfish.com/sets/Lorwyn+Eclipsed",
+    "mtgdecks": "https://mtgdecks.net/prices/ecl",
+    "untapped": "https://mtga.untapped.gg/limited/draft/lorwyn-eclipsed/card-data",
+    "cardkingdom": "https://blog.cardkingdom.com/lorwyn-eclipsed-draft-guide/",
+    "mtgazone-archetypes": "https://mtgazone.com/lorwyn-eclipsed-ecl-limited-archetypes-guide-and-example-decks/",
+    "cardsrealm": "https://mtg.cardsrealm.com/en-us/sets/ecl-lorwyn-eclipsed",
+    "edhrec-set-data": "https://edhrec.com/sets/ecl"
+  },
+  "research": {
+    "date": "2026-10-28",
+    "sources": [
+      {
+        "id": "scryfall-ecl",
+        "url": "https://api.scryfall.com/sets/ecl",
+        "label": "Scryfall: catalogo e Oracle",
+        "retrieved": "2026-10-28",
+        "status": "acquired",
+        "coverage": "Tutte le pagine del catalogo delle stampe, varianti incluse."
+      },
+      {
+        "id": "collecting",
+        "url": "https://magic.wizards.com/en/news/feature/collecting-lorwyn-eclipsed",
+        "label": "collecting",
+        "retrieved": "2026-10-28",
+        "status": "acquired",
+        "limitation": "Una pagina acquisita non implica analisi completa di tutti i contenuti."
+      },
+      {
+        "id": "mechanics",
+        "url": "https://magic.wizards.com/en/news/feature/lorwyn-eclipsed-mechanics",
+        "label": "mechanics",
+        "retrieved": "2026-10-28",
+        "status": "acquired",
+        "limitation": "Una pagina acquisita non implica analisi completa di tutti i contenuti."
+      },
+      {
+        "id": "product",
+        "url": "https://magic.wizards.com/en/products/lorwyn-eclipsed",
+        "label": "product",
+        "retrieved": "2026-10-28",
+        "status": "acquired",
+        "limitation": "Una pagina acquisita non implica analisi completa di tutti i contenuti."
+      },
+      {
+        "id": "draft-guide",
+        "url": "https://draftsim.com/mtg-ecl-draft-guide/",
+        "label": "draft-guide",
+        "retrieved": "2026-10-28",
+        "status": "acquired",
+        "limitation": "Una pagina acquisita non implica analisi completa di tutti i contenuti.",
+        "author": "Bryan Hohns (Veveil)",
+        "published": "2026-02-05",
+        "updated": "2026-02-05",
+        "coverage": "Guida letta per le sintesi degli archetipi; riferimenti per carta abbinati separatamente."
+      },
+      {
+        "id": "sealed-guide",
+        "url": "https://draftsim.com/mtg-ecl-sealed-guide/",
+        "label": "sealed-guide",
+        "retrieved": "2026-10-28",
+        "status": "acquired",
+        "limitation": "Una pagina acquisita non implica analisi completa di tutti i contenuti.",
+        "author": "Bryan Hohns (Veveil)",
+        "published": "2026-01-15",
+        "updated": null,
+        "coverage": "Guida letta per le sintesi degli archetipi; riferimenti per carta abbinati separatamente."
+      },
+      {
+        "id": "limited-review",
+        "url": "https://draftsim.com/mtg-ecl-limited-set-review/",
+        "label": "limited-review",
+        "retrieved": "2026-10-28",
+        "status": "acquired",
+        "limitation": "Una pagina acquisita non implica analisi completa di tutti i contenuti.",
+        "author": "Andrew Quinn",
+        "published": "2026-01-12",
+        "updated": "2026-04-24",
+        "coverage": "Abbinamento esatto dei titoli di carta; voti numerici singoli estratti dalla recensione Limited."
+      },
+      {
+        "id": "17lands-card-data",
+        "url": "https://www.17lands.com/card_ratings/data?expansion=ECL&format=PremierDraft&start_date=2023-01-01&end_date=2026-10-28",
+        "label": "17lands-card-data",
+        "retrieved": "2026-10-28",
+        "status": "acquired_not_redistributed",
+        "limitation": "Nessuna metrica integrata. Risposta API conservata esclusivamente in cache temporanea privata fuori repository; audit URL/hash e copertura derivata mantenuti. Riuso da verificare sui dataset pubblici autorizzati."
+      },
+      {
+        "id": "17lands-usage",
+        "url": "https://www.17lands.com/usage_guidelines",
+        "label": "17lands-usage",
+        "retrieved": "2026-10-28",
+        "status": "acquired",
+        "limitation": "Una pagina acquisita non implica analisi completa di tutti i contenuti."
+      },
+      {
+        "id": "Lorwyn-Eclipsed",
+        "url": "https://www.cardmarket.com/en/Magic/Expansions/Lorwyn-Eclipsed",
+        "label": "Lorwyn-Eclipsed",
+        "retrieved": "2026-10-28",
+        "status": "failed",
+        "limitation": "HTTP Error 403: Forbidden"
+      },
+      {
+        "id": "edhrec",
+        "url": "https://edhrec.com/sets/ecl",
+        "label": "edhrec",
+        "retrieved": "2026-10-28",
+        "status": "acquired",
+        "limitation": "Una pagina acquisita non implica analisi completa di tutti i contenuti."
+      },
+      {
+        "id": "mtggoldfish",
+        "url": "https://www.mtggoldfish.com/sets/Lorwyn+Eclipsed",
+        "label": "mtggoldfish",
+        "retrieved": "2026-10-28",
+        "status": "acquired",
+        "limitation": "Una pagina acquisita non implica analisi completa di tutti i contenuti."
+      },
+      {
+        "id": "mtgdecks",
+        "url": "https://mtgdecks.net/prices/ecl",
+        "label": "mtgdecks",
+        "retrieved": "2026-10-28",
+        "status": "acquired",
+        "limitation": "Una pagina acquisita non implica analisi completa di tutti i contenuti."
+      },
+      {
+        "id": "untapped",
+        "url": "https://mtga.untapped.gg/limited/draft/lorwyn-eclipsed/card-data",
+        "label": "untapped",
+        "retrieved": "2026-10-28",
+        "status": "acquired",
+        "limitation": "Una pagina acquisita non implica analisi completa di tutti i contenuti."
+      },
+      {
+        "id": "cardkingdom",
+        "url": "https://blog.cardkingdom.com/lorwyn-eclipsed-draft-guide/",
+        "label": "cardkingdom",
+        "retrieved": "2026-10-28",
+        "status": "acquired",
+        "limitation": "Una pagina acquisita non implica analisi completa di tutti i contenuti."
+      },
+      {
+        "id": "mtgazone-archetypes",
+        "url": "https://mtgazone.com/lorwyn-eclipsed-ecl-limited-archetypes-guide-and-example-decks/",
+        "label": "mtgazone-archetypes",
+        "retrieved": "2026-10-28",
+        "status": "acquired",
+        "limitation": "Una pagina acquisita non implica analisi completa di tutti i contenuti."
+      },
+      {
+        "id": "cardsrealm",
+        "url": "https://mtg.cardsrealm.com/en-us/sets/ecl-lorwyn-eclipsed",
+        "label": "cardsrealm",
+        "retrieved": "2026-10-28",
+        "status": "acquired",
+        "limitation": "Una pagina acquisita non implica analisi completa di tutti i contenuti."
+      },
+      {
+        "id": "edhrec-set-data",
+        "url": "https://json.edhrec.com/pages/sets/ecl.json",
+        "label": "EDHREC, inclusioni e comandanti per set",
+        "retrieved": "2026-10-28",
+        "status": "acquired"
+      }
+    ]
+  }
+}

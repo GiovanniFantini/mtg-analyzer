@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "products": {
+    "play": {
+      "name": "Play Booster",
+      "packSize": 14,
+      "tokensIncluded": false,
+      "collation": null,
+      "published": {
+        "date": "2026-10-28",
+        "source": "https://magic.wizards.com/en/news/feature/collecting-outlaws-of-thunder-junction",
+        "packSize": 14,
+        "notes": [
+          "Ogni Play Booster include una carta Breaking News. The Big Score e le Special Guests possono occupare lo slot The List, con legalità proprie.",
+          "Commettere un crimine richiede di bersagliare un avversario o le sue magie, abilità o carte nelle zone pertinenti. Non basta infliggere danno senza bersaglio."
+        ],
+        "sourceSnapshot": "research/outlaws-of-thunder-junction-20261028/wizards-collecting.txt",
+        "guaranteedBonusSheet": "OTP",
+        "listProbability": 0.2,
+        "specialGuestProbability": 0.015625,
+        "bonusCodes": [
+          "OTP",
+          "BIG",
+          "SPG"
+        ]
+      },
+      "missing": [
+        "Ricetta completa con probabilità dei trattamenti, gruppi e dipendenze fra slot. Nessuna equiprobabilità dedotta dal flag booster."
+      ]
+    }
+  }
+}

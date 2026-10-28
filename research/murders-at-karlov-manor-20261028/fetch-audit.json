@@ -1,0 +1,177 @@
+{
+  "date": "2026-10-28",
+  "set": "MKM",
+  "acquisitions": [
+    {
+      "url": "https://api.scryfall.com/sets/mkm",
+      "resolvedUrl": "https://api.scryfall.com/sets/mkm",
+      "file": "scryfall-set.json",
+      "status": 200,
+      "bytes": 605,
+      "sha256": "e1e8308db73f4604f80922e99bc633c8d9fc3d45c9a892352d557a786bf9489b",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://api.scryfall.com/cards/search?q=set%3Amkm&unique=prints&order=set&include_extras=false",
+      "resolvedUrl": "https://api.scryfall.com/cards/search?q=set%3Amkm&unique=prints&order=set&include_extras=false",
+      "file": "scryfall-0-page-1.json",
+      "status": 200,
+      "bytes": 951353,
+      "sha256": "c52b509ede3d0f6ce169b5df7f803c5d7351b7bd026d386b1b8e70e73ba883c3",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://api.scryfall.com/cards/search?format=json&include_extras=false&include_multilingual=false&include_variations=false&order=set&page=2&q=set%3Amkm&unique=prints",
+      "resolvedUrl": "https://api.scryfall.com/cards/search?format=json&include_extras=false&include_multilingual=false&include_variations=false&order=set&page=2&q=set%3Amkm&unique=prints",
+      "file": "scryfall-0-page-2.json",
+      "status": 200,
+      "bytes": 947904,
+      "sha256": "eed12964453d46427fcb7c802eaf904f376a999c8201c0248aae3ce9cedc35e1",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://api.scryfall.com/cards/search?format=json&include_extras=false&include_multilingual=false&include_variations=false&order=set&page=3&q=set%3Amkm&unique=prints",
+      "resolvedUrl": "https://api.scryfall.com/cards/search?format=json&include_extras=false&include_multilingual=false&include_variations=false&order=set&page=3&q=set%3Amkm&unique=prints",
+      "file": "scryfall-0-page-3.json",
+      "status": 200,
+      "bytes": 495577,
+      "sha256": "14d5f83ab4e800dea99f4489d128695bafae24b23565ec1eb404b69dbfc519ca",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://api.scryfall.com/cards/search?q=set%3Aspg+cn%3E%3D19+cn%3C%3D28&unique=prints&order=set&include_extras=false",
+      "resolvedUrl": "https://api.scryfall.com/cards/search?q=set%3Aspg+cn%3E%3D19+cn%3C%3D28&unique=prints&order=set&include_extras=false",
+      "file": "scryfall-1-page-1.json",
+      "status": 200,
+      "bytes": 53127,
+      "sha256": "49f71e8ffe7de132aa690c6be23e90de7e9adf91b457bc90fca1844a9f86f83f",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://www.17lands.com/card_ratings/data?expansion=MKM&format=PremierDraft&start_date=2024-02-06&end_date=2024-04-15",
+      "resolvedUrl": "https://www.17lands.com/card_ratings/data?expansion=MKM&format=PremierDraft&start_date=2024-02-06&end_date=2024-04-15",
+      "file": "17lands-premier.json",
+      "status": "acquired_not_reused",
+      "bytes": 196845,
+      "sha256": "289295ffdbffa7bbf35b34ab448de6416c179b398854ea5ed4575104014b152a",
+      "retrieved": "2026-10-28",
+      "limitation": "API output restricted to 17Lands.com. Raw acquisition removed and not included in public data; use authorized public datasets."
+    },
+    {
+      "url": "https://magic.wizards.com/en/news/feature/collecting-murders-at-karlov-manor",
+      "resolvedUrl": "https://magic.wizards.com/en/news/feature/collecting-murders-at-karlov-manor",
+      "file": "wizards-collecting.html",
+      "status": 200,
+      "bytes": 304576,
+      "sha256": "7089327e0a77b1a5591cc1c8c4fbae612c07a80182bd142235863de7b79189e0",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://magic.wizards.com/en/news/feature/murders-at-karlov-manor-mechanics",
+      "resolvedUrl": "https://magic.wizards.com/en/news/feature/murders-at-karlov-manor-mechanics",
+      "file": "wizards-mechanics.html",
+      "status": 200,
+      "bytes": 192934,
+      "sha256": "d3b60dc126270e61e1632e85cbc1a0d8ebd42e745cbc3bab6837e8843253a944",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://magic.wizards.com/en/news/feature/murders-at-karlov-manor-release-notes",
+      "resolvedUrl": "https://magic.wizards.com/en/news/feature/murders-at-karlov-manor-release-notes",
+      "file": "wizards-release-notes.html",
+      "status": 200,
+      "bytes": 689393,
+      "sha256": "b5dbdf6f3caae75c491f5ab76a9dba060663592dafe5673b1f8955d01ab15d63",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://draftsim.com/mtg-mkm-draft-guide/",
+      "file": "draftsim-guide.html",
+      "status": "failed",
+      "error": "HTTP Error 404: Not Found",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://draftsim.com/mkm-limited-set-review/",
+      "file": "draftsim-review.html",
+      "status": "failed",
+      "error": "HTTP Error 404: Not Found",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://www.cardmarket.com/en/Magic/Expansions/Murders-At-Karlov-Manor",
+      "file": "cardmarket-set.html",
+      "status": "failed",
+      "error": "HTTP Error 403: Forbidden",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://magic.wizards.com/en/news/announcements/whats-new-on-the-list-for-murders-at-karlov-manor",
+      "resolvedUrl": "https://magic.wizards.com/en/news/announcements/whats-new-on-the-list-for-murders-at-karlov-manor",
+      "file": "wizards-list.html",
+      "status": 200,
+      "bytes": 220247,
+      "sha256": "43a03c21618f52cc5576498898d7f8bdc37a8a81efbd59a0edd7d9d12a6723a4",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://mtgazone.com/murders-at-karlov-manor-mkm-limited-set-review-white/",
+      "resolvedUrl": "https://mtgazone.com/murders-at-karlov-manor-mkm-limited-set-review-white/",
+      "file": "mtgazone-white.html",
+      "status": 200,
+      "bytes": 779671,
+      "sha256": "fb936acbec5fc11467603e23e7e90122d7c026e3d517ab210c1cb5969c276f8a",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://mtgazone.com/murders-at-karlov-manor-mkm-limited-set-review-blue/",
+      "resolvedUrl": "https://mtgazone.com/murders-at-karlov-manor-mkm-limited-set-review-blue/",
+      "file": "mtgazone-blue.html",
+      "status": 200,
+      "bytes": 783152,
+      "sha256": "10156d89c3dc9cec8c7bef66eb076696f375aa3f4a102cd9f0b9a1230bf94753",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://mtgazone.com/murders-at-karlov-manor-mkm-limited-set-review-black/",
+      "resolvedUrl": "https://mtgazone.com/murders-at-karlov-manor-mkm-limited-set-review-black/",
+      "file": "mtgazone-black.html",
+      "status": 200,
+      "bytes": 779415,
+      "sha256": "d91bf85d4b3f6d1a706ef507fbcd9e57825c57a8f27466461394c965b308c460",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://mtgazone.com/murders-at-karlov-manor-mkm-limited-set-review-red/",
+      "resolvedUrl": "https://mtgazone.com/murders-at-karlov-manor-mkm-limited-set-review-red/",
+      "file": "mtgazone-red.html",
+      "status": 200,
+      "bytes": 785049,
+      "sha256": "cc2f0230de1728e6464e3f6faa5554c7a0860ee836fcfeba46ea8924784e7934",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://mtgazone.com/murders-at-karlov-manor-mkm-limited-set-review-green/",
+      "resolvedUrl": "https://mtgazone.com/murders-at-karlov-manor-mkm-limited-set-review-green/",
+      "file": "mtgazone-green.html",
+      "status": 200,
+      "bytes": 779317,
+      "sha256": "5bb4a77a68cf85ee97ccbce110fa00449ae64ddc74e6d45bbd8c36f0a8a52192",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://mtgazone.com/murders-at-karlov-manor-mkm-limited-set-review-multicolored/",
+      "file": "mtgazone-multicolored.html",
+      "status": "failed",
+      "error": "HTTP Error 404: Not Found",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://mtgazone.com/murders-at-karlov-manor-mkm-limited-set-review-artifacts-and-lands/",
+      "file": "mtgazone-artifacts-and-lands.html",
+      "status": "failed",
+      "error": "HTTP Error 404: Not Found",
+      "retrieved": "2026-10-28"
+    }
+  ]
+}

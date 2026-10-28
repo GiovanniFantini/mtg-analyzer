@@ -1,0 +1,142 @@
+{
+  "date": "2026-10-28",
+  "links": {
+    "scryfall-set": "https://api.scryfall.com/sets/dsk",
+    "scryfall-0-page-1": "https://api.scryfall.com/cards/search?q=set%3Adsk&unique=prints&order=set&include_extras=false",
+    "scryfall-0-page-2": "https://api.scryfall.com/cards/search?format=json&include_extras=false&include_multilingual=false&include_variations=false&order=set&page=2&q=set%3Adsk&unique=prints",
+    "scryfall-0-page-3": "https://api.scryfall.com/cards/search?format=json&include_extras=false&include_multilingual=false&include_variations=false&order=set&page=3&q=set%3Adsk&unique=prints",
+    "scryfall-1-page-1": "https://api.scryfall.com/cards/search?q=set%3Aspg+cn%3E%3D64+cn%3C%3D73&unique=prints&order=set&include_extras=false",
+    "17lands-premier": "https://www.17lands.com/card_ratings/data?expansion=DSK&format=PremierDraft&start_date=2024-09-24&end_date=2024-11-11",
+    "wizards-collecting": "https://magic.wizards.com/en/news/feature/collecting-duskmourn",
+    "wizards-mechanics": "https://magic.wizards.com/en/news/feature/duskmourn-mechanics",
+    "wizards-release-notes": "https://magic.wizards.com/en/news/feature/duskmourn-release-notes",
+    "draftsim-guide": "https://draftsim.com/mtg-dsk-draft-guide/",
+    "draftsim-review": "https://draftsim.com/dsk-limited-set-review/",
+    "cardmarket-set": "https://www.cardmarket.com/en/Magic/Expansions/Duskmourn",
+    "edhrec-set-data": "https://edhrec.com/sets/dsk",
+    "scryfall-dsk": "https://scryfall.com/sets/dsk"
+  },
+  "research": {
+    "date": "2026-10-28",
+    "sources": [
+      {
+        "id": "scryfall-set",
+        "url": "https://api.scryfall.com/sets/dsk",
+        "label": "scryfall set",
+        "retrieved": "2026-10-28",
+        "status": "acquired",
+        "file": "research\\duskmourn-20261028\\scryfall-set.json"
+      },
+      {
+        "id": "scryfall-0-page-1",
+        "url": "https://api.scryfall.com/cards/search?q=set%3Adsk&unique=prints&order=set&include_extras=false",
+        "label": "scryfall 0 page 1",
+        "retrieved": "2026-10-28",
+        "status": "acquired",
+        "file": "research\\duskmourn-20261028\\scryfall-0-page-1.json"
+      },
+      {
+        "id": "scryfall-0-page-2",
+        "url": "https://api.scryfall.com/cards/search?format=json&include_extras=false&include_multilingual=false&include_variations=false&order=set&page=2&q=set%3Adsk&unique=prints",
+        "label": "scryfall 0 page 2",
+        "retrieved": "2026-10-28",
+        "status": "acquired",
+        "file": "research\\duskmourn-20261028\\scryfall-0-page-2.json"
+      },
+      {
+        "id": "scryfall-0-page-3",
+        "url": "https://api.scryfall.com/cards/search?format=json&include_extras=false&include_multilingual=false&include_variations=false&order=set&page=3&q=set%3Adsk&unique=prints",
+        "label": "scryfall 0 page 3",
+        "retrieved": "2026-10-28",
+        "status": "acquired",
+        "file": "research\\duskmourn-20261028\\scryfall-0-page-3.json"
+      },
+      {
+        "id": "scryfall-1-page-1",
+        "url": "https://api.scryfall.com/cards/search?q=set%3Aspg+cn%3E%3D64+cn%3C%3D73&unique=prints&order=set&include_extras=false",
+        "label": "scryfall 1 page 1",
+        "retrieved": "2026-10-28",
+        "status": "acquired",
+        "file": "research\\duskmourn-20261028\\scryfall-1-page-1.json"
+      },
+      {
+        "id": "17lands-premier",
+        "url": "https://www.17lands.com/card_ratings/data?expansion=DSK&format=PremierDraft&start_date=2024-09-24&end_date=2024-11-11",
+        "label": "17lands premier",
+        "retrieved": "2026-10-28",
+        "status": "not_reused",
+        "file": null,
+        "limitation": "API output restricted to 17Lands.com. Use public datasets."
+      },
+      {
+        "id": "wizards-collecting",
+        "url": "https://magic.wizards.com/en/news/feature/collecting-duskmourn",
+        "label": "wizards collecting",
+        "retrieved": "2026-10-28",
+        "status": "acquired",
+        "file": "research\\duskmourn-20261028\\wizards-collecting.html"
+      },
+      {
+        "id": "wizards-mechanics",
+        "url": "https://magic.wizards.com/en/news/feature/duskmourn-mechanics",
+        "label": "wizards mechanics",
+        "retrieved": "2026-10-28",
+        "status": "unavailable",
+        "file": null
+      },
+      {
+        "id": "wizards-release-notes",
+        "url": "https://magic.wizards.com/en/news/feature/duskmourn-release-notes",
+        "label": "wizards release notes",
+        "retrieved": "2026-10-28",
+        "status": "unavailable",
+        "file": null
+      },
+      {
+        "id": "draftsim-guide",
+        "url": "https://draftsim.com/mtg-dsk-draft-guide/",
+        "label": "draftsim guide",
+        "retrieved": "2026-10-28",
+        "status": "acquired",
+        "file": "research\\duskmourn-20261028\\draftsim-guide.html"
+      },
+      {
+        "id": "draftsim-review",
+        "url": "https://draftsim.com/dsk-limited-set-review/",
+        "label": "draftsim review",
+        "retrieved": "2026-10-28",
+        "status": "unavailable",
+        "file": null
+      },
+      {
+        "id": "cardmarket-set",
+        "url": "https://www.cardmarket.com/en/Magic/Expansions/Duskmourn",
+        "label": "cardmarket set",
+        "retrieved": "2026-10-28",
+        "status": "unavailable",
+        "file": null
+      },
+      {
+        "id": "draftsim-numeric-review",
+        "url": "https://draftsim.com/mtg-dsk-limited-set-review/",
+        "label": "Recensione Limited numerica Draftsim",
+        "retrieved": "2026-10-28",
+        "status": "acquired"
+      },
+      {
+        "id": "edhrec-set-data",
+        "url": "https://json.edhrec.com/pages/sets/dsk.json",
+        "label": "EDHREC: inclusioni nelle liste Commander",
+        "retrieved": "2026-10-28",
+        "status": "acquired"
+      },
+      {
+        "id": "scryfall-dsk",
+        "url": "https://scryfall.com/sets/dsk",
+        "label": "Oracle e legalità Scryfall",
+        "retrieved": "2026-10-28",
+        "status": "acquired"
+      }
+    ]
+  }
+}

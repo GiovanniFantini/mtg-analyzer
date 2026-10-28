@@ -1,0 +1,165 @@
+{
+  "date": "2026-10-28",
+  "set": "LCI",
+  "acquisitions": [
+    {
+      "url": "https://api.scryfall.com/sets/lci",
+      "resolvedUrl": "https://api.scryfall.com/sets/lci",
+      "file": "scryfall-set.json",
+      "status": 200,
+      "bytes": 608,
+      "sha256": "56203c487eff37d4783eeae6cf30b6c7903f242bfc0c95ccbfc1880f9aea3ebd",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://api.scryfall.com/cards/search?q=set%3Alci&unique=prints&order=set&include_extras=false",
+      "resolvedUrl": "https://api.scryfall.com/cards/search?q=set%3Alci&unique=prints&order=set&include_extras=false",
+      "file": "scryfall-0-page-1.json",
+      "status": 200,
+      "bytes": 980087,
+      "sha256": "8e23b2b67983ceabe3b0128a6d328d3071066d90128e5402c7470ebad78af155",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://api.scryfall.com/cards/search?format=json&include_extras=false&include_multilingual=false&include_variations=false&order=set&page=2&q=set%3Alci&unique=prints",
+      "resolvedUrl": "https://api.scryfall.com/cards/search?format=json&include_extras=false&include_multilingual=false&include_variations=false&order=set&page=2&q=set%3Alci&unique=prints",
+      "file": "scryfall-0-page-2.json",
+      "status": 200,
+      "bytes": 986870,
+      "sha256": "e56e7cea1dbab1053f9b68876f4337b3574050f4514e74a723e3b151430c3aa0",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://api.scryfall.com/cards/search?format=json&include_extras=false&include_multilingual=false&include_variations=false&order=set&page=3&q=set%3Alci&unique=prints",
+      "resolvedUrl": "https://api.scryfall.com/cards/search?format=json&include_extras=false&include_multilingual=false&include_variations=false&order=set&page=3&q=set%3Alci&unique=prints",
+      "file": "scryfall-0-page-3.json",
+      "status": 200,
+      "bytes": 372292,
+      "sha256": "9f84734058d65d3a0cb64c886d8257e0ef78c73bad2a38f58db26b86b48192b6",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://www.17lands.com/card_ratings/data?expansion=LCI&format=PremierDraft&start_date=2023-11-14&end_date=2024-02-05",
+      "resolvedUrl": "https://www.17lands.com/card_ratings/data?expansion=LCI&format=PremierDraft&start_date=2023-11-14&end_date=2024-02-05",
+      "file": "17lands-premier.json",
+      "status": "acquired_not_reused",
+      "bytes": 184241,
+      "sha256": "61640bd68a67cdc60340f01c18e49f896eaec67ed2d2914242f56bb787fd53da",
+      "retrieved": "2026-10-28",
+      "limitation": "API output restricted to 17Lands.com. Raw acquisition removed and not included in public data; use authorized public datasets."
+    },
+    {
+      "url": "https://magic.wizards.com/en/news/feature/collecting-the-lost-caverns-of-ixalan",
+      "resolvedUrl": "https://magic.wizards.com/en/news/feature/collecting-the-lost-caverns-of-ixalan",
+      "file": "wizards-collecting.html",
+      "status": 200,
+      "bytes": 273685,
+      "sha256": "f952e56f2512f045b63852dba732256b94baed23f8985ca9012394a7ad2abd84",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://magic.wizards.com/en/news/feature/the-lost-caverns-of-ixalan-mechanics",
+      "resolvedUrl": "https://magic.wizards.com/en/news/feature/the-lost-caverns-of-ixalan-mechanics",
+      "file": "wizards-mechanics.html",
+      "status": 200,
+      "bytes": 208281,
+      "sha256": "51bc7d06e55f611784ed4331859d0dbfd62c3975bef47926b256c1f0b7b41987",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://magic.wizards.com/en/news/feature/the-lost-caverns-of-ixalan-release-notes",
+      "resolvedUrl": "https://magic.wizards.com/en/news/feature/the-lost-caverns-of-ixalan-release-notes",
+      "file": "wizards-release-notes.html",
+      "status": 200,
+      "bytes": 881708,
+      "sha256": "6b67427e90af9cbe6c240ac85a5eb5d283deec107ec2ae2abf35ddfabf177642",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://draftsim.com/mtg-lci-draft-guide/",
+      "resolvedUrl": "https://draftsim.com/mtg-lci-draft-guide/",
+      "file": "draftsim-guide.html",
+      "status": 200,
+      "bytes": 1657671,
+      "sha256": "e66e6fa9bfc3e35d3f6a212470e2a8de61457ce4eb1db960c01ee6696067e3be",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://draftsim.com/lci-limited-set-review/",
+      "file": "draftsim-review.html",
+      "status": "failed",
+      "error": "HTTP Error 404: Not Found",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://www.cardmarket.com/en/Magic/Expansions/The-Lost-Caverns-Of-Ixalan",
+      "file": "cardmarket-set.html",
+      "status": "failed",
+      "error": "HTTP Error 403: Forbidden",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://mtgazone.com/the-lost-caverns-of-ixalan-lci-limited-set-review-white/",
+      "resolvedUrl": "https://mtgazone.com/the-lost-caverns-of-ixalan-lci-limited-set-review-white/",
+      "file": "mtgazone-white.html",
+      "status": 200,
+      "bytes": 831924,
+      "sha256": "091aa0556fa10e5ccfbc7961185cb0629686b731b60a687f317ac28a48c20018",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://mtgazone.com/the-lost-caverns-of-ixalan-lci-limited-set-review-blue/",
+      "resolvedUrl": "https://mtgazone.com/the-lost-caverns-of-ixalan-lci-limited-set-review-blue/",
+      "file": "mtgazone-blue.html",
+      "status": 200,
+      "bytes": 825947,
+      "sha256": "1ef937630571f8ed134bb9c36c106fd54e28b57c2f18e4eefe690c4a4dd463fd",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://mtgazone.com/the-lost-caverns-of-ixalan-lci-limited-set-review-black/",
+      "resolvedUrl": "https://mtgazone.com/the-lost-caverns-of-ixalan-lci-limited-set-review-black/",
+      "file": "mtgazone-black.html",
+      "status": 200,
+      "bytes": 833357,
+      "sha256": "90fdeade22188a6c576311704521f6e418e02e0a67a1c63b227545b743540501",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://mtgazone.com/the-lost-caverns-of-ixalan-lci-limited-set-review-red/",
+      "resolvedUrl": "https://mtgazone.com/the-lost-caverns-of-ixalan-lci-limited-set-review-red/",
+      "file": "mtgazone-red.html",
+      "status": 200,
+      "bytes": 828214,
+      "sha256": "b3612c696b6b95829ae96ed4779ca59a6fb5cf0c4a793f578fe0810c0e01b0c2",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://mtgazone.com/the-lost-caverns-of-ixalan-lci-limited-set-review-green/",
+      "resolvedUrl": "https://mtgazone.com/the-lost-caverns-of-ixalan-lci-limited-set-review-green/",
+      "file": "mtgazone-green.html",
+      "status": 200,
+      "bytes": 843419,
+      "sha256": "3d16b3678e2e21695c087cda27154a45001f322aa1432540c41af3a750c73751",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://mtgazone.com/the-lost-caverns-of-ixalan-lci-limited-set-review-multicolored/",
+      "resolvedUrl": "https://mtgazone.com/the-lost-caverns-of-ixalan-lci-limited-set-review-multicolored/",
+      "file": "mtgazone-multicolored.html",
+      "status": 200,
+      "bytes": 730168,
+      "sha256": "6f92366316a3d90e006b1dd910ea96a50d6e7c67d5fa657f72f962c335caf809",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://mtgazone.com/the-lost-caverns-of-ixalan-lci-limited-set-review-artifacts-and-lands/",
+      "resolvedUrl": "https://mtgazone.com/the-lost-caverns-of-ixalan-lci-limited-set-review-artifacts-and-lands/",
+      "file": "mtgazone-artifacts-and-lands.html",
+      "status": 200,
+      "bytes": 807140,
+      "sha256": "1d8d79f96b917b44907313656c7a370528234b7bb9ed473f3c96dbd38f0281c6",
+      "retrieved": "2026-10-28"
+    }
+  ]
+}

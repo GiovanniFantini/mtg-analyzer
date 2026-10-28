@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "products": {
+    "play": {
+      "name": "Play Booster",
+      "packSize": 14,
+      "collation": null,
+      "published": {
+        "source": "https://magic.wizards.com/en/news/feature/collecting-edge-of-eternities",
+        "retrieved": "2026-10-28",
+        "includedSets": [
+          "eoe",
+          "eos",
+          "spg"
+        ],
+        "countsCertifiedAsBoosterPool": false,
+        "mainPoolCounts": {
+          "common": 81,
+          "uncommon": 100,
+          "rare": 60,
+          "mythic": 20
+        },
+        "slots": {
+          "commons": "6-7",
+          "uncommons": 3,
+          "wildcard": 1,
+          "rareOrMythic": 1,
+          "traditionalFoil": 1,
+          "land": 1
+        },
+        "specialGuestsReplacementPercent": 1.8
+      },
+      "missing": [
+        "Associare ogni slot alle stampe ammesse e completare le probabilità non pubblicate o arrotondate."
+      ],
+      "assumptions": []
+    }
+  }
+}

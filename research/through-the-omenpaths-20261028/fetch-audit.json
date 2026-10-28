@@ -1,0 +1,156 @@
+{
+  "retrieved": "2026-10-28",
+  "acquisitions": [
+    {
+      "provider": "Scryfall",
+      "url": "https://api.scryfall.com/cards/search?include_extras=true&include_variations=true&order=set&q=e%3Aom1&unique=prints",
+      "retrieved": "2026-10-28",
+      "status": "acquired",
+      "file": "om1-page-1.json",
+      "sha256": "b2593794caad64e29ecef079027246fe766d25b0afeff42cb976707852360560",
+      "rows": 175
+    },
+    {
+      "provider": "Scryfall",
+      "url": "https://api.scryfall.com/cards/search?format=json&include_extras=true&include_multilingual=false&include_variations=true&order=set&page=2&q=e%3Aom1&unique=prints",
+      "retrieved": "2026-10-28",
+      "status": "acquired",
+      "file": "om1-page-2.json",
+      "sha256": "fdac123196e23b7f08c4edf0ff2f4a454a406b53f7ef53aad5fe069f6e94dd55",
+      "rows": 14
+    },
+    {
+      "id": "wizards",
+      "label": "Wizards: prodotti, date e legalità",
+      "url": "https://magic.wizards.com/en/news/mtg-arena/through-the-omenpaths-release-faq",
+      "retrieved": "2026-10-28",
+      "status": "acquired",
+      "file": "wizards-source.html",
+      "sha256": "7ef4f5dcb10f6c24a5a37191c94469ccc406afef35058abfed7b409b144d5709",
+      "bytes": 195518,
+      "title": "Through the Omenpaths Release FAQ",
+      "coverage": "Cattura acquisita; contenuto dinamico e misure per carta da verificare prima dell’integrazione."
+    },
+    {
+      "id": "limited-guide",
+      "label": "Guida Limited attribuita",
+      "url": "https://draftsim.com/mtg-spm-draft-guide/",
+      "retrieved": "2026-10-28",
+      "status": "acquired",
+      "file": "limited-guide-source.html",
+      "sha256": "6ef0d8ca77dc43375fb82255b41ee51582dff6c3828e0f045d29bc400aa3f4f1",
+      "bytes": 1835878,
+      "title": "The Ultimate Guide to Marvel's Spider-Man Draft - Draftsim",
+      "coverage": "Cattura acquisita; contenuto dinamico e misure per carta da verificare prima dell’integrazione."
+    },
+    {
+      "id": "card-kingdom",
+      "label": "Card Kingdom: guida Limited",
+      "url": "https://blog.cardkingdom.com/through-the-omenpaths-draft-guide/",
+      "retrieved": "2026-10-28",
+      "status": "unavailable",
+      "error": "HTTP Error 404: Not Found",
+      "coverage": "Nessuna osservazione acquisita da questo tentativo; URL candidato, esistenza della pagina non certificata."
+    },
+    {
+      "id": "cards-realm",
+      "label": "Cards Realm: recensione Standard",
+      "url": "https://mtg.cardsrealm.com/en-us/articles/standard-set-review-through-the-omenpaths",
+      "retrieved": "2026-10-28",
+      "status": "error_page",
+      "file": "cards-realm-source.html",
+      "sha256": "52a664fbd4bf6c130b8e4638964be417e258a9fc6b141230a2efccd81045fd62",
+      "bytes": 49527,
+      "title": "article_errors | Cards Realm",
+      "coverage": "Pagina di errore HTTP 200: nessuna recensione acquisita."
+    },
+    {
+      "id": "edhrec",
+      "label": "EDHREC: inclusioni Commander",
+      "url": "https://edhrec.com/sets/om1",
+      "retrieved": "2026-10-28",
+      "status": "acquired",
+      "file": "edhrec-source.html",
+      "sha256": "f61d0f865e5ea139d8c70f07f73710a4e50404624f45dd2742c3c50e446d381f",
+      "bytes": 907618,
+      "title": "Marvel's Spider-Man | EDHREC",
+      "coverage": "Cattura acquisita; contenuto dinamico e misure per carta da verificare prima dell’integrazione."
+    },
+    {
+      "id": "mtggoldfish",
+      "label": "MTGGoldfish: catalogo e contesto",
+      "url": "https://www.mtggoldfish.com/spoilers/Through+the+Omenpaths",
+      "retrieved": "2026-10-28",
+      "status": "unavailable",
+      "error": "HTTP Error 404: Not Found",
+      "coverage": "Nessuna osservazione acquisita da questo tentativo; URL candidato, esistenza della pagina non certificata."
+    },
+    {
+      "id": "untapped",
+      "label": "Untapped: archetipi e dati Limited",
+      "url": "https://mtga.untapped.gg/limited/draft/through-the-omenpaths/set-guide",
+      "retrieved": "2026-10-28",
+      "status": "acquired",
+      "file": "untapped-source.html",
+      "sha256": "4ff1d10a04857cf43a4bde6d1c9ae22ed88a467a9e6942076a8e47bb75202159",
+      "bytes": 586846,
+      "title": "MTG Through the Omenpaths (OM1) Draft Guide & Archetypes - Untapped.gg",
+      "coverage": "Cattura acquisita; contenuto dinamico e misure per carta da verificare prima dell’integrazione."
+    },
+    {
+      "id": "cardmarket",
+      "label": "Cardmarket: prezzi per stampa",
+      "url": "https://www.cardmarket.com/en/Magic/Expansions/Through-the-Omenpaths",
+      "retrieved": "2026-10-28",
+      "status": "unavailable",
+      "error": "HTTP Error 403: Forbidden",
+      "coverage": "Nessuna osservazione acquisita da questo tentativo; URL candidato, esistenza della pagina non certificata."
+    },
+    {
+      "id": "mtgdecks",
+      "label": "MTGDECKS: adozione Constructed",
+      "url": "https://mtgdecks.net/sets/OM1",
+      "retrieved": "2026-10-28",
+      "status": "unavailable",
+      "error": "HTTP Error 404: Not Found",
+      "coverage": "Nessuna osservazione acquisita da questo tentativo; URL candidato, esistenza della pagina non certificata."
+    },
+    {
+      "id": "aetherhub",
+      "label": "AetherHub: catalogo e mazzi",
+      "url": "https://aetherhub.com/Set/OM1",
+      "retrieved": "2026-10-28",
+      "status": "unavailable",
+      "error": "HTTP Error 404: Not Found",
+      "coverage": "Nessuna osservazione acquisita da questo tentativo; URL candidato, esistenza della pagina non certificata."
+    },
+    {
+      "provider": "17Lands",
+      "url": "https://www.17lands.com/card_ratings/data?expansion=OM1&format=PremierDraft&start_date=2025-09-23&end_date=2025-11-17",
+      "retrieved": "2026-10-28",
+      "status": "excluded_reuse_not_certified",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "rows": 0,
+      "reason": "Related API notice restricts outside reuse; no API aggregates retained or published. Prefer public_datasets with verified license."
+    },
+    {
+      "provider": "Draftsim",
+      "id": "limited-review",
+      "url": "https://draftsim.com/mtg-spm-limited-set-review/",
+      "retrieved": "2026-10-28",
+      "status": "acquired",
+      "file": "limited-review.html",
+      "sha256": "703a325e2770a4c5eced8201b409b5eabd1c0dd2e66f21c42d5f0c37e18c07b3",
+      "bytes": 2037012
+    },
+    {
+      "provider": "EDHREC",
+      "id": "edhrec-set-data",
+      "url": "https://json.edhrec.com/pages/sets/om1.json",
+      "retrieved": "2026-10-28",
+      "status": "acquired",
+      "file": "edhrec-set-data.json",
+      "sha256": "2df376abe0ad4a5b822951e74eb45d11eb42fc642c3226371c43e086cf7fe7db"
+    }
+  ]
+}

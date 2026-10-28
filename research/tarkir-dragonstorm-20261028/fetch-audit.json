@@ -1,0 +1,217 @@
+{
+  "retrieved": "2026-10-28",
+  "acquisitions": [
+    {
+      "provider": "Scryfall",
+      "url": "https://api.scryfall.com/cards/search?include_extras=true&include_variations=true&order=set&q=e%3Atdm&unique=prints",
+      "retrieved": "2026-10-28",
+      "status": "acquired",
+      "file": "tdm-page-1.json",
+      "sha256": "7c4783e10bfff59874ae88e01b3f42b300026b740b7538c3b5085f69369fd90f",
+      "rows": 175
+    },
+    {
+      "provider": "Scryfall",
+      "url": "https://api.scryfall.com/cards/search?format=json&include_extras=true&include_multilingual=false&include_variations=true&order=set&page=2&q=e%3Atdm&unique=prints",
+      "retrieved": "2026-10-28",
+      "status": "acquired",
+      "file": "tdm-page-2.json",
+      "sha256": "b1cfa4f7b75d40e852e72a7a27ee69780eaca152f70d132f7cd9fb3309a3823a",
+      "rows": 175
+    },
+    {
+      "provider": "Scryfall",
+      "url": "https://api.scryfall.com/cards/search?format=json&include_extras=true&include_multilingual=false&include_variations=true&order=set&page=3&q=e%3Atdm&unique=prints",
+      "retrieved": "2026-10-28",
+      "status": "acquired",
+      "file": "tdm-page-3.json",
+      "sha256": "4e221fc2362a59a51bb914899c5e8d5fc1212f56d7ffebdd65d5781ef26a716a",
+      "rows": 76
+    },
+    {
+      "provider": "Scryfall",
+      "url": "https://api.scryfall.com/cards/search?include_extras=true&include_variations=true&order=set&q=e%3Aspg&unique=prints",
+      "retrieved": "2026-10-28",
+      "status": "acquired",
+      "file": "spg-page-1.json",
+      "sha256": "a93749fdb039bc7cd1ea8bcfca71778382f419de785539388864209242f047f9",
+      "rows": 175
+    },
+    {
+      "provider": "Scryfall",
+      "url": "https://api.scryfall.com/cards/search?include_extras=true&include_variations=true&order=set&q=e%3Atdc&unique=prints",
+      "retrieved": "2026-10-28",
+      "status": "acquired",
+      "file": "tdc-page-1.json",
+      "sha256": "513de615274a9655346e7c18b5029c9a82eafb37053245e3989a51f171432695",
+      "rows": 175
+    },
+    {
+      "provider": "Scryfall",
+      "url": "https://api.scryfall.com/cards/search?format=json&include_extras=true&include_multilingual=false&include_variations=true&order=set&page=2&q=e%3Atdc&unique=prints",
+      "retrieved": "2026-10-28",
+      "status": "acquired",
+      "file": "tdc-page-2.json",
+      "sha256": "5ce4a15521ae23e3805d345bc4d8d323d39d38070c88f81430afaee63161cd7f",
+      "rows": 175
+    },
+    {
+      "provider": "Scryfall",
+      "url": "https://api.scryfall.com/cards/search?format=json&include_extras=true&include_multilingual=false&include_variations=true&order=set&page=3&q=e%3Atdc&unique=prints",
+      "retrieved": "2026-10-28",
+      "status": "acquired",
+      "file": "tdc-page-3.json",
+      "sha256": "3b87719671e04bf49c764927b031e66d6487e84cc4e5e8e19fced216f412da39",
+      "rows": 63
+    },
+    {
+      "id": "wizards",
+      "label": "Wizards: prodotti, date e legalità",
+      "url": "https://magic.wizards.com/en/news/feature/collecting-tarkir-dragonstorm",
+      "retrieved": "2026-10-28",
+      "status": "acquired",
+      "file": "wizards-source.html",
+      "sha256": "370b8c7465df2adf95329b0e8cceaf11c7199b0d8725d1f9d3024babe4debcf9",
+      "bytes": 252203,
+      "title": "Collecting Tarkir: Dragonstorm: The Four Most Important Things to Know",
+      "coverage": "Cattura acquisita; contenuto dinamico e misure per carta da verificare prima dell’integrazione."
+    },
+    {
+      "id": "limited-guide",
+      "label": "Guida Limited attribuita",
+      "url": "https://blog.cardkingdom.com/tarkir-dragonstorm-draft-guide/",
+      "retrieved": "2026-10-28",
+      "status": "acquired",
+      "file": "limited-guide-source.html",
+      "sha256": "3ad615e141e9bf8c0bb67aaf68f596799d126444a8698dfd6cafbbac0d1afd52",
+      "bytes": 141854,
+      "title": "Tarkir: Dragonstorm Draft Guide - Card Kingdom Blog",
+      "coverage": "Cattura acquisita; contenuto dinamico e misure per carta da verificare prima dell’integrazione."
+    },
+    {
+      "id": "card-kingdom",
+      "label": "Card Kingdom: guida Limited",
+      "url": "https://blog.cardkingdom.com/tarkir-dragonstorm-draft-guide/",
+      "retrieved": "2026-10-28",
+      "status": "acquired",
+      "file": "card-kingdom-source.html",
+      "sha256": "23b0e26c62853a5bb6e9d82516e538c63b3aed79c9dc7137399a7807ee61fc36",
+      "bytes": 141854,
+      "title": "Tarkir: Dragonstorm Draft Guide - Card Kingdom Blog",
+      "coverage": "Cattura acquisita; contenuto dinamico e misure per carta da verificare prima dell’integrazione."
+    },
+    {
+      "id": "cards-realm",
+      "label": "Cards Realm: recensione Standard",
+      "url": "https://mtg.cardsrealm.com/en-us/articles/standard-set-review-tarkir-dragonstorm",
+      "retrieved": "2026-10-28",
+      "status": "error_page",
+      "file": "cards-realm-source.html",
+      "sha256": "91efdae8b032e5d4a73a103bdb791fe74b7b38cdc12f7a12b2287b3ec53505fe",
+      "bytes": 49521,
+      "title": "article_errors | Cards Realm",
+      "coverage": "Pagina di errore HTTP 200: nessuna recensione acquisita."
+    },
+    {
+      "id": "edhrec",
+      "label": "EDHREC: inclusioni Commander",
+      "url": "https://edhrec.com/sets/tdm",
+      "retrieved": "2026-10-28",
+      "status": "acquired",
+      "file": "edhrec-source.html",
+      "sha256": "e7a22a2990a400c8ebc2f2a5e2d77b78cdf939b2380f345a1709b60b6ce92c63",
+      "bytes": 1942931,
+      "title": "Tarkir: Dragonstorm | EDHREC",
+      "coverage": "Cattura acquisita; contenuto dinamico e misure per carta da verificare prima dell’integrazione."
+    },
+    {
+      "id": "mtggoldfish",
+      "label": "MTGGoldfish: catalogo e contesto",
+      "url": "https://www.mtggoldfish.com/spoilers/Tarkir+Dragonstorm",
+      "retrieved": "2026-10-28",
+      "status": "acquired",
+      "file": "mtggoldfish-source.html",
+      "sha256": "7a8e6411e93e9b49eab893b32ace0150eac74fc0531d862f30cc876d0553c336",
+      "bytes": 4567315,
+      "title": "Tarkir: Dragonstorm Spoilers and Product Information",
+      "coverage": "Cattura acquisita; contenuto dinamico e misure per carta da verificare prima dell’integrazione."
+    },
+    {
+      "id": "untapped",
+      "label": "Untapped: archetipi e dati Limited",
+      "url": "https://mtga.untapped.gg/limited/draft/tarkir-dragonstorm/set-guide",
+      "retrieved": "2026-10-28",
+      "status": "acquired",
+      "file": "untapped-source.html",
+      "sha256": "d0feafa439ac298e5be6d8a6e9916f02e5522e79796f316f6be083ec06e78ba9",
+      "bytes": 593944,
+      "title": "MTG Tarkir: Dragonstorm (TDM) Draft Guide & Archetypes - Untapped.gg",
+      "coverage": "Cattura acquisita; contenuto dinamico e misure per carta da verificare prima dell’integrazione."
+    },
+    {
+      "id": "cardmarket",
+      "label": "Cardmarket: prezzi per stampa",
+      "url": "https://www.cardmarket.com/en/Magic/Expansions/Tarkir-Dragonstorm",
+      "retrieved": "2026-10-28",
+      "status": "unavailable",
+      "error": "HTTP Error 403: Forbidden",
+      "coverage": "Nessuna osservazione acquisita da questo tentativo; URL candidato, esistenza della pagina non certificata."
+    },
+    {
+      "id": "mtgdecks",
+      "label": "MTGDECKS: adozione Constructed",
+      "url": "https://mtgdecks.net/sets/TDM",
+      "retrieved": "2026-10-28",
+      "status": "unavailable",
+      "error": "HTTP Error 404: Not Found",
+      "coverage": "Nessuna osservazione acquisita da questo tentativo; URL candidato, esistenza della pagina non certificata."
+    },
+    {
+      "id": "aetherhub",
+      "label": "AetherHub: catalogo e mazzi",
+      "url": "https://aetherhub.com/Set/TDM",
+      "retrieved": "2026-10-28",
+      "status": "unavailable",
+      "error": "HTTP Error 404: Not Found",
+      "coverage": "Nessuna osservazione acquisita da questo tentativo; URL candidato, esistenza della pagina non certificata."
+    },
+    {
+      "provider": "17Lands",
+      "url": "https://www.17lands.com/card_ratings/data?expansion=TDM&format=PremierDraft&start_date=2025-04-11&end_date=2025-06-09",
+      "retrieved": "2026-10-28",
+      "status": "excluded_reuse_not_certified",
+      "sha256": "65d416ef28756776b6ecaee42d143d4738375c7aefe1be414985878333173227",
+      "rows": 281,
+      "reason": "Related API notice restricts outside reuse; no API aggregates retained or published. Prefer public_datasets with verified license."
+    },
+    {
+      "provider": "Draftsim",
+      "id": "limited-review",
+      "url": "https://draftsim.com/mtg-tdm-limited-set-review/",
+      "retrieved": "2026-10-28",
+      "status": "acquired",
+      "file": "limited-review.html",
+      "sha256": "aa90c703baaab1fc08f83aa5201cda83bd96f186d46f7360fb4b40578779200b",
+      "bytes": 2155793
+    },
+    {
+      "provider": "EDHREC",
+      "id": "edhrec-set-data",
+      "url": "https://json.edhrec.com/pages/sets/tdm.json",
+      "retrieved": "2026-10-28",
+      "status": "acquired",
+      "file": "edhrec-set-data.json",
+      "sha256": "1d4b0335f4381167a63f81fd7fdeb0c7fecac080fbeb740ee1b91474fdc24fe5"
+    },
+    {
+      "provider": "Cardmarket",
+      "url": "https://www.cardmarket.com/en/Magic/Products/Singles/Tarkir-Dragonstorm",
+      "retrieved": "2026-10-28",
+      "method": "browser UI",
+      "status": "automatic_security_check_persisted",
+      "title": "Ci siamo quasi…",
+      "dataAcquired": false,
+      "limitation": "Verifica automatica non conclusa nella sessione. Nessun CAPTCHA risolto e nessun dato inventato."
+    }
+  ]
+}

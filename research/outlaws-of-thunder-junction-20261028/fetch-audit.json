@@ -1,0 +1,294 @@
+{
+  "date": "2026-10-28",
+  "set": "OTJ",
+  "acquisitions": [
+    {
+      "url": "https://api.scryfall.com/sets/otj",
+      "resolvedUrl": "https://api.scryfall.com/sets/otj",
+      "file": "scryfall-set.json",
+      "status": 200,
+      "bytes": 666,
+      "sha256": "14ba269cb9854a1dfac02004dc23add7cc70936bae75964d67103dae8f2d9553",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://api.scryfall.com/cards/search?q=set%3Aotj&unique=prints&order=set&include_extras=false",
+      "resolvedUrl": "https://api.scryfall.com/cards/search?q=set%3Aotj&unique=prints&order=set&include_extras=false",
+      "file": "scryfall-0-page-1.json",
+      "status": 200,
+      "bytes": 942554,
+      "sha256": "07856bec09c60bf66be83e2b71d092c6605561f11a14b52a70cfc11ffdb59b63",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://api.scryfall.com/cards/search?format=json&include_extras=false&include_multilingual=false&include_variations=false&order=set&page=2&q=set%3Aotj&unique=prints",
+      "resolvedUrl": "https://api.scryfall.com/cards/search?format=json&include_extras=false&include_multilingual=false&include_variations=false&order=set&page=2&q=set%3Aotj&unique=prints",
+      "file": "scryfall-0-page-2.json",
+      "status": 200,
+      "bytes": 944780,
+      "sha256": "2b37587ee68abb6583b1d45685a8744b7031940c991074f75b2cdc657272bbb8",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://api.scryfall.com/cards/search?format=json&include_extras=false&include_multilingual=false&include_variations=false&order=set&page=3&q=set%3Aotj&unique=prints",
+      "resolvedUrl": "https://api.scryfall.com/cards/search?format=json&include_extras=false&include_multilingual=false&include_variations=false&order=set&page=3&q=set%3Aotj&unique=prints",
+      "file": "scryfall-0-page-3.json",
+      "status": 200,
+      "bytes": 134065,
+      "sha256": "5de1b64de1a505d96f9d6f63709e27b5bd06b54cd4297c2702c1ee35786fd084",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://api.scryfall.com/cards/search?q=set%3Aotp&unique=prints&order=set&include_extras=false",
+      "resolvedUrl": "https://api.scryfall.com/cards/search?q=set%3Aotp&unique=prints&order=set&include_extras=false",
+      "file": "scryfall-1-page-1.json",
+      "status": 200,
+      "bytes": 415684,
+      "sha256": "0ad1b39c24c385e2a7a79638f0732b7f09967e5c5c2bbb27c80f4dec1bfd34c3",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://api.scryfall.com/cards/search?q=set%3Abig&unique=prints&order=set&include_extras=false",
+      "resolvedUrl": "https://api.scryfall.com/cards/search?q=set%3Abig&unique=prints&order=set&include_extras=false",
+      "file": "scryfall-2-page-1.json",
+      "status": 200,
+      "bytes": 520745,
+      "sha256": "ecc94ec1f838094e5c8410dcc1df894ecef2d44434e72e80cd4cb46f5f6b9fe5",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://api.scryfall.com/cards/search?q=set%3Aspg+cn%3E%3D29+cn%3C%3D38&unique=prints&order=set&include_extras=false",
+      "resolvedUrl": "https://api.scryfall.com/cards/search?q=set%3Aspg+cn%3E%3D29+cn%3C%3D38&unique=prints&order=set&include_extras=false",
+      "file": "scryfall-3-page-1.json",
+      "status": 200,
+      "bytes": 54327,
+      "sha256": "f548697852932b0d93ad9bcc0bc7f61bad2f9d57f7ef225f3c51372af7cc8743",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://www.17lands.com/card_ratings/data?expansion=OTJ&format=PremierDraft&start_date=2024-04-16&end_date=2024-07-29",
+      "resolvedUrl": "https://www.17lands.com/card_ratings/data?expansion=OTJ&format=PremierDraft&start_date=2024-04-16&end_date=2024-07-29",
+      "file": "17lands-premier.json",
+      "status": "acquired_not_reused",
+      "bytes": 229595,
+      "sha256": "53d8b91ae816f795c61335a4ec0cef5328ebf4308c9f118f6ffb3754be20e658",
+      "retrieved": "2026-10-28",
+      "limitation": "API output restricted to 17Lands.com. Raw acquisition removed and not included in public data; use authorized public datasets."
+    },
+    {
+      "url": "https://magic.wizards.com/en/news/feature/collecting-outlaws-of-thunder-junction",
+      "resolvedUrl": "https://magic.wizards.com/en/news/feature/collecting-outlaws-of-thunder-junction",
+      "file": "wizards-collecting.html",
+      "status": 200,
+      "bytes": 225154,
+      "sha256": "75981851b334fc8bee4be4c87613a897fc5bdf6c454a5694d9a2689e38044756",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://magic.wizards.com/en/news/feature/outlaws-of-thunder-junction-mechanics",
+      "resolvedUrl": "https://magic.wizards.com/en/news/feature/outlaws-of-thunder-junction-mechanics",
+      "file": "wizards-mechanics.html",
+      "status": 200,
+      "bytes": 199546,
+      "sha256": "cd4f3a1f0bb170d3351ee230813ea9a68c0003fc34b7fb443b43a319566adbfb",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://magic.wizards.com/en/news/feature/outlaws-of-thunder-junction-release-notes",
+      "resolvedUrl": "https://magic.wizards.com/en/news/feature/outlaws-of-thunder-junction-release-notes",
+      "file": "wizards-release-notes.html",
+      "status": 200,
+      "bytes": 924378,
+      "sha256": "9a1780a151c79abc00bb4f78936da16cbfd0ed9302f48ec153df8575f1c78bb0",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://draftsim.com/mtg-otj-draft-guide/",
+      "resolvedUrl": "https://draftsim.com/mtg-otj-draft-guide/",
+      "file": "draftsim-guide.html",
+      "status": 200,
+      "bytes": 1865967,
+      "sha256": "e95f2c8fa4ae0c0db2016615b52a88532a55b97b26db78c859c1bc2f8d7cb5af",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://draftsim.com/otj-limited-set-review/",
+      "file": "draftsim-review.html",
+      "status": "failed",
+      "error": "HTTP Error 404: Not Found",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://www.cardmarket.com/en/Magic/Expansions/Outlaws-Of-Thunder-Junction",
+      "file": "cardmarket-set.html",
+      "status": "failed",
+      "error": "HTTP Error 403: Forbidden",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://mtgazone.com/outlaws-of-thunder-junction-otj-limited-set-review-white/",
+      "resolvedUrl": "https://mtgazone.com/outlaws-of-thunder-junction-otj-limited-set-review-white/",
+      "file": "mtgazone-white.html",
+      "status": 200,
+      "bytes": 787568,
+      "sha256": "15efa6284c4778a0b6782192822d4a09d00acce8e7062ec6302e4cdbff9caabb",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://mtgazone.com/outlaws-of-thunder-junction-otj-limited-set-review-blue/",
+      "resolvedUrl": "https://mtgazone.com/outlaws-of-thunder-junction-otj-limited-set-review-blue/",
+      "file": "mtgazone-blue.html",
+      "status": 200,
+      "bytes": 794304,
+      "sha256": "be41ee85b577c0ffea1d8686da4fcbc949982ec7a314707f90fcca0b1a07a907",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://mtgazone.com/outlaws-of-thunder-junction-otj-limited-set-review-black/",
+      "resolvedUrl": "https://mtgazone.com/outlaws-of-thunder-junction-otj-limited-set-review-black/",
+      "file": "mtgazone-black.html",
+      "status": 200,
+      "bytes": 786720,
+      "sha256": "01cd316f87edc5b45e8adff37f9b7b45f9479863780c9e3fc98fc8b3230d5e74",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://mtgazone.com/outlaws-of-thunder-junction-otj-limited-set-review-red/",
+      "resolvedUrl": "https://mtgazone.com/outlaws-of-thunder-junction-otj-limited-set-review-red/",
+      "file": "mtgazone-red.html",
+      "status": 200,
+      "bytes": 780641,
+      "sha256": "08f323d39b2e1d76b30d10536a82362a30a08c1f0ea14c7006ba8113bfe984f3",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://mtgazone.com/outlaws-of-thunder-junction-otj-limited-set-review-green/",
+      "resolvedUrl": "https://mtgazone.com/outlaws-of-thunder-junction-otj-limited-set-review-green/",
+      "file": "mtgazone-green.html",
+      "status": 200,
+      "bytes": 780103,
+      "sha256": "1fa74ef0cd239578aff1e54fcb2d716807d40ea795bb51f934e4cb75eb49c3db",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://mtgazone.com/outlaws-of-thunder-junction-otj-limited-set-review-multicolored/",
+      "file": "mtgazone-multicolored.html",
+      "status": "failed",
+      "error": "HTTP Error 404: Not Found",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://mtgazone.com/outlaws-of-thunder-junction-otj-limited-set-review-artifacts-and-lands/",
+      "resolvedUrl": "https://mtgazone.com/outlaws-of-thunder-junction-otj-limited-set-review-artifacts-and-lands/",
+      "file": "mtgazone-artifacts-and-lands.html",
+      "status": 200,
+      "bytes": 736965,
+      "sha256": "5035794575d5169eeecb22a57a8f5471a33e0194d5814dbb2c54be1112927b12",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://mtgazone.com/outlaws-of-thunder-junction-otj-limited-set-review-breaking-news/",
+      "resolvedUrl": "https://mtgazone.com/outlaws-of-thunder-junction-otj-limited-set-review-breaking-news/",
+      "file": "mtgazone-breaking-news.html",
+      "status": 200,
+      "bytes": 924802,
+      "sha256": "0898e80547f7dae699dff60e8d9584a07574fd604e18bea134335ebe2c6afd44",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://mtgazone.com/outlaws-of-thunder-junction-otj-limited-set-review-the-big-score-and-special-guests/",
+      "resolvedUrl": "https://mtgazone.com/outlaws-of-thunder-junction-otj-limited-set-review-the-big-score-and-special-guests/",
+      "file": "mtgazone-the-big-score-and-special-guests.html",
+      "status": 200,
+      "bytes": 797210,
+      "sha256": "215fca3c469ec9a0edde49c5c00b7ba01b4185fb44499cd0d5032115fdb08ce6",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://api.scryfall.com/cards/search?q=set%3Aotj&unique=prints&order=set&include_extras=true&include_variations=true",
+      "resolvedUrl": "https://api.scryfall.com/cards/search?q=set%3Aotj&unique=prints&order=set&include_extras=true&include_variations=true",
+      "file": "variants-0-1.json",
+      "status": 200,
+      "bytes": 942552,
+      "sha256": "55f8efd619527c04a0a77a6df14ef0fe6e0c9369853e8bc32cc52fe8501a3f79",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://api.scryfall.com/cards/search?format=json&include_extras=true&include_multilingual=false&include_variations=true&order=set&page=2&q=set%3Aotj&unique=prints",
+      "resolvedUrl": "https://api.scryfall.com/cards/search?format=json&include_extras=true&include_multilingual=false&include_variations=true&order=set&page=2&q=set%3Aotj&unique=prints",
+      "file": "variants-0-2.json",
+      "status": 200,
+      "bytes": 944779,
+      "sha256": "49b1b63010b5a8291dfdeda5f9006168d3015f8e0b5bdc3bd2e7146cb6c8a479",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://api.scryfall.com/cards/search?format=json&include_extras=true&include_multilingual=false&include_variations=true&order=set&page=3&q=set%3Aotj&unique=prints",
+      "resolvedUrl": "https://api.scryfall.com/cards/search?format=json&include_extras=true&include_multilingual=false&include_variations=true&order=set&page=3&q=set%3Aotj&unique=prints",
+      "file": "variants-0-3.json",
+      "status": 200,
+      "bytes": 134066,
+      "sha256": "ca6618709e20e96fe4dc0a599dda51ccc5f4d9648a13a5730ff56fa9725e12b8",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://api.scryfall.com/cards/search?q=set%3Aotp&unique=prints&order=set&include_extras=true&include_variations=true",
+      "resolvedUrl": "https://api.scryfall.com/cards/search?q=set%3Aotp&unique=prints&order=set&include_extras=true&include_variations=true",
+      "file": "variants-1-1.json",
+      "status": 200,
+      "bytes": 415684,
+      "sha256": "7f74a30104ddb84731f3dcbe1857ba678bddccbe8db22488ca2d89328c3a21d4",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://api.scryfall.com/cards/search?q=set%3Abig&unique=prints&order=set&include_extras=true&include_variations=true",
+      "resolvedUrl": "https://api.scryfall.com/cards/search?q=set%3Abig&unique=prints&order=set&include_extras=true&include_variations=true",
+      "file": "variants-2-1.json",
+      "status": 200,
+      "bytes": 520745,
+      "sha256": "ecc94ec1f838094e5c8410dcc1df894ecef2d44434e72e80cd4cb46f5f6b9fe5",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://api.scryfall.com/cards/search?q=set%3Aspg+cn%3E%3D29+cn%3C%3D38&unique=prints&order=set&include_extras=true&include_variations=true",
+      "file": "variants-3-1.json",
+      "status": "failed",
+      "error": "HTTP Error 429: Too Many Requests",
+      "retrieved": "2026-10-28"
+    }
+  ],
+  "variantPagination": [
+    {
+      "query": "set:otj",
+      "include_extras": true,
+      "include_variations": true,
+      "pages": 3,
+      "returnedPrintings": 374,
+      "complete": true
+    },
+    {
+      "query": "set:otp",
+      "include_extras": true,
+      "include_variations": true,
+      "pages": 1,
+      "returnedPrintings": 80,
+      "complete": true
+    },
+    {
+      "query": "set:big",
+      "include_extras": true,
+      "include_variations": true,
+      "pages": 1,
+      "returnedPrintings": 95,
+      "complete": true
+    },
+    {
+      "query": "set:spg cn>=29 cn<=38",
+      "include_extras": true,
+      "include_variations": true,
+      "pages": 1,
+      "returnedPrintings": 0,
+      "complete": false
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "date": "2026-10-28",
+  "catalogs": [
+    {
+      "code": "BLC",
+      "path": "research/bloomburrow-20261028/companion-blc-catalog.json",
+      "printings": 356,
+      "identities": 312,
+      "completePagination": true,
+      "pages": 3,
+      "excludedFromLimitedPool": true
+    }
+  ],
+  "acquisitions": [
+    {
+      "url": "https://api.scryfall.com/cards/search?q=set%3Ablc&unique=prints&order=set&include_extras=true&include_variations=true",
+      "resolvedUrl": "https://api.scryfall.com/cards/search?q=set%3Ablc&unique=prints&order=set&include_extras=true&include_variations=true",
+      "file": "companion-blc-page-1.json",
+      "status": 200,
+      "bytes": 961519,
+      "sha256": "b7ecd27dffef315c3fa941fc3e20c9c07b435d0b75349ba06bc85dce01d4e774",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://api.scryfall.com/cards/search?format=json&include_extras=true&include_multilingual=false&include_variations=true&order=set&page=2&q=set%3Ablc&unique=prints",
+      "resolvedUrl": "https://api.scryfall.com/cards/search?format=json&include_extras=true&include_multilingual=false&include_variations=true&order=set&page=2&q=set%3Ablc&unique=prints",
+      "file": "companion-blc-page-2.json",
+      "status": 200,
+      "bytes": 904627,
+      "sha256": "b646e6d01bc2729a30e8a44dec3e3606dcb2abd1b12600a6089fd605769d9158",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://api.scryfall.com/cards/search?format=json&include_extras=true&include_multilingual=false&include_variations=true&order=set&page=3&q=set%3Ablc&unique=prints",
+      "resolvedUrl": "https://api.scryfall.com/cards/search?format=json&include_extras=true&include_multilingual=false&include_variations=true&order=set&page=3&q=set%3Ablc&unique=prints",
+      "file": "companion-blc-page-3.json",
+      "status": 200,
+      "bytes": 30550,
+      "sha256": "cea06d374561507a33b41ea646e2be3c243bf2e16e427b8e1404cec899a969b5",
+      "retrieved": "2026-10-28"
+    }
+  ]
+}

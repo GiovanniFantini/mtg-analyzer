@@ -1,0 +1,197 @@
+{
+  "date": "2026-10-28",
+  "set": "FDN",
+  "acquisitions": [
+    {
+      "url": "https://api.scryfall.com/sets/fdn",
+      "resolvedUrl": "https://api.scryfall.com/sets/fdn",
+      "file": "scryfall-set.json",
+      "status": 200,
+      "bytes": 626,
+      "sha256": "1fc87f993dcb8fa0e2b118b67a73d1bc720973d7f60cf3ce64ca102ece9d420b",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://api.scryfall.com/cards/search?q=set%3Afdn&unique=prints&order=set&include_extras=false",
+      "resolvedUrl": "https://api.scryfall.com/cards/search?q=set%3Afdn&unique=prints&order=set&include_extras=false",
+      "file": "scryfall-0-page-1.json",
+      "status": 200,
+      "bytes": 938752,
+      "sha256": "31ab3866e7c03b7f1a7b3d18d6cf3d315f86ae2e134734623f0a7f54c552cdfb",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://api.scryfall.com/cards/search?format=json&include_extras=false&include_multilingual=false&include_variations=false&order=set&page=2&q=set%3Afdn&unique=prints",
+      "resolvedUrl": "https://api.scryfall.com/cards/search?format=json&include_extras=false&include_multilingual=false&include_variations=false&order=set&page=2&q=set%3Afdn&unique=prints",
+      "file": "scryfall-0-page-2.json",
+      "status": 200,
+      "bytes": 929265,
+      "sha256": "0d651381c91189d300eb1d14fd1d80d4c136f5d73fe274b9ab5ca07ac105779c",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://api.scryfall.com/cards/search?format=json&include_extras=false&include_multilingual=false&include_variations=false&order=set&page=3&q=set%3Afdn&unique=prints",
+      "resolvedUrl": "https://api.scryfall.com/cards/search?format=json&include_extras=false&include_multilingual=false&include_variations=false&order=set&page=3&q=set%3Afdn&unique=prints",
+      "file": "scryfall-0-page-3.json",
+      "status": 200,
+      "bytes": 951245,
+      "sha256": "b59d1120e81f02f8984a1fea6fb1b95b8318b737b7c04fa05ba37b0daacc78b4",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://api.scryfall.com/cards/search?format=json&include_extras=false&include_multilingual=false&include_variations=false&order=set&page=4&q=set%3Afdn&unique=prints",
+      "resolvedUrl": "https://api.scryfall.com/cards/search?format=json&include_extras=false&include_multilingual=false&include_variations=false&order=set&page=4&q=set%3Afdn&unique=prints",
+      "file": "scryfall-0-page-4.json",
+      "status": 200,
+      "bytes": 917656,
+      "sha256": "62f9fe7a1ff8ef6075403cb187899a6eb7bf202f6fb13e2bd540bfd2ff1ca9f2",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://api.scryfall.com/cards/search?format=json&include_extras=false&include_multilingual=false&include_variations=false&order=set&page=5&q=set%3Afdn&unique=prints",
+      "resolvedUrl": "https://api.scryfall.com/cards/search?format=json&include_extras=false&include_multilingual=false&include_variations=false&order=set&page=5&q=set%3Afdn&unique=prints",
+      "file": "scryfall-0-page-5.json",
+      "status": 200,
+      "bytes": 364004,
+      "sha256": "e04eedff52921fc7691efff24377a294e6429db251682dd33fc4bcba236bbede",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://www.17lands.com/card_ratings/data?expansion=FDN&format=PremierDraft&start_date=2024-11-12&end_date=2025-02-10",
+      "resolvedUrl": "https://www.17lands.com/card_ratings/data?expansion=FDN&format=PremierDraft&start_date=2024-11-12&end_date=2025-02-10",
+      "file": "17lands-premier.json",
+      "status": "acquired_not_reused",
+      "bytes": 171650,
+      "sha256": "6459c651c578a3c82ba0be09c96deb9fd9ace636778d35c786adae0596804e06",
+      "retrieved": "2026-10-28",
+      "limitation": "API output restricted to 17Lands.com. Raw acquisition removed and not included in public data; use authorized public datasets."
+    },
+    {
+      "url": "https://magic.wizards.com/en/news/feature/collecting-foundations",
+      "resolvedUrl": "https://magic.wizards.com/en/news/feature/collecting-foundations",
+      "file": "wizards-collecting.html",
+      "status": 200,
+      "bytes": 232158,
+      "sha256": "979b22fdaa898ce5a401921cd5ef23487ea0efab93d14751d56105cb456fc510",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://magic.wizards.com/en/news/feature/foundations-mechanics",
+      "resolvedUrl": "https://magic.wizards.com/en/news/feature/foundations-mechanics",
+      "file": "wizards-mechanics.html",
+      "status": 200,
+      "bytes": 194678,
+      "sha256": "3a144ac64c7039babe9918047c1b5de7e6a1b54edaaf56094b950e2aa3e823d9",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://magic.wizards.com/en/news/feature/foundations-release-notes",
+      "resolvedUrl": "https://magic.wizards.com/en/news/feature/foundations-release-notes",
+      "file": "wizards-release-notes.html",
+      "status": 200,
+      "bytes": 883656,
+      "sha256": "1f0131c143eecaa5ef50aba833863df8ffe411b6e4418a1ed48ba45d0980eb2e",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://draftsim.com/mtg-fdn-draft-guide/",
+      "resolvedUrl": "https://draftsim.com/mtg-fdn-draft-guide/",
+      "file": "draftsim-guide.html",
+      "status": 200,
+      "bytes": 1825518,
+      "sha256": "9e6568e764693e5638ca99880cde576bcf6089c34c057678e2d40fcbdce9ae13",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://draftsim.com/fdn-limited-set-review/",
+      "file": "draftsim-review.html",
+      "status": "failed",
+      "error": "HTTP Error 404: Not Found",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://www.cardmarket.com/en/Magic/Expansions/Foundations",
+      "file": "cardmarket-set.html",
+      "status": "failed",
+      "error": "HTTP Error 403: Forbidden",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://api.scryfall.com/cards/search?q=set%3Aspg+cn%3E%3D74+cn%3C%3D83&unique=prints",
+      "resolvedUrl": "https://api.scryfall.com/cards/search?q=set%3Aspg+cn%3E%3D74+cn%3C%3D83&unique=prints",
+      "file": "scryfall-1-page-1.json",
+      "status": 200,
+      "bytes": 51642,
+      "sha256": "8d44589e5d62fe43122df561c0c6ff215bd0b1dfdac40e5b6608e957ebe2f572",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://api.scryfall.com/cards/search?q=set%3Afdn&unique=prints&order=set&include_extras=true&include_variations=true",
+      "resolvedUrl": "https://api.scryfall.com/cards/search?q=set%3Afdn&unique=prints&order=set&include_extras=true&include_variations=true",
+      "file": "variants-0-1.json",
+      "status": 200,
+      "bytes": 938750,
+      "sha256": "e69c36f1ab5c6c6628729b387ee5aa7b46acf826105b69c7546346571e3b7e05",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://api.scryfall.com/cards/search?format=json&include_extras=true&include_multilingual=false&include_variations=true&order=set&page=2&q=set%3Afdn&unique=prints",
+      "resolvedUrl": "https://api.scryfall.com/cards/search?format=json&include_extras=true&include_multilingual=false&include_variations=true&order=set&page=2&q=set%3Afdn&unique=prints",
+      "file": "variants-0-2.json",
+      "status": 200,
+      "bytes": 929263,
+      "sha256": "e663717c5afa6d0f608d3798c5b77e564b9dc231b969172ee4560ba227de98d2",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://api.scryfall.com/cards/search?format=json&include_extras=true&include_multilingual=false&include_variations=true&order=set&page=3&q=set%3Afdn&unique=prints",
+      "resolvedUrl": "https://api.scryfall.com/cards/search?format=json&include_extras=true&include_multilingual=false&include_variations=true&order=set&page=3&q=set%3Afdn&unique=prints",
+      "file": "variants-0-3.json",
+      "status": 200,
+      "bytes": 951243,
+      "sha256": "d7b159f698104dc08c38ce8cfcf75d605cc76d8aeac55285b53434a3b249c93e",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://api.scryfall.com/cards/search?format=json&include_extras=true&include_multilingual=false&include_variations=true&order=set&page=4&q=set%3Afdn&unique=prints",
+      "resolvedUrl": "https://api.scryfall.com/cards/search?format=json&include_extras=true&include_multilingual=false&include_variations=true&order=set&page=4&q=set%3Afdn&unique=prints",
+      "file": "variants-0-4.json",
+      "status": 200,
+      "bytes": 917654,
+      "sha256": "5884b5c584597e1d5bbd784b147d333bf99e2cc204c111d8afd02d07d23ece60",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://api.scryfall.com/cards/search?format=json&include_extras=true&include_multilingual=false&include_variations=true&order=set&page=5&q=set%3Afdn&unique=prints",
+      "file": "variants-0-5.json",
+      "status": "failed",
+      "error": "HTTP Error 429: Too Many Requests",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://api.scryfall.com/cards/search?q=set%3Aspg+cn%3E%3D74+cn%3C%3D83&unique=prints&order=set&include_extras=true&include_variations=true",
+      "file": "variants-1-1.json",
+      "status": "failed",
+      "error": "HTTP Error 429: Too Many Requests",
+      "retrieved": "2026-10-28"
+    }
+  ],
+  "variantPagination": [
+    {
+      "query": "set:fdn",
+      "include_extras": true,
+      "include_variations": true,
+      "pages": 5,
+      "returnedPrintings": 700,
+      "complete": false
+    },
+    {
+      "query": "set:spg cn>=74 cn<=83",
+      "include_extras": true,
+      "include_variations": true,
+      "pages": 1,
+      "returnedPrintings": 0,
+      "complete": false
+    }
+  ]
+}

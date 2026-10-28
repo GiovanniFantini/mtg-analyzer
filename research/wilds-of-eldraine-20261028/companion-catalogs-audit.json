@@ -1,0 +1,25 @@
+{
+  "date": "2026-10-28",
+  "catalogs": [
+    {
+      "code": "WOC",
+      "path": "research/wilds-of-eldraine-20261028/companion-woc-catalog.json",
+      "printings": 173,
+      "identities": 143,
+      "completePagination": true,
+      "pages": 1,
+      "excludedFromLimitedPool": true
+    }
+  ],
+  "acquisitions": [
+    {
+      "url": "https://api.scryfall.com/cards/search?q=set%3Awoc&unique=prints&order=set&include_extras=true&include_variations=true",
+      "resolvedUrl": "https://api.scryfall.com/cards/search?q=set%3Awoc&unique=prints&order=set&include_extras=true&include_variations=true",
+      "file": "companion-woc-page-1.json",
+      "status": 200,
+      "bytes": 916066,
+      "sha256": "bc76ec811f075b0d9f7c0c9a5f1683d1b82377dc2a58620c228502358599aea3",
+      "retrieved": "2026-10-28"
+    }
+  ]
+}

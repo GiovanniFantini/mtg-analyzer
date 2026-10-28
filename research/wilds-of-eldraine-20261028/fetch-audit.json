@@ -1,0 +1,179 @@
+{
+  "date": "2026-10-28",
+  "set": "WOE",
+  "acquisitions": [
+    {
+      "url": "https://api.scryfall.com/sets/woe",
+      "resolvedUrl": "https://api.scryfall.com/sets/woe",
+      "file": "scryfall-set.json",
+      "status": 200,
+      "bytes": 599,
+      "sha256": "fa2d695da4201fdbd2af4a08364c25ebd783c0e08f4396c33efd22109c5b2b26",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://api.scryfall.com/cards/search?q=set%3Awoe&unique=prints&order=set&include_extras=false",
+      "resolvedUrl": "https://api.scryfall.com/cards/search?q=set%3Awoe&unique=prints&order=set&include_extras=false",
+      "file": "scryfall-0-page-1.json",
+      "status": 200,
+      "bytes": 973276,
+      "sha256": "5ab23ee0ad60e12ec6ed5eb3ff48ea3372361c86845a67d62b43d740b21ffa6f",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://api.scryfall.com/cards/search?format=json&include_extras=false&include_multilingual=false&include_variations=false&order=set&page=2&q=set%3Awoe&unique=prints",
+      "resolvedUrl": "https://api.scryfall.com/cards/search?format=json&include_extras=false&include_multilingual=false&include_variations=false&order=set&page=2&q=set%3Awoe&unique=prints",
+      "file": "scryfall-0-page-2.json",
+      "status": 200,
+      "bytes": 990161,
+      "sha256": "913513c36383dc1435b3c13fb6b28039bedf378e88114681c75c3847c997364d",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://api.scryfall.com/cards/search?format=json&include_extras=false&include_multilingual=false&include_variations=false&order=set&page=3&q=set%3Awoe&unique=prints",
+      "resolvedUrl": "https://api.scryfall.com/cards/search?format=json&include_extras=false&include_multilingual=false&include_variations=false&order=set&page=3&q=set%3Awoe&unique=prints",
+      "file": "scryfall-0-page-3.json",
+      "status": 200,
+      "bytes": 168416,
+      "sha256": "8c33155bb1c475e0df7d69647a411cd2b7eb34f0ccd6edc4430d26af0da7c4f5",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://api.scryfall.com/cards/search?q=set%3Awot&unique=prints&order=set&include_extras=false",
+      "resolvedUrl": "https://api.scryfall.com/cards/search?q=set%3Awot&unique=prints&order=set&include_extras=false",
+      "file": "scryfall-1-page-1.json",
+      "status": 200,
+      "bytes": 546532,
+      "sha256": "d3affb9ddebdd663f6dd46c701bebe265903782a1ebd0fd018570c32e17f3ba5",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://www.17lands.com/card_ratings/data?expansion=WOE&format=PremierDraft&start_date=2023-09-05&end_date=2023-11-13",
+      "resolvedUrl": "https://www.17lands.com/card_ratings/data?expansion=WOE&format=PremierDraft&start_date=2023-09-05&end_date=2023-11-13",
+      "file": "17lands-premier.json",
+      "status": "acquired_not_reused",
+      "bytes": 197776,
+      "sha256": "8fafe823d9551dc36d02b7516e66f953524f8fd1dbddc2821f227c3bf47c082e",
+      "retrieved": "2026-10-28",
+      "limitation": "API output restricted to 17Lands.com. Raw acquisition removed and not included in public data; use authorized public datasets."
+    },
+    {
+      "url": "https://magic.wizards.com/en/news/feature/collecting-wilds-of-eldraine",
+      "resolvedUrl": "https://magic.wizards.com/en/news/feature/collecting-wilds-of-eldraine",
+      "file": "wizards-collecting.html",
+      "status": 200,
+      "bytes": 255071,
+      "sha256": "d8db43081aed0cbc5f7c294868aaafb0ed57802b10bef827ec2c19d42dfc97c6",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://magic.wizards.com/en/news/feature/wilds-of-eldraine-mechanics",
+      "resolvedUrl": "https://magic.wizards.com/en/news/feature/wilds-of-eldraine-mechanics",
+      "file": "wizards-mechanics.html",
+      "status": 200,
+      "bytes": 193280,
+      "sha256": "36a44d6e5c80cbc7e3462b635e18ad58a88918976e77340e579544ed8681336b",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://magic.wizards.com/en/news/feature/wilds-of-eldraine-release-notes",
+      "resolvedUrl": "https://magic.wizards.com/en/news/feature/wilds-of-eldraine-release-notes",
+      "file": "wizards-release-notes.html",
+      "status": 200,
+      "bytes": 682685,
+      "sha256": "edc7965b80e83f9d4b38a5fae426abbbc5cb78b2712da1d4752bfa2cd7eefe53",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://draftsim.com/mtg-woe-draft-guide/",
+      "resolvedUrl": "https://draftsim.com/mtg-woe-draft-guide/",
+      "file": "draftsim-guide.html",
+      "status": 200,
+      "bytes": 1453910,
+      "sha256": "0169449d6f055fb0f2172149b8a6d4dcea46b0ce2322fb7f88a663057d1e0a4e",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://draftsim.com/woe-limited-set-review/",
+      "file": "draftsim-review.html",
+      "status": "failed",
+      "error": "HTTP Error 404: Not Found",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://www.cardmarket.com/en/Magic/Expansions/Wilds-Of-Eldraine",
+      "file": "cardmarket-set.html",
+      "status": "failed",
+      "error": "HTTP Error 403: Forbidden",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://mtgazone.com/wilds-of-eldraine-limited-set-review-white/",
+      "resolvedUrl": "https://mtgazone.com/wilds-of-eldraine-limited-set-review-white/",
+      "file": "mtgazone-white.html",
+      "status": 200,
+      "bytes": 797773,
+      "sha256": "3301384dd254545f442746d96000c13d65a279f67986b0bf8ced215c50726628",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://mtgazone.com/wilds-of-eldraine-limited-set-review-blue/",
+      "resolvedUrl": "https://mtgazone.com/wilds-of-eldraine-limited-set-review-blue/",
+      "file": "mtgazone-blue.html",
+      "status": 200,
+      "bytes": 788896,
+      "sha256": "69afb2112913bfa01d186e0ebab4d69bbf313799fcb634b6bf56b02efb5690e0",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://mtgazone.com/wilds-of-eldraine-limited-set-review-black/",
+      "resolvedUrl": "https://mtgazone.com/wilds-of-eldraine-limited-set-review-black/",
+      "file": "mtgazone-black.html",
+      "status": 200,
+      "bytes": 810547,
+      "sha256": "5424f286923bf94f6bb34463f3b4ab2acf227d291db105a1c951183cd86b53b7",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://mtgazone.com/wilds-of-eldraine-limited-set-review-red/",
+      "resolvedUrl": "https://mtgazone.com/wilds-of-eldraine-limited-set-review-red/",
+      "file": "mtgazone-red.html",
+      "status": 200,
+      "bytes": 801224,
+      "sha256": "fe8cd98fff7904dd589faebc2d8971ac904cdf93fbd0f456cfde048fc6bc55c4",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://mtgazone.com/wilds-of-eldraine-limited-set-review-green/",
+      "resolvedUrl": "https://mtgazone.com/wilds-of-eldraine-limited-set-review-green/",
+      "file": "mtgazone-green.html",
+      "status": 200,
+      "bytes": 792966,
+      "sha256": "a049bb3f2c7fe8058a35948366ef5258a27236df27bdd4061aa2d3a6fd7509e6",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://mtgazone.com/wilds-of-eldraine-limited-set-review-multicolored/",
+      "file": "mtgazone-multicolored.html",
+      "status": "failed",
+      "error": "HTTP Error 404: Not Found",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://mtgazone.com/wilds-of-eldraine-limited-set-review-artifacts-and-lands/",
+      "file": "mtgazone-artifacts-and-lands.html",
+      "status": "failed",
+      "error": "HTTP Error 404: Not Found",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://mtgazone.com/wilds-of-eldraine-limited-set-review-enchanting-tales/",
+      "resolvedUrl": "https://mtgazone.com/wilds-of-eldraine-limited-set-review-enchanting-tales/",
+      "file": "mtgazone-enchanting-tales.html",
+      "status": 200,
+      "bytes": 921578,
+      "sha256": "4651eff4d7488e4afa3eca0c3265de9e5c6a53e89252cfd1b98c7dbeed32ffa0",
+      "retrieved": "2026-10-28"
+    }
+  ]
+}

@@ -1,0 +1,170 @@
+{
+  "date": "2026-10-28",
+  "set": "BLB",
+  "acquisitions": [
+    {
+      "url": "https://api.scryfall.com/sets/blb",
+      "resolvedUrl": "https://api.scryfall.com/sets/blb",
+      "file": "scryfall-set.json",
+      "status": 200,
+      "bytes": 593,
+      "sha256": "be135f02f0c8f0c127f11d956150da341cd4b1f8054b0e4b524fd5be6b62328e",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://api.scryfall.com/cards/search?q=set%3Ablb&unique=prints&order=set&include_extras=false",
+      "resolvedUrl": "https://api.scryfall.com/cards/search?q=set%3Ablb&unique=prints&order=set&include_extras=false",
+      "file": "scryfall-0-page-1.json",
+      "status": 200,
+      "bytes": 938198,
+      "sha256": "e28b2d4a779f687e5f8a24cb3427ca5d130f840588cd961952b8c8af2f7218bd",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://api.scryfall.com/cards/search?format=json&include_extras=false&include_multilingual=false&include_variations=false&order=set&page=2&q=set%3Ablb&unique=prints",
+      "resolvedUrl": "https://api.scryfall.com/cards/search?format=json&include_extras=false&include_multilingual=false&include_variations=false&order=set&page=2&q=set%3Ablb&unique=prints",
+      "file": "scryfall-0-page-2.json",
+      "status": 200,
+      "bytes": 936594,
+      "sha256": "59b99c06695e6d7a15217f6835fede99d431654f4c9a9a71dd1abfc8eb1ff9e1",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://api.scryfall.com/cards/search?format=json&include_extras=false&include_multilingual=false&include_variations=false&order=set&page=3&q=set%3Ablb&unique=prints",
+      "resolvedUrl": "https://api.scryfall.com/cards/search?format=json&include_extras=false&include_multilingual=false&include_variations=false&order=set&page=3&q=set%3Ablb&unique=prints",
+      "file": "scryfall-0-page-3.json",
+      "status": 200,
+      "bytes": 247725,
+      "sha256": "72feac24f276c1239097678827e2eab7fab4bdf5ea2a296689854dbf2e40036d",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://api.scryfall.com/cards/search?q=set%3Aspg+cn%3E%3D54+cn%3C%3D63&unique=prints&order=set&include_extras=false",
+      "resolvedUrl": "https://api.scryfall.com/cards/search?q=set%3Aspg+cn%3E%3D54+cn%3C%3D63&unique=prints&order=set&include_extras=false",
+      "file": "scryfall-1-page-1.json",
+      "status": 200,
+      "bytes": 53989,
+      "sha256": "316427f18d41b692fe73b8c6c8e889844a0b77e6148cbc86839b1d608f445fae",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://www.17lands.com/card_ratings/data?expansion=BLB&format=PremierDraft&start_date=2024-07-30&end_date=2024-09-23",
+      "resolvedUrl": "https://www.17lands.com/card_ratings/data?expansion=BLB&format=PremierDraft&start_date=2024-07-30&end_date=2024-09-23",
+      "file": "17lands-premier.json",
+      "status": "acquired_not_reused",
+      "bytes": 166034,
+      "sha256": "07c678cfa5bc48481442fed2eab472bd53d222d93519ff783f0f52a6e4fb995f",
+      "retrieved": "2026-10-28",
+      "limitation": "API output restricted to 17Lands.com. Raw acquisition removed and not included in public data; use authorized public datasets."
+    },
+    {
+      "url": "https://magic.wizards.com/en/news/feature/collecting-bloomburrow",
+      "resolvedUrl": "https://magic.wizards.com/en/news/feature/collecting-bloomburrow",
+      "file": "wizards-collecting.html",
+      "status": 200,
+      "bytes": 236396,
+      "sha256": "5c9b69fa24d5283a919d43a6084c25b8bb9e4ffc0000031d88a04623dfbc0996",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://magic.wizards.com/en/news/feature/bloomburrow-mechanics",
+      "resolvedUrl": "https://magic.wizards.com/en/news/feature/bloomburrow-mechanics",
+      "file": "wizards-mechanics.html",
+      "status": 200,
+      "bytes": 181015,
+      "sha256": "7fbedd9747bda1fc07026e6be7d3bbec465f65d9a5db8de5904ca71f168531ce",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://magic.wizards.com/en/news/feature/bloomburrow-release-notes",
+      "resolvedUrl": "https://magic.wizards.com/en/news/feature/bloomburrow-release-notes",
+      "file": "wizards-release-notes.html",
+      "status": 200,
+      "bytes": 720435,
+      "sha256": "348baf7863fbb1483b5ff756bb3dc31c0bac1a95f0e0da27887f67e25c588bf9",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://draftsim.com/mtg-blb-draft-guide/",
+      "resolvedUrl": "https://draftsim.com/mtg-blb-draft-guide/",
+      "file": "draftsim-guide.html",
+      "status": 200,
+      "bytes": 2050381,
+      "sha256": "ca1a5b165fab2ca27ea3c45a1f96ac39e500def014937d1f560eb3dd73b341b1",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://draftsim.com/blb-limited-set-review/",
+      "file": "draftsim-review.html",
+      "status": "failed",
+      "error": "HTTP Error 404: Not Found",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://www.cardmarket.com/en/Magic/Expansions/Bloomburrow",
+      "file": "cardmarket-set.html",
+      "status": "failed",
+      "error": "HTTP Error 403: Forbidden",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://mtgazone.com/bloomburrow-blb-limited-set-review-white/",
+      "resolvedUrl": "https://mtgazone.com/bloomburrow-blb-limited-set-review-white/",
+      "file": "mtgazone-white.html",
+      "status": 200,
+      "bytes": 799178,
+      "sha256": "020629e1dbf734485a4ffdc45a5be328cb922f998620849e12e37b1a3c2c6f8d",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://mtgazone.com/bloomburrow-blb-limited-set-review-blue/",
+      "resolvedUrl": "https://mtgazone.com/bloomburrow-blb-limited-set-review-blue/",
+      "file": "mtgazone-blue.html",
+      "status": 200,
+      "bytes": 802501,
+      "sha256": "f97fbb18e51fa5e336f01de857b7453c678d3001633647f84e9150ad4b573a17",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://mtgazone.com/bloomburrow-blb-limited-set-review-black/",
+      "resolvedUrl": "https://mtgazone.com/bloomburrow-blb-limited-set-review-black/",
+      "file": "mtgazone-black.html",
+      "status": 200,
+      "bytes": 799849,
+      "sha256": "04def366889ae7eece04d094d79aab911444138ebf309bff2f51a7d930a58816",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://mtgazone.com/bloomburrow-blb-limited-set-review-red/",
+      "resolvedUrl": "https://mtgazone.com/bloomburrow-blb-limited-set-review-red/",
+      "file": "mtgazone-red.html",
+      "status": 200,
+      "bytes": 802513,
+      "sha256": "14e116237403fb3788520ec82c3745a711e3db4640376f32f193fca16895f306",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://mtgazone.com/bloomburrow-blb-limited-set-review-green/",
+      "resolvedUrl": "https://mtgazone.com/bloomburrow-blb-limited-set-review-green/",
+      "file": "mtgazone-green.html",
+      "status": 200,
+      "bytes": 804306,
+      "sha256": "c312b4fb518be7a772e4c5ba7ab12863e6dc44d9a23aa9a660c23f00020d3a32",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://mtgazone.com/bloomburrow-blb-limited-set-review-multicolored/",
+      "file": "mtgazone-multicolored.html",
+      "status": "failed",
+      "error": "HTTP Error 404: Not Found",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://mtgazone.com/bloomburrow-blb-limited-set-review-artifacts-and-lands/",
+      "file": "mtgazone-artifacts-and-lands.html",
+      "status": "failed",
+      "error": "HTTP Error 404: Not Found",
+      "retrieved": "2026-10-28"
+    }
+  ]
+}

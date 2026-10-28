@@ -1,0 +1,185 @@
+{
+  "$schema": "../../schemas/expansion.schema.json",
+  "schemaVersion": 1,
+  "id": "secrets-of-strixhaven",
+  "name": "I Segreti di Strixhaven",
+  "code": "SOS",
+  "date": "2026-10-28",
+  "description": "Catalogo, legalità, pool e fonti dell’espansione.",
+  "status": "released",
+  "datasets": {
+    "cards": "cards.json",
+    "printings": "printings.json",
+    "ratings": "ratings.json",
+    "combos": "combos.json",
+    "sentiment": "sentiment.json",
+    "statistics": "statistics.json",
+    "discovery": "discovery.json",
+    "archetypes": "archetypes.json",
+    "guides": "guides.json",
+    "ui": "ui.json",
+    "sources": "sources.json",
+    "prices": "prices.json",
+    "products": "products.json",
+    "limited": "limited.json"
+  },
+  "presentation": {
+    "style": "preview",
+    "pages": {
+      "set": {
+        "label": "Panoramica",
+        "url": "index.html",
+        "template": "templates/preview/set.html"
+      },
+      "gallery": {
+        "label": "Catalogo carte",
+        "url": "catalogo.html",
+        "template": "templates/preview/gallery.html"
+      },
+      "draft": {
+        "label": "Draft e pick",
+        "url": "draft.html",
+        "template": "templates/preview/draft.html"
+      },
+      "pool": {
+        "label": "Pool e mazzo Sealed",
+        "url": "sealed.html",
+        "template": "templates/preview/pool.html"
+      },
+      "simulator": {
+        "label": "Prova il mazzo",
+        "url": "simulatore.html",
+        "template": "templates/preview/simulator.html"
+      },
+      "combos": {
+        "label": "Sinergie e sequenze",
+        "url": "sinergie.html",
+        "template": "templates/preview/combos.html"
+      },
+      "analysis": {
+        "label": "Analisi e box",
+        "url": "analisi.html",
+        "template": "templates/preview/analysis.html"
+      },
+      "discovery": {
+        "label": "Constructed",
+        "url": "discovery.html",
+        "template": "templates/preview/discovery.html"
+      },
+      "rules": {
+        "label": "Regole del formato",
+        "url": "regole.html",
+        "template": "templates/preview/rules.html"
+      },
+      "method": {
+        "label": "Fonti e aggiornamenti",
+        "url": "fonti.html",
+        "template": "templates/preview/method.html"
+      },
+      "draft-engine": {
+        "label": "Tavolo Draft con bot",
+        "url": "draft-engine.html",
+        "template": "templates/atlas/draft-engine.html"
+      }
+    },
+    "groups": [
+      [
+        "Carte e set",
+        [
+          "set",
+          "gallery",
+          "analysis"
+        ]
+      ],
+      [
+        "Limited",
+        [
+          "draft",
+          "draft-engine",
+          "pool",
+          "simulator",
+          "combos"
+        ]
+      ],
+      [
+        "Constructed",
+        [
+          "discovery"
+        ]
+      ],
+      [
+        "Riferimenti",
+        [
+          "rules",
+          "method"
+        ]
+      ]
+    ]
+  },
+  "storage": {
+    "poolPrefix": "mtg-secrets-of-strixhaven-",
+    "mode": "mtg-secrets-of-strixhaven-mode-v1",
+    "watch": "mtg-secrets-of-strixhaven-watch-v1",
+    "draftTable": "mtg-secrets-of-strixhaven-draftTable-v1",
+    "sealedSimulator": "mtg-secrets-of-strixhaven-sealedSimulator-v1",
+    "draftPool": "mtg-secrets-of-strixhaven-draftPool-v1",
+    "sealedPool": "mtg-secrets-of-strixhaven-sealedPool-v1"
+  },
+  "assets": [],
+  "features": {
+    "catalog": {
+      "requested": true
+    },
+    "pool": {
+      "requested": true
+    },
+    "analysis": {
+      "requested": true
+    },
+    "sealedGuide": {
+      "requested": true
+    },
+    "draftGuide": {
+      "requested": true
+    },
+    "draftStatistics": {
+      "requested": true
+    },
+    "draftDrilldown": {
+      "requested": true
+    },
+    "pickGuide": {
+      "requested": true
+    },
+    "pickBaits": {
+      "requested": true
+    },
+    "pickDecisions": {
+      "requested": true
+    },
+    "draftCombos": {
+      "requested": true
+    },
+    "sealedSimulator": {
+      "requested": true
+    },
+    "draftTable": {
+      "requested": true
+    },
+    "combos": {
+      "requested": true
+    },
+    "sentiment": {
+      "requested": true
+    },
+    "discovery": {
+      "requested": true
+    },
+    "boxEV": {
+      "requested": true
+    },
+    "rules": {
+      "requested": true
+    }
+  }
+}

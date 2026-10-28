@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "products": {
+    "play": {
+      "name": "Play Booster",
+      "packSize": 14,
+      "tokensIncluded": false,
+      "collation": null,
+      "published": {
+        "date": "2026-10-28",
+        "source": "https://magic.wizards.com/en/news/feature/collecting-murders-at-karlov-manor",
+        "packSize": 14,
+        "notes": [
+          "Il prodotto cartaceo e quello Arena differiscono in tre carte di The List. Non trasferire automaticamente lo stesso catalogo di busta fra le due versioni.",
+          "Disguise protegge la creatura a faccia in giù con ward 2. Girarla a faccia in su è un’azione speciale; il mana richiesto va considerato nella curva."
+        ],
+        "sourceSnapshot": "research/murders-at-karlov-manor-20261028/wizards-collecting.txt",
+        "listOrSpecialGuestProbability": 0.125,
+        "specialGuestProbability": 0.0156,
+        "arenaReplacements": {
+          "Baleful Mastery": "Possibility Storm",
+          "Cavalier of Thorns": "Evolutionary Leap",
+          "Death Cloud": "Smuggler’s Copter"
+        }
+      },
+      "missing": [
+        "Ricetta completa con probabilità dei trattamenti, gruppi e dipendenze fra slot. Nessuna equiprobabilità dedotta dal flag booster."
+      ]
+    }
+  }
+}

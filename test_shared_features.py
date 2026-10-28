@@ -8,7 +8,9 @@ from build_expansion import prepare_shared_pages, render_page, render_tokens, da
 class SharedFeaturesTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.ready, cls.preview = load_expansions()
+        expansions = {item.manifest['id']: item for item in load_expansions()}
+        cls.ready = expansions['reality-fracture']
+        cls.preview = expansions['star-trek']
 
     def fixture(self):
         expansion=copy.deepcopy(self.ready)

@@ -1,0 +1,61 @@
+{
+  "date": "2026-10-28",
+  "catalogs": [
+    {
+      "code": "LCC",
+      "path": "research/lost-caverns-of-ixalan-20261028/companion-lcc-catalog.json",
+      "printings": 370,
+      "identities": 313,
+      "completePagination": true,
+      "pages": 3,
+      "excludedFromLimitedPool": true
+    },
+    {
+      "code": "REX",
+      "path": "research/lost-caverns-of-ixalan-20261028/companion-rex-catalog.json",
+      "printings": 45,
+      "identities": 26,
+      "completePagination": true,
+      "pages": 1,
+      "excludedFromLimitedPool": true
+    }
+  ],
+  "acquisitions": [
+    {
+      "url": "https://api.scryfall.com/cards/search?q=set%3Alcc&unique=prints&order=set&include_extras=true&include_variations=true",
+      "resolvedUrl": "https://api.scryfall.com/cards/search?q=set%3Alcc&unique=prints&order=set&include_extras=true&include_variations=true",
+      "file": "companion-lcc-page-1.json",
+      "status": 200,
+      "bytes": 974125,
+      "sha256": "e18a3f9bc8b261ce7b7f77712ecee7becc843d3e04d68d823cb0af77e94527ee",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://api.scryfall.com/cards/search?format=json&include_extras=true&include_multilingual=false&include_variations=true&order=set&page=2&q=set%3Alcc&unique=prints",
+      "resolvedUrl": "https://api.scryfall.com/cards/search?format=json&include_extras=true&include_multilingual=false&include_variations=true&order=set&page=2&q=set%3Alcc&unique=prints",
+      "file": "companion-lcc-page-2.json",
+      "status": 200,
+      "bytes": 906947,
+      "sha256": "683dc3d606799bce0385a3c4b1e36e4190d787affe69ea273e9e69bc998f7ae2",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://api.scryfall.com/cards/search?format=json&include_extras=true&include_multilingual=false&include_variations=true&order=set&page=3&q=set%3Alcc&unique=prints",
+      "resolvedUrl": "https://api.scryfall.com/cards/search?format=json&include_extras=true&include_multilingual=false&include_variations=true&order=set&page=3&q=set%3Alcc&unique=prints",
+      "file": "companion-lcc-page-3.json",
+      "status": 200,
+      "bytes": 101571,
+      "sha256": "0000db33e9e87083a09b5846597be5fb34d028f9ba5f9439aea5571c90a2c81d",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://api.scryfall.com/cards/search?q=set%3Arex&unique=prints&order=set&include_extras=true&include_variations=true",
+      "resolvedUrl": "https://api.scryfall.com/cards/search?q=set%3Arex&unique=prints&order=set&include_extras=true&include_variations=true",
+      "file": "companion-rex-page-1.json",
+      "status": 200,
+      "bytes": 254887,
+      "sha256": "7a48d5bb8f093d0616f0bebd957945abd4c406cd666c54f075aeaf7f2586a0e5",
+      "retrieved": "2026-10-28"
+    }
+  ]
+}

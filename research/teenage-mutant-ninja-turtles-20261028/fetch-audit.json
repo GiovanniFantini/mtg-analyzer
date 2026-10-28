@@ -1,0 +1,107 @@
+{
+  "date": "2026-10-28",
+  "acquisitions": [
+    {
+      "url": "https://api.scryfall.com/sets/tmt",
+      "retrieved": "2026-10-28",
+      "file": "scryfall-tmt-set.json",
+      "status": "acquired",
+      "bytes": 610,
+      "sha256": "e9b4a206db77c044946f13c4e6480251f7365b1c18583262e966bba7aee361fc"
+    },
+    {
+      "url": "https://api.scryfall.com/cards/search?include_extras=true&include_variations=true&order=set&q=e%3Atmt&unique=prints",
+      "retrieved": "2026-10-28",
+      "file": "scryfall-tmt-page-1.json",
+      "status": "acquired",
+      "bytes": 928370,
+      "sha256": "95019c88ee86b617ea8a27346cdefb3f2493dbc1a4cff3468414f0bb412bcf39"
+    },
+    {
+      "url": "https://api.scryfall.com/cards/search?format=json&include_extras=true&include_multilingual=false&include_variations=true&order=set&page=2&q=e%3Atmt&unique=prints",
+      "retrieved": "2026-10-28",
+      "file": "scryfall-tmt-page-2.json",
+      "status": "acquired",
+      "bytes": 757046,
+      "sha256": "84fc5ebad07ada0ad396334e044dfab212f39beb428d6515af837b48664192a5"
+    },
+    {
+      "url": "https://api.scryfall.com/sets/pza",
+      "retrieved": "2026-10-28",
+      "file": "scryfall-pza-set.json",
+      "status": "acquired",
+      "bytes": 651,
+      "sha256": "635212c29a70dba824cefdf10b4c1b303ff9216d599820e29573080e4423e23f"
+    },
+    {
+      "url": "https://api.scryfall.com/cards/search?include_extras=true&include_variations=true&order=set&q=e%3Apza&unique=prints",
+      "retrieved": "2026-10-28",
+      "file": "scryfall-pza-page-1.json",
+      "status": "acquired",
+      "bytes": 104690,
+      "sha256": "bf3a95ca4642c1c5f9f5d27cdc28f20338f0f603f87917f13cfff28e5689f7c6"
+    },
+    {
+      "url": "https://api.scryfall.com/sets/tmc",
+      "retrieved": "2026-10-28",
+      "file": "scryfall-tmc-set.json",
+      "status": "acquired",
+      "bytes": 679,
+      "sha256": "b97eb8e5d5d34d6c68c041c7ede18c0f789226f50c62e06067eeb39058b78647"
+    },
+    {
+      "url": "https://api.scryfall.com/cards/search?include_extras=true&include_variations=true&order=set&q=e%3Atmc&unique=prints",
+      "retrieved": "2026-10-28",
+      "file": "scryfall-tmc-page-1.json",
+      "status": "acquired",
+      "bytes": 704594,
+      "sha256": "a9f81ce9d296f589d8643d16621f5d747922d96fef09b0422c2ddce96184c674"
+    },
+    {
+      "url": "https://magic.wizards.com/en/news/feature/collecting-teenage-mutant-ninja-turtles",
+      "retrieved": "2026-10-28",
+      "file": "collecting.html",
+      "status": "acquired",
+      "bytes": 249862,
+      "sha256": "46bd53c48913a045693c75bd0d924374b5419b794cbaf29847bb80ba43621775"
+    },
+    {
+      "url": "https://magic.wizards.com/en/news/feature/teenage-mutant-ninja-turtles-mechanics",
+      "retrieved": "2026-10-28",
+      "file": "mechanics.html",
+      "status": "acquired",
+      "bytes": 189370,
+      "sha256": "ade30e2dea85864291595f1adc966da6684514d7de3ef9de8ddeee3a51121e7f"
+    },
+    {
+      "url": "https://magic.wizards.com/en/products/teenage-mutant-ninja-turtles",
+      "retrieved": "2026-10-28",
+      "file": "product.html",
+      "status": "acquired",
+      "bytes": 369025,
+      "sha256": "a3ebf69989639c81c0c3212beee165c85a98d68e3c0d9cd74efff448ea5e8f01"
+    },
+    {
+      "url": "https://draftsim.com/mtg-tmt-draft-guide/",
+      "retrieved": "2026-10-28",
+      "status": "failed",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://draftsim.com/mtg-tmt-sealed-guide/",
+      "retrieved": "2026-10-28",
+      "file": "sealed-guide.html",
+      "status": "acquired",
+      "bytes": 1900554,
+      "sha256": "8e0b4897442f42e14fced832d8a215ea13522e526434baf101f1541ba029e147"
+    },
+    {
+      "url": "https://draftsim.com/mtg-tmt-limited-set-review/",
+      "retrieved": "2026-10-28",
+      "file": "limited-review.html",
+      "status": "acquired",
+      "bytes": 2010959,
+      "sha256": "77ff2104e2b813a0e2ddc5e45315ec939947391cdb213b5a9e1bc8d5f6e1ea5d"
+    }
+  ]
+}

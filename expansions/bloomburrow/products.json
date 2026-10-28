@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "products": {
+    "play": {
+      "name": "Play Booster",
+      "packSize": 14,
+      "tokensIncluded": false,
+      "collation": null,
+      "published": {
+        "date": "2026-10-28",
+        "source": "https://magic.wizards.com/en/news/feature/collecting-bloomburrow",
+        "packSize": 14,
+        "notes": [
+          "Le sinergie dipendono dalla funzione e dalla densità, oltre che dal tipo di creatura. Carrot Cake offre corpi, selezione e una risorsa Cibo.",
+          "Forage può usare tre carte del cimitero oppure un Cibo. Le pedine di Carrot Cake aiutano anche le strategie Rabbits e i mazzi che guadagnano vite."
+        ],
+        "sourceSnapshot": "research/bloomburrow-20261028/wizards-collecting.txt",
+        "slots": {
+          "common": [
+            6,
+            7
+          ],
+          "uncommon": 3,
+          "rareOrMythic": 1,
+          "nonfoilWildcard": 1,
+          "foilWildcard": 1,
+          "land": 1
+        },
+        "specialGuestReplacesCommonProbability": 0.015,
+        "landSeason": {
+          "spring": 0.4,
+          "summer": 0.3,
+          "autumn": 0.2,
+          "winter": 0.1
+        }
+      },
+      "missing": [
+        "Ricetta completa con probabilità dei trattamenti, gruppi e dipendenze fra slot. Nessuna equiprobabilità dedotta dal flag booster."
+      ]
+    }
+  }
+}

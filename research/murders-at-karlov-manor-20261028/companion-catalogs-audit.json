@@ -1,0 +1,43 @@
+{
+  "date": "2026-10-28",
+  "catalogs": [
+    {
+      "code": "MKC",
+      "path": "research/murders-at-karlov-manor-20261028/companion-mkc-catalog.json",
+      "printings": 358,
+      "identities": 304,
+      "completePagination": true,
+      "pages": 3,
+      "excludedFromLimitedPool": true
+    }
+  ],
+  "acquisitions": [
+    {
+      "url": "https://api.scryfall.com/cards/search?q=set%3Amkc&unique=prints&order=set&include_extras=true&include_variations=true",
+      "resolvedUrl": "https://api.scryfall.com/cards/search?q=set%3Amkc&unique=prints&order=set&include_extras=true&include_variations=true",
+      "file": "companion-mkc-page-1.json",
+      "status": 200,
+      "bytes": 935833,
+      "sha256": "75232723986b473b909fa9e644b5a5e437b3cdb4ee9b2f9265f152890ea92857",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://api.scryfall.com/cards/search?format=json&include_extras=true&include_multilingual=false&include_variations=true&order=set&page=2&q=set%3Amkc&unique=prints",
+      "resolvedUrl": "https://api.scryfall.com/cards/search?format=json&include_extras=true&include_multilingual=false&include_variations=true&order=set&page=2&q=set%3Amkc&unique=prints",
+      "file": "companion-mkc-page-2.json",
+      "status": 200,
+      "bytes": 919384,
+      "sha256": "7c0e8d8fc594875e0b60c3550e2e8a752b37179169f31198a1406ee4d76ba6fe",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://api.scryfall.com/cards/search?format=json&include_extras=true&include_multilingual=false&include_variations=true&order=set&page=3&q=set%3Amkc&unique=prints",
+      "resolvedUrl": "https://api.scryfall.com/cards/search?format=json&include_extras=true&include_multilingual=false&include_variations=true&order=set&page=3&q=set%3Amkc&unique=prints",
+      "file": "companion-mkc-page-3.json",
+      "status": 200,
+      "bytes": 42823,
+      "sha256": "8bcded55880d4c69a5bbb07ad08c58d17e479069c46e572cbf9ca1ad5c465003",
+      "retrieved": "2026-10-28"
+    }
+  ]
+}

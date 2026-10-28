@@ -1,0 +1,93 @@
+{
+  "date": "2026-10-28",
+  "acquisitions": [
+    {
+      "url": "https://api.scryfall.com/sets/hob",
+      "retrieved": "2026-10-28",
+      "file": "scryfall-hob-set.json",
+      "status": "acquired",
+      "bytes": 592,
+      "sha256": "2ddd8769e249ec3a4909ec4af781364fce1c40efffbc73ec73b16fca30e916d7"
+    },
+    {
+      "url": "https://api.scryfall.com/cards/search?include_extras=true&include_variations=true&order=set&q=e%3Ahob&unique=prints",
+      "retrieved": "2026-10-28",
+      "file": "scryfall-hob-page-1.json",
+      "status": "acquired",
+      "bytes": 950614,
+      "sha256": "56883f290bd9371492e011d46994924d38967a9557f55d489204353f4691d6f6"
+    },
+    {
+      "url": "https://api.scryfall.com/cards/search?format=json&include_extras=true&include_multilingual=false&include_variations=true&order=set&page=2&q=e%3Ahob&unique=prints",
+      "retrieved": "2026-10-28",
+      "file": "scryfall-hob-page-2.json",
+      "status": "acquired",
+      "bytes": 786648,
+      "sha256": "81ced70a5d4ce64d5d1146b35d6798bfe1794ccec0c03e281940eb61785a3fd4"
+    },
+    {
+      "url": "https://api.scryfall.com/sets/hoc",
+      "retrieved": "2026-10-28",
+      "file": "scryfall-hoc-set.json",
+      "status": "acquired",
+      "bytes": 622,
+      "sha256": "0967032299a01ccfa1c7cc1a022dbfadd4be75c07c9d73b014d3cc7297508471"
+    },
+    {
+      "url": "https://api.scryfall.com/cards/search?include_extras=true&include_variations=true&order=set&q=e%3Ahoc&unique=prints",
+      "retrieved": "2026-10-28",
+      "file": "scryfall-hoc-page-1.json",
+      "status": "acquired",
+      "bytes": 833462,
+      "sha256": "b94d9ec88d1eb8fc1fdf7c64f83586a6f7ddde6bf54a4a37b9bac122254e3c22"
+    },
+    {
+      "url": "https://magic.wizards.com/en/news/feature/collecting-the-hobbit",
+      "retrieved": "2026-10-28",
+      "file": "collecting.html",
+      "status": "acquired",
+      "bytes": 268138,
+      "sha256": "89ee3259fd5cf27c97827b15e51eda4a3e25cb3e2410ea2ee816620798c2c6f8"
+    },
+    {
+      "url": "https://magic.wizards.com/en/news/feature/the-hobbit-mechanics",
+      "retrieved": "2026-10-28",
+      "file": "mechanics.html",
+      "status": "acquired",
+      "bytes": 191816,
+      "sha256": "66b9e43798582969b3efbf1672b0eae25836b148bfceafba88f26c3b458430fe"
+    },
+    {
+      "url": "https://magic.wizards.com/en/products/the-hobbit",
+      "retrieved": "2026-10-28",
+      "file": "product.html",
+      "status": "acquired",
+      "bytes": 448919,
+      "sha256": "0553545bde59fce6d0a424da7933b05b14f0d529798ba43b08cbc9e0ed9f37c2"
+    },
+    {
+      "url": "https://draftsim.com/mtg-hob-draft-guide/",
+      "retrieved": "2026-10-28",
+      "file": "draft-guide.html",
+      "status": "acquired",
+      "bytes": 1792141,
+      "sha256": "f8b3e41601e705390e042fa3a3a9fa6f50c5f4150e834b9a45dd4c7b41f20d2b"
+    },
+    {
+      "url": "https://draftsim.com/mtg-hob-sealed-guide/",
+      "retrieved": "2026-10-28",
+      "file": "sealed-guide.html",
+      "status": "acquired",
+      "bytes": 1935055,
+      "sha256": "fae3ebd6237a4f8527e1f028bbc4d352045a697b7b2a0433d66926eb954a759d"
+    },
+    {
+      "url": "https://draftsim.com/mtg-hob-limited-set-review/",
+      "retrieved": "2026-10-28",
+      "file": "limited-review.html",
+      "status": "acquired",
+      "bytes": 1660468,
+      "sha256": "20bf54d93a5bee2ad2d7c5f2aa6f9b68487a21cfb17345a23975fad4869e5113"
+    }
+  ]
+}

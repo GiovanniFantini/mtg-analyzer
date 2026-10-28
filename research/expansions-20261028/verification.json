@@ -1,0 +1,62 @@
+{
+  "date": "2026-10-28",
+  "status": "passed_with_documented_data_gaps",
+  "build": {
+    "command": "python build_site.py",
+    "offline": true,
+    "expansions": 21,
+    "htmlPages": 250,
+    "localLinks": "passed"
+  },
+  "unitTests": {
+    "command": "python -m unittest test_expansion_data.py test_shared_features.py test_import_expansion_catalogs.py test_import_cardmarket_catalog.py test_catalog_statistics.py",
+    "tests": 55,
+    "status": "passed"
+  },
+  "engineChecks": {
+    "node verify-expansions.cjs": "passed",
+    "node verify-draft-engine.cjs": "passed",
+    "python verify-collation-contract.py": "passed",
+    "limitation": "I nuovi prodotti conservano collation:null. I controlli del motore non certificano una collazione non modellata."
+  },
+  "isolationAndAvailability": {
+    "python verify-expansion-review.py": "passed, nineteen isolated fixtures",
+    "node verify-expansion-browser.cjs": "passed, historical saves and incompatible-save backups preserved"
+  },
+  "newExpansionBrowserChecks": {
+    "command": "node verify-expansion-catalogs.cjs <slugs>",
+    "expansions": 19,
+    "routes": 228,
+    "widths": [1440, 390],
+    "previews": ["mouse", "keyboard", "touch"],
+    "reviewControlsAndSourceLinks": "passed",
+    "javascriptErrors": 0,
+    "reports": [
+      "browser/group-1/report.json",
+      "browser/group-2/report.json",
+      "browser/group-3/report.json"
+    ],
+    "executionNote": "Due controlli hanno superato il timeout durante l'esecuzione concorrente alla suite Python. Ripetuti in sequenza dopo la suite: tutti passati."
+  },
+  "sharedCatalogRegression": {
+    "node verify-shared-catalog.cjs": "passed",
+    "node verify-catalog-filters.cjs": "passed",
+    "widths": [1440, 768, 390],
+    "zeroAndMissingValues": "preserved",
+    "javascriptErrors": 0
+  },
+  "dataChecks": {
+    "prospectsRequiredFieldsAndSourceReferences": "passed for 5225 card records",
+    "duplicateSourceIds": 0,
+    "digitalDoubleFacedNames": "five OM1 cards corrected; canonical Oracle identities retained",
+    "cardmarketPriceSource": "Cardmarket only; From, EUR, finishFilter:any; no inferred foil or nonfoil prices",
+    "restrictedStatisticsResponses": "new raw acquisitions retained outside repository; URL, hashes and coverage retained in audits"
+  },
+  "repositoryChecks": {
+    "git diff --check": "passed",
+    "pipelineModified": false,
+    "commitCreated": false,
+    "pushPerformed": false,
+    "publicationVerified": false
+  }
+}

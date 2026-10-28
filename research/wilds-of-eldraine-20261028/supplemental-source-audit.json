@@ -1,0 +1,77 @@
+{
+  "date": "2026-10-28",
+  "scope": "Verifiche di accesso supplementari, distinte dalle recensioni per carta già integrate.",
+  "sources": [
+    {
+      "provider": "EDHREC",
+      "url": "https://edhrec.com/articles/wilds-of-eldraine-set-review-black",
+      "retrieved": "2026-10-28",
+      "dataIntegrated": false,
+      "status": 200,
+      "resolvedUrl": "https://edhrec.com/articles/wilds-of-eldraine-set-review-black",
+      "bytes": 287845,
+      "sha256": "69001425a66d4dcbaa3a46566f47dad6338656a26ede90aec9e4cf8350e6e80b",
+      "title": "Wilds of Eldraine Set Review - Black | EDHREC",
+      "snapshot": "edhrec-supplement.txt",
+      "limitation": "Pagina acquisita; nessuna estrazione sistematica delle osservazioni per carta da questa fonte. Tabelle dinamiche, contenuti bloccati o pagina indice non equivalgono a dati acquisiti."
+    },
+    {
+      "provider": "MTGGoldfish",
+      "url": "https://www.mtggoldfish.com/articles/search?q=wilds+of+eldraine",
+      "retrieved": "2026-10-28",
+      "dataIntegrated": false,
+      "status": 200,
+      "resolvedUrl": "https://www.mtggoldfish.com/articles/search?q=wilds+of+eldraine",
+      "bytes": 74476,
+      "sha256": "fd9fcbddbe84d7eadae8ef7dc290faef402167dc6735ec5d9ff65a529fe64b20",
+      "title": "Magic: the Gathering Articles Search",
+      "limitation": "Pagina acquisita; nessuna estrazione sistematica delle osservazioni per carta da questa fonte. Tabelle dinamiche, contenuti bloccati o pagina indice non equivalgono a dati acquisiti."
+    },
+    {
+      "provider": "MTGDECKS",
+      "url": "https://mtgdecks.net/WOE",
+      "retrieved": "2026-10-28",
+      "dataIntegrated": false,
+      "status": "unavailable",
+      "error": "HTTP Error 404: Not Found",
+      "limitation": "Nessun dato estratto; fonte candidata non verificata per copertura."
+    },
+    {
+      "provider": "Untapped",
+      "url": "https://mtga.untapped.gg/limited/draft/wilds-of-eldraine/card-data",
+      "retrieved": "2026-10-28",
+      "dataIntegrated": false,
+      "status": 200,
+      "resolvedUrl": "https://mtga.untapped.gg/limited/draft/wilds-of-eldraine/card-data",
+      "bytes": 724684,
+      "sha256": "679dbea3fdf6a7395aa4215be6d4a89f9095d42c885e3d874685db7dde5ec6f4",
+      "title": "MTG Wilds of Eldraine (WOE) Draft Card Data - Untapped.gg",
+      "limitation": "Pagina acquisita; nessuna estrazione sistematica delle osservazioni per carta da questa fonte. Tabelle dinamiche, contenuti bloccati o pagina indice non equivalgono a dati acquisiti."
+    },
+    {
+      "provider": "Card Kingdom",
+      "url": "https://blog.cardkingdom.com/wilds-of-eldraine-draft-guide/",
+      "retrieved": "2026-10-28",
+      "dataIntegrated": false,
+      "status": 200,
+      "resolvedUrl": "https://blog.cardkingdom.com/wilds-of-eldraine-draft-guide/",
+      "bytes": 168782,
+      "sha256": "ac0c874fd4f68536798f213eb45dcc58d22ac40bbf83e557d13842702463e199",
+      "title": "Wilds of Eldraine Draft Guide",
+      "snapshot": "card-kingdom-supplement.txt",
+      "limitation": "Pagina acquisita; nessuna estrazione sistematica delle osservazioni per carta da questa fonte. Tabelle dinamiche, contenuti bloccati o pagina indice non equivalgono a dati acquisiti."
+    },
+    {
+      "provider": "Cards Realm",
+      "url": "https://mtg.cardsrealm.com/en-us/sets/woe-wilds-of-eldraine",
+      "retrieved": "2026-10-28",
+      "dataIntegrated": false,
+      "status": 200,
+      "resolvedUrl": "https://mtg.cardsrealm.com/en-us/sets/woe-wilds-of-eldraine",
+      "bytes": 523200,
+      "sha256": "8ba573355653d02f46b76d63817b9ab40b874391e1dc0bf90c9c3b80b58c9acf",
+      "title": "Wilds of Eldraine WOE - Spoilers and Prices | Cards Realm",
+      "limitation": "Pagina acquisita; nessuna estrazione sistematica delle osservazioni per carta da questa fonte. Tabelle dinamiche, contenuti bloccati o pagina indice non equivalgono a dati acquisiti."
+    }
+  ]
+}

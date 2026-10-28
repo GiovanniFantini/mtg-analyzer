@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "products": {
+    "draft": {
+      "name": "Draft Booster",
+      "packSize": 15,
+      "tokensIncluded": false,
+      "collation": null,
+      "published": {
+        "date": "2026-10-28",
+        "source": "https://magic.wizards.com/en/news/feature/collecting-the-lost-caverns-of-ixalan",
+        "packSize": 15,
+        "notes": [
+          "Le Draft Booster contengono 15 carte, con una carta bifronte comune o non comune dedicata. Una foil sostituisce una comune nel 33% delle buste.",
+          "Special Guests e Jurassic World Collection si trovano nei prodotti Set/Collector, e non entrano automaticamente nelle Draft Booster."
+        ],
+        "sourceSnapshot": "research/lost-caverns-of-ixalan-20261028/wizards-collecting.txt",
+        "slots": {
+          "rareOrMythic": 1,
+          "doubleFacedCommonOrUncommon": 1,
+          "uncommon": 3,
+          "common": 9,
+          "land": 1
+        },
+        "foilReplacesCommonProbability": 0.33,
+        "land": {
+          "nonbasicCave": 0.7,
+          "basic": 0.3
+        }
+      },
+      "missing": [
+        "Ricetta completa con probabilità dei trattamenti, gruppi e dipendenze fra slot. Nessuna equiprobabilità dedotta dal flag booster."
+      ]
+    }
+  }
+}

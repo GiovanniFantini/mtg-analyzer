@@ -1,0 +1,193 @@
+{
+  "date": "2026-10-28",
+  "links": {
+    "scryfall-set": "https://api.scryfall.com/sets/mkm",
+    "scryfall-0-page-1": "https://api.scryfall.com/cards/search?q=set%3Amkm&unique=prints&order=set&include_extras=false",
+    "scryfall-0-page-2": "https://api.scryfall.com/cards/search?format=json&include_extras=false&include_multilingual=false&include_variations=false&order=set&page=2&q=set%3Amkm&unique=prints",
+    "scryfall-0-page-3": "https://api.scryfall.com/cards/search?format=json&include_extras=false&include_multilingual=false&include_variations=false&order=set&page=3&q=set%3Amkm&unique=prints",
+    "scryfall-1-page-1": "https://api.scryfall.com/cards/search?q=set%3Aspg+cn%3E%3D19+cn%3C%3D28&unique=prints&order=set&include_extras=false",
+    "17lands-premier": "https://www.17lands.com/card_ratings/data?expansion=MKM&format=PremierDraft&start_date=2024-02-06&end_date=2024-04-15",
+    "wizards-collecting": "https://magic.wizards.com/en/news/feature/collecting-murders-at-karlov-manor",
+    "wizards-mechanics": "https://magic.wizards.com/en/news/feature/murders-at-karlov-manor-mechanics",
+    "wizards-release-notes": "https://magic.wizards.com/en/news/feature/murders-at-karlov-manor-release-notes",
+    "draftsim-guide": "https://draftsim.com/mtg-mkm-draft-guide/",
+    "draftsim-review": "https://draftsim.com/mkm-limited-set-review/",
+    "cardmarket-set": "https://www.cardmarket.com/en/Magic/Expansions/Murders-At-Karlov-Manor",
+    "wizards-list": "https://magic.wizards.com/en/news/announcements/whats-new-on-the-list-for-murders-at-karlov-manor",
+    "edhrec-set-data": "https://edhrec.com/sets/mkm",
+    "scryfall-mkm": "https://scryfall.com/sets/mkm"
+  },
+  "research": {
+    "date": "2026-10-28",
+    "sources": [
+      {
+        "id": "scryfall-set",
+        "url": "https://api.scryfall.com/sets/mkm",
+        "label": "scryfall set",
+        "retrieved": "2026-10-28",
+        "status": "acquired",
+        "file": "research\\murders-at-karlov-manor-20261028\\scryfall-set.json"
+      },
+      {
+        "id": "scryfall-0-page-1",
+        "url": "https://api.scryfall.com/cards/search?q=set%3Amkm&unique=prints&order=set&include_extras=false",
+        "label": "scryfall 0 page 1",
+        "retrieved": "2026-10-28",
+        "status": "acquired",
+        "file": "research\\murders-at-karlov-manor-20261028\\scryfall-0-page-1.json"
+      },
+      {
+        "id": "scryfall-0-page-2",
+        "url": "https://api.scryfall.com/cards/search?format=json&include_extras=false&include_multilingual=false&include_variations=false&order=set&page=2&q=set%3Amkm&unique=prints",
+        "label": "scryfall 0 page 2",
+        "retrieved": "2026-10-28",
+        "status": "acquired",
+        "file": "research\\murders-at-karlov-manor-20261028\\scryfall-0-page-2.json"
+      },
+      {
+        "id": "scryfall-0-page-3",
+        "url": "https://api.scryfall.com/cards/search?format=json&include_extras=false&include_multilingual=false&include_variations=false&order=set&page=3&q=set%3Amkm&unique=prints",
+        "label": "scryfall 0 page 3",
+        "retrieved": "2026-10-28",
+        "status": "acquired",
+        "file": "research\\murders-at-karlov-manor-20261028\\scryfall-0-page-3.json"
+      },
+      {
+        "id": "scryfall-1-page-1",
+        "url": "https://api.scryfall.com/cards/search?q=set%3Aspg+cn%3E%3D19+cn%3C%3D28&unique=prints&order=set&include_extras=false",
+        "label": "scryfall 1 page 1",
+        "retrieved": "2026-10-28",
+        "status": "acquired",
+        "file": "research\\murders-at-karlov-manor-20261028\\scryfall-1-page-1.json"
+      },
+      {
+        "id": "17lands-premier",
+        "url": "https://www.17lands.com/card_ratings/data?expansion=MKM&format=PremierDraft&start_date=2024-02-06&end_date=2024-04-15",
+        "label": "17lands premier",
+        "retrieved": "2026-10-28",
+        "status": "not_reused",
+        "file": null,
+        "limitation": "API output restricted to 17Lands.com. Use public datasets."
+      },
+      {
+        "id": "wizards-collecting",
+        "url": "https://magic.wizards.com/en/news/feature/collecting-murders-at-karlov-manor",
+        "label": "wizards collecting",
+        "retrieved": "2026-10-28",
+        "status": "acquired",
+        "file": "research\\murders-at-karlov-manor-20261028\\wizards-collecting.html"
+      },
+      {
+        "id": "wizards-mechanics",
+        "url": "https://magic.wizards.com/en/news/feature/murders-at-karlov-manor-mechanics",
+        "label": "wizards mechanics",
+        "retrieved": "2026-10-28",
+        "status": "acquired",
+        "file": "research\\murders-at-karlov-manor-20261028\\wizards-mechanics.html"
+      },
+      {
+        "id": "wizards-release-notes",
+        "url": "https://magic.wizards.com/en/news/feature/murders-at-karlov-manor-release-notes",
+        "label": "wizards release notes",
+        "retrieved": "2026-10-28",
+        "status": "acquired",
+        "file": "research\\murders-at-karlov-manor-20261028\\wizards-release-notes.html"
+      },
+      {
+        "id": "draftsim-guide",
+        "url": "https://draftsim.com/mtg-mkm-draft-guide/",
+        "label": "draftsim guide",
+        "retrieved": "2026-10-28",
+        "status": "unavailable",
+        "file": null
+      },
+      {
+        "id": "draftsim-review",
+        "url": "https://draftsim.com/mkm-limited-set-review/",
+        "label": "draftsim review",
+        "retrieved": "2026-10-28",
+        "status": "unavailable",
+        "file": null
+      },
+      {
+        "id": "cardmarket-set",
+        "url": "https://www.cardmarket.com/en/Magic/Expansions/Murders-At-Karlov-Manor",
+        "label": "cardmarket set",
+        "retrieved": "2026-10-28",
+        "status": "unavailable",
+        "file": null
+      },
+      {
+        "id": "wizards-list",
+        "url": "https://magic.wizards.com/en/news/announcements/whats-new-on-the-list-for-murders-at-karlov-manor",
+        "label": "wizards list",
+        "retrieved": "2026-10-28",
+        "status": "acquired",
+        "file": "research\\murders-at-karlov-manor-20261028\\wizards-list.html"
+      },
+      {
+        "id": "mtgazone-white",
+        "url": "https://mtgazone.com/murders-at-karlov-manor-mkm-limited-set-review-white/",
+        "label": "Recensione Limited MTG Arena Zone white",
+        "retrieved": "2026-10-28"
+      },
+      {
+        "id": "mtgazone-blue",
+        "url": "https://mtgazone.com/murders-at-karlov-manor-mkm-limited-set-review-blue/",
+        "label": "Recensione Limited MTG Arena Zone blue",
+        "retrieved": "2026-10-28"
+      },
+      {
+        "id": "mtgazone-black",
+        "url": "https://mtgazone.com/murders-at-karlov-manor-mkm-limited-set-review-black/",
+        "label": "Recensione Limited MTG Arena Zone black",
+        "retrieved": "2026-10-28"
+      },
+      {
+        "id": "mtgazone-red",
+        "url": "https://mtgazone.com/murders-at-karlov-manor-mkm-limited-set-review-red/",
+        "label": "Recensione Limited MTG Arena Zone red",
+        "retrieved": "2026-10-28"
+      },
+      {
+        "id": "mtgazone-green",
+        "url": "https://mtgazone.com/murders-at-karlov-manor-mkm-limited-set-review-green/",
+        "label": "Recensione Limited MTG Arena Zone green",
+        "retrieved": "2026-10-28"
+      },
+      {
+        "id": "mtgazone-multicolored",
+        "url": "https://mtgazone.com/murders-at-karlov-manor-mkm-limited-set-review-multicolored/",
+        "label": "Recensione Limited MTG Arena Zone multicolored",
+        "retrieved": "2026-10-28"
+      },
+      {
+        "id": "mtgazone-artifacts-and-lands",
+        "url": "https://mtgazone.com/murders-at-karlov-manor-mkm-limited-set-review-artifacts-and-lands/",
+        "label": "Recensione Limited MTG Arena Zone artifacts-and-lands",
+        "retrieved": "2026-10-28"
+      },
+      {
+        "id": "draftsim-numeric-review",
+        "url": "https://draftsim.com/mtg-mkm-limited-set-review/",
+        "label": "Recensione Limited numerica Draftsim",
+        "retrieved": "2026-10-28",
+        "status": "acquired"
+      },
+      {
+        "id": "edhrec-set-data",
+        "url": "https://json.edhrec.com/pages/sets/mkm.json",
+        "label": "EDHREC: inclusioni nelle liste Commander",
+        "retrieved": "2026-10-28",
+        "status": "acquired"
+      },
+      {
+        "id": "scryfall-mkm",
+        "url": "https://scryfall.com/sets/mkm",
+        "label": "Oracle e legalità Scryfall",
+        "retrieved": "2026-10-28",
+        "status": "acquired"
+      }
+    ]
+  }
+}

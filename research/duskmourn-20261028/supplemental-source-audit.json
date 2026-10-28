@@ -1,0 +1,73 @@
+{
+  "date": "2026-10-28",
+  "scope": "Verifiche di accesso supplementari, distinte dalle recensioni per carta già integrate.",
+  "sources": [
+    {
+      "provider": "EDHREC",
+      "url": "https://edhrec.com/articles/duskmourn-set-review-black",
+      "retrieved": "2026-10-28",
+      "dataIntegrated": false,
+      "status": 200,
+      "resolvedUrl": "https://edhrec.com/articles/duskmourn-set-review-black",
+      "bytes": 271926,
+      "sha256": "8af8f16420ce92aba5545b44611eec15ad91a88c142b792996b6f30f8f9fa847",
+      "title": "Duskmourn Set Review - Black | EDHREC",
+      "snapshot": "edhrec-supplement.txt",
+      "limitation": "Pagina acquisita; nessuna estrazione sistematica delle osservazioni per carta da questa fonte. Tabelle dinamiche, contenuti bloccati o pagina indice non equivalgono a dati acquisiti."
+    },
+    {
+      "provider": "MTGGoldfish",
+      "url": "https://www.mtggoldfish.com/articles/search?q=duskmourn",
+      "retrieved": "2026-10-28",
+      "dataIntegrated": false,
+      "status": 200,
+      "resolvedUrl": "https://www.mtggoldfish.com/articles/search?q=duskmourn",
+      "bytes": 74992,
+      "sha256": "f943a8b28a42cb52087d70e43491f48e975802a7d4d8ec7c4f83aa948494626c",
+      "title": "Magic: the Gathering Articles Search",
+      "limitation": "Pagina acquisita; nessuna estrazione sistematica delle osservazioni per carta da questa fonte. Tabelle dinamiche, contenuti bloccati o pagina indice non equivalgono a dati acquisiti."
+    },
+    {
+      "provider": "MTGDECKS",
+      "url": "https://mtgdecks.net/DSK",
+      "retrieved": "2026-10-28",
+      "dataIntegrated": false,
+      "status": "unavailable",
+      "error": "HTTP Error 404: Not Found",
+      "limitation": "Nessun dato estratto; fonte candidata non verificata per copertura."
+    },
+    {
+      "provider": "Untapped",
+      "url": "https://mtga.untapped.gg/limited/draft/duskmourn/card-data",
+      "retrieved": "2026-10-28",
+      "dataIntegrated": false,
+      "status": 200,
+      "resolvedUrl": "https://mtga.untapped.gg/limited/draft/duskmourn/card-data",
+      "bytes": 406175,
+      "sha256": "ee434e52fb1504c3d442f332836b9b1f23cd7438c3ec7139c3d74c472c852e44",
+      "title": "Error - Untapped.gg",
+      "limitation": "Pagina acquisita; nessuna estrazione sistematica delle osservazioni per carta da questa fonte. Tabelle dinamiche, contenuti bloccati o pagina indice non equivalgono a dati acquisiti."
+    },
+    {
+      "provider": "Card Kingdom",
+      "url": "https://blog.cardkingdom.com/duskmourn-draft-guide/",
+      "retrieved": "2026-10-28",
+      "dataIntegrated": false,
+      "status": "unavailable",
+      "error": "HTTP Error 404: Not Found",
+      "limitation": "Nessun dato estratto; fonte candidata non verificata per copertura."
+    },
+    {
+      "provider": "Cards Realm",
+      "url": "https://mtg.cardsrealm.com/en-us/sets/dsk-duskmourn",
+      "retrieved": "2026-10-28",
+      "dataIntegrated": false,
+      "status": 200,
+      "resolvedUrl": "https://mtg.cardsrealm.com/en-us/sets/",
+      "bytes": 111568,
+      "sha256": "cb8b9404ebc4dacf9dbc39277d0c468763535b72d68acb66fc84d13262717635",
+      "title": "Magic: the Gathering MTG sets and editions list | Cards Realm",
+      "limitation": "Pagina acquisita; nessuna estrazione sistematica delle osservazioni per carta da questa fonte. Tabelle dinamiche, contenuti bloccati o pagina indice non equivalgono a dati acquisiti."
+    }
+  ]
+}

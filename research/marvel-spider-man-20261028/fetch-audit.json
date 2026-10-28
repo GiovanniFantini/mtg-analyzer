@@ -1,0 +1,178 @@
+{
+  "retrieved": "2026-10-28",
+  "acquisitions": [
+    {
+      "provider": "Scryfall",
+      "url": "https://api.scryfall.com/cards/search?include_extras=true&include_variations=true&order=set&q=e%3Aspm&unique=prints",
+      "retrieved": "2026-10-28",
+      "status": "acquired",
+      "file": "spm-page-1.json",
+      "sha256": "afc46f8b9f7c5ca81776ce1cc2b3867a25a6a87226d83eabe413fb81ed063dc4",
+      "rows": 175
+    },
+    {
+      "provider": "Scryfall",
+      "url": "https://api.scryfall.com/cards/search?format=json&include_extras=true&include_multilingual=false&include_variations=true&order=set&page=2&q=e%3Aspm&unique=prints",
+      "retrieved": "2026-10-28",
+      "status": "acquired",
+      "file": "spm-page-2.json",
+      "sha256": "7a97794742a707612dc7c72c18fffe253475c82059b80b165cf5efc45cbc1fcd",
+      "rows": 111
+    },
+    {
+      "provider": "Scryfall",
+      "url": "https://api.scryfall.com/cards/search?include_extras=true&include_variations=true&order=set&q=e%3Amar&unique=prints",
+      "retrieved": "2026-10-28",
+      "status": "acquired",
+      "file": "mar-page-1.json",
+      "sha256": "53c4dcd3825ba56f0f644d3577ec25020b19e39baad93e3b74d524557560f36f",
+      "rows": 100
+    },
+    {
+      "provider": "Scryfall",
+      "url": "https://api.scryfall.com/cards/search?include_extras=true&include_variations=true&order=set&q=e%3Aspe&unique=prints",
+      "retrieved": "2026-10-28",
+      "status": "acquired",
+      "file": "spe-page-1.json",
+      "sha256": "0e1747e43b8324e32cd0798387683c745192c64943ea752cf9425c5c24f48c6d",
+      "rows": 26
+    },
+    {
+      "id": "wizards",
+      "label": "Wizards: prodotti, date e legalità",
+      "url": "https://magic.wizards.com/en/news/feature/collecting-marvels-spider-man",
+      "retrieved": "2026-10-28",
+      "status": "acquired",
+      "file": "wizards-source.html",
+      "sha256": "6cb51bef1ff64fea72bc43687c189e45042b55458a82f6a6343e0ca4a970375e",
+      "bytes": 251098,
+      "title": "Collecting Magic: The Gathering® | Marvel's Spider-Man: The Four Most Important Things to Know",
+      "coverage": "Cattura acquisita; contenuto dinamico e misure per carta da verificare prima dell’integrazione."
+    },
+    {
+      "id": "limited-guide",
+      "label": "Guida Limited attribuita",
+      "url": "https://draftsim.com/mtg-spm-draft-guide/",
+      "retrieved": "2026-10-28",
+      "status": "acquired",
+      "file": "limited-guide-source.html",
+      "sha256": "6ef0d8ca77dc43375fb82255b41ee51582dff6c3828e0f045d29bc400aa3f4f1",
+      "bytes": 1835878,
+      "title": "The Ultimate Guide to Marvel's Spider-Man Draft - Draftsim",
+      "coverage": "Cattura acquisita; contenuto dinamico e misure per carta da verificare prima dell’integrazione."
+    },
+    {
+      "id": "card-kingdom",
+      "label": "Card Kingdom: guida Limited",
+      "url": "https://blog.cardkingdom.com/marvels-spider-man-draft-guide/",
+      "retrieved": "2026-10-28",
+      "status": "acquired",
+      "file": "card-kingdom-source.html",
+      "sha256": "9edfc4200095fb2b2ffbd2161ced48c413300e49b31737b5301c3644561201a6",
+      "bytes": 143556,
+      "title": "Marvel's Spider-Man Draft Guide - Card Kingdom Blog",
+      "coverage": "Cattura acquisita; contenuto dinamico e misure per carta da verificare prima dell’integrazione."
+    },
+    {
+      "id": "cards-realm",
+      "label": "Cards Realm: recensione Standard",
+      "url": "https://mtg.cardsrealm.com/en-us/articles/standard-set-review-marvels-spider-man",
+      "retrieved": "2026-10-28",
+      "status": "acquired",
+      "file": "cards-realm-source.html",
+      "sha256": "808ef81f0f71b8bd463e825d3cb9cdb23fb3077fc1f626da07c941f694c5fd31",
+      "bytes": 222946,
+      "title": "Standard Set Review: Marvel's Spider-Man",
+      "coverage": "Cattura acquisita; contenuto dinamico e misure per carta da verificare prima dell’integrazione."
+    },
+    {
+      "id": "edhrec",
+      "label": "EDHREC: inclusioni Commander",
+      "url": "https://edhrec.com/sets/spm",
+      "retrieved": "2026-10-28",
+      "status": "acquired",
+      "file": "edhrec-source.html",
+      "sha256": "f61d0f865e5ea139d8c70f07f73710a4e50404624f45dd2742c3c50e446d381f",
+      "bytes": 907618,
+      "title": "Marvel's Spider-Man | EDHREC",
+      "coverage": "Cattura acquisita; contenuto dinamico e misure per carta da verificare prima dell’integrazione."
+    },
+    {
+      "id": "mtggoldfish",
+      "label": "MTGGoldfish: catalogo e contesto",
+      "url": "https://www.mtggoldfish.com/spoilers/Marvels+Spider-Man",
+      "retrieved": "2026-10-28",
+      "status": "unavailable",
+      "error": "HTTP Error 404: Not Found",
+      "coverage": "Nessuna osservazione acquisita da questo tentativo; URL candidato, esistenza della pagina non certificata."
+    },
+    {
+      "id": "untapped",
+      "label": "Untapped: archetipi e dati Limited",
+      "url": "https://mtga.untapped.gg/limited/draft/marvels-spider-man/set-guide",
+      "retrieved": "2026-10-28",
+      "status": "acquired",
+      "file": "untapped-source.html",
+      "sha256": "c32e02f6965885f5da06348848a74996827ed16cf626168450e5f9dea29b0c97",
+      "bytes": 407572,
+      "title": "Error - Untapped.gg",
+      "coverage": "Cattura acquisita; contenuto dinamico e misure per carta da verificare prima dell’integrazione."
+    },
+    {
+      "id": "cardmarket",
+      "label": "Cardmarket: prezzi per stampa",
+      "url": "https://www.cardmarket.com/en/Magic/Expansions/Marvels-Spider-Man",
+      "retrieved": "2026-10-28",
+      "status": "unavailable",
+      "error": "HTTP Error 403: Forbidden",
+      "coverage": "Nessuna osservazione acquisita da questo tentativo; URL candidato, esistenza della pagina non certificata."
+    },
+    {
+      "id": "mtgdecks",
+      "label": "MTGDECKS: adozione Constructed",
+      "url": "https://mtgdecks.net/sets/SPM",
+      "retrieved": "2026-10-28",
+      "status": "unavailable",
+      "error": "HTTP Error 404: Not Found",
+      "coverage": "Nessuna osservazione acquisita da questo tentativo; URL candidato, esistenza della pagina non certificata."
+    },
+    {
+      "id": "aetherhub",
+      "label": "AetherHub: catalogo e mazzi",
+      "url": "https://aetherhub.com/Set/SPM",
+      "retrieved": "2026-10-28",
+      "status": "unavailable",
+      "error": "HTTP Error 404: Not Found",
+      "coverage": "Nessuna osservazione acquisita da questo tentativo; URL candidato, esistenza della pagina non certificata."
+    },
+    {
+      "provider": "Draftsim",
+      "id": "limited-review",
+      "url": "https://draftsim.com/mtg-spm-limited-set-review/",
+      "retrieved": "2026-10-28",
+      "status": "acquired",
+      "file": "limited-review.html",
+      "sha256": "703a325e2770a4c5eced8201b409b5eabd1c0dd2e66f21c42d5f0c37e18c07b3",
+      "bytes": 2037012
+    },
+    {
+      "provider": "EDHREC",
+      "id": "edhrec-set-data",
+      "url": "https://json.edhrec.com/pages/sets/spm.json",
+      "retrieved": "2026-10-28",
+      "status": "acquired",
+      "file": "edhrec-set-data.json",
+      "sha256": "de02280dad3b95c245dba4fd09cd9d1018b2a676fc8bede1dba742a5608f7409"
+    },
+    {
+      "provider": "Cardmarket",
+      "url": "https://www.cardmarket.com/en/Magic/Products/Singles/Marvels-Spider-Man",
+      "retrieved": "2026-10-28",
+      "method": "browser UI",
+      "status": "automatic_security_check_persisted",
+      "title": "Ci siamo quasi…",
+      "dataAcquired": false,
+      "limitation": "Verifica automatica non conclusa nella sessione. Nessun CAPTCHA risolto e nessun dato inventato."
+    }
+  ]
+}

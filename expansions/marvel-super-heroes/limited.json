@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "events": {
+    "draft": {
+      "id": "msh-play-draft",
+      "name": "Magic: The Gathering | Marvel Super Heroes · Draft",
+      "kind": "draft",
+      "product": "play",
+      "packsPerPlayer": 3,
+      "seats": 8,
+      "picksPerTurn": 1,
+      "directions": [
+        1,
+        -1,
+        1
+      ],
+      "minDeckSize": 40,
+      "maxCopies": null,
+      "extraBasicLands": true,
+      "mulligan": {
+        "kind": "london",
+        "handSize": 7,
+        "freeMulligans": 0
+      },
+      "sources": [
+        "https://magic.wizards.com/en/formats/booster-draft"
+      ]
+    },
+    "sealed": {
+      "id": "msh-play-sealed",
+      "name": "Magic: The Gathering | Marvel Super Heroes · Sealed",
+      "kind": "sealed",
+      "product": "play",
+      "packsPerPlayer": 6,
+      "seats": 1,
+      "picksPerTurn": 0,
+      "directions": [],
+      "minDeckSize": 40,
+      "maxCopies": null,
+      "extraBasicLands": true,
+      "mulligan": {
+        "kind": "london",
+        "handSize": 7,
+        "freeMulligans": 0
+      },
+      "sources": [
+        "https://magic.wizards.com/en/formats/sealed-deck"
+      ]
+    }
+  }
+}

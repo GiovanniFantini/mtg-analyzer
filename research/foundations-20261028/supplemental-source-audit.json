@@ -1,0 +1,73 @@
+{
+  "date": "2026-10-28",
+  "scope": "Verifiche di accesso supplementari, distinte dalle recensioni per carta già integrate.",
+  "sources": [
+    {
+      "provider": "EDHREC",
+      "url": "https://edhrec.com/articles/foundations-set-review-black",
+      "retrieved": "2026-10-28",
+      "dataIntegrated": false,
+      "status": 200,
+      "resolvedUrl": "https://edhrec.com/articles/foundations-set-review-black",
+      "bytes": 267028,
+      "sha256": "c7e1f290e466b1dfa90a16b1b074582b02ad0b370ee560b779e29c9906689fc9",
+      "title": "Foundations Set Review - Black | EDHREC",
+      "snapshot": "edhrec-supplement.txt",
+      "limitation": "Pagina acquisita; nessuna estrazione sistematica delle osservazioni per carta da questa fonte. Tabelle dinamiche, contenuti bloccati o pagina indice non equivalgono a dati acquisiti."
+    },
+    {
+      "provider": "MTGGoldfish",
+      "url": "https://www.mtggoldfish.com/articles/search?q=foundations",
+      "retrieved": "2026-10-28",
+      "dataIntegrated": false,
+      "status": 200,
+      "resolvedUrl": "https://www.mtggoldfish.com/articles/search?q=foundations",
+      "bytes": 74835,
+      "sha256": "99ae945d7ac8361f9bc1053be4ec4bdfd6d9f60bdfae47d197cca3eabad50379",
+      "title": "Magic: the Gathering Articles Search",
+      "limitation": "Pagina acquisita; nessuna estrazione sistematica delle osservazioni per carta da questa fonte. Tabelle dinamiche, contenuti bloccati o pagina indice non equivalgono a dati acquisiti."
+    },
+    {
+      "provider": "MTGDECKS",
+      "url": "https://mtgdecks.net/FDN",
+      "retrieved": "2026-10-28",
+      "dataIntegrated": false,
+      "status": "unavailable",
+      "error": "HTTP Error 404: Not Found",
+      "limitation": "Nessun dato estratto; fonte candidata non verificata per copertura."
+    },
+    {
+      "provider": "Untapped",
+      "url": "https://mtga.untapped.gg/limited/draft/foundations/card-data",
+      "retrieved": "2026-10-28",
+      "dataIntegrated": false,
+      "status": 200,
+      "resolvedUrl": "https://mtga.untapped.gg/limited/draft/foundations/card-data",
+      "bytes": 703763,
+      "sha256": "79ce49a9af02a1fab3b64b01588199b8be273d5c206578d18a9495ac7903a918",
+      "title": "MTG Foundations (FDN) Draft Card Data - Untapped.gg",
+      "limitation": "Pagina acquisita; nessuna estrazione sistematica delle osservazioni per carta da questa fonte. Tabelle dinamiche, contenuti bloccati o pagina indice non equivalgono a dati acquisiti."
+    },
+    {
+      "provider": "Card Kingdom",
+      "url": "https://blog.cardkingdom.com/foundations-draft-guide/",
+      "retrieved": "2026-10-28",
+      "dataIntegrated": false,
+      "status": "unavailable",
+      "error": "HTTP Error 404: Not Found",
+      "limitation": "Nessun dato estratto; fonte candidata non verificata per copertura."
+    },
+    {
+      "provider": "Cards Realm",
+      "url": "https://mtg.cardsrealm.com/en-us/sets/fdn-foundations",
+      "retrieved": "2026-10-28",
+      "dataIntegrated": false,
+      "status": 200,
+      "resolvedUrl": "https://mtg.cardsrealm.com/en-us/sets/fdn-foundations",
+      "bytes": 721532,
+      "sha256": "93ed07e44b9da2914059f223fabe2b3a907c71aafc5a4bf16a4d4566df25457d",
+      "title": "Foundations FDN - Spoilers and Prices | Cards Realm",
+      "limitation": "Pagina acquisita; nessuna estrazione sistematica delle osservazioni per carta da questa fonte. Tabelle dinamiche, contenuti bloccati o pagina indice non equivalgono a dati acquisiti."
+    }
+  ]
+}

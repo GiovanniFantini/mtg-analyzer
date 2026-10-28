@@ -1,0 +1,23 @@
+{
+  "date": "2026-10-28",
+  "source": "Scryfall API cards/search",
+  "scopeQueries": [
+    "set:fdn",
+    "set:spg cn>=74 cn<=83"
+  ],
+  "pagination": {
+    "include_extras": true,
+    "include_variations": true,
+    "complete": false,
+    "excludedLayouts": [
+      "token",
+      "double_faced_token",
+      "emblem",
+      "art_series"
+    ],
+    "additionalPrintings": 0
+  },
+  "normalizedPrintingsSha256": "e0fad63cdef182491455e3afbf3d3d258f71a3973963e95c5682e140db9ae13c",
+  "additionalSnapshot": "scryfall-additional-variations.json",
+  "limitation": "Catalogo dei codici interrogati, distinto dalla certificazione degli slot di ogni prodotto."
+}

@@ -1,0 +1,4281 @@
+{
+  "schemaVersion": 1,
+  "scope": "stored_registries_and_source_audits",
+  "networkVerified": false,
+  "limitations": [
+    "Stored retrieval metadata is historical, not a live availability check.",
+    "Raw HTML may exist only in a temporary cache; a URL/hash is not a local archive.",
+    "Card URLs embedded only in catalogs or observations are outside this source-register inventory."
+  ],
+  "sets": [
+    {
+      "id": "reality-fracture",
+      "manifest": "expansions/reality-fracture/expansion.json",
+      "sourceDocuments": [
+        {
+          "path": "expansions/reality-fracture/sources.json",
+          "sha256": "fdaef65e18d992f2e7562323f830f6ed33fc33c9b3d2cd973af2cd7f6ff80311"
+        },
+        {
+          "path": "research/reality-fracture-20261022/fetch-audit.json",
+          "sha256": "4fc82e0aef5d0e88ea3c03bb203a5b414e235c9dfef978093c27883121f58aeb"
+        }
+      ],
+      "uniqueUrls": 115,
+      "sources": [
+        {
+          "url": "https://api.scryfall.com/cards/07bf6e66-b146-4db3-b2ab-f7b199acbe27",
+          "host": "api.scryfall.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/research/sources/22/urls/7",
+              "recordedMetadata": {
+                "date": "2026-10-22",
+                "id": "scryfall-spg",
+                "publisher": "Scryfall",
+                "kind": "oracle-legalities-market-reference",
+                "status": "retrieved",
+                "retrieved": "2026-10-22"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://api.scryfall.com/cards/0ab1e081-47b1-4d53-a820-98c451e6440d",
+          "host": "api.scryfall.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/research/sources/22/urls/5",
+              "recordedMetadata": {
+                "date": "2026-10-22",
+                "id": "scryfall-spg",
+                "publisher": "Scryfall",
+                "kind": "oracle-legalities-market-reference",
+                "status": "retrieved",
+                "retrieved": "2026-10-22"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://api.scryfall.com/cards/1bf992ff-b7a1-48d9-a7e1-89a48d743fc2",
+          "host": "api.scryfall.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/research/sources/22/urls/9",
+              "recordedMetadata": {
+                "date": "2026-10-22",
+                "id": "scryfall-spg",
+                "publisher": "Scryfall",
+                "kind": "oracle-legalities-market-reference",
+                "status": "retrieved",
+                "retrieved": "2026-10-22"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://api.scryfall.com/cards/4f981c28-9134-45e8-8687-94b3c81ba582",
+          "host": "api.scryfall.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/research/sources/22/urls/6",
+              "recordedMetadata": {
+                "date": "2026-10-22",
+                "id": "scryfall-spg",
+                "publisher": "Scryfall",
+                "kind": "oracle-legalities-market-reference",
+                "status": "retrieved",
+                "retrieved": "2026-10-22"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://api.scryfall.com/cards/66ddce56-3d5c-4a9d-af27-56cc01b30c25",
+          "host": "api.scryfall.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/research/sources/22/url",
+              "recordedMetadata": {
+                "date": "2026-10-22",
+                "id": "scryfall-spg",
+                "publisher": "Scryfall",
+                "kind": "oracle-legalities-market-reference",
+                "status": "retrieved",
+                "retrieved": "2026-10-22"
+              }
+            },
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/research/sources/22/urls/0",
+              "recordedMetadata": {
+                "date": "2026-10-22",
+                "id": "scryfall-spg",
+                "publisher": "Scryfall",
+                "kind": "oracle-legalities-market-reference",
+                "status": "retrieved",
+                "retrieved": "2026-10-22"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://api.scryfall.com/cards/8fcce60c-6baa-4f55-907a-4acc2a597030",
+          "host": "api.scryfall.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/research/sources/22/urls/1",
+              "recordedMetadata": {
+                "date": "2026-10-22",
+                "id": "scryfall-spg",
+                "publisher": "Scryfall",
+                "kind": "oracle-legalities-market-reference",
+                "status": "retrieved",
+                "retrieved": "2026-10-22"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://api.scryfall.com/cards/a0c1323f-d468-4d8a-beed-5077d91b86d9",
+          "host": "api.scryfall.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/research/sources/22/urls/8",
+              "recordedMetadata": {
+                "date": "2026-10-22",
+                "id": "scryfall-spg",
+                "publisher": "Scryfall",
+                "kind": "oracle-legalities-market-reference",
+                "status": "retrieved",
+                "retrieved": "2026-10-22"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://api.scryfall.com/cards/c12dd88f-ce9a-445c-882a-62e7695e39df",
+          "host": "api.scryfall.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/research/sources/22/urls/4",
+              "recordedMetadata": {
+                "date": "2026-10-22",
+                "id": "scryfall-spg",
+                "publisher": "Scryfall",
+                "kind": "oracle-legalities-market-reference",
+                "status": "retrieved",
+                "retrieved": "2026-10-22"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://api.scryfall.com/cards/c9c6977d-0e14-47c1-89c0-be376f2675f3",
+          "host": "api.scryfall.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/research/sources/22/urls/3",
+              "recordedMetadata": {
+                "date": "2026-10-22",
+                "id": "scryfall-spg",
+                "publisher": "Scryfall",
+                "kind": "oracle-legalities-market-reference",
+                "status": "retrieved",
+                "retrieved": "2026-10-22"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://api.scryfall.com/cards/ec9ffeac-ae49-465e-9dc5-976db8252fe6",
+          "host": "api.scryfall.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/research/sources/22/urls/2",
+              "recordedMetadata": {
+                "date": "2026-10-22",
+                "id": "scryfall-spg",
+                "publisher": "Scryfall",
+                "kind": "oracle-legalities-market-reference",
+                "status": "retrieved",
+                "retrieved": "2026-10-22"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://api.scryfall.com/cards/search?q=set%3Afra&unique=prints",
+          "host": "api.scryfall.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/research/sources/18/url",
+              "recordedMetadata": {
+                "date": "2026-10-22",
+                "id": "scryfall-api",
+                "publisher": "Scryfall",
+                "kind": "oracle-legalities-market-reference",
+                "status": "retrieved",
+                "retrieved": "2026-10-22"
+              }
+            },
+            {
+              "document": "research/reality-fracture-20261022/fetch-audit.json",
+              "pointer": "/18/url",
+              "recordedMetadata": {
+                "id": "scryfall-api",
+                "publisher": "Scryfall",
+                "kind": "oracle-legalities-market-reference",
+                "status": "retrieved",
+                "retrieved": "2026-10-22"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://api.scryfall.com/cards/search?q=set%3Afrc&unique=prints",
+          "host": "api.scryfall.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/research/sources/23/url",
+              "recordedMetadata": {
+                "date": "2026-10-22",
+                "id": "scryfall-frc",
+                "publisher": "Scryfall",
+                "kind": "oracle-legalities-market-reference",
+                "status": "retrieved",
+                "retrieved": "2026-10-22"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://deckcortex.com/articles/reality-fracture-cedh-first-ten-days",
+          "host": "deckcortex.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/3d115152dd7a",
+              "recordedMetadata": {}
+            },
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/research/sources/19/url",
+              "recordedMetadata": {
+                "date": "2026-10-22",
+                "id": "deckcortex-cedh",
+                "publisher": "DeckCortex",
+                "kind": "tournament-aggregation",
+                "status": "retrieved",
+                "retrieved": "2026-10-22",
+                "sha256": "a30933685cac34918091dffb3d3b5b1f0c0b8abdffa3d1057f6bc68cc506f0d0",
+                "archiveSha256": "a30933685cac34918091dffb3d3b5b1f0c0b8abdffa3d1057f6bc68cc506f0d0"
+              }
+            },
+            {
+              "document": "research/reality-fracture-20261022/fetch-audit.json",
+              "pointer": "/19/url",
+              "recordedMetadata": {
+                "id": "deckcortex-cedh",
+                "publisher": "DeckCortex",
+                "kind": "tournament-aggregation",
+                "status": "retrieved",
+                "retrieved": "2026-10-22",
+                "sha256": "a30933685cac34918091dffb3d3b5b1f0c0b8abdffa3d1057f6bc68cc506f0d0",
+                "archiveSha256": "a30933685cac34918091dffb3d3b5b1f0c0b8abdffa3d1057f6bc68cc506f0d0"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://docs.google.com/spreadsheets/d/1b3UH-0hN7DjLhWFp7GMMe8fRDY2801tAZ4X4bF_EqFo/edit?gid=265411862",
+          "host": "docs.google.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/50f00cecce87",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://draftsim.com/mtg-fra-limited-set-review/",
+          "host": "draftsim.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/0d9d954aea85",
+              "recordedMetadata": {}
+            },
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/research/sources/13/url",
+              "recordedMetadata": {
+                "date": "2026-10-22",
+                "id": "draftsim",
+                "publisher": "Draftsim",
+                "kind": "limited-review",
+                "status": "retrieved",
+                "retrieved": "2026-10-22",
+                "sha256": "60cd3c92049f60901f1fa791adec963f5bbe767a13e96445436206becd6ee37b",
+                "archiveSha256": "9b235ddf8b787c6aed9bea823d190dcc0d1d888e55d50f3438e11e0ef0e15616"
+              }
+            },
+            {
+              "document": "research/reality-fracture-20261022/fetch-audit.json",
+              "pointer": "/13/url",
+              "recordedMetadata": {
+                "id": "draftsim",
+                "publisher": "Draftsim",
+                "kind": "limited-review",
+                "status": "retrieved",
+                "retrieved": "2026-10-22",
+                "sha256": "60cd3c92049f60901f1fa791adec963f5bbe767a13e96445436206becd6ee37b",
+                "archiveSha256": "9b235ddf8b787c6aed9bea823d190dcc0d1d888e55d50f3438e11e0ef0e15616"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://draftsim.com/mtg-reality-fracture-draft-guide/",
+          "host": "draftsim.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/43fb4fbfd23a",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://draftsim.com/mtg-reality-fracture-limited-splinter-twin-combo/",
+          "host": "draftsim.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/7297bbed48dc",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://duel-commander-meta.com/fra/index.html",
+          "host": "duel-commander-meta.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/research/sources/21/url",
+              "recordedMetadata": {
+                "date": "2026-10-22",
+                "id": "duel-meta",
+                "publisher": "Duel Commander Meta",
+                "kind": "tournament-aggregation-beta",
+                "status": "retrieved",
+                "retrieved": "2026-10-22",
+                "sha256": "8877d3a55bf3892041f7e8bf9a504fe7a774875887c699a35d0e712ffeaac90a",
+                "archiveSha256": "8877d3a55bf3892041f7e8bf9a504fe7a774875887c699a35d0e712ffeaac90a"
+              }
+            },
+            {
+              "document": "research/reality-fracture-20261022/fetch-audit.json",
+              "pointer": "/21/url",
+              "recordedMetadata": {
+                "id": "duel-meta",
+                "publisher": "Duel Commander Meta",
+                "kind": "tournament-aggregation-beta",
+                "status": "retrieved",
+                "retrieved": "2026-10-22",
+                "sha256": "8877d3a55bf3892041f7e8bf9a504fe7a774875887c699a35d0e712ffeaac90a",
+                "archiveSha256": "8877d3a55bf3892041f7e8bf9a504fe7a774875887c699a35d0e712ffeaac90a"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://edhrec.com/articles/how-good-is-reality-fracture-for-commander",
+          "host": "edhrec.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/research/sources/7/url",
+              "recordedMetadata": {
+                "date": "2026-10-22",
+                "id": "edhrec-review",
+                "publisher": "EDHREC",
+                "kind": "editorial-review",
+                "status": "retrieved",
+                "retrieved": "2026-10-22",
+                "sha256": "42c1f494a657f92c894cdd5df051d83f8ac201e203f99e6841d3fb7a72e438de",
+                "archiveSha256": "8a17b31ba0a810c8c38cfb35608d4a683b8a3d7d214675462f060bb017cd352e"
+              }
+            },
+            {
+              "document": "research/reality-fracture-20261022/fetch-audit.json",
+              "pointer": "/7/url",
+              "recordedMetadata": {
+                "id": "edhrec-review",
+                "publisher": "EDHREC",
+                "kind": "editorial-review",
+                "status": "retrieved",
+                "retrieved": "2026-10-22",
+                "sha256": "42c1f494a657f92c894cdd5df051d83f8ac201e203f99e6841d3fb7a72e438de",
+                "archiveSha256": "8a17b31ba0a810c8c38cfb35608d4a683b8a3d7d214675462f060bb017cd352e"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://edhrec.com/sets/fra",
+          "host": "edhrec.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/research/sources/6/url",
+              "recordedMetadata": {
+                "date": "2026-10-22",
+                "id": "edhrec",
+                "publisher": "EDHREC",
+                "kind": "deck-aggregation",
+                "status": "retrieved",
+                "retrieved": "2026-10-22",
+                "sha256": "69aa9bb3b75a844e51059bf3f455333490ba4c81422018240855334c2bac4d18",
+                "archiveSha256": "5aeea531190d1862f8f50d23b8d9abb57e513d536403af6b1ed37526ae644aa6"
+              }
+            },
+            {
+              "document": "research/reality-fracture-20261022/fetch-audit.json",
+              "pointer": "/6/url",
+              "recordedMetadata": {
+                "id": "edhrec",
+                "publisher": "EDHREC",
+                "kind": "deck-aggregation",
+                "status": "retrieved",
+                "retrieved": "2026-10-22",
+                "sha256": "69aa9bb3b75a844e51059bf3f455333490ba4c81422018240855334c2bac4d18",
+                "archiveSha256": "5aeea531190d1862f8f50d23b8d9abb57e513d536403af6b1ed37526ae644aa6"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://edhtop16.com/tournament/baked-ziti-4-goldsabertooths-ny-cedh",
+          "host": "edhtop16.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/research/sources/20/url",
+              "recordedMetadata": {
+                "date": "2026-10-22",
+                "id": "edhtop16-dack",
+                "publisher": "EDHTop16",
+                "kind": "tournament-results",
+                "status": "retrieved",
+                "retrieved": "2026-10-22",
+                "sha256": "f6e8c1c971a38263593687c665d6690165f2dca6a984682280786320f00bd24e",
+                "archiveSha256": "f6e8c1c971a38263593687c665d6690165f2dca6a984682280786320f00bd24e"
+              }
+            },
+            {
+              "document": "research/reality-fracture-20261022/fetch-audit.json",
+              "pointer": "/20/url",
+              "recordedMetadata": {
+                "id": "edhtop16-dack",
+                "publisher": "EDHTop16",
+                "kind": "tournament-results",
+                "status": "retrieved",
+                "retrieved": "2026-10-22",
+                "sha256": "f6e8c1c971a38263593687c665d6690165f2dca6a984682280786320f00bd24e",
+                "archiveSha256": "f6e8c1c971a38263593687c665d6690165f2dca6a984682280786320f00bd24e"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://limitedmtg.com/reality-fracture/",
+          "host": "limitedmtg.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/e01170dc00de",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://limitedmtg.com/reality-fracture/removal-guide/",
+          "host": "limitedmtg.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/578c62cbaa9a",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://lrcast.com/limited-resources-874-reality-fracture-format-overview-we-are-so-back/",
+          "host": "lrcast.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/203e63dd91ad",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://lrcast.com/limited-resources-875-the-reality-of-reality-fracture-with-sierkovitz/",
+          "host": "lrcast.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/44eaee554da1",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://magic.gg/news/metagame-mentor-modern-developments-at-five-2026-fall-regional-championships",
+          "host": "magic.gg",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/4523e6fce4ec",
+              "recordedMetadata": {}
+            },
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/research/sources/1/url",
+              "recordedMetadata": {
+                "date": "2026-10-22",
+                "id": "wizards-modern",
+                "publisher": "Wizards / Magic.gg",
+                "kind": "tournament-analysis",
+                "status": "retrieved",
+                "retrieved": "2026-10-22",
+                "sha256": "ba319a4a4016cce0f2b1df78f55fe242417c5f62214471e78eb43f5b21f78e77",
+                "archiveSha256": "b4ad8e0a35304cb06c6cd93c6344af3e572f986727cc60f2e6a1d81f5b7e9f0f"
+              }
+            },
+            {
+              "document": "research/reality-fracture-20261022/fetch-audit.json",
+              "pointer": "/1/url",
+              "recordedMetadata": {
+                "id": "wizards-modern",
+                "publisher": "Wizards / Magic.gg",
+                "kind": "tournament-analysis",
+                "status": "retrieved",
+                "retrieved": "2026-10-22",
+                "sha256": "ba319a4a4016cce0f2b1df78f55fe242417c5f62214471e78eb43f5b21f78e77",
+                "archiveSha256": "b4ad8e0a35304cb06c6cd93c6344af3e572f986727cc60f2e6a1d81f5b7e9f0f"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://magic.gg/news/metagame-mentor-the-first-standard-results-with-reality-fracture",
+          "host": "magic.gg",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/research/sources/0/url",
+              "recordedMetadata": {
+                "date": "2026-10-22",
+                "id": "wizards-standard",
+                "publisher": "Wizards / Magic.gg",
+                "kind": "tournament-analysis",
+                "status": "retrieved",
+                "retrieved": "2026-10-22",
+                "sha256": "d9f6a3b106aedf9e2bc5f3882c09ebea67854278f1e775dc2cbcfb0bfb34d219",
+                "archiveSha256": "ed2302f1e9985b8971de7bed47e8789854e659d06df04c1d9f6fb2f15a4788c5"
+              }
+            },
+            {
+              "document": "research/reality-fracture-20261022/fetch-audit.json",
+              "pointer": "/0/url",
+              "recordedMetadata": {
+                "id": "wizards-standard",
+                "publisher": "Wizards / Magic.gg",
+                "kind": "tournament-analysis",
+                "status": "retrieved",
+                "retrieved": "2026-10-22",
+                "sha256": "d9f6a3b106aedf9e2bc5f3882c09ebea67854278f1e775dc2cbcfb0bfb34d219",
+                "archiveSha256": "ed2302f1e9985b8971de7bed47e8789854e659d06df04c1d9f6fb2f15a4788c5"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://magic.wizards.com/en/formats/booster-draft",
+          "host": "magic.wizards.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/439884b5e464",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://magic.wizards.com/en/formats/sealed-deck",
+          "host": "magic.wizards.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/782885a72033",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://magic.wizards.com/en/news/announcements/banned-and-restricted-october-12-2026",
+          "host": "magic.wizards.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/f2f8bdec59e5",
+              "recordedMetadata": {}
+            },
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/research/sources/2/url",
+              "recordedMetadata": {
+                "date": "2026-10-22",
+                "id": "wizards-banlist",
+                "publisher": "Wizards / Magic.gg",
+                "kind": "official-policy",
+                "status": "retrieved",
+                "retrieved": "2026-10-22",
+                "sha256": "9aac7be9009971a619a5362e41c76d4fb57e9ef99d4b7a4729ca34de1d5b99a6",
+                "archiveSha256": "1af3a2b4dff3ed756e997c62f50a6b1f0ae5d7cd6d56702ade0aafe944c66133"
+              }
+            },
+            {
+              "document": "research/reality-fracture-20261022/fetch-audit.json",
+              "pointer": "/2/url",
+              "recordedMetadata": {
+                "id": "wizards-banlist",
+                "publisher": "Wizards / Magic.gg",
+                "kind": "official-policy",
+                "status": "retrieved",
+                "retrieved": "2026-10-22",
+                "sha256": "9aac7be9009971a619a5362e41c76d4fb57e9ef99d4b7a4729ca34de1d5b99a6",
+                "archiveSha256": "1af3a2b4dff3ed756e997c62f50a6b1f0ae5d7cd6d56702ade0aafe944c66133"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://magic.wizards.com/en/news/announcements/edge-of-eternities-update-bulletin",
+          "host": "magic.wizards.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/research/sources/24/url",
+              "recordedMetadata": {
+                "date": "2026-10-22",
+                "id": "wizards-commander-rules",
+                "publisher": "Wizards / Magic.gg",
+                "kind": "official-rules",
+                "status": "retrieved",
+                "retrieved": "2026-10-22"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://magic.wizards.com/en/news/feature/basics-booster-draft-2014-11-03",
+          "host": "magic.wizards.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/b8270e554000",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://magic.wizards.com/en/news/feature/collecting-reality-fracture",
+          "host": "magic.wizards.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/collation/url",
+              "recordedMetadata": {
+                "verified": "2026-10-21"
+              }
+            },
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/4d2a11deb2e9",
+              "recordedMetadata": {}
+            },
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/research/sources/4/url",
+              "recordedMetadata": {
+                "date": "2026-10-22",
+                "id": "wizards-collecting",
+                "publisher": "Wizards / Magic.gg",
+                "kind": "official-product",
+                "status": "retrieved",
+                "retrieved": "2026-10-22",
+                "sha256": "9e6ea7c75631e4aefce82ccfbdf7f86a6669f2b432b793129730450d50f26551",
+                "archiveSha256": "b02217b412bbb8f682723da00f47caa8c550ea587b24de2fc9973349f8a76a8e"
+              }
+            },
+            {
+              "document": "research/reality-fracture-20261022/fetch-audit.json",
+              "pointer": "/4/url",
+              "recordedMetadata": {
+                "id": "wizards-collecting",
+                "publisher": "Wizards / Magic.gg",
+                "kind": "official-product",
+                "status": "retrieved",
+                "retrieved": "2026-10-22",
+                "sha256": "9e6ea7c75631e4aefce82ccfbdf7f86a6669f2b432b793129730450d50f26551",
+                "archiveSha256": "b02217b412bbb8f682723da00f47caa8c550ea587b24de2fc9973349f8a76a8e"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://magic.wizards.com/en/news/feature/foundations-prerelease-guide",
+          "host": "magic.wizards.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/418f3a2de1d9",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://magic.wizards.com/en/news/feature/reality-fracture-mechanics",
+          "host": "magic.wizards.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/266d473026f6",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://magic.wizards.com/en/news/feature/reality-fracture-prerelease-guide",
+          "host": "magic.wizards.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/0ad45d236e41",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://magic.wizards.com/en/news/feature/reality-fracture-release-notes",
+          "host": "magic.wizards.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/dea50d6a18df",
+              "recordedMetadata": {}
+            },
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/research/sources/3/url",
+              "recordedMetadata": {
+                "date": "2026-10-22",
+                "id": "wizards-release",
+                "publisher": "Wizards / Magic.gg",
+                "kind": "official-rules",
+                "status": "retrieved",
+                "retrieved": "2026-10-22",
+                "sha256": "1ca577fded7dccc9865fb18e9e84ca9ad019047aad4f56d85bf3867638b67a92",
+                "archiveSha256": "711523664423cbba45314a55fe3229ecdfe203438e1fe80ba57d646b0d2c9036"
+              }
+            },
+            {
+              "document": "research/reality-fracture-20261022/fetch-audit.json",
+              "pointer": "/3/url",
+              "recordedMetadata": {
+                "id": "wizards-release",
+                "publisher": "Wizards / Magic.gg",
+                "kind": "official-rules",
+                "status": "retrieved",
+                "retrieved": "2026-10-22",
+                "sha256": "1ca577fded7dccc9865fb18e9e84ca9ad019047aad4f56d85bf3867638b67a92",
+                "archiveSha256": "711523664423cbba45314a55fe3229ecdfe203438e1fe80ba57d646b0d2c9036"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://magic.wizards.com/en/news/feature/signals-booster-draft-2015-01-19",
+          "host": "magic.wizards.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/98e96262964a",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://magic.wizards.com/en/news/feature/where-to-play-reality-fracture",
+          "host": "magic.wizards.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/1fd05b2c00e4",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://magic.wizards.com/en/news/making-magic/do-the-math",
+          "host": "magic.wizards.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/78b155087a41",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://mtg.cardsrealm.com/en-us/articles/cedh-reality-fracture-review",
+          "host": "mtg.cardsrealm.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/research/sources/10/url",
+              "recordedMetadata": {
+                "date": "2026-10-22",
+                "id": "cardsrealm-cedh",
+                "publisher": "Cards Realm",
+                "kind": "editorial-review",
+                "status": "retrieved",
+                "retrieved": "2026-10-22",
+                "sha256": "f43c935e8e9f916c29d4eb9b68d3b68d6a99c99dc3bb85ce337552b77269641f",
+                "archiveSha256": "d54f0493fe5bd5d4605b6216b67604ebcb3099653b2e8edb9fa418e88dc2820f"
+              }
+            },
+            {
+              "document": "research/reality-fracture-20261022/fetch-audit.json",
+              "pointer": "/10/url",
+              "recordedMetadata": {
+                "id": "cardsrealm-cedh",
+                "publisher": "Cards Realm",
+                "kind": "editorial-review",
+                "status": "retrieved",
+                "retrieved": "2026-10-22",
+                "sha256": "f43c935e8e9f916c29d4eb9b68d3b68d6a99c99dc3bb85ce337552b77269641f",
+                "archiveSha256": "d54f0493fe5bd5d4605b6216b67604ebcb3099653b2e8edb9fa418e88dc2820f"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://mtg.cardsrealm.com/en-us/articles/pauper-reality-fracture-review",
+          "host": "mtg.cardsrealm.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/research/sources/11/url",
+              "recordedMetadata": {
+                "date": "2026-10-22",
+                "id": "cardsrealm-pauper",
+                "publisher": "Cards Realm",
+                "kind": "editorial-review",
+                "status": "retrieved",
+                "retrieved": "2026-10-22",
+                "sha256": "8c9329cc0f73db065c77c90ad3472b4dc467624f61f5df4d7966d8e8ea5b7b5f",
+                "archiveSha256": "cc2b314fc595ce2f06c2d762cef98820c895fa6e7af7ca3540f8f719b6b01d5d"
+              }
+            },
+            {
+              "document": "research/reality-fracture-20261022/fetch-audit.json",
+              "pointer": "/11/url",
+              "recordedMetadata": {
+                "id": "cardsrealm-pauper",
+                "publisher": "Cards Realm",
+                "kind": "editorial-review",
+                "status": "retrieved",
+                "retrieved": "2026-10-22",
+                "sha256": "8c9329cc0f73db065c77c90ad3472b4dc467624f61f5df4d7966d8e8ea5b7b5f",
+                "archiveSha256": "cc2b314fc595ce2f06c2d762cef98820c895fa6e7af7ca3540f8f719b6b01d5d"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://mtga.untapped.gg/limited/draft/reality-fracture/card-data",
+          "host": "mtga.untapped.gg",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/externalStatistics/untapped/url",
+              "recordedMetadata": {
+                "retrieved": "2026-10-23"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://mtga.untapped.gg/limited/draft/reality-fracture/pick-order",
+          "host": "mtga.untapped.gg",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/externalRankings/untappedPickOrder/url",
+              "recordedMetadata": {
+                "retrieved": "2026-10-27"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://mtgazone.com/reality-fracture-fra-limited-set-review-artifacts-and-lands/",
+          "host": "mtgazone.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/research/sources/12/url",
+              "recordedMetadata": {
+                "date": "2026-10-22",
+                "id": "arenazone",
+                "publisher": "MTG Arena Zone",
+                "kind": "limited-review",
+                "status": "retrieved",
+                "retrieved": "2026-10-22",
+                "sha256": "79311e20726e251d08c7c376f820559e6f45697f6c2649919f4ddb7652636323",
+                "archiveSha256": "33bbd8792c04ac43b38ee903acff46bf0ac0cf9e57ac62e9b10700fd4f3c9995"
+              }
+            },
+            {
+              "document": "research/reality-fracture-20261022/fetch-audit.json",
+              "pointer": "/12/url",
+              "recordedMetadata": {
+                "id": "arenazone",
+                "publisher": "MTG Arena Zone",
+                "kind": "limited-review",
+                "status": "retrieved",
+                "retrieved": "2026-10-22",
+                "sha256": "79311e20726e251d08c7c376f820559e6f45697f6c2649919f4ddb7652636323",
+                "archiveSha256": "33bbd8792c04ac43b38ee903acff46bf0ac0cf9e57ac62e9b10700fd4f3c9995"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://mtgdecks.net/prices/edition/FRA",
+          "host": "mtgdecks.net",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/research/sources/9/url",
+              "recordedMetadata": {
+                "date": "2026-10-22",
+                "id": "mtgdecks",
+                "publisher": "MTGDECKS",
+                "kind": "tournament-market-aggregation",
+                "status": "retrieved",
+                "retrieved": "2026-10-22",
+                "sha256": "a339247abc531631d6ed39f2381bb79b055a366b6f8b834a9dc476a495c0b932",
+                "archiveSha256": "36a18567ce90973859b870c6a644faa57d04a6d28430c83a47f182b6df75cffa"
+              }
+            },
+            {
+              "document": "research/reality-fracture-20261022/fetch-audit.json",
+              "pointer": "/9/url",
+              "recordedMetadata": {
+                "id": "mtgdecks",
+                "publisher": "MTGDECKS",
+                "kind": "tournament-market-aggregation",
+                "status": "retrieved",
+                "retrieved": "2026-10-22",
+                "sha256": "a339247abc531631d6ed39f2381bb79b055a366b6f8b834a9dc476a495c0b932",
+                "archiveSha256": "36a18567ce90973859b870c6a644faa57d04a6d28430c83a47f182b6df75cffa"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://mtgrocks.com/reality-fracture-limited-infinite-mana-combo/",
+          "host": "mtgrocks.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/2499d0cf50dd",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://note.com/eindebelle/n/n2252b8ebbfbb",
+          "host": "note.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/0d0a321bfe6b",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://note.com/eindebelle/n/nfd3dc4d5e975",
+          "host": "note.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/9d749ca00d9b",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://pauperpilot.com/sets/fra/",
+          "host": "pauperpilot.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/research/sources/14/url",
+              "recordedMetadata": {
+                "date": "2026-10-22",
+                "id": "pauperpilot",
+                "publisher": "PauperPilot",
+                "kind": "tournament-aggregation",
+                "status": "retrieved",
+                "retrieved": "2026-10-22",
+                "sha256": "33c2e5bc8f8deb0770ab1c710f6311eae6ad570d8dbbf8390a32851f262ffb25",
+                "archiveSha256": "1c9eaec4e0f582d1999050bcf9561c201e6b58181d4ce1da18bac0530dedea16"
+              }
+            },
+            {
+              "document": "research/reality-fracture-20261022/fetch-audit.json",
+              "pointer": "/14/url",
+              "recordedMetadata": {
+                "id": "pauperpilot",
+                "publisher": "PauperPilot",
+                "kind": "tournament-aggregation",
+                "status": "retrieved",
+                "retrieved": "2026-10-22",
+                "sha256": "33c2e5bc8f8deb0770ab1c710f6311eae6ad570d8dbbf8390a32851f262ffb25",
+                "archiveSha256": "1c9eaec4e0f582d1999050bcf9561c201e6b58181d4ce1da18bac0530dedea16"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://scryfall.com/card/fra/105/heartwood-crafter-soul-tether",
+          "host": "scryfall.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/bbc691dd9347",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://scryfall.com/card/fra/127/craftwork-crusher",
+          "host": "scryfall.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/53cadcdabd4d",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://scryfall.com/card/fra/142/null-summoner",
+          "host": "scryfall.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/9f9ec4e41eb1",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://scryfall.com/card/fra/157/twinned-vision",
+          "host": "scryfall.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/dd286ce89e8b",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://scryfall.com/card/fra/165/woodwork-prodigy-soul-tether",
+          "host": "scryfall.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/e098b74497ae",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://scryfall.com/card/fra/166/afterthought-sentry",
+          "host": "scryfall.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/17426962e524",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://scryfall.com/card/fra/18/refute-destiny",
+          "host": "scryfall.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/db9c85727532",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://scryfall.com/card/fra/207/way-of-the-healer",
+          "host": "scryfall.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/3a9d39dccb72",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://scryfall.com/card/fra/224/way-of-the-mind-sculptor",
+          "host": "scryfall.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/d7436f4d63ae",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://scryfall.com/card/fra/242/ajani-unrelenting",
+          "host": "scryfall.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/dbdaa49fd18e",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://scryfall.com/card/fra/33/mindseeker-oculus",
+          "host": "scryfall.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/dbac66889c51",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://scryfall.com/card/fra/36/precise-redaction",
+          "host": "scryfall.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/9884367a8c61",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://scryfall.com/card/fra/37/proteges-awakening",
+          "host": "scryfall.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/b28da192aa00",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://scryfall.com/card/fra/40/sphinx-of-false-conclusions",
+          "host": "scryfall.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/e618c0342f89",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://scryfall.com/card/fra/54/extended-absence",
+          "host": "scryfall.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/0dbd2ad9c678",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://scryfall.com/card/fra/68/terminal-criticism",
+          "host": "scryfall.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/eeb355e3dee3",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://scryfall.com/card/fra/77/command-the-stage",
+          "host": "scryfall.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/755998c810c7",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://scryfall.com/card/fra/99/budding-insurgent",
+          "host": "scryfall.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/4ef87c5b3a82",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://scryfall.com/docs/api/card-objects",
+          "host": "scryfall.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/4668dfb3bc6f",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://scryfall.com/docs/api/cards",
+          "host": "scryfall.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/research/sources/17/url",
+              "recordedMetadata": {
+                "date": "2026-10-22",
+                "id": "scryfall-docs",
+                "publisher": "Scryfall",
+                "kind": "api-documentation",
+                "status": "retrieved",
+                "retrieved": "2026-10-22",
+                "sha256": "a5cbfcc3121f208a74a30259d8bb85a60dea250dded625694e008f214eb699f5",
+                "archiveSha256": "77a17ebf246abd1a4574f39286ee95bf24dbaf433dfc221d94761553495a48f5"
+              }
+            },
+            {
+              "document": "research/reality-fracture-20261022/fetch-audit.json",
+              "pointer": "/17/url",
+              "recordedMetadata": {
+                "id": "scryfall-docs",
+                "publisher": "Scryfall",
+                "kind": "api-documentation",
+                "status": "retrieved",
+                "retrieved": "2026-10-22",
+                "sha256": "a5cbfcc3121f208a74a30259d8bb85a60dea250dded625694e008f214eb699f5",
+                "archiveSha256": "77a17ebf246abd1a4574f39286ee95bf24dbaf433dfc221d94761553495a48f5"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://scryfall.com/sets/fra",
+          "host": "scryfall.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/99e49b309bd6",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://www.17lands.com/card_data?expansion=FRA&format=PremierDraft",
+          "host": "www.17lands.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/afc44a857abe",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://www.17lands.com/card_data?expansion=FRA&format=PremierDraft&color=BG",
+          "host": "www.17lands.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/6a73cdffeff8",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://www.17lands.com/card_data?expansion=FRA&format=PremierDraft&color=RG",
+          "host": "www.17lands.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/973f257411bb",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://www.17lands.com/card_data?expansion=FRA&format=PremierDraft&color=UB",
+          "host": "www.17lands.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/475042b945b5",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://www.17lands.com/card_data?expansion=FRA&format=PremierDraft&color=UR",
+          "host": "www.17lands.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/8334a3f1139c",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://www.17lands.com/card_data?expansion=FRA&format=PremierDraft&color=WG",
+          "host": "www.17lands.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/9ae4463a43d7",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://www.17lands.com/card_data?expansion=FRA&format=PremierDraft&color=WU",
+          "host": "www.17lands.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/dd4b27c09375",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://www.17lands.com/card_data?expansion=FRA&format=PremierDraft&time_period=LAST_WEEK",
+          "host": "www.17lands.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/85251ed74305",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://www.17lands.com/card_data?expansion=FRA&format=QuickDraft",
+          "host": "www.17lands.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/bad3f4a826d6",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://www.17lands.com/card_data?expansion=FRA&format=TradDraft",
+          "host": "www.17lands.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/c6d0d83b1570",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://www.17lands.com/color_ratings?expansion=FRA&format=PremierDraft",
+          "host": "www.17lands.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/e5af36330109",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://www.17lands.com/color_ratings?expansion=FRA&format=PremierDraft&separate_splashes=true",
+          "host": "www.17lands.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/59d34e1bd409",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://www.17lands.com/deck/29e6d6ec1d704aad9a6c1106c3261014/3?view=deck",
+          "host": "www.17lands.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/41640454ccea",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://www.17lands.com/metrics_definitions",
+          "host": "www.17lands.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/673c299e780e",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://www.17lands.com/tier_list/e95fd9365a86464cae2451e34c39102a",
+          "host": "www.17lands.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/4c82533b829a",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://www.bilibili.com/video/BV11Wei6wE1G/",
+          "host": "www.bilibili.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/b2396709064e",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://www.bilibili.com/video/BV14HaA6qENd/",
+          "host": "www.bilibili.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/1babb5bba45a",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://www.bilibili.com/video/BV15Zhv6uEKJ/",
+          "host": "www.bilibili.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/85c092d9d1e6",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://www.bilibili.com/video/BV1RChB6LExP/",
+          "host": "www.bilibili.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/ce8d999ff146",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://www.bilibili.com/video/BV1hqet6nEhg",
+          "host": "www.bilibili.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/9910dd74ffc5",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://www.bilibili.com/video/BV1hqet6nEhg/",
+          "host": "www.bilibili.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/8f4bca7f0f54",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://www.cardmarket.com/en/Magic/Spoilers/Reality-Fracture",
+          "host": "www.cardmarket.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/research/sources/16/url",
+              "recordedMetadata": {
+                "date": "2026-10-22",
+                "id": "cardmarket",
+                "publisher": "Cardmarket",
+                "kind": "marketplace",
+                "status": "unavailable",
+                "retrieved": "2026-10-22",
+                "error": "HTTP Error 403: Forbidden"
+              }
+            },
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/research/sources/25/url",
+              "recordedMetadata": {
+                "date": "2026-10-22",
+                "id": "cardmarket-browser-20261022",
+                "publisher": "Cardmarket",
+                "label": "Listini e schede Cardmarket, 22 ottobre",
+                "kind": "marketplace-direct-browser",
+                "status": "retrieved",
+                "retrieved": "2026-10-22"
+              }
+            },
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/research/sources/26/url",
+              "recordedMetadata": {
+                "date": "2026-10-22",
+                "id": "cardmarket-browser-20261018",
+                "publisher": "Cardmarket",
+                "label": "Snapshot storico Cardmarket, 18 ottobre",
+                "kind": "marketplace-direct-browser",
+                "status": "retrieved",
+                "retrieved": "2026-10-18"
+              }
+            },
+            {
+              "document": "research/reality-fracture-20261022/fetch-audit.json",
+              "pointer": "/16/url",
+              "recordedMetadata": {
+                "id": "cardmarket",
+                "publisher": "Cardmarket",
+                "kind": "marketplace",
+                "status": "unavailable",
+                "retrieved": "2026-10-22",
+                "error": "HTTP Error 403: Forbidden"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://www.echomtg.com/mtg/daily-movers/",
+          "host": "www.echomtg.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/research/sources/15/url",
+              "recordedMetadata": {
+                "date": "2026-10-22",
+                "id": "echomtg",
+                "publisher": "EchoMTG",
+                "kind": "market-aggregation",
+                "status": "retrieved",
+                "retrieved": "2026-10-22",
+                "sha256": "47a9636df080138ae59d8f4101327960257086b75494af2bc18c620dfbef32eb",
+                "archiveSha256": "9d43637b191867d2be06dfae36d398fe2b3be897c16f306430b9dabf6361cb5b"
+              }
+            },
+            {
+              "document": "research/reality-fracture-20261022/fetch-audit.json",
+              "pointer": "/15/url",
+              "recordedMetadata": {
+                "id": "echomtg",
+                "publisher": "EchoMTG",
+                "kind": "market-aggregation",
+                "status": "retrieved",
+                "retrieved": "2026-10-22",
+                "sha256": "47a9636df080138ae59d8f4101327960257086b75494af2bc18c620dfbef32eb",
+                "archiveSha256": "9d43637b191867d2be06dfae36d398fe2b3be897c16f306430b9dabf6361cb5b"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://www.iyingdi.com/tz/community/",
+          "host": "www.iyingdi.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/9b9b35c50825",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://www.magic-ville.com/fr/forum/index?themecode=rum",
+          "host": "www.magic-ville.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/53523553cd15",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://www.mtg-forum.de/topic/177393-reality-fracture/",
+          "host": "www.mtg-forum.de",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/99246de993b9",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://www.mtggoldfish.com/articles/vintage-101-reality-is-doomed",
+          "host": "www.mtggoldfish.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/research/sources/8/url",
+              "recordedMetadata": {
+                "date": "2026-10-22",
+                "id": "goldfish-vintage",
+                "publisher": "MTGGoldfish",
+                "kind": "editorial-review",
+                "status": "retrieved",
+                "retrieved": "2026-10-22",
+                "sha256": "1c23fabe55bfc57e88f48d7d91215757a126660c3c495c1accfe4e39840d89f3",
+                "archiveSha256": "97e6c0528adbe4a13ae56f1ec99b58a4c357a824a6b36507100553a3ca444038"
+              }
+            },
+            {
+              "document": "research/reality-fracture-20261022/fetch-audit.json",
+              "pointer": "/8/url",
+              "recordedMetadata": {
+                "id": "goldfish-vintage",
+                "publisher": "MTGGoldfish",
+                "kind": "editorial-review",
+                "status": "retrieved",
+                "retrieved": "2026-10-22",
+                "sha256": "1c23fabe55bfc57e88f48d7d91215757a126660c3c495c1accfe4e39840d89f3",
+                "archiveSha256": "97e6c0528adbe4a13ae56f1ec99b58a4c357a824a6b36507100553a3ca444038"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://www.podcast.de/episode/707296190/362-alles-was-du-ueber-reality-fracture-wissen-musst-prerelease-guide-mechaniken",
+          "host": "www.podcast.de",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/c692a9bdeb22",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://www.postboard.gg/sets/fra",
+          "host": "www.postboard.gg",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/6d0b2d8696d6",
+              "recordedMetadata": {}
+            },
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/research/sources/5/url",
+              "recordedMetadata": {
+                "date": "2026-10-22",
+                "id": "postboard",
+                "publisher": "Postboard",
+                "kind": "tournament-aggregation",
+                "status": "retrieved",
+                "retrieved": "2026-10-22",
+                "sha256": "ae6f7ed5ae4451cf94f7b869e1b03a2210ad7a46391953f38992902b2dc2cddd",
+                "archiveSha256": "2955445d7b27a7532756e1732aa4526aa563f8810284410e5222c81e7355b8ac"
+              }
+            },
+            {
+              "document": "research/reality-fracture-20261022/fetch-audit.json",
+              "pointer": "/5/url",
+              "recordedMetadata": {
+                "id": "postboard",
+                "publisher": "Postboard",
+                "kind": "tournament-aggregation",
+                "status": "retrieved",
+                "retrieved": "2026-10-22",
+                "sha256": "ae6f7ed5ae4451cf94f7b869e1b03a2210ad7a46391953f38992902b2dc2cddd",
+                "archiveSha256": "2955445d7b27a7532756e1732aa4526aa563f8810284410e5222c81e7355b8ac"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://www.reddit.com/r/MagicArena/comments/1x09luk/how_to_draft_blueblack_in_reality_fracture/",
+          "host": "www.reddit.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/9605231cca1b",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://www.reddit.com/r/lrcast/comments/1wh9gkq/you_can_literally_splinter_twin_combo_people_in/",
+          "host": "www.reddit.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/0a1270128e29",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://www.reddit.com/r/magicTCG/comments/1wk8lch/everyone_is_talking_about_the_splinter_twin_combo/",
+          "host": "www.reddit.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/0c25f5530ae7",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://www.reddit.com/r/spikes/comments/1wk4oip/draft_reality_fracture_set_review_white/",
+          "host": "www.reddit.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/ac29cc3cf72c",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://www.reddit.com/r/spikes/comments/1wk8zem/draft_reality_fracture_limited_set_review_blue/",
+          "host": "www.reddit.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/eccdb44e41f3",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://www.reddit.com/r/spikes/comments/1wl03bk/draft_reality_fracture_limited_overview/",
+          "host": "www.reddit.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/7f45a822c66f",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://www.spielraum.co.at/de/article/detail/set-spotlight-zersplitterte-realitaet",
+          "host": "www.spielraum.co.at",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/eb43771feb63",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://www.youtube.com/channel/UCmtby2DHtUvyBOEYiTw1GxQ/videos",
+          "host": "www.youtube.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/97bfa689839e",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=4dqJC0HQNSo",
+          "host": "www.youtube.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/a52e8c0eca1a",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=5UBzrNbWIgg",
+          "host": "www.youtube.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/56e31b425544",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=7OAK1KgLVwU",
+          "host": "www.youtube.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/00b462c383f2",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=BVpXZzfYP3o",
+          "host": "www.youtube.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/0b9ffa461c8a",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=DFflRWV5GCA",
+          "host": "www.youtube.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/594ebba076ba",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=GEHyY0yTnGQ",
+          "host": "www.youtube.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/c1c711afe450",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=hCq5nVtB-1A",
+          "host": "www.youtube.com",
+          "occurrences": [
+            {
+              "document": "expansions/reality-fracture/sources.json",
+              "pointer": "/links/0743e4df5439",
+              "recordedMetadata": {}
+            }
+          ]
+        }
+      ],
+      "localDownloads": [
+        {
+          "key": "draftStatistics",
+          "reference": "draft-drilldown-20261016.json",
+          "existingFiles": [
+            "draft-drilldown-20261016.json"
+          ]
+        },
+        {
+          "key": "oracle",
+          "reference": "draft-oracle-20261016.json",
+          "existingFiles": [
+            "draft-oracle-20261016.json"
+          ]
+        }
+      ],
+      "researchFiles": [
+        "research/reality-fracture-20261022/assessment-summary.json",
+        "research/reality-fracture-20261022/before-update.json",
+        "research/reality-fracture-20261022/browser-validation.json",
+        "research/reality-fracture-20261022/cardmarket-assessment-20261022.json",
+        "research/reality-fracture-20261022/cardmarket-history-20261018.json",
+        "research/reality-fracture-20261022/cardmarket-listings-20261022.json",
+        "research/reality-fracture-20261022/cardmarket-prices-desktop.png",
+        "research/reality-fracture-20261022/cardmarket-prices-mobile.png",
+        "research/reality-fracture-20261022/cardmarket-product-checks-20261022.json",
+        "research/reality-fracture-20261022/cardmarket-test-status-20261022.json",
+        "research/reality-fracture-20261022/cedh-evidence.json",
+        "research/reality-fracture-20261022/commander-evidence.json",
+        "research/reality-fracture-20261022/duel-evidence.json",
+        "research/reality-fracture-20261022/edhrec-data.json",
+        "research/reality-fracture-20261022/editorial-card-reviews.json",
+        "research/reality-fracture-20261022/editorial-commander-reviews.json",
+        "research/reality-fracture-20261022/fetch-audit.json",
+        "research/reality-fracture-20261022/historical-usage-crosscheck.json",
+        "research/reality-fracture-20261022/limited-independent-evidence.json",
+        "research/reality-fracture-20261022/limited-review-evidence.json",
+        "research/reality-fracture-20261022/preview-cards-ui.json",
+        "research/reality-fracture-20261022/prospects-desktop.png",
+        "research/reality-fracture-20261022/prospects-mobile.png",
+        "research/reality-fracture-20261022/scryfall-fra-20261018.json",
+        "research/reality-fracture-20261022/scryfall-fra.json",
+        "research/reality-fracture-20261022/scryfall-frc.json",
+        "research/reality-fracture-20261022/scryfall-spg-20261018.json",
+        "research/reality-fracture-20261022/scryfall-spg.json",
+        "research/reality-fracture-20261022/test-status.json",
+        "research/reality-fracture-20261022/tournament-evidence.json",
+        "research/reality-fracture-20261022/untapped-card-data-20261022.json",
+        "research/reality-fracture-20261022/untapped-card-data-dom.json",
+        "research/reality-fracture-20261022/validation.json",
+        "research/reality-fracture-20261023/untapped-card-data-20261023.json",
+        "research/reality-fracture-20261023/untapped-card-data-dom.json",
+        "research/reality-fracture-20261023/untapped-update.md",
+        "research/reality-fracture-20261027/browser-verification.json",
+        "research/reality-fracture-20261027/check-ranking.cjs",
+        "research/reality-fracture-20261027/ranking-desktop.png",
+        "research/reality-fracture-20261027/ranking-mobile.png",
+        "research/reality-fracture-20261027/README.md",
+        "research/reality-fracture-20261027/untapped-pick-order-20261027.json",
+        "research/reality-fracture-20261027/untapped-pick-order-dom.json"
+      ]
+    },
+    {
+      "id": "star-trek",
+      "manifest": "expansions/star-trek/expansion.json",
+      "sourceDocuments": [
+        {
+          "path": "expansions/star-trek/sources.json",
+          "sha256": "200adbb56de0d98dc8831c1842c68b3a662a5af3b2f345a794578ae6073ce69c"
+        },
+        {
+          "path": "research/star-trek-20261027/source-audit.json",
+          "sha256": "75c9d5418277134fea203307946774ea870d40d4ee38cfb0cce3e47e525f88fb"
+        },
+        {
+          "path": "research/star-trek-20261028/source-audit.json",
+          "sha256": "78743f03f8903bc1bb6ad65a8b21524ed5e917f176b6e23f54b14833714da5fd"
+        }
+      ],
+      "uniqueUrls": 46,
+      "sources": [
+        {
+          "url": "https://api.scryfall.com/cards/search?q=%28set%3Atrk+or+set%3Asds%29&unique=prints&order=set",
+          "host": "api.scryfall.com",
+          "occurrences": [
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/research/sources/25/url",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "scryfall-api",
+                "publisher": "Scryfall",
+                "label": "Scryfall API: catalogo, Oracle e legalità",
+                "kind": "oracle-and-catalog",
+                "retrieved": "2026-10-28",
+                "checked": "2026-10-28"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://articles.starcitygames.com/magic-the-gathering/delays-expected-to-impact-select-magic-the-gathering-star-trek-products/",
+          "host": "articles.starcitygames.com",
+          "occurrences": [
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/links/scg-delays",
+              "recordedMetadata": {}
+            },
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/research/sources/4/url",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "scg-delays",
+                "label": "Star City Games: dettaglio dei ritardi in Europa",
+                "kind": "specialist",
+                "checked": "2026-10-28",
+                "published": "2026-10-16"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://articles.starcitygames.com/magic-the-gathering/every-card-revealed-so-far-from-magic-the-gathering-star-trek/",
+          "host": "articles.starcitygames.com",
+          "occurrences": [
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/links/scg-gallery",
+              "recordedMetadata": {}
+            },
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/research/sources/2/url",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "scg-gallery",
+                "publisher": "Star City Games",
+                "label": "Star City Games: galleria delle anteprime Star Trek",
+                "kind": "preview-gallery",
+                "status": "retrieved",
+                "retrieved": "2026-10-28",
+                "checked": "2026-10-28",
+                "published": "2026-10-22",
+                "sha256": "78941479b277c4b7966212275323acad8f87ca2bb01570b18e8078228f2a153b"
+              }
+            },
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/research/sources/2/finalUrl",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "scg-gallery",
+                "publisher": "Star City Games",
+                "label": "Star City Games: galleria delle anteprime Star Trek",
+                "kind": "preview-gallery",
+                "status": "retrieved",
+                "retrieved": "2026-10-28",
+                "checked": "2026-10-28",
+                "published": "2026-10-22",
+                "sha256": "78941479b277c4b7966212275323acad8f87ca2bb01570b18e8078228f2a153b"
+              }
+            },
+            {
+              "document": "research/star-trek-20261027/source-audit.json",
+              "pointer": "/sources/4/url",
+              "recordedMetadata": {
+                "date": "2026-10-27",
+                "id": "scg-gallery",
+                "publisher": "Star City Games",
+                "kind": "preview-gallery",
+                "status": "retrieved",
+                "retrieved": "2026-10-27",
+                "sha256": "9f8075e44de93eb695a563634323b2e23acd438f866e44b75b398e02a7b01808"
+              }
+            },
+            {
+              "document": "research/star-trek-20261027/source-audit.json",
+              "pointer": "/sources/4/finalUrl",
+              "recordedMetadata": {
+                "date": "2026-10-27",
+                "id": "scg-gallery",
+                "publisher": "Star City Games",
+                "kind": "preview-gallery",
+                "status": "retrieved",
+                "retrieved": "2026-10-27",
+                "sha256": "9f8075e44de93eb695a563634323b2e23acd438f866e44b75b398e02a7b01808"
+              }
+            },
+            {
+              "document": "research/star-trek-20261028/source-audit.json",
+              "pointer": "/sources/4/url",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "scg-gallery",
+                "publisher": "Star City Games",
+                "kind": "preview-gallery",
+                "status": "retrieved",
+                "retrieved": "2026-10-28",
+                "sha256": "78941479b277c4b7966212275323acad8f87ca2bb01570b18e8078228f2a153b"
+              }
+            },
+            {
+              "document": "research/star-trek-20261028/source-audit.json",
+              "pointer": "/sources/4/finalUrl",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "scg-gallery",
+                "publisher": "Star City Games",
+                "kind": "preview-gallery",
+                "status": "retrieved",
+                "retrieved": "2026-10-28",
+                "sha256": "78941479b277c4b7966212275323acad8f87ca2bb01570b18e8078228f2a153b"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://articles.starcitygames.com/magic-the-gathering/full-preview-schedule-for-magic-the-gathering-star-trek-revealed/",
+          "host": "articles.starcitygames.com",
+          "occurrences": [
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/links/scg-calendar",
+              "recordedMetadata": {}
+            },
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/research/sources/1/url",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "scg-calendar",
+                "label": "Star City Games: calendario delle anteprime",
+                "kind": "specialist",
+                "checked": "2026-10-22",
+                "published": "2026-10-16"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://blog.cardkingdom.com/star-trek-first-look/",
+          "host": "blog.cardkingdom.com",
+          "occurrences": [
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/links/card-kingdom",
+              "recordedMetadata": {}
+            },
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/research/sources/7/url",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "card-kingdom",
+                "publisher": "Card Kingdom",
+                "label": "Card Kingdom: date e prodotti",
+                "kind": "product-overview",
+                "status": "retrieved",
+                "retrieved": "2026-10-28",
+                "checked": "2026-10-28",
+                "published": "2026-09-23",
+                "sha256": "b3c367ddd6ed3fff1ad7719adf1c1c98f3370347cc80355ea871f8576cccf1ee"
+              }
+            },
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/research/sources/7/finalUrl",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "card-kingdom",
+                "publisher": "Card Kingdom",
+                "label": "Card Kingdom: date e prodotti",
+                "kind": "product-overview",
+                "status": "retrieved",
+                "retrieved": "2026-10-28",
+                "checked": "2026-10-28",
+                "published": "2026-09-23",
+                "sha256": "b3c367ddd6ed3fff1ad7719adf1c1c98f3370347cc80355ea871f8576cccf1ee"
+              }
+            },
+            {
+              "document": "research/star-trek-20261027/source-audit.json",
+              "pointer": "/sources/12/url",
+              "recordedMetadata": {
+                "date": "2026-10-27",
+                "id": "card-kingdom",
+                "publisher": "Card Kingdom",
+                "kind": "product-overview",
+                "status": "retrieved",
+                "retrieved": "2026-10-27",
+                "sha256": "a0c949e0ee3ad217d2c9bf2db651e1cd5c9ff2d044715639f6883c2369e9c336"
+              }
+            },
+            {
+              "document": "research/star-trek-20261027/source-audit.json",
+              "pointer": "/sources/12/finalUrl",
+              "recordedMetadata": {
+                "date": "2026-10-27",
+                "id": "card-kingdom",
+                "publisher": "Card Kingdom",
+                "kind": "product-overview",
+                "status": "retrieved",
+                "retrieved": "2026-10-27",
+                "sha256": "a0c949e0ee3ad217d2c9bf2db651e1cd5c9ff2d044715639f6883c2369e9c336"
+              }
+            },
+            {
+              "document": "research/star-trek-20261028/source-audit.json",
+              "pointer": "/sources/12/url",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "card-kingdom",
+                "publisher": "Card Kingdom",
+                "kind": "product-overview",
+                "status": "retrieved",
+                "retrieved": "2026-10-28",
+                "sha256": "b3c367ddd6ed3fff1ad7719adf1c1c98f3370347cc80355ea871f8576cccf1ee"
+              }
+            },
+            {
+              "document": "research/star-trek-20261028/source-audit.json",
+              "pointer": "/sources/12/finalUrl",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "card-kingdom",
+                "publisher": "Card Kingdom",
+                "kind": "product-overview",
+                "status": "retrieved",
+                "retrieved": "2026-10-28",
+                "sha256": "b3c367ddd6ed3fff1ad7719adf1c1c98f3370347cc80355ea871f8576cccf1ee"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://cards.scryfall.io/normal/front/3/5/3507f99b-15fb-4f66-9484-8e8115e7f5de.jpg?1792668526",
+          "host": "cards.scryfall.io",
+          "occurrences": [
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/research/dataAudit/corrections/2/sourceUrl",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "007d08e8-4db2-47d1-ba39-8bb8efa491a1",
+                "kind": "snapshot_transcription_correction"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://cards.scryfall.io/normal/front/6/d/6dc34d44-397a-4dda-a8e3-0c2ff7da110f.jpg?1793013033",
+          "host": "cards.scryfall.io",
+          "occurrences": [
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/research/dataAudit/corrections/0/sourceUrl",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "492ba01e-c0fa-414c-95fd-df5b59212d2a",
+                "kind": "snapshot_transcription_correction"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://collectorunion.com/blog/magic-star-trek-revealed-cards-first-impressions",
+          "host": "collectorunion.com",
+          "occurrences": [
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/links/collectorunion-review",
+              "recordedMetadata": {}
+            },
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/research/sources/16/url",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "collectorunion-review",
+                "publisher": "CollectorUnion",
+                "label": "CollectorUnion",
+                "kind": "commander-editorial",
+                "status": "retrieved",
+                "retrieved": "2026-10-28",
+                "checked": "2026-10-28",
+                "sha256": "140705fcfd1dd32de6c02bf2ba09e3c517374c2f1b0e489cf2e3b85fa33c999f"
+              }
+            },
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/research/sources/16/finalUrl",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "collectorunion-review",
+                "publisher": "CollectorUnion",
+                "label": "CollectorUnion",
+                "kind": "commander-editorial",
+                "status": "retrieved",
+                "retrieved": "2026-10-28",
+                "checked": "2026-10-28",
+                "sha256": "140705fcfd1dd32de6c02bf2ba09e3c517374c2f1b0e489cf2e3b85fa33c999f"
+              }
+            },
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/reviewAnalysis/sources/3/url",
+              "recordedMetadata": {
+                "status": "preliminary",
+                "date": "2026-10-22",
+                "id": "collectorunion-review",
+                "label": "CollectorUnion: prime impressioni sulle carte",
+                "kind": "editorial-review",
+                "checked": "2026-10-22",
+                "published": "2026-10-21"
+              }
+            },
+            {
+              "document": "research/star-trek-20261027/source-audit.json",
+              "pointer": "/sources/8/url",
+              "recordedMetadata": {
+                "date": "2026-10-27",
+                "id": "collectorunion-review",
+                "publisher": "CollectorUnion",
+                "kind": "commander-editorial",
+                "status": "retrieved",
+                "retrieved": "2026-10-27",
+                "sha256": "a7534e63dcd85596da68d81e7b490327be888e92a65b031dfad9a0ef5f88817f"
+              }
+            },
+            {
+              "document": "research/star-trek-20261027/source-audit.json",
+              "pointer": "/sources/8/finalUrl",
+              "recordedMetadata": {
+                "date": "2026-10-27",
+                "id": "collectorunion-review",
+                "publisher": "CollectorUnion",
+                "kind": "commander-editorial",
+                "status": "retrieved",
+                "retrieved": "2026-10-27",
+                "sha256": "a7534e63dcd85596da68d81e7b490327be888e92a65b031dfad9a0ef5f88817f"
+              }
+            },
+            {
+              "document": "research/star-trek-20261028/source-audit.json",
+              "pointer": "/sources/8/url",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "collectorunion-review",
+                "publisher": "CollectorUnion",
+                "kind": "commander-editorial",
+                "status": "retrieved",
+                "retrieved": "2026-10-28",
+                "sha256": "140705fcfd1dd32de6c02bf2ba09e3c517374c2f1b0e489cf2e3b85fa33c999f"
+              }
+            },
+            {
+              "document": "research/star-trek-20261028/source-audit.json",
+              "pointer": "/sources/8/finalUrl",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "collectorunion-review",
+                "publisher": "CollectorUnion",
+                "kind": "commander-editorial",
+                "status": "retrieved",
+                "retrieved": "2026-10-28",
+                "sha256": "140705fcfd1dd32de6c02bf2ba09e3c517374c2f1b0e489cf2e3b85fa33c999f"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://deathmarked.info/d-7-battle-cruiser-magic-the-gathering-card-preview-standard-potential/",
+          "host": "deathmarked.info",
+          "occurrences": [
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/links/deathmarked-cruiser",
+              "recordedMetadata": {}
+            },
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/research/sources/18/url",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "deathmarked-cruiser",
+                "publisher": "Deathmarked",
+                "label": "Deathmarked",
+                "kind": "constructed-editorial",
+                "status": "retrieved",
+                "retrieved": "2026-10-28",
+                "checked": "2026-10-28",
+                "sha256": "67c0d544fa18ffa269234cbd532326195e59bd8dda5339480c9b2ef577defaee"
+              }
+            },
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/research/sources/18/finalUrl",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "deathmarked-cruiser",
+                "publisher": "Deathmarked",
+                "label": "Deathmarked",
+                "kind": "constructed-editorial",
+                "status": "retrieved",
+                "retrieved": "2026-10-28",
+                "checked": "2026-10-28",
+                "sha256": "67c0d544fa18ffa269234cbd532326195e59bd8dda5339480c9b2ef577defaee"
+              }
+            },
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/reviewAnalysis/sources/5/url",
+              "recordedMetadata": {
+                "status": "preliminary",
+                "date": "2026-10-22",
+                "id": "deathmarked-cruiser",
+                "label": "Deathmarked: D-7 Battle Cruiser",
+                "kind": "editorial-review",
+                "checked": "2026-10-22",
+                "published": "2026-10-21"
+              }
+            },
+            {
+              "document": "research/star-trek-20261027/source-audit.json",
+              "pointer": "/sources/10/url",
+              "recordedMetadata": {
+                "date": "2026-10-27",
+                "id": "deathmarked-cruiser",
+                "publisher": "Deathmarked",
+                "kind": "constructed-editorial",
+                "status": "retrieved",
+                "retrieved": "2026-10-27",
+                "sha256": "b79489ee8d2d007fc8601505da4532ee944e59923e123e0cb37bd13da46f9480"
+              }
+            },
+            {
+              "document": "research/star-trek-20261027/source-audit.json",
+              "pointer": "/sources/10/finalUrl",
+              "recordedMetadata": {
+                "date": "2026-10-27",
+                "id": "deathmarked-cruiser",
+                "publisher": "Deathmarked",
+                "kind": "constructed-editorial",
+                "status": "retrieved",
+                "retrieved": "2026-10-27",
+                "sha256": "b79489ee8d2d007fc8601505da4532ee944e59923e123e0cb37bd13da46f9480"
+              }
+            },
+            {
+              "document": "research/star-trek-20261028/source-audit.json",
+              "pointer": "/sources/10/url",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "deathmarked-cruiser",
+                "publisher": "Deathmarked",
+                "kind": "constructed-editorial",
+                "status": "retrieved",
+                "retrieved": "2026-10-28",
+                "sha256": "67c0d544fa18ffa269234cbd532326195e59bd8dda5339480c9b2ef577defaee"
+              }
+            },
+            {
+              "document": "research/star-trek-20261028/source-audit.json",
+              "pointer": "/sources/10/finalUrl",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "deathmarked-cruiser",
+                "publisher": "Deathmarked",
+                "kind": "constructed-editorial",
+                "status": "retrieved",
+                "retrieved": "2026-10-28",
+                "sha256": "67c0d544fa18ffa269234cbd532326195e59bd8dda5339480c9b2ef577defaee"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://deathmarked.info/munitions-enthusiast-star-trek-mtg-card-review-and-potential/",
+          "host": "deathmarked.info",
+          "occurrences": [
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/links/deathmarked-munitions",
+              "recordedMetadata": {}
+            },
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/research/sources/19/url",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "deathmarked-munitions",
+                "publisher": "Deathmarked",
+                "label": "Deathmarked",
+                "kind": "constructed-editorial",
+                "status": "retrieved",
+                "retrieved": "2026-10-28",
+                "checked": "2026-10-28",
+                "sha256": "bd8f2438382c90933a5073ad9d8e2b40bbff1980492fd7612688b3e2658bd5c7"
+              }
+            },
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/research/sources/19/finalUrl",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "deathmarked-munitions",
+                "publisher": "Deathmarked",
+                "label": "Deathmarked",
+                "kind": "constructed-editorial",
+                "status": "retrieved",
+                "retrieved": "2026-10-28",
+                "checked": "2026-10-28",
+                "sha256": "bd8f2438382c90933a5073ad9d8e2b40bbff1980492fd7612688b3e2658bd5c7"
+              }
+            },
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/reviewAnalysis/sources/6/url",
+              "recordedMetadata": {
+                "status": "preliminary",
+                "date": "2026-10-22",
+                "id": "deathmarked-munitions",
+                "label": "Deathmarked: Munitions Enthusiast",
+                "kind": "editorial-review",
+                "checked": "2026-10-22",
+                "published": "2026-10-11"
+              }
+            },
+            {
+              "document": "research/star-trek-20261027/source-audit.json",
+              "pointer": "/sources/11/url",
+              "recordedMetadata": {
+                "date": "2026-10-27",
+                "id": "deathmarked-munitions",
+                "publisher": "Deathmarked",
+                "kind": "constructed-editorial",
+                "status": "retrieved",
+                "retrieved": "2026-10-27",
+                "sha256": "86b97dfaec8316041a86f4303069a29dbe4af027a246fca4f44d2b9162ce2813"
+              }
+            },
+            {
+              "document": "research/star-trek-20261027/source-audit.json",
+              "pointer": "/sources/11/finalUrl",
+              "recordedMetadata": {
+                "date": "2026-10-27",
+                "id": "deathmarked-munitions",
+                "publisher": "Deathmarked",
+                "kind": "constructed-editorial",
+                "status": "retrieved",
+                "retrieved": "2026-10-27",
+                "sha256": "86b97dfaec8316041a86f4303069a29dbe4af027a246fca4f44d2b9162ce2813"
+              }
+            },
+            {
+              "document": "research/star-trek-20261028/source-audit.json",
+              "pointer": "/sources/11/url",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "deathmarked-munitions",
+                "publisher": "Deathmarked",
+                "kind": "constructed-editorial",
+                "status": "retrieved",
+                "retrieved": "2026-10-28",
+                "sha256": "bd8f2438382c90933a5073ad9d8e2b40bbff1980492fd7612688b3e2658bd5c7"
+              }
+            },
+            {
+              "document": "research/star-trek-20261028/source-audit.json",
+              "pointer": "/sources/11/finalUrl",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "deathmarked-munitions",
+                "publisher": "Deathmarked",
+                "kind": "constructed-editorial",
+                "status": "retrieved",
+                "retrieved": "2026-10-28",
+                "sha256": "bd8f2438382c90933a5073ad9d8e2b40bbff1980492fd7612688b3e2658bd5c7"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://draftsim.com/mtg-star-trek-join-the-collective-leak/",
+          "host": "draftsim.com",
+          "occurrences": [
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/links/draftsim-collective-review",
+              "recordedMetadata": {}
+            },
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/research/sources/17/url",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "draftsim-collective-review",
+                "publisher": "Draftsim",
+                "label": "Draftsim",
+                "kind": "commander-editorial",
+                "status": "retrieved",
+                "retrieved": "2026-10-28",
+                "checked": "2026-10-28",
+                "sha256": "3937aeba7c52394802b209dc9331f0c3b79043995dd2dc657dd715ce8a5af2a6"
+              }
+            },
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/research/sources/17/finalUrl",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "draftsim-collective-review",
+                "publisher": "Draftsim",
+                "label": "Draftsim",
+                "kind": "commander-editorial",
+                "status": "retrieved",
+                "retrieved": "2026-10-28",
+                "checked": "2026-10-28",
+                "sha256": "3937aeba7c52394802b209dc9331f0c3b79043995dd2dc657dd715ce8a5af2a6"
+              }
+            },
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/reviewAnalysis/sources/4/url",
+              "recordedMetadata": {
+                "status": "preliminary",
+                "date": "2026-10-22",
+                "id": "draftsim-collective-review",
+                "label": "Draftsim: analisi di una rimozione globale Commander",
+                "kind": "editorial-review",
+                "checked": "2026-10-22",
+                "published": "2026-10-09"
+              }
+            },
+            {
+              "document": "research/star-trek-20261027/source-audit.json",
+              "pointer": "/sources/9/url",
+              "recordedMetadata": {
+                "date": "2026-10-27",
+                "id": "draftsim-collective-review",
+                "publisher": "Draftsim",
+                "kind": "commander-editorial",
+                "status": "retrieved",
+                "retrieved": "2026-10-27",
+                "sha256": "053fac62734c1e2b7b1f621552b904ef55bdfb1596c6b2df9ba7656f9700786b"
+              }
+            },
+            {
+              "document": "research/star-trek-20261027/source-audit.json",
+              "pointer": "/sources/9/finalUrl",
+              "recordedMetadata": {
+                "date": "2026-10-27",
+                "id": "draftsim-collective-review",
+                "publisher": "Draftsim",
+                "kind": "commander-editorial",
+                "status": "retrieved",
+                "retrieved": "2026-10-27",
+                "sha256": "053fac62734c1e2b7b1f621552b904ef55bdfb1596c6b2df9ba7656f9700786b"
+              }
+            },
+            {
+              "document": "research/star-trek-20261028/source-audit.json",
+              "pointer": "/sources/9/url",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "draftsim-collective-review",
+                "publisher": "Draftsim",
+                "kind": "commander-editorial",
+                "status": "retrieved",
+                "retrieved": "2026-10-28",
+                "sha256": "3937aeba7c52394802b209dc9331f0c3b79043995dd2dc657dd715ce8a5af2a6"
+              }
+            },
+            {
+              "document": "research/star-trek-20261028/source-audit.json",
+              "pointer": "/sources/9/finalUrl",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "draftsim-collective-review",
+                "publisher": "Draftsim",
+                "kind": "commander-editorial",
+                "status": "retrieved",
+                "retrieved": "2026-10-28",
+                "sha256": "3937aeba7c52394802b209dc9331f0c3b79043995dd2dc657dd715ce8a5af2a6"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://edhrec.com/articles/star-trek-debut-stream-preview-recap",
+          "host": "edhrec.com",
+          "occurrences": [
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/research/sources/21/url",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "edhrec-debut",
+                "publisher": "EDHREC",
+                "label": "EDHREC",
+                "kind": "commander-editorial",
+                "status": "retrieved",
+                "retrieved": "2026-10-28",
+                "checked": "2026-10-28",
+                "sha256": "165ce1c545e9b9223c30ce45362a98ef3936fa0515f3b306dfa768255c68bc0c"
+              }
+            },
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/research/sources/21/finalUrl",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "edhrec-debut",
+                "publisher": "EDHREC",
+                "label": "EDHREC",
+                "kind": "commander-editorial",
+                "status": "retrieved",
+                "retrieved": "2026-10-28",
+                "checked": "2026-10-28",
+                "sha256": "165ce1c545e9b9223c30ce45362a98ef3936fa0515f3b306dfa768255c68bc0c"
+              }
+            },
+            {
+              "document": "research/star-trek-20261027/source-audit.json",
+              "pointer": "/sources/14/url",
+              "recordedMetadata": {
+                "date": "2026-10-27",
+                "id": "edhrec-debut",
+                "publisher": "EDHREC",
+                "kind": "commander-editorial",
+                "status": "retrieved",
+                "retrieved": "2026-10-27",
+                "sha256": "b3805139c44f15426ba095c7087e0aeba407502ce9617814064b2d015c3cd79b"
+              }
+            },
+            {
+              "document": "research/star-trek-20261027/source-audit.json",
+              "pointer": "/sources/14/finalUrl",
+              "recordedMetadata": {
+                "date": "2026-10-27",
+                "id": "edhrec-debut",
+                "publisher": "EDHREC",
+                "kind": "commander-editorial",
+                "status": "retrieved",
+                "retrieved": "2026-10-27",
+                "sha256": "b3805139c44f15426ba095c7087e0aeba407502ce9617814064b2d015c3cd79b"
+              }
+            },
+            {
+              "document": "research/star-trek-20261028/source-audit.json",
+              "pointer": "/sources/14/url",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "edhrec-debut",
+                "publisher": "EDHREC",
+                "kind": "commander-editorial",
+                "status": "retrieved",
+                "retrieved": "2026-10-28",
+                "sha256": "165ce1c545e9b9223c30ce45362a98ef3936fa0515f3b306dfa768255c68bc0c"
+              }
+            },
+            {
+              "document": "research/star-trek-20261028/source-audit.json",
+              "pointer": "/sources/14/finalUrl",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "edhrec-debut",
+                "publisher": "EDHREC",
+                "kind": "commander-editorial",
+                "status": "retrieved",
+                "retrieved": "2026-10-28",
+                "sha256": "165ce1c545e9b9223c30ce45362a98ef3936fa0515f3b306dfa768255c68bc0c"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://edhrec.com/sets/trk",
+          "host": "edhrec.com",
+          "occurrences": [
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/research/sources/29/url",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "edhrec-set",
+                "publisher": "EDHREC",
+                "label": "EDHREC: liste Commander e ristampe, conteggi distinti per sezione",
+                "kind": "published-commander-lists",
+                "retrieved": "2026-10-27",
+                "checked": "2026-10-27"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://magic.gg/news/start-your-voyage-at-magic-spotlight-star-trek-in-lille-and-minneapolis",
+          "host": "magic.gg",
+          "occurrences": [
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/links/spotlight",
+              "recordedMetadata": {}
+            },
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/research/sources/5/url",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "spotlight",
+                "label": "Magic Spotlight: Lille e Minneapolis",
+                "kind": "official",
+                "checked": "2026-10-28",
+                "published": "2026-10-20"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://magic.wizards.com/en/formats/booster-draft",
+          "host": "magic.wizards.com",
+          "occurrences": [
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/links/439884b5e464",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://magic.wizards.com/en/formats/pick-two-draft",
+          "host": "magic.wizards.com",
+          "occurrences": [
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/links/45d1e4718d08",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://magic.wizards.com/en/formats/sealed-deck",
+          "host": "magic.wizards.com",
+          "occurrences": [
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/links/782885a72033",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://magic.wizards.com/en/news/announcements/where-to-find-star-trek-previews",
+          "host": "magic.wizards.com",
+          "occurrences": [
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/links/preview-calendar",
+              "recordedMetadata": {}
+            },
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/research/sources/0/url",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "preview-calendar",
+                "label": "Calendario anteprime e presentazioni Commander",
+                "kind": "official",
+                "checked": "2026-10-28",
+                "published": "2026-10-16"
+              }
+            },
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/research/sources/11/url",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "wizards-previews",
+                "publisher": "Wizards of the Coast",
+                "label": "Wizards of the Coast",
+                "kind": "official-calendar",
+                "status": "retrieved",
+                "retrieved": "2026-10-28",
+                "checked": "2026-10-28",
+                "sha256": "abb9947c84c4acd74e482db607d68fbdfbacd37342f280011899390a2779f90e"
+              }
+            },
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/research/sources/11/finalUrl",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "wizards-previews",
+                "publisher": "Wizards of the Coast",
+                "label": "Wizards of the Coast",
+                "kind": "official-calendar",
+                "status": "retrieved",
+                "retrieved": "2026-10-28",
+                "checked": "2026-10-28",
+                "sha256": "abb9947c84c4acd74e482db607d68fbdfbacd37342f280011899390a2779f90e"
+              }
+            },
+            {
+              "document": "research/star-trek-20261027/source-audit.json",
+              "pointer": "/sources/2/url",
+              "recordedMetadata": {
+                "date": "2026-10-27",
+                "id": "wizards-previews",
+                "publisher": "Wizards of the Coast",
+                "kind": "official-calendar",
+                "status": "retrieved",
+                "retrieved": "2026-10-27",
+                "sha256": "d682a5eb55244820cb6789317cab0e50d213ab2f9b747a4a6dc52621f2e50895"
+              }
+            },
+            {
+              "document": "research/star-trek-20261027/source-audit.json",
+              "pointer": "/sources/2/finalUrl",
+              "recordedMetadata": {
+                "date": "2026-10-27",
+                "id": "wizards-previews",
+                "publisher": "Wizards of the Coast",
+                "kind": "official-calendar",
+                "status": "retrieved",
+                "retrieved": "2026-10-27",
+                "sha256": "d682a5eb55244820cb6789317cab0e50d213ab2f9b747a4a6dc52621f2e50895"
+              }
+            },
+            {
+              "document": "research/star-trek-20261028/source-audit.json",
+              "pointer": "/sources/2/url",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "wizards-previews",
+                "publisher": "Wizards of the Coast",
+                "kind": "official-calendar",
+                "status": "retrieved",
+                "retrieved": "2026-10-28",
+                "sha256": "abb9947c84c4acd74e482db607d68fbdfbacd37342f280011899390a2779f90e"
+              }
+            },
+            {
+              "document": "research/star-trek-20261028/source-audit.json",
+              "pointer": "/sources/2/finalUrl",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "wizards-previews",
+                "publisher": "Wizards of the Coast",
+                "kind": "official-calendar",
+                "status": "retrieved",
+                "retrieved": "2026-10-28",
+                "sha256": "abb9947c84c4acd74e482db607d68fbdfbacd37342f280011899390a2779f90e"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://magic.wizards.com/en/news/feature/collecting-star-trek",
+          "host": "magic.wizards.com",
+          "occurrences": [
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/collation/url",
+              "recordedMetadata": {
+                "verified": "2026-10-28"
+              }
+            },
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/links/ccaaccaa4724",
+              "recordedMetadata": {}
+            },
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/research/sources/9/url",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "wizards-collecting",
+                "publisher": "Wizards of the Coast",
+                "label": "Wizards of the Coast",
+                "kind": "official-product",
+                "status": "retrieved",
+                "retrieved": "2026-10-28",
+                "checked": "2026-10-28",
+                "sha256": "510a2c05978200939b2823e44817017608aa77fcd3c1b272bb1fead19cabff54"
+              }
+            },
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/research/sources/9/finalUrl",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "wizards-collecting",
+                "publisher": "Wizards of the Coast",
+                "label": "Wizards of the Coast",
+                "kind": "official-product",
+                "status": "retrieved",
+                "retrieved": "2026-10-28",
+                "checked": "2026-10-28",
+                "sha256": "510a2c05978200939b2823e44817017608aa77fcd3c1b272bb1fead19cabff54"
+              }
+            },
+            {
+              "document": "research/star-trek-20261027/source-audit.json",
+              "pointer": "/sources/0/url",
+              "recordedMetadata": {
+                "date": "2026-10-27",
+                "id": "wizards-collecting",
+                "publisher": "Wizards of the Coast",
+                "kind": "official-product",
+                "status": "retrieved",
+                "retrieved": "2026-10-27",
+                "sha256": "ef586cc3a08ad8733c4de76b164f6a5143d9e12f64db5dcb0bc03a161930d3e6"
+              }
+            },
+            {
+              "document": "research/star-trek-20261027/source-audit.json",
+              "pointer": "/sources/0/finalUrl",
+              "recordedMetadata": {
+                "date": "2026-10-27",
+                "id": "wizards-collecting",
+                "publisher": "Wizards of the Coast",
+                "kind": "official-product",
+                "status": "retrieved",
+                "retrieved": "2026-10-27",
+                "sha256": "ef586cc3a08ad8733c4de76b164f6a5143d9e12f64db5dcb0bc03a161930d3e6"
+              }
+            },
+            {
+              "document": "research/star-trek-20261028/source-audit.json",
+              "pointer": "/sources/0/url",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "wizards-collecting",
+                "publisher": "Wizards of the Coast",
+                "kind": "official-product",
+                "status": "retrieved",
+                "retrieved": "2026-10-28",
+                "sha256": "510a2c05978200939b2823e44817017608aa77fcd3c1b272bb1fead19cabff54"
+              }
+            },
+            {
+              "document": "research/star-trek-20261028/source-audit.json",
+              "pointer": "/sources/0/finalUrl",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "wizards-collecting",
+                "publisher": "Wizards of the Coast",
+                "kind": "official-product",
+                "status": "retrieved",
+                "retrieved": "2026-10-28",
+                "sha256": "510a2c05978200939b2823e44817017608aa77fcd3c1b272bb1fead19cabff54"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://magic.wizards.com/en/news/feature/star-trek-mechanics",
+          "host": "magic.wizards.com",
+          "occurrences": [
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/links/3be70ef36abe",
+              "recordedMetadata": {}
+            },
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/research/sources/10/url",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "wizards-mechanics",
+                "publisher": "Wizards of the Coast",
+                "label": "Wizards of the Coast",
+                "kind": "official-rules",
+                "status": "retrieved",
+                "retrieved": "2026-10-28",
+                "checked": "2026-10-28",
+                "sha256": "1a7c5a46bc6efa912d31707d1a8e19772fd36b10332bb9f27b1459ca3846e895"
+              }
+            },
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/research/sources/10/finalUrl",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "wizards-mechanics",
+                "publisher": "Wizards of the Coast",
+                "label": "Wizards of the Coast",
+                "kind": "official-rules",
+                "status": "retrieved",
+                "retrieved": "2026-10-28",
+                "checked": "2026-10-28",
+                "sha256": "1a7c5a46bc6efa912d31707d1a8e19772fd36b10332bb9f27b1459ca3846e895"
+              }
+            },
+            {
+              "document": "research/star-trek-20261027/source-audit.json",
+              "pointer": "/sources/1/url",
+              "recordedMetadata": {
+                "date": "2026-10-27",
+                "id": "wizards-mechanics",
+                "publisher": "Wizards of the Coast",
+                "kind": "official-rules",
+                "status": "retrieved",
+                "retrieved": "2026-10-27",
+                "sha256": "1a7c5a46bc6efa912d31707d1a8e19772fd36b10332bb9f27b1459ca3846e895"
+              }
+            },
+            {
+              "document": "research/star-trek-20261027/source-audit.json",
+              "pointer": "/sources/1/finalUrl",
+              "recordedMetadata": {
+                "date": "2026-10-27",
+                "id": "wizards-mechanics",
+                "publisher": "Wizards of the Coast",
+                "kind": "official-rules",
+                "status": "retrieved",
+                "retrieved": "2026-10-27",
+                "sha256": "1a7c5a46bc6efa912d31707d1a8e19772fd36b10332bb9f27b1459ca3846e895"
+              }
+            },
+            {
+              "document": "research/star-trek-20261028/source-audit.json",
+              "pointer": "/sources/1/url",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "wizards-mechanics",
+                "publisher": "Wizards of the Coast",
+                "kind": "official-rules",
+                "status": "retrieved",
+                "retrieved": "2026-10-28",
+                "sha256": "1a7c5a46bc6efa912d31707d1a8e19772fd36b10332bb9f27b1459ca3846e895"
+              }
+            },
+            {
+              "document": "research/star-trek-20261028/source-audit.json",
+              "pointer": "/sources/1/finalUrl",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "wizards-mechanics",
+                "publisher": "Wizards of the Coast",
+                "kind": "official-rules",
+                "status": "retrieved",
+                "retrieved": "2026-10-28",
+                "sha256": "1a7c5a46bc6efa912d31707d1a8e19772fd36b10332bb9f27b1459ca3846e895"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://magic.wizards.com/en/news/mtg-arena/star-trek-event-schedule",
+          "host": "magic.wizards.com",
+          "occurrences": [
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/links/arena-calendar",
+              "recordedMetadata": {}
+            },
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/research/sources/8/url",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "arena-calendar",
+                "label": "Arena: calendario e Mastery",
+                "kind": "official",
+                "checked": "2026-10-28",
+                "published": "2026-10-20"
+              }
+            },
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/research/sources/12/url",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "wizards-arena",
+                "publisher": "Wizards of the Coast",
+                "label": "Wizards of the Coast",
+                "kind": "official-calendar",
+                "status": "retrieved",
+                "retrieved": "2026-10-28",
+                "checked": "2026-10-28",
+                "sha256": "fa506585631c2ea0c7f6e319e4a31c86074c6426bd7245bb6d7cbf017a931759"
+              }
+            },
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/research/sources/12/finalUrl",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "wizards-arena",
+                "publisher": "Wizards of the Coast",
+                "label": "Wizards of the Coast",
+                "kind": "official-calendar",
+                "status": "retrieved",
+                "retrieved": "2026-10-28",
+                "checked": "2026-10-28",
+                "sha256": "fa506585631c2ea0c7f6e319e4a31c86074c6426bd7245bb6d7cbf017a931759"
+              }
+            },
+            {
+              "document": "research/star-trek-20261027/source-audit.json",
+              "pointer": "/sources/3/url",
+              "recordedMetadata": {
+                "date": "2026-10-27",
+                "id": "wizards-arena",
+                "publisher": "Wizards of the Coast",
+                "kind": "official-calendar",
+                "status": "retrieved",
+                "retrieved": "2026-10-27",
+                "sha256": "aa313943c4780653aae7b05afc850d181bfced178e0701086d9178577f8dee98"
+              }
+            },
+            {
+              "document": "research/star-trek-20261027/source-audit.json",
+              "pointer": "/sources/3/finalUrl",
+              "recordedMetadata": {
+                "date": "2026-10-27",
+                "id": "wizards-arena",
+                "publisher": "Wizards of the Coast",
+                "kind": "official-calendar",
+                "status": "retrieved",
+                "retrieved": "2026-10-27",
+                "sha256": "aa313943c4780653aae7b05afc850d181bfced178e0701086d9178577f8dee98"
+              }
+            },
+            {
+              "document": "research/star-trek-20261028/source-audit.json",
+              "pointer": "/sources/3/url",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "wizards-arena",
+                "publisher": "Wizards of the Coast",
+                "kind": "official-calendar",
+                "status": "retrieved",
+                "retrieved": "2026-10-28",
+                "sha256": "fa506585631c2ea0c7f6e319e4a31c86074c6426bd7245bb6d7cbf017a931759"
+              }
+            },
+            {
+              "document": "research/star-trek-20261028/source-audit.json",
+              "pointer": "/sources/3/finalUrl",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "wizards-arena",
+                "publisher": "Wizards of the Coast",
+                "kind": "official-calendar",
+                "status": "retrieved",
+                "retrieved": "2026-10-28",
+                "sha256": "fa506585631c2ea0c7f6e319e4a31c86074c6426bd7245bb6d7cbf017a931759"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://magic.wizards.com/en/products/star-trek/card-image-gallery",
+          "host": "magic.wizards.com",
+          "occurrences": [
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/links/8edf05ae6ce5",
+              "recordedMetadata": {}
+            },
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/research/sources/30/url",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "printed-card-proofreading",
+                "publisher": "Wizards of the Coast (immagini delle carte distribuite da Scryfall)",
+                "label": "Immagini delle carte: riscontro dei refusi di trascrizione",
+                "kind": "printed-card-image",
+                "retrieved": "2026-10-28",
+                "checked": "2026-10-28"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://magic.wizards.com/en/rules",
+          "host": "magic.wizards.com",
+          "occurrences": [
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/research/dataAudit/rulesReferences/0/url",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "checked": "2026-10-28"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://media.wizards.com/2026/downloads/MagicCompRules%2020260925.txt",
+          "host": "media.wizards.com",
+          "occurrences": [
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/links/619e1f12ab62",
+              "recordedMetadata": {}
+            },
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/research/sources/31/url",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "comprehensive-rules",
+                "publisher": "Wizards of the Coast",
+                "label": "Comprehensive Rules, 25 settembre 2026",
+                "kind": "official-rules",
+                "retrieved": "2026-10-28",
+                "checked": "2026-10-28"
+              }
+            },
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/research/dataAudit/rulesReferences/1/url",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "checked": "2026-10-28"
+              }
+            },
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/reviewAnalysis/rulesSource/url",
+              "recordedMetadata": {
+                "status": "preliminary",
+                "date": "2026-10-22",
+                "checked": "2026-10-28"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://media.wizards.com/ContentResources/WPN/MTG_MTR_2026_Feb27_EN.pdf",
+          "host": "media.wizards.com",
+          "occurrences": [
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/links/33a03f366ab8",
+              "recordedMetadata": {}
+            },
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/research/dataAudit/rulesReferences/2/url",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "checked": "2026-10-28"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://mtga.untapped.gg/limited/draft/star-trek/pick-order",
+          "host": "mtga.untapped.gg",
+          "occurrences": [
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/research/sources/23/url",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "untapped-pick-order",
+                "publisher": "Untapped.gg",
+                "label": "Untapped.gg",
+                "kind": "limited-ranking-availability",
+                "status": "no_set_data",
+                "retrieved": "2026-10-28",
+                "checked": "2026-10-28",
+                "sha256": "0b72d7b3653789fe12b41e3e4a445460c0cb51df7bbc8b453dad4e7401a10774"
+              }
+            },
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/research/sources/23/finalUrl",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "untapped-pick-order",
+                "publisher": "Untapped.gg",
+                "label": "Untapped.gg",
+                "kind": "limited-ranking-availability",
+                "status": "no_set_data",
+                "retrieved": "2026-10-28",
+                "checked": "2026-10-28",
+                "sha256": "0b72d7b3653789fe12b41e3e4a445460c0cb51df7bbc8b453dad4e7401a10774"
+              }
+            },
+            {
+              "document": "research/star-trek-20261027/source-audit.json",
+              "pointer": "/sources/16/url",
+              "recordedMetadata": {
+                "date": "2026-10-27",
+                "id": "untapped-pick-order",
+                "publisher": "Untapped.gg",
+                "kind": "limited-ranking-availability",
+                "status": "retrieved",
+                "retrieved": "2026-10-27",
+                "sha256": "9dba635cea14c8d37de7efdabbc538b3a702676a69f3e399e07f995e05548ec4"
+              }
+            },
+            {
+              "document": "research/star-trek-20261027/source-audit.json",
+              "pointer": "/sources/16/finalUrl",
+              "recordedMetadata": {
+                "date": "2026-10-27",
+                "id": "untapped-pick-order",
+                "publisher": "Untapped.gg",
+                "kind": "limited-ranking-availability",
+                "status": "retrieved",
+                "retrieved": "2026-10-27",
+                "sha256": "9dba635cea14c8d37de7efdabbc538b3a702676a69f3e399e07f995e05548ec4"
+              }
+            },
+            {
+              "document": "research/star-trek-20261028/source-audit.json",
+              "pointer": "/sources/16/url",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "untapped-pick-order",
+                "publisher": "Untapped.gg",
+                "kind": "limited-ranking-availability",
+                "status": "retrieved",
+                "retrieved": "2026-10-28",
+                "sha256": "0b72d7b3653789fe12b41e3e4a445460c0cb51df7bbc8b453dad4e7401a10774"
+              }
+            },
+            {
+              "document": "research/star-trek-20261028/source-audit.json",
+              "pointer": "/sources/16/finalUrl",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "untapped-pick-order",
+                "publisher": "Untapped.gg",
+                "kind": "limited-ranking-availability",
+                "status": "retrieved",
+                "retrieved": "2026-10-28",
+                "sha256": "0b72d7b3653789fe12b41e3e4a445460c0cb51df7bbc8b453dad4e7401a10774"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://mtgazone.com/limited/",
+          "host": "mtgazone.com",
+          "occurrences": [
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/research/sources/22/url",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "arenazone-limited",
+                "publisher": "MTG Arena Zone",
+                "label": "MTG Arena Zone",
+                "kind": "limited-index",
+                "status": "unavailable",
+                "retrieved": "2026-10-28",
+                "checked": "2026-10-28",
+                "error": "HTTP Error 403: Forbidden",
+                "sha256": "36755c61fd60c6f3cd2230418546cb625f8a484f937a3d52df1ba9e89cc4d6af"
+              }
+            },
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/research/sources/22/finalUrl",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "arenazone-limited",
+                "publisher": "MTG Arena Zone",
+                "label": "MTG Arena Zone",
+                "kind": "limited-index",
+                "status": "unavailable",
+                "retrieved": "2026-10-28",
+                "checked": "2026-10-28",
+                "error": "HTTP Error 403: Forbidden",
+                "sha256": "36755c61fd60c6f3cd2230418546cb625f8a484f937a3d52df1ba9e89cc4d6af"
+              }
+            },
+            {
+              "document": "research/star-trek-20261027/source-audit.json",
+              "pointer": "/sources/15/url",
+              "recordedMetadata": {
+                "date": "2026-10-27",
+                "id": "arenazone-limited",
+                "publisher": "MTG Arena Zone",
+                "kind": "limited-index",
+                "status": "retrieved",
+                "retrieved": "2026-10-27",
+                "sha256": "36755c61fd60c6f3cd2230418546cb625f8a484f937a3d52df1ba9e89cc4d6af"
+              }
+            },
+            {
+              "document": "research/star-trek-20261027/source-audit.json",
+              "pointer": "/sources/15/finalUrl",
+              "recordedMetadata": {
+                "date": "2026-10-27",
+                "id": "arenazone-limited",
+                "publisher": "MTG Arena Zone",
+                "kind": "limited-index",
+                "status": "retrieved",
+                "retrieved": "2026-10-27",
+                "sha256": "36755c61fd60c6f3cd2230418546cb625f8a484f937a3d52df1ba9e89cc4d6af"
+              }
+            },
+            {
+              "document": "research/star-trek-20261028/source-audit.json",
+              "pointer": "/sources/15/url",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "arenazone-limited",
+                "publisher": "MTG Arena Zone",
+                "kind": "limited-index",
+                "status": "unavailable",
+                "retrieved": "2026-10-28",
+                "error": "HTTP Error 403: Forbidden"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://mtgmeta.com/limited/trk",
+          "host": "mtgmeta.com",
+          "occurrences": [
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/links/meta-limited-preview",
+              "recordedMetadata": {}
+            },
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/research/sources/15/url",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "meta-limited-preview",
+                "publisher": "MTGMeta",
+                "label": "MTGMeta",
+                "kind": "prediction-not-observed-games",
+                "status": "retrieved",
+                "retrieved": "2026-10-28",
+                "checked": "2026-10-28",
+                "sha256": "193994696c276bf6205e190d5ea2f81d0a5a50182c6028e3991d60ba19ad2d04"
+              }
+            },
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/research/sources/15/finalUrl",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "meta-limited-preview",
+                "publisher": "MTGMeta",
+                "label": "MTGMeta",
+                "kind": "prediction-not-observed-games",
+                "status": "retrieved",
+                "retrieved": "2026-10-28",
+                "checked": "2026-10-28",
+                "sha256": "193994696c276bf6205e190d5ea2f81d0a5a50182c6028e3991d60ba19ad2d04"
+              }
+            },
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/reviewAnalysis/sources/2/url",
+              "recordedMetadata": {
+                "status": "preliminary",
+                "date": "2026-10-22",
+                "id": "meta-limited-preview",
+                "label": "MTGMeta: previsioni Limited TRK",
+                "kind": "model-prediction",
+                "checked": "2026-10-22"
+              }
+            },
+            {
+              "document": "research/star-trek-20261027/source-audit.json",
+              "pointer": "/sources/7/url",
+              "recordedMetadata": {
+                "date": "2026-10-27",
+                "id": "meta-limited-preview",
+                "publisher": "MTGMeta",
+                "kind": "prediction-not-observed-games",
+                "status": "retrieved",
+                "retrieved": "2026-10-27",
+                "sha256": "de40ddd61280796eb4891130b61df290409583718e2ed8410dcdc8320eb4113e"
+              }
+            },
+            {
+              "document": "research/star-trek-20261027/source-audit.json",
+              "pointer": "/sources/7/finalUrl",
+              "recordedMetadata": {
+                "date": "2026-10-27",
+                "id": "meta-limited-preview",
+                "publisher": "MTGMeta",
+                "kind": "prediction-not-observed-games",
+                "status": "retrieved",
+                "retrieved": "2026-10-27",
+                "sha256": "de40ddd61280796eb4891130b61df290409583718e2ed8410dcdc8320eb4113e"
+              }
+            },
+            {
+              "document": "research/star-trek-20261028/source-audit.json",
+              "pointer": "/sources/7/url",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "meta-limited-preview",
+                "publisher": "MTGMeta",
+                "kind": "prediction-not-observed-games",
+                "status": "retrieved",
+                "retrieved": "2026-10-28",
+                "sha256": "193994696c276bf6205e190d5ea2f81d0a5a50182c6028e3991d60ba19ad2d04"
+              }
+            },
+            {
+              "document": "research/star-trek-20261028/source-audit.json",
+              "pointer": "/sources/7/finalUrl",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "meta-limited-preview",
+                "publisher": "MTGMeta",
+                "kind": "prediction-not-observed-games",
+                "status": "retrieved",
+                "retrieved": "2026-10-28",
+                "sha256": "193994696c276bf6205e190d5ea2f81d0a5a50182c6028e3991d60ba19ad2d04"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://scryfall.com/card/trc/20/join-the-collective",
+          "host": "scryfall.com",
+          "occurrences": [
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/reviewAnalysis/commanderOnlyReviews/0/oracleSource",
+              "recordedMetadata": {
+                "status": "preliminary",
+                "date": "2026-10-22"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://scryfall.com/card/trk/145/d-7-battle-cruiser",
+          "host": "scryfall.com",
+          "occurrences": [
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/reviewAnalysis/observations/5/oracleSource",
+              "recordedMetadata": {
+                "status": "preliminary",
+                "date": "2026-10-22"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://scryfall.com/card/trk/158/munitions-enthusiast",
+          "host": "scryfall.com",
+          "occurrences": [
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/reviewAnalysis/observations/2/oracleSource",
+              "recordedMetadata": {
+                "status": "preliminary",
+                "date": "2026-10-22"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://scryfall.com/card/trk/165/q-stacking-the-deck",
+          "host": "scryfall.com",
+          "occurrences": [
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/reviewAnalysis/observations/4/oracleSource",
+              "recordedMetadata": {
+                "status": "preliminary",
+                "date": "2026-10-22"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://scryfall.com/card/trk/166/quark-humble-proprietor",
+          "host": "scryfall.com",
+          "occurrences": [
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/reviewAnalysis/observations/3/oracleSource",
+              "recordedMetadata": {
+                "status": "preliminary",
+                "date": "2026-10-22"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://scryfall.com/card/trk/34/set-phasers-to-",
+          "host": "scryfall.com",
+          "occurrences": [
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/reviewAnalysis/observations/1/oracleSource",
+              "recordedMetadata": {
+                "status": "preliminary",
+                "date": "2026-10-22"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://scryfall.com/card/trk/59/federation-probe",
+          "host": "scryfall.com",
+          "occurrences": [
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/reviewAnalysis/observations/0/oracleSource",
+              "recordedMetadata": {
+                "status": "preliminary",
+                "date": "2026-10-22"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://scryfall.com/sets/sds",
+          "host": "scryfall.com",
+          "occurrences": [
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/links/ce97dcf2e8c7",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://scryfall.com/sets/trk",
+          "host": "scryfall.com",
+          "occurrences": [
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/links/7f2c239a7307",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://wpn.wizards.com/en/news/magic-the-gathering-star-trek-product-delays-in-select-regions",
+          "host": "wpn.wizards.com",
+          "occurrences": [
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/links/regional-delays",
+              "recordedMetadata": {}
+            },
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/research/sources/3/url",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "regional-delays",
+                "label": "WPN: ritardi per prodotto e regione",
+                "kind": "official",
+                "checked": "2026-10-28",
+                "published": "2026-10-16"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://wpn.wizards.com/en/rules-documents",
+          "host": "wpn.wizards.com",
+          "occurrences": [
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/links/852c75a1ad54",
+              "recordedMetadata": {}
+            }
+          ]
+        },
+        {
+          "url": "https://www.cardmarket.com/en/Magic/Products/Singles/Star-Trek/Type-2-Phaser",
+          "host": "www.cardmarket.com",
+          "occurrences": [
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/research/sources/26/url",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "cardmarket-product-browser",
+                "publisher": "Cardmarket",
+                "label": "Cardmarket: lettura diretta successiva",
+                "kind": "product-price",
+                "retrieved": "2026-10-27",
+                "checked": "2026-10-27"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://www.cardmarket.com/en/Magic/Spoilers/Star-Trek",
+          "host": "www.cardmarket.com",
+          "occurrences": [
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/research/sources/24/url",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "cardmarket-spoiler",
+                "publisher": "Cardmarket",
+                "label": "Cardmarket",
+                "kind": "marketplace",
+                "status": "unavailable",
+                "retrieved": "2026-10-28",
+                "checked": "2026-10-28",
+                "error": "HTTP Error 403: Forbidden"
+              }
+            },
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/research/sources/27/url",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "cardmarket-main-browser",
+                "publisher": "Cardmarket",
+                "label": "Cardmarket: catalogo principale",
+                "kind": "price-list",
+                "retrieved": "2026-10-27",
+                "checked": "2026-10-27"
+              }
+            },
+            {
+              "document": "research/star-trek-20261027/source-audit.json",
+              "pointer": "/sources/17/url",
+              "recordedMetadata": {
+                "date": "2026-10-27",
+                "id": "cardmarket-spoiler",
+                "publisher": "Cardmarket",
+                "kind": "marketplace",
+                "status": "unavailable",
+                "retrieved": "2026-10-27",
+                "error": "HTTP Error 403: Forbidden"
+              }
+            },
+            {
+              "document": "research/star-trek-20261028/source-audit.json",
+              "pointer": "/sources/17/url",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "cardmarket-spoiler",
+                "publisher": "Cardmarket",
+                "kind": "marketplace",
+                "status": "unavailable",
+                "retrieved": "2026-10-28",
+                "error": "HTTP Error 403: Forbidden"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://www.cardmarket.com/en/Magic/Spoilers/Star-Trek-Extras",
+          "host": "www.cardmarket.com",
+          "occurrences": [
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/research/sources/28/url",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "cardmarket-extras-browser",
+                "publisher": "Cardmarket",
+                "label": "Cardmarket: Extras",
+                "kind": "variant-price-list",
+                "retrieved": "2026-10-27",
+                "checked": "2026-10-27"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://www.mtg-standard.com/power-rating-system",
+          "host": "www.mtg-standard.com",
+          "occurrences": [
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/links/standard-method",
+              "recordedMetadata": {}
+            },
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/research/sources/14/url",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "standard-method",
+                "publisher": "MTG-Standard",
+                "label": "MTG-Standard",
+                "kind": "methodology",
+                "status": "retrieved",
+                "retrieved": "2026-10-28",
+                "checked": "2026-10-28",
+                "sha256": "1d4f051378bb9583c7c05c2b8766ee1acec63316fdd87a67b72c6b140fc17ff4"
+              }
+            },
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/research/sources/14/finalUrl",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "standard-method",
+                "publisher": "MTG-Standard",
+                "label": "MTG-Standard",
+                "kind": "methodology",
+                "status": "retrieved",
+                "retrieved": "2026-10-28",
+                "checked": "2026-10-28",
+                "sha256": "1d4f051378bb9583c7c05c2b8766ee1acec63316fdd87a67b72c6b140fc17ff4"
+              }
+            },
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/reviewAnalysis/sources/1/url",
+              "recordedMetadata": {
+                "status": "preliminary",
+                "date": "2026-10-22",
+                "id": "standard-method",
+                "label": "MTG-Standard: metodologia",
+                "kind": "methodology",
+                "checked": "2026-10-22"
+              }
+            },
+            {
+              "document": "research/star-trek-20261027/source-audit.json",
+              "pointer": "/sources/6/url",
+              "recordedMetadata": {
+                "date": "2026-10-27",
+                "id": "standard-method",
+                "publisher": "MTG-Standard",
+                "kind": "methodology",
+                "status": "retrieved",
+                "retrieved": "2026-10-27",
+                "sha256": "1d4f051378bb9583c7c05c2b8766ee1acec63316fdd87a67b72c6b140fc17ff4"
+              }
+            },
+            {
+              "document": "research/star-trek-20261027/source-audit.json",
+              "pointer": "/sources/6/finalUrl",
+              "recordedMetadata": {
+                "date": "2026-10-27",
+                "id": "standard-method",
+                "publisher": "MTG-Standard",
+                "kind": "methodology",
+                "status": "retrieved",
+                "retrieved": "2026-10-27",
+                "sha256": "1d4f051378bb9583c7c05c2b8766ee1acec63316fdd87a67b72c6b140fc17ff4"
+              }
+            },
+            {
+              "document": "research/star-trek-20261028/source-audit.json",
+              "pointer": "/sources/6/url",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "standard-method",
+                "publisher": "MTG-Standard",
+                "kind": "methodology",
+                "status": "retrieved",
+                "retrieved": "2026-10-28",
+                "sha256": "1d4f051378bb9583c7c05c2b8766ee1acec63316fdd87a67b72c6b140fc17ff4"
+              }
+            },
+            {
+              "document": "research/star-trek-20261028/source-audit.json",
+              "pointer": "/sources/6/finalUrl",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "standard-method",
+                "publisher": "MTG-Standard",
+                "kind": "methodology",
+                "status": "retrieved",
+                "retrieved": "2026-10-28",
+                "sha256": "1d4f051378bb9583c7c05c2b8766ee1acec63316fdd87a67b72c6b140fc17ff4"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://www.mtg-standard.com/powerating/TRK",
+          "host": "www.mtg-standard.com",
+          "occurrences": [
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/links/standard-preview-ratings",
+              "recordedMetadata": {}
+            },
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/research/sources/13/url",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "standard-preview-ratings",
+                "publisher": "MTG-Standard",
+                "label": "MTG-Standard",
+                "kind": "automated-constructed-ratings",
+                "status": "retrieved",
+                "retrieved": "2026-10-28",
+                "checked": "2026-10-28",
+                "sha256": "4d0f9a1b9f40e266f8181a647e811f8831d93d46dbeef62d360aff108d03928f"
+              }
+            },
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/research/sources/13/finalUrl",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "standard-preview-ratings",
+                "publisher": "MTG-Standard",
+                "label": "MTG-Standard",
+                "kind": "automated-constructed-ratings",
+                "status": "retrieved",
+                "retrieved": "2026-10-28",
+                "checked": "2026-10-28",
+                "sha256": "4d0f9a1b9f40e266f8181a647e811f8831d93d46dbeef62d360aff108d03928f"
+              }
+            },
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/reviewAnalysis/sources/0/url",
+              "recordedMetadata": {
+                "status": "preliminary",
+                "date": "2026-10-22",
+                "id": "standard-preview-ratings",
+                "label": "MTG-Standard: punteggi preliminari TRK",
+                "kind": "automated-ranking",
+                "checked": "2026-10-22"
+              }
+            },
+            {
+              "document": "research/star-trek-20261027/source-audit.json",
+              "pointer": "/sources/5/url",
+              "recordedMetadata": {
+                "date": "2026-10-27",
+                "id": "standard-preview-ratings",
+                "publisher": "MTG-Standard",
+                "kind": "automated-constructed-ratings",
+                "status": "retrieved",
+                "retrieved": "2026-10-27",
+                "sha256": "eb252299094092fd405e4a165f985ce48510ea70502be6df2b5f702cf0283075"
+              }
+            },
+            {
+              "document": "research/star-trek-20261027/source-audit.json",
+              "pointer": "/sources/5/finalUrl",
+              "recordedMetadata": {
+                "date": "2026-10-27",
+                "id": "standard-preview-ratings",
+                "publisher": "MTG-Standard",
+                "kind": "automated-constructed-ratings",
+                "status": "retrieved",
+                "retrieved": "2026-10-27",
+                "sha256": "eb252299094092fd405e4a165f985ce48510ea70502be6df2b5f702cf0283075"
+              }
+            },
+            {
+              "document": "research/star-trek-20261028/source-audit.json",
+              "pointer": "/sources/5/url",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "standard-preview-ratings",
+                "publisher": "MTG-Standard",
+                "kind": "automated-constructed-ratings",
+                "status": "retrieved",
+                "retrieved": "2026-10-28",
+                "sha256": "4d0f9a1b9f40e266f8181a647e811f8831d93d46dbeef62d360aff108d03928f"
+              }
+            },
+            {
+              "document": "research/star-trek-20261028/source-audit.json",
+              "pointer": "/sources/5/finalUrl",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "standard-preview-ratings",
+                "publisher": "MTG-Standard",
+                "kind": "automated-constructed-ratings",
+                "status": "retrieved",
+                "retrieved": "2026-10-28",
+                "sha256": "4d0f9a1b9f40e266f8181a647e811f8831d93d46dbeef62d360aff108d03928f"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://www.mtggoldfish.com/articles/star-trek-spoilers-october-21-26-borg-commander-precon",
+          "host": "www.mtggoldfish.com",
+          "occurrences": [
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/research/sources/20/url",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "goldfish-previews",
+                "publisher": "MTGGoldfish",
+                "label": "MTGGoldfish",
+                "kind": "preview-gallery",
+                "status": "retrieved",
+                "retrieved": "2026-10-28",
+                "checked": "2026-10-28",
+                "sha256": "cd65e5a0944de6f2eb708931b09136cfbc27afdcb4daaa2133ef698efa8a544d"
+              }
+            },
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/research/sources/20/finalUrl",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "goldfish-previews",
+                "publisher": "MTGGoldfish",
+                "label": "MTGGoldfish",
+                "kind": "preview-gallery",
+                "status": "retrieved",
+                "retrieved": "2026-10-28",
+                "checked": "2026-10-28",
+                "sha256": "cd65e5a0944de6f2eb708931b09136cfbc27afdcb4daaa2133ef698efa8a544d"
+              }
+            },
+            {
+              "document": "research/star-trek-20261027/source-audit.json",
+              "pointer": "/sources/13/url",
+              "recordedMetadata": {
+                "date": "2026-10-27",
+                "id": "goldfish-previews",
+                "publisher": "MTGGoldfish",
+                "kind": "preview-gallery",
+                "status": "retrieved",
+                "retrieved": "2026-10-27",
+                "sha256": "6f209122b2d1ee1cbbfb708c0d56c01ba7d1d6536bc96381454d2975316ac9f2"
+              }
+            },
+            {
+              "document": "research/star-trek-20261027/source-audit.json",
+              "pointer": "/sources/13/finalUrl",
+              "recordedMetadata": {
+                "date": "2026-10-27",
+                "id": "goldfish-previews",
+                "publisher": "MTGGoldfish",
+                "kind": "preview-gallery",
+                "status": "retrieved",
+                "retrieved": "2026-10-27",
+                "sha256": "6f209122b2d1ee1cbbfb708c0d56c01ba7d1d6536bc96381454d2975316ac9f2"
+              }
+            },
+            {
+              "document": "research/star-trek-20261028/source-audit.json",
+              "pointer": "/sources/13/url",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "goldfish-previews",
+                "publisher": "MTGGoldfish",
+                "kind": "preview-gallery",
+                "status": "retrieved",
+                "retrieved": "2026-10-28",
+                "sha256": "cd65e5a0944de6f2eb708931b09136cfbc27afdcb4daaa2133ef698efa8a544d"
+              }
+            },
+            {
+              "document": "research/star-trek-20261028/source-audit.json",
+              "pointer": "/sources/13/finalUrl",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "goldfish-previews",
+                "publisher": "MTGGoldfish",
+                "kind": "preview-gallery",
+                "status": "retrieved",
+                "retrieved": "2026-10-28",
+                "sha256": "cd65e5a0944de6f2eb708931b09136cfbc27afdcb4daaa2133ef698efa8a544d"
+              }
+            }
+          ]
+        },
+        {
+          "url": "https://www.space.com/entertainment/space-games/magic-the-gathering-is-exploring-strange-new-worlds-with-the-star-trek-60th-anniversary-crossover-interview",
+          "host": "www.space.com",
+          "occurrences": [
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/links/design-interview",
+              "recordedMetadata": {}
+            },
+            {
+              "document": "expansions/star-trek/sources.json",
+              "pointer": "/research/sources/6/url",
+              "recordedMetadata": {
+                "date": "2026-10-28",
+                "id": "design-interview",
+                "label": "Space.com: intervista a Gavin Verhey",
+                "kind": "interview",
+                "checked": "2026-10-28",
+                "published": "2026-10-03"
+              }
+            }
+          ]
+        }
+      ],
+      "localDownloads": [],
+      "researchFiles": [
+        "research/star-trek-20261027/cardmarket-extras-dom.json",
+        "research/star-trek-20261027/cardmarket-main-dom.json",
+        "research/star-trek-20261027/cardmarket-normalized.json",
+        "research/star-trek-20261027/cardmarket-type2-direct.json",
+        "research/star-trek-20261027/coverage.json",
+        "research/star-trek-20261027/edhrec-set-observations.json",
+        "research/star-trek-20261027/editorial-notes.json",
+        "research/star-trek-20261027/source-audit.json",
+        "research/star-trek-20261027/standard-constructed-preview.json",
+        "research/star-trek-20261027/verification.json",
+        "research/star-trek-20261028/browser-verification.json",
+        "research/star-trek-20261028/catalog-delta.json",
+        "research/star-trek-20261028/coverage.json",
+        "research/star-trek-20261028/editorial-notes.json",
+        "research/star-trek-20261028/new-card-1440.png",
+        "research/star-trek-20261028/new-card-390.png",
+        "research/star-trek-20261028/README.md",
+        "research/star-trek-20261028/research-1440.png",
+        "research/star-trek-20261028/research-390.png",
+        "research/star-trek-20261028/source-audit.json",
+        "research/star-trek-20261028/standard-constructed-preview.json",
+        "research/star-trek-20261028/verify-update.cjs",
+        "research/star-trek-20261028-audit/191.jpg",
+        "research/star-trek-20261028-audit/248.jpg",
+        "research/star-trek-20261028-audit/67.jpg",
+        "research/star-trek-20261028-audit/browser-verification.json",
+        "research/star-trek-20261028-audit/catalog-check.json",
+        "research/star-trek-20261028-audit/corrected-card-1440.png",
+        "research/star-trek-20261028-audit/corrected-card-390.png",
+        "research/star-trek-20261028-audit/corrected-sources-1440.png",
+        "research/star-trek-20261028-audit/corrected-sources-390.png",
+        "research/star-trek-20261028-audit/corrections.json",
+        "research/star-trek-20261028-audit/derived-data-check.json",
+        "research/star-trek-20261028-audit/import-repeat-check.json",
+        "research/star-trek-20261028-audit/observation-check.json",
+        "research/star-trek-20261028-audit/README.md",
+        "research/star-trek-20261028-audit/research-1440.png",
+        "research/star-trek-20261028-audit/research-390.png",
+        "research/star-trek-20261028-audit/scryfall-verification.json",
+        "research/star-trek-20261028-audit/verify-audit.cjs"
+      ]
+    }
+  ]
+}

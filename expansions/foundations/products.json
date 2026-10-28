@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "products": {
+    "play": {
+      "name": "Play Booster",
+      "packSize": 14,
+      "tokensIncluded": false,
+      "collation": null,
+      "published": {
+        "date": "2026-10-28",
+        "source": "https://magic.wizards.com/en/news/feature/collecting-foundations",
+        "packSize": 14,
+        "notes": [
+          "Foundations comprende anche carte della Starter Collection e della Beginner Box. Il codice FDN non certifica da solo la presenza nelle Play Booster.",
+          "Le Play Booster contengono 14 carte; le Special Guests sostituiscono una comune nell’1,5% delle buste. Jumpstart J25 è un prodotto distinto."
+        ],
+        "sourceSnapshot": "research/foundations-20261028/wizards-collecting.txt",
+        "slots": {
+          "common": [
+            6,
+            7
+          ],
+          "uncommon": 3,
+          "rareOrMythic": 1,
+          "nonfoilWildcard": 1,
+          "foilWildcard": 1,
+          "land": 1
+        },
+        "specialGuestReplacesCommonProbability": 0.015,
+        "land": {
+          "characterBasic": 0.25,
+          "commonDual": 0.5,
+          "regularBasic": 0.25,
+          "foil": 0.2
+        }
+      },
+      "missing": [
+        "Ricetta completa con probabilità dei trattamenti, gruppi e dipendenze fra slot. Nessuna equiprobabilità dedotta dal flag booster."
+      ]
+    }
+  }
+}

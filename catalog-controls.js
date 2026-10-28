@@ -85,6 +85,12 @@ function mount(target,order){
  }
  const requested=new URLSearchParams(location.search).get('order');if(requested&&[...order.options].some(o=>o.value===requested&&!o.disabled))order.value=requested;
 }
-function summary(c){if(!hasReviews&&!hasRank&&!hasWR)return '';const rank=c.untappedPickOrder,row=wrSource.cards[c.id],wr=winRate(c);return `<p class="catalog-metrics">Recensioni: ${c.community==null?'N/D':esc(c.community)+' / 5'}<br>Ranking Draft: ${rank?.tier?'tier '+esc(rank.tier):rank?.status==='low_match_volume'?'campione insufficiente':'N/D'}<br>WR in mano: ${wr==null?'N/D':wr.toLocaleString('it-IT')+'%'}${rank?.retrieved?'<br>Ranking: '+esc(rank.retrieved):''}${row?'<br><a href="'+esc(row.url)+'" target="_blank" rel="noopener">Untapped, '+esc(wrSource.retrieved)+'</a>':''}</p>`}
+function summary(c){
+ if(!hasReviews&&!hasRank&&!hasWR)return '';
+ const rank=c.untappedPickOrder,row=wrSource.cards[c.id],wr=winRate(c);
+ const review=(c.evidence||[]).find(item=>item.url===c.communitySource);
+ const attribution=review&&/^https:\/\//.test(review.url)?'<br><a href="'+esc(review.url)+'" target="_blank" rel="noopener">'+esc(review.author||'Recensione')+(review.original?' · '+esc(review.original):'')+'</a>':'';
+ return `<p class="catalog-metrics">Recensioni: ${c.community==null?'N/D':esc(c.community)+' / 5'}${attribution}<br>Ranking Draft: ${rank?.tier?'tier '+esc(rank.tier):rank?.status==='low_match_volume'?'campione insufficiente':'N/D'}<br>WR in mano: ${wr==null?'N/D':wr.toLocaleString('it-IT')+'%'}${rank?.retrieved?'<br>Ranking: '+esc(rank.retrieved):''}${row?'<br><a href="'+esc(row.url)+'" target="_blank" rel="noopener">Untapped, '+esc(wrSource.retrieved)+'</a>':''}</p>`;
+}
 return {mount,ids,extraMatches,compareCards,winRate,cardTypes,wrSource,hasRank,hasWR,summary,refresh(){refreshFilters()},reset(){for(const id of ids)$(id).value='';refreshFilters()}};
 }};

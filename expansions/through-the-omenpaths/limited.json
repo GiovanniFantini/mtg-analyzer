@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "events": {
+    "draft": {
+      "id": "om1-draft",
+      "name": "Pick-Two Draft MTGO (4 giocatori)",
+      "kind": "draft",
+      "product": "play",
+      "packsPerPlayer": 3,
+      "seats": 4,
+      "picksPerTurn": 2,
+      "directions": [
+        1,
+        -1,
+        1
+      ],
+      "minDeckSize": 40,
+      "maxCopies": null,
+      "extraBasicLands": true,
+      "mulligan": {
+        "kind": "london",
+        "handSize": 7,
+        "freeMulligans": 0
+      },
+      "sources": [
+        "https://www.mtgo.com/news/through-the-omenpaths-event-structure"
+      ],
+      "platform": "Magic Online"
+    },
+    "sealed": {
+      "id": "om1-sealed",
+      "name": "Sealed League MTGO (6 Play Booster)",
+      "kind": "sealed",
+      "product": "play",
+      "packsPerPlayer": 6,
+      "seats": 1,
+      "picksPerTurn": 0,
+      "directions": [],
+      "minDeckSize": 40,
+      "maxCopies": null,
+      "extraBasicLands": true,
+      "mulligan": {
+        "kind": "london",
+        "handSize": 7,
+        "freeMulligans": 0
+      },
+      "sources": [
+        "https://www.mtgo.com/news/through-the-omenpaths-event-structure"
+      ],
+      "platform": "Magic Online"
+    }
+  },
+  "limitations": []
+}

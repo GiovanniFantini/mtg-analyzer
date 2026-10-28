@@ -1,0 +1,77 @@
+{
+  "date": "2026-10-28",
+  "scope": "Verifiche di accesso supplementari, distinte dalle recensioni per carta già integrate.",
+  "sources": [
+    {
+      "provider": "EDHREC",
+      "url": "https://edhrec.com/articles/murders-at-karlov-manor-set-review-black",
+      "retrieved": "2026-10-28",
+      "dataIntegrated": false,
+      "status": 200,
+      "resolvedUrl": "https://edhrec.com/articles/murders-at-karlov-manor-set-review-black",
+      "bytes": 255247,
+      "sha256": "6189f755e856c9b8ccd19d7fb81cb76fb53c3882acb5cf620448d0b7983b704d",
+      "title": "Murders at Karlov Manor Set Review - Black | EDHREC",
+      "snapshot": "edhrec-supplement.txt",
+      "limitation": "Pagina acquisita; nessuna estrazione sistematica delle osservazioni per carta da questa fonte. Tabelle dinamiche, contenuti bloccati o pagina indice non equivalgono a dati acquisiti."
+    },
+    {
+      "provider": "MTGGoldfish",
+      "url": "https://www.mtggoldfish.com/articles/search?q=murders+at+karlov+manor",
+      "retrieved": "2026-10-28",
+      "dataIntegrated": false,
+      "status": 200,
+      "resolvedUrl": "https://www.mtggoldfish.com/articles/search?q=murders+at+karlov+manor",
+      "bytes": 75639,
+      "sha256": "e81429309a62b37f48c4ba9b830c92239f12084b17c2c41c998f722069e795a7",
+      "title": "Magic: the Gathering Articles Search",
+      "limitation": "Pagina acquisita; nessuna estrazione sistematica delle osservazioni per carta da questa fonte. Tabelle dinamiche, contenuti bloccati o pagina indice non equivalgono a dati acquisiti."
+    },
+    {
+      "provider": "MTGDECKS",
+      "url": "https://mtgdecks.net/MKM",
+      "retrieved": "2026-10-28",
+      "dataIntegrated": false,
+      "status": "unavailable",
+      "error": "HTTP Error 404: Not Found",
+      "limitation": "Nessun dato estratto; fonte candidata non verificata per copertura."
+    },
+    {
+      "provider": "Untapped",
+      "url": "https://mtga.untapped.gg/limited/draft/murders-at-karlov-manor/card-data",
+      "retrieved": "2026-10-28",
+      "dataIntegrated": false,
+      "status": 200,
+      "resolvedUrl": "https://mtga.untapped.gg/limited/draft/murders-at-karlov-manor/card-data",
+      "bytes": 719899,
+      "sha256": "07abb612794c82b0fda63c1dd6f1eb6b0fbd0480fdfdf6b866413a20f7761b2f",
+      "title": "MTG Murders at Karlov Manor (MKM) Draft Card Data - Untapped.gg",
+      "limitation": "Pagina acquisita; nessuna estrazione sistematica delle osservazioni per carta da questa fonte. Tabelle dinamiche, contenuti bloccati o pagina indice non equivalgono a dati acquisiti."
+    },
+    {
+      "provider": "Card Kingdom",
+      "url": "https://blog.cardkingdom.com/murders-at-karlov-manor-draft-guide/",
+      "retrieved": "2026-10-28",
+      "dataIntegrated": false,
+      "status": 200,
+      "resolvedUrl": "https://blog.cardkingdom.com/murders-at-karlov-manor-draft-guide/",
+      "bytes": 162670,
+      "sha256": "42610eb718a519a550c2064ea3d2f9ff1d2ece52bfe937c075553a67bd33999c",
+      "title": "Murders at Karlov Manor Draft Guide - Card Kingdom Blog",
+      "snapshot": "card-kingdom-supplement.txt",
+      "limitation": "Pagina acquisita; nessuna estrazione sistematica delle osservazioni per carta da questa fonte. Tabelle dinamiche, contenuti bloccati o pagina indice non equivalgono a dati acquisiti."
+    },
+    {
+      "provider": "Cards Realm",
+      "url": "https://mtg.cardsrealm.com/en-us/sets/mkm-murders-at-karlov-manor",
+      "retrieved": "2026-10-28",
+      "dataIntegrated": false,
+      "status": 200,
+      "resolvedUrl": "https://mtg.cardsrealm.com/en-us/sets/mkm-murders-at-karlov-manor",
+      "bytes": 532494,
+      "sha256": "3a3bfd564af01037b9305c127d29bb29e893c8e4d74823dfcf6aeeb088f1d278",
+      "title": "Murders at Karlov Manor MKM - Spoilers and Prices | Cards Realm",
+      "limitation": "Pagina acquisita; nessuna estrazione sistematica delle osservazioni per carta da questa fonte. Tabelle dinamiche, contenuti bloccati o pagina indice non equivalgono a dati acquisiti."
+    }
+  ]
+}

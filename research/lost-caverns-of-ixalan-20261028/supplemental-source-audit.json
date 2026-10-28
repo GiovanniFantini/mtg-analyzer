@@ -1,0 +1,69 @@
+{
+  "date": "2026-10-28",
+  "scope": "Verifiche di accesso supplementari, distinte dalle recensioni per carta già integrate.",
+  "sources": [
+    {
+      "provider": "EDHREC",
+      "url": "https://edhrec.com/articles/the-lost-caverns-of-ixalan-set-review-black",
+      "retrieved": "2026-10-28",
+      "dataIntegrated": false,
+      "status": "unavailable",
+      "error": "HTTP Error 404: Not Found",
+      "limitation": "Nessun dato estratto; fonte candidata non verificata per copertura."
+    },
+    {
+      "provider": "MTGGoldfish",
+      "url": "https://www.mtggoldfish.com/articles/search?q=lost+caverns+of+ixalan",
+      "retrieved": "2026-10-28",
+      "dataIntegrated": false,
+      "status": 200,
+      "resolvedUrl": "https://www.mtggoldfish.com/articles/search?q=lost+caverns+of+ixalan",
+      "bytes": 77228,
+      "sha256": "68d14a39d174d224f5c546cb8d052cb7d87e458091f48a17c867aee0d5b864af",
+      "title": "Magic: the Gathering Articles Search",
+      "limitation": "Pagina acquisita; nessuna estrazione sistematica delle osservazioni per carta da questa fonte. Tabelle dinamiche, contenuti bloccati o pagina indice non equivalgono a dati acquisiti."
+    },
+    {
+      "provider": "MTGDECKS",
+      "url": "https://mtgdecks.net/LCI",
+      "retrieved": "2026-10-28",
+      "dataIntegrated": false,
+      "status": "unavailable",
+      "error": "HTTP Error 404: Not Found",
+      "limitation": "Nessun dato estratto; fonte candidata non verificata per copertura."
+    },
+    {
+      "provider": "Untapped",
+      "url": "https://mtga.untapped.gg/limited/draft/lost-caverns-of-ixalan/card-data",
+      "retrieved": "2026-10-28",
+      "dataIntegrated": false,
+      "status": 200,
+      "resolvedUrl": "https://mtga.untapped.gg/limited/draft/lost-caverns-of-ixalan/card-data",
+      "bytes": 406200,
+      "sha256": "c1490f7a48db0de2490b76f4fcb12d46339fc8bdfd3e9e3f387f28ad599dab4d",
+      "title": "Error - Untapped.gg",
+      "limitation": "Pagina acquisita; nessuna estrazione sistematica delle osservazioni per carta da questa fonte. Tabelle dinamiche, contenuti bloccati o pagina indice non equivalgono a dati acquisiti."
+    },
+    {
+      "provider": "Card Kingdom",
+      "url": "https://blog.cardkingdom.com/lost-caverns-of-ixalan-draft-guide/",
+      "retrieved": "2026-10-28",
+      "dataIntegrated": false,
+      "status": "unavailable",
+      "error": "HTTP Error 404: Not Found",
+      "limitation": "Nessun dato estratto; fonte candidata non verificata per copertura."
+    },
+    {
+      "provider": "Cards Realm",
+      "url": "https://mtg.cardsrealm.com/en-us/sets/lci-lost-caverns-of-ixalan",
+      "retrieved": "2026-10-28",
+      "dataIntegrated": false,
+      "status": 200,
+      "resolvedUrl": "https://mtg.cardsrealm.com/en-us/sets/",
+      "bytes": 111568,
+      "sha256": "cb8b9404ebc4dacf9dbc39277d0c468763535b72d68acb66fc84d13262717635",
+      "title": "Magic: the Gathering MTG sets and editions list | Cards Realm",
+      "limitation": "Pagina acquisita; nessuna estrazione sistematica delle osservazioni per carta da questa fonte. Tabelle dinamiche, contenuti bloccati o pagina indice non equivalgono a dati acquisiti."
+    }
+  ]
+}

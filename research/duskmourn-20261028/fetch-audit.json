@@ -1,0 +1,161 @@
+{
+  "date": "2026-10-28",
+  "set": "DSK",
+  "acquisitions": [
+    {
+      "url": "https://api.scryfall.com/sets/dsk",
+      "resolvedUrl": "https://api.scryfall.com/sets/dsk",
+      "file": "scryfall-set.json",
+      "status": 200,
+      "bytes": 608,
+      "sha256": "4f5aa88d8c0d6e2e372c075503f640995b1a6f8a7acd9c365a88082ca13cba3c",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://api.scryfall.com/cards/search?q=set%3Adsk&unique=prints&order=set&include_extras=false",
+      "resolvedUrl": "https://api.scryfall.com/cards/search?q=set%3Adsk&unique=prints&order=set&include_extras=false",
+      "file": "scryfall-0-page-1.json",
+      "status": 200,
+      "bytes": 948795,
+      "sha256": "68288c61cd1afc2147b7d93b5eb259d6ab0f7d1c66272143c06dbdd6a0524342",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://api.scryfall.com/cards/search?format=json&include_extras=false&include_multilingual=false&include_variations=false&order=set&page=2&q=set%3Adsk&unique=prints",
+      "resolvedUrl": "https://api.scryfall.com/cards/search?format=json&include_extras=false&include_multilingual=false&include_variations=false&order=set&page=2&q=set%3Adsk&unique=prints",
+      "file": "scryfall-0-page-2.json",
+      "status": 200,
+      "bytes": 950392,
+      "sha256": "915f0b836113eaf4dbbca6701814ec7b9a96c85d5a162728f14afdcf33c4fa4b",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://api.scryfall.com/cards/search?format=json&include_extras=false&include_multilingual=false&include_variations=false&order=set&page=3&q=set%3Adsk&unique=prints",
+      "resolvedUrl": "https://api.scryfall.com/cards/search?format=json&include_extras=false&include_multilingual=false&include_variations=false&order=set&page=3&q=set%3Adsk&unique=prints",
+      "file": "scryfall-0-page-3.json",
+      "status": 200,
+      "bytes": 368534,
+      "sha256": "95e79509ab0e303d13bba7d03a8a7c8d03d11f3cc3e46bcbf0116456fdca8f57",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://api.scryfall.com/cards/search?q=set%3Aspg+cn%3E%3D64+cn%3C%3D73&unique=prints&order=set&include_extras=false",
+      "resolvedUrl": "https://api.scryfall.com/cards/search?q=set%3Aspg+cn%3E%3D64+cn%3C%3D73&unique=prints&order=set&include_extras=false",
+      "file": "scryfall-1-page-1.json",
+      "status": 200,
+      "bytes": 54287,
+      "sha256": "f95f8c1d6a92f2c7ed84dfde14980ba8940dd26fa6e75b0253c1be62ed67f202",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://www.17lands.com/card_ratings/data?expansion=DSK&format=PremierDraft&start_date=2024-09-24&end_date=2024-11-11",
+      "resolvedUrl": "https://www.17lands.com/card_ratings/data?expansion=DSK&format=PremierDraft&start_date=2024-09-24&end_date=2024-11-11",
+      "file": "17lands-premier.json",
+      "status": "acquired_not_reused",
+      "bytes": 172543,
+      "sha256": "f37b853b2ab71d6fa3b9e132dbefcabbae6806d9f603561c60d77ca8904fc2f7",
+      "retrieved": "2026-10-28",
+      "limitation": "API output restricted to 17Lands.com. Raw acquisition removed and not included in public data; use authorized public datasets."
+    },
+    {
+      "url": "https://magic.wizards.com/en/news/feature/collecting-duskmourn",
+      "resolvedUrl": "https://magic.wizards.com/en/news/feature/collecting-duskmourn",
+      "file": "wizards-collecting.html",
+      "status": 200,
+      "bytes": 245854,
+      "sha256": "2be2288bc45168e56fde62e8ea987b7f402df2047b9f494b97e2f023a63d2619",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://magic.wizards.com/en/news/feature/duskmourn-mechanics",
+      "file": "wizards-mechanics.html",
+      "status": "failed",
+      "error": "HTTP Error 404: Not Found",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://magic.wizards.com/en/news/feature/duskmourn-release-notes",
+      "file": "wizards-release-notes.html",
+      "status": "failed",
+      "error": "HTTP Error 404: Not Found",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://draftsim.com/mtg-dsk-draft-guide/",
+      "resolvedUrl": "https://draftsim.com/mtg-dsk-draft-guide/",
+      "file": "draftsim-guide.html",
+      "status": 200,
+      "bytes": 2056034,
+      "sha256": "921af81f09825e99fb653bb42a7e8bfae3ed8f45bc901501e2ad8420cdff3383",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://draftsim.com/dsk-limited-set-review/",
+      "file": "draftsim-review.html",
+      "status": "failed",
+      "error": "HTTP Error 404: Not Found",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://www.cardmarket.com/en/Magic/Expansions/Duskmourn",
+      "file": "cardmarket-set.html",
+      "status": "failed",
+      "error": "HTTP Error 403: Forbidden",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://api.scryfall.com/cards/search?q=set%3Adsk&unique=prints&order=set&include_extras=true&include_variations=true",
+      "resolvedUrl": "https://api.scryfall.com/cards/search?q=set%3Adsk&unique=prints&order=set&include_extras=true&include_variations=true",
+      "file": "variants-0-1.json",
+      "status": 200,
+      "bytes": 948793,
+      "sha256": "b66addd32a9add36217a0f1edf73803c41041459454b17e5859572dbaea9212e",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://api.scryfall.com/cards/search?format=json&include_extras=true&include_multilingual=false&include_variations=true&order=set&page=2&q=set%3Adsk&unique=prints",
+      "resolvedUrl": "https://api.scryfall.com/cards/search?format=json&include_extras=true&include_multilingual=false&include_variations=true&order=set&page=2&q=set%3Adsk&unique=prints",
+      "file": "variants-0-2.json",
+      "status": 200,
+      "bytes": 950390,
+      "sha256": "0c06a9fb3361ff004c08ff5d255cd73ff10e2fa17b6eff9a1a8f7509b620abf7",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://api.scryfall.com/cards/search?format=json&include_extras=true&include_multilingual=false&include_variations=true&order=set&page=3&q=set%3Adsk&unique=prints",
+      "resolvedUrl": "https://api.scryfall.com/cards/search?format=json&include_extras=true&include_multilingual=false&include_variations=true&order=set&page=3&q=set%3Adsk&unique=prints",
+      "file": "variants-0-3.json",
+      "status": 200,
+      "bytes": 368534,
+      "sha256": "4b5336008b9b057548d01e20cf57cee51fa4a2b5053dba429639b4d9e1d56376",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://api.scryfall.com/cards/search?q=set%3Aspg+cn%3E%3D64+cn%3C%3D73&unique=prints&order=set&include_extras=true&include_variations=true",
+      "resolvedUrl": "https://api.scryfall.com/cards/search?q=set%3Aspg+cn%3E%3D64+cn%3C%3D73&unique=prints&order=set&include_extras=true&include_variations=true",
+      "file": "variants-1-1.json",
+      "status": 200,
+      "bytes": 54287,
+      "sha256": "f95f8c1d6a92f2c7ed84dfde14980ba8940dd26fa6e75b0253c1be62ed67f202",
+      "retrieved": "2026-10-28"
+    }
+  ],
+  "variantPagination": [
+    {
+      "query": "set:dsk",
+      "include_extras": true,
+      "include_variations": true,
+      "pages": 3,
+      "returnedPrintings": 417,
+      "complete": true
+    },
+    {
+      "query": "set:spg cn>=64 cn<=73",
+      "include_extras": true,
+      "include_variations": true,
+      "pages": 1,
+      "returnedPrintings": 10,
+      "complete": true
+    }
+  ]
+}

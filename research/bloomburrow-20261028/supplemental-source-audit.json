@@ -1,0 +1,77 @@
+{
+  "date": "2026-10-28",
+  "scope": "Verifiche di accesso supplementari, distinte dalle recensioni per carta già integrate.",
+  "sources": [
+    {
+      "provider": "EDHREC",
+      "url": "https://edhrec.com/articles/bloomburrow-set-review-black",
+      "retrieved": "2026-10-28",
+      "dataIntegrated": false,
+      "status": 200,
+      "resolvedUrl": "https://edhrec.com/articles/bloomburrow-set-review-black",
+      "bytes": 296603,
+      "sha256": "7c924ef28df70100af58b9277373536b1a0feebe42bf1299ce7d5c97f4517ac2",
+      "title": "Bloomburrow Set Review - Black | EDHREC",
+      "snapshot": "edhrec-supplement.txt",
+      "limitation": "Pagina acquisita; nessuna estrazione sistematica delle osservazioni per carta da questa fonte. Tabelle dinamiche, contenuti bloccati o pagina indice non equivalgono a dati acquisiti."
+    },
+    {
+      "provider": "MTGGoldfish",
+      "url": "https://www.mtggoldfish.com/articles/search?q=bloomburrow",
+      "retrieved": "2026-10-28",
+      "dataIntegrated": false,
+      "status": 200,
+      "resolvedUrl": "https://www.mtggoldfish.com/articles/search?q=bloomburrow",
+      "bytes": 75047,
+      "sha256": "6870aeffd72f238e25ff43237e5efdb2bb9b7df8368de6c8802bbedf15090fd2",
+      "title": "Magic: the Gathering Articles Search",
+      "limitation": "Pagina acquisita; nessuna estrazione sistematica delle osservazioni per carta da questa fonte. Tabelle dinamiche, contenuti bloccati o pagina indice non equivalgono a dati acquisiti."
+    },
+    {
+      "provider": "MTGDECKS",
+      "url": "https://mtgdecks.net/BLB",
+      "retrieved": "2026-10-28",
+      "dataIntegrated": false,
+      "status": "unavailable",
+      "error": "HTTP Error 404: Not Found",
+      "limitation": "Nessun dato estratto; fonte candidata non verificata per copertura."
+    },
+    {
+      "provider": "Untapped",
+      "url": "https://mtga.untapped.gg/limited/draft/bloomburrow/card-data",
+      "retrieved": "2026-10-28",
+      "dataIntegrated": false,
+      "status": 200,
+      "resolvedUrl": "https://mtga.untapped.gg/limited/draft/bloomburrow/card-data",
+      "bytes": 701078,
+      "sha256": "b53fe1acc07c47c5bea5fe604ebe1748c44b0fb533474ff9c37ff02cc8983c59",
+      "title": "MTG Bloomburrow (BLB) Draft Card Data - Untapped.gg",
+      "limitation": "Pagina acquisita; nessuna estrazione sistematica delle osservazioni per carta da questa fonte. Tabelle dinamiche, contenuti bloccati o pagina indice non equivalgono a dati acquisiti."
+    },
+    {
+      "provider": "Card Kingdom",
+      "url": "https://blog.cardkingdom.com/bloomburrow-draft-guide/",
+      "retrieved": "2026-10-28",
+      "dataIntegrated": false,
+      "status": 200,
+      "resolvedUrl": "https://blog.cardkingdom.com/bloomburrow-draft-guide/",
+      "bytes": 167586,
+      "sha256": "be82fb82ea8f0f11f742c332d8c7c18e4cde6349ce58340c660a5bee180503aa",
+      "title": "Bloomburrow Draft Guide - Card Kingdom Blog",
+      "snapshot": "card-kingdom-supplement.txt",
+      "limitation": "Pagina acquisita; nessuna estrazione sistematica delle osservazioni per carta da questa fonte. Tabelle dinamiche, contenuti bloccati o pagina indice non equivalgono a dati acquisiti."
+    },
+    {
+      "provider": "Cards Realm",
+      "url": "https://mtg.cardsrealm.com/en-us/sets/blb-bloomburrow",
+      "retrieved": "2026-10-28",
+      "dataIntegrated": false,
+      "status": 200,
+      "resolvedUrl": "https://mtg.cardsrealm.com/en-us/sets/blb-bloomburrow",
+      "bytes": 447225,
+      "sha256": "3a1aa739d7f10c63e899b68ced36a948f9c29771307c90484145c6d97f0ef54a",
+      "title": "Bloomburrow BLB - Spoilers and Prices | Cards Realm",
+      "limitation": "Pagina acquisita; nessuna estrazione sistematica delle osservazioni per carta da questa fonte. Tabelle dinamiche, contenuti bloccati o pagina indice non equivalgono a dati acquisiti."
+    }
+  ]
+}

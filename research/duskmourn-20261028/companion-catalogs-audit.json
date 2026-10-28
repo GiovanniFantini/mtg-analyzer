@@ -1,0 +1,43 @@
+{
+  "date": "2026-10-28",
+  "catalogs": [
+    {
+      "code": "DSC",
+      "path": "research/duskmourn-20261028/companion-dsc-catalog.json",
+      "printings": 333,
+      "identities": 306,
+      "completePagination": true,
+      "pages": 3,
+      "excludedFromLimitedPool": true
+    }
+  ],
+  "acquisitions": [
+    {
+      "url": "https://api.scryfall.com/cards/search?q=set%3Adsc&unique=prints&order=set&include_extras=true&include_variations=true",
+      "resolvedUrl": "https://api.scryfall.com/cards/search?q=set%3Adsc&unique=prints&order=set&include_extras=true&include_variations=true",
+      "file": "companion-dsc-page-1.json",
+      "status": 200,
+      "bytes": 927292,
+      "sha256": "19926c583952133bcb1b3ebde112968fa20a0f5e009a5ce6c3e327713eea44b5",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://api.scryfall.com/cards/search?format=json&include_extras=true&include_multilingual=false&include_variations=true&order=set&page=2&q=set%3Adsc&unique=prints",
+      "resolvedUrl": "https://api.scryfall.com/cards/search?format=json&include_extras=true&include_multilingual=false&include_variations=true&order=set&page=2&q=set%3Adsc&unique=prints",
+      "file": "companion-dsc-page-2.json",
+      "status": 200,
+      "bytes": 904049,
+      "sha256": "5229946cea7f4387f2f87559e9509c0052887dd35db692d78fcb376e5e280bbc",
+      "retrieved": "2026-10-28"
+    },
+    {
+      "url": "https://api.scryfall.com/cards/search?format=json&include_extras=true&include_multilingual=false&include_variations=true&order=set&page=3&q=set%3Adsc&unique=prints",
+      "resolvedUrl": "https://api.scryfall.com/cards/search?format=json&include_extras=true&include_multilingual=false&include_variations=true&order=set&page=3&q=set%3Adsc&unique=prints",
+      "file": "companion-dsc-page-3.json",
+      "status": 200,
+      "bytes": 121766,
+      "sha256": "0b4b17c66ef323b1a7454ecb46fb04e9322c99ce2f3f74fef34acf578601ddd9",
+      "retrieved": "2026-10-28"
+    }
+  ]
+}
