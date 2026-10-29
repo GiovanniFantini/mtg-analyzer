@@ -1,0 +1,19 @@
+[
+  {
+    "command": [
+      "node",
+      "verify-draft-performance.cjs"
+    ],
+    "exitCode": 1,
+    "stdout": "",
+    "stderr": "AssertionError [ERR_ASSERTION]: {\"seed\":\"production-reserved-211\",\"scenario\":\"default\",\"hardware\":{\"concurrency\":4,\"userAgent\":\"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36 Edg/156.0.0.0\"},\"decisions\":42,\"timesMs\":[1238,570,718,812,802,999,767,765,868,748,672,612,634,600,1351,1378,1589,2289,1934,3255,4565,2332,1403,1614,1405,1198,741,713,2660,2457,2373,2407,2417,2136,2111,2698,1521,1637,1418,1817,1166,1868],\"p50Ms\":1403,\"p95Ms\":2698,\"maxMs\":4565,\"exportMs\":784,\"longestTask\":2109,\"maxGap\":2121.2999999523163,\"replays\":[{\"picks\":41,\"rendererBootMs\":178.80000001192093,\"durationMs\":35596,\"longestTask\":0,\"maxGap\":36.5},{\"picks\":42,\"rendererBootMs\":174.19999998807907,\"durationMs\":36281,\"longestTask\":98,\"maxGap\":115}]}\n    at C:\\repos\\Codex\\MTG\\verify-draft-performance.cjs:37:38 {\n  generatedMessage: false,\n  code: 'ERR_ASSERTION',\n  actual: false,\n  expected: true,\n  operator: '==',\n  diff: 'simple'\n}\n",
+    "sourceHashes": {
+      "draft-policy.js": "35ae6980660c3158e290ce2452fa46d1026711d517447cbb79d390f261f69ae5",
+      "draft-engine.js": "5e7ee5acbdc830d1d85e8683b727a3d6fa0d2c52a21645d00c4d76dc02a83165",
+      "draft-worker.js": "2feb5a7fd028d91e38feb72174d1f32bba741b5128d574b82154ea5b47c8ee51",
+      "draft-worker-client.js": "58b67875ffbda8fdde0f122ae6bd6e3825aa3d2e8c4f6d815681066235283230",
+      "draft-table.js": "d471e9e08bb0dd1bb0654357759328a297e7e622ced980cbf80691d037563285",
+      "bot_profiles.py": "cca6cef5d08fefa151d18bced61df079127db0ebf30c18128be6765e71e0cbb6"
+    }
+  }
+]

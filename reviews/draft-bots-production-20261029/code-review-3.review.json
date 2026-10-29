@@ -1,0 +1,118 @@
+{
+  "findings": [
+    {
+      "id": "PROD-20",
+      "priority": "P1",
+      "file": "draft-policy.js",
+      "scenario": "Pool WU con splash R tramite basi aggiungibili. bestBuild prova sourceModes 1 con una carta che ha faccia terra R non ristretta, usata solo come fixing, oppure con un Mountaincycler o un produttore R economico. Caso analogo: mazzo aggro con una doppia WU tappata e molte magie a costo 1-2.",
+      "evidence": "allocate() calcola supplied, after() e utility() con landSources(lands,basics,6): contano solo terre possedute e basi, sempre al turno 6. Le unita indirette di sourceModel entrano solo nel punteggio finale, tramite castability() e count: alternativeLand pesa 1 in modalita solo fixing, poi cycling e producer. Il bootstrap porta quindi R a splashBasics come se la fonte posseduta non esistesse, mentre capacity e gia ridotta di manaOnly.length. Inoltre la terra tappata vale 1 anche per righe con t=1, dove il punteggio usa 0, e per t<=3, dove usa 0,8. La decisione PROD-01 dichiara fonti indirette frazionarie, ma nell'allocazione pesano zero.",
+      "impact": "Una fonte posseduta non sostituisce mai una base di splash. Lo slot solo fixing toglie una base primaria e lascia invariate le basi R. La configurazione con fixing posseduto e quindi dominata da splashBasics+1 senza fixing, e in rank la carta fixing perde valore. La salita a coordinate ottimizza una funzione diversa da quella del punteggio, quindi il main finale non e un ottimo locale del proprio obiettivo. La condizione di rilascio sulle basi che tengono conto delle fonti gia possedute, compreso lo splash, non e rispettata per le fonti non terra.",
+      "fix": "In allocate() usare come utilita lo stesso termine del punteggio. Raggruppare le magie per simboli e turno e sommare peso * symbolChance(simboli, colors, unita, t). Le unita sono: terre e basi al turno t della riga, con la stessa regola tapped/fetch di landSources, piu le unita _spell di sourceModel([...spells,...manaOnly],lands,basics,t). Limite a due passate: prima l'allocazione attuale, poi il calcolo delle unita indirette, poi una seconda allocazione che include queste unita fisse anche in supplied del bootstrap. Estendere la chiave di allocationCache alle unita indirette arrotondate a 0,05. Verifiche: (1) con manaOnly R a peso 1 e splashBasics 2 le basi R scendono a 1 e compare una base primaria in piu; (2) sul build finale nessuno scambio singolo di base migliora la somma di rating*castability usata nel punteggio; (3) la doppia tappata non conta per righe al turno 1. Le digest v4 cambiano: i record v4 precedenti restano rifiutati con backup integrale e messaggio di incompatibilita, mentre v3 e i suoi digest restano invariati. Rimisurare i tempi dopo la modifica (PROD-21)."
+    },
+    {
+      "id": "PROD-21",
+      "priority": "P1",
+      "file": "verify-draft-performance.cjs",
+      "scenario": "Accettazione prestazionale del candidato finale con default v3 e opzione v4 nel tavolo browser.",
+      "evidence": "Lo script misura 5 decisioni (pick 29-33) di un solo record ottenuto scegliendo sempre la prima carta. Chiama p95 il massimo di 5 campioni. Per il profilo touch emulato applica una soglia di 15000 ms, benche lo stesso script e lo status dichiarino stessa CPU desktop. L'emulazione del viewport non rallenta il Worker, quindi le due serie sono campioni dello stesso hardware. Nella misura precedente la serie emulata ha 5324 ms, sopra la soglia dichiarata di 5000 ms per quell'hardware. Ultima pick, ripresa completa a 42 pick e lista finale non hanno misure di long task: l'observer del test browser copre solo le prime 4 pick.",
+      "impact": "L'evidenza attuale non dimostra la soglia dichiarata. Sullo stesso hardware il massimo combinato la supera gia. La soglia mobile da 15 s non misura nulla di mobile. Restano senza misura i passaggi con payload maggiore: snapshot finale con tutti i log e ripresa completa.",
+      "fix": "Una sola soglia per hardware fisico. Rimuovere il ramo 15000 ms ed etichettare le corse con viewport touch come desktop. Misurare tutte le 42 pick su almeno 3 semi con la configurazione predefinita dei bot e una corsa con Potenza pura, quindi almeno 126 decisioni. Riportare p50, p95 calcolato e massimo, durata della ripresa a 41 e a 42 pick, durata della lista finale e long task/heartbeat durante ultima pick, ripresa completa e revisione. Senza un dispositivo mobile fisico dichiarare nello status che non esiste una misura mobile. Se il p95 desktop supera 5 s, applicare PROD-22 prima del rilascio."
+    },
+    {
+      "id": "PROD-22",
+      "priority": "P2",
+      "file": "draft-engine.js",
+      "scenario": "Tavolo v4 con picksPerTurn 1: l'utente sceglie una carta e attende 3-5 s su desktop, di piu su CPU lente, prima della busta successiva.",
+      "evidence": "In createSession.step() il calcolo dei bot parte solo dopo la scelta umana. Eppure il bot i legge solo packets[i+1], il proprio stato e un RNG derivato da seed, posto, giro e pick. La scelta umana modifica soltanto packets[0], e il numero di carte da prendere (pending.length) e noto in anticipo: 1 nel tavolo pubblico.",
+      "impact": "La latenza percepita somma tutto il costo dei sette bot a ogni pick, anche se il calcolo potrebbe sovrapporsi al tempo di lettura della busta. E la causa diretta dei 3-5 s di attesa per pick.",
+      "fix": "Aggiungere al motore prepare(), che esegue takeGroup per i bot della pick corrente, memorizza le scelte e rimuove le carte dai pacchetti non visibili. step(uid) applica le scelte preparate oppure le calcola se mancano. Il Worker invia lo snapshot e poi pianifica prepare con setTimeout 0. Un errore in prepare viene conservato e rilanciato al successivo step, cosi lo snapshot completato resta valido. Verifiche: estendere optimization-parity confrontando JSON di bots, log ed export con prepare attivo e disattivo, per pick ordinarie e Pick-Two diagnostico; replay identico; snapshot in corso con bots vuoto; nel browser, con 5 s di attesa simulata, latenza click-render sotto 500 ms sul desktop dichiarato."
+    },
+    {
+      "id": "PROD-23",
+      "priority": "P2",
+      "file": "draft-policy.js",
+      "scenario": "Un bot configurato come Potenza pura nel tavolo v4.",
+      "evidence": "rank() chiama context(), che esegue bestBuild per ogni piano (fino a 15 nelle prime pick), prima del ramo bot.strategy==='power'. Quel ramo usa solo rating(c), ctx.lane come etichetta e ctx.confidence per la fase.",
+      "impact": "Il profilo di controllo paga l'intero costo della ricerca senza usarla e allunga ogni pick quando l'utente lo seleziona.",
+      "fix": "Anticipare il ramo power prima di context(): calcolare confidence dalla memoria del lato senza costruire piani e registrare bot.lane come etichetta. Verifiche: zero chiamate a build per un bot power (contatore nel test), scelte invariate rispetto alla regressione PROD-07, tempo per pick con sette bot power riportato in PROD-21."
+    },
+    {
+      "id": "PROD-24",
+      "priority": "P2",
+      "file": "draft-policy.js",
+      "scenario": "Fine del draft v4: snapshot finale, revisione ed esportazione con review.",
+      "evidence": "take() e takeGroup() salvano deck: selected.deck in ogni voce di log. Ogni oggetto contiene spells, lands, excluded, alternativeUses, manaEstimates, sources e assumptions, per 7 bot e 42 pick. renderReview() non legge mai item.deck. snapshot() trasferisce session.bots al completamento e l'export li serializza con indentazione.",
+      "impact": "Memoria del Worker e payload finale crescono senza beneficio. La deserializzazione dello snapshot finale avviene sul thread UI, in un passaggio non coperto dalle misure di long task. Il file esportato diventa molto grande.",
+      "fix": "Sostituire deck nel log con un riepilogo compatto: lane, colors, splash, slots, holes, score, manaOnly ids. Verifiche: dimensione dello snapshot finale e dell'export entro un limite registrato; test browser con PerformanceObserver attivo anche su ultima pick, ripresa completa e cambio posto, longest task non oltre 200 ms; testo della revisione identico."
+    },
+    {
+      "id": "PROD-25",
+      "priority": "P2",
+      "file": "draft-table.js",
+      "scenario": "Draft v4 concluso, pagina ricaricata, l'utente preme Riprendi solo per consultare la revisione.",
+      "evidence": "Il ramo resume ricostruisce sempre il record nel Worker pick per pick (stepping completo), anche quando record.picks copre l'intero draft. Eppure finalDeck richiede solo pool e strategia dei bot, e la revisione richiede solo pool e log, gia legittimamente visibili a draft concluso.",
+      "impact": "Per consultare una revisione gia calcolata servono decine di secondi su desktop e un tempo non misurato su CPU lente. Il caso si ripete a ogni ricarica.",
+      "fix": "Al completamento salvare, in una chiave separata, una cache con sha256 del record, algorithmRevision, policyRevision e bots compatti (strategy, target, pool, log senza deck, vedi PROD-24). Alla ripresa di un record completo con cache corrispondente, il Worker crea la sessione per le sole buste (createReplaySession, senza step), risolve gli uid umani e usa i bot della cache. Con cache assente o diversa si ricostruisce come oggi. Verifiche: testo della revisione identico a quello ottenuto con replay completo nel test browser esistente; ripresa di un draft concluso sotto 2 s sul desktop dichiarato; record vecchi senza cache invariati."
+    },
+    {
+      "id": "PROD-26",
+      "priority": "P2",
+      "file": "bot_profiles.py",
+      "scenario": "Deploy che modifica solo draft-worker.js o draft-worker-client.js, per esempio le opzioni di finalBuild o il formato dello snapshot.",
+      "evidence": "algorithmRevision hashizza solo draft-policy.js, draft-engine.js e collation.js. draft-worker-client.js versiona l'URL del Worker con la stessa revisione. draft-worker.js non e verificato e contiene logica che cambia l'output della revisione: target e match passati a finalBuild.",
+      "impact": "Con revisione invariata la cache HTTP puo servire il Worker precedente al nuovo client, con protocollo o liste finali diverse e nessun rilevamento. Il main del bot mostrato per lo stesso record puo cambiare fra deploy senza segnalazione.",
+      "fix": "Generare in build un workerRevision dal contenuto di draft-worker.js e usarlo nella query dell'URL del Worker. Includere draft-worker.js nell'impronta che protegge l'output della revisione, oppure registrare workerRevision nella cache di PROD-25. Verifica: modificando un byte del Worker cambia l'URL; verify-draft-worker.cjs aggiornato."
+    },
+    {
+      "id": "PROD-27",
+      "priority": "P2",
+      "file": "draft-table.js",
+      "scenario": "Il Worker fallisce durante una pick (errore o terminazione).",
+      "evidence": "Il catch del click imposta solo loadedSession=null e mostra un messaggio che rimanda a Riprendi. #resume sta nella sezione setup, nascosta mentre il tavolo e visibile. I pulsanti di scelta restano attivi su una sessione con alive false, e ogni nuovo click viene rifiutato.",
+      "impact": "Lo stato salvato e corretto, ma l'utente resta su un tavolo inutilizzabile e non trova l'azione indicata.",
+      "fix": "Se session.alive===false, eseguire il percorso di reset: mostrare setup, rendere visibile Riprendi e disabilitare i pulsanti della busta, mantenendo il link al salvataggio. Verifica browser: fallimento iniettato a meta draft, Riprendi visibile, la ripresa ricostruisce lo stesso record e lo storage resta invariato."
+    },
+    {
+      "id": "PROD-28",
+      "priority": "P2",
+      "file": "draft-policy.js",
+      "scenario": "Stesso pool, stesse terre e basi: una creatura rossa a costo 2 e primaria in WR e splash in WU+R.",
+      "evidence": "Nel ciclo finale early conta la carta solo se t+(fits?0:2)<=3, quindi lo splash non conta mai come giocata iniziale. tactical() e choose() usano invece il turno nominale e assegnano style.early e il bonus .3 allo stesso splash. Il punteggio del mana usa correttamente il turno nominale per entrambi: la decisione PROD-02 e verificata, e il +2 non concede piu credito gratuito.",
+      "impact": "Con mana identico, deficits.early e la penalita progress*0,14 dipendono dall'etichetta del colore e non dalla castability. Inoltre il greedy di choose premia come iniziale una carta che il punteggio finale non conta come tale.",
+      "fix": "Usare lo stesso criterio per tutte le magie in choose, tactical e nel ciclo finale: giocata iniziale se il turno nominale e al massimo 3, con peso pari a castability al turno nominale, o con soglia 0,65 dichiarata. Verifiche: fixture con mana identico WR contro WU+R produce early, deficits e tactical uguali; le fixture PROD-02 mantengono splash.score <= main.score."
+    },
+    {
+      "id": "PROD-29",
+      "priority": "P2",
+      "file": "draft-policy.js",
+      "scenario": "Main WU con 8 magie {1}{W/U} e 6 magie {U}{U}, confrontato con il pool speculare con {W}{W}.",
+      "evidence": "allocate() chiama needs(c,colors) senza fonti. Per un ibrido singolo il sort finisce sull'ordine MANA e assegna sempre W. Le righe di utilita contano quindi domanda W per tutti gli ibridi, mentre castability() li paga con l'unione W/U.",
+      "impact": "Le basi vengono spostate verso Plains senza bisogno reale, a scapito di U. I due pool speculari non producono basi speculari, quindi un colore e favorito dall'ordine canonico e non dalle evidenze.",
+      "fix": "Risolto dall'utilita basata su symbolChance di PROD-20. Verifica: le basi dei due pool speculari risultano speculari e nessuno scambio di base migliora il termine di castability del punteggio."
+    },
+    {
+      "id": "PROD-30",
+      "priority": "P2",
+      "file": "bot_profiles.py",
+      "scenario": "Carte con costi o rimpiazzi che esiliano dal proprio cimitero, per esempio escape ('Exile four other cards from your graveyard') o testi 'exile it instead' riferiti al proprio cimitero.",
+      "evidence": "Il ruolo sideboard usa il pattern exile.*graveyard senza distinguere il proprietario del cimitero. In BO3 rank aggiunge sideboard 0,12 alle carte non usate con quel ruolo, e la revisione le elenca come riserve.",
+      "impact": "In BO3 i bot trattenono per il sideboard carte che non lo sono, e la revisione presenta riserve errate. E lo stesso tipo di difetto lessicale chiuso in PROD-18 per interaction.",
+      "fix": "Restringere il pattern a bersagli altrui o globali: target card from a graveyard, target player's graveyard, all graveyards, each opponent's graveyard. Escludere your graveyard. Aggiungere un audit sul catalogo reale come per interaction, con eccezioni per hash Oracle. Verifiche: sottotest positivi e negativi in test_bot_profiles.py; revisione della fixture BO3 invariata per le carte legittime."
+    }
+  ],
+  "releaseReady": false,
+  "promotionReady": false,
+  "summary": "Ricontrollo sui moduli attuali. Verificate sul codice corrente: PROD-04, 05, 07, 08, 09, 12, 14 (salvo il Worker non versionato, PROD-26), 15, 16, 17, 18 (salvo il ruolo sideboard, PROD-30) e 19. PROD-02 e verificata: il punteggio usa l'orizzonte nominale e il +2 resta solo un controllo di ammissione. Lo splash non riceve credito gratuito; resta una dipendenza dall'etichetta nel conteggio delle giocate iniziali, che penalizza l'etichetta splash (PROD-28). PROD-01 e PROD-10 sono parziali: l'allocazione conta le terre possedute, ma esclude le fonti non terra e valuta tutto al turno 6. Ottimizza quindi un surrogato diverso dal punteggio, e una fonte posseduta non sostituisce mai una base di splash. Questo viola la condizione di rilascio esplicita (PROD-20, che risolve anche gli ibridi di PROD-29). PROD-03 e PROD-11 restano aperte sul piano dell'evidenza: il Worker protegge il thread UI, ma la misura ha 5 campioni, usa una soglia mobile priva di significato sulla stessa CPU e sullo stesso hardware supera gia 5 s (PROD-21). Il calcolo dei bot e inoltre serializzato dopo il click anche se non dipende dalla scelta umana (PROD-22). Le soluzioni di PROD-13 e PROD-06 restano accettabili per l'opzione sperimentale: ricostruzione su richiesta, annullabile, con backup integrale. La ripresa di un draft concluso puo pero evitare lo stepping (PROD-25). Copertura causale disattivata uniformemente e lacune visibili sono corrette e non richiedono annotazioni inventate. Il default v3 e i suoi replay non sono toccati dalle correzioni proposte.",
+  "acceptance": [
+    "Rilascio: implementare PROD-20 con le fixture indicate: fonte posseduta non terra che riduce le basi di splash, ottimo locale rispetto al termine di castability del punteggio, terra tappata a peso zero al turno 1 e basi speculari per ibridi.",
+    "Rilascio: rieseguire sul sorgente finale tutte le verifiche elencate nello status, compresa optimization-parity rigenerata, i digest v3 congelati invariati e il rifiuto con backup integrale dei record v4 della revisione precedente.",
+    "Rilascio: misura conforme a PROD-21 su hardware dichiarato, con una sola soglia per CPU: p95 calcolato su almeno 126 decisioni di almeno 3 semi, entro 5 s su desktop. Long task non oltre 200 ms e heartbeat sotto 500 ms anche su ultima pick, ripresa completa e lista finale. Le corse con viewport touch vanno dichiarate come desktop.",
+    "Rilascio: se il p95 valido supera 5 s, implementare PROD-22 con parita byte per byte di bots, log ed export; se il long task finale supera 200 ms, implementare PROD-24.",
+    "Rilascio: status e documentazione dichiarano assenza di misure su hardware mobile fisico e tempi di ricostruzione misurati, senza attribuire competenza generale.",
+    "Rilascio: i P2 non bloccano l'opzione sperimentale, salvo quanto indicato sopra, e vanno registrati con decisione esplicita.",
+    "Promozione a default v4: casi riservati e revisione cieca dei mazzi secondo il protocollo BOT-13, con miglioramento motivato sui difetti bersaglio e nessun deterioramento materiale negli altri assi.",
+    "Promozione a default v4: componente di sinergie coperta per tutti i piani dell'evento oppure conclusioni circoscritte alle capacita modellate; confronto Adattivo con v3 e con gli specialisti aggiornati, e decisione di unificazione con Lettura dei segnali.",
+    "Promozione a default v4: misura su almeno un dispositivo mobile fisico e strategia di compatibilita dei salvataggi fra revisioni dell'algoritmo, senza perdita di record.",
+    "Promozione a default v4: asserzioni storiche fissate alla versione pertinente prima del cambio di default, con replay v2 e v3 invariati."
+  ]
+}

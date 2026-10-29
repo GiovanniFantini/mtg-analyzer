@@ -1,0 +1,59 @@
+{
+  "outcome": "experimental_no_promotion",
+  "method": {
+    "independentCalls": 2,
+    "decks": 15,
+    "picks": 15,
+    "policyMappingWithheld": true,
+    "pickJudgeDidNotSeeFinalDecks": true,
+    "pickTiming": "round 2 pick 7",
+    "missingContext": [
+      "sequenza completa delle buste precedenti",
+      "profilo stilistico",
+      "sideboard nel giudizio dei mazzi"
+    ],
+    "sameDiagnosticBuilderForAllVersions": true
+  },
+  "decisions": [
+    {
+      "id": "BLIND-01",
+      "kind": "strategic_preference",
+      "sample": "sample-f2c75978-pick",
+      "decision": "Conservare la critica di costo opportunita, senza trasformarla in un tasso di errore certo.",
+      "reason": "Il pool UG offre Icy Reception e altre opzioni pertinenti; la terra RG fornisce un solo colore principale e una possibilita R. Le carte che creano planeswalker possono influire sul suo ingresso tappato."
+    },
+    {
+      "id": "BLIND-02",
+      "kind": "qualified_disagreement",
+      "sample": "sample-fcddd177-pick",
+      "decision": "Non accettare la dichiarazione categorica che U non abbia impieghi plausibili.",
+      "reason": "Il pool fornito contiene gia Cruel Calculations {2}{U} e Murmuring Volume. Innovative Commons produce U. Foreseer resta una preferenza ragionevole, ma senza segnali precedenti e piano completo la terra non dimostra un difetto del codice."
+    },
+    {
+      "id": "BLIND-03",
+      "kind": "shared_builder_quality_limit",
+      "samples": [
+        "sample-54d07d96",
+        "sample-c35e8337",
+        "sample-ea732dd5",
+        "sample-f283bdee"
+      ],
+      "decision": "Accogliere mana teso e splash discutibili come motivi contro la promozione.",
+      "reason": "Liste e basi sostengono la criticita di costruzione. Il diagnostico e comune alle politiche e non misura forza indipendente. Restano pertinenti fonti indirette, pagamento degli ibridi e costi ridotti."
+    },
+    {
+      "id": "BLIND-04",
+      "kind": "qualified_disagreement",
+      "decision": "Le copie leggendarie non sono tagli automatici.",
+      "reason": "Una copia aggiuntiva migliora la consistenza della pescata o sostituisce una creatura rimossa. Contano ETB, ricorsione, scarti, curva e alternative disponibili: nessuna regola universale di una sola copia."
+    }
+  ],
+  "reservedPolicyRetuned": false,
+  "promotionEvidence": "insufficient",
+  "nextWorkBeforePromotion": [
+    "completare annotazioni causali e riferimenti dei voti",
+    "validare meglio distribuzione delle fonti e tempo dello splash",
+    "migliorare le prestazioni",
+    "usare nuovi casi riservati dopo ogni taratura"
+  ]
+}

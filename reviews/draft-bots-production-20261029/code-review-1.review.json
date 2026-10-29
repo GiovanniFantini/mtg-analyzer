@@ -1,0 +1,103 @@
+{
+  "findings": [
+    {
+      "id": "PROD-01",
+      "priority": "P1",
+      "file": "draft-policy.js",
+      "scenario": "Pool WU con 6 terre possedute che producono solo W, per esempio Plains aperte nelle buste o terre utilità monocolore, e domanda di simboli W e U equivalente. Obiettivo 17 terre, quindi 11 basi da aggiungere. Variante: piano WU+R con due duali possedute che producono R e splashBasics 2.",
+      "evidence": "In build/allocate() le terre possedute pertinenti entrano in 'lands' prima delle basi. Il ciclo while sceglie poi il colore con demand[b]/(basics[b]+1): il denominatore conta solo le basi aggiunte, non landSources() delle terre possedute né le fonti alternative frazionarie. Lo splash riceve sempre min(add, splashBasics) basi, anche quando terre possedute producono già quel colore. Lo stesso criterio è ripetuto nel riempimento finale con remaining===0. Con domanda pari, il pareggio va a W per ordine di COLORS: W riceve 6 basi e U 5, per un totale di 12 fonti W contro 5 U. Nella variante lo splash arriva a 4 fonti R a spese dei colori principali.",
+      "impact": "Il main finale mostrato nella revisione e il punteggio dei piani (manaPenalty, castability) partono da una base di mana sbilanciata. Il bot può preferire o scartare piani per un errore del costruttore, non per il pool. Il meccanismo è compatibile con le critiche cieche sui colori principali poco serviti: va confermato sui campioni sample-54d07d96 e sample-c35e8337 elencando le terre possedute, senza presumerlo.",
+      "fix": "Calcolare owned=landSources(lands, basi tutte a zero, 6) più la somma dei pesi alternativeLand e cycling per colore, e usare demand[b]/(owned[b]+basics[b]+1) in entrambi i cicli di allocazione. Interpretare splashBasics come fonti totali dello splash: basics[splash]=max(0,min(add,splashBasics-floor(owned[splash]))). Fixture: (a) il caso WU sopra produce fonti W e U con differenza al massimo 1; (b) splash con due duali R possedute e splashBasics 2 aggiunge 0 Mountain e lascia invariate le basi dei colori principali; (c) un pool senza terre possedute produce le stesse basi di prima."
+    },
+    {
+      "id": "PROD-02",
+      "priority": "P1",
+      "file": "draft-policy.js",
+      "scenario": "Stessa bomba {5}{R} con MV 6 in due piani altrimenti identici: in WR come colore principale con 8 fonti R, in WU+R come splash con 3 Mountain. Deck di 40 carte con 17 terre.",
+      "evidence": "Per !fits(c,lane) il ciclo di reject e il punteggio finale usano t=turn+2 sia in castability() sia in chance(count,t,ceil(costTurn)). Costruiscono inoltre sourceModel al turno ceil(t), dove le terre tappate valgono 1 e si attivano produttori (mv+1<=t) e cycling. Il ritardo aumenta quindi le pescate anche per il requisito generico di terre, non solo per il colore. Con la formula del codice: in colore principale circa 0,96 (8 fonti, 12 pescate) per circa 0,39 (6 terre entro 12 pescate), quindi circa 0,38. Come splash circa 0,74 (3 fonti, 14 pescate) per circa 0,62 (6 terre entro 14 pescate), quindi circa 0,45. Inoltre la soglia di splash p>=0,65 calcolata a t+2 è superata con 3 fonti da ogni carta a un simbolo con MV>=4, e non esiste un limite al numero di carte splash.",
+      "impact": "La stessa magia risulta più lanciabile come splash che nel colore principale. Lo svantaggio dello splash dipende solo dal moltiplicatore 1,8 non calibrato: penalità circa 0,99 contro 0,62, uno scarto di circa 0,37. Il piano in cui la carta è principale paga invece il requisito sulla curva nominale. I piani con molte carte costose e forti di un terzo colore vengono sovrastimati, e un 'splash' di molte carte con 3-5 fonti supera i controlli.",
+      "fix": "Usare una formula unica per ogni magia, indipendente dall'etichetta della lane. p0 è la probabilità (colori e terre) al turno nominale con il sourceModel di quel turno; p2 è la stessa probabilità al turno nominale+2; mana=p0+λ*(p2-p0), con λ dichiarato (per esempio 0,5) applicato sia ai colori principali sia allo splash. La soglia di splash usa 'mana', non il solo valore colorato a t+2. Il costo di consistenza dello splash resta un termine separato e visibile. requiredSources resta uguale al costo, e manaEstimates registra entrambi i turni (aggiornare l'asserzione CODE-17 di conseguenza). Fixture di proprietà per MV da 1 a 8 e fonti da 1 a 10: a parità di fonti la stima è identica fra colore principale e splash; la stima è monotona non decrescente nelle fonti; per la bomba sopra la stima splash è minore o uguale a quella principale."
+    },
+    {
+      "id": "PROD-03",
+      "priority": "P1",
+      "file": "draft-table.js, draft-engine.js, draft-policy.js",
+      "scenario": "Tavolo v4 di Reality Fracture a 8 posti, a ogni pick dell'umano, su desktop e su telefono.",
+      "evidence": "Il listener click chiama session.step in modo sincrono sul thread principale, e step esegue in sequenza i 7 takeGroup/take. Ogni take chiama context(), che esegue bestBuild per ogni archetipo, più 5 piani monocolore nelle prime pick. Ogni bestBuild esegue fino a 1+colori fuori piano x2 splashBasics x2 sourceModes build. Poi rank() esegue un altro bestBuild per ogni carta della busta su 2-3 piani più lo sfidante, e su tutti i piani compatibili alla prima pick. Ogni build: clona tutte le carte con spread di byId; dentro choose() ricalcola turn() e il controllo maxCopies con filtri O(n) per candidato; esegue passaggi di reject; costruisce una chiave di sourceCache che serializza gli uid dell'intero main, quindi raramente riusata e svuotata a 4000 elementi. Il profilo Potenza pura paga context() completo pur usando solo rating. In Pick-Two takeGroup moltiplica il costo per circa 1+5*count chiamate a rank. Il rapporto misura un p95 per mossa da 3,34 a 4,81 s su Ryzen 9.",
+      "impact": "L'interfaccia resta bloccata 3-5 s per pick su una macchina veloce, prevedibilmente molto di più su telefono, con avvisi di pagina che non risponde. Negli eventi Pick-Two si arriva a decine di secondi. Il requisito 'utilizzabile nel tavolo browser' non è soddisfatto.",
+      "fix": "(1) Eseguire createSession, step e replay v4 in Web Worker. In v4 i bot di una stessa mossa sono indipendenti (stato e rng per posto), quindi si possono distribuire fino a min(7, hardwareConcurrency) worker riassemblando i risultati in ordine di posto. Durante il calcolo mostrare lo stato 'I bot stanno scegliendo' e disabilitare le pick. (2) Saltare context() per Potenza pura. (3) Spostare gli invarianti fuori dai cicli: 'alternate' in bestBuild, physical clonato una volta per pool, turn() memorizzato per build, chiave di sourceCache basata su un hash incrementale. (4) Prima del refactor congelare i digest v4 di pool e log su semi fissi e richiedere decisioni identiche. Criteri: nessun long task del thread principale sopra 200 ms durante pick e ripresa; p95 per mossa misurato su desktop di riferimento e su un profilo mobile rallentato, con soglia dichiarata prima della misura."
+    },
+    {
+      "id": "PROD-04",
+      "priority": "P1",
+      "file": "draft-table.js",
+      "scenario": "L'utente fa doppio clic su 'Scegli', oppure clicca di nuovo perché la pagina sembra ferma durante i 3-5 s di calcolo.",
+      "evidence": "Il listener click sul document chiama step, persist e render senza alcun flag di occupato né controllo sul timestamp. Gli eventi di input accodati durante il task lungo vengono smistati, e sottoposti a hit test, dopo che render() ha sostituito #pack con la busta successiva.",
+      "impact": "Il secondo clic sceglie la carta che ora occupa la stessa posizione nella busta successiva, che l'utente non ha mai visto. La pick viene salvata subito e non è annullabile, corrompendo la sessione di allenamento.",
+      "fix": "Dopo ogni render registrare readyAt=performance.now() e ignorare click e keydown con event.timeStamp<readyAt. Aggiungere un flag busy che disabilita i bottoni pick finché il worker di PROD-03 non risponde. Fixture browser: un evaluator rallentato artificialmente e due clic reali ravvicinati producono una sola pick e la busta successiva resta intatta."
+    },
+    {
+      "id": "PROD-05",
+      "priority": "P1",
+      "file": "draft-table.js",
+      "scenario": "Riapertura della pagina con un salvataggio v4 avanzato o completo, anche quando l'utente vuole soltanto iniziare un nuovo draft.",
+      "evidence": "All'avvio dello script, prima di qualsiasi interazione, E.replay(data,record) riesegue ogni step con tutti i bot. Al costo per mossa misurato, ricostruire 42 pick richiede decine di secondi: la mediana di 134,63 s per tavolo nel rapporto comprende anche il replay. A draft completo render() chiama renderReview, che a ogni cambio di posto crea un nuovo evaluator con cache vuote ed esegue finalBuild su tutti i piani in modo sincrono.",
+      "impact": "La pagina è inutilizzabile all'apertura, con possibile avviso del browser. Se l'utente chiude la pagina, il draft resta recuperabile solo scaricando il JSON. La ripresa completa non è utilizzabile su dispositivi lenti.",
+      "fix": "All'avvio validare in modo sincrono solo il record (campi e impronte). Rinviare il replay al clic su Riprendi ed eseguirlo nel worker, con avanzamento e annullamento. In renderReview riusare l'evaluator della sessione e memorizzare finalBuild per posto. Facoltativo: checkpoint locale degli stati dei bot legato all'hash del record e ad algorithmRevision, usato solo se coincide e mai incluso nell'export. Criteri: pagina interattiva entro 1 s anche con un salvataggio v4 completo; replay nel worker con digest dei bot identico al replay attuale."
+    },
+    {
+      "id": "PROD-06",
+      "priority": "P2",
+      "file": "draft-table.js, draft-engine.js, bot_profiles.py",
+      "scenario": "Dopo un rilascio che modifica draft-engine.js, draft-policy.js o collation.js, anche solo per la v3 o per le prestazioni, l'utente riapre un draft v4 in corso.",
+      "evidence": "algorithmRevision è l'hash dei tre file, e replay v4 richiede l'uguaglianza esatta, altrimenti lancia un errore. Il catch in draft-table.js mostra 'Salvataggio precedente non leggibile' e il primo persist sposta il record in backup. Per la v4 non esiste un equivalente di compatibleRevisions né una fixture di digest v4 congelati fra revisioni.",
+      "impact": "Ogni modifica, comprese le ottimizzazioni senza effetto sulle decisioni richieste da PROD-03, invalida tutti i draft v4 in corso. Il messaggio è falso: il file è leggibile, è la versione dell'algoritmo a non coincidere.",
+      "fix": "Nel catch distinguere l'errore di parsing dall'incompatibilità v4, con un messaggio specifico e il link al backup. Introdurre compatibleAlgorithmRevisions nel botPolicy, ammessi solo se una fixture di digest v4 congelati (pool e log dei bot su semi fissi) coincide fra la revisione precedente e la nuova. Le correzioni PROD-01 e PROD-02 cambiano le decisioni e quindi non entrano nell'elenco. Fixture: un record v4 con revisione compatibile riprende; uno incompatibile mostra il messaggio specifico e conserva l'originale."
+    },
+    {
+      "id": "PROD-07",
+      "priority": "P2",
+      "file": "draft-policy.js",
+      "scenario": "Profilo Potenza pura in v4, busta con due carte diverse di voto uguale o distante meno di 0,04, modalità non deterministica.",
+      "evidence": "In rank() il ramo power restituisce signature:'power' per ogni carta. take() sorteggia fra tutte le carte con la stessa signature e un punteggio di almeno migliore-0,04.",
+      "impact": "Il bot sorteggia fra carte diverse, contro docs/draft-engine.md ('ristretto a copie della stessa stampa con uguale funzione') e contro BOT-11. Il log 'randomized' è fuorviante.",
+      "fix": "Usare signature 'power|'+c.id. Fixture: due id diversi con lo stesso voto, su 100 semi, producono sempre la stessa carta secondo l'ordine stabile; due copie della stessa stampa restano sorteggiabili."
+    },
+    {
+      "id": "PROD-08",
+      "priority": "P2",
+      "file": "draft-table.js, draft-policy.js",
+      "scenario": "Reality Fracture con coverage.synergies false; un bot impostato su 'Sinergie e build-around' con i bot contestuali v4.",
+      "evidence": "STYLES.synergy={synergy:1.25} moltiplica soltanto syn.adjustment+syn.option, che synergy() azzera quando la copertura manca. Il profilo diventa identico alla configurazione di riferimento. L'interfaccia mostra comunque la descrizione v3 'Cerca supporti degli archetipi già presenti', e policyInfo riporta la lacuna solo in forma generale.",
+      "impact": "Un profilo presentato come distinto non ha alcuna differenza di comportamento. BOT-09 e la regola delle lacune visibili non sono rispettati per quel profilo.",
+      "fix": "Con v4 selezionata e coverage.synergies false, mostrare su quel profilo e nella revisione la nota 'In questo evento si comporta come la configurazione di riferimento: sinergie non coperte', oppure disabilitarlo. Fixture: a sinergie spente, synergy e adaptive v4 producono log identici su stesso pool e busta, e l'interfaccia espone la nota."
+    },
+    {
+      "id": "PROD-09",
+      "priority": "P2",
+      "file": "bot_profiles.py, schemas/bot-policy.schema.json",
+      "scenario": "Annotazione evento con cards.X.mana.alternativeLand={'tapped':true} senza colors, fetch senza cost valido, subtypes non lista, oppure curve.reductionResource sconosciuto.",
+      "evidence": "validate_config controlla solo mana.abilities e mana.cycling. payload fonde mana e curve senza ulteriori controlli, e lo schema non descrive mana né curve. In draft-policy.js sourceModel itera alternate.colors, targets usa profile.mana.subtypes.includes e turn() legge curve[resource].",
+      "impact": "Dati che superano la build fanno lanciare un TypeError durante una pick v4 a sessione avviata. Il replay fallisce in modo deterministico e il record finisce in backup.",
+      "fix": "Validare alternativeLand (colors in WUBRGC, tapped e restricted booleani), fetch (kind 'basic', cost lista di simboli validi, readyTurn intero >=1, tapped e restricted booleani), subtypes in TYPES, tapped booleano, curve (reduction booleano, reductionResource in un insieme chiuso, power e toughness interi o null, attacker, defensive e artifact booleani) e relation.resource come stringa. Allineare lo schema. Test: ciascun override malformato fa fallire la build."
+    }
+  ],
+  "releaseReady": false,
+  "promotionReady": false,
+  "summary": "Il rilascio con v3 predefinita e v4 opzionale non è pronto per quattro difetti P1 concreti. (1) L'allocazione delle basi ignora le terre possedute e le fonti dello splash già presenti, quindi i main e i punteggi dei piani partono da un mana sbilanciato. (2) Il ritardo di due turni per lo splash aumenta le pescate anche per il requisito generico di terre: la stessa magia risulta più lanciabile come splash che nel colore principale, e lo svantaggio dipende solo da un moltiplicatore non calibrato. (3) Il calcolo sincrono di 3-5 s per mossa blocca l'interfaccia, e i clic accodati possono scegliere carte della busta successiva mai vista. (4) La ripresa riesegue l'intero draft al caricamento, bloccando la pagina. I P2 riguardano: messaggi e compatibilità delle revisioni v4, sorteggio di Potenza pura fra carte diverse, profilo Sinergie indistinguibile a copertura spenta e validazione incompleta degli override. La v3 e i suoi replay non sono toccati dalle correzioni proposte. Le correzioni PROD-01 e PROD-02 cambiano le decisioni v4 e richiedono una nuova revisione dell'algoritmo; la disattivazione uniforme delle sinergie è corretta e va resa visibile anche per profilo. Nessuna promozione: i dati causali sono incompleti, il campione riservato è già stato usato per individuare i difetti di mana e i costi interattivi non sono accettabili.",
+  "acceptance": [
+    "Rilascio: PROD-01 corretto, con fixture su terre monocolore possedute (fonti dei colori principali con differenza al massimo 1), splash con duali possedute (nessuna base di splash in eccesso) e risultato invariato senza terre possedute.",
+    "Rilascio: PROD-02 corretto con formula unica per tutte le magie; test di proprietà per MV da 1 a 8 e fonti da 1 a 10: stima identica a parità di fonti fra colore principale e splash, monotona nelle fonti, bomba di esempio con stima splash minore o uguale a quella principale; CODE-17 aggiornato mantenendo requiredSources uguale al costo.",
+    "Rilascio: prima di ogni refactor di prestazioni, digest v4 congelati su semi fissi; le ottimizzazioni senza effetto sulle decisioni li mantengono identici.",
+    "Rilascio: calcolo v4 e replay in Web Worker, pick disabilitate durante il calcolo, eventi accodati ignorati con controllo di event.timeStamp; nessun long task del thread principale sopra 200 ms durante pick, ripresa e revisione; p95 per mossa misurato su desktop di riferimento e su profilo mobile rallentato, con soglia dichiarata prima della misura.",
+    "Rilascio: pagina interattiva entro 1 s con un salvataggio v4 completo; replay solo su richiesta, con avanzamento e annullamento, e digest identico al replay attuale.",
+    "Rilascio: incompatibilità v4 segnalata con un messaggio specifico e backup integrale; compatibleAlgorithmRevisions ammesse solo con digest v4 congelati coincidenti.",
+    "Rilascio: firma di Potenza pura per stampa; profilo Sinergie marcato come equivalente alla configurazione di riferimento quando la copertura è spenta; validazione completa degli override di mana e curva nello schema e in validate_config.",
+    "Rilascio: restano verdi i digest storici v2/v3, la collazione, le fixture e regressioni v4 esistenti, i controlli browser di ripresa, export, privacy, backup riuscito e fallito, accessibilità da tastiera e tocco.",
+    "Promozione a default: nuovi casi riservati congelati prima della nuova taratura, oppure riuso dichiarato come limite, perché il campione attuale ha già guidato la diagnosi del mana.",
+    "Promozione a default: revisione cieca con la stessa rubrica su v3 e v4 corrette, senza regressioni materiali su legalità, mana, curva, risposte e piano, con miglioramento motivato sui difetti di mana segnalati.",
+    "Promozione a default: confronto appaiato v3 e v4 su sessioni distinte con impronte delle buste verificate, più tavoli misti e omogenei della v4 con posti ruotati; decisione su Adattivo e Lettura dei segnali secondo il criterio di distinzione o unificazione.",
+    "Promozione a default: prestazioni accettabili anche sul profilo mobile dichiarato e in Pick-Two, oppure v4 limitata esplicitamente agli eventi e ai dispositivi misurati.",
+    "Promozione a default: componente di sinergia coperta per tutti i piani dell'evento, oppure default v4 dichiarato con sinergie spente in modo uniforme e lacuna visibile, senza etichetta di competenza generale; nessuna WR dichiarata senza partite e metodo separato."
+  ]
+}

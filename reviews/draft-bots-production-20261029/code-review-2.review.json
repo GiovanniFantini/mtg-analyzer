@@ -1,0 +1,113 @@
+{
+  "findings": [
+    {
+      "id": "PROD-10",
+      "priority": "P1",
+      "file": "draft-policy.js",
+      "scenario": "Pool finale con 13 magie U e 10 magie R a un simbolo, metà con turno stimato fino a 3, basi aggiungibili. Variante: 22 magie W e una sola bomba R da 4,5, confrontando build(pool,'WR') con build(pool,'WB',{splash:'R'}).",
+      "evidence": "In allocate ogni base va al colore con massimo demand/(supplied+1). demand è la somma lineare dei simboli, doppia se il turno è al massimo 3. Con domanda U circa 30 e R circa 16, 17 terre convergono a circa 5-6 fonti R. È lo stesso esito segnalato dalla revisione cieca: sample-54d07d96 ha dieci carte R e cinque fonti rosse, sample-c35e8337 cinque Forest. Con una sola carta R, demand R=1 non supera mai 50/(sW+1): la configurazione riceve zero Mountain, castability vale 0 e il ciclo a punto fisso scarta la bomba (p===0). Lo splash riceve invece un minimo fisso di splashBasics (2 o 3). verify-draft-production confronta l'invarianza solo con allowedBasics vuoto. Il suo ciclo su castability con colori diversi è tautologico, perché castability non dipende dalla lane.",
+      "impact": "I colori principali secondari risultano sistematicamente sottoalimentati nel main provvisorio e in quello finale. A parità di magie, la lane che tratta il colore come splash ottiene fonti negate alla lane in cui è principale. context, finalBuild, pivot e lane della revisione scelgono quindi un'etichetta errata (WB con splash R invece di WR) e il punteggio dei piani è distorto. Il turno +2 non è la causa: ora incide solo sull'ammissione.",
+      "fix": "Sostituire la regola lineare con un greedy marginale sullo stesso modello dell'obiettivo. A ogni base aggiunta si sceglie il colore ammesso che massimizza l'aumento della somma, sulle magie, di rating(c) per chance(fonti del colore, turn(c), simboli di quel colore). Le fonti includono le terre possedute; a parità decide l'ordine COLORS. Il minimo splashBasics diventa un vincolo applicato allo stesso modo a ogni colore con domanda positiva. Il costo resta limitato: landTarget iterazioni per al massimo cinque colori, con probabilityCache. Verifiche: (1) su pool generati, nessuno spostamento di una base fra due colori aumenta quella somma; (2) con basi aggiungibili e stesse magie, build WR conserva la bomba con almeno due Mountain e ha punteggio non inferiore a build WB con splash R; (3) nuova misura dei tempi."
+    },
+    {
+      "id": "PROD-11",
+      "priority": "P1",
+      "file": "draft-engine.js, draft-worker.js, reviews/draft-bots-production-20261029/status.json",
+      "scenario": "Pick ordinaria al tavolo FRA v4 con sette bot, nel browser tramite worker, su desktop e in emulazione mobile con rallentamento CPU 4x.",
+      "evidence": "status.json elenca ancora come pending la build finale, le verifiche browser complete, i nuovi benchmark e la review sugli hash finali. I p95 per mossa da 3,34 a 4,81 s sono stati misurati in Node, prima delle modifiche PROD-01 e PROD-02, quindi con un'altra algorithmRevision. Il margine desktop è 0,19 s su un Ryzen 9. step esegue i sette takeGroup in sequenza in un solo worker. Con un rallentamento 4x lo stesso carico stimato sale a circa 13-19 s, oltre la soglia di 15 s dichiarata prima della misura.",
+      "impact": "Il criterio di accettazione dichiarato non è dimostrato ed è plausibilmente violato in mobile. Per la regola di fallback dello stesso status, releaseReady deve restare false.",
+      "fix": "Misurare sulla revisione finale nel browser con il worker: long task del main thread durante pick, ripresa, fine draft ed export; gap dell'heartbeat; p95 desktop e con throttling 4x; denominatori pubblicati. Se la soglia mobile non è rispettata, eseguire i posti in parallelo. step si divide in compiti per posto ({seat, packet, round, pick, count}) e applicazione degli uid scelti. min(7, max(1, hardwareConcurrency-1)) worker ausiliari possiedono lo stato dei propri bot e ricevono solo la busta del posto; i risultati si uniscono in ordine di posto. L'RNG per posto è già isolato, quindi si verifica con deepEqual che record, log e pool coincidano con il percorso sequenziale su fixture e semi FRA. Se la soglia resta violata, v4 non viene esposta."
+    },
+    {
+      "id": "PROD-12",
+      "priority": "P2",
+      "file": "draft-table.js, draft-worker-client.js",
+      "scenario": "Caso a: il worker genera un errore durante una pick, l'utente torna all'impostazione e preme Riprendi. Caso b: con salvataggio non disponibile, Inizia crea un draft v4 non salvato, poi l'utente torna all'impostazione e preme Riprendi.",
+      "evidence": "fail termina il worker ma il proxy non espone il proprio stato. persist imposta loadedSession=session, e Riprendi riusa loadedSession quando loadedRecord===saved. Nel ramo Riprendi la sessione corrente viene sostituita senza dispose. Inizia esegue dispose su loadedSession, ma se persist fallisce loadedSession resta quel proxy chiuso.",
+      "impact": "Caso a: il tavolo viene mostrato ma ogni pick fallisce finché la pagina non viene ricaricata. Caso b: un worker con buste e pool resta vivo in memoria, oppure viene riusato un proxy chiuso.",
+      "fix": "Aggiungere al proxy un getter alive aggiornato da fail e dispose. Riprendi riusa loadedSession solo se alive, altrimenti esegue il replay da saved. Nel catch della pick, se la sessione non è viva, impostare loadedSession=null e indicare Riprendi. In Riprendi eseguire dispose della sessione precedente quando è diversa da quella nuova. Test browser: dopo un errore iniettato nel worker, Riprendi ricostruisce dal salvataggio e la pick successiva riesce; nessun worker resta attivo dopo i cicli Inizia/Riprendi."
+    },
+    {
+      "id": "PROD-13",
+      "priority": "P2",
+      "file": "draft-worker.js, draft-worker-client.js, draft-engine.js",
+      "scenario": "Ricarica della pagina, oppure cambio evento (che esegue location.href), durante un draft v4 arrivato alla pick 40.",
+      "evidence": "Non viene conservato alcuno stato intermedio: Riprendi riesegue createReplaySession e step per ogni pick. Il report indica p95 per mossa fino a 4,81 s e mediana di 134,63 s per tavolo, draft più replay più diagnostico. Una ripresa tardiva costa quindi decine di secondi su desktop e diversi minuti con throttling, a ogni ricarica, senza una stima della durata.",
+      "impact": "La ripresa completa, pur annullabile, ha una durata proporzionale alle pick già fatte e la ripete a ogni navigazione. È il principale costo percepito della v4 opt-in.",
+      "fix": "Aggiungere un checkpoint opzionale in IndexedDB scritto dopo ogni step. Contiene lo stato serializzato della sessione worker (bot, pacchetti, round, pick, pending) con chiave (format.revision, policyRevision, algorithmRevision, seed, configs, hash del prefisso delle pick) e un hash di integrità. Serve un'API di ripristino in createSession. Alla ripresa si usa il checkpoint con il prefisso coerente più lungo e si rigiocano solo le pick successive; in assenza o discordanza si torna al replay completo attuale. Il checkpoint non entra nell'export e non cambia il record, quindi i vecchi salvataggi restano validi. Test: ripresa da checkpoint e da replay completo danno bot deepEqual; un checkpoint corrotto fa ripiegare sul replay; la stima del tempo residuo è visibile."
+    },
+    {
+      "id": "PROD-14",
+      "priority": "P2",
+      "file": "draft-worker.js, draft-worker-client.js",
+      "scenario": "Un deploy modifica draft-policy.js mentre il browser conserva in cache la versione precedente di draft-worker.js o degli script importati, oppure dell'HTML. Le cache sono indipendenti.",
+      "evidence": "Il worker nasce dall'URL fisso 'draft-worker.js' e chiama importScripts senza versione. Il record copia algorithmRevision dall'HTML (format.botPolicy.algorithmRevision), non dal codice realmente eseguito. Non esiste un controllo a runtime fra i byte eseguiti e l'impronta calcolata da payload().",
+      "impact": "Possono nascere record dichiarati compatibili ma prodotti con codice diverso. La ripresa successiva fallisce oppure ricostruisce pool diversi senza errore, violando BOT-14.",
+      "fix": "Il worker scarica i tre sorgenti e calcola lo SHA-256 di draft-policy, draft-engine e collation uniti con il byte zero, come payload(), tramite crypto.subtle. Confronta il risultato con format.botPolicy.algorithmRevision ed esegue lo stesso testo da Blob URL. In caso di discrepanza produce un errore esplicito e non salva nulla. Aggiungere ?v=algorithmRevision agli URL. I record esistenti restano invariati. Test: servendo un draft-policy.js modificato, la creazione v4 fallisce con messaggio e il salvataggio precedente resta intatto."
+    },
+    {
+      "id": "PROD-15",
+      "priority": "P2",
+      "file": "bot_profiles.py, draft-engine.js, draft-table.js",
+      "scenario": "Draft v4 in corso, seguito da un deploy che cambia anche solo un commento o il codice v3 di draft-engine.js, oppure collation.js.",
+      "evidence": "algorithmRevision è l'hash dei byte dei tre file e createReplaySession rifiuta qualsiasi impronta diversa. Le versioni precedenti del codice non vengono distribuite. La descrizione della v4 in policyDescription non avverte di questo limite prima della scelta.",
+      "impact": "A ogni aggiornamento i salvataggi v4 in corso diventano soltanto scaricabili, anche quando la politica non è cambiata. La continuazione con la politica originaria prevista da BOT-14 viene persa senza preavviso. Il rifiuto in sé è corretto.",
+      "fix": "Minimo per il rilascio: aggiungere alla descrizione della v4 l'avviso che un aggiornamento del sito può rendere non riprendibile un draft in corso, con invito a esportarlo. Correzione completa: archivio versionato dei tre sorgenti per algorithmRevision, generato dalla build e conservato nel repository. Il worker carica il bundle del record dopo la verifica di PROD-14. Test: dopo una modifica a draft-engine.js e una nuova build, un record v4 precedente si riprende con digest dei bot identico."
+    },
+    {
+      "id": "PROD-16",
+      "priority": "P2",
+      "file": "draft-policy.js, bot_profiles.py",
+      "scenario": "Evento con picksPerTurn 2 reso disponibile in v4, oppure fine di un draft con log lunghi.",
+      "evidence": "takeGroup calcola rank(bot) e poi, per ciascuno dei quattro candidati, rank(clone) anche con n=0. In quel caso clone coincide con bot e il risultato è identico. Nel commit ripete rank sullo stesso stato e chiama context per la fase. Il totale è di circa 11-13 rank completi contro uno della pick singola, mai misurati. Ogni candidato clona con JSON l'intero bot, incluso bot.log, dove ogni voce contiene il deck completo che renderReview non legge. payload() non condiziona available a picksPerTurn.",
+      "impact": "Il costo per mossa negli eventi Pick-Two non è misurato ed è moltiplicato. Il costo della clonazione cresce con le pick. Snapshot finale ed export risultano gonfiati.",
+      "fix": "Riusare first per n=0 e per la prima carta confermata: rank con transition false non modifica lo stato. Clonare soltanto pool, memory, anchor, lane, phase, target e strategy. Nel log tenere un riepilogo (lane, uid delle magie, basi, holes) al posto del deck intero. Test: su fixture Pick-Two scelte, pool e memory restano identici a prima. Finché la misura manca, v4 resta non disponibile con motivo visibile negli eventi con picksPerTurn maggiore di 1."
+    },
+    {
+      "id": "PROD-17",
+      "priority": "P2",
+      "file": "draft-policy.js",
+      "scenario": "I dati di un evento completano relations e planCoverage, quindi coverage.synergies diventa true.",
+      "evidence": "In synergy, per ogni relazione con payoff, expected somma frequency su tutte le stampe attive (411 in FRA) a ogni chiamata. synergy viene chiamata per ogni candidato a ogni iterazione di choose, circa 23 slot per 30 scelte, e in centinaia di build per pick. Le misure attuali sono state fatte con sinergie spente.",
+      "impact": "Una semplice annotazione dei dati renderebbe la v4 inutilizzabile, senza alcun segnale nei controlli di disponibilità.",
+      "fix": "Precalcolare in create, per ogni asse, sum(frequency(x)*enablers[axis]); il valore resta identico. Rendere obbligatoria una misura di prestazioni con coverage.synergies true su una fixture di dimensione FRA prima di esporre un evento con sinergie attive."
+    },
+    {
+      "id": "PROD-18",
+      "priority": "P2",
+      "file": "bot_profiles.py",
+      "scenario": "Carte con testo 'Target creature an opponent controls gets -3/-3 until end of turn', aure 'Enchanted creature can't attack or block', tap-down con 'doesn't untap' o segnalini -1/-1.",
+      "evidence": "Il pattern di interaction contiene 'target creature gets -' senza qualificatori e non copre gli altri testi. Lo status resta supported e coverage.minimum conta 411/411.",
+      "impact": "has(c,'interaction') guida tactical (risposte di Controllo), il deficit di interazione, il bonus di choose e replacement('interaction'). Le risposte di alcuni colori risultano assenti, con un vantaggio asimmetrico per colore non dichiarato, contrario al principio di disattivazione uniforme.",
+      "fix": "Estendere il pattern: target creature con qualificatori seguiti da gets -, -1/-1 counter, enchanted creature can't attack or block, doesn't untap. Aggiungere un test offline sulle stampe attive FRA che elenca le carte non terra con un lessico di rimozione più ampio e senza ruolo interaction. L'elenco deve essere vuoto, oppure ogni voce deve avere un override con provenienza. Se al rilascio l'elenco non è vuoto, disattivare uniformemente i contributi basati su interaction e dichiararlo fra le lacune. Il cambio di policyRevision è coerente con BOT-14."
+    },
+    {
+      "id": "PROD-19",
+      "priority": "P2",
+      "file": "draft-policy.js",
+      "scenario": "Evento senza basi aggiungibili, pool con 12 Plains e 12 Islands possedute, piano WU con 20 simboli W e 4 U.",
+      "evidence": "allocate inserisce le terre pertinenti ordinate solo per ingresso tappato e stable(id) fino a landTarget meno manaOnly. Poiché 'island' precede 'plains', il risultato è 12 Island e 5 Plains, senza considerare demand. Il ciclo proporzionale lavora solo su permitted, che qui è vuoto.",
+      "impact": "La distribuzione delle fonti dipende dall'ordine alfabetico delle stampe. Castability e punteggio dei piani sono falsati, e l'esito cambia rinominando le stampe.",
+      "fix": "Quando le terre pertinenti superano i posti disponibili, sceglierle con lo stesso greedy marginale di PROD-10, calcolando supplied con landSources sulla selezione corrente; stable resta solo come spareggio. Fixture speculare: scambiando gli id di Plains e Island la composizione non cambia e le fonti W sono almeno pari a quelle U."
+    }
+  ],
+  "releaseReady": false,
+  "promotionReady": false,
+  "summary": "Valutazione basata sulla lettura del codice, senza esecuzione di test. Esito delle decisioni precedenti. PROD-01: risolto per le terre possedute, ora presenti nel denominatore di entrambi i cicli e nel calcolo dello splash. PROD-02: risolto sul turno, perché l'obiettivo usa ovunque il turno nominale e il +2 resta solo un controllo di ammissione. L'asimmetria residua fra splash e colore principale nasce dalla ripartizione lineare delle basi senza minimo per i colori principali (PROD-10, coerente con i mazzi criticati nella revisione cieca). PROD-03: architettura worker corretta, ma accettazione prestazionale non misurata nel browser e probabilmente non rispettata in mobile (PROD-11, PROD-16, PROD-17). PROD-04 confermato. PROD-05 confermato, con residui sulla ripresa (PROD-12, PROD-13). PROD-06: il rifiuto conservativo è corretto, ma mancano preavviso e continuità (PROD-14, PROD-15). PROD-07, PROD-08 e PROD-09 confermati. Il rilascio con default v3 e v4 opt-in richiede la correzione dei due P1 e le verifiche finali ancora pending. La promozione della v4 a default resta esclusa.",
+  "acceptance": [
+    "Rilascio: build offline finale e suite policy, regressions, production, worker, Python e browser passate sugli hash esatti finali, con output conservati e fallimenti intermedi registrati.",
+    "Rilascio: default v3 invariato, digest storici v3 e replay v2/v3 identici, nessun record v4 creato senza scelta esplicita dell'utente.",
+    "Rilascio: correzione di PROD-10 con proprietà di ottimalità locale delle basi e invarianza di etichetta fra colore principale e splash, con basi aggiungibili. Il test tautologico su castability va sostituito da un confronto a livello di build.",
+    "Rilascio: misure nel browser con worker sulla revisione finale. Nessun long task oltre 200 ms sul main thread durante pick, ripresa, fine draft ed export; p95 per mossa al massimo 5 s su desktop e 15 s con throttling 4x, denominatori pubblicati. Altrimenti parallelismo per posto con record identici, oppure v4 non esposta.",
+    "Rilascio: v4 non disponibile negli eventi Pick-Two e con sinergie attive finché le relative prestazioni non sono misurate.",
+    "Rilascio: un proxy terminato o chiuso non viene mai riusato; durata della ripresa misurata e mostrata con avanzamento, annullamento e stima; checkpoint di PROD-13 oppure avviso esplicito del costo di ricostruzione.",
+    "Rilascio: verifica a runtime che il codice eseguito dal worker corrisponda ad algorithmRevision, e avviso preventivo che un aggiornamento può rendere non riprendibile un draft v4, con backup integrale già verificato.",
+    "Rilascio: audit del ruolo interaction sulle stampe FRA con elenco vuoto o override con provenienza; in alternativa disattivazione uniforme dichiarata dei contributi dipendenti.",
+    "Rilascio: se il Worker non è costruibile (file://, CSP, errore), v4 disabilitata con motivo in italiano, v3 pienamente utilizzabile e salvataggio v4 conservato.",
+    "Default v4: requisiti BOT P0 e P1 coperti senza componenti con vantaggi asimmetrici dovuti alla copertura dei dati; sinergie complete oppure disattivazione dichiarata e accettata per l'evento.",
+    "Default v4: nuovo campione riservato non riusato dopo tutte le correzioni, revisione cieca di pick e mazzi senza criticità ricorrenti di mana, miglioramento motivato sui difetti bersaglio senza regressioni materiali negli altri assi della rubrica.",
+    "Default v4: continuità dei replay v4 fra aggiornamenti tramite archivio dei bundle per algorithmRevision, con digest identici.",
+    "Default v4: prestazioni misurate su hardware mobile reale, non solo in emulazione, entro le soglie dichiarate.",
+    "Default v4: decisione documentata su Adattivo e Lettura dei segnali secondo il criterio di distinzione o unificazione dei requisiti."
+  ]
+}

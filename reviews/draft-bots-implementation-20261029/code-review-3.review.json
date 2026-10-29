@@ -1,0 +1,41 @@
+{
+  "findings": [
+    {
+      "id": "CODE-17",
+      "priority": "P2",
+      "file": "draft-policy.js",
+      "scenario": "Pool WU con 23 giocabili e una bomba rossa {4}{R} con voto 4,8. bestBuild prova lo splash R con due o tre Mountain aggiungibili. Nel punteggio finale la bomba ha t=7, cioè costo 5 più i due turni di ritardo dello splash. La probabilità sul numero di fonti viene quindi calcolata richiedendo 7 terre o fonti entro il turno 7, invece delle 5 che il costo richiede davvero. La stessa carta in un piano con R richiederebbe 5 terre al turno 5. Anche un {R} di splash richiede 3 terre entro il turno 3.",
+      "evidence": "build: `const t=turn(c,spells)+(!fits(c,lane)?2:0)` e poi `mana=colored*chance(count,t,Math.ceil(Math.min(Math.ceil(t),count+1)))`. Il ritardo +2 entra sia nelle pescate sia nel numero di fonti richieste. sourceModel usa invece il costo nominale per il conteggio delle terre: `chance(lands.length+sum(Object.values(basics)),Math.max(1,c.mv),Math.ceil(c.mv))`.",
+      "impact": "Il ritardo dichiarato per trovare la fonte di splash diventa un requisito di due terre in più. Con circa 17 fonti su 40, avere 7 terre fra 13 carte è molto meno probabile che averne 5. La penalità, moltiplicata per 1,8 fuori piano, resta quasi piena proprio sugli splash costosi, che sono il caso tipico. bestBuild può scartare splash sostenibili e rank sottovaluta le bombe fuori colore rispetto a quanto dichiarato nelle assunzioni.",
+      "fix": "Separare il turno di accesso al colore dal numero di fonti richieste. Usare t, con il +2, per le pescate e per castability. Usare turn(c,spells), nominale o ridotto, come numero di terre richieste: `chance(count,t,Math.ceil(Math.min(turn(c,spells),count+1)))`. Aggiungere una fixture che confronti lo splash di un cinque mana con il requisito di 5 terre."
+    },
+    {
+      "id": "CODE-18",
+      "priority": "P2",
+      "file": "draft-policy.js",
+      "scenario": "Piano WU con splash R, basi aggiungibili. Il pool contiene un Mountaincycler blu {5}{U} con voto 2,0, sotto le 23 migliori magie WU. Poiché fits(c,colors) è vero, la carta non può diventare slot di sola fonte. choose la ordina solo per voto e contributo tattico, senza valore di fixing, quindi resta esclusa e non fornisce R. Lo stesso ciclatore con costo {5}{B}, fuori colore, verrebbe invece ammesso come manaOnly con sourceModes 1.",
+      "evidence": "`canAlternate=c=>!c.land&&!fits(c,colors)&&(...)`. In bestBuild, `alternate` richiede `!fits(c,[...lane,color])` per abilitare sourceModes 1. In choose, `q` non contiene alcun termine di fonte. sourceModel accrediterebbe il ciclo soltanto se la carta fosse già in `spells`.",
+      "impact": "Una carta con uso alternativo nei colori del piano vale meno, come fixing, della stessa carta fuori colore. Questo contraddice BOT-04: le carte con usi alternativi devono occupare un solo slot e conservare la flessibilità. In rank il ciclatore in colore ottiene delta nullo anche quando sostituire una base con esso migliorerebbe lo splash. Così la configurazione con fonte indiretta non viene mai esplorata.",
+      "fix": "Rendere candidabili allo slot di sola fonte anche le carte in colore escluse da `spells`. Per esempio, calcolare manaOnly dopo choose sulle carte non selezionate, con lo stesso predicato di canAlternate senza `!fits`. In alternativa, valutare nel ciclo di rifiuto e riempimento lo scambio base/ciclatore. Aggiornare anche `alternate` in bestBuild."
+    },
+    {
+      "id": "CODE-19",
+      "priority": "P2",
+      "file": "draft-policy.js",
+      "scenario": "Piano W con splash R e sourceModes 1. Nel pool ci sono una carta modale fuori colore con faccia terra R marcata restricted, per esempio con 'Spend this mana only', e un Mountaincycler fuori colore utilizzabile. sourceUtility li considera equivalenti, perché entrambi forniscono R, e il pareggio si risolve con stable, che ordina per id. Se l'id della carta modale precede quello del ciclatore, slice(0,1) prende la carta modale. sourceModel la ignora perché restricted, quindi la configurazione perde una terra senza ottenere una fonte. bestBuild torna a sourceModes 0 e il ciclatore non viene mai provato.",
+      "evidence": "canAlternate: `profile(c).mana.alternativeLand?.colors.some(x=>colors.includes(x))` non controlla né `restricted` né l'ingresso tappato. sourceUtility costruisce `provides` da `m.alternativeLand?.colors` senza filtri. sourceModel accetta invece solo `alternate&&!alternate.restricted&&!(alternate.tapped&&targetTurn<=1)`. Infine `.slice(0,options.sourceModes||0)` con sourceModes al massimo 1.",
+      "impact": "Una fonte che il modello di mana considera nulla può occupare l'unico slot di sola fonte e oscurare una fonte valida. Lo splash sostenuto dal ciclatore non viene trovato, e in rank la pick del ciclatore riceve un contributo nullo per motivi che dipendono dall'ordine degli identificatori.",
+      "fix": "Usare in canAlternate e sourceUtility lo stesso predicato di accessibilità di sourceModel: alternativeLand non restricted, cicli con bersagli ricercabili nella configurazione. Oppure provare separatamente ciascun candidato utile come slot di sola fonte, invece di troncare l'elenco ordinato per id. Aggiungere una fixture con la carta modale restricted e un id che la ordina prima del ciclatore."
+    },
+    {
+      "id": "CODE-20",
+      "priority": "P2",
+      "file": "draft-table.js",
+      "scenario": "A draft concluso, bot Lettura dei segnali con memoria R/B forte. Nella situazione della fixture CODE-11, il piano BR ha `value` maggiore per effetto del segnale, ma un mazzo peggiore di WU. Nelle ultime pick `bot.lane=selected.lane` resta BR, perché la corsia è scelta su delta+signalValue. La revisione costruisce il mazzo finale in `bot.lane` e mostra il main BR, anche se il pool completo permette un main WU migliore.",
+      "evidence": "renderReview: `E.createEvaluator(data,4).bestBuild(bot.pool,bot.lane,bot.strategy,{remaining:0,...})`. In take, `bot.lane=selected.lane` è la corsia del piano che massimizza `after.score+plan.signalValue-before.value` più gli altri componenti. La fixture CODE-11 dimostra `plans[0].lane==='BR'` con `plans[0].deck.score<plans[1].deck.score`. Inoltre la corsia è fissata con remaining=1, non con remaining=0.",
+      "impact": "Il mazzo costruibile mostrato a fine draft dipende da segnali e ancora, che dopo l'ultima pick non hanno più valore per la costruzione. BOT-02 e BOT-12 chiedono di restituire e spiegare il main costruibile del pool completo. Qui la revisione può presentare un main inferiore a quello che lo stesso costruttore troverebbe, falsando anche l'esame dei mazzi previsto da BOT-13.",
+      "fix": "A pool completo scegliere la corsia con context(bot,...,{remaining:0}) ignorando signalValue e ancora. Per esempio, prendere il massimo di `deck.score` su tutte le corsie candidate, oppure esporre una funzione finalBuild(pool) nel valutatore. Usarla sia in renderReview sia nel banco di prova."
+    }
+  ],
+  "summary": "Rispetto ai turni precedenti non emergono difetti bloccanti. Disponibilità e versione restano isolate: v3 è il default, v4 non è disponibile senza dati minimi completi, le sinergie sono disattivate uniformemente con copertura incompleta e il replay v4 dipende da revisioni funzionali, algoritmo e opzioni. Non risultano accessi a buste future o pool avversari, e la casualità è separata per posto, busta e pick. Restano quattro difetti P2 dimostrabili dal codice. Il punteggio degli splash richiede due terre in più del costo. I ciclatori nei colori del piano non possono diventare slot di sola fonte. La selezione dello slot di sola fonte non usa gli stessi criteri di accessibilità del modello di mana e si risolve per ordine di id. La revisione finale costruisce il mazzo nella corsia scelta anche in base ai segnali, invece che nella migliore corsia per il pool completo."
+}

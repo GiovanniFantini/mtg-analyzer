@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "frozenBeforeChanges": "2026-10-29",
+  "trainingSeeds": ["production-train-101", "production-train-103"],
+  "reservedSeeds": ["production-reserved-211", "production-reserved-223", "production-reserved-227", "production-reserved-229"],
+  "expectations": {
+    "ownedSources": "Owned colored lands reduce demand for added basics; equal total sources produce a balanced base for equal demand.",
+    "splashTempo": "Calling the same physical mana configuration a splash cannot improve its objective by granting extra draw steps for free.",
+    "responsive": "V4 decisions and full replay run outside the UI thread; pending actions are guarded, errors preserve the prior save.",
+    "compatibility": "V2/V3 replays unchanged; previous v4 algorithm snapshots are preserved before replacement."
+  },
+  "rubric": ["main legality", "colored mana and useful turns", "functional early curve", "interaction", "win plan", "synergy limitations", "UI responsiveness"],
+  "scope": "Safe production release with v3 default and v4 explicitly experimental. Promotion requires independent positive evidence and complete declared capabilities; no fabricated annotations or WR."
+}

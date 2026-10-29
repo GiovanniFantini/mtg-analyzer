@@ -1,0 +1,21 @@
+  const legacySymbolConstraints=new Map();
+  function symbolChance(symbols,colors,units,t){
+   const key=symbols.join(':')+'|'+colors.join('');let compiled=legacySymbolConstraints.get(key);
+   if(!compiled){const groups=[];
+   for(const symbol of symbols){
+    if(symbol.includes('P')||symbol.split('/').some(x=>/^\d+$/.test(x)))continue;
+    const options=symbol.split('/').filter(x=>MANA.includes(x)&&(x==='C'||colors.includes(x)));
+    if(!options.length){if(/[WUBRGC]/.test(symbol))return 0;continue;}
+    groups.push(options.reduce((n,color)=>n|1<<MANA.indexOf(color),0));
+   }
+   let masks=new Set();for(const group of groups){const previous=[...masks];masks.add(group);for(const mask of previous)masks.add(mask|group);}
+   compiled={groups,masks:[...masks]};if(legacySymbolConstraints.size>4000)legacySymbolConstraints.clear();legacySymbolConstraints.set(key,compiled);}
+   const {groups,masks}=compiled;
+   if(masks.length===1){const mask=masks[0];if((mask&(mask-1))===0)return chance(sum(units.map(u=>u[MANA[Math.log2(mask)]]||0)),t,groups.length);}
+   let value=1;
+   for(const mask of masks){const pips=groups.filter(group=>(group&mask)===group).length;
+    const colors=MANA.filter((_,i)=>mask&1<<i),count=sum(units.map(unit=>Math.max(0,...colors.map(color=>unit[color]||0))));
+    value=Math.min(value,chance(count,t,pips));
+   }
+   return value;
+  }

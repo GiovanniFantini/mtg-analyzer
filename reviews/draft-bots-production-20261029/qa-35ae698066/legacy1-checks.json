@@ -1,0 +1,53 @@
+[
+  {
+    "command": [
+      "node",
+      "verify-draft-bots-browser.cjs"
+    ],
+    "exitCode": 0,
+    "stdout": "PASS: v2 saved draft resumes and stays v2; new v3 draft completes, reloads and exports identical review; mouse, keyboard and touch card previews; no browser errors.\n",
+    "stderr": "",
+    "sourceHashes": {
+      "draft-policy.js": "35ae6980660c3158e290ce2452fa46d1026711d517447cbb79d390f261f69ae5",
+      "draft-engine.js": "5e7ee5acbdc830d1d85e8683b727a3d6fa0d2c52a21645d00c4d76dc02a83165",
+      "draft-worker.js": "2feb5a7fd028d91e38feb72174d1f32bba741b5128d574b82154ea5b47c8ee51",
+      "draft-worker-client.js": "58b67875ffbda8fdde0f122ae6bd6e3825aa3d2e8c4f6d815681066235283230",
+      "draft-table.js": "9da4b57a65b2e64a8cf5b6a40749c60bfb04b9d6852acbc84d00e1f5b2ff4c9c",
+      "bot_profiles.py": "8bb7263f1cd8a14ef0b34a01dfba19d90ea85c7e8fc1a787a0652d63f7f9344c"
+    }
+  },
+  {
+    "command": [
+      "node",
+      "verify-expansion-browser.cjs"
+    ],
+    "exitCode": 0,
+    "stdout": "PASS: historical Sealed saves preserved; incompatible Draft save preserved; missing-feature pages and public JSON; no JavaScript errors.\n",
+    "stderr": "",
+    "sourceHashes": {
+      "draft-policy.js": "35ae6980660c3158e290ce2452fa46d1026711d517447cbb79d390f261f69ae5",
+      "draft-engine.js": "5e7ee5acbdc830d1d85e8683b727a3d6fa0d2c52a21645d00c4d76dc02a83165",
+      "draft-worker.js": "2feb5a7fd028d91e38feb72174d1f32bba741b5128d574b82154ea5b47c8ee51",
+      "draft-worker-client.js": "58b67875ffbda8fdde0f122ae6bd6e3825aa3d2e8c4f6d815681066235283230",
+      "draft-table.js": "9da4b57a65b2e64a8cf5b6a40749c60bfb04b9d6852acbc84d00e1f5b2ff4c9c",
+      "bot_profiles.py": "8bb7263f1cd8a14ef0b34a01dfba19d90ea85c7e8fc1a787a0652d63f7f9344c"
+    }
+  },
+  {
+    "command": [
+      "C:\\Program Files\\Python315\\python.exe",
+      "verify-expansion-review.py"
+    ],
+    "exitCode": 0,
+    "stdout": "PASS: review regressions across nineteen isolated JSON fixtures, including shared preview pools/previews, missing statistics, clean Atlas and generic events.\n",
+    "stderr": "",
+    "sourceHashes": {
+      "draft-policy.js": "35ae6980660c3158e290ce2452fa46d1026711d517447cbb79d390f261f69ae5",
+      "draft-engine.js": "5e7ee5acbdc830d1d85e8683b727a3d6fa0d2c52a21645d00c4d76dc02a83165",
+      "draft-worker.js": "2feb5a7fd028d91e38feb72174d1f32bba741b5128d574b82154ea5b47c8ee51",
+      "draft-worker-client.js": "58b67875ffbda8fdde0f122ae6bd6e3825aa3d2e8c4f6d815681066235283230",
+      "draft-table.js": "9da4b57a65b2e64a8cf5b6a40749c60bfb04b9d6852acbc84d00e1f5b2ff4c9c",
+      "bot_profiles.py": "8bb7263f1cd8a14ef0b34a01dfba19d90ea85c7e8fc1a787a0652d63f7f9344c"
+    }
+  }
+]

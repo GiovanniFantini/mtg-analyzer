@@ -1,0 +1,7 @@
+{
+  "oldWorkerHash": "5041d79dd145197a64bf142e2edec3a276903d5506bfa2c73dec476faea3ed5f",
+  "newWorkerHash": "d851613586061ac0593b2a74d25baaa1ca812e6445bdef3c79f86013a205e3ea",
+  "onlyChange": "Auxiliary worker limit reserves two advertised logical CPUs instead of one, still at least one worker and at most four. No decision math or serial state changed.",
+  "evidence": "qa-d944c5fcda32/performance.json contains 371ms UI task on third seed. trace-pick31 CPU profile has no comparable JS hotspot; CPU contention is an inference, not proven attribution. Lower concurrency is tested against the same unchanged gate.",
+  "finalQaDirectory": "qa-05bca7a673a4"
+}

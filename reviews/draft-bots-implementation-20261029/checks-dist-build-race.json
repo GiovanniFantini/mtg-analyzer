@@ -1,0 +1,59 @@
+[
+  {
+    "command": [
+      "C:\\Program Files\\Python315\\python.exe",
+      "-m",
+      "unittest",
+      "test_expansion_data.py",
+      "test_bot_profiles.py"
+    ],
+    "exitCode": 0,
+    "stdout": "",
+    "stderr": "..........................................\n----------------------------------------------------------------------\nRan 42 tests in 406.722s\n\nOK\n"
+  },
+  {
+    "command": [
+      "node",
+      "verify-draft-bots.cjs"
+    ],
+    "exitCode": 0,
+    "stdout": "PASS: frozen v1/v2 replays and continuation; v3 replay; color neutrality; reported picks; bounded tactical bonuses; hybrid mana; duplicate support.\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "node",
+      "verify-draft-engine.cjs"
+    ],
+    "exitCode": 0,
+    "stdout": "{\"packs\":30000,\"guestRate\":0.019366666666666667,\"rareMainRate\":0.7475333333333334,\"foilLandRate\":0.1969,\"drafted\":336,\"replay\":\"identical\",\"strategies\":9}\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "node",
+      "verify-expansions.cjs"
+    ],
+    "exitCode": 0,
+    "stdout": "PASS: 3,000 historical packs identical; legacy replay; revision rejection; Pick-Two, odd packs, four seats, partial replay and card conservation.\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "C:\\Program Files\\Python315\\python.exe",
+      "verify-collation-contract.py"
+    ],
+    "exitCode": 0,
+    "stdout": "PASS: Python validation and JavaScript engine agree on correlated exclusions, feasible pairs and exhausted groups.\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "node",
+      "verify-draft-policy.cjs"
+    ],
+    "exitCode": 1,
+    "stdout": "",
+    "stderr": "node:fs:484\n    return binding.readFileUtf8(path, stringToFlags(options.flag));\n                   ^\n\nError: ENOENT: no such file or directory, open 'C:\\repos\\Codex\\MTG\\dist\\sets\\reality-fracture\\Reality-Fracture-Draft-Engine.html'\n    at Object.readFileSync (node:fs:484:20)\n    at Object.<anonymous> (C:\\repos\\Codex\\MTG\\verify-draft-policy.cjs:9:30)\n    at Module._compile (node:internal/modules/cjs/loader:1929:14)\n    at Object..js (node:internal/modules/cjs/loader:2060:10)\n    at Module.load (node:internal/modules/cjs/loader:1651:32)\n    at Module._load (node:internal/modules/cjs/loader:1443:12)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\n    at node:internal/main/run_main_module:33:47 {\n  errno: -4058,\n  code: 'ENOENT',\n  syscall: 'open',\n  path: 'C:\\\\repos\\\\Codex\\\\MTG\\\\dist\\\\sets\\\\reality-fracture\\\\Reality-Fracture-Draft-Engine.html'\n}\n\nNode.js v24.20.0\n"
+  }
+]

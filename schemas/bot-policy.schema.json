@@ -1,0 +1,435 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:mtg-analyzer:bot-policy:1",
+  "title": "Optional Draft policy descriptors v1",
+  "type": "object",
+  "required": [
+    "schemaVersion"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "match": {
+      "enum": [
+        "BO1",
+        "BO3",
+        "unknown"
+      ]
+    },
+    "planCoverage": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "status",
+          "provenance"
+        ],
+        "properties": {
+          "status": {
+            "enum": [
+              "supported",
+              "not_applicable",
+              "unsupported"
+            ]
+          },
+          "relations": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "provenance": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "relations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "referenceSupport",
+          "saturation",
+          "strength"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "referenceSupport": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "referencePayoffs": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "saturation": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "strength": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "threshold": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "resource": {
+            "type": "string"
+          },
+          "resourceBudget": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100
+          }
+        }
+      }
+    },
+    "cards": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "status",
+          "provenance"
+        ],
+        "properties": {
+          "status": {
+            "enum": [
+              "supported",
+              "not_applicable",
+              "unsupported"
+            ]
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "provenance": {
+            "type": "object"
+          },
+          "reference": {
+            "type": "object",
+            "required": [
+              "status"
+            ],
+            "properties": {
+              "status": {
+                "enum": [
+                  "supported",
+                  "unsupported"
+                ]
+              },
+              "context": {
+                "type": "string"
+              },
+              "support": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 100
+                }
+              },
+              "payoffs": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 100
+                }
+              }
+            }
+          },
+          "synergy": {
+            "type": "object",
+            "required": [
+              "status"
+            ],
+            "properties": {
+              "status": {
+                "enum": [
+                  "supported",
+                  "not_applicable",
+                  "unsupported"
+                ]
+              },
+              "enablers": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 100
+                }
+              },
+              "payoffs": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 100
+                }
+              }
+            }
+          },
+          "symbols": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[0-9WUBRGCXYP/]+$"
+            }
+          },
+          "variable": {
+            "type": "boolean"
+          },
+          "mana": {
+            "type": "object",
+            "properties": {
+              "abilities": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "colors",
+                    "activation",
+                    "restricted"
+                  ],
+                  "properties": {
+                    "colors": {
+                      "$ref": "#/$defs/colors"
+                    },
+                    "activation": {
+                      "type": "string"
+                    },
+                    "restricted": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              },
+              "cycling": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "kind",
+                    "type",
+                    "cost"
+                  ],
+                  "properties": {
+                    "kind": {
+                      "enum": [
+                        "basic",
+                        "subtype"
+                      ]
+                    },
+                    "type": {
+                      "enum": [
+                        "Basic Land",
+                        "Plains",
+                        "Island",
+                        "Swamp",
+                        "Mountain",
+                        "Forest"
+                      ]
+                    },
+                    "cost": {
+                      "type": "string",
+                      "pattern": "^(\\{[0-9WUBRGCXYP/]+\\})+$"
+                    }
+                  },
+                  "allOf": [
+                    {
+                      "if": {
+                        "properties": {
+                          "kind": {
+                            "const": "basic"
+                          }
+                        }
+                      },
+                      "then": {
+                        "properties": {
+                          "type": {
+                            "const": "Basic Land"
+                          }
+                        }
+                      },
+                      "else": {
+                        "properties": {
+                          "type": {
+                            "enum": [
+                              "Plains",
+                              "Island",
+                              "Swamp",
+                              "Mountain",
+                              "Forest"
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "subtypes": {
+                "type": "array",
+                "items": {
+                  "enum": [
+                    "Plains",
+                    "Island",
+                    "Swamp",
+                    "Mountain",
+                    "Forest"
+                  ]
+                }
+              },
+              "alternativeLand": {
+                "$ref": "#/$defs/alternativeLand"
+              },
+              "fetch": {
+                "$ref": "#/$defs/fetch"
+              },
+              "tapped": {
+                "type": "boolean"
+              },
+              "conditional": {
+                "type": "boolean"
+              }
+            }
+          },
+          "curve": {
+            "type": "object",
+            "properties": {
+              "artifact": {
+                "type": "boolean"
+              },
+              "reduction": {
+                "type": "boolean"
+              },
+              "defensive": {
+                "type": "boolean"
+              },
+              "attacker": {
+                "type": "boolean"
+              },
+              "nominal": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 100
+              },
+              "power": {
+                "type": [
+                  "integer",
+                  "null"
+                ]
+              },
+              "toughness": {
+                "type": [
+                  "integer",
+                  "null"
+                ]
+              },
+              "reductionResource": {
+                "enum": [
+                  "power",
+                  "toughness",
+                  "creatures",
+                  "artifacts",
+                  "unsupported"
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "colors": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "W",
+          "U",
+          "B",
+          "R",
+          "G",
+          "C"
+        ]
+      }
+    },
+    "alternativeLand": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "required": [
+        "colors",
+        "tapped",
+        "restricted"
+      ],
+      "properties": {
+        "colors": {
+          "$ref": "#/$defs/colors"
+        },
+        "tapped": {
+          "type": "boolean"
+        },
+        "restricted": {
+          "type": "boolean"
+        }
+      }
+    },
+    "fetch": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "required": [
+        "kind",
+        "cost",
+        "readyTurn",
+        "tapped",
+        "restricted"
+      ],
+      "properties": {
+        "kind": {
+          "const": "basic"
+        },
+        "cost": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[0-9WUBRGCXYPT/]+$"
+          }
+        },
+        "readyTurn": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "tapped": {
+          "type": "boolean"
+        },
+        "restricted": {
+          "type": "boolean"
+        },
+        "activation": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

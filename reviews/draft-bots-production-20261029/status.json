@@ -1,0 +1,319 @@
+{
+  "scope": "Safe release with v3 default and explicitly experimental v4. Competitive/default promotion remains false. User subsequently authorized commit and push; existing Pages workflow runs on main. No CI modifications authorized.",
+  "baselineReview": "code-review-1.review.json",
+  "implemented": [
+    {
+      "id": "PROD-01",
+      "decision": "confirmed",
+      "fix": "Added basics use owned land sources in both allocation loops; splash target subtracts existing land sources. Indirect conditional sources stay fractional and conservative, not guaranteed lands."
+    },
+    {
+      "id": "PROD-02",
+      "decision": "confirmed",
+      "fix": "One nominal horizon for the entire objective. The +2 horizon is only a conservative splash admission check, never free objective credit; no new lambda calibrated on holdout. Property fixtures and requiredSources regression."
+    },
+    {
+      "id": "PROD-03",
+      "decision": "confirmed",
+      "fix": "V4 decisions and replay isolated from UI, bounded independent-seat worker pool, deterministic ordered commit. Final selected review loaded lazily; full canonical export serialized inside worker. UI guards, progress, committed snapshots and failure recovery tested."
+    },
+    {
+      "id": "PROD-04",
+      "decision": "confirmed",
+      "fix": "Busy disables commands; timestamp guard rejects queued old-pack events; click detail>1 rejects double-click continuation."
+    },
+    {
+      "id": "PROD-05",
+      "decision": "confirmed",
+      "fix": "Header validation at load, replay only on Resume in Worker, progress and AbortController cancel. Unvalidated raw records backed up before new draft even if headers are valid."
+    },
+    {
+      "id": "PROD-06",
+      "decision": "partially_confirmed",
+      "fix": "Distinct parsing/incompatible messages. Exact algorithm fingerprint remains deliberately conservative, per BOT-14. No compatible allowlist is introduced: no prior v4 revision is asserted equivalent after mana/choice corrections. Integral backup remains mandatory; refusing unsafe replay is correct."
+    },
+    {
+      "id": "PROD-07",
+      "decision": "confirmed",
+      "fix": "Power signature includes printing id, randomness only identical printings; stable choice regression."
+    },
+    {
+      "id": "PROD-08",
+      "decision": "confirmed",
+      "fix": "Per-profile visible note in setup and final review when synergy coverage is disabled. Adaptive remains internal."
+    },
+    {
+      "id": "PROD-09",
+      "decision": "confirmed",
+      "fix": "Nested mana/curve/resource validation and matching JSON Schema; malformed override subtests fail offline."
+    },
+    {
+      "id": "PROD-10",
+      "decision": "confirmed",
+      "fix": "Unified owned-land/basic selection by marginal colored-access surrogate, same seeding rule for all demanded colors, bounded basic swaps to local optimum; cached by actual demand rows and owned lands. Actual build primary/splash and secondary-color regressions replace previous narrow property."
+    },
+    {
+      "id": "PROD-11",
+      "decision": "partially_confirmed",
+      "fix": "Superseded the ambiguous touch decision threshold with one physical desktop 5s p95 criterion. Viewport/touch is functional UI coverage, not CPU emulation or physical mobile evidence. No CDP/4x acceptance claim remains; see PROD-33 recorded before consolidated acquisition."
+    },
+    {
+      "id": "PROD-12",
+      "decision": "confirmed",
+      "fix": "Alive getter, closed-proxy cache invalidation, replays from saved record and disposes displaced worker, also after failed persistence."
+    },
+    {
+      "id": "PROD-13",
+      "decision": "partially_confirmed",
+      "fix": "Replay cost is measured; initial save message warns of tens of seconds, progress shows remaining-time estimate and supports cancellation. Optional IndexedDB checkpoint is an expansion, not needed for safe experimental release and would add a separate state contract."
+    },
+    {
+      "id": "PROD-14",
+      "decision": "confirmed",
+      "fix": "Worker URL revision query; fetch three sources no-store, hash exact NUL-joined bytes with WebCrypto, compare declared revision before executing those exact Blob bytes. Reject mismatch without writes; v3 remains usable."
+    },
+    {
+      "id": "PROD-15",
+      "decision": "confirmed_minimum",
+      "fix": "Explicit pre-selection update/replay warning; strict incompatible backup preserved. Archived historical v4 executables are deferred, so no seamless cross-algorithm continuation claim or general promotion."
+    },
+    {
+      "id": "PROD-16",
+      "decision": "confirmed",
+      "fix": "Reuse initial ranking for beam and first commit, avoid cloning logs, reuse rank context for phase. Frozen old takeGroup reference proves ordinary/Pick-Two identical logs. Public UI disables experimental multi-pick events until measured; pure engine remains diagnostic-testable."
+    },
+    {
+      "id": "PROD-17",
+      "decision": "confirmed_hot_loop",
+      "fix": "Axis availability precomputed once from static public catalog. Actual event has causal component uniformly off. Future capability activation requires relevant performance validation, not invented annotations."
+    },
+    {
+      "id": "PROD-18",
+      "decision": "partially_confirmed",
+      "fix": "Actual Oracle audit found Hapatra, Infinite Coursework, Jace and Rise of Deathbringer missing interaction role (6 printings). Patterns now cover these. Broad lexical false positives Loot and Traxos are verified self-effects with Oracle-hash/provenance exceptions, not opponent interaction. This is a conservative role classifier, not complete Oracle interpretation."
+    },
+    {
+      "id": "PROD-19",
+      "decision": "confirmed",
+      "fix": "Owned lands compete using same marginal utility, independent of alphabetical land order; free basics compete for all slots too, avoiding 17 redundant owned Plains. Restricted basics fixture and renaming regression."
+    },
+    {
+      "id": "PROD-20",
+      "decision": "confirmed",
+      "fix": "Symbol-union objective uses timed land units and two-pass actual indirect sources. Same own-UID exclusion as castability, source-aware cache key, targeted actual-build local-exchange/modal/tapped/hybrid regressions pass. Final score always recomputes sourceModel."
+    },
+    {
+      "id": "PROD-21",
+      "decision": "confirmed_evidence_gap",
+      "fix": "Replaced five-sample harness with 126 default decisions on 3 frozen seeds, separate 42 power decisions, one physical desktop threshold 5s p95. Full 41/42 replay, last pick, review and export monitored. No physical mobile or worker throttling claim. Final run pending."
+    },
+    {
+      "id": "PROD-22",
+      "decision": "alternative_implemented",
+      "fix": "Parallel independent-seat evaluation in bounded auxiliary worker pool instead of thinking-time-dependent preparation. Async and sequential state/log/record exact parity on ordinary/Pick-Two, transactional failed-job guards; benchmark will assess actual click latency without simulated human delay."
+    },
+    {
+      "id": "PROD-23",
+      "decision": "confirmed",
+      "fix": "Power rank bypasses context/build entirely; rating-only choices stay stable per printing, lane explicitly libero."
+    },
+    {
+      "id": "PROD-24",
+      "decision": "conditional_block_confirmed_and_fixed",
+      "fix": "First full 42-pick acquisition found UI long task 2109 ms and heartbeat 2121 ms, violating the frozen gate. Worker now retains full logs, sends only summaries plus selected-seat log without unused per-pick deck snapshots, and serializes full canonical export in worker. No policy math changed. Exact full export and selected-review parity tests added; final acquisition repeated after rebuild. Second acquisition found a 371ms task during pick31 of third seed. Diagnostic trace did not identify matching heavy main JS; CPU contention is an inference. Auxiliary pool now reserves two advertised logical CPUs instead of one. Frozen 5s/200ms/500ms gates remain unchanged; reacquisition follows targeted tests."
+    },
+    {
+      "id": "PROD-25",
+      "decision": "deferred_optional",
+      "fix": "Completed-review cache adds an additional storage/state contract. Experimental release already discloses replay cost, progress, cancellation and time estimate; actual duration will be recorded. No seamless or fast-cache resume claim."
+    },
+    {
+      "id": "PROD-26",
+      "decision": "confirmed",
+      "fix": "Separate workerRevision is SHA256 of worker transport source; URL changes independently of algorithmRevision. Policy byte verification remains mandatory before execution."
+    },
+    {
+      "id": "PROD-27",
+      "decision": "confirmed",
+      "fix": "Dead worker returns immediately to setup with Resume visible; targeted failure/recovery browser check updated."
+    },
+    {
+      "id": "PROD-28",
+      "decision": "confirmed",
+      "fix": "Final early count weighted by nominal-turn mana estimate uniformly across lanes; tactical early term uses same weight. Greedy preliminary choice remains nominal-cost heuristic before actual allocation. Identical-mana primary/splash deficits regression passes."
+    },
+    {
+      "id": "PROD-29",
+      "decision": "confirmed",
+      "fix": "Allocation uses symbol-union constraints, not arbitrary assignment of hybrid demand. Mirrored hybrid/double-pip actual builds and local source-model exchange checks pass."
+    },
+    {
+      "id": "PROD-30",
+      "decision": "confirmed",
+      "fix": "Own-graveyard costs no longer classify as sideboard hate. Real catalog Oracle-hash audit covers all lexical candidates with explicit positive/negative judgments; structured tests cover both."
+    },
+    {
+      "id": "PROD-31",
+      "decision": "confirmed",
+      "fix": "Inference v3 separates actual opponent interaction from self-only exile/bounce, untap, graveyard costs and face-only damage. Retains conditional creature burn, bites and targeted hand disruption. Manual Oracle-hash audit of 83 current printings (75 positive, 8 negative), full Oracle supplied to Opus; explicit positive/negative unit cases."
+    },
+    {
+      "id": "PROD-32",
+      "decision": "confirmed",
+      "fix": "Review clears stale content synchronously, labels newly selected bot and pending deck, sets aria-busy, and replaces with own error on failure. Delayed-worker browser regression verifies no old bot attribution."
+    },
+    {
+      "id": "PROD-33",
+      "decision": "protocol_corrected_before_acquisition",
+      "fix": "Choose the explicitly offered alternative: remove the old 15s touch/hypothetical 4x criterion. One desktop CPU threshold 5s p95 for 126 default choices. Touch viewport has functional tests only; physical mobile and worker throttling unmeasured. Preserve superseded declaration separately as history, not active acceptance."
+    }
+  ],
+  "pending": [
+    "Final actual Opus review on updated code and complete local evidence. User will handle resumption."
+  ],
+  "performanceMeasuredOnPreviousCandidate": [
+    {
+      "profile": "desktop",
+      "sample": 5,
+      "rendererBootMs": 337.5999999642372,
+      "replay28Ms": 17717,
+      "decisionMs": [
+        3887,
+        2981,
+        3118,
+        2973,
+        2630
+      ],
+      "p95Ms": 3887,
+      "longestTask": 0,
+      "maxGap": 42.39999997615814
+    },
+    {
+      "profile": "mobile viewport/touch emulated on same desktop",
+      "sample": 5,
+      "rendererBootMs": 304.0999999642372,
+      "replay28Ms": 29457,
+      "decisionMs": [
+        5324,
+        3561,
+        3375,
+        3044,
+        2721
+      ],
+      "p95Ms": 5324,
+      "longestTask": 124,
+      "maxGap": 404.30000001192093
+    }
+  ],
+  "checksPassedOnPreviousCandidate": [
+    [
+      "C:\\Program Files\\Python315\\python.exe",
+      "-m",
+      "unittest",
+      "test_expansion_data.py",
+      "test_bot_profiles.py"
+    ],
+    [
+      "node",
+      "verify-draft-bots.cjs"
+    ],
+    [
+      "node",
+      "verify-draft-engine.cjs"
+    ],
+    [
+      "node",
+      "verify-expansions.cjs"
+    ],
+    [
+      "C:\\Program Files\\Python315\\python.exe",
+      "verify-collation-contract.py"
+    ],
+    [
+      "node",
+      "verify-draft-policy.cjs"
+    ],
+    [
+      "node",
+      "verify-draft-policy-regressions.cjs"
+    ],
+    [
+      "node",
+      "verify-draft-production.cjs"
+    ],
+    [
+      "node",
+      "verify-draft-worker.cjs"
+    ]
+  ],
+  "additionalPassedOnPreviousCandidate": [
+    "verify-draft-worker-client.cjs",
+    "verify-draft-policy-optimization.cjs",
+    "verify-draft-policy-browser.cjs",
+    "verify-draft-performance.cjs",
+    "verify-draft-bots-browser.cjs",
+    "verify-expansion-browser.cjs"
+  ],
+  "performanceCaveat": "Final acceptance is desktop only: one physical CPU threshold 5s p95. Touch viewport is functional UI coverage, not a worker CPU slowdown or physical mobile measurement. No CDP 4x acceptance promise.",
+  "releasePerformanceGate": {
+    "hardware": "One desktop CPU; no physical mobile speed claim",
+    "defaultDecisionSample": 126,
+    "defaultSeeds": 3,
+    "separatePowerSample": 42,
+    "p95Ms": 5000,
+    "mainThreadLongTaskMs": 200,
+    "heartbeatGapMs": 500,
+    "fullReplayMeasuredPicks": [
+      41,
+      42
+    ]
+  },
+  "supersededPerformanceProtocol": {
+    "UI": "No main-thread task over 200ms during pick/replay, heartbeat maximum gap 500ms; old slow server/network excluded from renderer boot target of 1s.",
+    "decisions": "p95 <=5s desktop; <=15s mobile emulation on same hardware. This is an explicitly experimental policy; no real phone hardware claim.",
+    "replay": "Background, progress and cancellation. No reconstruction before user requests Resume.",
+    "fallback": "If measurements fail, releaseReady remains false until corrected or scope explicitly gated; v3 unchanged."
+  },
+  "protocolDecision": {
+    "decidedAt": "2026-10-29T14:45:53.764671+00:00",
+    "beforeConsolidated126DecisionAcquisition": true,
+    "choice": "PROD-33 alternative: remove mobile/4x acceptance assertion; preserve historical declaration without claiming it passed.",
+    "reason": "Viewport emulation does not define a different CPU. Physical mobile performance belongs to promotion, which remains false."
+  },
+  "lastCodeReview": "code-review-4.review.json",
+  "lastCodeReviewOutcome": "No new P1; release pending final evidence and now corrected P2-31/32/33.",
+  "externalReview": {
+    "completedCodeRounds": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "lastResult": "No new P1 in round4; P2-31/32/33 now corrected locally.",
+    "round5": "Not executed: actual Claude CLI session limit.",
+    "providerReset": "2026-10-29 17:30 Europe/Rome, provider statement",
+    "userSteering": "User will handle later; continue local verification. No automatic resumption scheduled.",
+    "approval": "Final Opus approval remains pending"
+  },
+  "localVerification": {
+    "complete": true,
+    "artifact": "local-verification.json",
+    "runtimeHashes": {
+      "draft-policy.js": "35ae6980660c3158e290ce2452fa46d1026711d517447cbb79d390f261f69ae5",
+      "draft-engine.js": "5e7ee5acbdc830d1d85e8683b727a3d6fa0d2c52a21645d00c4d76dc02a83165",
+      "draft-worker.js": "d851613586061ac0593b2a74d25baaa1ca812e6445bdef3c79f86013a205e3ea",
+      "draft-worker-client.js": "8f90e8b50000ccd00c75d2702fe5b108cea1725cffb11c94370e01ab4db7a43e",
+      "draft-table.js": "13106b0d85e502d9ffe35ee9d653bb15ecc9f0e5a6a5a822eb2da1de2f00d506",
+      "bot_profiles.py": "cca6cef5d08fefa151d18bced61df079127db0ebf30c18128be6765e71e0cbb6"
+    },
+    "defaultLatency": {
+      "decisions": 126,
+      "p50Ms": 1255,
+      "p95Ms": 2896,
+      "maxMs": 5389
+    },
+    "actualWorkerSequentialTables": 4,
+    "competitivePromotion": false,
+    "finalOpusApproval": false
+  }
+}

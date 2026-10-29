@@ -1,0 +1,32 @@
+{
+  "reviewRounds": 5,
+  "actualModels": [
+    [
+      "claude-opus-5-5"
+    ],
+    [
+      "claude-opus-5-5"
+    ],
+    [
+      "claude-opus-5-5"
+    ],
+    [
+      "claude-opus-5-5"
+    ],
+    [
+      "claude-opus-5-5"
+    ]
+  ],
+  "findingsReviewed": 22,
+  "finalApproved": true,
+  "finalReviewedFilesMatch": true,
+  "engineAndExpansionHashesUnchanged": true,
+  "checks": [
+    "local Markdown links",
+    "14 unique BOT IDs",
+    "JSON parsing",
+    "git diff --check",
+    "Python syntax"
+  ],
+  "scope": "Documentation and review evidence only; no policy, browser or publication changes."
+}

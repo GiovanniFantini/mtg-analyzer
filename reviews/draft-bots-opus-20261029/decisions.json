@@ -1,0 +1,187 @@
+{
+  "scope": "Ottimizzazione dei requisiti BOT, senza implementazione della politica",
+  "status": "closed_approved",
+  "rounds": [
+    {
+      "round": 1,
+      "actualModel": "claude-opus-5-5",
+      "approved": false,
+      "decisions": [
+        {
+          "id": "OPUS-R1-01",
+          "decision": "confermato",
+          "evidence": "rankModern.available conta fonti nel pool senza verificare basi del main, costo del ciclo o accessibilità; la frase del requisito imponeva un'alternativa esclusiva nella lista.",
+          "resolution": "BOT-04 distingue uno slot e contributi alternativi condizionati, preservando la flessibilità. Non adottata una penalità universale: costo e tempo dipendono dal caso."
+        },
+        {
+          "id": "OPUS-R1-02",
+          "decision": "confermato",
+          "evidence": "CR ufficiali del 25 settembre 2026, 100.2b e 100.5: minimo 40, nessun massimo generale; struttura del match non dichiarata nella specifica.",
+          "resolution": "40 come obiettivo del costruttore, pool distinto. Scelta progettuale per il futuro valutatore: BO3 di default, override BO1; contesto sconosciuto senza bonus di sideboard. Nessuna affermazione su eventi già implementati."
+        },
+        {
+          "id": "OPUS-R1-03",
+          "decision": "confermato",
+          "evidence": "Il requisito precedente confrontava il main senza definire sostituibilità per ruolo e poteva escludere benefici legittimi del colore.",
+          "resolution": "BOT-03 aggiunge disponibilità attesa approssimata da conoscenza statica e pick restanti; colore utile se migliora una lista, senza leggere buste future."
+        },
+        {
+          "id": "OPUS-R1-04",
+          "decision": "confermato",
+          "evidence": "La vecchia clausola 'soltanto valore autonomo' contraddice la speculazione precoce; mancavano rendimenti non lineari e risorse condivise.",
+          "resolution": "BOT-05 introduce opzione condizionata, valore bidirezionale, massa critica e competizione. Nessun bonus speculativo se i dati non lo sostengono."
+        },
+        {
+          "id": "OPUS-R1-05",
+          "decision": "parzialmente_fondato",
+          "evidence": "observe usa il massimo per colore, non profondità/residuo rispetto all'atteso; una gerarchia universale fra tre giocabili e una rara sarebbe però errata senza qualità e contesto.",
+          "resolution": "BOT-06 richiede un modello dichiarato e fixture controllate con qualità fissate. Non adottata come regola universale la preferenza per qualunque gruppo di tre carte."
+        },
+        {
+          "id": "OPUS-R1-06",
+          "decision": "confermato",
+          "evidence": "rating usa c.score con fallback 2.5, dati ruoli e archetipi hanno copertura disomogenea; la specifica non decideva fonte e soglie.",
+          "resolution": "Qualità base da ratings.json Limited, misure osservate separate. Prerequisiti minimi al 100% delle stampe attive non base; stato esplicito anche per capacità aggiuntive, profilo indisponibile o sperimentale secondo lacune. Non imposta una codifica esaustiva di ogni interazione."
+        },
+        {
+          "id": "OPUS-R1-07",
+          "decision": "confermato",
+          "evidence": "L'ambito della migrazione degli specialisti non era deciso, con confronto potenzialmente confuso fra capacità e preferenze.",
+          "resolution": "Tutti gli specialisti aggiornati usano capacità condivise; Potenza pura resta controllo, Forzato conserva il vincolo. Adattivo è configurazione neutra. Replay v3 invariati, confronto con v3 e specialisti aggiornati."
+        },
+        {
+          "id": "OPUS-R1-08",
+          "decision": "confermato",
+          "evidence": "createSession usa un solo RNG per collazione e chiamate take dei posti in ordine; le buste sono generate prima delle pick, ma un diverso consumo futuro potrebbe spostare il RNG degli altri bot.",
+          "resolution": "BOT-11 isola posto, tipo e decisione (busta/pick/subscelta), preservando lo schema storico. Il requisito non pretende che scelte diverse lascino identiche le buste poi passate: quello è un effetto legittimo del draft."
+        },
+        {
+          "id": "OPUS-R1-09",
+          "decision": "confermato",
+          "evidence": "L'audit copre un solo set e la vecchia specifica non separava fixture/taratura né congelava il costruttore diagnostico.",
+          "resolution": "BOT-13 prevede aspettative congelate, casi riservati, rubrica identica e valutazione cieca. Risultati circoscritti agli eventi simulati, niente WR. Esito ambiguo mantiene il candidato sperimentale."
+        },
+        {
+          "id": "OPUS-R1-10",
+          "decision": "confermato",
+          "evidence": "L'ordine precedente collocava confronto e compatibilità alla fine.",
+          "resolution": "Versione isolata, banco di prova, replay e RNG all'avvio; costruttore applicato ai pool v3 prima della taratura. Spiegazioni e confronti incrementali."
+        },
+        {
+          "id": "OPUS-R1-11",
+          "decision": "parzialmente_fondato",
+          "evidence": "verify-draft-bots usa createEvaluator(data) senza versione per diverse aspettative v3. È corretto fissare quelle aspettative; non è corretto vietare universalmente sinergie fra carte dello stesso nome.",
+          "resolution": "BOT-14 e docs/draft-engine.md precisano versioni esplicite prima del nuovo default. Nuove fixture ammettono sinergie reali fra copie omonime, senza credito duplicato. Nessuna modifica ai test ora: la politica non è cambiata."
+        },
+        {
+          "id": "OPUS-R1-12",
+          "decision": "confermato",
+          "evidence": "'Valore abbandonato' era ambiguo fra contributo al mazzo futuro e costo affondato.",
+          "resolution": "BOT-07 confronta contributi ai mazzi costruibili, disponibilità e pick restanti; i vecchi voti spesi non creano inerzia di per sé."
+        }
+      ],
+      "optionalSuggestions": "Non trasformate in prerequisiti: segnalazione attiva ai vicini, modello ipergeometrico specifico, riorganizzazione UX, riuso Sealed e vantaggio informativo del counterpick. Valutazione di un campione di pick e mazzi inclusa nel protocollo, senza verità universale.",
+      "additionalClarification": "Richiesta ricerca limitata e misurazione dei tempi su ambiente dichiarato per evitare che costruzione e confronto candidati richiedano un ottimizzatore esaustivo nel browser."
+    },
+    {
+      "round": 2,
+      "actualModel": "claude-opus-5-5",
+      "approved": false,
+      "decisions": [
+        {
+          "id": "OPUS-R2-01",
+          "decision": "confermato",
+          "evidence": "Verifica autonoma delle CR ufficiali 702.29e del 25 settembre 2026: typecycling distingue sottotipo e supertipo; Mountaincycling non richiede il supertipo Basic.",
+          "resolution": "BOT-04 e riferimento CR precisano terre ricercabili, anche non base tipizzate, colori effettivamente prodotti e assenza di carte ricercabili. Usato il termine carte ricercabili, non bersagli: la ricerca non bersaglia."
+        },
+        {
+          "id": "OPUS-R2-02",
+          "decision": "confermato",
+          "evidence": "Le soglie erano riferite ad Adattivo, mentre gli specialisti avrebbero usato gli stessi componenti senza regola esplicita.",
+          "resolution": "Soglie estese alla nuova versione e a ogni profilo che usa componenti condivisi; senza minimi restano solo politiche storiche gia disponibili, senza nuove abilitazioni. Lacune e contributi disattivati uniformi."
+        },
+        {
+          "id": "OPUS-R2-03",
+          "decision": "confermato",
+          "evidence": "Costruttore identico garantisce confronto uniforme ma non indipendenza dalla funzione ottimizzata dal candidato.",
+          "resolution": "Metriche condivise dichiarate come coerenza interna. Promozione richiede anche aspettative congelate e revisione cieca. Non imposto un secondo costruttore: aggiungerebbe costo senza garantire da solo indipendenza."
+        },
+        {
+          "id": "OPUS-R2-04",
+          "decision": "confermato",
+          "evidence": "Le descrizioni di Segnali e Adattivo potevano produrre la stessa politica pur avendo due nomi.",
+          "resolution": "Adattivo configurazione di riferimento; Segnali preferisce evidenza e apertura. Fixture di divergenza utile, confronto riservato; se la distinzione non e materiale, profilo unico esposto. Il decimo profilo non e piu un risultato obbligatorio. Replay conservano tutti gli identificatori storici."
+        },
+        {
+          "id": "OPUS-R2-05",
+          "decision": "confermato",
+          "evidence": "Confrontare BO1/BO3 senza ipotesi fisse o risultato atteso rendeva la fixture vacua.",
+          "resolution": "Fixture con pool, piano e ipotesi della prima partita invariati: stesso main, riserve di sideboard pertinenti esplicite in BO3. Non adottata una regola universale di main identico se cambiano ipotesi o piano."
+        }
+      ],
+      "optionalSuggestions": "Integrate le precisazioni sulla memoria per lato e sul congelamento prima della taratura di ogni capacita. Budget numerico per pick non inventato senza implementazione o ambiente misurato; resta obbligo di misurare tempi e limiti della ricerca. Altri ampliamenti esclusi."
+    },
+    {
+      "round": 3,
+      "actualModel": "claude-opus-5-5",
+      "approved": false,
+      "decisions": [
+        {
+          "id": "OPUS-R3-01",
+          "decision": "confermato_come_ambiguita",
+          "evidence": "createSession ed export hanno engineVersion globale; la vecchia frase tavoli misti poteva implicare versioni miste, non necessarie al confronto.",
+          "resolution": "Scelta della soluzione piu semplice proposta da Opus: una sola versione per sessione. Tavoli misti riguardano profili, non versioni. V3 confrontata con sessioni nuove distinte e collazioni appaiate verificate con hash. Nuovi RNG solo per nuova versione. Nessuna nuova matrice di versioni per posto o modifica del record richiesta per questo scopo."
+        },
+        {
+          "id": "OPUS-R3-02",
+          "decision": "confermato",
+          "evidence": "Il criterio del main presente non chiariva la ricerca di configurazioni candidate con basi aggiungibili: possibile circolarita fra decisione splash e fixing.",
+          "resolution": "BOT-04 e Costruzione includono confronto con basi aggiungibili secondo evento e loro costo di slot/consistenza. La fixture senza basi e una configurazione senza quei colori, non un divieto di basi assenti dal pool. Flessibilita preservata."
+        },
+        {
+          "id": "OPUS-R3-03",
+          "decision": "confermato_come_chiarezza",
+          "evidence": "Il valore 40 era gia limitato agli eventi ordinari, ma la tabella poteva essere piu esplicita del rinvio generale.",
+          "resolution": "BOT-02 mira al minimo dell evento, con 40 come esempio Limited ordinario, non costante del motore o massimo regolamentare."
+        }
+      ],
+      "optionalSuggestions": "I dati di mana e i contributi alternativi sono gia compresi in BOT-01, BOT-04 e nelle spiegazioni BOT-12. Nessun nuovo requisito autonomo necessario."
+    },
+    {
+      "round": 4,
+      "actualModel": "claude-opus-5-5",
+      "approved": false,
+      "decisions": [
+        {
+          "id": "OPUS-R4-01",
+          "decision": "confermato_come_rischio_di_specifica",
+          "evidence": "La descrizione permetteva bonus ai soli assi annotati. La copertura dei dati e disomogenea; il nuovo motore non e implementato, quindi non si dichiara riprodotto questo errore in un candidato.",
+          "resolution": "Capacita definite prima della taratura e disattivazione uniforme per evento della componente incompleta; la componente sinergica include tutti i piani previsti, non solo le relazioni gia annotate. Il suggerimento per singola relazione era insufficiente per lifegain completo contro surveil incompleto: reso esplicito lo stop della componente complessiva per i profili esposti. Uso parziale soltanto diagnostico, escluso dalla promozione. Fixture speculare di neutralita alla sola annotazione."
+        },
+        {
+          "id": "OPUS-R4-02",
+          "decision": "confermato",
+          "evidence": "ratings.json include motivazioni e condizioni, quindi non e lecito assumere che ogni voto sia autonomo e poi aggiungere tutto il valore della sinergia.",
+          "resolution": "Richiesto riferimento documentato della scala ed eccezioni per carta, senza reinterpretare voti storici. Scarti contestuali positivi o negativi rispetto al riferimento; fixture sostegno ordinario/assente/eccezionale, senza alterare voti per superare i controlli."
+        }
+      ],
+      "optionalSuggestions": "Indipendenza della revisione cieca e risorse condivise sono gia rilevanti nel protocollo; nessun nuovo obbligo di secondo modello o simulazione di partite. Eventuali limiti di indipendenza andranno dichiarati nel benchmark effettivo."
+    },
+    {
+      "round": 5,
+      "actualModel": "claude-opus-5-5",
+      "approved": true,
+      "findings": [],
+      "decisions": [],
+      "optionalSuggestions": "Non trasformate in condizioni di chiusura. Componente disattivata significa zero contributo contestuale in entrambe le direzioni; il testo gia vieta bonus e penalita asimmetrici. Il benchmark resta circoscritto agli eventi simulati. Predizione esplicita del wheel e ulteriore tassonomia degli stati sperimentali restano miglioramenti facoltativi."
+    }
+  ],
+  "conclusion": {
+    "rounds": 5,
+    "findingsReviewed": 22,
+    "openSubstantiveFindings": 0,
+    "requirementsSha256": "f8bc18de4ec562c807dc1fe3ba4ad3e4bdd3c290d6576984be0c35bda08fe8e5",
+    "newProfile": "Configurazione adattiva del motore condiviso; esposizione separata solo se utile e materialmente distinta da Segnali aggiornato. Altrimenti unificazione.",
+    "implementation": "Non avviata: questa attivita modifica soltanto documenti e verbali."
+  }
+}

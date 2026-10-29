@@ -1,0 +1,34 @@
+{
+  "frozenAt": "2026-10-29T11:58:53.988957+00:00",
+  "baseCommit": "3902b300db4a096769e6ce1c9cbdcb1b80c63d72",
+  "files": {
+    "build_expansion.py": "a3d407d85310e471ddb7766533e1b8bc5cf83eaa9bd48770652153e506a4aa90",
+    "expansion_data.py": "f42d2c655b979eb4280f754a9690ef2045d409cb461708f5d9c8ab6c1ddd9647",
+    "bot_profiles.py": "c433cced083b1e50d43ebb16915dde1847e2ad96185661a32fdec7d687e23614",
+    "draft-policy.js": "f0917fffbd8731dcb49ac7b68095e91c2ddbd572353913c7bd0b88d565f9a761",
+    "draft-engine.js": "dcab9c5b86adb14d561b52ad36c24fe440e0e07963bbe823b62992d4d081d0d0",
+    "draft-table.js": "ad756ee675833bd23d47153c9015cc4e80a03c236e47678fdda6de66b40398ed",
+    "templates/atlas/draft-engine.html": "78395d3a323dffa48866fa1342a42709cad5a86348b1bc46cc15140cd4c03988",
+    "draft-engine-template.html": "70466217bc563d950453d9b03291bc56d56c776854007d0c9d720413b7508f6d",
+    "schemas/bot-policy.schema.json": "33b64d9febc12e1cdc0595060094413a909b99c5c15e081562d6636ebe89226a",
+    "schemas/limited.schema.json": "6c7ba43740475823e4246da74e4e5fbbb493b21cd407194d0d8c043351508773",
+    "test_bot_profiles.py": "801e8e042df15db527fd65e0049da81cb8701aad8949629fb8083d60fac7c2cb",
+    "tests/draft-policy-fixture.cjs": "342c56874b8e8954d07e8ab221715b7651b09d1b54fde6a79cc8111885ad5474",
+    "tests/fixtures/draft-bots-v3.json": "b0b2d6803dedc444cd9c9bb0c07b6ef092938c156d7638201c42e63d9bb8c2bf",
+    "tests/fixtures/draft-policy-v4-cases.json": "3f5f6faf4bd2cb825cd48d0f09be7e5651d21d28e1f658cbdce00fac6faa1034",
+    "verify-draft-policy.cjs": "30caf66cae72df436195852b54b5dcf30b00893229a9e8b7ca54fb4da27be120",
+    "verify-draft-policy-regressions.cjs": "f406924ea51ae97fd5145ec3fa2b6e1e1026db73d271940b64b48b7695923f80",
+    "verify-draft-policy-browser.cjs": "7f07a029838dc7ed2f5bacb936b32d63410322d8e57b8c85e85a10fe35214dae",
+    "benchmark-draft-policy.cjs": "9aa9e4b57919e2ff958165e567d5202ac39b40d2554a08e4207253a970781dab"
+  },
+  "defaultEngineVersion": 3,
+  "candidateEngineVersion": 4,
+  "sourceReviewRound": 7,
+  "harnessCorrectionsBeforeReserved": [
+    {
+      "file": "benchmark-draft-policy.cjs",
+      "previousHash": "b8b87297a0cd17a95015cd9858284f9294955aff82394628322fb5a017eb01cf",
+      "reason": "Nei conteggi diagnostici, le carte usate solo come fixing non contano come magie, giocate iniziali o interazione. Nessuna modifica alle decisioni, alle liste o alla politica."
+    }
+  ]
+}

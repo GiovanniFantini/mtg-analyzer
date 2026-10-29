@@ -55,11 +55,12 @@
   return {pack,branches,partners};
  }
  function botState(strategy='signals',target=null) {
-  if(!STRATEGIES[strategy])throw Error('Unknown strategy');
+  if(!STRATEGIES[strategy]&&strategy!=='adaptive')throw Error('Unknown strategy');
   if(strategy==='force'&&(!/^[WUBRG]{1,5}$/.test(target||'')||new Set(target).size!==target.length))throw Error('Choose an archetype');
   return {strategy,target,pool:[],phase:0,anchor:null,lane:target,signals:{},demand:Object.fromEntries(COLORS.map(c=>[c,0])),seen:{},log:[]};
  }
  function createEvaluator(format,engineVersion=3) {
+  if(engineVersion===4)return (typeof module!=='undefined'?require('./draft-policy.js'):root.DraftPolicy).create(format);
   if(![2,3].includes(engineVersion))throw Error('Versione del motore non supportata');
   const modern=engineVersion===3;
   const byId=Object.fromEntries(format.cards.map(c=>[c.id,c])), archetypes=Object.keys(format.archetypes);
@@ -232,16 +233,21 @@
   }
   return {byId,rating,observe,context,rank,take};
  }
- function createSession(format,seed,configs,engineVersion=3){
+ function createSession(format,seed,configs,engineVersion=3,options={}){
+  if(![2,3,4].includes(engineVersion))throw Error('Versione del motore non supportata');
+  if(typeof seed!=='string'||seed.length>200)throw Error('Seme non valido');
+  const policyOptions=engineVersion===4?{match:options.match??format.botPolicy?.match??'BO3',deterministic:options.deterministic??false}:{};
+  if(engineVersion===4&&(!['BO1','BO3','unknown'].includes(policyOptions.match)||typeof policyOptions.deterministic!=='boolean'))throw Error('Opzioni della politica non valide');
   if(!Number.isInteger(format.picksPerTurn)||format.picksPerTurn<1||!Number.isInteger(format.seats)||format.seats<2||format.directions.length!==format.rounds||format.directions.some(x=>x!==1&&x!==-1))throw Error('Regole del Draft non valide');
   if(!Array.isArray(configs)||configs.length!==format.seats-1)throw Error('Invalid bot count');
-  for(const c of configs)if(!c||!STRATEGIES[c.strategy]||(c.strategy==='force'&&!format.archetypes[c.target]))throw Error('Invalid bot configuration');
+  for(const c of configs)if(!c||(!STRATEGIES[c.strategy]&&!(engineVersion===4&&c.strategy==='adaptive'))||(c.strategy==='force'&&!format.archetypes[c.target]))throw Error('Invalid bot configuration');
   const random=rng(seed),collator=createCollator(format,random),evaluator=createEvaluator(format,engineVersion);
   const bots=configs.map(c=>botState(c.strategy,c.target));
   const rounds=Array.from({length:format.rounds},(_,round)=>Array.from({length:format.seats},(_,seat)=>({packetId:round*format.seats+seat,cards:collator.pack()})));
-  let packets=rounds[0],round=0,pick=0,pending=[];const human=[],log=[];
+  let packets=rounds[0],round=0,pick=0,pending=[],asyncBusy=false,applyingAsync=false;const human=[],log=[];
   const current=()=>round<format.rounds?packets[0].cards:[];
   function step(uid){
+   if(asyncBusy&&!applyingAsync)throw Error('Calcolo dei bot già in corso');
    if(round>=format.rounds)throw Error('Draft completo');
    const entry=current().find(e=>e.uid===uid);if(!entry)throw Error('Carta non presente');
    human.push(entry);log.push({round:round+1,pick:pick+1,entry});
@@ -249,6 +255,11 @@
    if(pending.length<format.picksPerTurn&&packets[0].cards.length)return entry;
    for(let i=0;i<bots.length;i++){
     const packet=packets[i+1];
+    if(engineVersion===4){
+     const choices=evaluator.takeGroup(bots[i],packet,round+1,pick+1,pending.length,
+      rng(seed+'\0v4|'+(i+1)+'|'+round+'|'+pick+'|group'),policyOptions);
+     const chosen=new Set(choices.map(e=>e.uid));packet.cards=packet.cards.filter(e=>!chosen.has(e.uid));continue;
+    }
     for(let n=0;n<pending.length;n++){
      const selected=evaluator.take(bots[i],packet,round+1,pick+1,random);
      packet.cards=packet.cards.filter(e=>e.uid!==selected.uid);
@@ -260,12 +271,35 @@
    else{const rotated=Array(format.seats);packets.forEach((p,i)=>rotated[(i+format.directions[round]+format.seats)%format.seats]=p);packets=rotated;}
    return entry;
   }
-  return {format,seed,configs,bots,human,log,current,step,get round(){return round+1;},get pick(){return pick+1;},get complete(){return round>=format.rounds;},export(){return {version:2,engineVersion,format:format.id,revision:format.revision,seed,configs,picks:log.map(x=>x.entry.uid)};}};
+  async function stepAsync(uid,chooseBot){
+   if(engineVersion!==4||typeof chooseBot!=='function')throw Error('Calcolo asincrono non disponibile');
+   if(asyncBusy)throw Error('Calcolo dei bot già in corso');
+   if(round>=format.rounds||!current().some(e=>e.uid===uid))throw Error('Carta non presente o draft completo');
+   asyncBusy=true;const count=pending.length+1;
+   try{
+    if(count<format.picksPerTurn&&current().length>1){applyingAsync=true;return step(uid);}
+    const results=await Promise.all(bots.map((bot,i)=>chooseBot({bot:structuredClone(bot),packet:structuredClone(packets[i+1]),round:round+1,pick:pick+1,count,
+     randomSeed:seed+'\0v4|'+(i+1)+'|'+round+'|'+pick+'|group',options:policyOptions})));
+    for(const [i,result] of results.entries()){
+     const expected=Math.min(count,packets[i+1].cards.length),owned=bots[i].pool;
+     if(!Array.isArray(result?.choices)||result.choices.length!==expected||new Set(result.choices).size!==expected||result.choices.some(uid=>!packets[i+1].cards.some(e=>e.uid===uid))||!Array.isArray(result.bot?.pool)||result.bot.pool.length!==owned.length+expected||owned.some((e,n)=>result.bot.pool[n]?.uid!==e.uid||result.bot.pool[n]?.id!==e.id)||result.choices.some((uid,n)=>result.bot.pool[owned.length+n]?.uid!==uid||result.bot.pool[owned.length+n]?.id!==packets[i+1].cards.find(e=>e.uid===uid).id)||result.bot.strategy!==bots[i].strategy||result.bot.target!==bots[i].target||result.bot.log?.length!==bots[i].log.length+expected)throw Error('Risultato del bot non coerente');
+    }
+    const original=evaluator.takeGroup;evaluator.takeGroup=(bot,packet)=>{const result=results[bots.indexOf(bot)];Object.assign(bot,result.bot);return result.choices.map(uid=>packet.cards.find(e=>e.uid===uid));};
+    applyingAsync=true;try{return step(uid);}finally{evaluator.takeGroup=original;}
+   }finally{applyingAsync=false;asyncBusy=false;}
+  }
+  return {format,seed,configs,bots,human,log,current,step,stepAsync,engineVersion,policyOptions,get packetId(){return packets[0]?.packetId;},get round(){return round+1;},get pick(){return pick+1;},get complete(){return round>=format.rounds;},export(){return {version:engineVersion===4?3:2,engineVersion,format:format.id,revision:format.revision,seed,configs,picks:log.map(x=>x.entry.uid),
+   ...(engineVersion===4?{policyRevision:format.botPolicy.revision,algorithmRevision:format.botPolicy.algorithmRevision,randomSchema:'seat-pick-v1',options:policyOptions}:{})};}};
  }
- function replay(format,record){
+ function createReplaySession(format,record){
+  if(record?.version===3){
+   if(record.engineVersion!==4||record.policyRevision!==format.botPolicy?.revision||typeof record.algorithmRevision!=='string'||record.algorithmRevision!==format.botPolicy?.algorithmRevision||record.randomSchema!=='seat-pick-v1'||record.revision!==format.revision||record.format!==format.id||typeof record.seed!=='string'||record.seed.length>200||!record.options||!['BO1','BO3','unknown'].includes(record.options.match)||typeof record.options.deterministic!=='boolean'||!Array.isArray(record.picks)||record.picks.length>format.rounds*format.packSize||record.picks.some(x=>!Number.isInteger(x)))throw Error('Salvataggio v4 incompatibile con i dati funzionali');
+   return createSession(format,record.seed,record.configs,4,record.options);
+  }
   if(!record||(record.version===1?!format.legacyReplay:record.version!==2||![2,3].includes(record.engineVersion)||(record.revision!==format.revision&&!(format.compatibleRevisions||[]).includes(record.revision)))||record.format!==format.id||typeof record.seed!=='string'||record.seed.length>200||!Array.isArray(record.picks)||record.picks.length>format.rounds*format.packSize||record.picks.some(x=>!Number.isInteger(x)))throw Error('Salvataggio non valido o riferito a un profilo differente');
-  const session=createSession(format,record.seed,record.configs,record.version===1?2:record.engineVersion);record.picks.forEach(uid=>session.step(uid));return session;
+  return createSession(format,record.seed,record.configs,record.version===1?2:record.engineVersion);
  }
- const api={STRATEGIES,PHASES,TRANSITIONS,rng,weighted,createCollator,botState,createEvaluator,createSession,replay};
+ function replay(format,record){const session=createReplaySession(format,record);record.picks.forEach(uid=>session.step(uid));return session;}
+ const api={STRATEGIES,PHASES,TRANSITIONS,rng,weighted,createCollator,botState,createEvaluator,createSession,createReplaySession,replay};
  if(typeof module!=='undefined')module.exports=api;else root.DraftEngine=api;
 })(globalThis);

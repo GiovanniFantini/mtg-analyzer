@@ -1,0 +1,54 @@
+{
+  "manifest": {
+    "mode": "reserved",
+    "codeHash": "0aaee222bc47e58a72048f883667c77183c56ea08a0226127b268aea0ec275a4",
+    "acquiredAt": "2026-10-29T12:05:28.124Z",
+    "formatSnapshotHash": "51a62b5abf4da4089395966ad7a327ab39b350248ee3d2ac37c9c7a93e7ead37",
+    "fixtureHash": "3f5f6faf4bd2cb825cd48d0f09be7e5651d21d28e1f658cbdce00fac6faa1034",
+    "formatRevision": "b8507e3f2b0065d879d9c570c3f321bd5c8ad90f64097d8b72967de38cf88bab",
+    "policyRevision": "bcc1af08ef04818fe09b73262840d94b5137c73e22d65f7c66f1dfecc816ea4d",
+    "benchmarkHash": "9aa9e4b57919e2ff958165e567d5202ac39b40d2554a08e4207253a970781dab",
+    "node": "v24.20.0",
+    "platform": "win32",
+    "arch": "x64",
+    "caveats": [
+      "Internal objectives share the candidate evaluator: internal coherence only, not independent strength or WR.",
+      "Results apply only to this event and data revision. The default remains v3.",
+      "The v2 human evaluator is fixed, seeded separately, with real observed packet IDs."
+    ]
+  },
+  "groups": {
+    "3": {
+      "tables": 5,
+      "botPicks": 1470,
+      "decks": 35,
+      "completeSize": 35,
+      "withSpellHoles": 0,
+      "manaErrors": 0,
+      "averageEarlyPlays": 8.6,
+      "averageInteraction": 6.142857142857143,
+      "medianTableRuntimeSeconds": 2.3918165999999035,
+      "tableMoveP95SecondsRange": [
+        0.013732900000060909,
+        0.01912639999999999
+      ]
+    },
+    "4": {
+      "tables": 10,
+      "botPicks": 2940,
+      "decks": 70,
+      "completeSize": 70,
+      "withSpellHoles": 0,
+      "manaErrors": 0,
+      "averageEarlyPlays": 9.214285714285714,
+      "averageInteraction": 6.285714285714286,
+      "medianTableRuntimeSeconds": 134.62856170000003,
+      "tableMoveP95SecondsRange": [
+        3.33987910000002,
+        4.807907000000006
+      ]
+    }
+  },
+  "collationIdenticalWithinSeeds": true,
+  "caveat": "V3 and v4 samples include different additional scenarios. Compare paired mixed/homogeneous tables, not group averages as a causal effect."
+}

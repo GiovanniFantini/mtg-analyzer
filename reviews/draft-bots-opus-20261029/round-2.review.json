@@ -1,0 +1,71 @@
+{
+  "findings": [
+    {
+      "id": "OPUS-R2-01",
+      "priority": "P1",
+      "requirement": "BOT-04",
+      "title": "Landcycling: bersagli tipizzati e basi non coincidono",
+      "scenario": "Mazzo WU con splash rosso. La lista contiene una Mountain base e una terra doppia non base con sottotipi Plains e Mountain; nel pool c'è un landcycler con Mountaincycling. In un secondo caso il mazzo WU contiene un basic landcycler ma nessuna base rossa.",
+      "evidence": "Il testo attuale dice che un landcycler cerca solo basi effettivamente nella lista. Il landcycling tipizzato cerca una carta terra con quel sottotipo, base o non base; il basic landcycling cerca soltanto terre base. Nella baseline manaColors restituisce tutti i colori per basic landcycling, indipendentemente dalle basi presenti.",
+      "impact": "Con la formulazione attuale il modello conta meno bersagli quando esistono terre doppie tipizzate e sottostima la consistenza dello splash. Se il testo viene letto come 'qualsiasi base', il basic landcycler continua a fornire colori assenti dalla lista, come fa la v3. Questo è proprio il caso di carta che resta nel main e ha usi alternativi: va modellato bene.",
+      "suggested_text": "Il landcycling tipizzato trova soltanto carte terra con quel sottotipo effettivamente nella lista, base o non base. Il basic landcycling trova soltanto terre base nella lista. Il colore ottenibile è quello delle terre bersaglio presenti, non il nome del ciclo. Il costo del ciclo deve essere pagabile con le fonti del main nei turni pertinenti. Senza bersagli validi la carta non contribuisce alle fonti, ma conserva l'uso come magia. Fixture: terra doppia tipizzata come bersaglio valido; basic landcycler senza basi del colore dello splash.",
+      "blocking": true
+    },
+    {
+      "id": "OPUS-R2-02",
+      "priority": "P1",
+      "requirement": "BOT-01",
+      "title": "Il cancello dei dati copre Adattivo ma non gli specialisti aggiornati",
+      "scenario": "Un secondo set ottiene un tavolo disponibile, con voti completi ma ruoli coperti solo per una parte del catalogo, come accade oggi a Bloomburrow (258/407). Adattivo risulta non disponibile. I nove profili aggiornati, che secondo la sezione Proposta usano lo stesso costruttore, lo stesso mana e lo stesso valore marginale, restano invece selezionabili 'negli eventi ammessi', un'espressione che il documento non definisce.",
+      "evidence": "La sezione Dati e disponibilità condiziona soltanto 'la nuova politica Adattivo'. La sezione Proposta estende le capacità condivise a tutti i profili tranne Potenza pura.",
+      "impact": "Gli specialisti aggiornati userebbero le stesse capacità senza il controllo dei dati. Il risultato è un ripiego implicito sui dati mancanti, che BOT-01 vieta, oppure un comportamento non specificato. Diventa inoltre impossibile attribuire una differenza ad Adattivo invece che alla lacuna dei dati.",
+      "suggested_text": "Le soglie di Dati e disponibilità si applicano alla nuova versione del motore nel suo insieme, quindi a tutti i profili che usano capacità condivise. Se mancano i dati minimi, l'evento offre soltanto le politiche v3 e il default resta invariato. Se una capacità aggiuntiva è parziale, tutti i profili aggiornati sono sperimentali con lo stesso elenco di lacune e gli stessi contributi disattivati. Potenza pura e Archetipo forzato non aggirano il controllo se usano componenti condivise.",
+      "blocking": true
+    },
+    {
+      "id": "OPUS-R2-03",
+      "priority": "P1",
+      "requirement": "BOT-13",
+      "title": "Il costruttore diagnostico può coincidere con l'obiettivo del candidato",
+      "scenario": "Adattivo sceglie le carte massimizzando il main stimato dal costruttore condiviso. A fine draft lo stesso costruttore, congelato, giudica i pool di Adattivo, della v3 e degli specialisti. Adattivo ottiene metriche migliori su curva, mana e posti coperti anche quando un drafter esperto giudicherebbe i mazzi equivalenti.",
+      "evidence": "Il protocollo richiede un costruttore diagnostico identico per tutte le politiche, il che garantisce equità fra le politiche. Non esclude però che quel costruttore condivida codice o funzione obiettivo con il valutatore usato in draft.",
+      "impact": "Il miglioramento misurato può riflettere l'adattamento alla propria metrica, non una qualità strategica superiore. Una promozione fondata su queste metriche sarebbe parzialmente circolare.",
+      "suggested_text": "Se il costruttore diagnostico condivide codice o funzione obiettivo con il valutatore della politica candidata, le sue metriche sono riportate come coerenza interna e non come prova indipendente. La promozione si fonda sulle aspettative congelate delle fixture e sulla revisione cieca con rubrica. In alternativa il costruttore diagnostico è una versione congelata separata dal valutatore in taratura, con le differenze dichiarate. Il costo è basso: basta etichettare le metriche e registrare la versione.",
+      "blocking": true
+    },
+    {
+      "id": "OPUS-R2-04",
+      "priority": "P1",
+      "requirement": "BOT-09",
+      "title": "Manca un criterio per distinguere Adattivo da Lettura dei segnali aggiornata",
+      "scenario": "Su pool e buste identici, Lettura dei segnali aggiornata (resta aperta, segue qualità e colori, poi consolida) e Adattivo (motore condiviso senza preferenza stilistica) scelgono la stessa carta in quasi tutte le fixture, perché entrambi seguono valore marginale, disponibilità e costo di cambio.",
+      "evidence": "La sezione Proposta vuole distinguere il beneficio delle nuove capacità da quello dell'adattamento confrontando Adattivo con gli specialisti aggiornati. Non stabilisce però quale preferenza dichiarata separi Segnali da Adattivo, né cosa fare se non emerge alcuna divergenza.",
+      "impact": "Il risultato può essere un decimo profilo ridondante nell'interfaccia e un confronto Adattivo/Segnali che non isola nulla. Il caso contraddice lo spirito di BOT-09 e la tesi che il valore stia nelle capacità comuni.",
+      "suggested_text": "Adattivo è la configurazione di riferimento del motore condiviso, senza termini di preferenza aggiuntivi. Lettura dei segnali aggiornata conserva una preferenza dichiarata, per esempio maggior peso all'evidenza del residuo e impegno più tardivo, verificata da almeno una fixture di divergenza motivata. Se nella valutazione riservata i due profili non si distinguono materialmente, si espone un solo profilo e il confronto con gli specialisti esclude il duplicato, dichiarandolo.",
+      "blocking": true
+    },
+    {
+      "id": "OPUS-R2-05",
+      "priority": "P2",
+      "requirement": "BOT-02",
+      "title": "Il confronto BO1/BO3 del costruttore non ha un esito atteso",
+      "scenario": "Stesso pool di 42 carte valutato in BO1 e in BO3. Il criterio chiede di confrontarli ma non dice se il main deve coincidere, né dove debba comparire la differenza.",
+      "evidence": "BOT-02 rinvia alle decisioni sotto, che regolano il valore di sideboard durante il draft (BOT-10) ma non l'output atteso del costruttore.",
+      "impact": "La fixture non è verificabile: qualsiasi risultato passa. Un implementatore potrebbe anche introdurre differenze arbitrarie nel main.",
+      "suggested_text": "A pool identico il main BO1 e BO3 coincide, salvo una ragione dichiarata (per esempio una risposta di nicchia in BO1). In BO3 il costruttore restituisce anche le riserve pertinenti per il sideboard; la differenza principale fra i contesti riguarda il valore delle pick durante il draft, verificato in BOT-10.",
+      "blocking": false
+    }
+  ],
+  "optional_suggestions": [
+    "Dichiarare un budget indicativo di tempo per pick sull'ambiente di riferimento, invece del solo 'utilizzabile nel tavolo browser', senza farne una soglia di promozione.",
+    "Riformulare 'la seconda conserva la lettura del lato opposto' in BOT-06 come 'nella seconda busta la lettura del lato che alimentava la prima resta in memoria separata, senza sommarsi a quella del lato corrente'.",
+    "Precisare che le aspettative delle fixture si congelano prima della taratura di ciascuna capacità, coerentemente con l'ordine di lavoro incrementale.",
+    "Segnalazione attiva verso i vicini e modelli ipergeometrici specifici restano ampliamenti successivi."
+  ],
+  "new_bot_verdict": {
+    "recommendation": "Profilo Adattivo approvabile solo come configurazione di riferimento del motore condiviso, non come motore separato né come prova di forza. Il beneficio principale viene dagli aggiornamenti comuni (costruttore, mana, valore marginale, sinergie causali, segnali per lato). Se non si distingue da Lettura dei segnali aggiornata va unificato con essa, non aggiunto come decimo profilo.",
+    "conditions": "Controllo dei dati applicato all'intera nuova versione; preferenza dichiarata e fixture di divergenza fra Adattivo e Segnali, con unificazione in assenza di differenze materiali; promozione basata su fixture congelate e revisione cieca, con le metriche del costruttore condiviso dichiarate come coerenza interna; default v3 invariato e replay originari conservati fino alla promozione; nessuna WR attribuita."
+  },
+  "approved": false,
+  "summary": "La revisione 2 risolve in modo coerente i rilievi del primo giro. Il valore 40 è ora correttamente un obiettivo del simulatore, distinto dal minimo legale e dal pool; sunk cost, valore di opzione, RNG per posto e versionamento sono corretti. Restano quattro difetti sostanziali. Primo, il landcycling è descritto come ricerca di sole basi, mentre quello tipizzato trova anche terre non base con il sottotipo; la formulazione va corretta conservando l'uso alternativo della carta nella lista. Secondo, il controllo dei dati vale per Adattivo ma non per gli specialisti aggiornati che usano le stesse capacità. Terzo, il protocollo può valutare il candidato con la stessa metrica che ottimizza. Quarto, non c'è un criterio per distinguere Adattivo da Lettura dei segnali aggiornata. Un rilievo minore riguarda il criterio BO1/BO3 senza esito atteso. Approvazione rinviata finché i punti bloccanti non sono integrati."
+}

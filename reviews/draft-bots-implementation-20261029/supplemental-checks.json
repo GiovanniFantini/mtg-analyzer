@@ -1,0 +1,20 @@
+[
+  {
+    "command": [
+      "C:\\Program Files\\Python315\\python.exe",
+      "verify-expansion-review.py"
+    ],
+    "exitCode": 0,
+    "stdout": "PASS: review regressions across nineteen isolated JSON fixtures, including shared preview pools/previews, missing statistics, clean Atlas and generic events.\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "node",
+      "verify-expansion-browser.cjs"
+    ],
+    "exitCode": 0,
+    "stdout": "PASS: historical Sealed saves preserved; incompatible Draft save preserved; missing-feature pages and public JSON; no JavaScript errors.\n",
+    "stderr": ""
+  }
+]

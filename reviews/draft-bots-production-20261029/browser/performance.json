@@ -1,0 +1,34 @@
+[
+  {
+    "profile": "desktop",
+    "sample": 5,
+    "rendererBootMs": 337.5999999642372,
+    "replay28Ms": 17717,
+    "decisionMs": [
+      3887,
+      2981,
+      3118,
+      2973,
+      2630
+    ],
+    "p95Ms": 3887,
+    "longestTask": 0,
+    "maxGap": 42.39999997615814
+  },
+  {
+    "profile": "mobile viewport/touch emulated on same desktop",
+    "sample": 5,
+    "rendererBootMs": 304.0999999642372,
+    "replay28Ms": 29457,
+    "decisionMs": [
+      5324,
+      3561,
+      3375,
+      3044,
+      2721
+    ],
+    "p95Ms": 5324,
+    "longestTask": 124,
+    "maxGap": 404.30000001192093
+  }
+]

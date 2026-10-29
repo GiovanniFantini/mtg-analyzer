@@ -1,0 +1,1630 @@
+{
+  "complete": true,
+  "scope": "Paired fixed first-visible human choices and public collation. Shared evaluator diagnostics measure construction only, not competitive strength or WR.",
+  "results": [
+    {
+      "seed": "production-reserved-211",
+      "scenario": "default",
+      "exactPoolLogParity": true,
+      "parityRuntime": "Chromium",
+      "conservedCards": 336,
+      "collationHash": "b543522b3b9337b38267922f3adfa68a2ca0e6902b70b1910fa5e9d9a46c3e8b",
+      "reviewHash": "84dfaa437ec957df3d10b0b9e6377525d579902e54fd7f2a4042b9f2bc22c870",
+      "sequentialReplayMs": 82656,
+      "v4": [
+        {
+          "seat": 1,
+          "strategy": "signals",
+          "slots": 40,
+          "spells": 23,
+          "ownedLands": 0,
+          "basics": {
+            "W": 0,
+            "U": 0,
+            "B": 9,
+            "R": 8,
+            "G": 0
+          },
+          "manaOnly": 0,
+          "holes": {
+            "spells": 0,
+            "lands": 0
+          },
+          "manaErrors": [],
+          "sources": {
+            "W": 0,
+            "U": 0,
+            "B": 10.40914760914761,
+            "R": 9.40914760914761,
+            "G": 0,
+            "C": 0
+          }
+        },
+        {
+          "seat": 2,
+          "strategy": "bomb",
+          "slots": 40,
+          "spells": 23,
+          "ownedLands": 0,
+          "basics": {
+            "W": 9,
+            "U": 0,
+            "B": 8,
+            "R": 0,
+            "G": 0
+          },
+          "manaOnly": 0,
+          "holes": {
+            "spells": 0,
+            "lands": 0
+          },
+          "manaErrors": [],
+          "sources": {
+            "W": 9.46971586971587,
+            "U": 0,
+            "B": 8.46971586971587,
+            "R": 0,
+            "G": 0,
+            "C": 0
+          }
+        },
+        {
+          "seat": 3,
+          "strategy": "synergy",
+          "slots": 40,
+          "spells": 23,
+          "ownedLands": 2,
+          "basics": {
+            "W": 4,
+            "U": 0,
+            "B": 0,
+            "R": 1,
+            "G": 10
+          },
+          "manaOnly": 0,
+          "holes": {
+            "spells": 0,
+            "lands": 0
+          },
+          "manaErrors": [],
+          "sources": {
+            "W": 6,
+            "U": 0,
+            "B": 0,
+            "R": 1,
+            "G": 11.35,
+            "C": 0.7
+          }
+        },
+        {
+          "seat": 4,
+          "strategy": "aggro",
+          "slots": 40,
+          "spells": 23,
+          "ownedLands": 1,
+          "basics": {
+            "W": 4,
+            "U": 0,
+            "B": 0,
+            "R": 6,
+            "G": 6
+          },
+          "manaOnly": 0,
+          "holes": {
+            "spells": 0,
+            "lands": 0
+          },
+          "manaErrors": [],
+          "sources": {
+            "W": 4.46971586971587,
+            "U": 0,
+            "B": 0,
+            "R": 7.46971586971587,
+            "G": 7.46971586971587,
+            "C": 0
+          }
+        },
+        {
+          "seat": 5,
+          "strategy": "control",
+          "slots": 40,
+          "spells": 23,
+          "ownedLands": 1,
+          "basics": {
+            "W": 7,
+            "U": 0,
+            "B": 9,
+            "R": 0,
+            "G": 0
+          },
+          "manaOnly": 0,
+          "holes": {
+            "spells": 0,
+            "lands": 0
+          },
+          "manaErrors": [],
+          "sources": {
+            "W": 8.46971586971587,
+            "U": 0,
+            "B": 9.46971586971587,
+            "R": 0,
+            "G": 0,
+            "C": 0
+          }
+        },
+        {
+          "seat": 6,
+          "strategy": "fixing",
+          "slots": 40,
+          "spells": 23,
+          "ownedLands": 3,
+          "basics": {
+            "W": 0,
+            "U": 7,
+            "B": 0,
+            "R": 7,
+            "G": 0
+          },
+          "manaOnly": 0,
+          "holes": {
+            "spells": 0,
+            "lands": 0
+          },
+          "manaErrors": [],
+          "sources": {
+            "W": 0,
+            "U": 10.46971586971587,
+            "B": 0,
+            "R": 9.46971586971587,
+            "G": 0,
+            "C": 0
+          }
+        },
+        {
+          "seat": 7,
+          "strategy": "denial",
+          "slots": 40,
+          "spells": 23,
+          "ownedLands": 0,
+          "basics": {
+            "W": 0,
+            "U": 0,
+            "B": 8,
+            "R": 0,
+            "G": 9
+          },
+          "manaOnly": 0,
+          "holes": {
+            "spells": 0,
+            "lands": 0
+          },
+          "manaErrors": [],
+          "sources": {
+            "W": 0,
+            "U": 0,
+            "B": 8,
+            "R": 0,
+            "G": 9.35,
+            "C": 0
+          }
+        }
+      ],
+      "v3": [
+        {
+          "seat": 1,
+          "strategy": "signals",
+          "slots": 40,
+          "spells": 23,
+          "ownedLands": 0,
+          "basics": {
+            "W": 0,
+            "U": 0,
+            "B": 9,
+            "R": 8,
+            "G": 0
+          },
+          "manaOnly": 0,
+          "holes": {
+            "spells": 0,
+            "lands": 0
+          },
+          "manaErrors": [],
+          "sources": {
+            "W": 0,
+            "U": 0,
+            "B": 9.46971586971587,
+            "R": 8.46971586971587,
+            "G": 0,
+            "C": 0
+          }
+        },
+        {
+          "seat": 2,
+          "strategy": "bomb",
+          "slots": 40,
+          "spells": 23,
+          "ownedLands": 0,
+          "basics": {
+            "W": 5,
+            "U": 0,
+            "B": 0,
+            "R": 0,
+            "G": 12
+          },
+          "manaOnly": 0,
+          "holes": {
+            "spells": 0,
+            "lands": 0
+          },
+          "manaErrors": [],
+          "sources": {
+            "W": 5,
+            "U": 0,
+            "B": 0,
+            "R": 0,
+            "G": 12.7,
+            "C": 0
+          }
+        },
+        {
+          "seat": 3,
+          "strategy": "synergy",
+          "slots": 40,
+          "spells": 23,
+          "ownedLands": 1,
+          "basics": {
+            "W": 6,
+            "U": 0,
+            "B": 10,
+            "R": 0,
+            "G": 0
+          },
+          "manaOnly": 0,
+          "holes": {
+            "spells": 0,
+            "lands": 0
+          },
+          "manaErrors": [],
+          "sources": {
+            "W": 7.93943173943174,
+            "U": 0,
+            "B": 10.93943173943174,
+            "R": 0,
+            "G": 0,
+            "C": 0
+          }
+        },
+        {
+          "seat": 4,
+          "strategy": "aggro",
+          "slots": 40,
+          "spells": 23,
+          "ownedLands": 1,
+          "basics": {
+            "W": 8,
+            "U": 0,
+            "B": 8,
+            "R": 0,
+            "G": 0
+          },
+          "manaOnly": 0,
+          "holes": {
+            "spells": 0,
+            "lands": 0
+          },
+          "manaErrors": [],
+          "sources": {
+            "W": 8,
+            "U": 0,
+            "B": 9,
+            "R": 0,
+            "G": 0,
+            "C": 0
+          }
+        },
+        {
+          "seat": 5,
+          "strategy": "control",
+          "slots": 40,
+          "spells": 23,
+          "ownedLands": 1,
+          "basics": {
+            "W": 8,
+            "U": 0,
+            "B": 0,
+            "R": 8,
+            "G": 0
+          },
+          "manaOnly": 0,
+          "holes": {
+            "spells": 0,
+            "lands": 0
+          },
+          "manaErrors": [],
+          "sources": {
+            "W": 11.34857934857935,
+            "U": 0,
+            "B": 0,
+            "R": 10.34857934857935,
+            "G": 0,
+            "C": 0
+          }
+        },
+        {
+          "seat": 6,
+          "strategy": "fixing",
+          "slots": 40,
+          "spells": 23,
+          "ownedLands": 3,
+          "basics": {
+            "W": 0,
+            "U": 9,
+            "B": 0,
+            "R": 5,
+            "G": 0
+          },
+          "manaOnly": 0,
+          "holes": {
+            "spells": 0,
+            "lands": 0
+          },
+          "manaErrors": [],
+          "sources": {
+            "W": 0,
+            "U": 12.93943173943174,
+            "B": 0,
+            "R": 7.93943173943174,
+            "G": 0,
+            "C": 0
+          }
+        },
+        {
+          "seat": 7,
+          "strategy": "denial",
+          "slots": 40,
+          "spells": 23,
+          "ownedLands": 2,
+          "basics": {
+            "W": 6,
+            "U": 0,
+            "B": 0,
+            "R": 0,
+            "G": 9
+          },
+          "manaOnly": 0,
+          "holes": {
+            "spells": 0,
+            "lands": 0
+          },
+          "manaErrors": [],
+          "sources": {
+            "W": 8,
+            "U": 0,
+            "B": 0,
+            "R": 0,
+            "G": 11,
+            "C": 0
+          }
+        }
+      ]
+    },
+    {
+      "seed": "production-reserved-223",
+      "scenario": "default",
+      "exactPoolLogParity": true,
+      "parityRuntime": "Chromium",
+      "conservedCards": 336,
+      "collationHash": "97a406d10dffbfed30626f98982d28cdfc810640c9352f77558903c885d2b51b",
+      "reviewHash": "3fde93c0c1edd01c0c73251361f085076fe2d14173b6f83ebb9dc4c3441d6906",
+      "sequentialReplayMs": 61859,
+      "v4": [
+        {
+          "seat": 1,
+          "strategy": "signals",
+          "slots": 40,
+          "spells": 23,
+          "ownedLands": 2,
+          "basics": {
+            "W": 9,
+            "U": 0,
+            "B": 0,
+            "R": 6,
+            "G": 0
+          },
+          "manaOnly": 0,
+          "holes": {
+            "spells": 0,
+            "lands": 0
+          },
+          "manaErrors": [],
+          "sources": {
+            "W": 10.46971586971587,
+            "U": 0,
+            "B": 0,
+            "R": 8.46971586971587,
+            "G": 0,
+            "C": 0
+          }
+        },
+        {
+          "seat": 2,
+          "strategy": "bomb",
+          "slots": 40,
+          "spells": 23,
+          "ownedLands": 2,
+          "basics": {
+            "W": 0,
+            "U": 0,
+            "B": 7,
+            "R": 0,
+            "G": 8
+          },
+          "manaOnly": 0,
+          "holes": {
+            "spells": 0,
+            "lands": 0
+          },
+          "manaErrors": [],
+          "sources": {
+            "W": 0,
+            "U": 0,
+            "B": 9,
+            "R": 0,
+            "G": 8,
+            "C": 0
+          }
+        },
+        {
+          "seat": 3,
+          "strategy": "synergy",
+          "slots": 40,
+          "spells": 23,
+          "ownedLands": 0,
+          "basics": {
+            "W": 8,
+            "U": 0,
+            "B": 0,
+            "R": 9,
+            "G": 0
+          },
+          "manaOnly": 0,
+          "holes": {
+            "spells": 0,
+            "lands": 0
+          },
+          "manaErrors": [],
+          "sources": {
+            "W": 8,
+            "U": 0,
+            "B": 0,
+            "R": 9,
+            "G": 0,
+            "C": 0
+          }
+        },
+        {
+          "seat": 4,
+          "strategy": "aggro",
+          "slots": 40,
+          "spells": 23,
+          "ownedLands": 0,
+          "basics": {
+            "W": 0,
+            "U": 9,
+            "B": 0,
+            "R": 8,
+            "G": 0
+          },
+          "manaOnly": 0,
+          "holes": {
+            "spells": 0,
+            "lands": 0
+          },
+          "manaErrors": [],
+          "sources": {
+            "W": 0,
+            "U": 9.46971586971587,
+            "B": 0,
+            "R": 8.46971586971587,
+            "G": 0,
+            "C": 0
+          }
+        },
+        {
+          "seat": 5,
+          "strategy": "control",
+          "slots": 40,
+          "spells": 23,
+          "ownedLands": 0,
+          "basics": {
+            "W": 0,
+            "U": 0,
+            "B": 10,
+            "R": 0,
+            "G": 7
+          },
+          "manaOnly": 0,
+          "holes": {
+            "spells": 0,
+            "lands": 0
+          },
+          "manaErrors": [],
+          "sources": {
+            "W": 0,
+            "U": 0,
+            "B": 10.93943173943174,
+            "R": 0,
+            "G": 7.93943173943174,
+            "C": 0
+          }
+        },
+        {
+          "seat": 6,
+          "strategy": "fixing",
+          "slots": 40,
+          "spells": 23,
+          "ownedLands": 3,
+          "basics": {
+            "W": 8,
+            "U": 0,
+            "B": 6,
+            "R": 0,
+            "G": 0
+          },
+          "manaOnly": 0,
+          "holes": {
+            "spells": 0,
+            "lands": 0
+          },
+          "manaErrors": [],
+          "sources": {
+            "W": 10.46971586971587,
+            "U": 0,
+            "B": 8.46971586971587,
+            "R": 0,
+            "G": 0,
+            "C": 0
+          }
+        },
+        {
+          "seat": 7,
+          "strategy": "denial",
+          "slots": 40,
+          "spells": 23,
+          "ownedLands": 1,
+          "basics": {
+            "W": 7,
+            "U": 9,
+            "B": 0,
+            "R": 0,
+            "G": 0
+          },
+          "manaOnly": 0,
+          "holes": {
+            "spells": 0,
+            "lands": 0
+          },
+          "manaErrors": [],
+          "sources": {
+            "W": 8.93943173943174,
+            "U": 10.93943173943174,
+            "B": 0,
+            "R": 0,
+            "G": 0,
+            "C": 0
+          }
+        }
+      ],
+      "v3": [
+        {
+          "seat": 1,
+          "strategy": "signals",
+          "slots": 40,
+          "spells": 23,
+          "ownedLands": 1,
+          "basics": {
+            "W": 0,
+            "U": 7,
+            "B": 0,
+            "R": 0,
+            "G": 9
+          },
+          "manaOnly": 0,
+          "holes": {
+            "spells": 0,
+            "lands": 0
+          },
+          "manaErrors": [],
+          "sources": {
+            "W": 0,
+            "U": 8,
+            "B": 0,
+            "R": 0,
+            "G": 9,
+            "C": 0
+          }
+        },
+        {
+          "seat": 2,
+          "strategy": "bomb",
+          "slots": 40,
+          "spells": 23,
+          "ownedLands": 1,
+          "basics": {
+            "W": 8,
+            "U": 0,
+            "B": 8,
+            "R": 0,
+            "G": 0
+          },
+          "manaOnly": 0,
+          "holes": {
+            "spells": 0,
+            "lands": 0
+          },
+          "manaErrors": [],
+          "sources": {
+            "W": 8.46971586971587,
+            "U": 0,
+            "B": 9.46971586971587,
+            "R": 0,
+            "G": 0,
+            "C": 0
+          }
+        },
+        {
+          "seat": 3,
+          "strategy": "synergy",
+          "slots": 40,
+          "spells": 23,
+          "ownedLands": 1,
+          "basics": {
+            "W": 7,
+            "U": 0,
+            "B": 0,
+            "R": 0,
+            "G": 9
+          },
+          "manaOnly": 0,
+          "holes": {
+            "spells": 0,
+            "lands": 0
+          },
+          "manaErrors": [],
+          "sources": {
+            "W": 7.46971586971587,
+            "U": 0,
+            "B": 0,
+            "R": 0,
+            "G": 10.46971586971587,
+            "C": 0
+          }
+        },
+        {
+          "seat": 4,
+          "strategy": "aggro",
+          "slots": 40,
+          "spells": 23,
+          "ownedLands": 0,
+          "basics": {
+            "W": 0,
+            "U": 0,
+            "B": 9,
+            "R": 8,
+            "G": 0
+          },
+          "manaOnly": 0,
+          "holes": {
+            "spells": 0,
+            "lands": 0
+          },
+          "manaErrors": [],
+          "sources": {
+            "W": 0,
+            "U": 0,
+            "B": 9,
+            "R": 8,
+            "G": 0,
+            "C": 0
+          }
+        },
+        {
+          "seat": 5,
+          "strategy": "control",
+          "slots": 40,
+          "spells": 23,
+          "ownedLands": 1,
+          "basics": {
+            "W": 0,
+            "U": 9,
+            "B": 0,
+            "R": 7,
+            "G": 0
+          },
+          "manaOnly": 0,
+          "holes": {
+            "spells": 0,
+            "lands": 0
+          },
+          "manaErrors": [],
+          "sources": {
+            "W": 0,
+            "U": 9.93943173943174,
+            "B": 0,
+            "R": 9.08943173943174,
+            "G": 0,
+            "C": 0
+          }
+        },
+        {
+          "seat": 6,
+          "strategy": "fixing",
+          "slots": 40,
+          "spells": 23,
+          "ownedLands": 1,
+          "basics": {
+            "W": 8,
+            "U": 8,
+            "B": 0,
+            "R": 0,
+            "G": 0
+          },
+          "manaOnly": 0,
+          "holes": {
+            "spells": 0,
+            "lands": 0
+          },
+          "manaErrors": [],
+          "sources": {
+            "W": 9.93943173943174,
+            "U": 8.93943173943174,
+            "B": 0,
+            "R": 0,
+            "G": 0,
+            "C": 0
+          }
+        },
+        {
+          "seat": 7,
+          "strategy": "denial",
+          "slots": 40,
+          "spells": 23,
+          "ownedLands": 2,
+          "basics": {
+            "W": 7,
+            "U": 0,
+            "B": 8,
+            "R": 0,
+            "G": 0
+          },
+          "manaOnly": 0,
+          "holes": {
+            "spells": 0,
+            "lands": 0
+          },
+          "manaErrors": [],
+          "sources": {
+            "W": 8.46971586971587,
+            "U": 0,
+            "B": 10.46971586971587,
+            "R": 0,
+            "G": 0,
+            "C": 0
+          }
+        }
+      ]
+    },
+    {
+      "seed": "production-reserved-227",
+      "scenario": "default",
+      "exactPoolLogParity": true,
+      "parityRuntime": "Chromium",
+      "conservedCards": 336,
+      "collationHash": "ed690fd5085204f2b35a52e6e8152eea7a2277d4840b6ecf0a5d768e5a614f6f",
+      "reviewHash": "6d05226b51637169ee7985610526a45d1f03ecf79235ddf50ecf988ee3d1ec14",
+      "sequentialReplayMs": 56436,
+      "v4": [
+        {
+          "seat": 1,
+          "strategy": "signals",
+          "slots": 40,
+          "spells": 23,
+          "ownedLands": 4,
+          "basics": {
+            "W": 8,
+            "U": 5,
+            "B": 0,
+            "R": 0,
+            "G": 0
+          },
+          "manaOnly": 0,
+          "holes": {
+            "spells": 0,
+            "lands": 0
+          },
+          "manaErrors": [],
+          "sources": {
+            "W": 9,
+            "U": 9,
+            "B": 0,
+            "R": 0,
+            "G": 0,
+            "C": 0
+          }
+        },
+        {
+          "seat": 2,
+          "strategy": "bomb",
+          "slots": 40,
+          "spells": 23,
+          "ownedLands": 3,
+          "basics": {
+            "W": 5,
+            "U": 0,
+            "B": 0,
+            "R": 6,
+            "G": 3
+          },
+          "manaOnly": 0,
+          "holes": {
+            "spells": 0,
+            "lands": 0
+          },
+          "manaErrors": [],
+          "sources": {
+            "W": 8.46971586971587,
+            "U": 0,
+            "B": 0,
+            "R": 7.46971586971587,
+            "G": 4.46971586971587,
+            "C": 0
+          }
+        },
+        {
+          "seat": 3,
+          "strategy": "synergy",
+          "slots": 40,
+          "spells": 23,
+          "ownedLands": 2,
+          "basics": {
+            "W": 0,
+            "U": 11,
+            "B": 0,
+            "R": 4,
+            "G": 0
+          },
+          "manaOnly": 0,
+          "holes": {
+            "spells": 0,
+            "lands": 0
+          },
+          "manaErrors": [],
+          "sources": {
+            "W": 0,
+            "U": 13.46971586971587,
+            "B": 0,
+            "R": 6.46971586971587,
+            "G": 0,
+            "C": 0
+          }
+        },
+        {
+          "seat": 4,
+          "strategy": "aggro",
+          "slots": 40,
+          "spells": 23,
+          "ownedLands": 2,
+          "basics": {
+            "W": 7,
+            "U": 0,
+            "B": 8,
+            "R": 0,
+            "G": 0
+          },
+          "manaOnly": 0,
+          "holes": {
+            "spells": 0,
+            "lands": 0
+          },
+          "manaErrors": [],
+          "sources": {
+            "W": 9.46971586971587,
+            "U": 0,
+            "B": 10.46971586971587,
+            "R": 0,
+            "G": 0,
+            "C": 0
+          }
+        },
+        {
+          "seat": 5,
+          "strategy": "control",
+          "slots": 40,
+          "spells": 23,
+          "ownedLands": 0,
+          "basics": {
+            "W": 0,
+            "U": 0,
+            "B": 0,
+            "R": 6,
+            "G": 11
+          },
+          "manaOnly": 0,
+          "holes": {
+            "spells": 0,
+            "lands": 0
+          },
+          "manaErrors": [],
+          "sources": {
+            "W": 0,
+            "U": 0,
+            "B": 0,
+            "R": 8.34857934857935,
+            "G": 13.34857934857935,
+            "C": 0
+          }
+        },
+        {
+          "seat": 6,
+          "strategy": "fixing",
+          "slots": 40,
+          "spells": 23,
+          "ownedLands": 2,
+          "basics": {
+            "W": 0,
+            "U": 9,
+            "B": 0,
+            "R": 3,
+            "G": 3
+          },
+          "manaOnly": 0,
+          "holes": {
+            "spells": 0,
+            "lands": 0
+          },
+          "manaErrors": [],
+          "sources": {
+            "W": 0,
+            "U": 9,
+            "B": 0,
+            "R": 5,
+            "G": 3,
+            "C": 0
+          }
+        },
+        {
+          "seat": 7,
+          "strategy": "denial",
+          "slots": 40,
+          "spells": 23,
+          "ownedLands": 1,
+          "basics": {
+            "W": 0,
+            "U": 0,
+            "B": 0,
+            "R": 9,
+            "G": 7
+          },
+          "manaOnly": 0,
+          "holes": {
+            "spells": 0,
+            "lands": 0
+          },
+          "manaErrors": [],
+          "sources": {
+            "W": 0,
+            "U": 0,
+            "B": 0,
+            "R": 10,
+            "G": 7,
+            "C": 0
+          }
+        }
+      ],
+      "v3": [
+        {
+          "seat": 1,
+          "strategy": "signals",
+          "slots": 40,
+          "spells": 23,
+          "ownedLands": 0,
+          "basics": {
+            "W": 10,
+            "U": 0,
+            "B": 0,
+            "R": 0,
+            "G": 7
+          },
+          "manaOnly": 0,
+          "holes": {
+            "spells": 0,
+            "lands": 0
+          },
+          "manaErrors": [],
+          "sources": {
+            "W": 10.46971586971587,
+            "U": 0,
+            "B": 0,
+            "R": 0,
+            "G": 8.16971586971587,
+            "C": 0
+          }
+        },
+        {
+          "seat": 2,
+          "strategy": "bomb",
+          "slots": 40,
+          "spells": 23,
+          "ownedLands": 2,
+          "basics": {
+            "W": 7,
+            "U": 8,
+            "B": 0,
+            "R": 0,
+            "G": 0
+          },
+          "manaOnly": 0,
+          "holes": {
+            "spells": 0,
+            "lands": 0
+          },
+          "manaErrors": [],
+          "sources": {
+            "W": 9,
+            "U": 9,
+            "B": 0,
+            "R": 0,
+            "G": 0,
+            "C": 0
+          }
+        },
+        {
+          "seat": 3,
+          "strategy": "synergy",
+          "slots": 40,
+          "spells": 23,
+          "ownedLands": 0,
+          "basics": {
+            "W": 0,
+            "U": 7,
+            "B": 0,
+            "R": 10,
+            "G": 0
+          },
+          "manaOnly": 0,
+          "holes": {
+            "spells": 0,
+            "lands": 0
+          },
+          "manaErrors": [],
+          "sources": {
+            "W": 0,
+            "U": 7,
+            "B": 0,
+            "R": 10,
+            "G": 0,
+            "C": 0
+          }
+        },
+        {
+          "seat": 4,
+          "strategy": "aggro",
+          "slots": 40,
+          "spells": 23,
+          "ownedLands": 2,
+          "basics": {
+            "W": 7,
+            "U": 0,
+            "B": 8,
+            "R": 0,
+            "G": 0
+          },
+          "manaOnly": 0,
+          "holes": {
+            "spells": 0,
+            "lands": 0
+          },
+          "manaErrors": [],
+          "sources": {
+            "W": 9.46971586971587,
+            "U": 0,
+            "B": 10.46971586971587,
+            "R": 0,
+            "G": 0,
+            "C": 0
+          }
+        },
+        {
+          "seat": 5,
+          "strategy": "control",
+          "slots": 40,
+          "spells": 23,
+          "ownedLands": 1,
+          "basics": {
+            "W": 0,
+            "U": 8,
+            "B": 0,
+            "R": 0,
+            "G": 8
+          },
+          "manaOnly": 0,
+          "holes": {
+            "spells": 0,
+            "lands": 0
+          },
+          "manaErrors": [],
+          "sources": {
+            "W": 0,
+            "U": 9.46971586971587,
+            "B": 0,
+            "R": 0,
+            "G": 8.46971586971587,
+            "C": 0
+          }
+        },
+        {
+          "seat": 6,
+          "strategy": "fixing",
+          "slots": 40,
+          "spells": 23,
+          "ownedLands": 3,
+          "basics": {
+            "W": 0,
+            "U": 6,
+            "B": 0,
+            "R": 8,
+            "G": 0
+          },
+          "manaOnly": 0,
+          "holes": {
+            "spells": 0,
+            "lands": 0
+          },
+          "manaErrors": [],
+          "sources": {
+            "W": 0,
+            "U": 7.93943173943174,
+            "B": 0,
+            "R": 10.93943173943174,
+            "G": 0,
+            "C": 0
+          }
+        },
+        {
+          "seat": 7,
+          "strategy": "denial",
+          "slots": 40,
+          "spells": 23,
+          "ownedLands": 0,
+          "basics": {
+            "W": 0,
+            "U": 7,
+            "B": 0,
+            "R": 0,
+            "G": 10
+          },
+          "manaOnly": 0,
+          "holes": {
+            "spells": 0,
+            "lands": 0
+          },
+          "manaErrors": [],
+          "sources": {
+            "W": 0,
+            "U": 8.40914760914761,
+            "B": 0,
+            "R": 0,
+            "G": 11.40914760914761,
+            "C": 0
+          }
+        }
+      ]
+    },
+    {
+      "seed": "production-reserved-229",
+      "scenario": "power",
+      "exactPoolLogParity": true,
+      "parityRuntime": "Chromium",
+      "conservedCards": 336,
+      "collationHash": "48e2c2053319d611129fda06e26bd49445c92d328783fd207f24ed806e1c4e81",
+      "reviewHash": "e39cb93919d4e3d5f5f3169c1b5aac88031eac72a08222d1b05563846cabf350",
+      "sequentialReplayMs": 1014,
+      "v4": [
+        {
+          "seat": 1,
+          "strategy": "power",
+          "slots": 40,
+          "spells": 23,
+          "ownedLands": 1,
+          "basics": {
+            "W": 5,
+            "U": 6,
+            "B": 0,
+            "R": 0,
+            "G": 5
+          },
+          "manaOnly": 0,
+          "holes": {
+            "spells": 0,
+            "lands": 0
+          },
+          "manaErrors": [],
+          "sources": {
+            "W": 5.46971586971587,
+            "U": 6.46971586971587,
+            "B": 0,
+            "R": 0,
+            "G": 6.46971586971587,
+            "C": 0
+          }
+        },
+        {
+          "seat": 2,
+          "strategy": "power",
+          "slots": 40,
+          "spells": 20,
+          "ownedLands": 3,
+          "basics": {
+            "W": 6,
+            "U": 6,
+            "B": 0,
+            "R": 0,
+            "G": 5
+          },
+          "manaOnly": 0,
+          "holes": {
+            "spells": 3,
+            "lands": 0
+          },
+          "manaErrors": [],
+          "sources": {
+            "W": 8,
+            "U": 8,
+            "B": 0,
+            "R": 0,
+            "G": 6.35,
+            "C": 0
+          }
+        },
+        {
+          "seat": 3,
+          "strategy": "power",
+          "slots": 40,
+          "spells": 23,
+          "ownedLands": 1,
+          "basics": {
+            "W": 0,
+            "U": 0,
+            "B": 6,
+            "R": 6,
+            "G": 4
+          },
+          "manaOnly": 0,
+          "holes": {
+            "spells": 0,
+            "lands": 0
+          },
+          "manaErrors": [],
+          "sources": {
+            "W": 0.35,
+            "U": 0.35,
+            "B": 6.8197158697158695,
+            "R": 7.8197158697158695,
+            "G": 5.8197158697158695,
+            "C": 0
+          }
+        },
+        {
+          "seat": 4,
+          "strategy": "power",
+          "slots": 40,
+          "spells": 24,
+          "ownedLands": 2,
+          "basics": {
+            "W": 3,
+            "U": 5,
+            "B": 0,
+            "R": 6,
+            "G": 0
+          },
+          "manaOnly": 1,
+          "holes": {
+            "spells": 0,
+            "lands": 0
+          },
+          "manaErrors": [],
+          "sources": {
+            "W": 6.836859483918307,
+            "U": 7.836859483918307,
+            "B": 0,
+            "R": 7.836859483918307,
+            "G": 0,
+            "C": 0
+          }
+        },
+        {
+          "seat": 5,
+          "strategy": "power",
+          "slots": 40,
+          "spells": 23,
+          "ownedLands": 0,
+          "basics": {
+            "W": 0,
+            "U": 0,
+            "B": 6,
+            "R": 6,
+            "G": 5
+          },
+          "manaOnly": 0,
+          "holes": {
+            "spells": 0,
+            "lands": 0
+          },
+          "manaErrors": [],
+          "sources": {
+            "W": 0,
+            "U": 0,
+            "B": 6,
+            "R": 6,
+            "G": 5,
+            "C": 0
+          }
+        },
+        {
+          "seat": 6,
+          "strategy": "power",
+          "slots": 40,
+          "spells": 22,
+          "ownedLands": 2,
+          "basics": {
+            "W": 0,
+            "U": 6,
+            "B": 7,
+            "R": 0,
+            "G": 3
+          },
+          "manaOnly": 0,
+          "holes": {
+            "spells": 1,
+            "lands": 0
+          },
+          "manaErrors": [],
+          "sources": {
+            "W": 0,
+            "U": 7.477962577962578,
+            "B": 8.477962577962577,
+            "R": 0,
+            "G": 3.477962577962578,
+            "C": 0
+          }
+        },
+        {
+          "seat": 7,
+          "strategy": "power",
+          "slots": 40,
+          "spells": 24,
+          "ownedLands": 3,
+          "basics": {
+            "W": 0,
+            "U": 5,
+            "B": 6,
+            "R": 2,
+            "G": 0
+          },
+          "manaOnly": 1,
+          "holes": {
+            "spells": 0,
+            "lands": 0
+          },
+          "manaErrors": [],
+          "sources": {
+            "W": 0,
+            "U": 8.377644612938731,
+            "B": 8.377644612938731,
+            "R": 4.37764461293873,
+            "G": 0,
+            "C": 0
+          }
+        }
+      ],
+      "v3": [
+        {
+          "seat": 1,
+          "strategy": "power",
+          "slots": 40,
+          "spells": 23,
+          "ownedLands": 0,
+          "basics": {
+            "W": 9,
+            "U": 8,
+            "B": 0,
+            "R": 0,
+            "G": 0
+          },
+          "manaOnly": 0,
+          "holes": {
+            "spells": 0,
+            "lands": 0
+          },
+          "manaErrors": [],
+          "sources": {
+            "W": 9.46971586971587,
+            "U": 8.46971586971587,
+            "B": 0,
+            "R": 0,
+            "G": 0,
+            "C": 0
+          }
+        },
+        {
+          "seat": 2,
+          "strategy": "power",
+          "slots": 40,
+          "spells": 23,
+          "ownedLands": 1,
+          "basics": {
+            "W": 5,
+            "U": 0,
+            "B": 0,
+            "R": 6,
+            "G": 5
+          },
+          "manaOnly": 0,
+          "holes": {
+            "spells": 0,
+            "lands": 0
+          },
+          "manaErrors": [],
+          "sources": {
+            "W": 5.93943173943174,
+            "U": 0,
+            "B": 0,
+            "R": 7.93943173943174,
+            "G": 6.93943173943174,
+            "C": 0
+          }
+        },
+        {
+          "seat": 3,
+          "strategy": "power",
+          "slots": 40,
+          "spells": 23,
+          "ownedLands": 0,
+          "basics": {
+            "W": 0,
+            "U": 0,
+            "B": 8,
+            "R": 7,
+            "G": 2
+          },
+          "manaOnly": 1,
+          "holes": {
+            "spells": 1,
+            "lands": 0
+          },
+          "manaErrors": [],
+          "sources": {
+            "W": 0,
+            "U": 0,
+            "B": 9.40914760914761,
+            "R": 8.40914760914761,
+            "G": 3.409147609147609,
+            "C": 0
+          }
+        },
+        {
+          "seat": 4,
+          "strategy": "power",
+          "slots": 40,
+          "spells": 22,
+          "ownedLands": 2,
+          "basics": {
+            "W": 7,
+            "U": 0,
+            "B": 0,
+            "R": 7,
+            "G": 2
+          },
+          "manaOnly": 1,
+          "holes": {
+            "spells": 2,
+            "lands": 0
+          },
+          "manaErrors": [],
+          "sources": {
+            "W": 9.433887733887733,
+            "U": 0,
+            "B": 0,
+            "R": 8.433887733887733,
+            "G": 4.433887733887734,
+            "C": 0
+          }
+        },
+        {
+          "seat": 5,
+          "strategy": "power",
+          "slots": 40,
+          "spells": 23,
+          "ownedLands": 1,
+          "basics": {
+            "W": 5,
+            "U": 5,
+            "B": 0,
+            "R": 0,
+            "G": 6
+          },
+          "manaOnly": 0,
+          "holes": {
+            "spells": 0,
+            "lands": 0
+          },
+          "manaErrors": [],
+          "sources": {
+            "W": 6.8197158697158695,
+            "U": 6.8197158697158695,
+            "B": 0.35,
+            "R": 0.35,
+            "G": 6.8197158697158695,
+            "C": 0
+          }
+        },
+        {
+          "seat": 6,
+          "strategy": "power",
+          "slots": 40,
+          "spells": 23,
+          "ownedLands": 1,
+          "basics": {
+            "W": 0,
+            "U": 0,
+            "B": 7,
+            "R": 9,
+            "G": 0
+          },
+          "manaOnly": 0,
+          "holes": {
+            "spells": 0,
+            "lands": 0
+          },
+          "manaErrors": [],
+          "sources": {
+            "W": 0,
+            "U": 0,
+            "B": 8.46971586971587,
+            "R": 9.61971586971587,
+            "G": 0,
+            "C": 0
+          }
+        },
+        {
+          "seat": 7,
+          "strategy": "power",
+          "slots": 40,
+          "spells": 23,
+          "ownedLands": 1,
+          "basics": {
+            "W": 4,
+            "U": 0,
+            "B": 7,
+            "R": 0,
+            "G": 5
+          },
+          "manaOnly": 0,
+          "holes": {
+            "spells": 0,
+            "lands": 0
+          },
+          "manaErrors": [],
+          "sources": {
+            "W": 5.46971586971587,
+            "U": 0,
+            "B": 7.46971586971587,
+            "R": 0,
+            "G": 6.169715869715869,
+            "C": 0
+          }
+        }
+      ]
+    }
+  ]
+}

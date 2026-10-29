@@ -1,0 +1,86 @@
+{
+  "findings": [
+    {
+      "id": "CODE-01",
+      "priority": "P1",
+      "file": "draft-policy.js",
+      "scenario": "Pool completo (remaining 0), extraBasicLands vero, piano WU. bestBuild prova lo splash R con due carte rosse di voto 3.5 o più. Il riempimento greedy porta spells a 23 includendo entrambe. Nel ciclo di mana una delle due finisce in manaErrors, per esempio per colored minore di 0.65. Nel pool restano giocabili WU non ancora scelte.",
+      "evidence": "In build il ciclo while si ferma quando spells raggiunge spellTarget. La rimozione per mana avviene solo dopo, con continue, e nessuna carta residua di choices viene rivalutata. Con remaining===0 e freeBasics il calcolo fill=target-selected.length-lands.length-basics aggiunge basi al posto della magia scartata. Senza basi aggiungibili, il ramo di completamento ordina gli inutilizzati solo per rating(b)-rating(a), quindi rimette nel main proprio la carta appena respinta (voto 3.5 o più) prima delle giocabili on-color. Inoltre model, timedModels, turn(c,spells), tactical(c,style,spells) e synergy(c,spells) usano spells e non selected: cycling, alternativeLand, riduzioni e supporti della carta respinta continuano a sostenere le altre.",
+      "impact": "Il main finale può avere 18 terre e una giocabile posseduta in excluded, oppure contenere una carta giudicata non lanciabile. Durante il draft score e delta della configurazione splash sono calcolati su fonti e sostegni di carte che non sono nel main. Ne risultano preferenze di pick e di splash distorte.",
+      "fix": "Dopo ogni rifiuto per mana riprendere il riempimento dai choices residui compatibili con colors, iterando finché la lista è stabile. Ricalcolare sourceModel, turn e synergy su selected. Nel ramo senza basi preferire gli inutilizzati con needs non null e castability accettabile, prima di ricorrere a carte respinte."
+    },
+    {
+      "id": "CODE-02",
+      "priority": "P2",
+      "file": "draft-policy.js",
+      "scenario": "Piano WU con splash R e carta oro {1}{W}{W}{R} di voto 4. Il simbolo rosso è uno solo, il doppio W appartiene ai colori principali.",
+      "evidence": "La condizione di rifiuto è off&&(colored<.65||Object.values(need).some(n=>n>1)). need viene da needs(c,colors,...) su tutti i simboli, quindi need.W=2 basta a respingere la carta anche quando la castabilità complessiva supera 0.65.",
+      "impact": "Le carte oro con doppio simbolo nel colore principale e un solo simbolo di splash vengono escluse sempre. Il controllo previsto sui doppi simboli dello splash colpisce invece i colori principali, e la configurazione splash viene valutata male.",
+      "fix": "Limitare il controllo ai colori fuori dalla corsia, per esempio Object.entries(need).some(([color,n])=>!lane.includes(color)&&n>1)."
+    },
+    {
+      "id": "CODE-03",
+      "priority": "P2",
+      "file": "draft-policy.js",
+      "scenario": "Creatura a 3 mana con convoke, oppure una carta a 2 mana con affinity for artifacts, in un pool con altre creature o artefatti economici.",
+      "evidence": "In turn, se reduction è maggiore di 0 la funzione restituisce Math.max(4,c.mv-reduction). Per mv 3 o mv 2 il risultato è 4, cioè più tardi del costo nominale.",
+      "impact": "Una riduzione rende la carta più lenta del suo costo pieno. Non viene contata fra le giocate iniziali (early, earlyCount, tactical), la castabilità è valutata al turno 4 e il deficit early del piano aggro risulta gonfiato.",
+      "fix": "Non superare mai il costo nominale: Math.min(Math.max(1,c.mv),Math.max(4,c.mv-reduction)), o una regola equivalente che applichi il pavimento solo quando mv è maggiore di 4."
+    },
+    {
+      "id": "CODE-04",
+      "priority": "P2",
+      "file": "draft-policy.js",
+      "scenario": "Il pool WU contiene due terre che producono solo {C}, anche se entrano tappate, prese a fine busta. Nessuna magia del main ha simboli {C}.",
+      "evidence": "Nel ciclo delle terre il filtro direct(c).some(x=>colors.includes(x)||x==='C') accetta ogni terra incolore. L'ordinamento mette prima le terre non tappate ma include anche quelle tappate. Le terre vengono inserite fino a landTarget prima di assegnare le basi, senza confronto con la base che sostituiscono.",
+      "impact": "Ogni terra incolore posseduta toglie una base colorata. Le fonti W e U diminuiscono, crescono manaPenalty e i rifiuti, e non esiste una configurazione alternativa senza quelle terre. Il main restituito ha un mana peggiore di quello ottenibile con le stesse carte.",
+      "fix": "Includere le terre che producono solo C quando qualche magia selezionata richiede C, oppure confrontare la configurazione con e senza ciascuna terra non base rispetto alla base che sostituisce."
+    },
+    {
+      "id": "CODE-05",
+      "priority": "P2",
+      "file": "bot_profiles.py",
+      "scenario": "Evolving Wilds o Terramorphic Expanse nel pool, con testo '{T}, Sacrifice this land: Search your library for a basic land card, put it onto the battlefield tapped'.",
+      "evidence": "describe registra abilities solo per le righe con 'add'. La terra non ha sottotipi, quindi abilities, cycling e alternativeLand sono vuoti e manca il ruolo fixing, mentre status resta 'supported'. Il pattern ramp riconosce il testo, ma draft-policy.js non usa mai quel ruolo. In build il filtro delle terre richiede direct(c) non vuoto, quindi la carta è esclusa dal main. bestBuild non la considera nemmeno come fonte per lo splash.",
+      "impact": "La copertura minima risulta completa, ma il fetch base più comune del Limited vale sempre zero: mazzo 0, used falso, nessun accesso allo splash. La v3 invece lo trattava come fixing. Il bot non lo sceglie e non lo gioca mai, contro il requisito di accesso al fixing in BOT-04.",
+      "fix": "Profilare la ricerca di base sul campo come fonte tappata, con colori pari alle basi ricercabili nella configurazione candidata, come per il basic landcycling. In alternativa marcare questi profili come non supportati, così che la disponibilità li segnali."
+    },
+    {
+      "id": "CODE-06",
+      "priority": "P2",
+      "file": "draft-policy.js",
+      "scenario": "Splash R con una magia rossa che ha Mountaincycling, oppure una MDFC con faccia terra rossa. Il main ha due basi Mountain e nessun'altra fonte rossa.",
+      "evidence": "sourceModel aggiunge a units l'entryUse.weights di ogni magia, compresa la carta stessa. castability(c,colors,timed,t) somma tutte le units, quindi la carta conta il proprio uso come terra o il proprio ciclo come fonte per lanciare sé stessa. Lo stesso accade nel controllo unavailable e in landCount.",
+      "impact": "Una carta usata come terra o ciclata non può essere lanciata, eppure le fonti rosse passano da 2 a circa 2.5 per la valutazione di quella stessa carta. È un doppio credito che favorisce gli splash di carte con usi alternativi e può portarle sopra la soglia di 0.65.",
+      "fix": "Nel calcolo di castabilità, unavailable e landCount della carta c escludere la entryUse corrispondente a quella copia (per esempio indicizzando uses per uid) e lasciare invariato il contributo per le altre carte."
+    },
+    {
+      "id": "CODE-07",
+      "priority": "P2",
+      "file": "bot_profiles.py",
+      "scenario": "Carta split o avventura il cui campo cost contiene entrambe le metà, per esempio '{3}{G} // {1}{G}' oppure '{R} // {2}{U}'. Il caricatore gestisce già stringhe multi-faccia unite da ' // ', come mostra normalize_card su type.",
+      "evidence": "describe esegue re.findall su tutto card.get('cost','') e mette in symbols i simboli di entrambe le metà. In draft-policy.js needs e castability richiedono quindi tutti i simboli insieme.",
+      "impact": "L'avventura risulta richiedere GG. La split {R} // {2}{U} risulta adattarsi solo a corsie che contengono sia R sia U, quindi viene esclusa da un mazzo R o RW che può lanciarne una metà. Fit, splash e castabilità sono errati per queste carte.",
+      "fix": "Separare i simboli per faccia o metà, usando faces o lo split su ' // ', e considerare la carta lanciabile se lo è almeno una metà. In alternativa marcare questi profili come non supportati."
+    },
+    {
+      "id": "CODE-08",
+      "priority": "P2",
+      "file": "bot_profiles.py",
+      "scenario": "Una modifica a collation.js cambia l'estrazione o l'ordine delle stampe ma conserva la sequenza degli uid. Dati e ricetta restano invariati.",
+      "evidence": "algorithmRevision è calcolata solo su draft-policy.js e draft-engine.js. Però createCollator in draft-engine.js delega a require('./collation.js') quando format.collation.schemaVersion è presente. replay v4 controlla solo revision, policyRevision e algorithmRevision.",
+      "impact": "Il salvataggio v4 viene accettato e session.step trova gli stessi uid con carte diverse. Il risultato è una divergenza silenziosa del replay, invece del rifiuto con backup previsto da BOT-14. Se cambiano anche gli uid, il record viene scartato come illeggibile senza una diagnosi di incompatibilità.",
+      "fix": "Includere collation.js, e ogni modulo caricato dal percorso v4, nel calcolo di algorithmRevision."
+    },
+    {
+      "id": "CODE-09",
+      "priority": "P2",
+      "file": "draft-policy.js",
+      "scenario": "Evento Pick-Two: count maggiore di 1 in ogni turno.",
+      "evidence": "takeGroup chiama rank sempre con transition=false. Poi assegna bot.phase=bot.pool.length/total>.7?3:1, dopo il push, invece della formula di rank, che usa progress prima del pick, confidence e style.open.",
+      "impact": "Nei log di questi eventi la fase vale soltanto 'orienta' o 'completa': anche il primo pick risulta 'orienta' e 'consolida' non compare mai. La spiegazione BOT-12 riporta una fase diversa da quella che lo stesso stato produrrebbe con un pick singolo.",
+      "fix": "Estrarre la formula della fase da rank e applicarla in takeGroup con il pool precedente al pick, una volta per scelta registrata."
+    }
+  ],
+  "summary": "La v4 rispetta i vincoli dichiarati: è opt-in, ha flussi casuali isolati per posto e turno, non accede a buste future o pool avversari, disattiva le sinergie in modo uniforme, distingue BO1 e BO3 ed esegue replay versionato con controllo di revisione. I difetti residui riguardano soprattutto il costruttore. Le carte scartate per mana non vengono sostituite e continuano a contare per fonti e sostegni. Il controllo dei doppi simboli colpisce i colori principali. Le riduzioni ritardano carte economiche. Le terre incolori sono incluse sempre, mentre i fetch di base sono ignorati. Gli usi alternativi danno credito alla carta stessa. A questi si aggiungono la profilazione dei costi split, l'impronta algoritmica che omette collation.js e la fase registrata in modo incoerente nei pick multipli."
+}

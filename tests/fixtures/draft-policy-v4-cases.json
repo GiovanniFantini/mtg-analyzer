@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "frozenBeforeImplementation": "2026-10-29",
+  "trainingSeeds": ["policy-train-0", "policy-train-1", "policy-train-2", "policy-train-3"],
+  "reservedSeeds": ["policy-reserved-17", "policy-reserved-29", "policy-reserved-43", "policy-reserved-71"],
+  "expectations": {
+    "historical": "V2/V3 bot digests and continuation unchanged",
+    "neutral": "Equivalent colors and reordered archetypes have equal opening value",
+    "marginal": "A missing early play is more useful than an excluded duplicate filler",
+    "mana": "Inaccessible green producers cannot support red in a WU configuration",
+    "cycling": "Typed nonbasics are searchable; missing targets give zero fixing; candidate added basics can enable a splash",
+    "slots": "Alternative uses occupy one slot and never full creature plus full land credit",
+    "synergy": "Reference support centers the adjustment, absent support lowers it, density and competition matter",
+    "coverage": "Partial relational data disable both bonuses and penalties uniformly",
+    "signals": "Side memory survives reversal; subpicks do not duplicate evidence; late depth matters",
+    "pivot": "Discarded unplayables do not add sunk cost; better constructible plans can replace the current plan",
+    "profiles": "Attackers and defense differ for aggro/control; signals differs usefully from neutral or is unified",
+    "random": "One seat consuming random values does not shift any other seat decision stream",
+    "picktwo": "A legal chosen pair is evaluated jointly without hidden information",
+    "privacy": "Opponent pools and logs are exported by the UI only at completion",
+    "match": "Same game-one assumptions give the same main; BO1 has no between-game sideboard value"
+  },
+  "rubric": ["main legality", "castable sources", "functional early curve", "interaction", "win plan", "synergy support", "unexplained exclusions"],
+  "promotion": "Experimental until the reserved sample and blind review support promotion; internal objective is not independent proof or WR"
+}

@@ -1,0 +1,26 @@
+  function takeGroup(bot,pack,round,pick,count,random,options={}){
+   if(count<=1)return [take(bot,pack,round,pick,random,options)];
+   observe(bot,pack,round,pick);
+   // Bounded beam, evaluating combinations on cloned own state. No observation
+   // is counted twice; only the final committed choices reach the real bot.
+   const first=rank(bot,pack.cards,round,pick,random,false,options).scores.slice(0,4);let best=null;
+   for(const candidate of first){const clone=JSON.parse(JSON.stringify(bot));
+    const left={packetId:pack.packetId,cards:[...pack.cards]};let value=0;const selected=[];
+    for(let n=0;n<Math.min(count,pack.cards.length);n++){
+     const scored=rank(clone,left.cards,round,pick,random,false,options).scores;
+     const choice=n===0?scored.find(s=>s.entry.uid===candidate.entry.uid):scored[0];value+=choice.score;
+     clone.pool.push(choice.entry);clone.lane=choice.lane;if(!clone.anchor&&!choice.card.land&&rating(choice.card)>=4)clone.anchor=choice.entry.id;selected.push(choice.entry);left.cards=left.cards.filter(e=>e.uid!==choice.entry.uid);
+    }
+    if(!best||value>best.value)best={selected,value};
+   }
+   const result=[];for(const selected of best.selected){
+    // Reuse normal logging, but restrict selection to the jointly selected card.
+    observe(bot,pack,round,pick);const ranking=rank(bot,pack.cards,round,pick,random,false,options).scores,scored=ranking.find(s=>s.entry.uid===selected.uid);
+    const prior=bot.pool.map(e=>({...e}));bot.phase=phase(bot,context(bot,round,options));bot.pool.push(selected);bot.lane=scored.lane;if(!bot.anchor&&!scored.card.land&&rating(scored.card)>=4)bot.anchor=selected.id;
+    bot.log.push({round,pick,packetId:pack.packetId,id:selected.id,uid:selected.uid,phase:['esplora','orienta','consolida','completa'][bot.phase],lane:bot.lane,components:scored.components,score:scored.score,
+     poolBefore:prior,bestId:ranking[0].entry.id,randomized:false,joint:true,reasons:[...scored.reasons,'Combinazione valutata con ricerca limitata nella stessa busta.'],replaces:scored.replaces||[],pivot:scored.pivot||null,deck:scored.deck||null,gaps:config.gaps,
+     observed:pack.cards.map(e=>e.id),alternatives:ranking.slice(0,3).map(s=>({id:s.entry.id,score:s.score}))});
+    pack.cards=pack.cards.filter(e=>e.uid!==selected.uid);result.push(selected);
+   }
+   bot.memory.packets[pack.packetId]=pack.cards.map(e=>({...e}));return result;
+  }

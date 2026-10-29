@@ -1,0 +1,197 @@
+{
+  "rounds": [
+    {
+      "round": 1,
+      "model": "claude-opus-5-5",
+      "findings": [
+        {
+          "id": "CODE-01",
+          "decision": "confirmed_fixed",
+          "resolution": "Costruttore riscritto con rifiuto/refill fino a stabilizzazione; fonti, curve e sinergie ricalcolate solo sul main effettivo. Regressione su doppio rosso scartato, giocabili residue e fonte fantasma."
+        },
+        {
+          "id": "CODE-02",
+          "decision": "confirmed_fixed",
+          "resolution": "Doppio simbolo vietato solo nei colori di splash. Fixture {2}{W}{W}{R} in piano WU con fonti R sufficienti."
+        },
+        {
+          "id": "CODE-03",
+          "decision": "confirmed_fixed",
+          "resolution": "Il turno stimato dopo riduzione non supera il costo nominale. Fixture di artefatto a due mana."
+        },
+        {
+          "id": "CODE-04",
+          "decision": "confirmed_fixed",
+          "resolution": "Terre solo C escluse quando non richieste e sono aggiungibili basi colorate. Fixture con due terre C non necessarie."
+        },
+        {
+          "id": "CODE-05",
+          "decision": "confirmed_fixed",
+          "resolution": "Descrittore fetch base, con terre ricercabili reali, tempo di accesso e restrizioni; fonte risolta nella configurazione candidata. Fixture fetch WU senza R."
+        },
+        {
+          "id": "CODE-06",
+          "decision": "confirmed_fixed",
+          "resolution": "Unita di fonte indicizzate per copia; castabilita e mana della carta escludono la sua unita alternativa e la sua produzione. Fixture landcycler rosso che non supporta se stesso."
+        },
+        {
+          "id": "CODE-07",
+          "decision": "confirmed_fixed",
+          "resolution": "Scelta della soluzione conservativa proposta: costi compositi con // non supportati nei profili minimi, quindi nuova politica indisponibile nell evento. Nessuna carta attiva FRA ha tale costo; nessun costo sommato falsamente."
+        },
+        {
+          "id": "CODE-08",
+          "decision": "confirmed_fixed",
+          "resolution": "Impronta algoritmo include collation.js. Il benchmark conserva anche quel sorgente e relativa impronta."
+        },
+        {
+          "id": "CODE-09",
+          "decision": "confirmed_fixed",
+          "resolution": "Funzione di fase unica applicata prima della scelta singola e congiunta. Fixture Pick-Two con prima fase esplora."
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "model": "claude-opus-5-5",
+      "findings": [
+        {
+          "id": "CODE-10",
+          "decision": "confirmed_fixed",
+          "resolution": "Main su valore assoluto. Attese di sostituzione soltanto sui posti scoperti, con massa pubblica per ruolo/colore e pick restanti. Fixture con medie del catalogo invertite."
+        },
+        {
+          "id": "CODE-11",
+          "decision": "confirmed_fixed",
+          "resolution": "Delta calcolato sulla stessa grandezza value usata dal contesto, includendo il segnale del piano prima e dopo. Carta esclusa non riceve un guadagno fittizio. Fixture segnali e qualità discordanti."
+        },
+        {
+          "id": "CODE-12",
+          "decision": "confirmed_fixed",
+          "resolution": "Pattern per burn any target/X e fight, con prove accanto a destroy/exile."
+        },
+        {
+          "id": "CODE-13",
+          "decision": "confirmed_fixed",
+          "resolution": "Nessuna media sottratta alle carte possedute. Il valore atteso dei posti vuoti scende con le pick restanti e vale zero a draft concluso. Fixture filler che chiude il main."
+        },
+        {
+          "id": "CODE-14",
+          "decision": "confirmed_fixed",
+          "resolution": "Splash generato anche dalle basi aggiungibili, due o tre basi candidate, turno utile dichiarato pari a nominale +2. Fixture senza fixing posseduto."
+        },
+        {
+          "id": "CODE-15",
+          "decision": "confirmed_fixed",
+          "resolution": "Tutti i colori fuori piano considerati. Slot solo fixing ordinato per colori che sblocca, privilegiando lo splash. Configurazione precedente sempre ammissibile in rank. Fixture identificatori contrari al contributo e terzo colore."
+        },
+        {
+          "id": "CODE-16",
+          "decision": "confirmed_fixed",
+          "resolution": "Indicatore artifact funzionale nel profilo curve, incluso in policyRevision e usato per affinity; impronta v3 invariata. Test sul cambio Creature/Artifact Creature."
+        }
+      ]
+    },
+    {
+      "round": 3,
+      "model": "claude-opus-5-5",
+      "findings": [
+        {
+          "id": "CODE-17",
+          "decision": "confirmed_fixed",
+          "resolution": "Separati turno utile di splash e numero di fonti richieste dal costo. Diagnosi manaEstimates per copia e fixture 5 mana al turno 7, non 7 terre."
+        },
+        {
+          "id": "CODE-18",
+          "decision": "confirmed_fixed",
+          "resolution": "Slot solo fixing disponibile anche per una carta nei colori. La copia scelta come fonte viene esclusa dalla selezione delle magie, senza doppio slot. Fixture ciclatore blu escluso dal main WU."
+        },
+        {
+          "id": "CODE-19",
+          "decision": "confirmed_fixed",
+          "resolution": "Predicato condiviso per colori alternativi raggiungibili: facce restricted escluse, cycling con pagamento e bersagli pertinenti. Fixture restricted con id precedente al ciclatore valido."
+        },
+        {
+          "id": "CODE-20",
+          "decision": "confirmed_fixed",
+          "resolution": "finalBuild confronta tutti i piani con remaining 0, senza memoria dei segnali o ancora. Usato in UI e diagnostico comune. Il profilo forzato conserva esplicitamente il suo vincolo."
+        }
+      ]
+    },
+    {
+      "round": 4,
+      "model": "claude-opus-5-5",
+      "findings": [
+        {
+          "id": "CODE-21",
+          "decision": "confirmed_fixed",
+          "resolution": "Termine di opzione limitato per miglioramenti di piani alternativi vicini: peso esponenziale sul divario e temperatura decrescente, tetto 0,35, zero a fine draft. Non dipende dal superamento immediato del primo piano. Fixture secondo piano ancora dietro contro carta inutile e fixture fine draft."
+        },
+        {
+          "id": "CODE-22",
+          "decision": "confirmed_fixed",
+          "resolution": "Fetch risolta anche sulle terre base possedute e selezionate nel main, con pagamento dalle fonti dirette della configurazione. Fixture senza basi aggiungibili, Plains/Island possedute e fetch."
+        },
+        {
+          "id": "CODE-23",
+          "decision": "confirmed_fixed",
+          "resolution": "Terre tappate con un solo colore pertinente escluse quando una base liberamente aggiungibile le domina nel modello. Fixture WU con terre W/B tappate."
+        },
+        {
+          "id": "CODE-24",
+          "decision": "confirmed_fixed",
+          "resolution": "Sostituzioni confrontate con il precedente main dello stesso piano. Uscite per pivot e colori di partenza/arrivo registrati e visualizzati separatamente; deficit confrontati nello stesso piano. Fixture cambio WU/BR."
+        }
+      ]
+    },
+    {
+      "round": 5,
+      "model": "claude-opus-5-5",
+      "findings": [
+        {
+          "id": "CODE-25",
+          "decision": "confirmed_fixed",
+          "resolution": "Piano realizzato escluso dal termine di opzione; distanza fra i piani dopo la pick. Fixture speculare: stesso miglioramento su piano corrente e quasi pari, nessun doppio credito."
+        }
+      ]
+    },
+    {
+      "round": 6,
+      "model": "claude-opus-5-5",
+      "findings": [
+        {
+          "id": "CODE-26",
+          "decision": "confirmed_fixed",
+          "resolution": "Pivot soltanto quando il valore del piano dopo la pick supera quello corrente. Riserva per piano alternativo conserva lane e main correnti, con spiegazione distinta. Identita del piano valutato separata dal piano realizzato anche nel credito di opzione. Fixture BO3 a divario inferiore a 0,12."
+        },
+        {
+          "id": "CODE-27",
+          "decision": "confirmed_fixed",
+          "resolution": "Campo pivot incluso anche nel log di takeGroup. Fixture Pick-Two con cambio WU/BR effettivamente registrato."
+        },
+        {
+          "id": "CODE-28",
+          "decision": "confirmed_fixed",
+          "resolution": "A pari utilita di fixing si minimizza il costo opportunita: prima corpi che non entrerebbero nel main, poi voto piu basso, poi pareggio stabile. Fixture speculare che scambia gli identificatori di bomba e ciclatore sacrificabile."
+        }
+      ]
+    },
+    {
+      "round": 7,
+      "model": "claude-opus-5-5",
+      "findings": [],
+      "outcome": "approved_in_reviewed_scope"
+    }
+  ],
+  "additionalFixes": [
+    "Fonte fuori colore utilizzabile soltanto per cycling/faccia terra rappresentata in un singolo slot solo fixing, senza corpo e senza doppio credito.",
+    "Segnali non accreditati a carte escluse dal main; negazione soppressa da un miglioramento proprio.",
+    "Ripresa UI riusa la sessione appena verificata, evitando doppio replay.",
+    "La prima asserzione browser leggeva un dettaglio chiuso; il test ora lo apre prima di verificare pool precedente. Nessuna modifica al requisito.",
+    "Sorteggio v4 ristretto a copie della stessa stampa: un identico punteggio non rende intercambiabili carte diverse.",
+    "La revisione finale elenca anche terre possedute, basi da aggiungere e carte usate solo come fixing.",
+    "Corretta la fixture pivot: otto giocabili W e cinque U non motivano abbandonare W. Quel caso resta come stabilita; una nuova conferma di otto U e otto R contro una sola W verifica il pivot giustificato. Il fallimento originario e conservato nei registri.",
+    "Limite copie conteggiato congiuntamente fra magie e uso solo fixing della stessa carta; regressione su evento maxCopies 4. Correzione locale di una riga successiva alla richiesta del round 4, ricontrollata e confermata nel round 5.",
+    "Evitate ricostruzioni identiche per magie fuori piano sotto la soglia di splash e senza uso terra/cycling. Test di identita completa con il costruttore, compresa la carta esclusa. Questa ottimizzazione e successiva alla richiesta del round 5."
+  ]
+}

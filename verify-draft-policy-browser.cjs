@@ -1,0 +1,62 @@
+'use strict';
+const {chromium}=require(process.env.MTG_PLAYWRIGHT_MODULE||'playwright');
+const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
+const base=process.env.MTG_SITE_URL||'http://127.0.0.1:8767/',key='mtg-draft-table-fra-v1';
+(async()=>{
+ const browser=await chromium.launch({headless:true,...(process.env.MTG_BROWSER_CHANNEL?{channel:process.env.MTG_BROWSER_CHANNEL}:{})});
+ try{
+  const context=await browser.newContext({viewport:{width:1440,height:1050}}),page=await context.newPage(),errors=[];
+  context.setDefaultTimeout(120000);await context.route('https://**/*',r=>r.abort());page.on('pageerror',e=>errors.push(e.message));
+  const url=base+'sets/reality-fracture/Reality-Fracture-Draft-Engine.html';
+  await page.goto(url);assert.equal(await page.locator('#policy-version').inputValue(),'3');
+  await page.locator('#policy-version').selectOption('4');await page.locator('#policy-match').selectOption('BO1');
+  assert.match(await page.locator('#policy-info').innerText(),/Sinergie contestuali disattivate/);
+  await page.locator('#seed').fill('browser-policy-v4');await page.locator('#start').click();
+  await page.evaluate(()=>{window.workerTicks=0;window.workerGap=0;window.longestTask=0;new PerformanceObserver(list=>list.getEntries().forEach(e=>window.longestTask=Math.max(window.longestTask,e.duration))).observe({type:'longtask'});let last=performance.now();window.workerTimer=setInterval(()=>{const now=performance.now();window.workerGap=Math.max(window.workerGap,now-last);last=now;window.workerTicks++;},25);});
+  await page.locator('#pack [data-pick]').first().dblclick();
+  await page.waitForFunction(()=>document.querySelector('#pool-count').textContent==='(1)'&&!document.querySelector('#start').disabled);
+  for(let n=1;n<4;n++)await page.locator('#pack [data-pick]').first().click();
+  await page.waitForFunction(()=>document.querySelector('#pool-count').textContent==='(4)'&&!document.querySelector('#start').disabled);
+  const responsiveness=await page.evaluate(()=>{clearInterval(window.workerTimer);return {ticks:window.workerTicks,maxGap:window.workerGap,longestTask:window.longestTask};});
+  assert.ok(responsiveness.ticks>4);assert.ok(responsiveness.maxGap<500,JSON.stringify(responsiveness));assert.ok(responsiveness.longestTask<=200,JSON.stringify(responsiveness));
+  const readSave=()=>page.evaluate(k=>JSON.parse(localStorage.getItem(k)),key);
+  let saved=await readSave();assert.equal(saved.version,3);assert.equal(saved.engineVersion,4);assert.equal(saved.options.match,'BO1');assert.ok(saved.algorithmRevision);
+  const pending=page.waitForEvent('download');await page.locator('#export').click();
+  const raw=JSON.parse(fs.readFileSync(await (await pending).path(),'utf8'));assert.ok(!raw.review&&!raw.bots);
+  await page.reload();assert.equal(page.workers().length,0);await page.locator('#resume').click();await page.locator('#pack [data-pick]').first().waitFor();assert.equal(await page.locator('#pool-count').innerText(),'(4)');
+  for(let n=4;n<42;n++)await page.locator('#pack [data-pick]').first().click();
+  await page.locator('#bot-review[aria-busy="false"]').waitFor({state:'visible'});assert.equal(await page.locator('#bot-review .review-pick').count(),42);
+  await page.locator('#bot-review .review-pick details summary').first().click();
+  const before=await page.locator('#bot-review').innerText();assert.match(before,/Mazzo costruibile: 40\/40/);assert.match(before,/Pool precedente/);
+  const ref=page.locator('#bot-review .review-pick .card-ref').first();await ref.hover();await page.locator('#card-hover').waitFor({state:'visible'});
+  await page.keyboard.press('Escape');await ref.focus();await page.locator('#card-hover').waitFor({state:'visible'});
+  await page.keyboard.press('Enter');await page.locator('#card-dialog').waitFor({state:'visible'});await page.locator('#close-card').click();
+  await page.evaluate(()=>{window.originalWorkerPost=Worker.prototype.postMessage;Worker.prototype.postMessage=function(message,...args){if(message.command==='review'){setTimeout(()=>window.originalWorkerPost.call(this,message,...args),1200);return;}return window.originalWorkerPost.call(this,message,...args);};});
+  await page.locator('#review-seat').selectOption('1');assert.match(await page.locator('#bot-review').innerText(),/Bot 2:.*Mazzo in calcolo/);assert.equal(await page.locator('#bot-review').getAttribute('aria-busy'),'true');
+  await page.locator('#bot-review[aria-busy="false"]').waitFor();assert.match(await page.locator('#bot-review').innerText(),/Bomba/);
+  await page.evaluate(()=>Worker.prototype.postMessage=window.originalWorkerPost);await page.locator('#review-seat').selectOption('0');await page.locator('#bot-review[aria-busy="false"]').waitFor();await page.locator('#bot-review .review-pick details summary').first().click();assert.equal(await page.locator('#bot-review').innerText(),before);
+  saved=await readSave();await page.reload();assert.equal(page.workers().length,0);
+  await page.locator('#resume').click();await page.locator('#cancel-replay').click();await page.waitForFunction(()=>!document.querySelector('#start').disabled);
+  assert.deepEqual(await readSave(),saved);await page.waitForTimeout(100);assert.equal(page.workers().length,0);
+  await page.locator('#resume').click();await page.locator('#bot-review .review-pick details summary').first().click();assert.equal(await page.locator('#bot-review').innerText(),before);
+  const output=process.env.MTG_QA_DIR;if(output){fs.mkdirSync(output,{recursive:true});fs.writeFileSync(path.join(output,'v4-record.json'),JSON.stringify(saved));await page.screenshot({path:path.join(output,'policy-v4-desktop.png'),fullPage:false});}
+  const phone=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true});phone.setDefaultTimeout(120000);
+  await phone.route('https://**/*',r=>r.abort());const mobile=await phone.newPage();mobile.on('pageerror',e=>errors.push(e.message));await mobile.goto(url);
+  await mobile.evaluate(({key,saved})=>localStorage.setItem(key,JSON.stringify(saved)),{key,saved});await mobile.reload();await mobile.locator('#resume').tap();
+  await mobile.locator('#bot-review .review-pick .card-ref').first().tap();await mobile.locator('#card-dialog').waitFor({state:'visible'});await mobile.locator('#close-card').tap();
+  assert.ok(await mobile.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+  if(output)await mobile.screenshot({path:path.join(output,'policy-v4-mobile.png'),fullPage:false});
+  const incompatible={...saved,algorithmRevision:'incompatible-source'},original=JSON.stringify(incompatible);
+  await page.evaluate(({key,original})=>localStorage.setItem(key,original),{key,original});await page.reload();assert.match(await page.locator('#save-status').innerText(),/incompatibile/);
+  await page.locator('#policy-version').selectOption('4');await page.locator('#start').click();
+  await page.waitForFunction(()=>!document.querySelector('#start').disabled);
+  const replaced=await readSave();assert.ok(replaced.previousSaveKey);
+  assert.equal(await page.evaluate(k=>localStorage.getItem(k),replaced.previousSaveKey),original);
+  // A rejected full backup must leave the old main record byte-for-byte intact.
+  await page.evaluate(({key,original})=>localStorage.setItem(key,original),{key,original});await page.reload();
+  await page.evaluate(()=>{const set=Storage.prototype.setItem;Storage.prototype.setItem=function(k,v){if(k.includes('-incompatible-'))throw Error('full');return set.call(this,k,v);};});
+  await page.locator('#policy-version').selectOption('4');await page.locator('#start').click();await page.waitForFunction(()=>!document.querySelector('#start').disabled);assert.equal(await page.evaluate(k=>localStorage.getItem(k),key),original);
+  assert.deepEqual(errors,[]);
+  console.log('PASS: default v3, opt-in v4 BO1, worker heartbeat '+JSON.stringify(responsiveness)+', partial and complete resume, detailed review, privacy, mouse/keyboard/touch, 390px, full backup and backup failure.');
+ }finally{await browser.close();}
+})().catch(e=>{console.error(e);process.exitCode=1;});

@@ -1,0 +1,266 @@
+"""Offline, conservative strategic descriptors, separate from card grades.
+
+The minimum profile is a functional classification, not a complete Oracle
+interpreter. Unsupported contextual relations disable the whole component.
+"""
+import hashlib
+import json
+import re
+from pathlib import Path
+
+VERSION = 3
+COLORS = 'WUBRG'
+TYPES = ('Plains', 'Island', 'Swamp', 'Mountain', 'Forest')
+
+
+def is_interaction(text):
+    """Conservative interaction, excluding explicit self-effects and face-only burn."""
+    def recipient(fragment):
+        return re.split(r',|\bthen\b|\band\b', fragment, maxsplit=1, flags=re.I)[0]
+    def own(fragment):
+        return bool(re.search(r'\byou control\b', fragment, re.I))
+    if re.search(r'target (?:opponent|player)', text, re.I) and re.search(r'(?:they|that player|target player|target opponent) discards?', text, re.I) and not re.search(r'\bdraw\b', text, re.I):
+        return True
+    for clause in re.split(r'[.\n;]', text):
+        for match in re.finditer(r'\b(destroy|exile|return) target\b', clause, re.I):
+            effect = clause[match.start():]
+            target = recipient(effect)
+            if own(target) or re.search(r'\bgraveyard\b', target, re.I):
+                continue
+            if match[1].lower() != 'return' or re.search(r'return target (?:creature|nonland|permanent).*owner.s hand', effect, re.I):
+                return True
+        for match in re.finditer(r'\b(?:counter target|tap (?:up to (?:one|two|three|that many) )?target creatures?\b|fights? (?:up to one )?(?:another )?target creature\b)', clause, re.I):
+            if not own(recipient(clause[match.start():])):
+                return True
+        negative = re.search(r'(?:target creature|all creatures|each creature)[^\n]*gets? -|put [^\n]*-1/-1 counters?[^\n]*target creature', clause, re.I)
+        if negative and not own(recipient(clause[negative.start():])):
+            return True
+        if re.search(r'(?:enchanted|that|target) creature[^\n]*(?:can.t attack|can.t block|doesn.t untap)|whenever a creature attacks you[^\n]*it gets -', clause, re.I):
+            if not re.search(r'enchant creature you control', text, re.I):
+                return True
+        damage = re.search(r'\bdeals?[^\n]*damage[^\n]*?\bto ((?:any|target|each|all|that) [^\n]*)', clause, re.I)
+        if damage:
+            target = recipient(damage[1])
+            if not own(target) and not re.search(r"(?:creature|planeswalker|permanent|battle)['’]s (?:controller|owner)", target, re.I) and (re.search(r'any target|(?:creature|planeswalker|battle)', target, re.I) or re.search(r'that permanent', target, re.I) and re.search(r'target (?:creature|planeswalker|permanent)[^.\n]*opponent controls', text, re.I)):
+                return True
+    return False
+
+
+def describe(card):
+    text = re.sub(r'\([^)]*\)', '', card.get('oracle', ''))
+    symbols = re.findall(r'\{([^}]+)\}', card.get('cost', ''))
+    roles = ['land' if card.get('land') else 'creature' if card.get('creature') else 'spell']
+    def stat(value):
+        return int(str(value)) if str(value).isdigit() else None
+    power, toughness = stat(card.get('power')), stat(card.get('toughness'))
+    if is_interaction(text):
+        roles.append('interaction')
+    for role, pattern in {
+        'draw': r'draw (?:a|two|three|\d+) cards?',
+        'defense': r'\bdefender\b|prevent.*damage',
+        'evasion': r'\bflying\b|can.t be blocked|\bmenace\b|\btrample\b',
+        'ramp': r'search your library.*land.*battlefield',
+        'sideboard': r'destroy target (?:artifact|enchantment)|exile[^.\n]*(?:from a graveyard|from target player.s graveyard|all graveyards|each opponent.s graveyard)',
+    }.items():
+        if re.search(pattern, text, re.I):
+            roles.append(role)
+    abilities = []
+    for line in text.splitlines():
+        if ':' not in line:
+            continue
+        cost, effect = line.split(':', 1)
+        if not re.search(r'\badd\b', effect, re.I):
+            continue
+        produced = list(COLORS) if re.search(r'mana of any color', effect, re.I) else sorted(set(re.findall(r'\{([WUBRGC])\}', effect)))
+        if produced:
+            abilities.append({'colors': produced, 'activation': cost.strip(),
+                              'restricted': bool(re.search(r'only|spend this mana|choose a color|pay|sacrifice|remove|tap .*untapped', cost + effect, re.I))})
+    subtypes = [t for t in TYPES if re.search(r'\b' + t + r'\b', card.get('type', ''))]
+    if card.get('land') and subtypes and not abilities:
+        abilities.append({'colors': [COLORS[TYPES.index(t)] for t in subtypes], 'activation': '{T}', 'restricted': False})
+    cycling = []
+    for match in re.finditer(r'\b(basic land|Plains|Island|Swamp|Mountain|Forest)cycling\s+((?:\{[^}]+\})+)', text, re.I):
+        target = match[1]
+        cycling.append({'kind': 'basic' if target.lower() == 'basic land' else 'subtype',
+                        'type': target.title(), 'cost': match[2]})
+    alternative_land = None
+    fetch = None
+    if card.get('land') and re.search(r'search your library for a basic land card.*(?:onto|on) the battlefield', text, re.I | re.S):
+        activation = next((line.split(':', 1)[0] for line in text.splitlines() if ':' in line and re.search('search your library', line, re.I)), '')
+        fetch_cost = re.findall(r'\{([^}]+)\}', activation)
+        fetch = {'kind': 'basic', 'tapped': bool(re.search(r'battlefield tapped', text, re.I)),
+                 'activation': activation, 'cost': fetch_cost,
+                 'readyTurn': 1 + sum(int(s) if s.isdigit() else 0 if s == 'T' else 1 for s in fetch_cost) + int(bool(re.search('battlefield tapped', text, re.I))),
+                 'restricted': not activation or bool(re.search(r'activate only|unless|as long as|pay .* life|tap .*untapped', text, re.I))}
+    if not card.get('land'):
+        for face in card.get('faces', [])[1:]:
+            if 'Land' not in face.get('type_line', ''):
+                continue
+            oracle = face.get('oracle_text', '')
+            produced = list(COLORS) if re.search('mana of any color', oracle, re.I) else sorted(set(re.findall(r'\{([WUBRGC])\}', oracle.split('Add', 1)[-1])))
+            produced.extend(COLORS[i] for i, t in enumerate(TYPES) if re.search(r'\b' + t + r'\b', face['type_line']))
+            alternative_land = {'colors': sorted(set(produced)), 'tapped': bool(re.search('enters.*tapped', oracle, re.I)),
+                                'restricted': bool(re.search('spend this mana|only|unless', oracle, re.I))}
+    reduction = bool(re.search(r'this spell costs .* less to cast|affinity|convoke|delve', text, re.I))
+    reduction_resource = next((kind for kind, pattern in (
+        ('power', r'greatest power'), ('toughness', r'greatest toughness'),
+        ('artifacts', r'affinity for artifacts'), ('creatures', r'\bconvoke\b')) if re.search(pattern, text, re.I)), 'unsupported')
+    defensive = 'defense' in roles or bool(re.search(r'deathtouch', text, re.I)) or power is not None and toughness is not None and toughness >= power + 2
+    if abilities or cycling or alternative_land or fetch:
+        roles.append('fixing')
+    return {
+        'status': 'supported' if '//' not in card.get('cost','') and (symbols or card.get('land') or card.get('basic')) and all(re.fullmatch(r'[0-9WUBRGCXYP/]+', s) for s in symbols) else 'unsupported', 'roles': roles,
+        'symbols': symbols, 'variable': any('X' in s for s in symbols),
+        'mana': {'abilities': abilities, 'cycling': cycling, 'subtypes': subtypes, 'alternativeLand': alternative_land, 'fetch':fetch,
+                 'tapped': bool(re.search(r'enters.*tapped', text, re.I)),
+                 'conditional': bool(re.search(r'only|as long as|unless|spend this mana', text, re.I))},
+        'curve': {'nominal': card.get('mv', 0), 'artifact': bool(re.search(r'\bArtifact\b', card.get('type',''))), 'reduction': reduction, 'reductionResource': reduction_resource,
+                  'power':power,'toughness':toughness,'defensive': defensive,
+                  'attacker': bool(card.get('creature') and 'defense' not in roles and (power is None or power > 0))},
+        'synergy': {'status': 'unsupported', 'enablers': {}, 'payoffs': {}},
+        'reference': {'status': 'unsupported'},
+        'provenance': {'kind': 'oracle-pattern-inference', 'version': VERSION,
+                       'limitations': 'Ruoli funzionali e fonti riconosciute; non interpreta tutte le meccaniche o le condizioni.'},
+    }
+
+
+def validate_config(config, ids, plans=None):
+    if not isinstance(config, dict) or config.get('schemaVersion') != 1:
+        raise ValueError('botPolicy: schemaVersion non supportata')
+    if config.get('match', 'BO3') not in ('BO1', 'BO3', 'unknown'):
+        raise ValueError('botPolicy: contesto match non supportato')
+    if not isinstance(config.get('cards', {}), dict) or not set(config.get('cards', {})) <= set(ids):
+        raise ValueError('botPolicy: carta sconosciuta')
+    relations = config.get('relations', [])
+    if not isinstance(relations, list) or any(not isinstance(r, dict) for r in relations) or len({r.get('id') for r in relations}) != len(relations):
+        raise ValueError('botPolicy: relazioni duplicate o non valide')
+    for relation in relations:
+        if not isinstance(relation.get('id'), str) or not relation['id']:
+            raise ValueError('botPolicy: identità relazione mancante')
+        if any(field not in relation for field in ('referenceSupport', 'saturation', 'strength')):
+            raise ValueError('botPolicy: riferimento della relazione mancante')
+        for field in ('referenceSupport', 'referencePayoffs', 'saturation', 'strength', 'threshold', 'resourceBudget'):
+            value = relation.get(field, 0)
+            if type(value) not in (int, float) or not 0 <= value <= 100:
+                raise ValueError('botPolicy: parametro relazione non valido')
+        if relation.get('saturation', 8) < relation.get('referenceSupport', 0):
+            raise ValueError('botPolicy: saturazione inferiore al riferimento')
+        if 'resource' in relation and not isinstance(relation['resource'], str):
+            raise ValueError('botPolicy: risorsa relazione non valida')
+    plan_coverage = config.get('planCoverage', {})
+    if not isinstance(plan_coverage, dict) or plans is not None and not set(plan_coverage) <= set(plans):
+        raise ValueError('botPolicy: piano sconosciuto')
+    for state in plan_coverage.values():
+        if not isinstance(state, dict) or state.get('status') not in ('supported', 'not_applicable', 'unsupported') or not isinstance(state.get('provenance'), dict) or not isinstance(state.get('relations', []), list) or not set(state.get('relations', [])) <= {r['id'] for r in relations}:
+            raise ValueError('botPolicy: copertura del piano non valida')
+    for profile in config.get('cards', {}).values():
+        if not isinstance(profile, dict) or not isinstance(profile.get('provenance'), dict):
+            raise ValueError('botPolicy: provenienza profilo mancante')
+        if profile.get('status') not in ('supported', 'unsupported', 'not_applicable'):
+            raise ValueError('botPolicy: stato profilo non valido')
+        if 'roles' in profile and (not isinstance(profile['roles'], list) or any(not isinstance(x, str) for x in profile['roles'])):
+            raise ValueError('botPolicy: ruoli non validi')
+        if 'symbols' in profile and (not isinstance(profile['symbols'], list) or any(not isinstance(s, str) or not re.fullmatch(r'[0-9WUBRGCXYP/]+', s) for s in profile['symbols'])):
+            raise ValueError('botPolicy: simboli non validi')
+        if 'variable' in profile and type(profile['variable']) is not bool:
+            raise ValueError('botPolicy: costo variabile non valido')
+        for key in ('mana', 'curve', 'reference', 'synergy'):
+            if key in profile and not isinstance(profile[key], dict):
+                raise ValueError('botPolicy: descrittore non valido: ' + key)
+        reference = profile.get('reference', {})
+        if reference.get('status') == 'supported' and not isinstance(reference.get('context'), str):
+            raise ValueError('botPolicy: contesto di riferimento mancante')
+        for key in ('support', 'payoffs'):
+            values = reference.get(key, {})
+            if not isinstance(values, dict) or not set(values) <= {r['id'] for r in relations} or any(type(v) not in (int, float) or not 0 <= v <= 100 for v in values.values()):
+                raise ValueError('botPolicy: riferimento per carta non valido')
+        traits = profile.get('synergy', {})
+        if traits and traits.get('status') not in ('supported', 'not_applicable', 'unsupported'):
+            raise ValueError('botPolicy: stato sinergia non valido')
+        mana = profile.get('mana', {})
+        for field in ('abilities', 'cycling', 'subtypes'):
+            if field in mana and not isinstance(mana[field], list):
+                raise ValueError('botPolicy: lista di mana non valida')
+        if any(not isinstance(t, str) or t not in TYPES for t in mana.get('subtypes', [])):
+            raise ValueError('botPolicy: sottotipi non validi')
+        for field in ('tapped', 'conditional'):
+            if field in mana and type(mana[field]) is not bool:
+                raise ValueError('botPolicy: flag mana non valido')
+        for ability in mana.get('abilities', []):
+            if not isinstance(ability, dict) or not isinstance(ability.get('colors'), list) or any(not isinstance(c, str) or c not in tuple(COLORS + 'C') for c in ability['colors']) or type(ability.get('restricted')) is not bool or not isinstance(ability.get('activation'), str):
+                raise ValueError('botPolicy: abilità di mana non valida')
+        for cycle in mana.get('cycling', []):
+            if not isinstance(cycle, dict) or cycle.get('kind') not in ('basic', 'subtype') or cycle.get('type') not in (('Basic Land',) if cycle.get('kind') == 'basic' else TYPES) or not isinstance(cycle.get('cost'), str) or not re.fullmatch(r'(\{[0-9WUBRGCXYP/]+\})+', cycle['cost']):
+                raise ValueError('botPolicy: landcycling non valido')
+        alternative = mana.get('alternativeLand')
+        if alternative is not None and (not isinstance(alternative, dict) or not isinstance(alternative.get('colors'), list) or any(c not in tuple(COLORS + 'C') for c in alternative['colors']) or any(type(alternative.get(k)) is not bool for k in ('tapped', 'restricted'))):
+            raise ValueError('botPolicy: faccia terra non valida')
+        fetch = mana.get('fetch')
+        if fetch is not None and (not isinstance(fetch, dict) or fetch.get('kind') != 'basic' or not isinstance(fetch.get('cost'), list) or any(not isinstance(s, str) or not re.fullmatch(r'[0-9WUBRGCXYPT/]+', s) for s in fetch['cost']) or type(fetch.get('readyTurn')) is not int or fetch['readyTurn'] < 1 or any(type(fetch.get(k)) is not bool for k in ('tapped', 'restricted'))):
+            raise ValueError('botPolicy: fetch non valido')
+        curve = profile.get('curve', {})
+        for field in ('artifact', 'reduction', 'defensive', 'attacker'):
+            if field in curve and type(curve[field]) is not bool:
+                raise ValueError('botPolicy: flag curva non valido')
+        for field in ('power', 'toughness'):
+            if field in curve and curve[field] is not None and type(curve[field]) is not int:
+                raise ValueError('botPolicy: statistica curva non valida')
+        if 'reductionResource' in curve and curve['reductionResource'] not in ('power', 'toughness', 'creatures', 'artifacts', 'unsupported'):
+            raise ValueError('botPolicy: riduzione curva non valida')
+        if 'nominal' in curve and (type(curve['nominal']) not in (int, float) or not 0 <= curve['nominal'] <= 100):
+            raise ValueError('botPolicy: costo curva non valido')
+        for axis in ('enablers', 'payoffs'):
+            values = profile.get('synergy', {}).get(axis, {})
+            if not isinstance(values, dict) or not set(values) <= {r['id'] for r in relations} or any(type(v) not in (int, float) or not 0 <= v <= 100 for v in values.values()):
+                raise ValueError('botPolicy: supporti della relazione non validi')
+
+
+def payload(cards, active, event, config, table_ready, plans=None):
+    profiles = {}
+    for card in cards:
+        if card['id'] not in active:
+            continue
+        profile = describe(card)
+        override = config.get('cards', {}).get(card['id'], {})
+        for key, value in override.items():
+            if key in ('mana', 'curve', 'synergy', 'reference'):
+                profile[key] = {**profile[key], **value}
+            else:
+                profile[key] = value
+        profiles[card['id']] = profile
+    active_cards = [c for c in cards if c['id'] in active]
+    minimum = bool(active_cards) and all(c.get('basic') or (
+        type(c.get('score')) in (int, float) and 0 <= c['score'] <= 5
+        and profiles[c['id']]['status'] == 'supported' and profiles[c['id']].get('roles')
+        and isinstance(profiles[c['id']].get('mana'), dict)) for c in active_cards)
+    relations = config.get('relations', [])
+    plan_coverage = config.get('planCoverage', {})
+    covered = bool(relations) and bool(plans) and all(plan_coverage.get(plan, {}).get('status') in ('supported', 'not_applicable') for plan in plans) and all(
+        p.get('synergy', {}).get('status') in ('supported', 'not_applicable')
+        and p.get('reference', {}).get('status') == 'supported' for p in profiles.values())
+    semantic = {'version': VERSION, 'profiles': {
+        key: {k: ({key: v[key] for key in ('status', 'support', 'payoffs') if key in v} if k == 'reference' else v) for k, v in value.items() if k != 'provenance'} for key, value in profiles.items()},
+        'relations': [{k: r[k] for k in ('id', 'referenceSupport', 'referencePayoffs', 'saturation', 'strength', 'threshold', 'resource', 'resourceBudget') if k in r} for r in relations], 'match': config.get('match', 'BO3'),
+        'plans': {key: {'status': value['status'], 'relations': value.get('relations', [])} for key, value in plan_coverage.items()},
+        'minimum': event['minDeckSize'], 'extraBasics': event.get('extraBasicLands', False),
+        'maxCopies': event.get('maxCopies')}
+    revision = hashlib.sha256(json.dumps(semantic, sort_keys=True, ensure_ascii=True).encode()).hexdigest()
+    missing = []
+    if not table_ready:
+        missing.append('Tavolo non disponibile per questo evento.')
+    if not minimum:
+        missing.append('Voti o profili minimi incompleti sulle stampe attive.')
+    gaps = [] if covered else ['Sinergie contestuali disattivate per tutto l’evento: relazioni o contesti di riferimento incompleti.']
+    gaps.append('Costi ridotti, ruoli e fonti condizionate usano approssimazioni dichiarate, non un simulatore di partita.')
+    root = Path(__file__).resolve().parent
+    algorithm_revision = hashlib.sha256(b'\0'.join((root / name).read_bytes() for name in ('draft-policy.js', 'draft-engine.js', 'collation.js'))).hexdigest()
+    worker_revision = hashlib.sha256((root / 'draft-worker.js').read_bytes()).hexdigest()
+    return {'schemaVersion': 1, 'inferenceVersion': VERSION, 'revision': revision, 'algorithmRevision': algorithm_revision, 'workerRevision': worker_revision,
+            'available': bool(table_ready and minimum), 'status': 'experimental',
+            'missing': missing, 'gaps': gaps, 'coverage': {
+                'active': len(active_cards), 'minimum': sum(bool(p.get('roles')) and p['status'] == 'supported' for p in profiles.values()),
+                'synergies': covered,'plans': {plan: plan_coverage.get(plan, {'status':'unsupported'}) for plan in plans or []}}, 'profiles': profiles, 'relations': relations,
+            'match': config.get('match', 'BO3'), 'minDeckSize': event['minDeckSize'],
+            'extraBasicLands': event.get('extraBasicLands', False), 'maxCopies': event.get('maxCopies'),
+            'allowedBasics': list(COLORS) if event.get('extraBasicLands') else [],
+            'defaultEngineVersion': 3, 'exposedAdaptive': False}

@@ -284,7 +284,7 @@ def render_page(expansion, key, page):
         content = content.replace(marker,js(data))
     runtime = '<script>const EXPANSION_CONFIG='+js(expansion.runtime())+';</script>'
     if key in ('draft-engine','simulator'):
-        runtime += '<script src="collation.js"></script>'
+        runtime += '<script src="collation.js"></script><script src="draft-policy.js"></script>'
     content = content.replace('</head>',runtime+'</head>',1)
     if key=='simulator' and expansion.manifest['presentation']['style']=='atlas':
         content = content.replace('<script src="simulator.js">','<script src="draft-engine.js"></script><script src="simulator.js">')

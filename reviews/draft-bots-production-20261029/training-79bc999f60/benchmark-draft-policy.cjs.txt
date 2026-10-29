@@ -1,0 +1,71 @@
+'use strict';
+// Run after the offline build. Reserved cases must not be used for tuning.
+const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto'),assert=require('node:assert/strict');
+const {performance}=require('node:perf_hooks'),E=require('./draft-engine.js');
+const mode=process.argv[2]||'training';assert.ok(['training','reserved'].includes(mode));
+const production=process.argv.includes('--production');
+const frozenPath=production?'tests/fixtures/draft-policy-production-cases.json':'tests/fixtures/draft-policy-v4-cases.json',frozen=JSON.parse(fs.readFileSync(frozenPath,'utf8'));
+const html=fs.readFileSync('dist/sets/reality-fracture/Reality-Fracture-Draft-Engine.html','utf8'),root=JSON.parse(html.match(/<script id="draft-data" type="application\/json">([\s\S]*?)<\/script>/)[1]);
+const f=root.formats?.draft||root,diagnostic=E.createEvaluator(f,4),hash=x=>crypto.createHash('sha256').update(typeof x==='string'?x:JSON.stringify(x)).digest('hex');
+const algorithmFiles=['draft-policy.js','draft-engine.js','collation.js'];
+assert.equal(f.botPolicy.algorithmRevision,crypto.createHash('sha256').update(Buffer.concat(algorithmFiles.flatMap((p,i)=>[...(i?[Buffer.from([0])]:[]),fs.readFileSync(p)]))).digest('hex'),'Offline build must match the current algorithm');
+const benchmarkSource=fs.readFileSync(__filename,'utf8');
+const codeHash=hash(['draft-engine.js','draft-policy.js','bot_profiles.py','collation.js'].map(p=>fs.readFileSync(p,'utf8')).join('\n'));
+const output=path.join('reviews',production?'draft-bots-production-20261029':'draft-bots-implementation-20261029',mode+'-'+codeHash.slice(0,10));
+if(fs.existsSync(path.join(output,'results.json')))throw Error('Result already recorded; preserve this acquisition.');
+fs.mkdirSync(output,{recursive:true});
+const acquiredAt=new Date().toISOString();
+fs.writeFileSync(path.join(output,'format.json'),JSON.stringify(f,null,2)+'\n');
+for(const name of ['draft-engine.js','draft-policy.js','bot_profiles.py','collation.js'])fs.copyFileSync(name,path.join(output,name+'.txt'));
+fs.writeFileSync(path.join(output,'benchmark-draft-policy.cjs.txt'),benchmarkSource);
+const seeds=mode==='training'?frozen.trainingSeeds.slice(0,2):frozen.reservedSeeds;
+const defaults=['signals','bomb','synergy','aggro','control','fixing','denial'],results=[],blind=[],blindPicks=[],mapping=[],catalog=new Map();
+function include(id){const c=diagnostic.byId[id];catalog.set(id,{id,name:c.name,cost:c.cost,type:c.type,power:c.power,toughness:c.toughness,oracle:c.oracle});return id;}
+function run(seed,version,scenario,index){
+ const roster=scenario==='mixedAdaptive'?['adaptive','signals','aggro','control','synergy','fixing','bomb']:defaults;
+ const names=['mixed','mixedAdaptive'].includes(scenario)?roster.map((_,i)=>roster[(i+index)%roster.length]):Array(7).fill(scenario);
+ const configs=names.map(strategy=>({strategy,target:null})),session=E.createSession(f,seed,configs,version),human=E.botState('signals'),he=E.createEvaluator(f,2),r=E.rng(seed+'-human');
+ const times=[],started=performance.now();
+ while(!session.complete){const chosen=he.take(human,{packetId:session.packetId,cards:session.current()},session.round,session.pick,r);const t=performance.now();session.step(chosen.uid);times.push(performance.now()-t);}
+ const all=[...session.human,...session.bots.flatMap(b=>b.pool)].sort((a,b)=>a.uid-b.uid);assert.equal(new Set(all.map(e=>e.uid)).size,f.seats*f.rounds*f.packSize);
+ // The actual drafted multiset agrees with the same public collator stream.
+ const collator=E.createCollator(f,E.rng(seed)),initial=Array.from({length:f.rounds*f.seats},()=>collator.pack());
+ assert.deepEqual(all,initial.flat().sort((a,b)=>a.uid-b.uid));
+ const botDigest=hash(session.bots),replayed=E.replay(f,session.export());assert.equal(hash(replayed.bots),botDigest);
+ const decks=session.bots.map((bot,seat)=>{
+  const deck=diagnostic.finalBuild(bot.pool,'adaptive',{match:'BO3'});
+  const spells=deck.spells.map(e=>diagnostic.byId[e.id]);
+  const sourceOnly=new Set(deck.manaOnly.map(e=>e.uid)),played=deck.spells.filter(e=>!sourceOnly.has(e.uid)).map(e=>diagnostic.byId[e.id]);
+  if(seat===index%7){const id='sample-'+hash(seed+'-'+version+'-'+scenario).slice(0,8);const grouped=new Map();
+   for(const c of spells)grouped.set(c.id,(grouped.get(c.id)||0)+1);
+   blind.push({id,event:'Reality Fracture Draft, BO3',main:[...grouped].map(([id,count])=>({id:include(id),count})),
+    lands:deck.lands.map(e=>include(e.id)),basics:deck.basics,
+    manaOnly:deck.manaOnly.map(e=>include(e.id)),
+    knownLimitations:f.botPolicy.gaps});mapping.push({id,seed,version,scenario,seat:seat+1});}
+  return {seat:seat+1,strategy:bot.strategy,lane:deck.lane,slots:deck.slots,spells:played.length,fixingOnly:deck.manaOnly.length,holes:deck.holes,
+   early:played.filter(c=>c.creature&&diagnostic.turn(c,played)<=3).length,interaction:played.filter(c=>diagnostic.profile(c).roles.includes('interaction')).length,
+   sources:deck.sources,manaErrors:deck.manaErrors.length,internalObjective:deck.score,
+   pool:bot.pool,main:deck.spells,lands:deck.lands,basics:deck.basics};
+ });
+ const seat=index%7,log=session.bots[seat].log,pickIndex=20,indexed=log[pickIndex],sampleId='sample-'+hash(seed+'-'+version+'-'+scenario).slice(0,8);
+ blindPicks.push({id:sampleId+'-pick',event:'Reality Fracture Draft, BO3',round:indexed.round,pick:indexed.pick,
+  poolBefore:log.slice(0,pickIndex).map(x=>include(x.id)),observed:indexed.observed.map(include),selected:include(indexed.id)});
+ const sorted=[...times].sort((a,b)=>a-b),record={seed,version,scenario,configs,record:session.export(),botDigest,
+  collationHash:hash(initial),packetHashes:initial.map(hash),decks,
+  runtimeMs:performance.now()-started,decisionTimesMs:{median:sorted[Math.floor(sorted.length*.5)],p95:sorted[Math.floor(sorted.length*.95)],max:sorted.at(-1)}};
+ results.push(record);console.log(JSON.stringify({seed,version,scenario,seconds:record.runtimeMs/1000,spells:decks.map(d=>d.spells),slots:decks.map(d=>d.slots),p95:record.decisionTimesMs.p95}));
+}
+for(const [i,seed] of seeds.entries())for(const version of [3,4])run(seed,version,'mixed',i);
+if(mode==='reserved')for(const version of [3,4])run(seeds[0]+'-homogeneous',version,'signals',0);
+if(mode==='reserved')run(seeds[0]+'-homogeneous',4,'adaptive',0);
+if(mode==='reserved')for(const [i,seed] of seeds.entries())run(seed,4,'mixedAdaptive',i);
+for(const seed of new Set(results.map(r=>r.seed))){const paired=results.filter(r=>r.seed===seed);for(const row of paired)assert.equal(row.collationHash,paired[0].collationHash);}
+const manifest={mode,codeHash,acquiredAt,formatSnapshotHash:hash(f),fixtureHash:hash(fs.readFileSync(frozenPath,'utf8')),formatRevision:f.revision,policyRevision:f.botPolicy.revision,
+ benchmarkHash:hash(benchmarkSource),
+ node:process.version,platform:process.platform,arch:process.arch,
+ caveats:['Internal objectives share the candidate evaluator: internal coherence only, not independent strength or WR.',
+  'Results apply only to this event and data revision. The default remains v3.','The v2 human evaluator is fixed, seeded separately, with real observed packet IDs.']};
+fs.writeFileSync(path.join(output,'results.json'),JSON.stringify({manifest,results},null,2)+'\n');
+fs.writeFileSync(path.join(output,'blind-sample.json'),JSON.stringify({cards:[...catalog.values()].sort((a,b)=>a.id.localeCompare(b.id)),decks:blind.sort((a,b)=>a.id.localeCompare(b.id)),picks:blindPicks.sort((a,b)=>a.id.localeCompare(b.id))},null,2)+'\n');
+fs.writeFileSync(path.join(output,'blind-mapping.json'),JSON.stringify(mapping,null,2)+'\n');
+console.log('Saved '+output);

@@ -1,0 +1,323 @@
+{
+  "expansion": "reality-fracture",
+  "event": "draft",
+  "scenario": "power",
+  "engineVersion": 3,
+  "tables": 20,
+  "botPicks": 5880,
+  "formatRevision": "b8507e3f2b0065d879d9c570c3f321bd5c8ad90f64097d8b72967de38cf88bab",
+  "configs": [
+    {
+      "strategy": "power",
+      "target": null
+    },
+    {
+      "strategy": "power",
+      "target": null
+    },
+    {
+      "strategy": "power",
+      "target": null
+    },
+    {
+      "strategy": "power",
+      "target": null
+    },
+    {
+      "strategy": "power",
+      "target": null
+    },
+    {
+      "strategy": "power",
+      "target": null
+    },
+    {
+      "strategy": "power",
+      "target": null
+    }
+  ],
+  "humanPolicy": "signals v2, separate seeded RNG",
+  "ratingsDate": "21/09/2026",
+  "statisticsDate": "16 ottobre 2026",
+  "caveats": [
+    "Pick counts describe this simulation, not player results.",
+    "Passing a rare is not automatically a mistake. Same-lane rating gaps flag cases for review; curve, mana costs and synergy still matter.",
+    "GIH rates are historical observational data, not causal card grades.",
+    "First-pick color probe is synthetic; all draft examples use unmodified source data."
+  ],
+  "rareSelection": {
+    "mythic_scoreAtLeast4.5": {
+      "count": 57,
+      "pickSum": 68,
+      "afterPick4": 0,
+      "afterPick7": 0,
+      "histogram": {
+        "1": 47,
+        "2": 9,
+        "3": 1
+      },
+      "averagePick": 1.1929824561403508
+    },
+    "rare_scoreBelow4": {
+      "count": 263,
+      "pickSum": 2398,
+      "afterPick4": 226,
+      "afterPick7": 174,
+      "histogram": {
+        "1": 3,
+        "2": 10,
+        "3": 10,
+        "4": 14,
+        "5": 13,
+        "6": 19,
+        "7": 20,
+        "8": 21,
+        "9": 19,
+        "10": 21,
+        "11": 24,
+        "12": 23,
+        "13": 43,
+        "14": 23
+      },
+      "averagePick": 9.11787072243346
+    },
+    "rare_score4": {
+      "count": 122,
+      "pickSum": 231,
+      "afterPick4": 2,
+      "afterPick7": 0,
+      "histogram": {
+        "1": 51,
+        "2": 43,
+        "3": 21,
+        "4": 5,
+        "5": 1,
+        "6": 1
+      },
+      "averagePick": 1.8934426229508197
+    },
+    "mythic_scoreBelow4": {
+      "count": 39,
+      "pickSum": 334,
+      "afterPick4": 30,
+      "afterPick7": 22,
+      "histogram": {
+        "2": 2,
+        "3": 4,
+        "4": 3,
+        "5": 3,
+        "6": 4,
+        "7": 1,
+        "8": 2,
+        "9": 4,
+        "10": 2,
+        "12": 2,
+        "13": 4,
+        "14": 8
+      },
+      "averagePick": 8.564102564102564
+    },
+    "rare_scoreAtLeast4.5": {
+      "count": 87,
+      "pickSum": 111,
+      "afterPick4": 0,
+      "afterPick7": 0,
+      "histogram": {
+        "1": 67,
+        "2": 16,
+        "3": 4
+      },
+      "averagePick": 1.2758620689655173
+    },
+    "mythic_score4": {
+      "count": 22,
+      "pickSum": 47,
+      "afterPick4": 1,
+      "afterPick7": 0,
+      "histogram": {
+        "1": 7,
+        "2": 9,
+        "3": 3,
+        "4": 2,
+        "5": 1
+      },
+      "averagePick": 2.1363636363636362
+    }
+  },
+  "byStrategy": {
+    "power": {
+      "picks": 5880,
+      "highRatedRareAvailableInSameLane": 56,
+      "highRatedRarePassedForWeakerSameLane": 0
+    }
+  },
+  "firstPickColorProbe": {
+    "lane": "WU",
+    "scores": [
+      {
+        "color": "W",
+        "score": 3,
+        "components": {
+          "potenza": 3,
+          "colori": 0,
+          "sinergia": 0,
+          "curva": 0,
+          "segnali": 0,
+          "mana": 0
+        }
+      },
+      {
+        "color": "U",
+        "score": 3,
+        "components": {
+          "potenza": 3,
+          "colori": 0,
+          "sinergia": 0,
+          "curva": 0,
+          "segnali": 0,
+          "mana": 0
+        }
+      },
+      {
+        "color": "B",
+        "score": 3,
+        "components": {
+          "potenza": 3,
+          "colori": 0,
+          "sinergia": 0,
+          "curva": 0,
+          "segnali": 0,
+          "mana": 0
+        }
+      },
+      {
+        "color": "R",
+        "score": 3,
+        "components": {
+          "potenza": 3,
+          "colori": 0,
+          "sinergia": 0,
+          "curva": 0,
+          "segnali": 0,
+          "mana": 0
+        }
+      },
+      {
+        "color": "G",
+        "score": 3,
+        "components": {
+          "potenza": 3,
+          "colori": 0,
+          "sinergia": 0,
+          "curva": 0,
+          "segnali": 0,
+          "mana": 0
+        }
+      }
+    ]
+  },
+  "suspiciousExamples": [],
+  "lateHighRatedRares": [],
+  "ratingReview": {
+    "highGradeLowGIH": [
+      {
+        "name": "Massacre Girl, Most Wanted",
+        "base": 4,
+        "gih": 0.50085555,
+        "sample": 14026
+      },
+      {
+        "name": "Ghalta the Unstoppable",
+        "base": 4,
+        "gih": 0.53411166,
+        "sample": 18073
+      },
+      {
+        "name": "Mabel, Bitter Recluse",
+        "base": 4,
+        "gih": 0.5369807,
+        "sample": 20051
+      },
+      {
+        "name": "Draconic Visitor",
+        "base": 4.5,
+        "gih": 0.53899031,
+        "sample": 8874
+      },
+      {
+        "name": "Koth of the Homestead",
+        "base": 4,
+        "gih": 0.54409762,
+        "sample": 19831
+      },
+      {
+        "name": "Vindictive Triumph",
+        "base": 4,
+        "gih": 0.54501348,
+        "sample": 5565
+      },
+      {
+        "name": "Vraska's Final Mercy",
+        "base": 4,
+        "gih": 0.54541718,
+        "sample": 9732
+      },
+      {
+        "name": "Way of the Wildspeaker",
+        "base": 4,
+        "gih": 0.54831925,
+        "sample": 27577
+      }
+    ],
+    "lowGradeHighGIH": [
+      {
+        "name": "Twinned Vision",
+        "base": 2.5,
+        "gih": 0.58166141,
+        "sample": 78054
+      },
+      {
+        "name": "Dark Matter Manipulator",
+        "base": 2.5,
+        "gih": 0.57651787,
+        "sample": 9207
+      },
+      {
+        "name": "Unsummon",
+        "base": 2.5,
+        "gih": 0.57509775,
+        "sample": 79543
+      },
+      {
+        "name": "Something Worth Saving",
+        "base": 2.5,
+        "gih": 0.57011583,
+        "sample": 41353
+      },
+      {
+        "name": "Heartwood Crafter",
+        "base": 2.5,
+        "gih": 0.56960079,
+        "sample": 30560
+      },
+      {
+        "name": "Murmuring Volume",
+        "base": 2.5,
+        "gih": 0.5667082,
+        "sample": 49754
+      },
+      {
+        "name": "Way of the Paradox",
+        "base": 2.5,
+        "gih": 0.56447417,
+        "sample": 21528
+      },
+      {
+        "name": "Sphinx's Approach",
+        "base": 2.5,
+        "gih": 0.56176595,
+        "sample": 28268
+      }
+    ]
+  }
+}

@@ -1,0 +1,20 @@
+[
+  {
+    "command": [
+      "node",
+      "verify-draft-policy-browser.cjs"
+    ],
+    "exitCode": 0,
+    "stdout": "PASS: default v3, opt-in v4 BO1, partial and complete resume, detailed review, privacy, mouse/keyboard/touch, 390px, full backup and backup failure.\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "node",
+      "verify-draft-bots-browser.cjs"
+    ],
+    "exitCode": 0,
+    "stdout": "PASS: v2 saved draft resumes and stays v2; new v3 draft completes, reloads and exports identical review; mouse, keyboard and touch card previews; no browser errors.\n",
+    "stderr": ""
+  }
+]

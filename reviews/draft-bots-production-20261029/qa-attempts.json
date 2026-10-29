@@ -1,0 +1,14 @@
+[
+  {
+    "command": "verify-draft-performance.cjs",
+    "exitCode": 1,
+    "included": false,
+    "reason": "Started while build regenerated dist. Explicitly terminated and discarded; repeat only after final build. No result used for readiness."
+  },
+  {
+    "command": "verify-draft-worker-browser.cjs, workers1",
+    "exitCode": 1,
+    "included": false,
+    "reason": "Test sampled Playwright worker inventory before all nested workers appeared. Replaced instantaneous dynamic count with bounded wait for the documented pool size. Same runtime passed workers2."
+  }
+]

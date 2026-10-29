@@ -1,0 +1,1734 @@
+Agisci come revisore indipendente Opus, software developer senior con competenza Magic Limited.
+Controlla l'implementazione v4 dei requisiti BOT forniti. Non devi modificare file e non hai strumenti.
+Focalizzati su bug concreti di correttezza, main costruibile, mana, alternative, sinergie causali, pivot, informazione parziale, replay e disponibilita. Ogni rilievo deve avere scenario dimostrabile dal codice e conseguenza concreta, senza pretendere implementazione di ogni meccanica di Magic.
+Il default resta v3; v4 e opt-in sperimentale. Le relazioni incomplete sono volutamente disattivate nell'intero evento e non sono dati da inventare. I profili minimi inferiti da Oracle sono una classificazione funzionale conservativa, non una completa interpretazione delle regole. Il modello di mana e probabilistico/euristico dichiarato, non una partita. Non richiedere promozione, WR o dati fittizi; non fare review generale del caricatore fuori dalle modifiche.
+Le fixture legacy e nuove sono gia eseguite, ma puoi rilevare casi non coperti. Non dichiarare tu di aver eseguito test, letto fonti esterne o visto il browser. Valuta ogni ipotesi contro il codice completo, non inferire un bug da una parola isolata. Non segnalare preferenze estetiche o ampliamenti. Se la specifica richiede una capacita disattivata con dati incompleti, non chiamare quella disattivazione un difetto.
+Restituisci solo JSON: {"findings":[{"id":"CODE-...","priority":"P1/P2","file":"...","scenario":"...","evidence":"...","impact":"...","fix":"..."}],"summary":"..."}. Findings vuoto se non restano difetti concreti. Italiano, senza grassetto o trattino lungo.
+
+MANIFEST
+{"mode": "code", "requestedModel": "opus", "files": {"draft-policy.js": "b13ff3a8ebc361cc25911c2fe81faef391ccf09abadf5d6944989bab6e568e9b", "bot_profiles.py": "3c7d70b70ee066822ec0e4723aca13b3b65117572bc3ed2e8e27aed31b2d2fc0", "draft-engine.js": "dcab9c5b86adb14d561b52ad36c24fe440e0e07963bbe823b62992d4d081d0d0", "draft-table.js": "c58026d1defca25e711a882fd1ac0df9e09ddbd153d15a93ec27e58403b50b6e", "expansion_data.py": "f42d2c655b979eb4280f754a9690ef2045d409cb461708f5d9c8ab6c1ddd9647", "verify-draft-policy.cjs": "fc439f589daa1890ef3123e2b076a5425c353913054520ea389ec61ca45d9e7c", "test_bot_profiles.py": "bd15bdb74fafb4700d6a96dcc5fa21a386ae78c82348996ced46873b67c1dc25", "schemas/bot-policy.schema.json": "33b64d9febc12e1cdc0595060094413a909b99c5c15e081562d6636ebe89226a", "docs/requirements.md": "f8bc18de4ec562c807dc1fe3ba4ad3e4bdd3c290d6576984be0c35bda08fe8e5"}}
+FILE draft-policy.js
+'use strict';
+/* Policy 4: bounded deck search over public data and the seat's own history.
+ * No table/session object, future packs, storage or DOM is accepted here.
+ * Objective values and source weights are heuristics, never win probabilities.
+ */
+((root)=>{
+ const COLORS=[...'WUBRG'],MANA=[...COLORS,'C'],TYPES=['Plains','Island','Swamp','Mountain','Forest'];
+ const STYLES={power:{},adaptive:{signals:.45},signals:{signals:1.35,open:.2},bomb:{anchor:.45},
+  force:{},synergy:{synergy:1.25},aggro:{attack:.3,early:.3},control:{defense:.3,answers:.25},
+  fixing:{splash:.25},denial:{denial:true}};
+ const clamp=(x,a,b)=>Math.max(a,Math.min(b,x)),sum=a=>a.reduce((n,x)=>n+x,0);
+ const compare=(a,b)=>String(a)<String(b)?-1:String(a)>String(b)?1:0;
+ const stable=(a,b)=>compare(a.id,b.id)||compare(a.uid,b.uid);
+ function create(format){
+  const config=format.botPolicy;if(!config?.available)throw Error('Politica v4 non disponibile: dati minimi incompleti');
+  const byId=Object.fromEntries(format.cards.map(c=>[c.id,c])),profiles=config.profiles;
+  const active=Object.keys(profiles).map(id=>byId[id]);
+  if(active.some(c=>!c||(!c.basic&&!Number.isFinite(c.score))))throw Error('V4 richiede voti espliciti sulle stampe attive');
+  const rating=c=>c.basic?0:c.score,profile=c=>profiles[c.id];
+  const has=(c,r)=>profile(c)?.roles.includes(r),total=format.rounds*format.packSize;
+  const target=config.minDeckSize,freeBasics=config.allowedBasics||[];
+  // Stable expectation from declared recipe. Dependencies/exclusions are an
+  // approximation here, not a second collator or a claim about unopened packs.
+  const weights={};
+  if(format.collation?.schemaVersion===1){
+   const slots={};
+   for(const rule of format.collation.recipe){
+    const dist={};const count=(rule.count||1)*(rule.op==='replace'?rule.chance:1);
+    for(const branch of rule.branches){const ids=format.collation.groups[branch.group];
+     for(const id of ids){dist[id]=(dist[id]||0)+count*branch.weight/ids.length;
+      if(rule.op==='pair'){const pair=(format.collation.partners||[]).find(p=>p.includes(id));if(pair){const other=pair.find(x=>x!==id);dist[other]=(dist[other]||0)+count*branch.weight/ids.length;}}}}
+    if(rule.op==='replace'&&slots[rule.target])for(const [id,w] of Object.entries(slots[rule.target]))weights[id]-=w*count/Math.max(1,sum(Object.values(slots[rule.target])));
+    for(const [id,w] of Object.entries(dist))weights[id]=(weights[id]||0)+w;slots[rule.id]=dist;
+   }
+  }
+  const weightTotal=sum(Object.values(weights).map(w=>Math.max(0,w)));
+  const frequency=c=>weightTotal?Math.max(0,weights[c.id]||0)/weightTotal:1/Math.max(1,active.length);
+  const roleExpectations={};
+  for(const color of COLORS)for(const role of ['creature','interaction','draw','fixing']){
+   const cards=active.filter(c=>(!c.colors.length||c.colors.includes(color))&&has(c,role));
+   const mass=sum(cards.map(frequency));roleExpectations[color+role]={mass,value:mass?sum(cards.map(c=>rating(c)*frequency(c)))/mass:2};
+  }
+  function needs(c,colors,sources={}){
+   const need={};
+   for(const symbol of profile(c).symbols){
+    const choices=symbol.split('/').filter(x=>MANA.includes(x));
+    if(!choices.length||symbol.includes('P')||symbol.split('/').some(x=>/^\d+$/.test(x)))continue;
+    const allowed=choices.filter(x=>x==='C'||colors.includes(x));if(!allowed.length)return null;
+    const color=allowed.sort((a,b)=>(sources[b]||0)-(sources[a]||0)||(need[a]||0)-(need[b]||0)||MANA.indexOf(a)-MANA.indexOf(b))[0];need[color]=(need[color]||0)+1;
+   }
+   return need;
+  }
+  const fits=(c,lane)=>needs(c,lane)!==null;
+  function turn(c,own){
+   const p=profile(c);if(p.variable)return Math.max(3,c.mv+2);if(!p.curve.reduction)return Math.max(1,c.mv);
+   const available=own.filter(x=>x.creature&&x.mv<=4),resource=p.curve.reductionResource;
+   const reduction=['power','toughness'].includes(resource)?Math.max(0,...available.map(x=>profile(x).curve[resource]||0)):
+    resource==='creatures'?available.length*.5:resource==='artifacts'?own.filter(x=>/Artifact/.test(x.type)&&x.mv<=4).length:0;
+   // Deployment and survival are uncertain. A printed reduction is never
+   // silently converted into a guaranteed early play.
+   return reduction?Math.max(4,c.mv-reduction):Math.max(1,c.mv);
+  }
+  function probability(size,sources,draws,required){
+   // Hypergeometric tail, linearly interpolated for declared fractional sources.
+   if(required<=0)return 1;
+   if(sources<=0)return 0;
+   const exact=k=>{k=clamp(k,0,size);let dist=Array(required).fill(0);dist[0]=1;let success=0;
+    for(let d=0;d<Math.min(size,draws);d++){const next=Array(required).fill(0);for(let n=0;n<required;n++){const p=clamp((k-n)/(size-d),0,1);next[n]+=dist[n]*(1-p);if(n+1===required)success+=dist[n]*p;else next[n+1]+=dist[n]*p;}dist=next;}return clamp(success,0,1);};
+   const low=Math.floor(sources);return exact(low)*(1-(sources-low))+exact(low+1)*(sources-low);
+  }
+  const probabilityCache=new Map();
+  const sourceCache=new Map();
+  function chance(sources,t,pips=1){const s=Math.round(sources*20)/20,key=[s,t,pips].join(':');
+   if(!probabilityCache.has(key))probabilityCache.set(key,probability(target,s,Math.min(target,7+Math.max(0,Math.ceil(t)-1)),pips));return probabilityCache.get(key);}
+  function direct(c){const m=profile(c).mana;return [...new Set(m.abilities.filter(a=>!a.restricted).flatMap(a=>a.colors))];}
+  function landSources(lands,basics,t){
+   const counts=Object.fromEntries(MANA.map(x=>[x,basics[x]||0]));
+   for(const c of lands)for(const color of direct(c))counts[color]+=(profile(c).mana.tapped&&t<=3?.8:1);
+   return counts;
+  }
+  function sourceModel(spells,lands,basics,targetTurn=6){
+   const cacheKey=[spells.map(c=>c.id).sort().join(','),lands.map(c=>c.id).sort().join(','),...COLORS.map(c=>basics[c]||0),targetTurn].join('|');
+   if(sourceCache.has(cacheKey))return sourceCache.get(cacheKey);
+   const base=landSources(lands,basics,targetTurn),sources={...base},uses={},units=[
+    ...lands.map(c=>Object.fromEntries(direct(c).map(color=>[color,profile(c).mana.tapped&&targetTurn<=3?.8:1]))),
+    ...Object.entries(basics).filter(([,n])=>n>0).map(([color,n])=>({[color]:n}))];
+   const targets=[...lands.map(c=>({colors:direct(c),basic:c.basic,subtypes:profile(c).mana.subtypes})),
+    ...Object.entries(basics).flatMap(([color,count])=>Array.from({length:count},()=>({colors:[color],basic:true,subtypes:[TYPES[COLORS.indexOf(color)]]})))];
+   const cyclers=spells.filter(c=>profile(c).mana.cycling.length);
+   for(const c of spells){const p=profile(c),entryUse={cycling:0,producer:0,alternativeLand:0,colors:[],weights:{}};
+    const alternate=p.mana.alternativeLand;
+    if(alternate&&!alternate.restricted&&!(alternate.tapped&&targetTurn<=1)){
+     const weight=alternate.tapped&&targetTurn<=3?.4:.5;entryUse.alternativeLand=weight;
+     for(const color of alternate.colors){entryUse.weights[color]=Math.max(entryUse.weights[color]||0,weight);entryUse.colors.push(color);}
+    }
+    for(const cycle of p.mana.cycling){
+     const eligible=targets.filter(x=>cycle.kind==='basic'?x.basic:x.subtypes.includes(cycle.type));
+     const cost=sum([...cycle.cost.matchAll(/\{([^}]+)\}/g)].map(m=>/^\d+$/.test(m[1])?+m[1]:1));
+     const paidColors=[...cycle.cost.matchAll(/\{([WUBRG])\}/g)].map(m=>m[1]);
+     if(!eligible.length||targetTurn<=cost||paidColors.some(x=>!base[x]))continue;
+     const access=paidColors.length?Math.min(...paidColors.map(x=>chance(base[x],Math.max(2,cost)))):1;
+     if(access<.65)continue;
+     for(const color of new Set(eligible.flatMap(x=>x.colors))){
+      const competitors=cyclers.filter(other=>profile(other).mana.cycling.some(cy=>targets.some(x=>x.colors.includes(color)&&(cy.kind==='basic'?x.basic:x.subtypes.includes(cy.type))))).length;
+      const weight=.5*access*Math.min(1,eligible.filter(x=>x.colors.includes(color)).length/Math.max(1,competitors));
+      entryUse.cycling=Math.max(entryUse.cycling,weight);entryUse.weights[color]=Math.max(entryUse.weights[color]||0,weight);entryUse.colors.push(color);
+     }
+    }
+    // Only direct, accessible nonlands can help. Restricted abilities do not
+    // silently become unrestricted sources. Expensive producers are very slow.
+    const n=needs(c,MANA,base),cast=n&&Object.entries(n).every(([color,pips])=>chance(base[color],turn(c,spells),pips)>=.65);
+    if(cast&&targetTurn>=Math.max(1,c.mv+1))for(const color of direct(c)){
+     const activation=profile(c).mana.abilities.find(a=>!a.restricted&&a.colors.includes(color))?.activation||'';
+     const activationColors=[...activation.matchAll(/\{([WUBRGC])\}/g)].map(m=>m[1]);
+     if(activationColors.some(x=>!base[x]))continue;
+     const activationMana=sum([...activation.matchAll(/\{(\d+)\}/g)].map(m=>+m[1]));
+     const weight=(c.mv<=3?.35:c.mv<=5?.15:0)/(1+activationMana);entryUse.weights[color]=Math.max(entryUse.weights[color]||0,weight);entryUse.producer=Math.max(entryUse.producer,weight);entryUse.colors.push(color);
+    }
+    uses[c.id]=(uses[c.id]||[]).concat(entryUse);units.push(entryUse.weights);
+   }
+   for(const color of MANA)sources[color]=sum(units.map(u=>u[color]||0));
+   const result={base,sources,uses,targets,units};if(sourceCache.size>4000)sourceCache.clear();sourceCache.set(cacheKey,result);return result;
+  }
+  function castability(c,colors,model,t){
+   const groups=[];
+   for(const symbol of profile(c).symbols){
+    if(symbol.includes('P')||symbol.split('/').some(x=>/^\d+$/.test(x)))continue;
+    const options=symbol.split('/').filter(x=>MANA.includes(x)&&(x==='C'||colors.includes(x)));
+    if(!options.length){if(/[WUBRGC]/.test(symbol))return 0;continue;}
+    groups.push(options.reduce((n,color)=>n|1<<MANA.indexOf(color),0));
+   }
+   let masks=new Set();for(const group of groups){const previous=[...masks];masks.add(group);for(const mask of previous)masks.add(mask|group);}
+   if(masks.size===1){const mask=[...masks][0];if((mask&(mask-1))===0)return chance(model.sources[MANA[Math.log2(mask)]],t,groups.length);}
+   let value=1;
+   for(const mask of masks){const pips=groups.filter(group=>(group&mask)===group).length;
+    const colors=MANA.filter((_,i)=>mask&1<<i),count=sum(model.units.map(unit=>Math.max(0,...colors.map(color=>unit[color]||0))));
+    value=Math.min(value,chance(count,t,pips));
+   }
+   return value;
+  }
+  function synergy(c,own,remaining=0){
+   if(!config.coverage.synergies)return {adjustment:0,option:0};
+   const traits=profile(c).synergy;let adjustment=0,option=0;
+   for(const relation of config.relations){
+    const axis=relation.id,others=own.filter(x=>x!==c),payoff=traits.payoffs[axis]||0;
+    const density=sum(others.map(x=>profile(x).synergy.enablers[axis]||0));
+    if(payoff){
+     let support=density;
+     if(relation.resource){const consumers=sum(own.map(x=>sum(config.relations.filter(r=>r.resource===relation.resource).map(r=>profile(x).synergy.payoffs[r.id]||0))));support=Math.min(support,(relation.resourceBudget??support)/Math.max(1,consumers));}
+     const utility=n=>{const threshold=relation.threshold||0,saturation=Math.max(threshold+1,relation.saturation||8);return clamp((n-threshold)/(saturation-threshold),0,1);};
+     const reference=profile(c).reference.support?.[axis]??relation.referenceSupport??0,strength=(relation.strength??.6)*payoff;
+     adjustment+=(utility(support)-utility(reference))*strength;
+     const expected=sum(active.map(x=>frequency(x)*(profile(x).synergy.enablers[axis]||0)))*Math.max(0,remaining)*.25;
+     option+=Math.max(0,utility(support+expected)-utility(support))*strength;
+    }
+    if(traits.enablers[axis]){const beneficiaries=sum(others.map(x=>profile(x).synergy.payoffs[axis]||0));
+     // Enabler reference is explicit; it does not count each payoff at full value.
+     adjustment+=clamp((beneficiaries-(profile(c).reference.payoffs?.[axis]??relation.referencePayoffs??0))*.06,-.2,.3)*Math.min(1,traits.enablers[axis]);}
+   }
+   return {adjustment,option};
+  }
+  function replacement(c,lane){
+   const role=has(c,'interaction')?'interaction':c.creature?'creature':'draw';
+   const rows=[...lane].map(color=>roleExpectations[color+role]).filter(x=>x?.mass>0);
+   return rows.length?sum(rows.map(x=>x.value*x.mass))/sum(rows.map(x=>x.mass)):sum(active.filter(c=>!c.basic).map(rating))/Math.max(1,active.filter(c=>!c.basic).length);
+  }
+  function tactical(c,style,own){
+   const p=profile(c),early=turn(c,own)<=3;
+   return (p.curve.attacker?(style.attack||0):0)+(p.curve.defensive?(style.defense||0):0)
+    +(has(c,'interaction')&&(early||!c.creature)?(style.answers||0):0)+(c.creature&&early?(style.early||0):0)
+    +(has(c,'evasion')?.06:0);
+  }
+  function build(pool,lane,strategy='adaptive',options={}){
+   const style=STYLES[strategy]||STYLES.adaptive,remaining=options.remaining??Math.max(0,total-pool.length),match=options.match??config.match;
+   const physical=pool.map(e=>({...byId[e.id],_entry:e})).filter(c=>profile(c));
+   const splash=options.splash||null,colors=[...new Set([...lane,...(splash?[splash]:[])])];
+   const candidates=physical.filter(c=>!c.land&&needs(c,colors)!==null&&(!splash||fits(c,lane)||rating(c)>=3.5));
+   const landTarget=clamp(Math.round(target*(strategy==='aggro'?.4:strategy==='control'?.45:.425)),0,target);
+   const spellTarget=target-landTarget,ranked=candidates.map(c=>({c,value:rating(c)+tactical(c,style,candidates)+(synergy(c,candidates,remaining).adjustment+synergy(c,candidates,remaining).option)*(style.synergy||1)-(fits(c,lane)?0:.65-(style.splash||0))})).sort((a,b)=>b.value-a.value||stable(a.c._entry,b.c._entry));
+   // Greedy fill with role deficits, followed by mana rejection. Bounded by
+   // main slots; no exponential search or fabricated future card identities.
+   const spells=[];let choices=ranked.map(x=>({...x,early:x.c.creature&&!profile(x.c).variable&&turn(x.c,candidates)<=3,answer:has(x.c,'interaction')&&!x.c.creature})),earlyCount=0,answerCount=0;
+   while(spells.length<spellTarget&&choices.length){
+    const earlyGoal=Math.round(spellTarget*(strategy==='aggro'?.38:strategy==='control'?.23:.3));
+    let best=-1,value=-Infinity;
+    for(let i=0;i<choices.length;i++){const x=choices[i];if(config.maxCopies&&spells.filter(c=>c.full===x.c.full).length>=config.maxCopies)continue;
+     const score=x.value+(x.early&&earlyCount<earlyGoal?.3:0)+(x.answer&&answerCount<Math.max(2,spellTarget*.17)?.2:0);
+     if(score>value){best=i;value=score;}}
+    if(best<0)break;const selected=choices.splice(best,1)[0];spells.push(selected.c);earlyCount+=Number(selected.early);answerCount+=Number(selected.answer);
+   }
+   const lands=[];
+   for(const c of physical.filter(c=>c.land&&direct(c).some(x=>colors.includes(x)||x==='C')).sort((a,b)=>Number(profile(a).mana.tapped)-Number(profile(b).mana.tapped)||stable(a._entry,b._entry))){
+    if(lands.length>=landTarget)break;if(!c.basic&&config.maxCopies&&lands.filter(x=>x.full===c.full).length>=config.maxCopies)continue;lands.push(c);}
+   const basics=Object.fromEntries(COLORS.map(x=>[x,0])),demand=Object.fromEntries(COLORS.map(x=>[x,0]));
+   for(const c of spells){const n=needs(c,colors)||{};for(const [color,pips] of Object.entries(n))demand[color]+=pips*(turn(c,spells)<=3?2:1);}
+   let add=Math.max(0,landTarget-lands.length);
+   if(freeBasics.length){
+    const permitted=colors.filter(c=>freeBasics.includes(c));
+    if(!permitted.length&&add)permitted.push(freeBasics[0]);
+    if(splash&&permitted.includes(splash)){const count=Math.min(add,options.splashBasics??2);basics[splash]=count;add-=count;}
+    while(add>0&&permitted.length){const candidates=permitted.filter(c=>c!==splash||permitted.length===1);
+     const color=candidates.sort((a,b)=>(demand[b]||.1)/(basics[b]+1)-(demand[a]||.1)/(basics[a]+1)||COLORS.indexOf(a)-COLORS.indexOf(b))[0];basics[color]++;add--;}
+   }
+   let model=sourceModel(spells,lands,basics);const timedModels=new Map(),selected=[],manaErrors=[];let manaPenalty=0,creatures=0,early=0,answers=0,score=0;
+   for(const c of spells){
+    const t=turn(c,spells),key=Math.ceil(t);if(!timedModels.has(key))timedModels.set(key,sourceModel(spells,lands,basics,key));
+    const timed=timedModels.get(key),need=needs(c,colors,timed.sources),colored=need?castability(c,colors,timed,t):0;
+    const landCount=lands.length+sum(Object.values(basics))+sum(Object.values(timed.uses).flat().map(u=>Math.max(u.alternativeLand||0,u.cycling||0,u.producer||0)));
+    const mana=colored*chance(landCount,t,Math.ceil(Math.min(Math.ceil(t),landCount+1)));
+    const off=!fits(c,lane),unavailable=!need||Object.keys(need).some(color=>timed.sources[color]<=0);
+    if(unavailable||(off&&(colored<.65||Object.values(need).some(n=>n>1)))){manaErrors.push({id:c.id,reason:'Fonti insufficienti nella configurazione candidata'});continue;}
+    selected.push(c);const syn=synergy(c,spells,remaining),usage=model.uses[c.id]?.[0],use=Math.max(usage?.cycling||0,usage?.alternativeLand||0);
+    if(c.creature){creatures+=1-use;if(t<=3&&!profile(c).variable)early+=1-use;}
+    if(has(c,'interaction'))answers+=c.creature?.4:1;
+    const penalty=(1-mana)*(off?1.8:1.0);manaPenalty+=penalty;
+    score+=rating(c)-replacement(c,lane)+tactical(c,style,spells)+(syn.adjustment+syn.option)*(style.synergy||1)-penalty;
+   }
+   const progress=clamp(1-remaining/Math.max(1,total),0,1),holes=Math.max(0,spellTarget-selected.length);
+   score+=selected.length*progress*.65;
+   const earlyGoal=spellTarget*(strategy==='aggro'?.38:strategy==='control'?.23:.3),creatureGoal=spellTarget*(strategy==='control'?.52:.65);
+   const deficits={early:Math.max(0,earlyGoal-early),creatures:Math.max(0,creatureGoal-creatures),interaction:Math.max(0,spellTarget*.16-answers)};
+   score-=progress*(deficits.early*.14+deficits.creatures*.08+deficits.interaction*.12+holes*.25);
+   // At completion add legal basics to fill a short main. This does not erase
+   // the diagnostic shortage of spells; no imaginary spell enters the list.
+   if(remaining===0&&freeBasics.length){let fill=target-selected.length-lands.length-sum(Object.values(basics));
+    const permitted=colors.filter(c=>freeBasics.includes(c));
+    while(fill>0&&permitted.length){const color=permitted.sort((a,b)=>(demand[b]||.1)/(basics[b]+1)-(demand[a]||.1)/(basics[a]+1)||COLORS.indexOf(a)-COLORS.indexOf(b))[0];basics[color]++;fill--;}
+    model=sourceModel(selected,lands,basics);
+   }
+   if(remaining===0&&!freeBasics.length){
+    const used=new Set([...selected,...lands].map(c=>c._entry.uid));
+    for(const c of physical.filter(c=>!used.has(c._entry.uid)).sort((a,b)=>rating(b)-rating(a)||stable(a._entry,b._entry))){
+     if(selected.length+lands.length>=target)break;
+     if(!c.basic&&config.maxCopies&&[...selected,...lands].filter(x=>x.full===c.full).length>=config.maxCopies)continue;
+     (c.land?lands:selected).push(c);manaErrors.push({id:c.id,reason:'Completamento con carte possedute: mana o piano insufficienti, senza basi aggiungibili.'});
+    }
+    model=sourceModel(selected,lands,basics);
+   }
+   const used=new Set([...selected,...lands].map(c=>c._entry.uid));
+   const excluded=physical.filter(c=>!used.has(c._entry.uid));
+   const sideboard=match==='BO3'?excluded.filter(c=>has(c,'sideboard')&&fits(c,lane)).map(c=>c._entry):[];
+   return {lane,colors:colors.join(''),splash,spells:selected.map(c=>c._entry),lands:lands.map(c=>c._entry),basics,
+    excluded:excluded.map(c=>c._entry),sideboard,holes:{spells:holes,lands:Math.max(0,landTarget-lands.length-sum(Object.values(basics)))},
+    targetSize:target,slots:selected.length+lands.length+sum(Object.values(basics)),score,deficits,manaPenalty,manaErrors,
+    sources:model.sources,sourceTurn:6,alternativeUses:model.uses,match,
+    assumptions:['Ricerca limitata per piani, fonti indirette frazionarie, lancio ipergeometrico senza mulligan; colori approssimati separatamente.',
+     'Costi ridotti stimati con prudenza, non garantiti; posti non ancora riempiti non sono carte già possedute.',
+     ...(match==='unknown'?['Contesto match sconosciuto: nessun valore di sideboarding.']:[])]};
+  }
+  function bestBuild(pool,lane,strategy,options={}){
+   const base=build(pool,lane,strategy,options),off=pool.map(e=>byId[e.id]).filter(c=>!c.land&&!fits(c,lane)&&rating(c)>=3.5);
+   let best=base;
+   // At most two candidate splash colors and two base configurations.
+   const colors=[...new Set(off.flatMap(c=>c.colors.filter(x=>!lane.includes(x))))].filter(color=>pool.some(e=>{
+    const c=byId[e.id];return direct(c).includes(color)||profile(c).mana.cycling.some(cy=>cy.kind==='basic'||cy.type===TYPES[COLORS.indexOf(color)]);
+   })).sort().slice(0,2);
+   for(const color of colors)for(const splashBasics of [1,2]){const candidate=build(pool,lane,strategy,{...options,splash:color,splashBasics});if(candidate.score>best.score+.05)best=candidate;}
+   return best;
+  }
+  function observe(bot,pack,round,pick){
+   bot.memory??={sides:{},observations:{},packets:{},demand:Object.fromEntries(COLORS.map(c=>[c,0]))};
+   const memory=bot.memory,key=[round,pick,pack.packetId].join(':');if(memory.observations[key])return;
+   memory.observations[key]=true;const direction=String(format.directions[round-1]),side=memory.sides[direction]??={values:Object.fromEntries(COLORS.map(c=>[c,0])),count:0};
+   const previous=memory.packets[pack.packetId],now=new Set(pack.cards.map(e=>e.uid));
+   if(previous)for(const entry of previous)if(!now.has(entry.uid)){const c=byId[entry.id];for(const color of c.colors)memory.demand[color]+=Math.max(0,rating(c)-2.5)/Math.max(1,c.colors.length);}
+   if(pick>1){side.count++;
+    for(const color of COLORS){
+     const actual=sum(pack.cards.map(e=>byId[e.id]).filter(c=>!c.land&&c.colors.includes(color)).map(c=>Math.max(0,rating(c)-2.3)));
+     const expected=sum(active.filter(c=>!c.land&&c.colors.includes(color)).map(c=>frequency(c)*Math.max(0,rating(c)-2.3)))*pack.cards.length/Math.max(1,Math.sqrt(pick));
+     const confidence=Math.min(1,(pick-1)/Math.max(2,format.seats-1)),wheel=previous?1.25:1;
+     side.values[color]=clamp(side.values[color]*.88+(actual-expected)*confidence*wheel,-5,5);
+    }
+   }
+  }
+  function context(bot,round,options={}){
+   const direction=String(format.directions[round-1]),side=bot.memory?.sides[direction],sig=side?.values||{},style=STYLES[bot.strategy]||STYLES.adaptive;
+   const lanes=bot.target?[bot.target]:[...new Set([...Object.keys(format.archetypes),...(bot.pool.length<total*(.28+(style.open||0))?COLORS:[])])].sort();
+   const remaining=Math.max(0,total-bot.pool.length),plans=lanes.map(lane=>{
+    const deck=bestBuild(bot.pool,lane,bot.strategy,{...options,remaining}),signal=sum([...lane].map(c=>sig[c]||0))/Math.max(1,lane.length);
+    const confidence=side?Math.min(1,side.count/4):0;
+    return {lane,deck,value:deck.score+signal*(style.signals??.45)*confidence*.2};
+   }).sort((a,b)=>b.value-a.value||compare(a.lane,b.lane));
+   return {pool:bot.pool.map(e=>byId[e.id]),sig,plans,lane:plans[0].lane,remaining,confidence:side?Math.min(1,side.count/4):0};
+  }
+  function rank(bot,pack,round,pick,random,transition=true,options={}){
+   const ctx=context(bot,round,options),style=STYLES[bot.strategy]||STYLES.adaptive,before=ctx.plans[0];
+   const opening=bot.pool.length===0;
+   const scores=pack.map(entry=>{
+    const c=byId[entry.id];if(!profile(c)||!Number.isFinite(rating(c)))throw Error('Carta senza profilo/voto v4: '+entry.id);
+    if(bot.strategy==='power')return {entry,card:c,score:rating(c),lane:ctx.lane,playable:!c.land,components:{potenza:rating(c)},reasons:['Profilo di confronto sulla sola qualità individuale.'],signature:'power'};
+    const candidatePlans=opening?ctx.plans.filter(p=>fits(c,p.lane)):ctx.plans.slice(0,style.open?4:3);
+    // A genuinely new color must be allowed to challenge the current shortlist.
+    if(!bot.target&&!opening){const challenger=ctx.plans.find(p=>fits(c,p.lane)&&!candidatePlans.includes(p));if(challenger)candidatePlans.push(challenger);}
+    const evaluated=(candidatePlans.length?candidatePlans:ctx.plans.slice(0,1)).map(plan=>{
+     const after=bestBuild([...bot.pool,entry],plan.lane,bot.strategy,{...options,remaining:ctx.remaining});
+     const used=[...after.spells,...after.lands].some(e=>e.uid===entry.uid),delta=after.score-before.deck.score;
+     const signal=sum(c.colors.map(color=>ctx.sig[color]||0))/Math.max(1,c.colors.length)*(style.signals??.45)*ctx.confidence*.08;
+     const replaces=before.deck.spells.filter(e=>!after.spells.some(x=>x.uid===e.uid));
+     const own=[...bot.pool,entry].map(e=>({...byId[e.id],_entry:e}));
+     const support=synergy(own.find(x=>x._entry.uid===entry.uid),own,ctx.remaining);
+     const components={mazzo:delta,segnali:signal,ancora:bot.anchor&&style.anchor&&after.spells.some(e=>e.id===bot.anchor)?style.anchor:0};
+     let side=0;if(!used&&after.match==='BO3'&&after.sideboard.some(e=>e.uid===entry.uid)&&before.deck.holes.spells===0)side=.12;
+     components.sideboard=side;
+     let denial=0;if(style.denial&&!used&&ctx.remaining<total*.35&&rating(c)>=3.5&&Object.values(before.deck.deficits).every(x=>x<2)){
+      const demand=Math.max(0,...c.colors.map(color=>bot.memory?.demand[color]||0));denial=Math.min(.15,demand*.01);}
+     components.negazione=denial;
+     const reasons=[used?(replaces.length?'Migliora uno slot del main provvisorio.':'Copre un posto ancora disponibile nel mazzo.'):'Non migliora il main in questa configurazione.',
+      after.deficits.early<before.deck.deficits.early?'Aumenta le giocate iniziali affidabili.':'',
+      after.splash?'Lo splash è confrontato con basi e consistenza dei colori principali.':'',
+      config.coverage.synergies?'Sinergie come scarto dal contesto del voto.':'Sinergie contestuali disattivate uniformemente: copertura incompleta.',
+      denial?'Negazione incerta dedotta dal wheel, con beneficio limitato.':'',side?'Riserva di sideboard, senza rinunciare al completamento del main.':''].filter(Boolean);
+     return {entry,card:c,score:sum(Object.values(components)),components,lane:plan.lane,playable:used,deck:after,replaces:replaces.map(e=>e.id),
+      synergy:support,reasons,signature:[plan.lane,used,profile(c).roles.slice().sort().join(','),after.holes.spells>0,after.manaErrors.length>0].join('|')};
+    }).sort((a,b)=>b.score-a.score||compare(a.lane,b.lane));return evaluated[0];
+   }).sort((a,b)=>b.score-a.score||stable(a.entry,b.entry));
+   if(style.denial&&scores.some(s=>s.playable&&s.components.mazzo>.05||s.components.sideboard>0)){
+    for(const s of scores){s.score-=s.components.negazione||0;s.components.negazione=0;}
+    scores.sort((a,b)=>b.score-a.score||stable(a.entry,b.entry));
+   }
+   if(transition){const progress=bot.pool.length/total;bot.phase=progress>.7?3:progress>.35+(style.open||0)&&ctx.confidence>.3?2:progress>.12?1:0;}
+   return {scores,ctx};
+  }
+  function take(bot,pack,round,pick,random,options={}){
+   observe(bot,pack,round,pick);const prior=bot.pool.map(e=>({...e})),{scores,ctx}=rank(bot,pack.cards,round,pick,random,true,options),best=scores[0];
+   const close=options.deterministic?[best]:scores.filter(s=>s.signature===best.signature&&s.score>=best.score-.04);
+   const selected=close[Math.floor(random()*close.length)];
+   bot.lane=selected.lane;bot.pool.push(selected.entry);if(!bot.anchor&&!selected.card.land&&rating(selected.card)>=4)bot.anchor=selected.entry.id;
+   bot.memory.packets[pack.packetId]=pack.cards.filter(e=>e.uid!==selected.entry.uid).map(e=>({...e}));
+   bot.log.push({round,pick,packetId:pack.packetId,id:selected.entry.id,uid:selected.entry.uid,phase:['esplora','orienta','consolida','completa'][bot.phase],lane:bot.lane,
+    score:selected.score,components:selected.components,observed:pack.cards.map(e=>e.id),poolBefore:prior,bestId:best.entry.id,randomized:selected!==best,
+    reasons:selected.reasons,replaces:selected.replaces||[],gaps:config.gaps,deck:selected.deck||null,
+    alternatives:scores.slice(0,3).map(s=>({id:s.entry.id,score:s.score,lane:s.lane,reasons:s.reasons,replaces:s.replaces||[]}))});
+   return selected.entry;
+  }
+  function takeGroup(bot,pack,round,pick,count,random,options={}){
+   if(count<=1)return [take(bot,pack,round,pick,random,options)];
+   observe(bot,pack,round,pick);
+   // Bounded beam, evaluating combinations on cloned own state. No observation
+   // is counted twice; only the final committed choices reach the real bot.
+   const first=rank(bot,pack.cards,round,pick,random,false,options).scores.slice(0,4);let best=null;
+   for(const candidate of first){const clone=JSON.parse(JSON.stringify(bot));
+    const left={packetId:pack.packetId,cards:[...pack.cards]};let value=0;const selected=[];
+    for(let n=0;n<Math.min(count,pack.cards.length);n++){
+     const scored=rank(clone,left.cards,round,pick,random,false,options).scores;
+     const choice=n===0?scored.find(s=>s.entry.uid===candidate.entry.uid):scored[0];value+=choice.score;
+     clone.pool.push(choice.entry);clone.lane=choice.lane;if(!clone.anchor&&!choice.card.land&&rating(choice.card)>=4)clone.anchor=choice.entry.id;selected.push(choice.entry);left.cards=left.cards.filter(e=>e.uid!==choice.entry.uid);
+    }
+    if(!best||value>best.value)best={selected,value};
+   }
+   const result=[];for(const selected of best.selected){
+    // Reuse normal logging, but restrict selection to the jointly selected card.
+    observe(bot,pack,round,pick);const ranking=rank(bot,pack.cards,round,pick,random,false,options).scores,scored=ranking.find(s=>s.entry.uid===selected.uid);
+    const prior=bot.pool.map(e=>({...e}));bot.pool.push(selected);bot.lane=scored.lane;bot.phase=bot.pool.length/total>.7?3:1;if(!bot.anchor&&!scored.card.land&&rating(scored.card)>=4)bot.anchor=selected.id;
+    bot.log.push({round,pick,packetId:pack.packetId,id:selected.id,uid:selected.uid,phase:['esplora','orienta','consolida','completa'][bot.phase],lane:bot.lane,components:scored.components,score:scored.score,
+     poolBefore:prior,bestId:ranking[0].entry.id,randomized:false,joint:true,reasons:[...scored.reasons,'Combinazione valutata con ricerca limitata nella stessa busta.'],replaces:scored.replaces||[],deck:scored.deck||null,gaps:config.gaps,
+     observed:pack.cards.map(e=>e.id),alternatives:ranking.slice(0,3).map(s=>({id:s.entry.id,score:s.score}))});
+    pack.cards=pack.cards.filter(e=>e.uid!==selected.uid);result.push(selected);
+   }
+   bot.memory.packets[pack.packetId]=pack.cards.map(e=>({...e}));return result;
+  }
+  return {byId,rating,profile,needs,fits,turn,probability,chance,sourceModel,castability,synergy,build,bestBuild,observe,context,rank,take,takeGroup,
+   assumptions:{frequency:'Marginali della ricetta; dipendenze ed esclusioni approssimate soltanto per le attese, non per generare buste.'}};
+ }
+ const api={create,STYLES};if(typeof module!=='undefined')module.exports=api;else root.DraftPolicy=api;
+})(globalThis);
+
+FILE bot_profiles.py
+"""Offline, conservative strategic descriptors, separate from card grades.
+
+The minimum profile is a functional classification, not a complete Oracle
+interpreter. Unsupported contextual relations disable the whole component.
+"""
+import hashlib
+import json
+import re
+from pathlib import Path
+
+VERSION = 1
+COLORS = 'WUBRG'
+TYPES = ('Plains', 'Island', 'Swamp', 'Mountain', 'Forest')
+
+
+def describe(card):
+    text = re.sub(r'\([^)]*\)', '', card.get('oracle', ''))
+    symbols = re.findall(r'\{([^}]+)\}', card.get('cost', ''))
+    roles = ['land' if card.get('land') else 'creature' if card.get('creature') else 'spell']
+    def stat(value):
+        return int(str(value)) if str(value).isdigit() else None
+    power, toughness = stat(card.get('power')), stat(card.get('toughness'))
+    for role, pattern in {
+        'interaction': r'destroy target|exile target|counter target|target creature gets -|deals? \d+ damage to target|deals damage equal to|return target (?:creature|nonland|permanent).*owner.s hand',
+        'draw': r'draw (?:a|two|three|\d+) cards?',
+        'defense': r'\bdefender\b|prevent.*damage',
+        'evasion': r'\bflying\b|can.t be blocked|\bmenace\b|\btrample\b',
+        'ramp': r'search your library.*land.*battlefield',
+        'sideboard': r'destroy target (?:artifact|enchantment)|exile.*graveyard',
+    }.items():
+        if re.search(pattern, text, re.I):
+            roles.append(role)
+    abilities = []
+    for line in text.splitlines():
+        if ':' not in line:
+            continue
+        cost, effect = line.split(':', 1)
+        if not re.search(r'\badd\b', effect, re.I):
+            continue
+        produced = list(COLORS) if re.search(r'mana of any color', effect, re.I) else sorted(set(re.findall(r'\{([WUBRGC])\}', effect)))
+        if produced:
+            abilities.append({'colors': produced, 'activation': cost.strip(),
+                              'restricted': bool(re.search(r'only|spend this mana|choose a color|pay|sacrifice|remove|tap .*untapped', cost + effect, re.I))})
+    subtypes = [t for t in TYPES if re.search(r'\b' + t + r'\b', card.get('type', ''))]
+    if card.get('land') and subtypes and not abilities:
+        abilities.append({'colors': [COLORS[TYPES.index(t)] for t in subtypes], 'activation': '{T}', 'restricted': False})
+    cycling = []
+    for match in re.finditer(r'\b(basic land|Plains|Island|Swamp|Mountain|Forest)cycling\s+((?:\{[^}]+\})+)', text, re.I):
+        target = match[1]
+        cycling.append({'kind': 'basic' if target.lower() == 'basic land' else 'subtype',
+                        'type': target.title(), 'cost': match[2]})
+    alternative_land = None
+    if not card.get('land'):
+        for face in card.get('faces', [])[1:]:
+            if 'Land' not in face.get('type_line', ''):
+                continue
+            oracle = face.get('oracle_text', '')
+            produced = list(COLORS) if re.search('mana of any color', oracle, re.I) else sorted(set(re.findall(r'\{([WUBRGC])\}', oracle.split('Add', 1)[-1])))
+            produced.extend(COLORS[i] for i, t in enumerate(TYPES) if re.search(r'\b' + t + r'\b', face['type_line']))
+            alternative_land = {'colors': sorted(set(produced)), 'tapped': bool(re.search('enters.*tapped', oracle, re.I)),
+                                'restricted': bool(re.search('spend this mana|only|unless', oracle, re.I))}
+    reduction = bool(re.search(r'this spell costs .* less to cast|affinity|convoke|delve', text, re.I))
+    reduction_resource = next((kind for kind, pattern in (
+        ('power', r'greatest power'), ('toughness', r'greatest toughness'),
+        ('artifacts', r'affinity for artifacts'), ('creatures', r'\bconvoke\b')) if re.search(pattern, text, re.I)), 'unsupported')
+    defensive = 'defense' in roles or bool(re.search(r'deathtouch', text, re.I)) or power is not None and toughness is not None and toughness >= power + 2
+    if abilities or cycling or alternative_land:
+        roles.append('fixing')
+    return {
+        'status': 'supported' if (symbols or card.get('land') or card.get('basic')) and all(re.fullmatch(r'[0-9WUBRGCXYP/]+', s) for s in symbols) else 'unsupported', 'roles': roles,
+        'symbols': symbols, 'variable': any('X' in s for s in symbols),
+        'mana': {'abilities': abilities, 'cycling': cycling, 'subtypes': subtypes, 'alternativeLand': alternative_land,
+                 'tapped': bool(re.search(r'enters.*tapped', text, re.I)),
+                 'conditional': bool(re.search(r'only|as long as|unless|spend this mana', text, re.I))},
+        'curve': {'nominal': card.get('mv', 0), 'reduction': reduction, 'reductionResource': reduction_resource,
+                  'power':power,'toughness':toughness,'defensive': defensive,
+                  'attacker': bool(card.get('creature') and 'defense' not in roles and (power is None or power > 0))},
+        'synergy': {'status': 'unsupported', 'enablers': {}, 'payoffs': {}},
+        'reference': {'status': 'unsupported'},
+        'provenance': {'kind': 'oracle-pattern-inference', 'version': VERSION,
+                       'limitations': 'Ruoli funzionali e fonti riconosciute; non interpreta tutte le meccaniche o le condizioni.'},
+    }
+
+
+def validate_config(config, ids, plans=None):
+    if not isinstance(config, dict) or config.get('schemaVersion') != 1:
+        raise ValueError('botPolicy: schemaVersion non supportata')
+    if config.get('match', 'BO3') not in ('BO1', 'BO3', 'unknown'):
+        raise ValueError('botPolicy: contesto match non supportato')
+    if not isinstance(config.get('cards', {}), dict) or not set(config.get('cards', {})) <= set(ids):
+        raise ValueError('botPolicy: carta sconosciuta')
+    relations = config.get('relations', [])
+    if not isinstance(relations, list) or any(not isinstance(r, dict) for r in relations) or len({r.get('id') for r in relations}) != len(relations):
+        raise ValueError('botPolicy: relazioni duplicate o non valide')
+    for relation in relations:
+        if not isinstance(relation.get('id'), str) or not relation['id']:
+            raise ValueError('botPolicy: identità relazione mancante')
+        if any(field not in relation for field in ('referenceSupport', 'saturation', 'strength')):
+            raise ValueError('botPolicy: riferimento della relazione mancante')
+        for field in ('referenceSupport', 'referencePayoffs', 'saturation', 'strength', 'threshold', 'resourceBudget'):
+            value = relation.get(field, 0)
+            if type(value) not in (int, float) or not 0 <= value <= 100:
+                raise ValueError('botPolicy: parametro relazione non valido')
+        if relation.get('saturation', 8) < relation.get('referenceSupport', 0):
+            raise ValueError('botPolicy: saturazione inferiore al riferimento')
+    plan_coverage = config.get('planCoverage', {})
+    if not isinstance(plan_coverage, dict) or plans is not None and not set(plan_coverage) <= set(plans):
+        raise ValueError('botPolicy: piano sconosciuto')
+    for state in plan_coverage.values():
+        if not isinstance(state, dict) or state.get('status') not in ('supported', 'not_applicable', 'unsupported') or not isinstance(state.get('provenance'), dict) or not isinstance(state.get('relations', []), list) or not set(state.get('relations', [])) <= {r['id'] for r in relations}:
+            raise ValueError('botPolicy: copertura del piano non valida')
+    for profile in config.get('cards', {}).values():
+        if not isinstance(profile, dict) or not isinstance(profile.get('provenance'), dict):
+            raise ValueError('botPolicy: provenienza profilo mancante')
+        if profile.get('status') not in ('supported', 'unsupported', 'not_applicable'):
+            raise ValueError('botPolicy: stato profilo non valido')
+        if 'roles' in profile and (not isinstance(profile['roles'], list) or any(not isinstance(x, str) for x in profile['roles'])):
+            raise ValueError('botPolicy: ruoli non validi')
+        if 'symbols' in profile and (not isinstance(profile['symbols'], list) or any(not isinstance(s, str) or not re.fullmatch(r'[0-9WUBRGCXYP/]+', s) for s in profile['symbols'])):
+            raise ValueError('botPolicy: simboli non validi')
+        if 'variable' in profile and type(profile['variable']) is not bool:
+            raise ValueError('botPolicy: costo variabile non valido')
+        for key in ('mana', 'curve', 'reference', 'synergy'):
+            if key in profile and not isinstance(profile[key], dict):
+                raise ValueError('botPolicy: descrittore non valido: ' + key)
+        reference = profile.get('reference', {})
+        if reference.get('status') == 'supported' and not isinstance(reference.get('context'), str):
+            raise ValueError('botPolicy: contesto di riferimento mancante')
+        for key in ('support', 'payoffs'):
+            values = reference.get(key, {})
+            if not isinstance(values, dict) or not set(values) <= {r['id'] for r in relations} or any(type(v) not in (int, float) or not 0 <= v <= 100 for v in values.values()):
+                raise ValueError('botPolicy: riferimento per carta non valido')
+        traits = profile.get('synergy', {})
+        if traits and traits.get('status') not in ('supported', 'not_applicable', 'unsupported'):
+            raise ValueError('botPolicy: stato sinergia non valido')
+        mana = profile.get('mana', {})
+        for ability in mana.get('abilities', []):
+            if not isinstance(ability, dict) or not isinstance(ability.get('colors'), list) or any(c not in COLORS + 'C' for c in ability['colors']) or type(ability.get('restricted')) is not bool or not isinstance(ability.get('activation'), str):
+                raise ValueError('botPolicy: abilità di mana non valida')
+        for cycle in mana.get('cycling', []):
+            if cycle.get('kind') not in ('basic', 'subtype') or cycle.get('type') not in ('Basic Land', *TYPES) or not isinstance(cycle.get('cost'), str):
+                raise ValueError('botPolicy: landcycling non valido')
+        for axis in ('enablers', 'payoffs'):
+            values = profile.get('synergy', {}).get(axis, {})
+            if not isinstance(values, dict) or not set(values) <= {r['id'] for r in relations} or any(type(v) not in (int, float) or not 0 <= v <= 100 for v in values.values()):
+                raise ValueError('botPolicy: supporti della relazione non validi')
+
+
+def payload(cards, active, event, config, table_ready, plans=None):
+    profiles = {}
+    for card in cards:
+        if card['id'] not in active:
+            continue
+        profile = describe(card)
+        override = config.get('cards', {}).get(card['id'], {})
+        for key, value in override.items():
+            if key in ('mana', 'curve', 'synergy', 'reference'):
+                profile[key] = {**profile[key], **value}
+            else:
+                profile[key] = value
+        profiles[card['id']] = profile
+    active_cards = [c for c in cards if c['id'] in active]
+    minimum = bool(active_cards) and all(c.get('basic') or (
+        type(c.get('score')) in (int, float) and 0 <= c['score'] <= 5
+        and profiles[c['id']]['status'] == 'supported' and profiles[c['id']].get('roles')
+        and isinstance(profiles[c['id']].get('mana'), dict)) for c in active_cards)
+    relations = config.get('relations', [])
+    plan_coverage = config.get('planCoverage', {})
+    covered = bool(relations) and bool(plans) and all(plan_coverage.get(plan, {}).get('status') in ('supported', 'not_applicable') for plan in plans) and all(
+        p.get('synergy', {}).get('status') in ('supported', 'not_applicable')
+        and p.get('reference', {}).get('status') == 'supported' for p in profiles.values())
+    semantic = {'version': VERSION, 'profiles': {
+        key: {k: ({key: v[key] for key in ('status', 'support', 'payoffs') if key in v} if k == 'reference' else v) for k, v in value.items() if k != 'provenance'} for key, value in profiles.items()},
+        'relations': [{k: r[k] for k in ('id', 'referenceSupport', 'referencePayoffs', 'saturation', 'strength', 'threshold', 'resource', 'resourceBudget') if k in r} for r in relations], 'match': config.get('match', 'BO3'),
+        'plans': {key: {'status': value['status'], 'relations': value.get('relations', [])} for key, value in plan_coverage.items()},
+        'minimum': event['minDeckSize'], 'extraBasics': event.get('extraBasicLands', False),
+        'maxCopies': event.get('maxCopies')}
+    revision = hashlib.sha256(json.dumps(semantic, sort_keys=True, ensure_ascii=True).encode()).hexdigest()
+    missing = []
+    if not table_ready:
+        missing.append('Tavolo non disponibile per questo evento.')
+    if not minimum:
+        missing.append('Voti o profili minimi incompleti sulle stampe attive.')
+    gaps = [] if covered else ['Sinergie contestuali disattivate per tutto l’evento: relazioni o contesti di riferimento incompleti.']
+    gaps.append('Costi ridotti, ruoli e fonti condizionate usano approssimazioni dichiarate, non un simulatore di partita.')
+    root = Path(__file__).resolve().parent
+    algorithm_revision = hashlib.sha256(b'\0'.join((root / name).read_bytes() for name in ('draft-policy.js', 'draft-engine.js'))).hexdigest()
+    return {'schemaVersion': 1, 'inferenceVersion': VERSION, 'revision': revision, 'algorithmRevision': algorithm_revision,
+            'available': bool(table_ready and minimum), 'status': 'experimental',
+            'missing': missing, 'gaps': gaps, 'coverage': {
+                'active': len(active_cards), 'minimum': sum(bool(p.get('roles')) and p['status'] == 'supported' for p in profiles.values()),
+                'synergies': covered,'plans': {plan: plan_coverage.get(plan, {'status':'unsupported'}) for plan in plans or []}}, 'profiles': profiles, 'relations': relations,
+            'match': config.get('match', 'BO3'), 'minDeckSize': event['minDeckSize'],
+            'extraBasicLands': event.get('extraBasicLands', False), 'maxCopies': event.get('maxCopies'),
+            'allowedBasics': list(COLORS) if event.get('extraBasicLands') else [],
+            'defaultEngineVersion': 3, 'exposedAdaptive': False}
+
+FILE draft-engine.js
+'use strict';
+/* Pure engine: no DOM, storage, network or knowledge of other seats' pools. */
+((root) => {
+ const COLORS = [...'WUBRG'];
+ const STRATEGIES = {
+  power: {name:'Potenza pura', description:'Sceglie per valutazione individuale, anche fuori colore. Profilo di confronto che può produrre un pool incoerente.', weights:[1,0,0,0,0,0], temperature:.10},
+  bomb: {name:'Bomba e costruzione attorno', description:'Ricorda la prima bomba e privilegia i suoi colori; cambia piano solo se i segnali compensano il costo.', weights:[1.1,1.4,.8,.5,.6,.3], temperature:.16},
+  signals: {name:'Lettura dei segnali', description:'Resta aperto, segue qualità e colori ricevuti, poi consolida il mazzo.', weights:[1,1,.7,.7,1.6,.6], temperature:.22},
+  force: {name:'Archetipo forzato', description:'Privilegia la coppia di colori scelta prima del draft, anche se contesa.', weights:[.9,2.1,1.3,.7,0,.4], temperature:.12},
+  synergy: {name:'Sinergie e build-around', description:'Cerca supporti degli archetipi già presenti, senza sommare bonus a carte isolate.', weights:[.9,1.1,1.8,.6,.8,.4], temperature:.18},
+  aggro: {name:'Aggro e tempo', description:'Preferisce creature economiche e interazione; corregge gli eccessi della curva.', weights:[1,1.2,.5,1.5,.7,.2], temperature:.18},
+  control: {name:'Controllo e vantaggio', description:'Preferisce risposte e vantaggio carte, conservando un numero utile di creature iniziali.', weights:[1.1,1.2,.6,.9,.8,.4], temperature:.18},
+  fixing: {name:'Fixing e splash', description:'Prende fonti per colori aggiuntivi e accetta una bomba extra solo quando il mana la sostiene.', weights:[1.1,.8,.6,.6,.9,1.8], temperature:.2},
+  denial: {name:'Counterpick ragionato', description:'Deduce colori richiesti dalle carte scomparse al giro. Rinuncia a una giocabile solo tardi e se il costo è basso.', weights:[1,1.3,.6,.8,.8,.5], temperature:.15}
+ };
+ const PHASES = ['esplora','orienta','consolida','completa'];
+ // Rows are base transition masses, adjusted by progress and observed evidence.
+ const TRANSITIONS = [[.68,.30,.02,0],[.08,.67,.25,0],[.02,.08,.84,.06],[0,0,.03,.97]];
+ function rng(seed) {
+  let h=2166136261; for(const ch of String(seed)) h=Math.imul(h^ch.charCodeAt(0),16777619);
+  return () => {h+=0x6D2B79F5;let t=h;t=Math.imul(t^t>>>15,t|1);t^=t+Math.imul(t^t>>>7,t|61);return ((t^t>>>14)>>>0)/4294967296;};
+ }
+ function weighted(groups, random) {
+  if(!groups.length || groups.some(([w])=>!Number.isFinite(w)||w<0)) throw Error('Invalid distribution');
+  const total=groups.reduce((n,[w])=>n+w,0); if(total<=0) throw Error('Empty distribution');
+  let value=random()*total; for(const [w,item] of groups){value-=w;if(value<0)return item;} return groups.at(-1)[1];
+ }
+ const choose=(a,r)=>{if(!a.length)throw Error('Empty card group');return a[Math.floor(r()*a.length)];};
+ function createCollator(format, random) {
+  if(format.collation?.schemaVersion)return (typeof module!=='undefined'?require('./collation.js'):root.Collation).createCollator(format,random);
+  const byId=Object.fromEntries(format.cards.map(c=>[c.id,c])), spec=format.collation;
+  if(!spec)throw Error('Profilo di collazione non disponibile');
+  const resolve=ids=>ids.map(id=>{if(!byId[id])throw Error('Unknown card '+id);return byId[id];});
+  const common=resolve(spec.common),guests=resolve(spec.guests);
+  const branches=Object.fromEntries(Object.entries(spec.slots).map(([slot,groups])=>[slot,groups.map(g=>[g.weight,{cards:resolve(g.cards),foil:g.foil}])]));
+  for(const [name,groups] of Object.entries(branches)) {
+   if(Math.abs(groups.reduce((n,[w])=>n+w,0)-1)>1e-9 || groups.some(([w,g])=>w<0||!g.cards.length)) throw Error('Invalid slot '+name);
+  }
+  const partners={},printedPartners={};
+  for(const [a,b] of spec.pairs){if(!byId[a]||!byId[b]||byId[a].rarity!==byId[b].rarity)throw Error('Invalid pair');printedPartners[a]=b;printedPartners[b]=a;partners[byId[a].full]=byId[b].full;partners[byId[b].full]=byId[a].full;}
+  const draw=(slot,exclude=[])=>{const group=weighted(branches[slot],random);return {card:choose(group.cards.filter(c=>!exclude.includes(c.full)),random),foil:group.foil};};
+  let sequence=0;
+  function pack(){
+   const result=[];const add=(c,slot,foil=false)=>result.push({uid:sequence++,id:c.id,slot,foil});
+   const available=[...common];for(let i=0;i<spec.commonCount;i++)add(available.splice(Math.floor(random()*available.length),1)[0],'common');
+   if(random()<spec.guestRate){result.shift();add(choose(guests,random),'guest');}
+   let pair=[];
+   for(const rule of spec.recipe){
+    const {card,foil}=draw(rule.slot,rule.excludePair?pair.map(c=>c.full):[]);
+    if(rule.paired){const partner=byId[printedPartners[card.id]];if(!partner)throw Error('Missing partner '+card.id);pair=[card,partner];pair.forEach(c=>add(c,'pair',rule.foil||foil));}
+    else add(card,rule.slot,rule.foil||foil);
+   }
+   if(result.length!==format.packSize)throw Error('Invalid pack size');return result;
+  }
+  return {pack,branches,partners};
+ }
+ function botState(strategy='signals',target=null) {
+  if(!STRATEGIES[strategy]&&strategy!=='adaptive')throw Error('Unknown strategy');
+  if(strategy==='force'&&(!/^[WUBRG]{1,5}$/.test(target||'')||new Set(target).size!==target.length))throw Error('Choose an archetype');
+  return {strategy,target,pool:[],phase:0,anchor:null,lane:target,signals:{},demand:Object.fromEntries(COLORS.map(c=>[c,0])),seen:{},log:[]};
+ }
+ function createEvaluator(format,engineVersion=3) {
+  if(engineVersion===4)return (typeof module!=='undefined'?require('./draft-policy.js'):root.DraftPolicy).create(format);
+  if(![2,3].includes(engineVersion))throw Error('Versione del motore non supportata');
+  const modern=engineVersion===3;
+  const byId=Object.fromEntries(format.cards.map(c=>[c.id,c])), archetypes=Object.keys(format.archetypes);
+  if(!archetypes.length)throw Error('Archetipi non disponibili');
+  const at=n=>format.rounds*format.packSize*n/42;
+  const rating=c=>c.basic?0:(c.score??2.5);
+  // Mana symbols, rather than color identity, determine whether a hybrid spell
+  // needs a splash. This remains a draft heuristic, not a mana-payment engine.
+  function missingColors(c,lane){
+   const symbols=[...(c.cost||'').matchAll(/\{([^}]+)\}/g)].map(m=>m[1]);
+   const colored=symbols.filter(s=>/[WUBRG]/.test(s));
+   if(!colored.length)return c.colors.filter(x=>!lane.includes(x));
+   return [...new Set(colored.flatMap(s=>{
+    const choices=s.split('/').filter(x=>COLORS.includes(x));
+    return choices.some(x=>lane.includes(x))||s.split('/').some(x=>/^\d+$/.test(x))?[]:choices;
+   }))];
+  }
+  const fits=(c,lane)=>modern?missingColors(c,lane).length===0:c.colors.every(x=>lane.includes(x));
+  function manaColors(c){
+   const text=c.oracle||'';
+   if(/mana of any color|basic landcycling|search your library for a basic land/i.test(text))return COLORS;
+   if(c.land)return c.identity;
+   const cycling=['Plains','Island','Swamp','Mountain','Forest'].flatMap((type,i)=>new RegExp('\\b'+type+'cycling\\b','i').test(text)?[COLORS[i]]:[]);
+   const produced=[...text.matchAll(/\badd ([^.\n]+)/gi)].flatMap(m=>[...m[1].matchAll(/\{([WUBRG])\}/g)].map(x=>x[1]));
+   return [...new Set([...cycling,...produced])];
+  }
+  function observe(bot,pack,round,pick) {
+   const sig=bot.signals[round]??=Object.fromEntries(COLORS.map(c=>[c,0]));
+   // The same packet has the same minimum UID. Track its route independently.
+   const key=pack.packetId, previous=bot.seen[key];
+   if(previous){const now=new Set(pack.cards.map(e=>e.uid));for(const old of previous){if(!now.has(old.uid)){const c=byId[old.id];for(const color of c.colors)bot.demand[color]+=(Math.max(0,rating(c)-2)/Math.max(1,c.colors.length));}}}
+   for(const color of COLORS){const strengths=pack.cards.map(e=>byId[e.id]).filter(c=>c.colors.includes(color)&&!c.land).map(rating);const strength=Math.max(0,...strengths)-2.5;sig[color]=sig[color]*.78+Math.max(0,strength)*Math.min(1,(pick-1)/5);}
+  }
+  function context(bot,round) {
+   const pool=bot.pool.map(e=>byId[e.id]);const sig=bot.signals[round]||{};
+   const support=Object.fromEntries(archetypes.map(a=>[a,pool.reduce((n,c)=>n+(!c.land&&fits(c,a)?Math.max(0,rating(c)-1.5):0)+(c.archetypes.includes(a)&&(!modern||fits(c,a))?.7:0),0)]));
+   const lanes=archetypes.map(a=>[support[a]+[...a].reduce((n,c)=>n+(sig[c]||0)*STRATEGIES[bot.strategy].weights[4],0),a]).sort((a,b)=>b[0]-a[0]);
+   let lane=bot.target||lanes[0][1];
+   if(bot.strategy==='bomb'&&bot.anchor){const anchored=lanes.find(([,a])=>fits(byId[bot.anchor],a));if(anchored){lane=lanes[0][0]>anchored[0]+6?lanes[0][1]:anchored[1];}}
+   if(!bot.target&&bot.phase>=2&&bot.lane){const prior=lanes.find(([,a])=>a===bot.lane);if(prior&&lanes[0][0]<prior[0]+3)lane=bot.lane;}
+   // Equally supported pairs stay open. Their order in the JSON must not give
+   // one color a curve or synergy bonus before the bot has any evidence.
+   if(!modern)return {pool,sig,lane,support,lanes};
+   const supportedColors=new Set(pool.filter(c=>!c.land&&fits(c,lane)).flatMap(c=>[...(c.cost||'').matchAll(/\{([WUBRG])\}/g)].map(m=>m[1])));
+   const keepLane=bot.target||(bot.phase>=2&&supportedColors.size>=2);
+   const laneValue=lanes.find(([,a])=>a===lane)[0];
+   const anchored=bot.strategy==='bomb'&&bot.anchor&&fits(byId[bot.anchor],lane);
+   const options=keepLane?[lane]:lanes.filter(([value,a])=>value>=laneValue-.25&&(!anchored||fits(byId[bot.anchor],a))).map(([,a])=>a);
+   return {pool,sig,lane,support,lanes,options};
+  }
+  function rankModern(bot,pack,round,pick,random,transition){
+   const profile=STRATEGIES[bot.strategy],ctx=context(bot,round),n=bot.pool.length;
+   if(transition){
+    const masses=[...TRANSITIONS[bot.phase]];
+    if(n<at(3)){masses[0]+=2;masses[2]=0;masses[3]=0;}
+    if(n>=at(7))masses[1]+=.5;
+    if(n>=at(14))masses[2]+=1.5;
+    if(n>=at(5)&&ctx.lanes[0][0]-(ctx.lanes[1]?.[0]??0)>3)masses[2]+=.8;
+    if(bot.phase>=2&&bot.lane&&ctx.lane!==bot.lane)masses[1]+=.8;
+    if(n>=at(28))masses[3]+=4;
+    if(n<at(26))masses[3]=0;
+    bot.phase=weighted(masses.map((w,i)=>[w,i]),random);
+   }
+   const commitment=bot.strategy==='force'?1.5:n===0?0:[.08,.65,1.3,1.65][bot.phase];
+   const removal=c=>/rimozione|risposta|contromagia/i.test(c.role);
+   const sources=manaColors;
+   const playable=(c,lane)=>!c.land&&fits(c,lane);
+   function evaluate(entry,lane){
+    const c=byId[entry.id],off=missingColors(c,lane),own=ctx.pool.filter(x=>playable(x,lane));
+    const available=color=>ctx.pool.filter(x=>sources(x).includes(color)).length;
+    const splash=bot.strategy==='fixing'&&off.length===1&&available(off[0])>=2&&
+     [...(c.cost||'').matchAll(/\{([^}]+)\}/g)].filter(m=>m[1].split('/').includes(off[0])).length<=1;
+    const on=c.land?sources(c).some(x=>lane.includes(x)):off.length===0;
+    const fit=c.basic?-2:(on?1:splash?-.2:-1-off.length)*commitment;
+    // Archetype membership is evidence of a shared plan, not proof that every
+    // copy is another enabler. Duplicate copies cannot inflate this bonus.
+    const distinctSupport=new Set(own.filter(x=>x.full!==c.full&&x.archetypes.includes(lane)).map(x=>x.full)).size;
+    const synergy=playable(c,lane)&&c.archetypes.includes(lane)?Math.min(.35,distinctSupport*.07):0;
+    let curve=0;
+    const cheap=x=>x.creature&&x.mv<=2&&!/\{X\}/.test(x.cost||'');
+    if(n&&playable(c,lane)){
+     const cheapCount=own.filter(cheap).length;
+     if(cheap(c))curve+=cheapCount<6?.25:-.15;
+     if(c.creature&&own.filter(x=>x.creature&&Math.min(6,x.mv)===Math.min(6,c.mv)).length>=5)curve-=.2;
+     // An expensive activated answer is not an efficient removal spell merely
+     // because the editorial role contains the word "rimozione".
+     if(!c.creature&&removal(c)&&own.filter(x=>!x.creature&&removal(x)).length<5)curve+=.15;
+     if(bot.strategy==='aggro')curve+=c.creature&&c.mv<=3&&!/\{X\}/.test(c.cost||'')?.15:c.mv>=5?-.15:0;
+     if(bot.strategy==='control')curve+=!c.creature&&removal(c)?.15:/pesca|vantaggio|difens/i.test(c.role)?.1:0;
+    }
+    const signal=c.colors.reduce((s,x)=>s+(ctx.sig[x]||0),0)/Math.max(1,c.colors.length)*.12;
+    const offBombs=ctx.pool.filter(x=>rating(x)>=4&&!fits(x,lane));
+    const useful=sources(c).some(color=>lane.includes(color)||offBombs.some(b=>missingColors(b,lane).includes(color)));
+    const mana=useful&&!c.basic?.15:0;
+    const components={potenza:rating(c)*profile.weights[0],colori:fit*profile.weights[1],sinergia:synergy*profile.weights[2],curva:curve*profile.weights[3],segnali:signal*profile.weights[4],mana:mana*profile.weights[5]};
+    // Tactical preferences break close choices. Their combined bonus cannot
+    // erase a full point of card quality on the same weighted rating scale.
+    const keys=['sinergia','curva','segnali','mana'];
+    const positive=keys.reduce((s,k)=>s+Math.max(0,components[k]),0),negative=keys.reduce((s,k)=>s+Math.min(0,components[k]),0);
+    for(const key of keys)components[key]*=components[key]>=0?(positive>.45?.45/positive:1):(negative<-.2?-.2/negative:1);
+    return {entry,components,score:Object.values(components).reduce((a,b)=>a+b,0),playable:playable(c,lane),card:c,lane};
+   }
+   const scores=pack.map(entry=>ctx.options.map(lane=>evaluate(entry,lane)).sort((a,b)=>b.score-a.score)[0]);
+   const bestOwnPower=Math.max(0,...scores.filter(s=>s.playable).map(s=>rating(s.card)));
+   if(bot.strategy==='denial'&&n>=at(21)&&pick>=Math.ceil(format.packSize/format.picksPerTurn)/2&&bestOwnPower<=2.7){
+    for(const s of scores)if(!s.playable&&rating(s.card)>=3.5){const demand=Math.max(0,...s.card.colors.map(x=>bot.demand[x]));if(demand>=2){s.components.colori=0;s.components.negazione=Math.min(1.5,demand*.15);s.components.costoFuoriColore=-.6;s.score=Object.values(s.components).reduce((a,b)=>a+b,0);}}
+   }
+   scores.sort((a,b)=>b.score-a.score||a.entry.uid-b.entry.uid);
+   return {scores,ctx};
+  }
+  function rank(bot,pack,round,pick,random,transition=true) {
+   if(modern)return rankModern(bot,pack,round,pick,random,transition);
+   const profile=STRATEGIES[bot.strategy];const ctx=context(bot,round);const n=bot.pool.length;
+   if(transition){
+    const masses=[...TRANSITIONS[bot.phase]];
+    if(n<at(3)){masses[0]+=2;masses[2]=0;masses[3]=0;}
+    if(n>=at(7))masses[1]+=.5;
+    if(n>=at(14))masses[2]+=1.5;
+    if(n>=at(5)&&ctx.lanes[0][0]-(ctx.lanes[1]?.[0]??0)>3)masses[2]+=.8;
+    if(bot.phase>=2&&bot.lane&&ctx.lane!==bot.lane)masses[1]+=.8;
+    if(n>=at(28))masses[3]+=4;
+    if(n<at(26))masses[3]=0;
+    bot.phase=weighted(masses.map((w,i)=>[w,i]),random);
+   }
+   const commitment=bot.strategy==='force'?1.5:n===0?0:[.08,.65,1.3,1.65][bot.phase];
+   const colors=ctx.lane;const playable=c=>!c.land&&c.colors.every(x=>colors.includes(x));
+   const own=ctx.pool.filter(playable), cheap=own.filter(c=>c.creature&&c.mv<=2).length;
+   const removal=c=>/rimozione|risposta|contromagia/i.test(c.role);
+   const fixing=c=>c.land&&!c.basic||/landcycling|mana of any color|search your library for a basic land/i.test(c.oracle);
+   const supportCount=ctx.pool.filter(c=>c.archetypes.includes(colors)).length;
+   const scores=pack.map(entry=>{
+    const c=byId[entry.id], off=c.colors.filter(x=>!colors.includes(x));
+    const sources=c.land?(/mana of any color/i.test(c.oracle)?COLORS:c.identity):[];
+    const on=c.land?(sources.some(x=>colors.includes(x))?1:0):c.colors.length?1-off.length/c.colors.length:1;
+    const manaSources=color=>ctx.pool.filter(c=>(c.land&&c.identity.includes(color))||/mana of any color/i.test(c.oracle)).length;
+    const splashAllowed=bot.strategy==='fixing'&&off.length===1&&manaSources(off[0])>=2&&(c.cost.match(new RegExp('\\{'+off[0]+'\\}','g'))||[]).length<=1;
+    const power=rating(c), fit=c.basic?-2:((on-.5)*2-off.length*(splashAllowed?.2:1))*commitment;
+    const synergy=c.archetypes.includes(colors)?Math.min(1.8,supportCount*.18):0;
+    let curve=0;
+    if(playable(c)){
+     if(c.creature&&c.mv<=2)curve+=(cheap<6?.8:-.3);
+     if(c.creature&&ctx.pool.filter(x=>playable(x)&&x.creature&&Math.min(6,x.mv)===Math.min(6,c.mv)).length>=5)curve-=.8;
+     if(removal(c)&&own.filter(removal).length<5)curve+=.5;
+     if(bot.strategy==='aggro')curve+=c.creature&&c.mv<=3?1:c.mv>=5?-1:0;
+     if(bot.strategy==='control')curve+=removal(c)?1:/pesca|vantaggio|difens/i.test(c.role)?.7:0;
+    }
+    const signal=c.colors.reduce((s,x)=>s+(ctx.sig[x]||0),0)/Math.max(1,c.colors.length)*.4;
+    const offBombs=ctx.pool.filter(x=>rating(x)>=4&&x.colors.some(y=>!colors.includes(y)));
+    const usefulFixing=fixing(c)&&(!c.land||sources.some(x=>colors.includes(x)||offBombs.some(b=>b.colors.includes(x))));
+    const mana=usefulFixing?Math.min(1.2,.3+offBombs.filter(b=>!c.land||sources.some(x=>b.colors.includes(x))).length*.3):0;
+    const components={potenza:power*profile.weights[0],colori:fit*profile.weights[1],sinergia:synergy*profile.weights[2],curva:curve*profile.weights[3],segnali:signal*profile.weights[4],mana:mana*profile.weights[5]};
+    return {entry,components,score:Object.values(components).reduce((a,b)=>a+b,0),playable:playable(c),card:c};
+   });
+   const bestOwnPower=Math.max(0,...scores.filter(s=>s.playable).map(s=>rating(s.card)));
+   if(bot.strategy==='denial'&&n>=at(21)&&pick>=Math.ceil(format.packSize/format.picksPerTurn)/2&&bestOwnPower<=2.7){for(const s of scores){if(!s.playable&&rating(s.card)>=3.5){const demand=Math.max(0,...s.card.colors.map(x=>bot.demand[x]));if(demand>=2){const denial=Math.min(1.5,demand*.15);s.score-=s.components.colori;s.components.colori=0;s.components.negazione=denial;s.components.costoFuoriColore=-.6;s.score+=denial-.6;}}}}
+   scores.sort((a,b)=>b.score-a.score||a.entry.uid-b.entry.uid);
+   return {scores,ctx};
+  }
+  function take(bot,pack,round,pick,random){
+   observe(bot,pack,round,pick);
+   const {scores,ctx}=rank(bot,pack.cards,round,pick,random);
+   const max=scores[0].score;
+   const candidates=modern?scores.filter(s=>s.score>=max-.2):scores;
+   const selected=weighted(candidates.map(s=>[Math.exp((s.score-max)/STRATEGIES[bot.strategy].temperature),s]),random);
+   bot.lane=modern?selected.lane:ctx.lane;bot.pool.push(selected.entry);
+   if(!bot.anchor&&rating(selected.card)>=4&&!selected.card.land)bot.anchor=selected.entry.id;
+   bot.seen[pack.packetId]=pack.cards.filter(e=>e.uid!==selected.entry.uid).map(e=>({...e}));
+   bot.log.push({round,pick,packetId:pack.packetId,id:selected.entry.id,uid:selected.entry.uid,phase:PHASES[bot.phase],lane:bot.lane,components:selected.components,score:selected.score,alternatives:scores.slice(0,3).map(s=>({id:s.entry.id,score:s.score})),observed:pack.cards.map(e=>e.id)});
+   return selected.entry;
+  }
+  return {byId,rating,observe,context,rank,take};
+ }
+ function createSession(format,seed,configs,engineVersion=3,options={}){
+  if(![2,3,4].includes(engineVersion))throw Error('Versione del motore non supportata');
+  if(typeof seed!=='string'||seed.length>200)throw Error('Seme non valido');
+  const policyOptions=engineVersion===4?{match:options.match??format.botPolicy?.match??'BO3',deterministic:options.deterministic??false}:{};
+  if(engineVersion===4&&(!['BO1','BO3','unknown'].includes(policyOptions.match)||typeof policyOptions.deterministic!=='boolean'))throw Error('Opzioni della politica non valide');
+  if(!Number.isInteger(format.picksPerTurn)||format.picksPerTurn<1||!Number.isInteger(format.seats)||format.seats<2||format.directions.length!==format.rounds||format.directions.some(x=>x!==1&&x!==-1))throw Error('Regole del Draft non valide');
+  if(!Array.isArray(configs)||configs.length!==format.seats-1)throw Error('Invalid bot count');
+  for(const c of configs)if(!c||(!STRATEGIES[c.strategy]&&!(engineVersion===4&&c.strategy==='adaptive'))||(c.strategy==='force'&&!format.archetypes[c.target]))throw Error('Invalid bot configuration');
+  const random=rng(seed),collator=createCollator(format,random),evaluator=createEvaluator(format,engineVersion);
+  const bots=configs.map(c=>botState(c.strategy,c.target));
+  const rounds=Array.from({length:format.rounds},(_,round)=>Array.from({length:format.seats},(_,seat)=>({packetId:round*format.seats+seat,cards:collator.pack()})));
+  let packets=rounds[0],round=0,pick=0,pending=[];const human=[],log=[];
+  const current=()=>round<format.rounds?packets[0].cards:[];
+  function step(uid){
+   if(round>=format.rounds)throw Error('Draft completo');
+   const entry=current().find(e=>e.uid===uid);if(!entry)throw Error('Carta non presente');
+   human.push(entry);log.push({round:round+1,pick:pick+1,entry});
+   pending.push(entry);packets[0].cards=packets[0].cards.filter(e=>e.uid!==uid);
+   if(pending.length<format.picksPerTurn&&packets[0].cards.length)return entry;
+   for(let i=0;i<bots.length;i++){
+    const packet=packets[i+1];
+    if(engineVersion===4){
+     const choices=evaluator.takeGroup(bots[i],packet,round+1,pick+1,pending.length,
+      rng(seed+'\0v4|'+(i+1)+'|'+round+'|'+pick+'|group'),policyOptions);
+     const chosen=new Set(choices.map(e=>e.uid));packet.cards=packet.cards.filter(e=>!chosen.has(e.uid));continue;
+    }
+    for(let n=0;n<pending.length;n++){
+     const selected=evaluator.take(bots[i],packet,round+1,pick+1,random);
+     packet.cards=packet.cards.filter(e=>e.uid!==selected.uid);
+    }
+   }
+   pending=[];
+   pick++;
+   if(packets.every(p=>!p.cards.length)){round++;pick=0;packets=rounds[round]||[];}
+   else{const rotated=Array(format.seats);packets.forEach((p,i)=>rotated[(i+format.directions[round]+format.seats)%format.seats]=p);packets=rotated;}
+   return entry;
+  }
+  return {format,seed,configs,bots,human,log,current,step,engineVersion,policyOptions,get packetId(){return packets[0]?.packetId;},get round(){return round+1;},get pick(){return pick+1;},get complete(){return round>=format.rounds;},export(){return {version:engineVersion===4?3:2,engineVersion,format:format.id,revision:format.revision,seed,configs,picks:log.map(x=>x.entry.uid),
+   ...(engineVersion===4?{policyRevision:format.botPolicy.revision,algorithmRevision:format.botPolicy.algorithmRevision,randomSchema:'seat-pick-v1',options:policyOptions}:{})};}};
+ }
+ function replay(format,record){
+  if(record?.version===3){
+   if(record.engineVersion!==4||record.policyRevision!==format.botPolicy?.revision||typeof record.algorithmRevision!=='string'||record.algorithmRevision!==format.botPolicy?.algorithmRevision||record.randomSchema!=='seat-pick-v1'||record.revision!==format.revision||record.format!==format.id||typeof record.seed!=='string'||record.seed.length>200||!record.options||!['BO1','BO3','unknown'].includes(record.options.match)||typeof record.options.deterministic!=='boolean'||!Array.isArray(record.picks)||record.picks.length>format.rounds*format.packSize||record.picks.some(x=>!Number.isInteger(x)))throw Error('Salvataggio v4 incompatibile con i dati funzionali');
+   const session=createSession(format,record.seed,record.configs,4,record.options);record.picks.forEach(uid=>session.step(uid));return session;
+  }
+  if(!record||(record.version===1?!format.legacyReplay:record.version!==2||![2,3].includes(record.engineVersion)||(record.revision!==format.revision&&!(format.compatibleRevisions||[]).includes(record.revision)))||record.format!==format.id||typeof record.seed!=='string'||record.seed.length>200||!Array.isArray(record.picks)||record.picks.length>format.rounds*format.packSize||record.picks.some(x=>!Number.isInteger(x)))throw Error('Salvataggio non valido o riferito a un profilo differente');
+  const session=createSession(format,record.seed,record.configs,record.version===1?2:record.engineVersion);record.picks.forEach(uid=>session.step(uid));return session;
+ }
+ const api={STRATEGIES,PHASES,TRANSITIONS,rng,weighted,createCollator,botState,createEvaluator,createSession,replay};
+ if(typeof module!=='undefined')module.exports=api;else root.DraftEngine=api;
+})(globalThis);
+
+FILE draft-table.js
+'use strict';
+(() => {
+ const rootData=JSON.parse(document.getElementById('draft-data').textContent),requestedEvent=new URLSearchParams(location.search).get('event');
+ const eventId=rootData.formats&&Object.hasOwn(rootData.formats,requestedEvent)?requestedEvent:(rootData.defaultEvent||'draft');
+ const data=rootData.formats?.[eventId]||rootData,E=DraftEngine,$=id=>document.getElementById(id);
+ const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+ $('format').innerHTML=Object.entries(rootData.formats||{draft:rootData}).map(([id,f])=>`<option value="${esc(id)}">${esc(f.name)}</option>`).join('')+(rootData.unavailableFormats||[]).map(f=>`<option disabled>${esc(f.name)}: non disponibile</option>`).join('');
+ const unavailable=document.createElement('div');unavailable.id='unavailable-formats';unavailable.innerHTML=(rootData.unavailableFormats||[]).length?`<details><summary>Altri eventi e set: dati da completare</summary>${rootData.unavailableFormats.map(f=>`<p>${esc(f.name)}: non disponibile. Occorre completare:</p><ul>${(f.missing||[]).map(reason=>`<li>${esc(reason)}</li>`).join('')}</ul>`).join('')}</details>`:'';$('format').closest('.settings').after(unavailable);$('format').setAttribute('aria-describedby',unavailable.id);
+ $('format').value=rootData.formats?.[eventId]?eventId:(rootData.defaultEvent||'draft');
+ $('format').addEventListener('change',()=>{const url=new URL(location.href);url.searchParams.set('event',$('format').value);location.href=url.href;});
+
+ if(data.summary)$('event-summary').textContent=data.summary;
+ if(data.intro)document.querySelector('.draft-intro p:last-child').textContent=data.intro;
+ const evaluator=E.createEvaluator(data),byId=evaluator.byId,key=EXPANSION_CONFIG.storage.draftTable+(eventId==='draft'?'':'-'+eventId);
+ const policyControls=document.createElement('div');policyControls.className='settings';
+ policyControls.innerHTML='<label>Avversari<select id="policy-version"><option value="3">Bot classici</option><option value="4"'+(data.botPolicy?.available?'':' disabled')+'>Bot contestuali (sperimentali)</option></select></label><label id="match-wrap" hidden>Partite previste<select id="policy-match"><option value="BO3">Al meglio di tre</option><option value="BO1">Partita singola</option><option value="unknown">Non definite: valuta solo il main</option></select></label>';
+ $('bot-configs').before(policyControls);const policyInfo=document.createElement('p');policyInfo.id='policy-info';policyInfo.setAttribute('role','status');policyControls.after(policyInfo);
+ function policyDescription(){const modern=$('policy-version').value==='4';$('match-wrap').hidden=!modern;
+  policyInfo.textContent=modern?'Valutano il mazzo costruibile, il mana e i segnali ricevuti. '+(data.botPolicy.gaps||[]).join(' '):'Profili di allenamento classici. I draft già salvati conservano la politica con cui sono iniziati.';
+  if(!data.botPolicy?.available)policyInfo.textContent+=' Bot contestuali non disponibili: '+(data.botPolicy?.missing||['Profili strategici da completare.']).join(' ');
+ }
+ $('policy-match').value=data.botPolicy?.match||'BO3';$('policy-version').addEventListener('change',policyDescription);policyDescription();
+ let session=null,saved=null,storageAvailable=true,incompatibleRaw=null,backupKey=null,recoveryURL=null;
+ const strategies=['signals','bomb','synergy','aggro','control','fixing','denial'];
+ const defaults=Array.from({length:data.seats-1},(_,i)=>strategies[i%strategies.length]);
+ $('draft-meter').max=data.rounds*data.packSize;
+ const options=Object.entries(E.STRATEGIES).map(([id,p])=>`<option value="${id}">${p.name}</option>`).join('');
+ $('bot-configs').innerHTML=defaults.map((strategy,i)=>`<div class="bot-config"><h3>Posto ${i+2} · Bot ${i+1}</h3><label>Strategia<select data-strategy="${i}">${options}</select></label><label data-target-wrap="${i}" hidden>Archetipo da forzare<select data-target="${i}">${Object.entries(data.archetypes).map(([id,a])=>`<option value="${id}">${esc(a.name)} · ${esc(a.theme)}</option>`).join('')}</select></label><p data-description="${i}"></p></div>`).join('');
+ function configDescription(i){const value=document.querySelector(`[data-strategy="${i}"]`).value;document.querySelector(`[data-target-wrap="${i}"]`).hidden=value!=='force';document.querySelector(`[data-description="${i}"]`).textContent=E.STRATEGIES[value].description;}
+ defaults.forEach((value,i)=>{const s=document.querySelector(`[data-strategy="${i}"]`);s.value=value;s.addEventListener('change',()=>configDescription(i));configDescription(i);});
+ const ref=id=>`<button class="card-ref" data-preview="${esc(id)}">${esc(byId[id].name)}</button>`;
+ const named=name=>{const card=data.cards.find(c=>c.name===name||c.full===name);if(!card)return esc(name);return ref(card.id);};
+ const example=id=>esc(data.ui?.botExamples?.[id]||'Esempio strategico non ancora disponibile.').replace(/\[\[([^\]]+)\]\]/g,(_,name)=>named(name));
+ $('strategies').innerHTML=Object.entries(E.STRATEGIES).map(([id,s])=>`<article><h3>${s.name}</h3><p>${s.description}</p><p class="example">${example(id)}</p></article>`).join('');
+ $('assumptions').innerHTML='<ul>'+data.assumptions.map(s=>`<li>${esc(s)}</li>`).join('')+'</ul>';
+ const collator=E.createCollator(data,E.rng('method'));
+ $('collation').innerHTML=data.collation.recipe.map(rule=>{
+  const groups=collator.branches[rule.id], count=rule.count||1;
+  const operation=rule.op==='replace'?`Sostituisce ${esc(rule.target)} con probabilità ${(rule.chance*100).toLocaleString('it',{maximumFractionDigits:4})}%`:rule.op==='pair'?`${count} coppia/e garantita/e`:`${count} carta/e`;
+  const restrictions=[rule.unique?'senza ripetizioni':'',...(rule.exclude||[]).map(id=>'diversa da '+id)].filter(Boolean).join(' · ');
+  return `<details><summary>Slot ${esc(rule.id)} · ${operation}</summary><p>${esc(restrictions)}</p><p>Pesi condizionati all’estrazione di questo slot:</p><ul>${groups.map(([w,g])=>{const cards=Array.isArray(g)?g:g.cards;return `<li>${(w*100).toLocaleString('it',{maximumFractionDigits:4})}% · ${cards.length} stampe · ${esc([...new Set(cards.map(c=>c.rarity))].join('/'))}${g.foil?' · foil':''}</li>`;}).join('')}</ul></details>`;
+ }).join('');
+ function recovery(raw){if(recoveryURL)URL.revokeObjectURL(recoveryURL);recoveryURL=URL.createObjectURL(new Blob([raw],{type:'application/json'}));}
+ function status(message){for(const id of ['save-status','draft-status']){const node=$(id);node.textContent=message;if(recoveryURL){const link=document.createElement('a');link.href=recoveryURL;link.download='draft-'+EXPANSION_CONFIG.id+'-precedente.json';link.textContent=' Scarica il salvataggio precedente';node.append(link);}}}
+ let raw=null,storageReadable=true;
+ try{raw=localStorage.getItem(key);}catch{storageAvailable=false;storageReadable=false;status('Memoria del browser non accessibile: sessione temporanea. Usa Esporta sessione prima di chiudere.');}
+ if(storageReadable)try{if(raw!==null){incompatibleRaw=raw;const record=JSON.parse(raw);E.replay(data,record);saved=record;incompatibleRaw=null;backupKey=record.previousSaveKey||null;if(backupKey){try{const previous=localStorage.getItem(backupKey);if(previous!==null)recovery(previous);}catch{}}$('resume').hidden=false;status('Hai un draft salvato in questo browser.');}}catch{if(incompatibleRaw!==null)recovery(incompatibleRaw);status('Salvataggio precedente non leggibile. Prima di salvare un nuovo draft ne conserveremo una copia separata.');}
+ function persist(){if(!storageReadable){status('Memoria del browser non accessibile: sessione temporanea. Usa Esporta sessione prima di chiudere.');return;}try{
+  if(incompatibleRaw!==null){
+   backupKey=key+'-incompatible-'+Date.now()+'-'+Math.random().toString(36).slice(2);
+   localStorage.setItem(backupKey,incompatibleRaw);
+   if(localStorage.getItem(backupKey)!==incompatibleRaw)throw Error('Backup non riuscito');
+   incompatibleRaw=null;
+  }
+  const record=session.export();if(backupKey)record.previousSaveKey=backupKey;localStorage.setItem(key,JSON.stringify(record));saved=record;storageAvailable=true;
+  status('Draft salvato in questo browser.'+(backupKey?' Il salvataggio precedente è conservato separatamente.':''));
+ }catch{storageAvailable=false;status('Salvataggio non disponibile: usa Esporta sessione.'+(saved||backupKey||incompatibleRaw!==null?' Il salvataggio precedente è conservato.':' La sessione resta temporanea.'));}}
+ function render(){
+  $('setup').hidden=true;$('table').hidden=false;$('review').hidden=!session.complete;
+  $('progress').textContent=session.complete?'Draft completato':`Busta ${session.round}/${data.rounds} · Pick ${session.pick}/${Math.ceil(data.packSize/data.picksPerTurn)}`;
+  $('draft-meter').value=session.human.length;
+  $('draft-meter').setAttribute('aria-valuetext', `${session.human.length} carte su ${data.rounds*data.packSize}`);
+  $('direction').textContent=session.complete?'Tutte le pick sono visibili nella revisione del tavolo.':`Passaggio a ${data.directions[session.round-1]===1?'sinistra':'destra'} · ${session.current().length} carte rimaste`;
+  $('pack').innerHTML=session.current().map(e=>{const c=byId[e.id];return `<article class="draft-card"><button class="art" data-preview="${c.id}" aria-label="Anteprima ${esc(c.name)}"><img src="${esc(c.image)}" alt="${esc(c.name)}" loading="lazy"></button>${ref(c.id)}<small>${esc(c.rarity)}${e.foil?' · foil':''} · ${esc(e.slot)}</small><button class="pick" data-pick="${e.uid}" aria-label="Scegli ${esc(c.name)}">Scegli</button></article>`;}).join('');
+  $('pool-count').textContent=`(${session.human.length})`;
+  const grouped=new Map();session.human.forEach(e=>grouped.set(e.id,(grouped.get(e.id)||0)+1));
+  $('human-pool').innerHTML=[...grouped].map(([id,n])=>`<span>${n} × ${ref(id)}</span>`).join('');
+  if(session.complete)renderReview();
+ }
+ function renderReview(){
+  const bot=session.bots[+$('review-seat').value];let deck='';
+  if(session.engineVersion===4){const built=E.createEvaluator(data,4).bestBuild(bot.pool,bot.lane,bot.strategy,{remaining:0,match:session.policyOptions.match});
+   deck=`<details><summary>Mazzo costruibile: ${built.slots}/${built.targetSize} carte</summary><p>${built.spells.length} magie. Fonti per colore al turno ${built.sourceTurn}: ${Object.entries(built.sources).filter(([,n])=>n>0).map(([c,n])=>`${esc(c)} ${n.toFixed(1)}`).join(' · ')}. Le fonti indirette hanno un peso approssimato.</p><p>${built.spells.map(e=>ref(e.id)).join(', ')}</p><p>Riserve per sideboard: ${built.sideboard.map(e=>ref(e.id)).join(', ')||'nessuna classificata'}</p><p>${esc(built.assumptions.join(' '))}</p></details>`;
+  }
+  $('bot-review').innerHTML=`<p>${esc(E.STRATEGIES[bot.strategy]?.name||'Adattivo')} · ${esc(bot.lane)} · ${bot.pool.length} carte</p>${deck}`+bot.log.map(item=>`<div class="review-pick">B${item.round} P${item.pick}: ${ref(item.id)}<p>${esc(item.phase)} · ${esc(item.lane)} · punteggio ${item.score.toFixed(2)}. ${Object.entries(item.components).map(([k,v])=>`${esc(k)} ${v.toFixed(2)}`).join(' · ')}</p>${item.reasons?`<p>${esc(item.reasons.join(' '))}</p><p>Migliore stimata: ${ref(item.bestId)}. ${item.joint?'Scelta valutata insieme alle altre carte dello stesso turno.':item.randomized?'Sorteggio fra alternative considerate equivalenti.':'Scelta della migliore valutazione stimata.'}</p>`:''}<p>Alternative valutate: ${item.alternatives.filter(a=>a.id!==item.id).map(a=>`${ref(a.id)} (${a.score.toFixed(2)})`).join(', ')||'nessuna'}</p>${item.poolBefore?`<details><summary>Busta, pool precedente e conseguenze</summary><p>Busta osservata: ${item.observed.map(ref).join(', ')}</p><p>Pool precedente: ${item.poolBefore.map(e=>ref(e.id)).join(', ')||'vuoto'}</p><p>Carte sostituite nel main: ${(item.replaces||[]).map(ref).join(', ')||'nessuna'}</p><p>${esc((item.gaps||[]).join(' '))}</p></details>`:''}</div>`).join('');
+ }
+ $('review-seat').innerHTML=defaults.map((_,i)=>`<option value="${i}">Bot ${i+1} · posto ${i+2}</option>`).join('');$('review-seat').addEventListener('change',renderReview);
+ $('start').addEventListener('click',()=>{const configs=defaults.map((_,i)=>{const strategy=document.querySelector(`[data-strategy="${i}"]`).value;return {strategy,target:strategy==='force'?document.querySelector(`[data-target="${i}"]`).value:null};});session=E.createSession(data,$('seed').value||EXPANSION_CONFIG.id+'-tavolo-1',configs,+$('policy-version').value,{match:$('policy-match').value});persist();render();$('progress').focus();});
+ $('resume').addEventListener('click',()=>{try{session=E.replay(data,saved);status('Sessione ripresa dal salvataggio locale.');render();$('progress').focus();}catch{status('Impossibile riprendere la sessione.');}});
+ $('reset').addEventListener('click',()=>{$('setup').hidden=false;$('table').hidden=true;$('resume').hidden=!saved;if(session){$('policy-version').value=String(session.engineVersion===4?4:3);$('policy-match').value=session.policyOptions.match||'BO3';policyDescription();$('seed').value=session.seed;session.configs.forEach((c,i)=>{document.querySelector(`[data-strategy="${i}"]`).value=c.strategy;if(c.target)document.querySelector(`[data-target="${i}"]`).value=c.target;configDescription(i);});}$('start').textContent='Inizia un nuovo draft';$('start').focus();if(!storageAvailable)status('Salvataggio non disponibile: esporta prima di cambiare tavolo.');});
+ $('export').addEventListener('click',()=>{const record=session.export();if(session.complete)record.review=session.bots.map(b=>({strategy:b.strategy,pool:b.pool,log:b.log}));const url=URL.createObjectURL(new Blob([JSON.stringify(record,null,2)],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download='draft-'+EXPANSION_CONFIG.id+'-sessione.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);});
+ document.addEventListener('click',event=>{const pick=event.target.closest('[data-pick]');if(pick){session.step(+pick.dataset.pick);persist();render();$('progress').focus();}const preview=event.target.closest('[data-preview]');if(preview){const c=byId[preview.dataset.preview];$('card-image').src=c.image;$('card-image').alt=c.name;$('card-text').textContent=`${c.full} ${c.cost}\n${c.type}\n${c.oracle}`;$('card-hover').hidden=true;$('card-dialog').showModal();}});
+ const hover=(event)=>{const target=event.target.closest('[data-preview]');if(!target)return;const c=byId[target.dataset.preview];$('card-hover').querySelector('img').src=c.image;$('card-hover').hidden=false;};
+ document.addEventListener('pointerover',event=>{if(event.pointerType!=='touch')hover(event);});document.addEventListener('focusin',hover);
+ document.addEventListener('pointerout',event=>{if(event.target.closest('[data-preview]'))$('card-hover').hidden=true;});document.addEventListener('focusout',()=>$('card-hover').hidden=true);
+ document.addEventListener('keydown',event=>{if(event.key==='Escape')$('card-hover').hidden=true;});$('close-card').addEventListener('click',()=>$('card-dialog').close());
+})();
+
+FILE expansion_data.py
+"""Versioned expansion documents and capability validation. No network or side effects."""
+import hashlib
+import json
+import re
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent
+DATASETS = ('cards','printings','products','limited','ratings','archetypes','combos',
+            'guides','statistics','sentiment','discovery','prices','sources','ui')
+OPERATIONS = {'draw', 'replace', 'pair'}
+FEATURES = {
+    'catalog': ('Catalogo carte', 'gallery', ['cards']),
+    'pool': ('Pool e costruzione del mazzo', 'pool', ['cards','limited']),
+    'analysis': ('Analisi del set', 'analysis', ['cards']),
+    'sealedGuide': ('Guida Sealed', 'strategy', ['guides:sealed']),
+    'draftGuide': ('Guida Draft e archetipi', 'draft', ['archetypes','guides:draft']),
+    'draftStatistics': ('Statistiche e confronto Draft', 'draft', ['statistics:draft']),
+    'draftDrilldown': ('Confronto statistico per contesto', 'draft', ['statistics:drill']),
+    'pickGuide': ('Pick subito e counterpick', 'draft', ['guides:pickGuide']),
+    'pickBaits': ('Rare e mitiche: bait', 'draft', ['guides:pickBaits']),
+    'pickDecisions': ('Situazioni di scelta', 'draft', ['guides:pickDecisions']),
+    'draftCombos': ('Sinergie Draft', 'draft', ['guides:draftCombos']),
+    'sealedSimulator': ('Apertura delle buste Sealed', 'simulator', ['completeCards','collation:sealed','catalogMapping:sealed','limited:sealed']),
+    'draftTable': ('Tavolo Draft con bot', 'draft-engine', ['completeCards','collation','catalogMapping:draft','ratingsComplete','archetypes','limited:draft']),
+    'combos': ('Combo e sinergie', 'combos', ['combos']),
+    'sentiment': ('Sentiment', 'analysis', ['sentiment']),
+    'discovery': ('Metagame documentato', 'discovery', ['discovery']),
+    'boxEV': ('Ricavo atteso del box', 'analysis', ['prices','completeCards','collation','statistics:boxEV']),
+    'rules': ('Regole del prodotto e del Draft', 'rules', ['limited','sources']),
+}
+REASONS = {
+    'completeCards':'Catalogo completo delle carte ammesse al prodotto.',
+    'collation':'Profilo di collazione completo, verificato e supportato dal motore.',
+    'collation:sealed':'Profilo di collazione Sealed completo, verificato e supportato dal motore.',
+    'catalogMapping:sealed':'Corrispondenza fra stampe della busta Sealed e carte del catalogo.',
+    'catalogMapping:draft':'Corrispondenza fra stampe della busta Draft e carte del catalogo.',
+    'ratingsComplete':'Valutazioni delle carte non base del prodotto.',
+    'cards':'Catalogo delle carte.', 'limited':'Regole degli eventi Limited.',
+    'limited:sealed':'Regole dell’evento Sealed.', 'limited:draft':'Regole dell’evento Draft.',
+    'archetypes':'Archetipi e carte di supporto.', 'guides:sealed':'Guida Sealed in guides.fragments.gallery.strategy.',
+    'guides:draft':'Guida Draft.', 'statistics:draft':'Statistiche Draft con data e contesto.',
+    'statistics:drill':'Snapshot dei contesti Draft con campioni e data di rilevazione.',
+    'guides:pickGuide':'Priorità dei pick e counterpick.', 'guides:pickBaits':'Valutazioni delle rare e mitiche condizionali.',
+    'guides:pickDecisions':'Esempi di scelta fra carte.', 'guides:draftCombos':'Sequenze e sinergie Draft.',
+    'combos':'Combo e sequenze documentate.', 'sentiment':'Sintesi qualitative con fonti.',
+    'discovery':'Risultati e analisi del metagame.', 'prices':'Prezzi verificati con data e metrica.',
+    'statistics:boxEV':'Modello economico e risultati verificati.', 'sources':'Fonti e date di verifica.',
+}
+
+
+def read_json(path):
+    def invalid(value):raise ValueError('Numero JSON non valido: '+value)
+    return json.loads(path.read_text(encoding='utf-8-sig'),parse_constant=invalid)
+
+
+def confined(base, relative):
+    path = (base / relative).resolve()
+    if not path.is_relative_to(base.resolve()):
+        raise ValueError(f'Percorso esterno alla cartella: {relative}')
+    return path
+
+
+def normalize_card(source, document):
+    if not isinstance(source,dict):raise ValueError(document+': carta non valida')
+    card=dict(source)
+    if document=='printings.json':card.setdefault('url','')
+    identity=str(card.get('id','senza id'))
+    def fail(field):raise ValueError(f'{document}/{identity}: campo carta mancante o non valido: {field}')
+    for field in ('id','name','set','type','rarity','image','url'):
+        if not isinstance(card.get(field),str):fail(field)
+    if not card['id'] or not card['name']:fail('id / name')
+    if type(card.get('number')) not in (int,str):fail('number')
+    for field in ('colors','identity'):
+        if not isinstance(card.get(field),list) or any(c not in list('WUBRG') for c in card[field]):fail(field)
+    for canonical,alias,types in (('cost','mana',(str,)),('mv','cmc',(int,float)),('oracle','text',(str,))):
+        value=card.get(canonical,card.get(alias))
+        if type(value) not in types:fail(canonical+' / '+alias)
+        card[canonical]=value;card[alias]=value
+    card.setdefault('full',card['name']);card.setdefault('large',card['image'])
+    card.setdefault('faces',[]);card.setdefault('keywords',[]);card.setdefault('prints',[]);card.setdefault('legalities',{})
+    main_type=card['type'].split(' // ')[0]
+    for field,default in (('basic',bool(re.search(r'\bBasic\b',main_type) and re.search(r'\bLand\b',main_type))),('land',bool(re.search(r'\bLand\b',main_type))),('creature',bool(re.search(r'\bCreature\b',main_type)))):
+        card.setdefault(field,default)
+        if type(card[field]) is not bool:fail(field)
+    if not isinstance(card['full'],str):fail('full')
+    if not isinstance(card['faces'],list) or any(not isinstance(f,dict) or not isinstance(f.get('name'),str) for f in card['faces']):fail('faces')
+    card['faces']=[{'mana_cost':'','oracle_text':'','type_line':'','power':'','toughness':'',**face} for face in card['faces']]
+    if not isinstance(card['keywords'],list) or any(not isinstance(k,str) for k in card['keywords']):fail('keywords')
+    if not isinstance(card['prints'],list) or not isinstance(card['legalities'],dict):fail('prints / legalities')
+    if any(not isinstance(p,dict) or not isinstance(p.get('finishes',[]),list) for p in card['prints']):fail('prints.finishes')
+    card['prints']=[{'number':'','image':'','finishes':[],**printing} for printing in card['prints']]
+    return card
+
+
+class Expansion:
+    def __init__(self, manifest_path):
+        self.path = Path(manifest_path)
+        self.directory = self.path.parent
+        self.manifest = read_json(self.path)
+        m = self.manifest
+        if m.get('schemaVersion') != 1:
+            raise ValueError(f'{self.path}: schemaVersion non supportata')
+        if not re.fullmatch(r'[a-z0-9-]+', m.get('id','')):
+            raise ValueError('Identificatore espansione non valido')
+        for field in ('name','code','date','description','datasets','presentation','storage','features'):
+            if not m.get(field): raise ValueError(f'{m["id"]}: manca {field}')
+        for field in ('name','code','date','description'):
+            if not isinstance(m[field],str):raise ValueError(f'{m["id"]}: {field} deve essere una stringa')
+        self.data = {key: read_json(confined(self.directory, m['datasets'][key]))
+                     for key in DATASETS if key in m['datasets']}
+        missing = set(DATASETS) - self.data.keys()
+        if missing: raise ValueError(f'{m["id"]}: documenti mancanti: {sorted(missing)}')
+        for key in ('products','limited'):
+            if self.data[key].get('schemaVersion')!=1:raise ValueError(f'{m["id"]}: versione {key} non supportata')
+        for key in ('cards','printings'):
+            if not isinstance(self.data[key].get('cards'),list):raise ValueError(f'{m["id"]}/{key}.json: manca cards')
+            self.data[key]['cards']=[normalize_card(card,key+'.json') for card in self.data[key]['cards']]
+        if type(self.data['cards'].get('complete',False)) is not bool:raise ValueError(m['id']+'/cards.json: complete deve essere booleano')
+        self.data['cards'].setdefault('print_count',len(self.data['printings']['cards']) or sum(max(1,len(card['prints'])) for card in self.data['cards']['cards']))
+        self.validate()
+        self.availability = self.capabilities()
+
+    @property
+    def storage(self):
+        """Supply shared-page pool keys without renaming existing saved records."""
+        storage=dict(self.manifest['storage'])
+        for kind in ('draft','sealed'):
+            storage.setdefault(kind+'Pool',self.manifest['id']+'-'+kind+'-pool-v1')
+        storage.setdefault('sealedSimulator',self.manifest['id']+'-sealed-simulator-v1')
+        return storage
+
+    @property
+    def cards(self):
+        ratings = self.data['ratings'].get('cards',{})
+        sentiments = self.data['sentiment'].get('cards',{})
+        result=[]
+        for source in self.data['cards']['cards']:
+            card={'score':None,'role':'','why':'','condition':'','evidence':[],'community':None,
+                  'forum_note':'','forum_link':'','build':False,**source, **ratings.get(source['id'],{})}
+            if source['id'] in sentiments: card['sentiment']=sentiments[source['id']]
+            card['keywords']=list(source.get('keywords',[]))
+            for alias in self.data['ui'].get('keywordAliases',[]):
+                if re.search(alias['pattern'],card['oracle'],re.I) and alias['keyword'] not in card['keywords']:card['keywords'].append(alias['keyword'])
+            found=[combo for combo in self.data['combos'] if card['id'] in combo['cards']]
+            families={}
+            for combo in found:
+                q=.65*combo['practical']+.35*combo['power']
+                families[combo['family']]=max(q,families.get(combo['family'],0))
+            scores=sorted(families.values(),reverse=True)
+            score=min(5,scores[0]+min(.5,.2*sum(max(0,x-2) for x in scores[1:4]))) if scores else None
+            card.update(combos=[c['id'] for c in found],comboFamilies=len(families),comboScore=int(score*2+.5)/2 if score is not None else None)
+            result.append(card)
+        return result
+
+    def default_event_id(self, kind):
+        """Prefer a usable event of this kind, keeping historical IDs when possible."""
+        events=self.data['limited']['events']
+        candidates=[key for key,event in events.items() if event['kind']==kind]
+        if kind in candidates:candidates.remove(kind);candidates.insert(0,kind)
+        return next((key for key in candidates if self.event_availability(key)['available']),candidates[0] if candidates else None)
+
+    def resolve_event_id(self, event_id):
+        if event_id not in self.data['limited']['events'] and event_id in ('draft','sealed'):
+            return self.default_event_id(event_id)
+        return event_id
+
+    def product_for(self,event_id):
+        event=self.data['limited']['events'].get(event_id)
+        return self.data['products']['products'].get(event['product'],{}) if event else {}
+
+    def product_printings(self,event_id):
+        recipe=self.product_for(event_id).get('collation') or {}
+        ids={id_ for rule in recipe.get('recipe',[]) for branch in rule['branches'] for id_ in recipe['groups'][branch['group']]}
+        for a,b in recipe.get('partners',[]):
+            if a in ids or b in ids:ids.update((a,b))
+        return ids
+
+    def printing_catalog(self):
+        by_name={c.get('full',c['name']):c for c in self.cards}
+        by_id={c['id']:c for c in self.cards}
+        return {p['id']:(by_id.get(p['catalogId']) if p.get('catalogId') else by_name.get(p.get('full',p['name']))) for p in self.data['printings']['cards']}
+
+    def validate(self):
+        def fail(message): raise ValueError(f'{self.manifest["id"]}: {message}')
+        for key in ('set','draft','discovery'):
+            if key not in self.manifest['presentation'].get('pages',{}):fail('pagina richiesta dal catalogo espansioni: '+key)
+        storage=self.manifest['storage']
+        if any(not isinstance(value,str) or not value.strip() for value in storage.values()):fail('le chiavi storage devono essere stringhe non vuote')
+        needed=set()
+        for key,page in self.manifest['presentation']['pages'].items():
+            template=page.get('template','')
+            if '/preview/' in template:needed.update(('poolPrefix','mode','watch'))
+            if '/atlas/' in template:
+                needed.update({'gallery':('sealedPool',),'combos':('sealedPool',),'draft':('draftPool',),
+                               'discovery':('watch',),'simulator':('sealedSimulator',),'draft-engine':('draftTable',)}.get(key,()))
+        if self.manifest['features'].get('draftTable',{}).get('requested'):needed.add('draftTable')
+        if needed-storage.keys():fail('chiavi storage mancanti: '+', '.join(sorted(needed-storage.keys())))
+        for feature,setting in self.manifest['features'].items():
+            if feature not in FEATURES:fail('funzionalità non supportata: '+feature)
+            if type(setting.get('requested')) is not bool:fail('requested deve essere booleano: '+feature)
+        ids = [c['id'] for c in self.data['cards']['cards']]
+        if len(ids) != len(set(ids)): fail('identità carta duplicate')
+        from tournament_index import validate_card_indices
+        validate_card_indices(self.data['cards']['cards'])
+        from statistics_data import validate_external_statistics
+        validate_external_statistics(self.data['statistics'], self.data['cards']['cards'])
+        if not set(self.data['ratings'].get('cards',{})) <= set(ids): fail('valutazione di carta inesistente')
+        if not set(self.data['sentiment'].get('cards',{})) <= set(ids): fail('sentiment di carta inesistente')
+        names = {c.get('full',c['name']) for c in self.cards} | {c['name'] for c in self.cards}
+        for card in self.cards:
+            names.update(f['name'] for f in card.get('faces',[]))
+        ui=self.data['ui']
+        if 'discoveryLevels' in ui and not {c['level'] for c in self.data['discovery'].get('cards',[])}<=set(ui['discoveryLevels']):fail('livello discovery assente da ui.discoveryLevels')
+        if any(field not in {'set','color','colorMode','mana','type','rarity','keyword','role','lands','query'} for preset in ui.get('analysisPresets',{}).values() for field in preset):fail('campo non supportato in ui.analysisPresets')
+        printing_names={p['name'] for p in self.data['printings']['cards']} | {p.get('full',p['name']) for p in self.data['printings']['cards']}
+        examples={name for text in ui.get('botExamples',{}).values() for name in re.findall(r'\[\[([^\]]+)\]\]',text)}
+        if not examples<=printing_names:fail('carte sconosciute in ui.botExamples: '+str(sorted(examples-printing_names)))
+        referenced=set(ui.get('drilldownCompare',[])) | set(ui.get('cardAliases',{}).values()) | set(ui.get('packageAliases',{}).values())
+        referenced.update(item['name'] for item in ui.get('drilldownFindings',[]))
+        if not referenced<=names:fail('carte sconosciute in ui: '+str(sorted(referenced-names)))
+        if any(item['pair'] not in self.data['archetypes'] for item in ui.get('drilldownFindings',[])):fail('archetipo sconosciuto in ui.drilldownFindings')
+        for key, archetype in self.data['archetypes'].items():
+            if not set(archetype['core'] + archetype['support']) <= names: fail(f'carte sconosciute in archetipo {key}')
+        for combo in self.data['combos']:
+            if not set(combo['cards']) <= set(ids): fail('carte sconosciute in combo')
+            calculator=combo.get('calculator')
+            if calculator and (calculator.get('kind')!='netMana' or type(calculator.get('netPerCycle')) not in (int,float) or any(not isinstance(calculator.get(field),str) for field in ('label','unit','note'))):fail('calcolatore combo non supportato o incompleto')
+        for key, event in self.data['limited']['events'].items():
+            if 'botPolicy' in event:
+                from bot_profiles import validate_config
+                validate_config(event['botPolicy'], [p['id'] for p in self.data['printings']['cards']], self.data['archetypes'])
+            if event.get('kind') not in ('draft','sealed'): fail(f'tipo evento non supportato: {key}')
+            for field in ('packsPerPlayer','minDeckSize','picksPerTurn','seats'):
+                if not isinstance(event.get(field),int) or isinstance(event[field],bool) or event[field] < (0 if field == 'picksPerTurn' else 1): fail(f'{key}: {field} non valido')
+            if event['product'] not in self.data['products']['products']: fail(f'{key}: prodotto inesistente')
+            if event['kind']=='draft' and (event['picksPerTurn']<1 or len(event.get('directions',[])) != event['packsPerPlayer'] or any(d not in [-1,1] for d in event['directions'])): fail(f'{key}: passaggi non validi')
+            if event['kind']=='draft' and event['seats']<2:fail(f'{key}: servono almeno due posti')
+            mulligan=event.get('mulligan',{})
+            if mulligan.get('kind')!='london' or not isinstance(mulligan.get('handSize'),int) or mulligan['handSize']<1 or not isinstance(mulligan.get('freeMulligans'),int) or mulligan['freeMulligans']<0:fail(f'{key}: mulligan non supportato')
+            if event.get('maxCopies') is not None and (type(event['maxCopies']) is not int or event['maxCopies']<1):fail(f'{key}: limite copie non valido')
+            if not event.get('sources'):fail(f'{key}: fonti delle regole mancanti')
+        printing_ids = [c['id'] for c in self.data['printings']['cards']]
+        if len(printing_ids)!=len(set(printing_ids)): fail('stampe duplicate')
+        for product in self.data['products']['products'].values():
+            recipe = product.get('collation')
+            if not recipe: continue
+            if recipe.get('schemaVersion') != 1: fail('versione collazione non supportata')
+            groups = recipe['groups']
+            for group,count in recipe.get('expectedGroupCounts',{}).items():
+                if len(groups.get(group,[]))!=count:fail(f'numerosità non valida per {group}')
+            for group, members in groups.items():
+                if not members or not set(members) <= set(printing_ids): fail(f'gruppo {group} vuoto o con stampe sconosciute')
+                if len(members)!=len(set(members)):fail(f'stampe duplicate nel gruppo {group}')
+            aliases = {}
+            minimum_counts={}
+            maximum_counts={}
+            possible_names={}
+            guaranteed_names={}
+            printings={c['id']:c for c in self.data['printings']['cards']}
+            for a,b in recipe.get('partners',[]):
+                if a==b or a not in printings or b not in printings or printings[a]['rarity']!=printings[b]['rarity']:fail('coppia non valida')
+            pair_ids=dict(recipe.get('partners',[]));pair_ids.update({b:a for a,b in recipe.get('partners',[])})
+            length = 0
+            for rule in recipe['recipe']:
+                if rule['id'] in aliases:fail('identificatore slot duplicato')
+                if rule['op'] not in OPERATIONS: fail(f'operazione collazione sconosciuta: {rule["op"]}')
+                if rule.get('count',1)<1 or not isinstance(rule.get('count',1),int): fail('quantità slot non valida')
+                if rule['op']=='replace':
+                    if rule.get('target') not in aliases or not 0<=rule.get('chance',-1)<=1: fail('sostituzione slot non valida')
+                    if rule['chance']>0:
+                        if minimum_counts[rule['target']]<rule.get('count',1):fail('sostituzione senza carte sufficienti: '+rule['id'])
+                        minimum_counts[rule['target']]-=rule.get('count',1)
+                        if rule['chance']==1:maximum_counts[rule['target']]-=rule.get('count',1)
+                        guaranteed_names[rule['target']]=set()
+                else: length += rule.get('count',1) * (2 if rule['op']=='pair' else 1)
+                for previous in rule.get('exclude',[]):
+                    if previous not in aliases: fail('esclusione di slot non ancora estratto')
+                if abs(sum(b['weight'] for b in rule['branches'])-1)>1e-8: fail('pesi slot non normalizzati')
+                for branch in rule['branches']:
+                    if branch['weight']<0 or branch['group'] not in groups: fail('ramo slot non valido')
+                    names_in_group={printings[id_]['full'] for id_ in groups[branch['group']]}
+                    exclusions=[previous for previous in rule.get('exclude',[]) if maximum_counts[previous]>0]
+                    # Only guaranteed exclusions are a safe static bound. Other
+                    # draws may be correlated, so execute those paths below.
+                    blocked=set().union(*(names_in_group & guaranteed_names[previous] for previous in exclusions)) if exclusions else set()
+                    needed=rule.get('count',1) if rule.get('unique') else 1
+                    capacity=len(names_in_group-blocked)
+                    if rule.get('unique') and rule['op']=='pair':
+                        capacity=len({frozenset((printings[id_]['full'],printings[pair_ids[id_]]['full'])) for id_ in groups[branch['group']] if id_ in pair_ids and printings[id_]['full'] not in blocked})
+                    if branch['weight']>0 and capacity<needed:fail('gruppo insufficiente per unique o exclude: '+rule['id'])
+                aliases[rule['id']]=rule
+                minimum_counts[rule['id']]=(rule.get('count',1) if rule['op']=='replace' and rule['chance']==1 else 0) if rule['op']=='replace' else rule.get('count',1)*(2 if rule['op']=='pair' else 1)
+                maximum_counts[rule['id']]=0 if rule['op']=='replace' and rule['chance']==0 else rule.get('count',1)*(2 if rule['op']=='pair' else 1)
+                members={id_ for branch in rule['branches'] if branch['weight']>0 for id_ in groups[branch['group']]}
+                always_excluded=set().union(*(guaranteed_names[previous] for previous in rule.get('exclude',[]))) if rule.get('exclude') else set()
+                members={id_ for id_ in members if printings[id_]['full'] not in always_excluded}
+                guarantees=set()
+                if rule['op']=='pair':
+                    pairs=[{printings[id_]['full'],printings[pair_ids[id_]]['full']} for id_ in members if id_ in pair_ids]
+                    if pairs:guarantees=set.intersection(*pairs)
+                if rule['op']=='pair':members.update(pair_ids[id_] for id_ in list(members) if id_ in pair_ids)
+                possible_names[rule['id']]={printings[id_]['full'] for id_ in members}
+                if rule['op']!='pair' and (len(possible_names[rule['id']])==1 or rule.get('unique') and len(possible_names[rule['id']])==rule.get('count',1)):guarantees=possible_names[rule['id']].copy()
+                guaranteed_names[rule['id']]=set() if rule['op']=='replace' and rule['chance']<1 else guarantees
+            if length != product['packSize']: fail('ricetta incompatibile con dimensione busta')
+            partners = dict(recipe.get('partners',[]))
+            partners.update({b:a for a,b in recipe.get('partners',[])})
+            for rule in recipe['recipe']:
+                if rule['op']=='pair' and any(card not in partners for b in rule['branches'] for card in groups[b['group']]): fail('partner mancante')
+            printings={c['id']:c for c in self.data['printings']['cards']}
+            if recipe.get('verified') and not recipe.get('source'): fail('collazione verificata senza fonte')
+            from collation_validation import validate_samples
+            try:validate_samples(recipe,printings,product['packSize'])
+            except ValueError as error:fail(str(error))
+        for key in ('pickGuide','pickBaits'):
+            guide=self.data['guides'].get(key)
+            if not guide:continue
+            referenced={c['name'] for group in guide['groups'] for c in group['cards']}
+            if key=='pickGuide':referenced.update(name for c in guide['counters'] for name in [c['name'],*c['before'],*c['after']])
+            if not referenced<=names:fail(f'carte sconosciute in {key}: {sorted(referenced-names)}')
+        for group in self.data['guides'].get('pickDecisions',[]):
+            for case in group['cases']:
+                if not set(case['cards'])<=names:fail('carte sconosciute in una situazione di scelta')
+        for package in self.data['guides'].get('draftCombos',{}).get('packages',[]):
+            if not set(package['cards'])<=names:fail('carte sconosciute in un pacchetto Draft')
+        for key, page in self.manifest['presentation']['pages'].items():
+            if Path(page['url'].split('#')[0]).name != page['url'].split('#')[0]: fail(f'URL pagina non valido: {key}')
+            if 'template' in page and not confined(ROOT,page['template']).is_file(): fail(f'template mancante: {key}')
+
+    def event_availability(self,event_id):
+        event=self.data['limited']['events'].get(event_id)
+        product=self.product_for(event_id)
+        recipe=product.get('collation') or {}
+        ids=self.product_printings(event_id)
+        catalog=self.printing_catalog()
+        missing=[]
+        kind=event['kind'] if event else 'draft'
+        if not event:missing.append(REASONS['limited:'+kind])
+        if not self.data['cards'].get('complete'):missing.append(REASONS['completeCards'])
+        if not recipe.get('verified'):missing.extend([REASONS['collation:sealed' if kind=='sealed' else 'collation'],*product.get('missing',[])])
+        if not ids or any(not catalog.get(id_) for id_ in ids):missing.append(REASONS['catalogMapping:'+kind])
+        missing.extend('Stampa senza carta del catalogo: '+id_+'.' for id_ in sorted(ids) if not catalog.get(id_))
+        if kind=='draft':
+            if not ids or any(not catalog.get(id_) or not (catalog[id_].get('basic') or catalog[id_].get('score') is not None) for id_ in ids):missing.append(REASONS['ratingsComplete'])
+            if not self.data['archetypes']:missing.append(REASONS['archetypes'])
+        return {'available':not missing,'missing':list(dict.fromkeys(missing))}
+
+    def draft_event_availability(self,event_id):
+        event=self.data['limited']['events'].get(event_id)
+        if not event or event['kind']!='draft':return {'available':False,'missing':[REASONS['limited:draft']]}
+        return self.event_availability(event_id)
+
+    def capabilities(self):
+        d = self.data
+        defaults={kind:self.default_event_id(kind) for kind in ('draft','sealed')}
+        product = self.product_for(defaults['draft'])
+        recipe = product.get('collation')
+        ratings = d['ratings'].get('cards',{})
+        catalog=self.printing_catalog()
+        active_draft=self.product_printings(defaults['draft'])
+        present = {key: bool(value) for key,value in d.items()}
+        present.update(cards=bool(self.cards), completeCards=d['cards'].get('complete',False),
+                       collation=bool(recipe and recipe.get('verified')),
+                       ratingsComplete=bool(active_draft) and all(catalog.get(id_) and (catalog[id_].get('basic') or catalog[id_].get('score') is not None) for id_ in active_draft),
+                       prices=d['prices'].get('available',False),sentiment=bool(d['sentiment'].get('cards')),
+                       discovery=bool(d['discovery'].get('cards')),limited=bool(d['limited']['events']))
+        sealed=d['limited']['events'].get(defaults['sealed'])
+        sealed_product=d['products']['products'].get(sealed['product'],{}) if sealed else {}
+        present['collation:sealed']=bool(sealed_product.get('collation',{}).get('verified')) if sealed_product.get('collation') else False
+        for doc in ('limited','statistics','guides'):
+            values = d[doc].get('events',{}) if doc=='limited' else d[doc]
+            present.update({doc+':'+key:bool(value) for key,value in values.items()})
+        for kind,event_id in defaults.items():present['limited:'+kind]=bool(event_id)
+        stats=d['statistics'].get('draft') or {}
+        present['statistics:draft']=bool(stats.get('cards')) and any(c.get('gih') is not None and c.get('n',0)>0 for c in stats.get('cards',[]))
+        drill=stats.get('drill') or {}
+        present['statistics:drill']=bool(present['statistics:draft'] and drill.get('contexts') and drill.get('retrieved'))
+        guides=d['guides']
+        present['guides:sealed']=bool(guides.get('sealed') and guides.get('fragments',{}).get('gallery.strategy'))
+        present['guides:draft']=bool((guides.get('fragments',{}).get('draft.report-3') and present['statistics:draft']) or any((guides.get(key) or {}).get('groups') for key in ('pickGuide','pickBaits')) or guides.get('pickDecisions') or (guides.get('draftCombos') or {}).get('packages'))
+        for key in ('pickGuide','pickBaits'):
+            present['guides:'+key]=any(group.get('cards') for group in (guides.get(key) or {}).get('groups',[]))
+        present['guides:pickDecisions']=any(group.get('cases') for group in guides.get('pickDecisions',[]))
+        present['guides:draftCombos']=bool((guides.get('draftCombos') or {}).get('packages'))
+        for event_id in ('draft','sealed'):
+            ids=self.product_printings(defaults[event_id])
+            present['catalogMapping:'+event_id]=bool(ids) and all(catalog.get(id_) for id_ in ids)
+        result = {}
+        for key,(label,page,requires) in FEATURES.items():
+            setting = self.manifest['features'].get(key,self.manifest['features'].get('draftStatistics',{}) if key=='draftDrilldown' else {'requested':False})
+            missing = [REASONS.get(item,item) for item in requires if not present.get(item)]
+            extras=[]
+            for item in requires:
+                if present.get(item):continue
+                if item in ('collation','collation:sealed'):
+                    extras.extend(self.product_for(defaults['sealed' if item.endswith(':sealed') else 'draft']).get('missing',[]))
+                elif item=='prices':extras.extend(d['prices'].get('missing',[]))
+                elif item.startswith('catalogMapping:'):
+                    ids=self.product_printings(defaults[item.split(':')[1]])
+                    extras.extend('Stampa senza carta del catalogo: '+id_+'.' for id_ in sorted(ids) if not catalog.get(id_))
+            missing=list(dict.fromkeys(missing+extras))
+            requested=bool(setting.get('requested'))
+            result[key] = {'available': bool(requested and not missing), 'label':label,'page':page,
+                           'requested':requested,'dataReady':not missing,'requirements':list(requires),
+                           'missing':missing if requested else ['Abilitare features.'+key+'.requested nel manifest.',*missing]}
+        if self.manifest['features'].get('draftTable',{}).get('requested'):
+            events=[self.draft_event_availability(key) for key,event in d['limited']['events'].items() if event['kind']=='draft']
+            ready=any(event['available'] for event in events)
+            result['draftTable'].update(available=ready,missing=[] if ready else list(dict.fromkeys(reason for event in events for reason in event['missing'])) or [REASONS['limited:draft']])
+        return result
+
+    def draft_format(self, event_id='draft'):
+        event_id=self.resolve_event_id(event_id)
+        event = self.data['limited']['events'][event_id]
+        product = self.data['products']['products'][event['product']]
+        archetypes = self.data['archetypes']
+        catalog = self.printing_catalog()
+        cards=[]
+        for printing in self.data['printings']['cards']:
+            card = {**printing}
+            review = catalog.get(card['id']) or {}
+            card.update(score=review.get('score'),role=review.get('role',''))
+            card.update(power=review.get('power'),toughness=review.get('toughness'),faces=review.get('faces',[]))
+            card['catalogId'] = review.get('id')
+            card['archetypes'] = [k for k,a in archetypes.items() if card['name'] in a['core']+a['support']]
+            cards.append(card)
+        active=self.product_printings(event_id)
+        engine_fields=('id','full','colors','identity','cost','mv','rarity','basic','land','creature','score','role','oracle','archetypes')
+        spec=product.get('collation') or {}
+        engine={'engineVersion':2,'event':{key:event.get(key) for key in ('id','seats','packsPerPlayer','picksPerTurn','directions')},
+                'packSize':product['packSize'],
+                'collation':{key:spec.get(key) for key in ('schemaVersion','groups','partners','recipe')},
+                'cards':[{key:card.get(key) for key in engine_fields} for card in cards if card['id'] in active],
+                'archetypeOrder':list(archetypes)}
+        revision = hashlib.sha256(json.dumps(engine,sort_keys=True,ensure_ascii=True).encode()).hexdigest()
+        compatibility=self.manifest.get('draftReplayCompatibility',{}).get(event_id,{})
+        previous=compatibility.get('previousRevisions',[]) if compatibility.get('revision')==revision else []
+        from bot_profiles import payload
+        bot_policy=payload(cards, active, event, event.get('botPolicy', {}),
+                           event.get('kind')=='draft' and self.draft_event_availability(event_id)['available'], archetypes)
+        return {'version':1,'id':event['id'],'set':self.manifest['code'],'name':event['name'],
+                'botPolicy':bot_policy,'minDeckSize':event['minDeckSize'],
+                'extraBasicLands':event.get('extraBasicLands',False),'maxCopies':event.get('maxCopies'),
+                'seats':event['seats'],'rounds':event['packsPerPlayer'],'packSize':product['packSize'],'productName':product['name'],
+                'picksPerTurn':event['picksPerTurn'],'directions':event.get('directions',[]),
+                'assumptions':product.get('assumptions',[]),'cards':cards,'archetypes':archetypes,
+                'collation':product.get('collation'),'revision':revision,
+                'compatibleRevisions':previous,
+                'legacyReplay':event.get('legacyReplay',False) and self.manifest.get('legacyDraftRevision') in previous, 'ui':self.data['ui']}
+
+    def runtime(self):
+        return {'schemaVersion':1,'id':self.manifest['id'],'name':self.manifest['name'],'code':self.manifest['code'],
+                'storage':self.storage,'events':self.data['limited']['events'],
+                'routes':{key:p['url'] for key,p in self.manifest['presentation']['pages'].items()},
+                'availability':self.availability,'ui':self.data['ui'],
+                'defaultEvents':{kind:self.default_event_id(kind) for kind in ('draft','sealed')},
+                'eventAvailability':{key:self.event_availability(key) for key in self.data['limited']['events']}}
+
+
+def load_expansions():
+    expansions = [Expansion(confined(ROOT,entry['manifest'])) for entry in read_json(ROOT/'expansions.json')]
+    if len({e.manifest['id'] for e in expansions}) != len(expansions): raise ValueError('Espansioni duplicate')
+    storage={}
+    for expansion in expansions:
+        spec=expansion.storage
+        keys=[v for k,v in spec.items() if k!='poolPrefix']
+        if 'poolPrefix' in spec:
+            keys.extend(spec['poolPrefix']+mode+'-v1' for mode in expansion.data['limited']['events'])
+        if 'draftTable' in spec:
+            keys.extend(spec['draftTable']+'-'+mode for mode,event in expansion.data['limited']['events'].items() if event['kind']=='draft' and mode!='draft')
+        for key in keys:
+            if key in storage and storage[key]!=expansion.manifest['id']:raise ValueError(f'Chiave di salvataggio condivisa da espansioni diverse: {key}')
+            storage[key]=expansion.manifest['id']
+    return expansions
+
+FILE verify-draft-policy.cjs
+'use strict';
+const assert=require('node:assert/strict'),fs=require('node:fs'),crypto=require('node:crypto');
+const E=require('./draft-engine.js'),{fixture}=require('./tests/draft-policy-fixture.cjs');
+const f=fixture(),ev=E.createEvaluator(f,4),entry=(id,uid)=>({id,uid});
+const pool=(id,n,start=0)=>Array.from({length:n},(_,i)=>entry(id,start+i));
+const cfg=Array.from({length:7},()=>({strategy:'signals',target:null}));
+const rank=(b,ids)=>ev.rank(b,ids.map((id,i)=>entry(id,100+i)),3,1,E.rng('probe'),false);
+// Historical digests are pinned to policy version, never the changing default.
+const rootData=JSON.parse(fs.readFileSync('dist/sets/reality-fracture/Reality-Fracture-Draft-Engine.html','utf8').match(/<script id="draft-data" type="application\/json">([\s\S]*?)<\/script>/)[1]);
+const real=rootData.formats?.draft||rootData;
+for(const test of JSON.parse(fs.readFileSync('tests/fixtures/draft-bots-v3.json','utf8')).cases){
+ const s=E.replay(real,test.record);assert.equal(crypto.createHash('sha256').update(JSON.stringify(s.bots)).digest('hex'),test.digest);
+ if(!s.complete){s.step(s.current()[0].uid);assert.equal(s.export().engineVersion,3);}
+}
+// The same grades and roles cannot acquire a color preference from data order.
+const symmetric=structuredClone(f);symmetric.cards=[...'WUBRG'].map(color=>({...f.cards[0],id:color,name:color,full:color,colors:[color],cost:'{1}{'+color+'}'}));
+symmetric.botPolicy.profiles=Object.fromEntries(symmetric.cards.map(c=>[c.id,{...structuredClone(f.botPolicy.profiles.early),symbols:['1',c.id]}]));
+symmetric.collation.groups.all=symmetric.cards.map(c=>c.id);
+for(const archetypes of [symmetric.archetypes,Object.fromEntries(Object.entries(symmetric.archetypes).reverse())]){
+ const r=E.createEvaluator({...symmetric,archetypes},4).rank(E.botState('signals'),symmetric.cards.map((c,i)=>entry(c.id,i)),1,1,E.rng('sym'),false);
+ assert.ok(Math.max(...r.scores.map(x=>x.score))-Math.min(...r.scores.map(x=>x.score))<1e-9);
+}
+// Inaccessible colored producers are not sources, while reachable cycling is.
+const green=[ev.byId.inaccessible,ev.byId.inaccessible];
+assert.equal(ev.sourceModel(green,[],{W:9,U:8}).sources.R,0);
+assert.equal(ev.sourceModel([ev.byId.cycler],[],{W:9,U:8}).sources.R,0);
+assert.ok(ev.sourceModel([ev.byId.cycler],[ev.byId['typed-dual']],{W:8,U:8}).sources.R>0);
+assert.ok(ev.sourceModel([ev.byId.cycler],[],{W:8,U:7,R:2}).sources.R>2);
+assert.equal(ev.sourceModel([ev.byId.cycler],[],{W:8,U:7,R:2},2).sources.R,2);
+assert.ok(ev.sourceModel(Array(3).fill(ev.byId.cycler),[],{W:8,U:8,R:1}).sources.R<=1.5+1e-9);
+assert.equal(ev.sourceModel([ev.byId['basic-cycler']],[ev.byId['typed-dual']],{W:8,U:8}).sources.R,1);
+const uses=ev.sourceModel([ev.byId.cycler],[],{W:8,U:7,R:2}).uses.cycler[0];assert.ok(uses.cycling>0&&uses.cycling<1);
+assert.ok(ev.turn(ev.byId.variable,[])>2);assert.ok(ev.turn(ev.byId.reducer,pool('early',12).map(e=>ev.byId[e.id]))>3);
+const modal=structuredClone(f);modal.botPolicy.profiles.early.mana.alternativeLand={colors:['W'],tapped:false,restricted:false};
+const modalModel=E.createEvaluator(modal,4).sourceModel([modal.cards[0]],[],{W:8,U:8});
+assert.equal(modalModel.uses.early[0].alternativeLand,.5);assert.equal(modalModel.sources.W,8.5);
+// Density, reference point, and shared resources, using distinct actual copies.
+const payoff=ev.byId.payoff,enabler=ev.byId.enabler,consumer=ev.byId.consumer,resource=ev.byId.resource;
+assert.ok(ev.synergy(payoff,[payoff],0).adjustment<0);
+assert.equal(ev.synergy(payoff,[payoff,enabler,enabler,enabler],0).adjustment,0);
+assert.ok(ev.synergy(payoff,[payoff,...Array(8).fill(enabler)],0).adjustment>0);
+assert.ok(ev.synergy(payoff,[payoff],35).option>ev.synergy(payoff,[payoff],0).option);
+assert.ok(ev.synergy(consumer,[consumer,...Array(8).fill(resource)],0).adjustment>
+ ev.synergy(consumer,[consumer,consumer,...Array(8).fill(resource)],0).adjustment);
+const partial=structuredClone(f);partial.botPolicy.coverage.synergies=false;
+assert.deepEqual(E.createEvaluator(partial,4).synergy(payoff,[payoff,...Array(8).fill(enabler)],35),{adjustment:0,option:0});
+// A surplus filler cannot count as an extra main slot or inflate curve support.
+const full=ev.build(pool('early',24),'WU','aggro',{remaining:0});
+const surplus=ev.build([...pool('early',24),entry('filler',99)],'WU','aggro',{remaining:0});
+assert.equal(full.spells.length,surplus.spells.length);assert.ok(surplus.excluded.some(e=>e.id==='filler'));
+assert.equal(full.slots,40);
+assert.equal(ev.build(pool('early',12),'WU','adaptive',{remaining:0}).slots,40);
+const limited=structuredClone(f);limited.botPolicy.maxCopies=4;
+assert.equal(E.createEvaluator(limited,4).build(pool('early',24),'WU','aggro',{remaining:0}).spells.length,4);
+const single=ev.build([...pool('early',24),entry('sideboard',99)],'WU','aggro',{remaining:0,match:'BO1'});
+const match=ev.build([...pool('early',24),entry('sideboard',99)],'WU','aggro',{remaining:0,match:'BO3'});
+assert.deepEqual(single.spells,match.spells);assert.equal(single.sideboard.length,0);assert.equal(match.sideboard.length,1);
+// Functional roles, needs and pivot are independent of sunk picks.
+for(const [style,expected] of [['aggro','early'],['control','defender']]){
+ const r=ev.rank(E.botState(style),['early','defender'].map((id,uid)=>entry(id,uid)),1,1,E.rng('roles'),false);
+ assert.equal(r.scores[0].entry.id,expected);
+}
+const pivot=E.botState('signals');pivot.phase=2;pivot.lane='WU';pivot.pool=[...pool('filler',8),...pool('blue',5,20)];
+assert.ok(!ev.context(pivot,2).lane.includes('W'));
+pivot.pool=pool('late',24);pivot.target='WU';assert.equal(rank(pivot,['early','filler']).scores[0].entry.id,'early');
+// Side memory and observations remain distinct even during Pick-Two subpicks.
+const b=E.botState('signals'),packet={packetId:1,cards:pool('blue',5,100)};
+ev.observe(b,packet,1,7);const memory=structuredClone(b.memory);ev.observe(b,{...packet,cards:packet.cards.slice(1)},1,7);
+assert.deepEqual(b.memory,memory);assert.deepEqual(ev.context(b,3).sig,memory.sides['1'].values);
+ev.observe(b,{packetId:20,cards:pool('early',5,200)},2,7);assert.notDeepEqual(ev.context(b,2).sig,ev.context(b,3).sig);
+const earlySignal=E.botState('signals'),lateSignal=E.botState('signals');
+ev.observe(earlySignal,{packetId:0,cards:pool('blue',3)},1,2);ev.observe(lateSignal,{packetId:0,cards:pool('blue',3)},1,8);
+assert.ok(lateSignal.memory.sides[1].values.U>earlySignal.memory.sides[1].values.U);
+// Versioned sessions, exact continuation, random isolation and active privacy.
+const s=E.createSession(f,'new-policy',cfg,4,{match:'BO1'});
+s.step(s.current()[0].uid);assert.equal(s.export().version,3);assert.equal(s.export().options.match,'BO1');
+assert.ok(!s.export().review&&!s.export().bots);
+assert.deepEqual(E.replay(f,s.export()).bots,s.bots);
+assert.throws(()=>E.replay(f,{...s.export(),policyRevision:'different'}));
+assert.throws(()=>E.replay(f,{...s.export(),options:undefined}));
+assert.throws(()=>E.createSession(f,'bad',cfg,4,{match:'invalid'}));
+const altered=cfg.map(c=>({...c}));altered[0].strategy='power';
+const t=E.createSession(f,'new-policy',altered,4,{match:'BO1'});t.step(t.current()[0].uid);
+// All opening packets are independent; changing bot 1 cannot shift bot 2 RNG.
+assert.deepEqual(t.bots[1].log,s.bots[1].log);
+while(!s.complete)s.step(s.current()[0].uid);
+assert.equal(new Set([...s.human,...s.bots.flatMap(b=>b.pool)].map(c=>c.uid)).size,f.seats*f.rounds*f.packSize);
+assert.deepEqual(E.replay(f,s.export()).bots,s.bots);
+// Joint choices, odd final packet, no repeated evidence and exact replay.
+const two=structuredClone(f);two.seats=4;two.picksPerTurn=2;two.packSize=5;two.collation.recipe[0].count=5;
+const pairs=E.createSession(two,'pairs',cfg.slice(0,3),4);
+while(!pairs.complete)pairs.step(pairs.current()[0].uid);
+assert.equal(pairs.bots[0].pool.length,15);
+assert.equal(Object.keys(pairs.bots[0].memory.observations).length,9);
+assert.ok(pairs.bots[0].log.some(l=>l.joint));assert.deepEqual(E.replay(two,pairs.export()).bots,pairs.bots);
+console.log('PASS: v3 frozen digests; v4 symmetric colors, mana, typed cycling, density, reference grades, resource contention, minimum main, BO1/BO3, side memory, replay, RNG isolation and joint Pick-Two.');
+
+FILE test_bot_profiles.py
+import copy
+import unittest
+
+from bot_profiles import describe, payload, validate_config
+from expansion_data import load_expansions
+
+
+class BotProfilesTests(unittest.TestCase):
+    def test_mana_and_alternative_uses_are_structured(self):
+        p = describe({'oracle': 'Flying\nMountaincycling {2}', 'cost': '{5}{U}', 'mv': 6, 'creature': True})
+        self.assertEqual(p['mana']['cycling'], [{'kind': 'subtype', 'type': 'Mountain', 'cost': '{2}'}])
+        self.assertIn('evasion', p['roles'])
+        self.assertEqual(p['reference']['status'], 'unsupported')
+        restricted = describe({'oracle': '{T}: Add {R}. Spend this mana only to cast creature spells.', 'cost': '{G}'})
+        self.assertTrue(restricted['mana']['abilities'][0]['restricted'])
+        modal = describe({'oracle': '', 'cost': '{2}{W}', 'mv': 3, 'creature': True,
+                          'faces': [{'type_line': 'Creature'}, {'type_line': 'Land', 'oracle_text': '{T}: Add {W}.'}]})
+        self.assertEqual(modal['mana']['alternativeLand']['colors'], ['W'])
+
+    def test_policy_coverage_is_uniform_and_does_not_change_legacy_revision(self):
+        e = load_expansions()[0]
+        fmt = e.draft_format()
+        self.assertTrue(fmt['botPolicy']['available'])
+        self.assertFalse(fmt['botPolicy']['coverage']['synergies'])
+        old_revision = fmt['revision']
+        # Images, source text and annotation provenance are nonfunctional.
+        e.data['printings']['cards'][0]['image'] = 'https://example.com/new.png'
+        self.assertEqual(e.draft_format()['botPolicy']['revision'], fmt['botPolicy']['revision'])
+        e.data['limited']['events']['draft']['botPolicy'] = {'schemaVersion': 1, 'match': 'BO1'}
+        updated = e.draft_format()
+        self.assertEqual(updated['revision'], old_revision)
+        self.assertNotEqual(updated['botPolicy']['revision'], fmt['botPolicy']['revision'])
+
+    def test_invalid_descriptors_rejected(self):
+        with self.assertRaisesRegex(ValueError, 'carta sconosciuta'):
+            validate_config({'schemaVersion': 1, 'cards': {'unknown': {}}}, [])
+        with self.assertRaisesRegex(ValueError, 'parametro'):
+            validate_config({'schemaVersion': 1, 'relations': [{'id': 'life', 'referenceSupport': 3, 'saturation': 8, 'strength': float('nan')}]}, [])
+
+    def test_incomplete_minimum_blocks_all_new_profiles(self):
+        event = {'minDeckSize': 40, 'extraBasicLands': True}
+        cards = [{'id': 'a', 'cost': '{W}', 'mv': 1, 'oracle': '', 'score': None}]
+        self.assertFalse(payload(cards, {'a'}, event, {}, True)['available'])
+        self.assertFalse(payload([{**cards[0], 'score': 3}], {'a'}, event, {}, False)['available'])
+
+    def test_partial_relations_disable_both_directions(self):
+        event = {'minDeckSize': 40, 'extraBasicLands': True}
+        cards = [{'id': x, 'cost': '{W}', 'mv': 1, 'oracle': '', 'score': 3} for x in ('a', 'b')]
+        configured = {'schemaVersion': 1, 'relations': [{'id': 'life', 'referenceSupport': 3, 'strength': .6, 'saturation': 8}],
+                      'cards': {'a': {'synergy': {'status': 'supported', 'enablers': {}, 'payoffs': {'life': 1}},
+                                      'reference': {'status': 'supported', 'context': 'ordinary support'}}}}
+        value = payload(cards, {'a', 'b'}, event, configured, True)
+        self.assertTrue(value['available'])
+        self.assertFalse(value['coverage']['synergies'])
+
+
+if __name__ == '__main__':
+    unittest.main()
+
+FILE schemas/bot-policy.schema.json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:mtg-analyzer:bot-policy:1",
+  "title": "Optional Draft policy descriptors v1",
+  "type": "object",
+  "required": ["schemaVersion"],
+  "properties": {
+    "schemaVersion": {"const": 1},
+    "match": {"enum": ["BO1", "BO3", "unknown"]},
+    "planCoverage": {"type": "object", "additionalProperties": {
+      "type": "object", "required": ["status", "provenance"],
+      "properties": {
+        "status": {"enum": ["supported", "not_applicable", "unsupported"]},
+        "relations": {"type": "array", "items": {"type": "string"}},
+        "provenance": {"type": "object"}
+      }
+    }},
+    "relations": {"type": "array", "items": {
+      "type": "object", "required": ["id", "referenceSupport", "saturation", "strength"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "referenceSupport": {"type": "number", "minimum": 0, "maximum": 100},
+        "referencePayoffs": {"type": "number", "minimum": 0, "maximum": 100},
+        "saturation": {"type": "number", "minimum": 0, "maximum": 100},
+        "strength": {"type": "number", "minimum": 0, "maximum": 100},
+        "threshold": {"type": "number", "minimum": 0, "maximum": 100},
+        "resource": {"type": "string"},
+        "resourceBudget": {"type": "number", "minimum": 0, "maximum": 100}
+      }
+    }},
+    "cards": {"type": "object", "additionalProperties": {
+      "type": "object", "required": ["status", "provenance"],
+      "properties": {
+        "status": {"enum": ["supported", "not_applicable", "unsupported"]},
+        "roles": {"type": "array", "items": {"type": "string"}},
+        "provenance": {"type": "object"},
+        "reference": {"type": "object", "required": ["status"], "properties": {
+          "status": {"enum": ["supported", "unsupported"]}, "context": {"type": "string"},
+          "support": {"type": "object", "additionalProperties": {"type": "number", "minimum": 0, "maximum": 100}},
+          "payoffs": {"type": "object", "additionalProperties": {"type": "number", "minimum": 0, "maximum": 100}}
+        }},
+        "synergy": {"type": "object", "required": ["status"], "properties": {
+          "status": {"enum": ["supported", "not_applicable", "unsupported"]},
+          "enablers": {"type": "object", "additionalProperties": {"type": "number", "minimum": 0, "maximum": 100}},
+          "payoffs": {"type": "object", "additionalProperties": {"type": "number", "minimum": 0, "maximum": 100}}
+        }}
+      }
+    }}
+  }
+}
+
+FILE docs/requirements.md
+# Requisiti e limiti da mantenere distinti
+
+I requisiti qui registrati non attestano funzionalità disponibili. Verificare sorgenti e JSON per lo stato corrente. Memorizzare un requisito non autorizza da solo a implementarlo.
+
+## Qualità competitiva dei bot Draft
+
+Analisi e baseline del 29 ottobre 2026: [rapporto](../reviews/draft-bots-20261029/analysis.md). Le richieste seguenti riguardano sviluppi da realizzare e validare. Il motore esaminato usa la politica v3; questa attività non la modifica.
+
+Obiettivo: scegliere la carta che migliora il mazzo costruibile, considerando possibilità ancora aperte e informazioni realmente osservate. Conservare i profili didattici e di confronto, compresi Potenza pura e Archetipo forzato, senza presentarli come equivalenti a un giocatore competitivo.
+
+| ID | Priorità | Requisito da realizzare | Criterio di accettazione |
+| --- | --- | --- | --- |
+| BOT-01 | P0 | Dati strategici per carta: ruoli multipli, costi effettivi, supporti, requisiti dei payoff, restrizioni, affidabilità e provenienza. Distinguere qualità di base, relativo contesto di riferimento e dato mancante. | Applicare le soglie e i comportamenti della sezione Dati e disponibilità, senza favorire i piani meglio annotati. N/D non diventa un voto medio. Etichette editoriali e parole nel ruolo non attestano la copertura delle relazioni strategiche. |
+| BOT-02 | P0 | Main provvisorio, mana, riserve e posti ancora scoperti, con alternative di colori e piano. | Il costruttore mira alla dimensione minima del main prevista dall'evento, 40 nel Limited ordinario: è un obiettivo di costruzione, non un massimo legale. Il numero di carte nel pool resta distinto. All'inizio usa posti attesi per ruolo, non carte future garantite. A pool completo restituisce una lista di carte possedute e basi ammesse. Le carte escluse non gonfiano curva e sostegno del main. La fixture BO1/BO3 tiene fissi pool, piano e ipotesi della prima partita: main invariato, in BO3 riserve di sideboard pertinenti esplicitate. Cambiamenti del main richiedono una diversa ipotesi dichiarata, non il solo cambio di etichetta BO1/BO3. |
+| BOT-03 | P0 | Valore marginale rispetto al mazzo costruibile e al livello di sostituzione atteso per ruolo, colore e fase. | Fixture distinguono risposta scarsa nel set e creatura facilmente rimpiazzabile, bisogno scoperto e ridondanza, giocabile utile e ventottesimo riempitivo. La compatibilità di colore vale se la carta migliora una lista costruibile; non è un bonus fisso svincolato dal mazzo. Stimare disponibilità da catalogo, collazione nota, osservazioni e pick restanti; mai dalle buste generate non ancora viste. Dichiarare approssimazione e incertezza senza inventare probabilità. |
+| BOT-04 | P0 | Mana sostenibile: simboli, turno utile, accesso al fixing, colori per lanciarlo, ingressi tappati, consumi e restrizioni. Carte con usi alternativi occupano un solo slot e conservano la flessibilità. | Due produttori verdi non lanciabili con le fonti della configurazione WU non sbloccano lo splash rosso in quella configurazione. Il landcycling tipizzato cerca terre del sottotipo, anche non base; basic landcycling cerca soltanto terre base. Contare carte ricercabili nella configurazione candidata del main, colori producibili, tempi e costo del ciclo pagabile. Esaminare anche configurazioni che aggiungono basi ammesse dall'evento: la loro assenza dal pool non le vieta. Fixture: doppia tipizzata ricercabile; configurazione senza basi di splash; confronto fra lo stesso pool senza splash e con basi di splash più cicli. Senza terre ricercabili il landcycler conserva l'uso come magia ma non fornisce mana. Ripartire fonte lenta e minaccia senza doppio credito pieno o ruolo esclusivo. Un ciclo da due mana non è una terra per pagarlo. Verificare doppi simboli, ibridi, modalità e abilità; stime di lancio con metodo dichiarato, distinte dalla WR. |
+| BOT-05 | P0 | Relazioni causali fra enabler, evento e payoff, con frequenza, costi, massa critica, saturazione e risorse contese. Copie e diversità sono misure distinte. | Stesso payoff senza supporti: possibile valore di opzione all'inizio se i supporti sono plausibilmente disponibili, molto meno o nullo tardi. Anche l'enabler acquista valore dai payoff presenti. Fixture distinguono una e otto copie utili, testo pertinente e sola etichetta, consumatori dello stesso cimitero. Rispetto al contesto di riferimento del voto, sostegno ordinario non duplica il vantaggio già incluso, sostegno assente può ridurre il valore e sostegno eccezionale aumentarlo. Dichiarare soglie, rendimenti e separazione del credito speculativo di BOT-03; senza dati sufficienti applicare la disattivazione uniforme sotto. |
+| BOT-06 | P1 | Segnali con memoria per lato e verso di passaggio, pick, busta e wheel, distinguendo confidenza, novità e persistenza degli indizi. | Valutare qualità e profondità del residuo rispetto all'atteso in quella posizione con un modello dichiarato e approssimabile, non il solo voto massimo. Fixture controllate con qualità fissate distinguono una carta forte precoce, più giocabili tardive e ritorno al wheel, senza imporre che qualsiasi rara precoce pesi meno di qualsiasi gruppo di comuni. La terza busta può recuperare indizi della prima con confidenza aggiornata; nella seconda la lettura del lato che alimentava la prima resta separata da quella del lato corrente. In Pick-Two la seconda scelta nella stessa busta non è un nuovo segnale indipendente. Nessun accesso ai pool avversari. |
+| BOT-07 | P1 | Apertura e pivot tramite confronto di piani candidati e mazzi finali plausibili, distinguendo bomba autonoma e build-around. | Il costo di cambio è la differenza nel contributo delle carte ai mazzi costruibili, con pick restanti e disponibilità. Pick già spese, numero e somma dei vecchi voti non creano un costo affondato. Fixture speculari: lasciare un primo pick mediocre davanti a conferme, mantenere un piano consistente davanti a una singola carta tardiva, cambiare per un miglioramento sostenibile. Fase e impegno seguono le evidenze; nessuna pick universale per fissare i colori. |
+| BOT-08 | P1 | Curva e piano effettivi: giocate nei primi turni, pressione, difesa, evasione, interazione, risorse e chiusure. Valutare anche costi alternativi e riduzioni realistiche. | Aggro distingue un attaccante da una creatura difensiva dello stesso costo. Controllo distingue una risposta precoce da un finisher con rimozione. Una creatura a nove mana con riduzione non viene trattata come un normale nove mana né come una giocata economica certa. Nessuna soglia fissa di sei creature economiche valida per tutti i mazzi. |
+| BOT-09 | P1 | Profili con comportamenti distinguibili e ragionevoli: supporti al build-around, curva aggro, stabilizzazione controllo, fixing necessario. | Su pool e buste identici, fixture mirate producono preferenze diverse coerenti con il profilo. Non serve forzare disaccordo quando la carta migliore è evidente. Potenza pura resta un controllo; Archetipo forzato resta intenzionalmente vincolato. Adattivo e Lettura dei segnali aggiornata seguono il criterio di distinzione o unificazione sotto, senza aggiungere un profilo ridondante. |
+| BOT-10 | P1 | Counterpick basato sul costo opportunità per main, opzioni e sideboard nel contesto di match dichiarato. | Preferire un miglioramento proprio a una negazione dal beneficio incerto, salvo motivazione verificabile. In BO1 non attribuire valore al sideboarding fra partite; resta distinto il valore di una riserva per completare o cambiare il main durante il draft. Una carta scomparsa indica domanda possibile, non un destinatario certo né la probabilità di affrontarlo. |
+| BOT-11 | P0 per il confronto | Casualità controllata e modalità deterministica di diagnosi, isolate per collazione, posto e tipo di decisione nella nuova versione. | Una politica di un posto non sposta le estrazioni casuali degli altri. Derivare i flussi da seme, posto, busta, pick e tipo, distinguendo le scelte nella stessa busta. Non confondere scelte strategicamente diverse solo per distanza numerica ridotta. Ogni sessione ha una sola versione della politica, registrata nel record. Le sessioni storiche conservano il flusso originario; quelle nuove isolano i flussi. Il confronto fra versioni usa sessioni distinte e collazione verificata secondo il protocollo sotto. |
+| BOT-12 | P1 | Spiegazione consultabile della decisione: pool precedente, busta, piano, alternative, voto e contributi, dati mancanti e conseguenze sul mazzo. | A fine sessione ricostruire ogni pick e distinguere migliore scelta stimata e scelta sorteggiata. Le spiegazioni devono citare bisogni concreti e carte del set, non soltanto sei addendi. Anteprime mouse, tastiera e tocco anche nei contenuti dinamici; informazioni avversarie accessibili dall'interfaccia soltanto a draft concluso. |
+| BOT-13 | P0 dall'avvio | Confronto riproducibile su fixture strategiche, tavoli e mazzi, con separazione tra taratura e valutazione. | Congelare prima della taratura aspettative motivate, hash, rubriche e semi riservati. Ogni modifica ha motivazione registrata. Stessi dati, collazione, posti e giocatore simulato; il costruttore diagnostico finale è identico per tutte le politiche, inclusa la v3. Pubblicare denominatori, regressioni, disaccordi e campione di mazzi esaminato. I casi sintetici verificano il motore condiviso; i risultati dei tavoli valgono solo per gli eventi simulati. Applicare il protocollo sotto; nessuna WR senza partite e metodo separato. |
+| BOT-14 | P0 dall'avvio | Nuova versione isolata, impronta funzionale coerente, replay e continuazione con politica originaria, backup prima di sostituire record incompatibili. | Default invariato durante lo sviluppo. Fissare esplicitamente alla versione pertinente le asserzioni storiche prima di cambiare default; non imporre i vecchi pesi alle nuove politiche. Passano replay storici, conservazione di carte e buste, ripresa/export e backup fallito. Adattare il contratto se incompatibile; immagini e fonti non invalidano replay. Controlli pertinenti di [verification.md](verification.md). |
+
+P0 indica prerequisiti dello sviluppo e della valutazione competitiva; P1 indica qualità strategica necessaria prima di attribuire competenza generale al profilo. Non abilitare espansioni prive delle dipendenze reali per ampliare il benchmark.
+
+### Dati e disponibilità: decisioni progettuali
+
+La qualità di base usa `ratings.json`, con scala e provenienza Limited del progetto. GIH e altre misure osservate restano evidenze separate per rivedere manualmente i voti discordanti, considerando contesto e campione; nessuna sostituzione automatica o media nascosta. Un voto mancante non diventa 2,5.
+
+Prima di applicare scarti contestuali, documentare quale situazione assume il voto della scala usata e le eventuali eccezioni per carta: per esempio carta nel suo mazzo tipico con sostegno ordinario, oppure valore autonomo. Non attribuire retroattivamente un significato uniforme ai voti esistenti se le fonti non lo sostengono. I contributi sono scarti, anche negativi, da quel riferimento, non bonus per benefici già compresi nel voto. Se il riferimento manca è una lacuna da risolvere o disattivare secondo le soglie, non una definizione da inventare. Tre fixture controllano sostegno di riferimento, assente ed eccezionale, senza cambiare il voto originale per farle passare.
+
+Prerequisiti per rendere disponibile la nuova versione: tavolo realmente disponibile e, sul 100% delle stampe attive non base, voto valido e profilo minimo esplicito di costo/mana e ruoli. Le soglie valgono per tutti i profili della nuova versione che usano capacità condivise, non soltanto Adattivo. Per ogni capacità aggiuntiva, tutte le carte attive devono avere uno stato esplicito: descrizione supportata, non pertinente verificato oppure non supportato. Un semplice campo vuoto non vale come non pertinente. Le annotazioni e le inferenze Oracle hanno provenienza, revisione e controlli mirati.
+
+Una capacità è dichiarata coperta solo se nessuna carta pertinente resta non supportata e le relative fixture passano. Se mancano i dati minimi, la nuova versione non è disponibile nell'evento: restano soltanto le politiche storiche già disponibili, senza abilitare nuovi tavoli. Se i dati minimi sono completi ma una capacità aggiuntiva è parziale, tutti i profili aggiornati sono sperimentali con lo stesso elenco di lacune e gli stessi contributi non sostenuti disattivati, con valutazione conservativa e spiegata. Potenza pura e Archetipo forzato non aggirano soglie relative a componenti che usano. Nessuna etichetta di competenza generale finché una meccanica del piano valutato è ignorata. Non occorre codificare ogni possibile interazione: il manifest delle capacità dichiara quelle modellate e il benchmark circoscrive le conclusioni.
+
+La granularità delle capacità è fissata prima di annotazione e taratura. In particolare la componente di sinergie contestuali comprende l'insieme delle relazioni previste per i piani dell'evento, non soltanto il singolo asse già annotato. La copertura si registra per carta, relazione e piano, ma se un piano pertinente rimane incompleto la componente è disattivata nell'intero evento, per tutte le carte e tutti i profili aggiornati esposti. Non mantenere attivi bonus o penalità soltanto per i piani conosciuti meglio. Lo stesso principio vale per altre componenti confrontabili che avrebbero vantaggi asimmetrici dalla copertura. Le capacità minime non disattivabili restano soggette al requisito del 100%; il loro difetto impedisce la disponibilità della nuova versione.
+
+Un uso parziale è ammesso solo in una modalità diagnostica esplicita, separata dai profili offerti per allenamento: il manifest elenca i piani coinvolti e quei risultati non possono sostenere la promozione. Fixture speculare: due piani con pari qualità, sostegno, disponibilità e altri contributi, diversi soltanto per lo stato di annotazione, non cambiano preferenza quando la componente incompleta è disattivata. La correzione è completare i dati, non compensare la lacuna alterando i voti o i pesi per colore.
+
+La conoscenza statica ammessa comprende catalogo dell'evento, ricetta e distribuzioni pubbliche supportate, posti e regole di passaggio. Consente stime approssimate di sostituibilità e supporti futuri; non consente di leggere le buste già generate ma non osservate. Le incertezze restano esplicite.
+
+### Costruzione, match e criteri di confronto
+
+Per la nuova valutazione, gli eventi Draft ordinari assumono BO3 come default strategico dichiarato, modificabile in BO1. È un parametro del valutatore da introdurre, non una proprietà già implementata del tavolo o una descrizione di un torneo reale. Un contesto non riconosciuto usa soltanto main e opzioni di costruzione, senza bonus di sideboard, segnalando la lacuna. Il valore di sideboard BO3 resta contenuto e subordinato a main, mana e completamento, con matchup ipotetici del formato e mai pool avversari letti di nascosto.
+
+Il costruttore mira normalmente alla dimensione minima del main prevista dall'evento. In Limited ordinario 40 è il minimo legale, non il massimo: [CR 100.2b, 100.4b e 100.5](https://media.wizards.com/2026/downloads/MagicCompRules%2020260925.txt), versione del 25 settembre 2026 verificata il 29 ottobre. Eventuali liste più lunghe richiedono una ragione dichiarata. Il numero di carte draftate resta derivato dalle buste e dall'evento. Le carte con impieghi alternativi restano nella lista una sola volta, mantenendo scenari alternativi di uso coerenti; si evita il doppio credito pieno, senza decidere anticipatamente che saranno sempre ciclate. Per la distinzione fra sottotipo e supertipo nel landcycling vale CR 702.29e dello stesso documento: cercare una Mountain non richiede che sia base.
+
+Le basi aggiungibili secondo l'evento sono risorse del costruttore, non pick necessarie. Per valutare uno splash si confrontano configurazioni candidate che possono includerle, pagando slot di main e perdita di consistenza dei colori principali. Il fixing viene valutato insieme alle terre di ciascuna configurazione, senza richiedere che il main corrente abbia già accolto lo splash. La fixture senza basi di splash controlla una configurazione che non le include, non la loro assenza dal pool. Non si presumono aggiungibili terre che l'evento richiede di possedere nel pool.
+
+Protocollo BOT-13: fissare prima della taratura di ciascuna capacità versione dei dati, costruttore diagnostico, rubriche e split di semi/casi. La parte riservata è usata alla valutazione del candidato, senza tararvi la stessa versione; un ulteriore candidato richiede nuovi casi riservati o dichiara il riuso come limite. La revisione del campione di pick e mazzi nasconde l'identità della politica e applica la stessa rubrica: legalità e disponibilità delle carte, main costruibile, mana e turni utili, curva funzionale, risposte, piano di vittoria e affidabilità delle sinergie. Pubblicare i motivi dei disaccordi, senza trasformare un parere in verità universale. Le fixture congelate coprono tutti i criteri BOT, comprese situazioni speculari, ordine dei dati e copie dello stesso nome con sinergie reali.
+
+Il benchmark usa una sola versione della politica per sessione. Tavolo misto significa profili diversi della stessa versione; tavolo omogeneo significa stesso profilo ai posti dei bot. La v3 e la nuova versione si confrontano su sessioni distinte appaiate per configurazioni e buste iniziali, senza introdurre versioni miste nello stesso record. Verificare l'identità delle buste per posto e giro con impronta registrata: lo stesso seme da solo non basta se cambia lo schema casuale. Conservare o riprodurre la collazione originaria con dati e seme fissati; la nuova separazione riguarda il consumo delle decisioni dei bot. Le buste future rimangono accessibili soltanto al banco di prova, mai al valutatore dei bot. Nei confronti Adattivo/specialisti della nuova versione ruotare i posti con flussi isolati; le divergenze successive delle buste passate sono effetti legittimi delle scelte.
+
+Il costruttore diagnostico usa la stessa versione per tutti i pool e dichiara se condivide codice o funzione obiettivo con il valutatore candidato. In quel caso le sue metriche misurano coerenza interna, non costituiscono una prova indipendente di forza. La promozione richiede anche esito delle aspettative strategiche congelate e revisione cieca dei mazzi secondo la rubrica; non può dipendere solo dalla metrica che il candidato ottimizza. Non è obbligatorio sviluppare un secondo costruttore per ottenere questa distinzione.
+
+Promozione: tutti i controlli funzionali e le fixture strategiche concordate passano; nessuna regressione critica irrisolta di legalità, informazioni nascoste, mana impossibile o compatibilità; nel campione riservato il miglioramento sui difetti bersaglio è motivato e non compensato da deterioramenti materiali negli altri assi della rubrica. In caso di esito ambiguo il candidato resta sperimentale, non si inventa una soglia di WR per promuoverlo. Registrare tempo di valutazione e limiti della ricerca su ambiente dichiarato: la ricerca deve restare utilizzabile nel tavolo browser e non è richiesta un'ottimizzazione esaustiva.
+
+Ordine di lavoro: isolare versione e replay storici, banco di prova e casualità per posto; completare dati minimi e costruttore con mana, applicandolo prima ai pool v3 come baseline; integrare sinergie e valore marginale; completare segnali, pivot, curva e counterpick; valutare il profilo Adattivo e la sua eventuale promozione. Le spiegazioni crescono a ogni passo. Il confronto non arriva soltanto a fine lavoro.
+
+### Proposta condizionata di profilo: Adattivo competitivo
+
+È proposto un profilo aggiuntivo come configurazione adattiva senza preferenza stilistica fissa del motore condiviso corretto. Il suo nome non attesta forza competitiva. Il valore principale sta nelle capacità comuni, non nell'aggiunta di un decimo vettore di pesi o di un motore separato.
+
+Nella nuova versione tutti i profili, tranne Potenza pura, usano costruttore, mana e valore marginale condivisi. Gli specialisti mantengono preferenze esplicite su piano, rischio e condizioni di cambio; Archetipo forzato conserva il vincolo scelto. Potenza pura rimane il controllo sul valore individuale. Le politiche v3 restano disponibili per replay e confronto storico. I nuovi profili sono selezionabili soltanto rispettando Dati e disponibilità. Confrontare Adattivo sia con la v3 sia con gli specialisti aggiornati distingue il beneficio delle capacità comuni da quello dell'adattamento.
+
+Adattivo è la configurazione di riferimento senza preferenze stilistiche aggiuntive. Lettura dei segnali aggiornata privilegia esplicitamente la confidenza negli indizi ricevuti e mantiene più a lungo opzioni di piano rispetto alla configurazione di riferimento, entro i vincoli del mazzo. Almeno una fixture motivata deve mostrarne una divergenza utile su stessi pool e busta. Se la valutazione riservata non rileva differenze materiali nella scelta e nel piano, i due vengono unificati in un solo profilo esposto. Non si impongono errori o rumore artificiale per giustificare un decimo nome. La scelta di aggiungere Adattivo separatamente dipende quindi dal confronto; gli identificatori storici restano risolvibili per i replay.
+
+Stato richiesto: pool e lista provvisoria, opzioni di colori e piano, fonti utilizzabili, densità delle sinergie, bisogni scoperti e memoria dei segnali con confidenza. Osservazioni ammesse: proprie pick e buste ricevute, numero di pick, posti e verso di passaggio, oltre alla conoscenza statica dell'evento sopra definita. Azione: scelta della carta e aggiornamento del piano; negli eventi con più carte per turno valutare anche la combinazione nella stessa busta. Transizione: aggiornata dalle osservazioni, con casualità esplicita e riproducibile solo dove giustificata. Politica: confrontare contributo al mazzo, opzioni ancora utili e costo di cambio, senza conoscere contenuti futuri o pool avversari.
+
+Il confronto finale include la baseline Lettura dei segnali v3 su sessioni distinte e appaiate, e Adattivo contro gli specialisti aggiornati su tavoli misti e omogenei della nuova versione, secondo il protocollo. Ruotare profili fra posti e controllare l'ordine dei dati. Usare casi di sinergia, aggro, controllo e splash realmente coperti dai dati. La promozione a predefinito richiede miglioramenti motivati sui casi e sui mazzi esaminati, con regressioni e limiti dichiarati. La creazione separata del profilo e la sua promozione restano sviluppi condizionati successivi a questa analisi.
+
+## Consultazione completa per formato di gioco
+
+Quando si chiedono tutte le carte di un'espansione ammesse in Pauper, o in un altro formato, serve l'intero catalogo pertinente filtrato per legalità, comprese le carte senza recensioni o risultati. Espansione selezionata, formato Constructed ed evento Limited sono dimensioni distinte.
+
+Distinguere legalità alla data dello snapshot, ammissibilità prevista all'uscita e valutazione competitiva. Nelle anteprime `not_legal` non prova l'esclusione futura: una previsione richiede fonte, data e basi verificabili, altrimenti è incerta. Dichiarare cataloghi parziali. Per Pauper contano eventuali stampe comuni precedenti ammesse e banlist, non solo la rarità della stampa corrente. Ospiti, ristampe e prodotti collegati mantengono condizioni proprie.
+
+I limiti delle versioni precedenti sono documentati nei [resoconti storici](history/2026-10-22.md). Per lo stato corrente dei filtri e degli indici condivisi consultare [statistiche](statistics.md) e verificare i JSON e le route dell'espansione interessata. La legalità futura richiede comunque una verifica separata.
+
+Nelle risposte sulla consultazione indicare percorso e link filtrato quando realmente supportato. Se manca la vista, dirlo; un filtro di rarità non è un sostituto del filtro di legalità.
+
+## Analisi completa e consultabilità
+
+Una richiesta di analisi per ogni carta nel contesto del sito comprende consultazione dell'intero catalogo, ricerca, filtri, dettagli per formato, prezzi e fonti. La selezione editoriale è una vista aggiuntiva; l'appendice Commander resta separata dal Limited.
+
+Ricerca, filtri e dettagli espandibili sono la base funzionale. Gli ordinamenti per adozione documentata seguono il contratto delle statistiche. Confronti affiancati e ordinamenti per variazione di prezzo o solidità delle prove sono possibili sviluppi successivi, non requisiti aggiunti automaticamente né funzionalità già disponibili. Un giudizio sulla UX deve verificare quanto è facile trovare, leggere e confrontare le informazioni.
+
+## Indici e metagame per ogni espansione
+
+La base comune comprende WR Draft, WR Sealed e prospettive Standard, Pioneer, Modern e Pauper, con filtri e ordinamenti secondo il [contratto delle statistiche](statistics.md). Per le prospettive, le liste di torneo offrono una misura documentabile dell'adozione e segnali da seguire. Recensioni strategiche e previsioni restano contenuti distinti.
+
+Verificare separatamente disponibilità dei controlli, copertura delle misure e contenuti del metagame. Un'espansione registrata in Atlas non è automaticamente ricercata in ogni formato. Mostrare le lacune e distinguere assenza osservata, campione assente, carta non legale e dato non applicabile; non assegnare punteggi per rendere completo un ordinamento.

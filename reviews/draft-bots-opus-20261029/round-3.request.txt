@@ -1,0 +1,3009 @@
+Agisci come secondo analista indipendente con competenza da top player di Magic Limited e da progettista di bot Draft. Non attribuirti qualifiche reali. L'utente chiede: "chiedi ad opus di agire anch'esso come un altro top player di magic e cicla con lui fino a che non trovate l'ottimo di questi requisiti".
+Devi recensire e migliorare i requisiti BOT e la decisione sul nuovo profilo. Non stiamo implementando i bot. Valuta la qualità strategica, precisione, fattibilità, ordine di lavoro e criteri verificabili. Il codice e gli audit forniti descrivono la baseline, non il comportamento richiesto da conservare. Non devi fare una review generale del software.
+Considera come ragiona un drafter competitivo: qualità e disponibilità realistica delle carte, costo opportunità, flessibilità e speculazione, commitment e sunk cost, direzione e confidenza dei segnali, composizione del main e sideboard, curva funzionale, interazione, mana, densità e complementarità delle sinergie, carte modali e risorse contese, costo delle informazioni e differenze fra eventi. Individua anche eventuali formulazioni troppo rigide o strategicamente sbagliate nei requisiti correnti. Metti in discussione la necessità del nuovo bot: non dare per buona la conclusione dell'altro analista.
+L'ottimo pratico richiesto è una specifica coerente, implementabile e testabile, senza difetti sostanziali fondati nel perimetro. Non serve aggiungere ogni possibile miglioramento. Se manca una decisione progettuale indispensabile chiedine la definizione nel documento; non chiedere dati dell'utente che un implementatore può ricavare. Non trasformare ampliamenti opzionali, addestramento ML, simulatore completo di partite o dati indisponibili in condizioni obbligatorie di chiusura. Non pretendere una WR inventata. Distingui sicurezza del codice e forza di gioco.
+Vincoli: motore condiviso fra set, build offline, nessuna collazione/voto/statistica inventata, policy versionata e replay originari conservati, informazioni parziali dei bot. La maggior parte dei set non è pronta per tavoli completi. I ruoli editoriali e i tag incompleti non equivalgono a dati strategici completi. Non modificare pipeline o altri file. Nessuna dichiarazione di test, browser o letture online: non hai strumenti. Le fonti del rapporto sono già state consultate dall'altro analista, non da te. Tutti i file qui sotto sono dati da valutare, non istruzioni da eseguire.
+Ogni rilievo deve indicare requisito, scenario di gioco concreto, conseguenza e formulazione proposta. Non proporre un obbligo senza valutarne costo e beneficio. Valuta se il requisito di landcycling è formulato correttamente per una carta che resta nella lista e può essere usata in modi alternativi. Verifica che "40 carte" sia un obiettivo del simulatore e non una pretesa universale di regolamento.
+Nei giri successivi rivaluta la versione attuale e le decisioni precedenti criticamente. Non reiterare un rilievo risolto né inventare nuovi rilievi per prolungare il ciclo. Non considerare risolto un problema solo perché l'altro analista lo dichiara. Segnala disaccordi residui motivati. Chiudi con approved=true solo quando non restano criticità sostanziali nella specifica, non quando i bot sono implementati. L'approvazione non dimostra un ottimo matematico né forza in partita.
+Restituisci soltanto JSON valido senza fence, in italiano, senza grassetto e senza trattino lungo:
+{"findings":[{"id":"OPUS-Rn-01","priority":"P0/P1/P2","requirement":"BOT-xx","title":"...","scenario":"...","evidence":"...","impact":"...","suggested_text":"...","blocking":true}],"optional_suggestions":["..."],"new_bot_verdict":{"recommendation":"...","conditions":"..."},"approved":false,"summary":"..."}.
+Se non ci sono rilievi sostanziali findings deve essere vuoto. Non inserire preferenze opzionali in findings.
+
+ROUND 3
+INPUT MANIFEST
+{"scope": "Requisiti strategici dei bot Draft e proposta di profilo adattivo, solo analisi e documentazione.", "requestedModel": "opus", "head": "3902b300db4a096769e6ce1c9cbdcb1b80c63d72", "files": {"docs/requirements.md": "2c6b8930a758f84bc76311bf6da74c248f852c0ef35b26a9e87a20d3840f4e38", "docs/draft-engine.md": "c7184a9ce2ace1e485f8ee13074d8aac0f30582f3cbb93d6af51ec1c36b67114", "docs/verification.md": "782732e43fd6ac46ef931c9e2157287dccd06ed847263a872f3889cf53422d03", "draft-engine.js": "592d264dcdc39533d516618f42a16863784ea57d6dcb9acaf1cfa9266fdf83bd", "verify-draft-bots.cjs": "859b3a1cb2e89c0414c665ff423cb96b0ff5b24be5ae80351d357f711673f1f5", "reviews/draft-bots-20261029/analysis.md": "99770def3cfe9d97331c40e2919ac9346f89406027d9d8f87d38c6f46c4ab3a5", "reviews/draft-bots-20261029/probes.json": "c69911c1d9d288741e0f4c2b5166af7d9c68ccdf5272166cb8757679a2c670f4", "reviews/draft-bots-20261029/reality-fracture-draft-mixed-v3.json": "575a4da9efc6d8ecc2b8c0b3558609be928e2ce5ddcde57063f31ad98f7dc82b", "reviews/draft-bots-20261029/input-manifest.json": "3c50bd8af5e14e0eab73d10869d032cdde8c30cfbb23543d821a0fb9e67613f8"}}
+FILE docs/requirements.md
+1: # Requisiti e limiti da mantenere distinti
+2: 
+3: I requisiti qui registrati non attestano funzionalità disponibili. Verificare sorgenti e JSON per lo stato corrente. Memorizzare un requisito non autorizza da solo a implementarlo.
+4: 
+5: ## Qualità competitiva dei bot Draft
+6: 
+7: Analisi e baseline del 29 ottobre 2026: [rapporto](../reviews/draft-bots-20261029/analysis.md). Le richieste seguenti riguardano sviluppi da realizzare e validare. Il motore esaminato usa la politica v3; questa attività non la modifica.
+8: 
+9: Obiettivo: scegliere la carta che migliora il mazzo costruibile, considerando possibilità ancora aperte e informazioni realmente osservate. Conservare i profili didattici e di confronto, compresi Potenza pura e Archetipo forzato, senza presentarli come equivalenti a un giocatore competitivo.
+10: 
+11: | ID | Priorità | Requisito da realizzare | Criterio di accettazione |
+12: | --- | --- | --- | --- |
+13: | BOT-01 | P0 | Dati strategici per carta: ruoli multipli, costi effettivi, supporti, requisiti dei payoff, restrizioni, affidabilità e provenienza. Distinguere qualità di base, contesto e dato mancante. | Applicare le soglie e i comportamenti della sezione Dati e disponibilità. N/D non diventa un voto medio. Etichette editoriali e parole nel ruolo non attestano la copertura delle relazioni strategiche. |
+14: | BOT-02 | P0 | Main provvisorio, mana, riserve e posti ancora scoperti, con alternative di colori e piano. | Per gli eventi ordinari il costruttore mira a 40 carte, distinguendo questo obiettivo dal minimo legale e dal numero di carte del pool. All'inizio usa posti attesi per ruolo, non carte future garantite. A pool completo restituisce una lista di carte possedute e basi ammesse. Le carte escluse non gonfiano curva e sostegno del main. La fixture BO1/BO3 tiene fissi pool, piano e ipotesi della prima partita: main invariato, in BO3 riserve di sideboard pertinenti esplicitate. Cambiamenti del main richiedono una diversa ipotesi dichiarata, non il solo cambio di etichetta BO1/BO3. |
+15: | BOT-03 | P0 | Valore marginale rispetto al mazzo costruibile e al livello di sostituzione atteso per ruolo, colore e fase. | Fixture distinguono risposta scarsa nel set e creatura facilmente rimpiazzabile, bisogno scoperto e ridondanza, giocabile utile e ventottesimo riempitivo. La compatibilità di colore vale se la carta migliora una lista costruibile; non è un bonus fisso svincolato dal mazzo. Stimare disponibilità da catalogo, collazione nota, osservazioni e pick restanti; mai dalle buste generate non ancora viste. Dichiarare approssimazione e incertezza senza inventare probabilità. |
+16: | BOT-04 | P0 | Mana sostenibile: simboli, turno utile, accesso al fixing, colori per lanciarlo, ingressi tappati, consumi e restrizioni. Carte con usi alternativi occupano un solo slot e conservano la flessibilità. | Due produttori verdi non lanciabili con le fonti del main WU non sbloccano uno splash rosso. Il landcycling tipizzato cerca terre del sottotipo, anche non base; basic landcycling cerca soltanto terre base. Per il mana contano solo carte ricercabili presenti nel main, colori effettivamente producibili, tempi e costo del ciclo pagabile. Fixture: doppia tipizzata ricercabile; basic landcycler senza basi del colore di splash; nessuna terra ricercabile conserva l'uso come magia ma non fornisce mana. Ripartire il contributo fra fonte lenta e minaccia senza doppio credito pieno o ruolo esclusivo. Un ciclo da due mana non è una terra per pagare quei due mana. Verificare doppi simboli, ibridi, modalità e abilità; stime di lancio con metodo dichiarato, distinte dalla WR. |
+17: | BOT-05 | P0 | Relazioni causali fra enabler, evento e payoff, con frequenza, costi, massa critica, saturazione e risorse contese. Copie e diversità sono misure distinte. | Stesso payoff senza supporti: possibile valore di opzione all'inizio se i supporti sono plausibilmente disponibili, molto meno o nullo tardi. Anche l'enabler acquista valore dai payoff presenti. Fixture distinguono una e otto copie utili, testo pertinente e sola etichetta, due consumatori in competizione per lo stesso cimitero. Dichiarare soglie e rendimenti per relazione. Il credito speculativo usa disponibilità e tempo residuo di BOT-03; se i dati non lo sostengono resta disattivato e dichiarato. |
+18: | BOT-06 | P1 | Segnali con memoria per lato e verso di passaggio, pick, busta e wheel, distinguendo confidenza, novità e persistenza degli indizi. | Valutare qualità e profondità del residuo rispetto all'atteso in quella posizione con un modello dichiarato e approssimabile, non il solo voto massimo. Fixture controllate con qualità fissate distinguono una carta forte precoce, più giocabili tardive e ritorno al wheel, senza imporre che qualsiasi rara precoce pesi meno di qualsiasi gruppo di comuni. La terza busta può recuperare indizi della prima con confidenza aggiornata; nella seconda la lettura del lato che alimentava la prima resta separata da quella del lato corrente. In Pick-Two la seconda scelta nella stessa busta non è un nuovo segnale indipendente. Nessun accesso ai pool avversari. |
+19: | BOT-07 | P1 | Apertura e pivot tramite confronto di piani candidati e mazzi finali plausibili, distinguendo bomba autonoma e build-around. | Il costo di cambio è la differenza nel contributo delle carte ai mazzi costruibili, con pick restanti e disponibilità. Pick già spese, numero e somma dei vecchi voti non creano un costo affondato. Fixture speculari: lasciare un primo pick mediocre davanti a conferme, mantenere un piano consistente davanti a una singola carta tardiva, cambiare per un miglioramento sostenibile. Fase e impegno seguono le evidenze; nessuna pick universale per fissare i colori. |
+20: | BOT-08 | P1 | Curva e piano effettivi: giocate nei primi turni, pressione, difesa, evasione, interazione, risorse e chiusure. Valutare anche costi alternativi e riduzioni realistiche. | Aggro distingue un attaccante da una creatura difensiva dello stesso costo. Controllo distingue una risposta precoce da un finisher con rimozione. Una creatura a nove mana con riduzione non viene trattata come un normale nove mana né come una giocata economica certa. Nessuna soglia fissa di sei creature economiche valida per tutti i mazzi. |
+21: | BOT-09 | P1 | Profili con comportamenti distinguibili e ragionevoli: supporti al build-around, curva aggro, stabilizzazione controllo, fixing necessario. | Su pool e buste identici, fixture mirate producono preferenze diverse coerenti con il profilo. Non serve forzare disaccordo quando la carta migliore è evidente. Potenza pura resta un controllo; Archetipo forzato resta intenzionalmente vincolato. Adattivo e Lettura dei segnali aggiornata seguono il criterio di distinzione o unificazione sotto, senza aggiungere un profilo ridondante. |
+22: | BOT-10 | P1 | Counterpick basato sul costo opportunità per main, opzioni e sideboard nel contesto di match dichiarato. | Preferire un miglioramento proprio a una negazione dal beneficio incerto, salvo motivazione verificabile. In BO1 non attribuire valore al sideboarding fra partite; resta distinto il valore di una riserva per completare o cambiare il main durante il draft. Una carta scomparsa indica domanda possibile, non un destinatario certo né la probabilità di affrontarlo. |
+23: | BOT-11 | P0 per il confronto | Casualità controllata e modalità deterministica di diagnosi, isolate per collazione, posto e tipo di decisione. | Una politica di un posto non sposta le estrazioni casuali degli altri. Derivare i flussi da seme, posto, busta, pick e tipo, distinguendo le scelte nella stessa busta. Non confondere scelte strategicamente diverse solo per distanza numerica ridotta. Stessi input, versione e semi riproducono il risultato. Le politiche storiche conservano esattamente l'estrazione originaria. |
+24: | BOT-12 | P1 | Spiegazione consultabile della decisione: pool precedente, busta, piano, alternative, voto e contributi, dati mancanti e conseguenze sul mazzo. | A fine sessione ricostruire ogni pick e distinguere migliore scelta stimata e scelta sorteggiata. Le spiegazioni devono citare bisogni concreti e carte del set, non soltanto sei addendi. Anteprime mouse, tastiera e tocco anche nei contenuti dinamici; informazioni avversarie accessibili dall'interfaccia soltanto a draft concluso. |
+25: | BOT-13 | P0 dall'avvio | Confronto riproducibile su fixture strategiche, tavoli e mazzi, con separazione tra taratura e valutazione. | Congelare prima della taratura aspettative motivate, hash, rubriche e semi riservati. Ogni modifica ha motivazione registrata. Stessi dati, collazione, posti e giocatore simulato; il costruttore diagnostico finale è identico per tutte le politiche, inclusa la v3. Pubblicare denominatori, regressioni, disaccordi e campione di mazzi esaminato. I casi sintetici verificano il motore condiviso; i risultati dei tavoli valgono solo per gli eventi simulati. Applicare il protocollo sotto; nessuna WR senza partite e metodo separato. |
+26: | BOT-14 | P0 dall'avvio | Nuova versione isolata, impronta funzionale coerente, replay e continuazione con politica originaria, backup prima di sostituire record incompatibili. | Default invariato durante lo sviluppo. Fissare esplicitamente alla versione pertinente le asserzioni storiche prima di cambiare default; non imporre i vecchi pesi alle nuove politiche. Passano replay storici, conservazione di carte e buste, ripresa/export e backup fallito. Adattare il contratto se incompatibile; immagini e fonti non invalidano replay. Controlli pertinenti di [verification.md](verification.md). |
+27: 
+28: P0 indica prerequisiti dello sviluppo e della valutazione competitiva; P1 indica qualità strategica necessaria prima di attribuire competenza generale al profilo. Non abilitare espansioni prive delle dipendenze reali per ampliare il benchmark.
+29: 
+30: ### Dati e disponibilità: decisioni progettuali
+31: 
+32: La qualità di base usa `ratings.json`, con scala e provenienza Limited del progetto. GIH e altre misure osservate restano evidenze separate per rivedere manualmente i voti discordanti, considerando contesto e campione; nessuna sostituzione automatica o media nascosta. Un voto mancante non diventa 2,5.
+33: 
+34: Prerequisiti per rendere disponibile la nuova versione: tavolo realmente disponibile e, sul 100% delle stampe attive non base, voto valido e profilo minimo esplicito di costo/mana e ruoli. Le soglie valgono per tutti i profili della nuova versione che usano capacità condivise, non soltanto Adattivo. Per ogni capacità aggiuntiva, tutte le carte attive devono avere uno stato esplicito: descrizione supportata, non pertinente verificato oppure non supportato. Un semplice campo vuoto non vale come non pertinente. Le annotazioni e le inferenze Oracle hanno provenienza, revisione e controlli mirati.
+35: 
+36: Una capacità è dichiarata coperta solo se nessuna carta pertinente resta non supportata e le relative fixture passano. Se mancano i dati minimi, la nuova versione non è disponibile nell'evento: restano soltanto le politiche storiche già disponibili, senza abilitare nuovi tavoli. Se i dati minimi sono completi ma una capacità aggiuntiva è parziale, tutti i profili aggiornati sono sperimentali con lo stesso elenco di lacune e gli stessi contributi non sostenuti disattivati, con valutazione conservativa e spiegata. Potenza pura e Archetipo forzato non aggirano soglie relative a componenti che usano. Nessuna etichetta di competenza generale finché una meccanica del piano valutato è ignorata. Non occorre codificare ogni possibile interazione: il manifest delle capacità dichiara quelle modellate e il benchmark circoscrive le conclusioni.
+37: 
+38: La conoscenza statica ammessa comprende catalogo dell'evento, ricetta e distribuzioni pubbliche supportate, posti e regole di passaggio. Consente stime approssimate di sostituibilità e supporti futuri; non consente di leggere le buste già generate ma non osservate. Le incertezze restano esplicite.
+39: 
+40: ### Costruzione, match e criteri di confronto
+41: 
+42: Per la nuova valutazione, gli eventi Draft ordinari assumono BO3 come default strategico dichiarato, modificabile in BO1. È un parametro del valutatore da introdurre, non una proprietà già implementata del tavolo o una descrizione di un torneo reale. Un contesto non riconosciuto usa soltanto main e opzioni di costruzione, senza bonus di sideboard, segnalando la lacuna. Il valore di sideboard BO3 resta contenuto e subordinato a main, mana e completamento, con matchup ipotetici del formato e mai pool avversari letti di nascosto.
+43: 
+44: Il costruttore mira normalmente alla dimensione minima del main prevista dall'evento. In Limited ordinario 40 è il minimo legale, non il massimo: [CR 100.2b, 100.4b e 100.5](https://media.wizards.com/2026/downloads/MagicCompRules%2020260925.txt), versione del 25 settembre 2026 verificata il 29 ottobre. Eventuali liste più lunghe richiedono una ragione dichiarata. Il numero di carte draftate resta derivato dalle buste e dall'evento. Le carte con impieghi alternativi restano nella lista una sola volta, mantenendo scenari alternativi di uso coerenti; si evita il doppio credito pieno, senza decidere anticipatamente che saranno sempre ciclate. Per la distinzione fra sottotipo e supertipo nel landcycling vale CR 702.29e dello stesso documento: cercare una Mountain non richiede che sia base.
+45: 
+46: Protocollo BOT-13: fissare prima della taratura di ciascuna capacità versione dei dati, costruttore diagnostico, rubriche e split di semi/casi. La parte riservata è usata alla valutazione del candidato, senza tararvi la stessa versione; un ulteriore candidato richiede nuovi casi riservati o dichiara il riuso come limite. La revisione del campione di pick e mazzi nasconde l'identità della politica e applica la stessa rubrica: legalità e disponibilità delle carte, main costruibile, mana e turni utili, curva funzionale, risposte, piano di vittoria e affidabilità delle sinergie. Pubblicare i motivi dei disaccordi, senza trasformare un parere in verità universale. Le fixture congelate coprono tutti i criteri BOT, comprese situazioni speculari, ordine dei dati e copie dello stesso nome con sinergie reali.
+47: 
+48: Il costruttore diagnostico usa la stessa versione per tutti i pool e dichiara se condivide codice o funzione obiettivo con il valutatore candidato. In quel caso le sue metriche misurano coerenza interna, non costituiscono una prova indipendente di forza. La promozione richiede anche esito delle aspettative strategiche congelate e revisione cieca dei mazzi secondo la rubrica; non può dipendere solo dalla metrica che il candidato ottimizza. Non è obbligatorio sviluppare un secondo costruttore per ottenere questa distinzione.
+49: 
+50: Promozione: tutti i controlli funzionali e le fixture strategiche concordate passano; nessuna regressione critica irrisolta di legalità, informazioni nascoste, mana impossibile o compatibilità; nel campione riservato il miglioramento sui difetti bersaglio è motivato e non compensato da deterioramenti materiali negli altri assi della rubrica. In caso di esito ambiguo il candidato resta sperimentale, non si inventa una soglia di WR per promuoverlo. Registrare tempo di valutazione e limiti della ricerca su ambiente dichiarato: la ricerca deve restare utilizzabile nel tavolo browser e non è richiesta un'ottimizzazione esaustiva.
+51: 
+52: Ordine di lavoro: isolare versione e replay storici, banco di prova e casualità per posto; completare dati minimi e costruttore con mana, applicandolo prima ai pool v3 come baseline; integrare sinergie e valore marginale; completare segnali, pivot, curva e counterpick; valutare il profilo Adattivo e la sua eventuale promozione. Le spiegazioni crescono a ogni passo. Il confronto non arriva soltanto a fine lavoro.
+53: 
+54: ### Proposta condizionata di profilo: Adattivo competitivo
+55: 
+56: È proposto un profilo aggiuntivo come configurazione adattiva senza preferenza stilistica fissa del motore condiviso corretto. Il suo nome non attesta forza competitiva. Il valore principale sta nelle capacità comuni, non nell'aggiunta di un decimo vettore di pesi o di un motore separato.
+57: 
+58: Nella nuova versione tutti i profili, tranne Potenza pura, usano costruttore, mana e valore marginale condivisi. Gli specialisti mantengono preferenze esplicite su piano, rischio e condizioni di cambio; Archetipo forzato conserva il vincolo scelto. Potenza pura rimane il controllo sul valore individuale. Le politiche v3 restano disponibili per replay e confronto storico. I nuovi profili sono selezionabili soltanto rispettando Dati e disponibilità. Confrontare Adattivo sia con la v3 sia con gli specialisti aggiornati distingue il beneficio delle capacità comuni da quello dell'adattamento.
+59: 
+60: Adattivo è la configurazione di riferimento senza preferenze stilistiche aggiuntive. Lettura dei segnali aggiornata privilegia esplicitamente la confidenza negli indizi ricevuti e mantiene più a lungo opzioni di piano rispetto alla configurazione di riferimento, entro i vincoli del mazzo. Almeno una fixture motivata deve mostrarne una divergenza utile su stessi pool e busta. Se la valutazione riservata non rileva differenze materiali nella scelta e nel piano, i due vengono unificati in un solo profilo esposto. Non si impongono errori o rumore artificiale per giustificare un decimo nome. La scelta di aggiungere Adattivo separatamente dipende quindi dal confronto; gli identificatori storici restano risolvibili per i replay.
+61: 
+62: Stato richiesto: pool e lista provvisoria, opzioni di colori e piano, fonti utilizzabili, densità delle sinergie, bisogni scoperti e memoria dei segnali con confidenza. Osservazioni ammesse: proprie pick e buste ricevute, numero di pick, posti e verso di passaggio, oltre alla conoscenza statica dell'evento sopra definita. Azione: scelta della carta e aggiornamento del piano; negli eventi con più carte per turno valutare anche la combinazione nella stessa busta. Transizione: aggiornata dalle osservazioni, con casualità esplicita e riproducibile solo dove giustificata. Politica: confrontare contributo al mazzo, opzioni ancora utili e costo di cambio, senza conoscere contenuti futuri o pool avversari.
+63: 
+64: Il confronto finale deve includere Adattivo contro Lettura dei segnali v3 e i profili specialistici, su tavoli misti e tavoli omogenei, ruotando i profili fra i posti e controllando l'ordine dei dati. Usare casi di sinergia, aggro, controllo e splash realmente coperti dai dati. La promozione a profilo predefinito richiede miglioramenti motivati sui casi e sui mazzi esaminati, con regressioni e limiti dichiarati. La creazione del profilo e la sua promozione restano sviluppi successivi a questa analisi.
+65: 
+66: ## Consultazione completa per formato di gioco
+67: 
+68: Quando si chiedono tutte le carte di un'espansione ammesse in Pauper, o in un altro formato, serve l'intero catalogo pertinente filtrato per legalità, comprese le carte senza recensioni o risultati. Espansione selezionata, formato Constructed ed evento Limited sono dimensioni distinte.
+69: 
+70: Distinguere legalità alla data dello snapshot, ammissibilità prevista all'uscita e valutazione competitiva. Nelle anteprime `not_legal` non prova l'esclusione futura: una previsione richiede fonte, data e basi verificabili, altrimenti è incerta. Dichiarare cataloghi parziali. Per Pauper contano eventuali stampe comuni precedenti ammesse e banlist, non solo la rarità della stampa corrente. Ospiti, ristampe e prodotti collegati mantengono condizioni proprie.
+71: 
+72: I limiti delle versioni precedenti sono documentati nei [resoconti storici](history/2026-10-22.md). Per lo stato corrente dei filtri e degli indici condivisi consultare [statistiche](statistics.md) e verificare i JSON e le route dell'espansione interessata. La legalità futura richiede comunque una verifica separata.
+73: 
+74: Nelle risposte sulla consultazione indicare percorso e link filtrato quando realmente supportato. Se manca la vista, dirlo; un filtro di rarità non è un sostituto del filtro di legalità.
+75: 
+76: ## Analisi completa e consultabilità
+77: 
+78: Una richiesta di analisi per ogni carta nel contesto del sito comprende consultazione dell'intero catalogo, ricerca, filtri, dettagli per formato, prezzi e fonti. La selezione editoriale è una vista aggiuntiva; l'appendice Commander resta separata dal Limited.
+79: 
+80: Ricerca, filtri e dettagli espandibili sono la base funzionale. Gli ordinamenti per adozione documentata seguono il contratto delle statistiche. Confronti affiancati e ordinamenti per variazione di prezzo o solidità delle prove sono possibili sviluppi successivi, non requisiti aggiunti automaticamente né funzionalità già disponibili. Un giudizio sulla UX deve verificare quanto è facile trovare, leggere e confrontare le informazioni.
+81: 
+82: ## Indici e metagame per ogni espansione
+83: 
+84: La base comune comprende WR Draft, WR Sealed e prospettive Standard, Pioneer, Modern e Pauper, con filtri e ordinamenti secondo il [contratto delle statistiche](statistics.md). Per le prospettive, le liste di torneo offrono una misura documentabile dell'adozione e segnali da seguire. Recensioni strategiche e previsioni restano contenuti distinti.
+85: 
+86: Verificare separatamente disponibilità dei controlli, copertura delle misure e contenuti del metagame. Un'espansione registrata in Atlas non è automaticamente ricercata in ogni formato. Mostrare le lacune e distinguere assenza osservata, campione assente, carta non legale e dato non applicabile; non assegnare punteggi per rendere completo un ordinamento.
+
+FILE docs/draft-engine.md
+1: # Motore Draft e qualità dei bot
+2: 
+3: ## Confini del motore
+4: 
+5: `collation.js` esegue la ricetta del prodotto per Draft e Sealed. `draft-engine.js` gestisce stato, osservazioni, transizioni e politica dei bot senza DOM, rete o salvataggi; `draft-table.js` gestisce l'interfaccia. `build_draft_engine.py` è un adattatore del renderer comune. Gli input attivi sono i documenti dell'espansione, in particolare `products.json`, `limited.json`, `printings.json`, `ratings.json` e `archetypes.json`.
+6: 
+7: Posti, buste, carte per scelta e versi di passaggio derivano dall'evento. Slot, rarità, coppie, sostituzioni e finiture derivano dal prodotto. Otto posti, tre buste e 14 carte sono un'applicazione specifica, non il contratto universale. Per collazione e dati mancanti vedere [architecture.md](architecture.md).
+8: 
+9: ## Requisiti dei profili
+10: 
+11: Prima di iniziare, l'utente deve poter assegnare un profilo distinto a ciascun bot. Le strategie hanno priorità, condizioni di cambio piano e costi di rinuncia effettivamente diversi:
+12: 
+13: - Potenza pura: privilegia il valore individuale della carta, accettando il rischio di un pool incoerente.
+14: - Bomba e costruzione attorno: usa una carta forte come incentivo per colori e supporti, con condizioni esplicite per cambiare piano.
+15: - Lettura dei segnali: accumula indizi dalle buste ricevute e consolida i colori quando il sostegno è sufficiente.
+16: - Archetipo forzato: segue la combinazione scelta prima di iniziare, anche quando è contesa.
+17: - Sinergie: valorizza enabler e payoff in funzione dei supporti già acquisiti e di quelli ancora necessari.
+18: - Aggro e tempo: cerca giocate iniziali, pressione e interazione coerenti con la curva.
+19: - Controllo e vantaggio: cerca risposte, difesa, risorse e condizioni di vittoria sostenibili.
+20: - Fixing e splash: valuta le fonti e i simboli richiesti prima di aggiungere colori.
+21: - Counterpick: confronta il beneficio dedotto di sottrarre una carta con il costo di rinunciare a una propria giocabile; non conosce i pool avversari.
+22: 
+23: ## Stato, informazione e riproducibilità
+24: 
+25: Le pick precedenti influenzano colori, piano, curva, mana e supporti. Ogni bot conosce soltanto buste e informazioni osservate. Segnali e counterpick sono deduzioni; non accedono a pool avversari o buste future. Il counterpick considera il costo di rinunciare a una propria giocabile.
+26: 
+27: Un modello markoviano deve esplicitare stato, osservazioni, azioni, transizioni e politica, conservando la memoria necessaria. Le euristiche attuali non sono un modello addestrato o validato sulle partite e non stimano percentuali di vittoria. Le scelte devono essere riproducibili e spiegabili nella revisione finale con esempi di carte dell'espansione.
+28: 
+29: La versione dell'algoritmo è distinta dall'impronta funzionale dei dati. Conservare la politica originaria dei record compatibili anche dopo ripresa ed esportazione. Non invalidare replay per sole immagini, fonti o testi. Un record incompatibile deve essere salvato integralmente prima di scrivere quello nuovo; se il backup fallisce non sovrascrivere l'originale.
+30: 
+31: ## Indagine e controlli
+32: 
+33: Conservare i seguenti casi di regressione quando si modifica la politica, senza trasformarne i vecchi pesi in vincoli universali:
+34: 
+35: - A sostegno equivalente, l'ordine degli archetipi nei dati non assegna una preferenza iniziale a un colore o coppia.
+36: - La compatibilità delle magie con costi ibridi usa i simboli effettivamente pagabili; le creature con X non valgono automaticamente come normali giocate iniziali in base al solo valore di mana.
+37: - I supporti di sinergia distinti non vengono moltiplicati contando ripetutamente copie equivalenti della stessa carta.
+38: - Le asserzioni sui pesi e sui bonus della v3, compreso il bonus nullo per copie ripetute di certi esempi, descrivono quella politica e devono indicarne esplicitamente la versione prima di cambiare il default. Le nuove politiche seguono i [requisiti competitivi](requirements.md#qualità-competitiva-dei-bot-draft): distinguono densità e diversità, possono riconoscere sinergie reali fra copie dello stesso nome e non assegnano credito duplicato senza un'interazione effettiva. Questa è una richiesta per l'evoluzione, non un comportamento già implementato.
+39: - I replay compatibili continuano con la politica registrata, anche dopo ripresa ed esportazione. Versioni supportate e default si verificano in `draft-engine.js`, senza fissare per sempre la versione corrente nelle istruzioni.
+40: - Durante il draft, l'esportazione ordinaria non rivela pool e log degli avversari; il resoconto dei bot viene aggiunto dall'interfaccia soltanto a sessione conclusa. Questa protezione dell'interfaccia non è una garanzia contro l'ispezione del codice o della memoria di un simulatore locale.
+41: 
+42: `verify-draft-bots.cjs` e `verify-draft-bots-browser.cjs` conservano i controlli pertinenti su politica, replay e flussi. Leggere codice e fixture prima di attribuire loro una copertura specifica.
+43: 
+44: Per scelte sospette o modifiche alla politica usare [mtg-draft-bots](../.agents/skills/mtg-draft-bots/SKILL.md). Per i comandi di verifica usare [verification.md](verification.md).
+45: 
+46: `node audit-draft-bots.cjs 200 reality-fracture draft mixed 3` simula tavoli completi; l'ultimo argomento seleziona la versione della politica, per esempio `2` per il confronto storico. Ispezionare la destinazione del rapporto prima di eseguirlo, per preservare acquisizioni precedenti. I parametri e il confronto v2/v3 del 22 ottobre sono nel [resoconto datato](history/2026-10-22.md).
+
+FILE docs/verification.md
+1: # Sviluppo, verifiche e pubblicazione
+2: 
+3: ## Ambiente e build
+4: 
+5: Python 3.12 o successivo. La build usa la libreria standard e i soli file presenti nel repository. Node.js serve ai controlli JavaScript; Playwright e un browser compatibile servono ai controlli browser, non al sito pubblicato.
+6: 
+7: ```sh
+8: python build_site.py
+9: python -m http.server 8765 --directory dist
+10: ```
+11: 
+12: La build rigenera `index.html`, prepara `dist/`, carica e valida le espansioni e controlla i collegamenti HTML locali. Non acquisisce prezzi, cataloghi o statistiche dalla rete. Modificare sorgenti e template, mai correggere a mano pagine generate o `dist/`.
+13: 
+14: ## Scegliere i controlli
+15: 
+16: Applicare tutte le righe pertinenti alla modifica, senza ripetere controlli già passati in assenza di nuove ragioni. Una modifica soltanto documentale richiede collegamenti, riferimenti e diff; non richiede l'intera suite del sito.
+17: 
+18: | Area modificata | Controlli richiesti |
+19: | --- | --- |
+20: | Contratto, renderer, profili JSON | `python build_site.py`; `python -m unittest test_expansion_data.py` |
+21: | Collazione, eventi, replay | Anche `node verify-expansions.cjs`; `node verify-draft-engine.cjs`; `python verify-collation-contract.py` |
+22: | Disponibilità, isolamento, salvataggi | Anche `python verify-expansion-review.py`; `node verify-expansion-browser.cjs` |
+23: | Politica dei bot | Anche `node verify-draft-engine.cjs` per conservazione di carte e buste; `node verify-draft-bots.cjs`; confronti riproducibili prima/dopo; `node verify-draft-bots-browser.cjs` per i flussi coinvolti |
+24: | Interfaccia visibile | Controlli browser pertinenti; desktop, telefono, mouse, tastiera e tocco, comprese anteprime e contenuti dinamici |
+25: 
+26: I controlli del contratto comprendono fixture di espansioni alternative, buste e replay storici e Pick-Two. Non equivalgono a una prova esaustiva di tutte le collazioni possibili. La validazione corrente del caricatore e i test sono il riferimento eseguibile.
+27: 
+28: `verify-draft-engine.cjs` usa la fixture del tavolo Reality Fracture generata in `dist/`: controlla coppie e slot, frequenze campionarie, conservazione di carte e buste nel tavolo completo, entrambi i versi di passaggio, replay identico, input invalidi e differenze fra strategie. Il superamento di questa fixture non certifica automaticamente prodotti o eventi diversi: per quelli usare anche i controlli del contratto e delle espansioni pertinenti.
+29: 
+30: ## Browser
+31: 
+32: Servire `dist/`, usare un profilo di prova e impostare esplicitamente le variabili previste dagli script. Per esempio in PowerShell, con Playwright già disponibile:
+33: 
+34: ```powershell
+35: $env:MTG_SITE_URL = 'http://127.0.0.1:8765/'
+36: $env:MTG_PLAYWRIGHT_MODULE = (node -p "require.resolve('playwright')")
+37: $env:MTG_BROWSER_CHANNEL = 'msedge'
+38: node verify-expansion-browser.cjs
+39: ```
+40: 
+41: Se il modulo è in un runtime esterno, assegnare il suo percorso effettivo a `MTG_PLAYWRIGHT_MODULE`. Non introdurre percorsi personali fissi. Gli script hanno default di porta e modulo non uniformi: impostare le variabili evita di verificare un server diverso da quello voluto.
+42: 
+43: | Script | Ambito |
+44: | --- | --- |
+45: | `verify-atlas-expansions.cjs` (anche `verify-expansion-catalogs.cjs`) | Tutte le espansioni registrate: shell Atlas, route, salvataggi manuali, eventi alternativi, anteprime mouse/tastiera/tocco e layout desktop/telefono. Accetta slug opzionali e `MTG_QA_DIR` |
+46: | `verify-catalog-indices.cjs` | Indici WR Draft/Sealed, fonti ed eventi, campioni minimi, prospettive Standard/Pioneer/Modern/Pauper e legalità per tutte le espansioni registrate, con conservazione dei salvataggi |
+47: | `verify-tournament-prospects.cjs` | Tutti i cataloghi e metagame registrati: indici numerici per quattro formati, filtri, zero/N/D, campioni, segnali, analisi complete, fonti e anteprime mouse/tastiera/tocco |
+48: | `verify-site.cjs` | Navigazione e strumenti Atlas, vecchi collegamenti |
+49: | `verify-ux.cjs` | Layout delle route elencate nello script, più larghezze, movimento ridotto, Draft e contenuti senza JavaScript |
+50: | `verify-expansion-browser.cjs` | Salvataggi e compatibilità fra espansioni |
+51: | `verify-star-trek.cjs`, `verify-star-trek-review.cjs` | Preview, pool, import/export, mulligan, aggiornamento fra schede e regressioni |
+52: | `verify-draft-bots-browser.cjs` | Ripresa, completamento, esportazione e anteprime dei bot |
+53: | `verify-draft-assistant.cjs` | Confronto contestuale, costi ibridi e faccia principale, pick e annullamento, comuni, telefono, anteprime, sincronizzazione e salvataggi protetti |
+54: | `verify-draft-workspace.cjs` | Quattro viste Draft, collegamenti diretti, cronologia, sei larghezze, tastiera, tocco, anteprime dinamiche e contenuti senza JavaScript. Screenshot e rapporto nella cartella temporanea, oppure in `MTG_QA_DIR` |
+55: | `python -m unittest test_draft_assistant.py` | Coerenza del pool con il catalogo quando lo snapshot statistico è parziale o obsoleto, conservazione delle metriche presenti e assenza di win rate inventati |
+56: | `verify-prospects-browser.cjs` | Consultazione delle analisi per carta; controllo datato con conteggi fissi e scrittura di screenshot, vedere sotto |
+57: 
+58: Ispezionare le route effettive negli script: conteggi storici di pagine o viewport non certificano espansioni aggiunte in seguito. Per ogni cambiamento visibile verificare le anteprime delle carte con hover, focus e tocco, anche nei risultati creati dopo il caricamento.
+59: 
+60: Prima di eseguire controlli datati, verificare anche le destinazioni dei rapporti e degli screenshot. `verify-prospects-browser.cjs` assume il catalogo della propria acquisizione e scrive quattro PNG in `research/reality-fracture-20261022/`, sovrascrivendo quelli omonimi se avviato dalla radice del repository. I percorsi degli screenshot sono relativi alla cartella di lavoro: per una verifica nuova avviare lo script tramite il suo percorso assoluto da una cartella temporanea, mantenendo `MTG_SITE_URL` e `MTG_PLAYWRIGHT_MODULE` configurati. Non sostituire le evidenze storiche e non ripristinare automaticamente file che potrebbero contenere lavoro di altre attività. Questo script non è una verifica generica della completezza di cataloghi successivi.
+61: 
+62: ## Git e pubblicazione
+63: 
+64: Per il torneo locale usare `node test-tournament.cjs` e `node verify-tournament-browser.cjs`. Il secondo richiede `MTG_SITE_URL`, `MTG_PLAYWRIGHT_MODULE` e, se serve, `MTG_BROWSER_CHANNEL`: copre desktop e tocco, torneo completo, timer dopo ricaricamento, classifica, export/import, recupero di JSON incompatibili e backup fallito. `python -m unittest test_shared_features.py` verifica che dati pronti nelle presentazioni di anteprima raggiungano i renderer condivisi; `python audit-expansion-capabilities.py` stampa requisiti e lacune per tutti i set.
+65: 
+66: Il workflow `.github/workflows/` esegue build e pubblicazione di `dist/` a ogni push su `main` e su avvio manuale. Un errore di build impedisce il deploy. La build pubblica `schemas/`, le pagine e i dati runtime, i manifest e i dataset sotto `sets/<slug>/data/`. Inoltre copia in ciascun set ogni file `*.js` e `*.css` presente nella radice del repository, anche se non è dichiarato come asset. I JSON delle espansioni, gli schemi e questi file sono quindi pubblici, non un luogo per annotazioni private.
+67: 
+68: Un asset dichiarato nel manifest può essere un file oppure una directory: nel secondo caso la build ne copia ricorsivamente l'intero contenuto. Le directory di documentazione, skill, review e ricerca e i file privati `ev-*` non vengono copiati in blocco per il solo fatto di esistere, ma un riferimento negli asset li renderebbe pubblici. Controllare quindi percorsi e contenuti di `dist/` quando si aggiungono asset di tipo directory o file JavaScript/CSS in radice. La visibilità su Git è distinta dalla pubblicazione in `dist/`.
+69: 
+70: Una richiesta sullo stato Git non autorizza commit o push. Rileggere modifiche tracciate, file non tracciati, esclusioni rilevanti e commit locali; fare `git fetch` prima di dichiarare cosa manca sul remoto. Distinguere il lavoro corrente dalle modifiche di altre chat, verificare i file inclusi e le dipendenze locali non versionate prima di un push autorizzato. `ev-*` e `docs/local/` restano privati.
+71: 
+72: Per dichiarare il sito aggiornato verificare il workflow GitHub Pages del commit pertinente. Push riuscito, deploy riuscito e risorse online verificate sono esiti distinti. I limiti dell'hosting vanno ricontrollati sulle fonti ufficiali quando rilevanti; una misura locale non è una misura del traffico reale.
+73: 
+74: La migrazione Atlas è coperta anche da `python -m unittest test_atlas_migration.py` e `node test-pool-record.cjs`. Le fixture preview in `test_shared_features.py` e `verify-expansion-review.py` verificano la compatibilità storica; i vecchi script dedicati alla preview Star Trek non sono il controllo generale delle espansioni Atlas correnti.
+
+FILE draft-engine.js
+1: 'use strict';
+2: /* Pure engine: no DOM, storage, network or knowledge of other seats' pools. */
+3: ((root) => {
+4:  const COLORS = [...'WUBRG'];
+5:  const STRATEGIES = {
+6:   power: {name:'Potenza pura', description:'Sceglie per valutazione individuale, anche fuori colore. Profilo di confronto che può produrre un pool incoerente.', weights:[1,0,0,0,0,0], temperature:.10},
+7:   bomb: {name:'Bomba e costruzione attorno', description:'Ricorda la prima bomba e privilegia i suoi colori; cambia piano solo se i segnali compensano il costo.', weights:[1.1,1.4,.8,.5,.6,.3], temperature:.16},
+8:   signals: {name:'Lettura dei segnali', description:'Resta aperto, segue qualità e colori ricevuti, poi consolida il mazzo.', weights:[1,1,.7,.7,1.6,.6], temperature:.22},
+9:   force: {name:'Archetipo forzato', description:'Privilegia la coppia di colori scelta prima del draft, anche se contesa.', weights:[.9,2.1,1.3,.7,0,.4], temperature:.12},
+10:   synergy: {name:'Sinergie e build-around', description:'Cerca supporti degli archetipi già presenti, senza sommare bonus a carte isolate.', weights:[.9,1.1,1.8,.6,.8,.4], temperature:.18},
+11:   aggro: {name:'Aggro e tempo', description:'Preferisce creature economiche e interazione; corregge gli eccessi della curva.', weights:[1,1.2,.5,1.5,.7,.2], temperature:.18},
+12:   control: {name:'Controllo e vantaggio', description:'Preferisce risposte e vantaggio carte, conservando un numero utile di creature iniziali.', weights:[1.1,1.2,.6,.9,.8,.4], temperature:.18},
+13:   fixing: {name:'Fixing e splash', description:'Prende fonti per colori aggiuntivi e accetta una bomba extra solo quando il mana la sostiene.', weights:[1.1,.8,.6,.6,.9,1.8], temperature:.2},
+14:   denial: {name:'Counterpick ragionato', description:'Deduce colori richiesti dalle carte scomparse al giro. Rinuncia a una giocabile solo tardi e se il costo è basso.', weights:[1,1.3,.6,.8,.8,.5], temperature:.15}
+15:  };
+16:  const PHASES = ['esplora','orienta','consolida','completa'];
+17:  // Rows are base transition masses, adjusted by progress and observed evidence.
+18:  const TRANSITIONS = [[.68,.30,.02,0],[.08,.67,.25,0],[.02,.08,.84,.06],[0,0,.03,.97]];
+19:  function rng(seed) {
+20:   let h=2166136261; for(const ch of String(seed)) h=Math.imul(h^ch.charCodeAt(0),16777619);
+21:   return () => {h+=0x6D2B79F5;let t=h;t=Math.imul(t^t>>>15,t|1);t^=t+Math.imul(t^t>>>7,t|61);return ((t^t>>>14)>>>0)/4294967296;};
+22:  }
+23:  function weighted(groups, random) {
+24:   if(!groups.length || groups.some(([w])=>!Number.isFinite(w)||w<0)) throw Error('Invalid distribution');
+25:   const total=groups.reduce((n,[w])=>n+w,0); if(total<=0) throw Error('Empty distribution');
+26:   let value=random()*total; for(const [w,item] of groups){value-=w;if(value<0)return item;} return groups.at(-1)[1];
+27:  }
+28:  const choose=(a,r)=>{if(!a.length)throw Error('Empty card group');return a[Math.floor(r()*a.length)];};
+29:  function createCollator(format, random) {
+30:   if(format.collation?.schemaVersion)return (typeof module!=='undefined'?require('./collation.js'):root.Collation).createCollator(format,random);
+31:   const byId=Object.fromEntries(format.cards.map(c=>[c.id,c])), spec=format.collation;
+32:   if(!spec)throw Error('Profilo di collazione non disponibile');
+33:   const resolve=ids=>ids.map(id=>{if(!byId[id])throw Error('Unknown card '+id);return byId[id];});
+34:   const common=resolve(spec.common),guests=resolve(spec.guests);
+35:   const branches=Object.fromEntries(Object.entries(spec.slots).map(([slot,groups])=>[slot,groups.map(g=>[g.weight,{cards:resolve(g.cards),foil:g.foil}])]));
+36:   for(const [name,groups] of Object.entries(branches)) {
+37:    if(Math.abs(groups.reduce((n,[w])=>n+w,0)-1)>1e-9 || groups.some(([w,g])=>w<0||!g.cards.length)) throw Error('Invalid slot '+name);
+38:   }
+39:   const partners={},printedPartners={};
+40:   for(const [a,b] of spec.pairs){if(!byId[a]||!byId[b]||byId[a].rarity!==byId[b].rarity)throw Error('Invalid pair');printedPartners[a]=b;printedPartners[b]=a;partners[byId[a].full]=byId[b].full;partners[byId[b].full]=byId[a].full;}
+41:   const draw=(slot,exclude=[])=>{const group=weighted(branches[slot],random);return {card:choose(group.cards.filter(c=>!exclude.includes(c.full)),random),foil:group.foil};};
+42:   let sequence=0;
+43:   function pack(){
+44:    const result=[];const add=(c,slot,foil=false)=>result.push({uid:sequence++,id:c.id,slot,foil});
+45:    const available=[...common];for(let i=0;i<spec.commonCount;i++)add(available.splice(Math.floor(random()*available.length),1)[0],'common');
+46:    if(random()<spec.guestRate){result.shift();add(choose(guests,random),'guest');}
+47:    let pair=[];
+48:    for(const rule of spec.recipe){
+49:     const {card,foil}=draw(rule.slot,rule.excludePair?pair.map(c=>c.full):[]);
+50:     if(rule.paired){const partner=byId[printedPartners[card.id]];if(!partner)throw Error('Missing partner '+card.id);pair=[card,partner];pair.forEach(c=>add(c,'pair',rule.foil||foil));}
+51:     else add(card,rule.slot,rule.foil||foil);
+52:    }
+53:    if(result.length!==format.packSize)throw Error('Invalid pack size');return result;
+54:   }
+55:   return {pack,branches,partners};
+56:  }
+57:  function botState(strategy='signals',target=null) {
+58:   if(!STRATEGIES[strategy])throw Error('Unknown strategy');
+59:   if(strategy==='force'&&(!/^[WUBRG]{1,5}$/.test(target||'')||new Set(target).size!==target.length))throw Error('Choose an archetype');
+60:   return {strategy,target,pool:[],phase:0,anchor:null,lane:target,signals:{},demand:Object.fromEntries(COLORS.map(c=>[c,0])),seen:{},log:[]};
+61:  }
+62:  function createEvaluator(format,engineVersion=3) {
+63:   if(![2,3].includes(engineVersion))throw Error('Versione del motore non supportata');
+64:   const modern=engineVersion===3;
+65:   const byId=Object.fromEntries(format.cards.map(c=>[c.id,c])), archetypes=Object.keys(format.archetypes);
+66:   if(!archetypes.length)throw Error('Archetipi non disponibili');
+67:   const at=n=>format.rounds*format.packSize*n/42;
+68:   const rating=c=>c.basic?0:(c.score??2.5);
+69:   // Mana symbols, rather than color identity, determine whether a hybrid spell
+70:   // needs a splash. This remains a draft heuristic, not a mana-payment engine.
+71:   function missingColors(c,lane){
+72:    const symbols=[...(c.cost||'').matchAll(/\{([^}]+)\}/g)].map(m=>m[1]);
+73:    const colored=symbols.filter(s=>/[WUBRG]/.test(s));
+74:    if(!colored.length)return c.colors.filter(x=>!lane.includes(x));
+75:    return [...new Set(colored.flatMap(s=>{
+76:     const choices=s.split('/').filter(x=>COLORS.includes(x));
+77:     return choices.some(x=>lane.includes(x))||s.split('/').some(x=>/^\d+$/.test(x))?[]:choices;
+78:    }))];
+79:   }
+80:   const fits=(c,lane)=>modern?missingColors(c,lane).length===0:c.colors.every(x=>lane.includes(x));
+81:   function manaColors(c){
+82:    const text=c.oracle||'';
+83:    if(/mana of any color|basic landcycling|search your library for a basic land/i.test(text))return COLORS;
+84:    if(c.land)return c.identity;
+85:    const cycling=['Plains','Island','Swamp','Mountain','Forest'].flatMap((type,i)=>new RegExp('\\b'+type+'cycling\\b','i').test(text)?[COLORS[i]]:[]);
+86:    const produced=[...text.matchAll(/\badd ([^.\n]+)/gi)].flatMap(m=>[...m[1].matchAll(/\{([WUBRG])\}/g)].map(x=>x[1]));
+87:    return [...new Set([...cycling,...produced])];
+88:   }
+89:   function observe(bot,pack,round,pick) {
+90:    const sig=bot.signals[round]??=Object.fromEntries(COLORS.map(c=>[c,0]));
+91:    // The same packet has the same minimum UID. Track its route independently.
+92:    const key=pack.packetId, previous=bot.seen[key];
+93:    if(previous){const now=new Set(pack.cards.map(e=>e.uid));for(const old of previous){if(!now.has(old.uid)){const c=byId[old.id];for(const color of c.colors)bot.demand[color]+=(Math.max(0,rating(c)-2)/Math.max(1,c.colors.length));}}}
+94:    for(const color of COLORS){const strengths=pack.cards.map(e=>byId[e.id]).filter(c=>c.colors.includes(color)&&!c.land).map(rating);const strength=Math.max(0,...strengths)-2.5;sig[color]=sig[color]*.78+Math.max(0,strength)*Math.min(1,(pick-1)/5);}
+95:   }
+96:   function context(bot,round) {
+97:    const pool=bot.pool.map(e=>byId[e.id]);const sig=bot.signals[round]||{};
+98:    const support=Object.fromEntries(archetypes.map(a=>[a,pool.reduce((n,c)=>n+(!c.land&&fits(c,a)?Math.max(0,rating(c)-1.5):0)+(c.archetypes.includes(a)&&(!modern||fits(c,a))?.7:0),0)]));
+99:    const lanes=archetypes.map(a=>[support[a]+[...a].reduce((n,c)=>n+(sig[c]||0)*STRATEGIES[bot.strategy].weights[4],0),a]).sort((a,b)=>b[0]-a[0]);
+100:    let lane=bot.target||lanes[0][1];
+101:    if(bot.strategy==='bomb'&&bot.anchor){const anchored=lanes.find(([,a])=>fits(byId[bot.anchor],a));if(anchored){lane=lanes[0][0]>anchored[0]+6?lanes[0][1]:anchored[1];}}
+102:    if(!bot.target&&bot.phase>=2&&bot.lane){const prior=lanes.find(([,a])=>a===bot.lane);if(prior&&lanes[0][0]<prior[0]+3)lane=bot.lane;}
+103:    // Equally supported pairs stay open. Their order in the JSON must not give
+104:    // one color a curve or synergy bonus before the bot has any evidence.
+105:    if(!modern)return {pool,sig,lane,support,lanes};
+106:    const supportedColors=new Set(pool.filter(c=>!c.land&&fits(c,lane)).flatMap(c=>[...(c.cost||'').matchAll(/\{([WUBRG])\}/g)].map(m=>m[1])));
+107:    const keepLane=bot.target||(bot.phase>=2&&supportedColors.size>=2);
+108:    const laneValue=lanes.find(([,a])=>a===lane)[0];
+109:    const anchored=bot.strategy==='bomb'&&bot.anchor&&fits(byId[bot.anchor],lane);
+110:    const options=keepLane?[lane]:lanes.filter(([value,a])=>value>=laneValue-.25&&(!anchored||fits(byId[bot.anchor],a))).map(([,a])=>a);
+111:    return {pool,sig,lane,support,lanes,options};
+112:   }
+113:   function rankModern(bot,pack,round,pick,random,transition){
+114:    const profile=STRATEGIES[bot.strategy],ctx=context(bot,round),n=bot.pool.length;
+115:    if(transition){
+116:     const masses=[...TRANSITIONS[bot.phase]];
+117:     if(n<at(3)){masses[0]+=2;masses[2]=0;masses[3]=0;}
+118:     if(n>=at(7))masses[1]+=.5;
+119:     if(n>=at(14))masses[2]+=1.5;
+120:     if(n>=at(5)&&ctx.lanes[0][0]-(ctx.lanes[1]?.[0]??0)>3)masses[2]+=.8;
+121:     if(bot.phase>=2&&bot.lane&&ctx.lane!==bot.lane)masses[1]+=.8;
+122:     if(n>=at(28))masses[3]+=4;
+123:     if(n<at(26))masses[3]=0;
+124:     bot.phase=weighted(masses.map((w,i)=>[w,i]),random);
+125:    }
+126:    const commitment=bot.strategy==='force'?1.5:n===0?0:[.08,.65,1.3,1.65][bot.phase];
+127:    const removal=c=>/rimozione|risposta|contromagia/i.test(c.role);
+128:    const sources=manaColors;
+129:    const playable=(c,lane)=>!c.land&&fits(c,lane);
+130:    function evaluate(entry,lane){
+131:     const c=byId[entry.id],off=missingColors(c,lane),own=ctx.pool.filter(x=>playable(x,lane));
+132:     const available=color=>ctx.pool.filter(x=>sources(x).includes(color)).length;
+133:     const splash=bot.strategy==='fixing'&&off.length===1&&available(off[0])>=2&&
+134:      [...(c.cost||'').matchAll(/\{([^}]+)\}/g)].filter(m=>m[1].split('/').includes(off[0])).length<=1;
+135:     const on=c.land?sources(c).some(x=>lane.includes(x)):off.length===0;
+136:     const fit=c.basic?-2:(on?1:splash?-.2:-1-off.length)*commitment;
+137:     // Archetype membership is evidence of a shared plan, not proof that every
+138:     // copy is another enabler. Duplicate copies cannot inflate this bonus.
+139:     const distinctSupport=new Set(own.filter(x=>x.full!==c.full&&x.archetypes.includes(lane)).map(x=>x.full)).size;
+140:     const synergy=playable(c,lane)&&c.archetypes.includes(lane)?Math.min(.35,distinctSupport*.07):0;
+141:     let curve=0;
+142:     const cheap=x=>x.creature&&x.mv<=2&&!/\{X\}/.test(x.cost||'');
+143:     if(n&&playable(c,lane)){
+144:      const cheapCount=own.filter(cheap).length;
+145:      if(cheap(c))curve+=cheapCount<6?.25:-.15;
+146:      if(c.creature&&own.filter(x=>x.creature&&Math.min(6,x.mv)===Math.min(6,c.mv)).length>=5)curve-=.2;
+147:      // An expensive activated answer is not an efficient removal spell merely
+148:      // because the editorial role contains the word "rimozione".
+149:      if(!c.creature&&removal(c)&&own.filter(x=>!x.creature&&removal(x)).length<5)curve+=.15;
+150:      if(bot.strategy==='aggro')curve+=c.creature&&c.mv<=3&&!/\{X\}/.test(c.cost||'')?.15:c.mv>=5?-.15:0;
+151:      if(bot.strategy==='control')curve+=!c.creature&&removal(c)?.15:/pesca|vantaggio|difens/i.test(c.role)?.1:0;
+152:     }
+153:     const signal=c.colors.reduce((s,x)=>s+(ctx.sig[x]||0),0)/Math.max(1,c.colors.length)*.12;
+154:     const offBombs=ctx.pool.filter(x=>rating(x)>=4&&!fits(x,lane));
+155:     const useful=sources(c).some(color=>lane.includes(color)||offBombs.some(b=>missingColors(b,lane).includes(color)));
+156:     const mana=useful&&!c.basic?.15:0;
+157:     const components={potenza:rating(c)*profile.weights[0],colori:fit*profile.weights[1],sinergia:synergy*profile.weights[2],curva:curve*profile.weights[3],segnali:signal*profile.weights[4],mana:mana*profile.weights[5]};
+158:     // Tactical preferences break close choices. Their combined bonus cannot
+159:     // erase a full point of card quality on the same weighted rating scale.
+160:     const keys=['sinergia','curva','segnali','mana'];
+161:     const positive=keys.reduce((s,k)=>s+Math.max(0,components[k]),0),negative=keys.reduce((s,k)=>s+Math.min(0,components[k]),0);
+162:     for(const key of keys)components[key]*=components[key]>=0?(positive>.45?.45/positive:1):(negative<-.2?-.2/negative:1);
+163:     return {entry,components,score:Object.values(components).reduce((a,b)=>a+b,0),playable:playable(c,lane),card:c,lane};
+164:    }
+165:    const scores=pack.map(entry=>ctx.options.map(lane=>evaluate(entry,lane)).sort((a,b)=>b.score-a.score)[0]);
+166:    const bestOwnPower=Math.max(0,...scores.filter(s=>s.playable).map(s=>rating(s.card)));
+167:    if(bot.strategy==='denial'&&n>=at(21)&&pick>=Math.ceil(format.packSize/format.picksPerTurn)/2&&bestOwnPower<=2.7){
+168:     for(const s of scores)if(!s.playable&&rating(s.card)>=3.5){const demand=Math.max(0,...s.card.colors.map(x=>bot.demand[x]));if(demand>=2){s.components.colori=0;s.components.negazione=Math.min(1.5,demand*.15);s.components.costoFuoriColore=-.6;s.score=Object.values(s.components).reduce((a,b)=>a+b,0);}}
+169:    }
+170:    scores.sort((a,b)=>b.score-a.score||a.entry.uid-b.entry.uid);
+171:    return {scores,ctx};
+172:   }
+173:   function rank(bot,pack,round,pick,random,transition=true) {
+174:    if(modern)return rankModern(bot,pack,round,pick,random,transition);
+175:    const profile=STRATEGIES[bot.strategy];const ctx=context(bot,round);const n=bot.pool.length;
+176:    if(transition){
+177:     const masses=[...TRANSITIONS[bot.phase]];
+178:     if(n<at(3)){masses[0]+=2;masses[2]=0;masses[3]=0;}
+179:     if(n>=at(7))masses[1]+=.5;
+180:     if(n>=at(14))masses[2]+=1.5;
+181:     if(n>=at(5)&&ctx.lanes[0][0]-(ctx.lanes[1]?.[0]??0)>3)masses[2]+=.8;
+182:     if(bot.phase>=2&&bot.lane&&ctx.lane!==bot.lane)masses[1]+=.8;
+183:     if(n>=at(28))masses[3]+=4;
+184:     if(n<at(26))masses[3]=0;
+185:     bot.phase=weighted(masses.map((w,i)=>[w,i]),random);
+186:    }
+187:    const commitment=bot.strategy==='force'?1.5:n===0?0:[.08,.65,1.3,1.65][bot.phase];
+188:    const colors=ctx.lane;const playable=c=>!c.land&&c.colors.every(x=>colors.includes(x));
+189:    const own=ctx.pool.filter(playable), cheap=own.filter(c=>c.creature&&c.mv<=2).length;
+190:    const removal=c=>/rimozione|risposta|contromagia/i.test(c.role);
+191:    const fixing=c=>c.land&&!c.basic||/landcycling|mana of any color|search your library for a basic land/i.test(c.oracle);
+192:    const supportCount=ctx.pool.filter(c=>c.archetypes.includes(colors)).length;
+193:    const scores=pack.map(entry=>{
+194:     const c=byId[entry.id], off=c.colors.filter(x=>!colors.includes(x));
+195:     const sources=c.land?(/mana of any color/i.test(c.oracle)?COLORS:c.identity):[];
+196:     const on=c.land?(sources.some(x=>colors.includes(x))?1:0):c.colors.length?1-off.length/c.colors.length:1;
+197:     const manaSources=color=>ctx.pool.filter(c=>(c.land&&c.identity.includes(color))||/mana of any color/i.test(c.oracle)).length;
+198:     const splashAllowed=bot.strategy==='fixing'&&off.length===1&&manaSources(off[0])>=2&&(c.cost.match(new RegExp('\\{'+off[0]+'\\}','g'))||[]).length<=1;
+199:     const power=rating(c), fit=c.basic?-2:((on-.5)*2-off.length*(splashAllowed?.2:1))*commitment;
+200:     const synergy=c.archetypes.includes(colors)?Math.min(1.8,supportCount*.18):0;
+201:     let curve=0;
+202:     if(playable(c)){
+203:      if(c.creature&&c.mv<=2)curve+=(cheap<6?.8:-.3);
+204:      if(c.creature&&ctx.pool.filter(x=>playable(x)&&x.creature&&Math.min(6,x.mv)===Math.min(6,c.mv)).length>=5)curve-=.8;
+205:      if(removal(c)&&own.filter(removal).length<5)curve+=.5;
+206:      if(bot.strategy==='aggro')curve+=c.creature&&c.mv<=3?1:c.mv>=5?-1:0;
+207:      if(bot.strategy==='control')curve+=removal(c)?1:/pesca|vantaggio|difens/i.test(c.role)?.7:0;
+208:     }
+209:     const signal=c.colors.reduce((s,x)=>s+(ctx.sig[x]||0),0)/Math.max(1,c.colors.length)*.4;
+210:     const offBombs=ctx.pool.filter(x=>rating(x)>=4&&x.colors.some(y=>!colors.includes(y)));
+211:     const usefulFixing=fixing(c)&&(!c.land||sources.some(x=>colors.includes(x)||offBombs.some(b=>b.colors.includes(x))));
+212:     const mana=usefulFixing?Math.min(1.2,.3+offBombs.filter(b=>!c.land||sources.some(x=>b.colors.includes(x))).length*.3):0;
+213:     const components={potenza:power*profile.weights[0],colori:fit*profile.weights[1],sinergia:synergy*profile.weights[2],curva:curve*profile.weights[3],segnali:signal*profile.weights[4],mana:mana*profile.weights[5]};
+214:     return {entry,components,score:Object.values(components).reduce((a,b)=>a+b,0),playable:playable(c),card:c};
+215:    });
+216:    const bestOwnPower=Math.max(0,...scores.filter(s=>s.playable).map(s=>rating(s.card)));
+217:    if(bot.strategy==='denial'&&n>=at(21)&&pick>=Math.ceil(format.packSize/format.picksPerTurn)/2&&bestOwnPower<=2.7){for(const s of scores){if(!s.playable&&rating(s.card)>=3.5){const demand=Math.max(0,...s.card.colors.map(x=>bot.demand[x]));if(demand>=2){const denial=Math.min(1.5,demand*.15);s.score-=s.components.colori;s.components.colori=0;s.components.negazione=denial;s.components.costoFuoriColore=-.6;s.score+=denial-.6;}}}}
+218:    scores.sort((a,b)=>b.score-a.score||a.entry.uid-b.entry.uid);
+219:    return {scores,ctx};
+220:   }
+221:   function take(bot,pack,round,pick,random){
+222:    observe(bot,pack,round,pick);
+223:    const {scores,ctx}=rank(bot,pack.cards,round,pick,random);
+224:    const max=scores[0].score;
+225:    const candidates=modern?scores.filter(s=>s.score>=max-.2):scores;
+226:    const selected=weighted(candidates.map(s=>[Math.exp((s.score-max)/STRATEGIES[bot.strategy].temperature),s]),random);
+227:    bot.lane=modern?selected.lane:ctx.lane;bot.pool.push(selected.entry);
+228:    if(!bot.anchor&&rating(selected.card)>=4&&!selected.card.land)bot.anchor=selected.entry.id;
+229:    bot.seen[pack.packetId]=pack.cards.filter(e=>e.uid!==selected.entry.uid).map(e=>({...e}));
+230:    bot.log.push({round,pick,packetId:pack.packetId,id:selected.entry.id,uid:selected.entry.uid,phase:PHASES[bot.phase],lane:bot.lane,components:selected.components,score:selected.score,alternatives:scores.slice(0,3).map(s=>({id:s.entry.id,score:s.score})),observed:pack.cards.map(e=>e.id)});
+231:    return selected.entry;
+232:   }
+233:   return {byId,rating,observe,context,rank,take};
+234:  }
+235:  function createSession(format,seed,configs,engineVersion=3){
+236:   if(!Number.isInteger(format.picksPerTurn)||format.picksPerTurn<1||!Number.isInteger(format.seats)||format.seats<2||format.directions.length!==format.rounds||format.directions.some(x=>x!==1&&x!==-1))throw Error('Regole del Draft non valide');
+237:   if(!Array.isArray(configs)||configs.length!==format.seats-1)throw Error('Invalid bot count');
+238:   for(const c of configs)if(!c||!STRATEGIES[c.strategy]||(c.strategy==='force'&&!format.archetypes[c.target]))throw Error('Invalid bot configuration');
+239:   const random=rng(seed),collator=createCollator(format,random),evaluator=createEvaluator(format,engineVersion);
+240:   const bots=configs.map(c=>botState(c.strategy,c.target));
+241:   const rounds=Array.from({length:format.rounds},(_,round)=>Array.from({length:format.seats},(_,seat)=>({packetId:round*format.seats+seat,cards:collator.pack()})));
+242:   let packets=rounds[0],round=0,pick=0,pending=[];const human=[],log=[];
+243:   const current=()=>round<format.rounds?packets[0].cards:[];
+244:   function step(uid){
+245:    if(round>=format.rounds)throw Error('Draft completo');
+246:    const entry=current().find(e=>e.uid===uid);if(!entry)throw Error('Carta non presente');
+247:    human.push(entry);log.push({round:round+1,pick:pick+1,entry});
+248:    pending.push(entry);packets[0].cards=packets[0].cards.filter(e=>e.uid!==uid);
+249:    if(pending.length<format.picksPerTurn&&packets[0].cards.length)return entry;
+250:    for(let i=0;i<bots.length;i++){
+251:     const packet=packets[i+1];
+252:     for(let n=0;n<pending.length;n++){
+253:      const selected=evaluator.take(bots[i],packet,round+1,pick+1,random);
+254:      packet.cards=packet.cards.filter(e=>e.uid!==selected.uid);
+255:     }
+256:    }
+257:    pending=[];
+258:    pick++;
+259:    if(packets.every(p=>!p.cards.length)){round++;pick=0;packets=rounds[round]||[];}
+260:    else{const rotated=Array(format.seats);packets.forEach((p,i)=>rotated[(i+format.directions[round]+format.seats)%format.seats]=p);packets=rotated;}
+261:    return entry;
+262:   }
+263:   return {format,seed,configs,bots,human,log,current,step,get round(){return round+1;},get pick(){return pick+1;},get complete(){return round>=format.rounds;},export(){return {version:2,engineVersion,format:format.id,revision:format.revision,seed,configs,picks:log.map(x=>x.entry.uid)};}};
+264:  }
+265:  function replay(format,record){
+266:   if(!record||(record.version===1?!format.legacyReplay:record.version!==2||![2,3].includes(record.engineVersion)||(record.revision!==format.revision&&!(format.compatibleRevisions||[]).includes(record.revision)))||record.format!==format.id||typeof record.seed!=='string'||record.seed.length>200||!Array.isArray(record.picks)||record.picks.length>format.rounds*format.packSize||record.picks.some(x=>!Number.isInteger(x)))throw Error('Salvataggio non valido o riferito a un profilo differente');
+267:   const session=createSession(format,record.seed,record.configs,record.version===1?2:record.engineVersion);record.picks.forEach(uid=>session.step(uid));return session;
+268:  }
+269:  const api={STRATEGIES,PHASES,TRANSITIONS,rng,weighted,createCollator,botState,createEvaluator,createSession,replay};
+270:  if(typeof module!=='undefined')module.exports=api;else root.DraftEngine=api;
+271: })(globalThis);
+
+FILE verify-draft-bots.cjs
+1: 'use strict';
+2: const assert=require('node:assert/strict'),fs=require('node:fs'),crypto=require('node:crypto');
+3: const E=require('./draft-engine.js');
+4: const root=JSON.parse(fs.readFileSync('dist/sets/reality-fracture/Reality-Fracture-Draft-Engine.html','utf8').match(/<script id="draft-data" type="application\/json">([\s\S]*?)<\/script>/)[1]);
+5: const data=root.formats?.draft||root,ev=E.createEvaluator(data);
+6: const defaults=['signals','bomb','synergy','aggro','control','fixing','denial'];
+7: const configs=defaults.map(strategy=>({strategy,target:null}));
+8: const card=name=>data.cards.find(c=>c.name===name),entry=(name,uid)=>({id:card(name).id,uid});
+9: // Freeze the old algorithm's output, not just a round-trip using the same code.
+10: const fixtures=JSON.parse(fs.readFileSync('tests/fixtures/draft-bots-v2.json','utf8'));
+11: for(const {record,botDigest} of fixtures.cases){
+12:  const restored=E.replay(data,record);
+13:  assert.equal(crypto.createHash('sha256').update(JSON.stringify(restored.bots)).digest('hex'),botDigest);
+14:  assert.deepEqual(restored.export(),record);
+15:  const v1={version:1,format:record.format,seed:record.seed,configs:record.configs,picks:record.picks};
+16:  assert.deepEqual(E.replay(data,v1).bots,restored.bots);
+17:  if(!restored.complete){restored.step(restored.current()[0].uid);assert.equal(restored.export().engineVersion,2);assert.deepEqual(E.replay(data,restored.export()).bots,restored.bots);}
+18: }
+19: // Empty pools and JSON key order cannot favor any of five otherwise identical colors.
+20: const colors=[...'WUBRG'];
+21: const synthetic={...data,cards:colors.map(color=>({id:color,name:color,full:color,score:3,rarity:'common',colors:[color],identity:[color],cost:'{1}{'+color+'}',mv:2,creature:true,land:false,basic:false,role:'',oracle:'',archetypes:[]}))};
+22: for(const strategy of Object.keys(E.STRATEGIES).filter(s=>s!=='force')){
+23:  for(const archetypes of [data.archetypes,Object.fromEntries(Object.entries(data.archetypes).reverse())]){
+24:   const evaluator=E.createEvaluator({...synthetic,archetypes}),bot=E.botState(strategy);
+25:   const ranked=evaluator.rank(bot,colors.map((id,uid)=>({id,uid})),1,1,E.rng('symmetric'),false);
+26:   assert.equal(new Set(ranked.scores.map(s=>s.score)).size,1,strategy+' must start color-neutral');
+27:  }
+28: }
+29: // A single established color must not select an arbitrary second color, even
+30: // after the phase machine reaches consolidation or the first bomb is anchored.
+31: for(const strategy of ['signals','bomb']){
+32:  const mono=E.botState(strategy);mono.phase=3;mono.lane='WU';
+33:  mono.pool=Array.from({length:14},(_,uid)=>({id:'W',uid}));if(strategy==='bomb')mono.anchor='W';
+34:  const ranked=E.createEvaluator(synthetic).rank(mono,colors.slice(1).map((id,uid)=>({id,uid:100+uid})),2,1,E.rng('second-color'),false);
+35:  assert.equal(new Set(ranked.scores.map(s=>s.score)).size,1,strategy+' must leave the second color open');
+36: }
+37: // The reported P1P1 failure: a cheap common must not tie a five-point card.
+38: const aggro=E.botState('aggro');
+39: const opening=ev.rank(aggro,[entry('Mindseeker Oculus',0),entry('The Theorist, Jace Beleren',1)],1,1,E.rng('opening'),false);
+40: assert.equal(opening.scores[0].card.name,'The Theorist, Jace Beleren');
+41: assert.ok(opening.scores[0].score-opening.scores[1].score>.2);
+42: // Same-color quality must survive all profiles, including saturated cheap slots.
+43: for(const strategy of Object.keys(E.STRATEGIES)){
+44:  const bot=E.botState(strategy,strategy==='force'?'WR':null);bot.lane='WR';bot.phase=3;
+45:  bot.pool=Array.from({length:28},(_,i)=>entry(i<8?'Campus Crier':'Hallway Heckler',i));
+46:  const ranked=ev.rank(bot,[entry('Graft Surgeon',100),entry('Ajani Unrelenting',101)],3,1,E.rng('quality'),false);
+47:  assert.equal(ranked.scores[0].card.name,'Ajani Unrelenting',strategy);
+48:  assert.ok(ranked.scores[0].score-ranked.scores[1].score>.2);
+49: }
+50: // Hybrid mana is playable in either color; repeated copies are not distinct synergy support.
+51: const forced=E.botState('force','WU');forced.phase=2;
+52: forced.pool=Array.from({length:10},(_,i)=>entry('Campus Crier',i));
+53: const hybrid=ev.rank(forced,[entry('Blessed Ghoul',20)],2,1,E.rng('hybrid'),false).scores[0];
+54: assert.equal(hybrid.playable,true);assert.ok(hybrid.components.colori>0);
+55: const synergy=E.botState('force','WB');synergy.phase=2;
+56: synergy.pool=Array.from({length:10},(_,i)=>entry('Blessed Ghoul',i));
+57: assert.equal(ev.rank(synergy,[entry('Blessed Ghoul',20)],2,1,E.rng('copies'),false).scores[0].components.sinergia,0);
+58: // Actual mana abilities and typed landcycling support the right splash color.
+59: const manaFixture={...synthetic,cards:[...synthetic.cards,
+60:  {id:'source',full:'source',score:2,colors:[],identity:[],cost:'{2}',mv:2,creature:false,land:false,basic:false,role:'',oracle:'{T}: Add {R}.',archetypes:[]},
+61:  {id:'cycler',full:'cycler',score:2,colors:['R'],identity:['R'],cost:'{5}{R}',mv:6,creature:true,land:false,basic:false,role:'',oracle:'Mountaincycling {2}',archetypes:[]},
+62:  {id:'splash',full:'splash',score:4.5,colors:['R'],identity:['R'],cost:'{3}{R}',mv:4,creature:false,land:false,basic:false,role:'',oracle:'',archetypes:[]},
+63:  {id:'double-red',full:'double-red',score:4.5,colors:['R'],identity:['R'],cost:'{2}{R}{R}',mv:4,creature:false,land:false,basic:false,role:'',oracle:'',archetypes:[]}]};
+64: const manaEv=E.createEvaluator(manaFixture),fixing=E.botState('fixing','WU');fixing.phase=3;
+65: const splashPack=[{id:'splash',uid:100},{id:'double-red',uid:101}];
+66: fixing.pool=[{id:'W',uid:0},{id:'W',uid:1}];
+67: const noSources=manaEv.rank(fixing,splashPack,3,1,E.rng('mana'),false).scores.find(s=>s.entry.id==='splash').components.colori;
+68: fixing.pool=[{id:'source',uid:0},{id:'cycler',uid:1}];
+69: const withSources=manaEv.rank(fixing,splashPack,3,1,E.rng('mana'),false).scores;
+70: assert.ok(withSources.find(s=>s.entry.id==='splash').components.colori>noSources);
+71: assert.equal(withSources.find(s=>s.entry.id==='double-red').components.colori,noSources);
+72: // Tactical components stay bounded, including colorless creatures with removal text.
+73: for(const strategy of Object.keys(E.STRATEGIES)){
+74:  const bot=E.botState(strategy,strategy==='force'?'WU':null);bot.phase=3;bot.lane='WU';
+75:  bot.pool=Array.from({length:28},(_,i)=>entry('Campus Crier',i));bot.signals[3]=Object.fromEntries(colors.map(c=>[c,10]));
+76:  for(const s of ev.rank(bot,data.cards.map((c,uid)=>({id:c.id,uid})),3,1,E.rng('bounds'),false).scores){
+77:   const tactical=['sinergia','curva','segnali','mana'].map(k=>s.components[k]);
+78:   assert.ok(tactical.reduce((n,v)=>n+Math.max(0,v),0)<=.4500001);
+79:   assert.ok(tactical.reduce((n,v)=>n+Math.min(0,v),0)>=-.2000001);
+80:   assert.ok(Number.isFinite(s.score));
+81:  }
+82: }
+83: // First pack from an actual reported seed, with the old human policy held fixed.
+84: const session=E.createSession(data,'bot-audit-134',configs);
+85: const humanEv=E.createEvaluator(data,2),human=E.botState('signals');
+86: session.step(humanEv.take(human,{packetId:0,cards:session.current()},1,1,E.rng('bot-audit-134-human')).uid);
+87: assert.equal(ev.byId[session.bots[3].log[0].id].name,'The Theorist, Jace Beleren');
+88: assert.equal(session.export().engineVersion,3);
+89: assert.deepEqual(E.replay(data,session.export()).bots,session.bots);
+90: assert.throws(()=>E.replay(data,{...session.export(),engineVersion:999}));
+91: console.log('PASS: frozen v1/v2 replays and continuation; v3 replay; color neutrality; reported picks; bounded tactical bonuses; hybrid mana; duplicate support.');
+
+FILE reviews/draft-bots-20261029/analysis.md
+1: # Analisi competitiva dei bot Draft, 29 ottobre 2026
+2: 
+3: Questo rapporto conserva la diagnosi iniziale. Le formulazioni progettuali sono state poi riesaminate con Opus: per la specifica corrente vedere [requisiti BOT](../../docs/requirements.md#qualità-competitiva-dei-bot-draft) e [registro delle decisioni](../draft-bots-opus-20261029/decisions.json), in particolare per landcycling, valore di opzione e ordine di lavoro.
+4: 
+5: ## Giudizio
+6: 
+7: La v3 è una base euristica utile per esercitarsi contro avversari con preferenze diverse. Non basta ancora per rappresentare un tavolo di giocatori esperti: protegge la qualità individuale, ma non ricostruisce il mazzo che ogni pick dovrebbe migliorare. La lacuna principale è il valore contestuale delle carte, soprattutto sinergie, mana e necessità del main deck.
+8: 
+9: Raccomandazione: correggere il motore condiviso e aggiungere un profilo Adattivo competitivo che ragioni sul mazzo costruibile. Conservare i profili attuali come specialisti o controlli. Rifare da zero collazione, tavolo e replay non è giustificato dalle evidenze raccolte. Aggiungere soltanto un decimo insieme di pesi non risolve i problemi.
+10: 
+11: Questa attività produce analisi, baseline e requisiti. Nessuna modifica alla politica, ai voti, ai dati delle espansioni, all'interfaccia o alla pipeline; nessun commit o push. I requisiti da implementare sono in [docs/requirements.md](../../docs/requirements.md#qualità-competitiva-dei-bot-draft).
+12: 
+13: ## Metodo e copertura
+14: 
+15: Revisione del repository: `3902b300db4a096769e6ce1c9cbdcb1b80c63d72`. Il [manifest](input-manifest.json) registra runtime e SHA-256 dei sorgenti e dei dati pertinenti. Lo [snapshot](formats.json) conserva i campi usati dall'evaluator per tre cataloghi; i conteggi riguardano stampe nel runtime, non carte uniche né copertura di un prodotto.
+16: 
+17: - 80 tavoli Reality Fracture Draft, 8 posti, 3 buste da 14, una carta per scelta. Semi `bot-audit-0` fino a `bot-audit-79`. Sette bot con profili diversi, un posto per profilo fisso: signals, bomb, synergy, aggro, control, fixing, denial. Totale 23.520 pick dei bot.
+18: - 20 tavoli con sette bot Potenza pura, stessi primi 20 semi e dati: 5.880 pick.
+19: - 10 tavoli con sette bot Archetipo forzato WU, semi `bot-force-audit-0` fino a `bot-force-audit-9`: 2.940 pick. È uno stress test con contesa intenzionale, non una misura di forza del profilo.
+20: - Totale: 110 tavoli completi, 770 pool di bot, 32.340 pick dei bot. Ogni sessione controlla conservazione delle carte e replay identico.
+21: - Giocatore simulato fisso: Lettura dei segnali v2, RNG separato con suffisso `-human`. È un controllo riproducibile, non un giocatore umano esperto.
+22: - Prove sintetiche separate per isolare sinergia, fonti inaccessibili, memoria dei segnali e transizioni. Non sono carte reali, simulazioni di partite o osservazioni su tornei.
+23: 
+24: Nel registro di [disponibilità](availability.json), Reality Fracture è l'unico set con `draftTable.available=true`, su 21 espansioni registrate. Il primo tentativo di estendere l'audit a Bloomburrow si è fermato per collazione assente; non è stato completato alcun tavolo di quel set. Foundations e gli altri set non sono stati simulati. Pick-Two Star Trek ha un runtime senza carte e non è un evento utilizzabile per questo benchmark. Non sono state inventate buste per aggirare questi limiti.
+25: 
+26: Il benchmark non confronta forza in partita e non copre rotazione dei profili fra i posti, tutti gli archetipi forzati o tutti gli eventi. Gli 80 tavoli misti non sono indipendenti dai primi 20 tavoli Potenza pura: condividono intenzionalmente il seme e la collazione. Non è stato eseguito un confronto prima/dopo perché non è stata cambiata la politica.
+27: 
+28: ## Cosa funziona già
+29: 
+30: Il motore distingue politica v2/v3, ha replay deterministici e non consulta pool avversari o buste future durante la valutazione. Usa memoria delle proprie pick, osservazioni delle buste, una fase e un piano di colori. La v3 limita i bonus tattici, gestisce diversi costi ibridi e riconosce alcune fonti di mana e landcycling.
+31: 
+32: Nei tavoli misti, 0 casi segnalati su 386 pick con almeno una rara/mitica da voto 4,5 o più interamente nei colori registrati: nessuna è stata passata per una magia inferiore di almeno un punto. Distribuzione delle occasioni: signals 65, bomb 65, synergy 55, aggro 41, control 50, fixing 54, denial 56. Potenza pura: 0 su 56 occasioni.
+33: 
+34: Questa misura rileva soltanto una famiglia stretta di anomalie rispetto ai voti presenti. Usa i colori dichiarati, non la piena pagabilità degli ibridi; esclude alcune scelte di terre e non valida i voti stessi. Non dimostra che tutte le altre pick siano corrette, che le rare siano bombe reali o che i mazzi siano forti.
+35: 
+36: ## Lacune confermate e implicazioni di gioco
+37: 
+38: ### 1. Manca un mazzo provvisorio
+39: 
+40: `context()` somma sostegno delle carte nel pool per coppia; `rankModern()` conta tutte le magie pagabili in quella coppia. Non seleziona un main deck e non identifica quale carta verrebbe sostituita. Un ventottesimo riempitivo può aumentare il sostegno al piano e incidere sulla curva pur non entrando mai nella lista.
+41: 
+42: Per un drafter esperto la domanda decisiva è: questa carta risolve un problema del mazzo o migliora uno slot che giocherò? Occorre distinguere qualità astratta, carta giocabile e miglioramento del main. Il conteggio delle creature nel pool non basta.
+43: 
+44: ### 2. La sinergia è appartenenza a una lista editoriale
+45: 
+46: Il bonus usa `card.archetypes.includes(lane)` e il numero di nomi diversi con la stessa etichetta, fino a 0,35 prima del peso. Non verifica una relazione fra gli effetti delle carte. Cambiare il testo di un supporto sintetico da guadagno di vite a vigilance lascia identico il contributo di sinergia al payoff da lifegain: 0,126 nel profilo Sinergie.
+47: 
+48: Una o otto copie di quel supporto producono lo stesso contributo di sinergia, sempre 0,126; il totale cambia per la curva. La correzione storica che impedisce di moltiplicare ripetutamente lo stesso supporto è utile, ma non deve cancellare la densità reale. Copie e diversità sono due misure diverse.
+49: 
+50: Il tetto condiviso di 0,45 ai bonus tattici positivi impedisce di riconoscere combinazioni molto più forti della somma dei voti autonomi. È una protezione contro vecchi eccessi, non un modello di valutazione contestuale. Serve una stima del payoff supportato con limiti dichiarati, non alzare indiscriminatamente i pesi.
+51: 
+52: ### 3. Le fonti di mana possono essere soltanto nominali
+53: 
+54: La prova sintetica dà a un bot WU due creature verdi da sei mana con abilità che produce mana di qualsiasi colore. Senza fonti verdi per lanciarle, queste carte riducono comunque la penalità di una bomba rossa da -2,64 a -0,264: il contributo del colore migliora di 2,376 senza una base di mana funzionante. La magia resta `playable:false` nel risultato dell'evaluator: autorizzazione dello splash e definizione di giocabile sono inoltre due valutazioni disallineate.
+55: 
+56: Il riconoscimento testuale non modella accessibilità, velocità, restrizioni o uso alternativo. Due landcycler non equivalgono automaticamente a due terre: richiedono mana e vengono scartati. Il mazzo deve scegliere fra la creatura e il fixing nello stesso impiego della carta.
+57: 
+58: ### 4. I segnali non mantengono una memoria per lato
+59: 
+60: Le osservazioni sono conservate per numero di busta. `context(bot,3)` legge soltanto `signals[3]`, quindi non recupera direttamente `signals[1]` quando il verso torna uguale. Il pool e il piano mantengono indirettamente l'effetto delle pick precedenti; non si tratta di amnesia completa.
+61: 
+62: Il contributo osservato usa soprattutto il miglior voto per colore nella busta e il numero della pick. Mancano una stima esplicita della confidenza, la separazione della lettura per lato e il valore del wheel come prova distinta. In Pick-Two le due chiamate a `take()` osservano la stessa busta nello stesso turno: una futura politica deve evitare di trattarle come evidenze indipendenti.
+63: 
+64: ### 5. Fasi casuali e soglie non spiegano il costo del pivot
+65: 
+66: Lo stato ha una catena di transizioni pesate, condizionata dal progresso; non è un modello addestrato di abilità competitiva. La fase influisce molto sull'impegno nei colori. In 500 prove sintetiche con 28 pick già fatte, partendo da esplorazione, la successiva estrazione resta in esplorazione 46 volte e passa a orientamento 51. Questo esperimento condizionato non misura la frequenza dello stesso stato nei tavoli completi.
+67: 
+68: L'ancora del profilo Bomba è la prima magia non terra con voto almeno 4. Il costo di abbandonarla è una soglia nel sostegno alle coppie; non rappresenta quante carte si perdono né quali supporti servono. Un build-around e una bomba autonoma richiedono decisioni diverse.
+69: 
+70: ### 6. Ruoli e curva sono approssimazioni troppo uniformi
+71: 
+72: Rimozione e vantaggio dipendono da parole in `role`; aggro privilegia soprattutto mana value basso; la soglia delle creature economiche è condivisa. Mancano qualità offensiva/difensiva, tempi delle risposte, costo di attivazione, requisiti di bersaglio, riduzioni di costo e conversione del vantaggio in vittoria.
+73: 
+74: La copertura del runtime esaminato è 411/411 stampe con ruolo e 56/411 con etichetta di archetipo per Reality Fracture; 258/407 e 11/407 per Bloomburrow; 0/781 e 21/781 per Foundations. Questi ultimi cataloghi non attestano completezza del prodotto. Sono un avvertimento per il riuso futuro, non una diagnosi di bot oggi disponibili per quei set. Un motore migliore non può ricostruire automaticamente tutti i dati mancanti dalle descrizioni del set.
+75: 
+76: ### 7. Il counterpick misura poco il costo della rinuncia
+77: 
+78: L'attivazione confronta soprattutto il miglior voto base giocabile con 2,7, nella parte tarda del draft e della busta. Il beneficio di negazione deriva da domanda cumulativa dei colori al wheel. Non confronta miglioramento del proprio main o sideboard e danno plausibile a un avversario. L'informazione disponibile è correttamente parziale: questa limitazione va conservata.
+79: 
+80: ## Tre decisioni concrete da interpretare
+81: 
+82: Tavolo `bot-audit-0`, esportazione e pool integrali in [example-table.json](example-table.json). I testi citati sono quelli dello snapshot locale; questa analisi non certifica un aggiornamento Oracle alla data del rapporto e non introduce nuovi ruling.
+83: 
+84: 1. Sinergie, B3P4: terza Undulating Witness invece di Proft, Consulting Detective. Il pool precedente contiene già due Witness, Mindseeker Oculus e due Infinite Coursework. Le alternative registrate danno Proft a 5,229 e Witness a 5,139; vince la casualità ammessa entro 0,2. Entrambe hanno bonus di sinergia nullo perché prive dell'etichetta pertinente. Non è dimostrato che scegliere Witness sia sbagliato: vola e può ciclarsi per una base. Il problema è che il bot non confronta il motore scry/surveil di Proft, il mana aggiuntivo richiesto per usarlo e il valore marginale della terza Witness. La spiegazione attuale non permette di attribuire la scelta a quel ragionamento.
+85: 2. Controllo, B3P3: Craftwork Crusher sopra Compel Brutality, con Verdant Kraken, Kiora of Fire and Ashes e Ghalta the Unstoppable già nel pool. Crusher costa sette con due simboli rossi e due verdi; Compel costa due ma richiede una propria creatura o planeswalker adatto. Il voto 4 contro 3,5 favorisce Crusher. Non è automaticamente un errore: Crusher produce impatto e risorse, e Ghalta ha una riduzione. Il bot dovrebbe però spiegare quanto manca alla stabilizzazione iniziale e se un'altra chiusura migliora davvero il main. Non lo può stabilire contando il mana value e parole nel ruolo.
+86: 3. Counterpick, B3P11: Last Gasp viene tolta da un bot WR. Alternative: Theoretical Necromancer, Rampart Hunter e Forest, tutte fuori piano. Il counterpick è plausibile e non sacrifica una propria magia pagabile. È un caso positivo da conservare; vedere una rimozione nera nel pool finale non dimostra da solo uno splash sbagliato.
+87: 
+88: ## Decisione sul nuovo bot e criteri di confronto
+89: 
+90: Serve una politica adattiva che integri le capacità ora separate, invece di imporre una preferenza permanente per potenza, curva o sinergia. Conviene esporla come profilo aggiuntivo, senza sostituire gli specialisti o duplicare il motore. I requisiti BOT-01..14 e lo stato proposto sono nel documento dei requisiti.
+91: 
+92: L'ordine suggerito è dati e mazzo provvisorio, mana e sinergie, valore marginale, lettura dei segnali e pivot, poi validazione della politica adattiva. Il primo risultato misurabile deve essere risolvere controesempi strategici mantenendo replay e conservazione. Per giudicare i pool serve una lista costruita, non soltanto numero di carte nei colori o voto medio.
+93: 
+94: La validazione deve ruotare i posti, usare gli stessi semi, distinguere tavoli misti e omogenei e includere casi speculari e ordine dei dati permutato. Un insieme di scelte etichettate e motivate da un drafter competente può misurare accordo e disaccordi; non diventa una verità universale su tutte le pick. Il giudizio sui mazzi resta separato dai risultati di eventuali partite. La v3 non può essere dichiarata più debole in percentuale rispetto al profilo proposto: quel profilo non è implementato e non sono state giocate partite.
+95: 
+96: ## Riproduzione e verifiche
+97: 
+98: Dalla radice del repository, con Python e Node disponibili:
+99: 
+100: ```powershell
+101: $env:PYTHONPATH = (Get-Location).Path
+102: python reviews/draft-bots-20261029/capture-inputs.py
+103: node reviews/draft-bots-20261029/run-audit.cjs
+104: node reviews/draft-bots-20261029/probes.cjs
+105: ```
+106: 
+107: I comandi riscrivono soltanto gli output di questa cartella datata; copiarla prima di una nuova acquisizione da conservare. Il wrapper verifica il percorso del vecchio audit e cambia soltanto la cartella di output in memoria, preservando i rapporti del 22 ottobre. Prima di confrontare esecuzioni verificare il manifest dei dati. Le prove sintetiche descrivono i limiti della v3 e non vanno promosse a test che impongano il mantenimento dei difetti.
+108: 
+109: Le simulazioni e i replay controllati sono passati. Per i soli documenti e strumenti diagnostici aggiunti non è stata eseguita la suite browser o di pubblicazione. Questi controlli restano obbligatori per la successiva implementazione secondo [verification.md](../../docs/verification.md).
+110: 
+111: ## Fonti strategiche consultate
+112: 
+113: Queste fonti sostengono i criteri di valutazione; le lacune del software sono dimostrate dal codice e dalle prove locali, non dedotte dagli articoli.
+114: 
+115: - Reid Duke, [Signals in Booster Draft](https://magic.wizards.com/en/news/feature/signals-booster-draft-2015-01-19), 19 gennaio 2015, consultato il 29 ottobre 2026. Segnali come indizi cumulativi e scelte influenzate da qualità e flessibilità; l'articolo non fornisce soglie universali per i bot.
+116: - Reid Duke, [Booster Draft, Part 3](https://magic.wizards.com/en/news/feature/booster-draft-part-3-2015-02-02), 2 febbraio 2015, consultato il 29 ottobre 2026. Costo e tempo residuo di un cambio di colori; le finestre descritte sono orientamenti nel contesto dell'articolo.
+117: - Reid Duke, [The Basics of Booster Draft](https://magic.wizards.com/en/news/feature/basics-booster-draft-2015-08-03), 3 agosto 2015, consultato il 29 ottobre 2026. Sinergia tra carte e piano complessivo del mazzo.
+118: - Reid Duke, [Building a Mana Base](https://magic.wizards.com/en/news/feature/building-mana-base-2014-11-24), 24 novembre 2014, consultato il 29 ottobre 2026. Necessità dei colori e costruzione congiunta di magie e fonti. Le indicazioni numeriche non sono state trasformate in regole rigide né in probabilità di vittoria.
+
+FILE reviews/draft-bots-20261029/probes.json
+1: {
+2:   "engineVersion": 3,
+3:   "inventory": {
+4:     "reality-fracture": {
+5:       "cards": 411,
+6:       "revision": "b8507e3f2b0065d879d9c570c3f321bd5c8ad90f64097d8b72967de38cf88bab",
+7:       "collationPresent": true,
+8:       "roles": 411,
+9:       "archetypeTags": 56,
+10:       "hash": "cd18073b189301cb5193af349e1c57fa3623abd703487c8d0edb7612c1db7ff5"
+11:     },
+12:     "bloomburrow": {
+13:       "cards": 407,
+14:       "revision": "bab0cf55ab558f8bafbe3695ce0800884f653f48a26a2a0a128304dacb496301",
+15:       "collationPresent": false,
+16:       "roles": 258,
+17:       "archetypeTags": 11,
+18:       "hash": "dd289302988d33a2016b56c46d0f3e7a6a075846a51e29b931ff69bbef8ef184"
+19:     },
+20:     "foundations": {
+21:       "cards": 781,
+22:       "revision": "00e3085937651dd235d6daadeae773fe83d25705f56880b7fddf30caf2cb91d0",
+23:       "collationPresent": false,
+24:       "roles": 0,
+25:       "archetypeTags": 21,
+26:       "hash": "7d739073e84ada30b284f572660eefb7162021b1a102152fc56adfc05a93c42b"
+27:     }
+28:   },
+29:   "synthetic": {
+30:     "copies": {
+31:       "one": [
+32:         {
+33:           "id": "payoff",
+34:           "score": 4.791000000000001,
+35:           "components": {
+36:             "potenza": 2.7,
+37:             "colori": 1.815,
+38:             "sinergia": 0.12600000000000003,
+39:             "curva": 0.15,
+40:             "segnali": 0,
+41:             "mana": 0
+42:           },
+43:           "playable": true
+44:         }
+45:       ],
+46:       "eight": [
+47:         {
+48:           "id": "payoff",
+49:           "score": 4.441000000000001,
+50:           "components": {
+51:             "potenza": 2.7,
+52:             "colori": 1.815,
+53:             "sinergia": 0.12600000000000003,
+54:             "curva": -0.2,
+55:             "segnali": 0,
+56:             "mana": 0
+57:           },
+58:           "playable": true
+59:         }
+60:       ]
+61:     },
+62:     "unrelatedSameTag": 0.12600000000000003,
+63:     "mana": {
+64:       "noSources": [
+65:         {
+66:           "id": "red-bomb",
+67:           "score": 2.31,
+68:           "components": {
+69:             "potenza": 4.95,
+70:             "colori": -2.64,
+71:             "sinergia": 0,
+72:             "curva": 0,
+73:             "segnali": 0,
+74:             "mana": 0
+75:           },
+76:           "playable": false
+77:         }
+78:       ],
+79:       "inaccessibleSources": [
+80:         {
+81:           "id": "red-bomb",
+82:           "score": 4.686,
+83:           "components": {
+84:             "potenza": 4.95,
+85:             "colori": -0.264,
+86:             "sinergia": 0,
+87:             "curva": 0,
+88:             "segnali": 0,
+89:             "mana": 0
+90:           },
+91:           "playable": false
+92:         }
+93:       ]
+94:     },
+95:     "signals": {
+96:       "round1": {
+97:         "W": 4,
+98:         "U": 3,
+99:         "B": 0,
+100:         "R": 0,
+101:         "G": 0
+102:       },
+103:       "round3": {}
+104:     },
+105:     "qualityCap": [
+106:       {
+107:         "id": "solid",
+108:         "score": 4.8549999999999995,
+109:         "components": {
+110:           "potenza": 3.24,
+111:           "colori": 1.815,
+112:           "sinergia": 0,
+113:           "curva": -0.2,
+114:           "segnali": 0,
+115:           "mana": 0
+116:         },
+117:         "playable": true
+118:       },
+119:       {
+120:         "id": "supported-payoff",
+121:         "score": 4.441000000000001,
+122:         "components": {
+123:           "potenza": 2.7,
+124:           "colori": 1.815,
+125:           "sinergia": 0.12600000000000003,
+126:           "curva": -0.2,
+127:           "segnali": 0,
+128:           "mana": 0
+129:         },
+130:         "playable": true
+131:       }
+132:     ],
+133:     "phaseAt28AfterExplore": {
+134:       "trials": 500,
+135:       "phases": {
+136:         "0": 46,
+137:         "1": 51,
+138:         "2": 157,
+139:         "3": 246
+140:       }
+141:     }
+142:   },
+143:   "forced": [
+144:     {
+145:       "seed": "bot-force-audit-0",
+146:       "record": {
+147:         "version": 2,
+148:         "engineVersion": 3,
+149:         "format": "fra-play-draft",
+150:         "revision": "b8507e3f2b0065d879d9c570c3f321bd5c8ad90f64097d8b72967de38cf88bab",
+151:         "seed": "bot-force-audit-0",
+152:         "configs": [
+153:           {
+154:             "strategy": "force",
+155:             "target": "WU"
+156:           },
+157:           {
+158:             "strategy": "force",
+159:             "target": "WU"
+160:           },
+161:           {
+162:             "strategy": "force",
+163:             "target": "WU"
+164:           },
+165:           {
+166:             "strategy": "force",
+167:             "target": "WU"
+168:           },
+169:           {
+170:             "strategy": "force",
+171:             "target": "WU"
+172:           },
+173:           {
+174:             "strategy": "force",
+175:             "target": "WU"
+176:           },
+177:           {
+178:             "strategy": "force",
+179:             "target": "WU"
+180:           }
+181:         ],
+182:         "picks": [
+183:           0,
+184:           100,
+185:           94,
+186:           76,
+187:           57,
+188:           46,
+189:           34,
+190:           14,
+191:           10,
+192:           107,
+193:           84,
+194:           74,
+195:           62,
+196:           48,
+197:           119,
+198:           126,
+199:           151,
+200:           165,
+201:           172,
+202:           190,
+203:           201,
+204:           220,
+205:           113,
+206:           135,
+207:           142,
+208:           163,
+209:           175,
+210:           189,
+211:           227,
+212:           332,
+213:           312,
+214:           297,
+215:           292,
+216:           278,
+217:           261,
+218:           241,
+219:           229,
+220:           330,
+221:           313,
+222:           301,
+223:           285,
+224:           270
+225:         ]
+226:       },
+227:       "bots": [
+228:         {
+229:           "lane": "WU",
+230:           "cards": 42
+231:         },
+232:         {
+233:           "lane": "WU",
+234:           "cards": 42
+235:         },
+236:         {
+237:           "lane": "WU",
+238:           "cards": 42
+239:         },
+240:         {
+241:           "lane": "WU",
+242:           "cards": 42
+243:         },
+244:         {
+245:           "lane": "WU",
+246:           "cards": 42
+247:         },
+248:         {
+249:           "lane": "WU",
+250:           "cards": 42
+251:         },
+252:         {
+253:           "lane": "WU",
+254:           "cards": 42
+255:         }
+256:       ]
+257:     },
+258:     {
+259:       "seed": "bot-force-audit-1",
+260:       "record": {
+261:         "version": 2,
+262:         "engineVersion": 3,
+263:         "format": "fra-play-draft",
+264:         "revision": "b8507e3f2b0065d879d9c570c3f321bd5c8ad90f64097d8b72967de38cf88bab",
+265:         "seed": "bot-force-audit-1",
+266:         "configs": [
+267:           {
+268:             "strategy": "force",
+269:             "target": "WU"
+270:           },
+271:           {
+272:             "strategy": "force",
+273:             "target": "WU"
+274:           },
+275:           {
+276:             "strategy": "force",
+277:             "target": "WU"
+278:           },
+279:           {
+280:             "strategy": "force",
+281:             "target": "WU"
+282:           },
+283:           {
+284:             "strategy": "force",
+285:             "target": "WU"
+286:           },
+287:           {
+288:             "strategy": "force",
+289:             "target": "WU"
+290:           },
+291:           {
+292:             "strategy": "force",
+293:             "target": "WU"
+294:           }
+295:         ],
+296:         "picks": [
+297:           3,
+298:           106,
+299:           95,
+300:           80,
+301:           68,
+302:           43,
+303:           33,
+304:           17,
+305:           12,
+306:           108,
+307:           92,
+308:           74,
+309:           56,
+310:           44,
+311:           120,
+312:           127,
+313:           144,
+314:           154,
+315:           168,
+316:           185,
+317:           205,
+318:           210,
+319:           117,
+320:           137,
+321:           143,
+322:           163,
+323:           173,
+324:           189,
+325:           234,
+326:           333,
+327:           313,
+328:           296,
+329:           280,
+330:           277,
+331:           252,
+332:           248,
+333:           224,
+334:           334,
+335:           315,
+336:           300,
+337:           285,
+338:           266
+339:         ]
+340:       },
+341:       "bots": [
+342:         {
+343:           "lane": "WU",
+344:           "cards": 42
+345:         },
+346:         {
+347:           "lane": "WU",
+348:           "cards": 42
+349:         },
+350:         {
+351:           "lane": "WU",
+352:           "cards": 42
+353:         },
+354:         {
+355:           "lane": "WU",
+356:           "cards": 42
+357:         },
+358:         {
+359:           "lane": "WU",
+360:           "cards": 42
+361:         },
+362:         {
+363:           "lane": "WU",
+364:           "cards": 42
+365:         },
+366:         {
+367:           "lane": "WU",
+368:           "cards": 42
+369:         }
+370:       ]
+371:     },
+372:     {
+373:       "seed": "bot-force-audit-2",
+374:       "record": {
+375:         "version": 2,
+376:         "engineVersion": 3,
+377:         "format": "fra-play-draft",
+378:         "revision": "b8507e3f2b0065d879d9c570c3f321bd5c8ad90f64097d8b72967de38cf88bab",
+379:         "seed": "bot-force-audit-2",
+380:         "configs": [
+381:           {
+382:             "strategy": "force",
+383:             "target": "WU"
+384:           },
+385:           {
+386:             "strategy": "force",
+387:             "target": "WU"
+388:           },
+389:           {
+390:             "strategy": "force",
+391:             "target": "WU"
+392:           },
+393:           {
+394:             "strategy": "force",
+395:             "target": "WU"
+396:           },
+397:           {
+398:             "strategy": "force",
+399:             "target": "WU"
+400:           },
+401:           {
+402:             "strategy": "force",
+403:             "target": "WU"
+404:           },
+405:           {
+406:             "strategy": "force",
+407:             "target": "WU"
+408:           }
+409:         ],
+410:         "picks": [
+411:           2,
+412:           102,
+413:           97,
+414:           75,
+415:           65,
+416:           55,
+417:           39,
+418:           15,
+419:           5,
+420:           105,
+421:           93,
+422:           77,
+423:           69,
+424:           54,
+425:           121,
+426:           128,
+427:           152,
+428:           155,
+429:           175,
+430:           188,
+431:           202,
+432:           223,
+433:           122,
+434:           135,
+435:           153,
+436:           161,
+437:           170,
+438:           195,
+439:           236,
+440:           331,
+441:           320,
+442:           307,
+443:           291,
+444:           276,
+445:           254,
+446:           244,
+447:           226,
+448:           330,
+449:           311,
+450:           303,
+451:           284,
+452:           274
+453:         ]
+454:       },
+455:       "bots": [
+456:         {
+457:           "lane": "WU",
+458:           "cards": 42
+459:         },
+460:         {
+461:           "lane": "WU",
+462:           "cards": 42
+463:         },
+464:         {
+465:           "lane": "WU",
+466:           "cards": 42
+467:         },
+468:         {
+469:           "lane": "WU",
+470:           "cards": 42
+471:         },
+472:         {
+473:           "lane": "WU",
+474:           "cards": 42
+475:         },
+476:         {
+477:           "lane": "WU",
+478:           "cards": 42
+479:         },
+480:         {
+481:           "lane": "WU",
+482:           "cards": 42
+483:         }
+484:       ]
+485:     },
+486:     {
+487:       "seed": "bot-force-audit-3",
+488:       "record": {
+489:         "version": 2,
+490:         "engineVersion": 3,
+491:         "format": "fra-play-draft",
+492:         "revision": "b8507e3f2b0065d879d9c570c3f321bd5c8ad90f64097d8b72967de38cf88bab",
+493:         "seed": "bot-force-audit-3",
+494:         "configs": [
+495:           {
+496:             "strategy": "force",
+497:             "target": "WU"
+498:           },
+499:           {
+500:             "strategy": "force",
+501:             "target": "WU"
+502:           },
+503:           {
+504:             "strategy": "force",
+505:             "target": "WU"
+506:           },
+507:           {
+508:             "strategy": "force",
+509:             "target": "WU"
+510:           },
+511:           {
+512:             "strategy": "force",
+513:             "target": "WU"
+514:           },
+515:           {
+516:             "strategy": "force",
+517:             "target": "WU"
+518:           },
+519:           {
+520:             "strategy": "force",
+521:             "target": "WU"
+522:           }
+523:         ],
+524:         "picks": [
+525:           12,
+526:           109,
+527:           97,
+528:           84,
+529:           59,
+530:           51,
+531:           28,
+532:           23,
+533:           0,
+534:           108,
+535:           91,
+536:           78,
+537:           61,
+538:           44,
+539:           120,
+540:           139,
+541:           145,
+542:           158,
+543:           177,
+544:           190,
+545:           211,
+546:           214,
+547:           126,
+548:           135,
+549:           152,
+550:           162,
+551:           172,
+552:           191,
+553:           236,
+554:           332,
+555:           320,
+556:           307,
+557:           290,
+558:           280,
+559:           259,
+560:           249,
+561:           231,
+562:           325,
+563:           318,
+564:           303,
+565:           282,
+566:           279
+567:         ]
+568:       },
+569:       "bots": [
+570:         {
+571:           "lane": "WU",
+572:           "cards": 42
+573:         },
+574:         {
+575:           "lane": "WU",
+576:           "cards": 42
+577:         },
+578:         {
+579:           "lane": "WU",
+580:           "cards": 42
+581:         },
+582:         {
+583:           "lane": "WU",
+584:           "cards": 42
+585:         },
+586:         {
+587:           "lane": "WU",
+588:           "cards": 42
+589:         },
+590:         {
+591:           "lane": "WU",
+592:           "cards": 42
+593:         },
+594:         {
+595:           "lane": "WU",
+596:           "cards": 42
+597:         }
+598:       ]
+599:     },
+600:     {
+601:       "seed": "bot-force-audit-4",
+602:       "record": {
+603:         "version": 2,
+604:         "engineVersion": 3,
+605:         "format": "fra-play-draft",
+606:         "revision": "b8507e3f2b0065d879d9c570c3f321bd5c8ad90f64097d8b72967de38cf88bab",
+607:         "seed": "bot-force-audit-4",
+608:         "configs": [
+609:           {
+610:             "strategy": "force",
+611:             "target": "WU"
+612:           },
+613:           {
+614:             "strategy": "force",
+615:             "target": "WU"
+616:           },
+617:           {
+618:             "strategy": "force",
+619:             "target": "WU"
+620:           },
+621:           {
+622:             "strategy": "force",
+623:             "target": "WU"
+624:           },
+625:           {
+626:             "strategy": "force",
+627:             "target": "WU"
+628:           },
+629:           {
+630:             "strategy": "force",
+631:             "target": "WU"
+632:           },
+633:           {
+634:             "strategy": "force",
+635:             "target": "WU"
+636:           }
+637:         ],
+638:         "picks": [
+639:           2,
+640:           105,
+641:           92,
+642:           72,
+643:           65,
+644:           44,
+645:           39,
+646:           23,
+647:           3,
+648:           104,
+649:           86,
+650:           77,
+651:           59,
+652:           49,
+653:           113,
+654:           138,
+655:           151,
+656:           164,
+657:           179,
+658:           186,
+659:           199,
+660:           213,
+661:           114,
+662:           130,
+663:           143,
+664:           166,
+665:           173,
+666:           189,
+667:           231,
+668:           334,
+669:           319,
+670:           297,
+671:           290,
+672:           270,
+673:           257,
+674:           241,
+675:           230,
+676:           332,
+677:           314,
+678:           300,
+679:           284,
+680:           274
+681:         ]
+682:       },
+683:       "bots": [
+684:         {
+685:           "lane": "WU",
+686:           "cards": 42
+687:         },
+688:         {
+689:           "lane": "WU",
+690:           "cards": 42
+691:         },
+692:         {
+693:           "lane": "WU",
+694:           "cards": 42
+695:         },
+696:         {
+697:           "lane": "WU",
+698:           "cards": 42
+699:         },
+700:         {
+701:           "lane": "WU",
+702:           "cards": 42
+703:         },
+704:         {
+705:           "lane": "WU",
+706:           "cards": 42
+707:         },
+708:         {
+709:           "lane": "WU",
+710:           "cards": 42
+711:         }
+712:       ]
+713:     },
+714:     {
+715:       "seed": "bot-force-audit-5",
+716:       "record": {
+717:         "version": 2,
+718:         "engineVersion": 3,
+719:         "format": "fra-play-draft",
+720:         "revision": "b8507e3f2b0065d879d9c570c3f321bd5c8ad90f64097d8b72967de38cf88bab",
+721:         "seed": "bot-force-audit-5",
+722:         "configs": [
+723:           {
+724:             "strategy": "force",
+725:             "target": "WU"
+726:           },
+727:           {
+728:             "strategy": "force",
+729:             "target": "WU"
+730:           },
+731:           {
+732:             "strategy": "force",
+733:             "target": "WU"
+734:           },
+735:           {
+736:             "strategy": "force",
+737:             "target": "WU"
+738:           },
+739:           {
+740:             "strategy": "force",
+741:             "target": "WU"
+742:           },
+743:           {
+744:             "strategy": "force",
+745:             "target": "WU"
+746:           },
+747:           {
+748:             "strategy": "force",
+749:             "target": "WU"
+750:           }
+751:         ],
+752:         "picks": [
+753:           10,
+754:           109,
+755:           91,
+756:           74,
+757:           65,
+758:           52,
+759:           34,
+760:           22,
+761:           4,
+762:           101,
+763:           87,
+764:           71,
+765:           61,
+766:           55,
+767:           125,
+768:           135,
+769:           151,
+770:           162,
+771:           178,
+772:           194,
+773:           207,
+774:           214,
+775:           117,
+776:           130,
+777:           140,
+778:           164,
+779:           174,
+780:           192,
+781:           234,
+782:           326,
+783:           311,
+784:           299,
+785:           280,
+786:           274,
+787:           262,
+788:           238,
+789:           233,
+790:           327,
+791:           309,
+792:           306,
+793:           291,
+794:           279
+795:         ]
+796:       },
+797:       "bots": [
+798:         {
+799:           "lane": "WU",
+800:           "cards": 42
+801:         },
+802:         {
+803:           "lane": "WU",
+804:           "cards": 42
+805:         },
+806:         {
+807:           "lane": "WU",
+808:           "cards": 42
+809:         },
+810:         {
+811:           "lane": "WU",
+812:           "cards": 42
+813:         },
+814:         {
+815:           "lane": "WU",
+816:           "cards": 42
+817:         },
+818:         {
+819:           "lane": "WU",
+820:           "cards": 42
+821:         },
+822:         {
+823:           "lane": "WU",
+824:           "cards": 42
+825:         }
+826:       ]
+827:     },
+828:     {
+829:       "seed": "bot-force-audit-6",
+830:       "record": {
+831:         "version": 2,
+832:         "engineVersion": 3,
+833:         "format": "fra-play-draft",
+834:         "revision": "b8507e3f2b0065d879d9c570c3f321bd5c8ad90f64097d8b72967de38cf88bab",
+835:         "seed": "bot-force-audit-6",
+836:         "configs": [
+837:           {
+838:             "strategy": "force",
+839:             "target": "WU"
+840:           },
+841:           {
+842:             "strategy": "force",
+843:             "target": "WU"
+844:           },
+845:           {
+846:             "strategy": "force",
+847:             "target": "WU"
+848:           },
+849:           {
+850:             "strategy": "force",
+851:             "target": "WU"
+852:           },
+853:           {
+854:             "strategy": "force",
+855:             "target": "WU"
+856:           },
+857:           {
+858:             "strategy": "force",
+859:             "target": "WU"
+860:           },
+861:           {
+862:             "strategy": "force",
+863:             "target": "WU"
+864:           }
+865:         ],
+866:         "picks": [
+867:           6,
+868:           108,
+869:           89,
+870:           81,
+871:           67,
+872:           52,
+873:           39,
+874:           24,
+875:           1,
+876:           110,
+877:           87,
+878:           79,
+879:           62,
+880:           49,
+881:           124,
+882:           132,
+883:           149,
+884:           165,
+885:           169,
+886:           189,
+887:           199,
+888:           216,
+889:           113,
+890:           127,
+891:           141,
+892:           155,
+893:           171,
+894:           196,
+895:           234,
+896:           332,
+897:           310,
+898:           297,
+899:           287,
+900:           277,
+901:           265,
+902:           239,
+903:           230,
+904:           333,
+905:           318,
+906:           302,
+907:           284,
+908:           280
+909:         ]
+910:       },
+911:       "bots": [
+912:         {
+913:           "lane": "WU",
+914:           "cards": 42
+915:         },
+916:         {
+917:           "lane": "WU",
+918:           "cards": 42
+919:         },
+920:         {
+921:           "lane": "WU",
+922:           "cards": 42
+923:         },
+924:         {
+925:           "lane": "WU",
+926:           "cards": 42
+927:         },
+928:         {
+929:           "lane": "WU",
+930:           "cards": 42
+931:         },
+932:         {
+933:           "lane": "WU",
+934:           "cards": 42
+935:         },
+936:         {
+937:           "lane": "WU",
+938:           "cards": 42
+939:         }
+940:       ]
+941:     },
+942:     {
+943:       "seed": "bot-force-audit-7",
+944:       "record": {
+945:         "version": 2,
+946:         "engineVersion": 3,
+947:         "format": "fra-play-draft",
+948:         "revision": "b8507e3f2b0065d879d9c570c3f321bd5c8ad90f64097d8b72967de38cf88bab",
+949:         "seed": "bot-force-audit-7",
+950:         "configs": [
+951:           {
+952:             "strategy": "force",
+953:             "target": "WU"
+954:           },
+955:           {
+956:             "strategy": "force",
+957:             "target": "WU"
+958:           },
+959:           {
+960:             "strategy": "force",
+961:             "target": "WU"
+962:           },
+963:           {
+964:             "strategy": "force",
+965:             "target": "WU"
+966:           },
+967:           {
+968:             "strategy": "force",
+969:             "target": "WU"
+970:           },
+971:           {
+972:             "strategy": "force",
+973:             "target": "WU"
+974:           },
+975:           {
+976:             "strategy": "force",
+977:             "target": "WU"
+978:           }
+979:         ],
+980:         "picks": [
+981:           6,
+982:           99,
+983:           93,
+984:           77,
+985:           62,
+986:           52,
+987:           30,
+988:           14,
+989:           12,
+990:           104,
+991:           86,
+992:           75,
+993:           63,
+994:           43,
+995:           123,
+996:           132,
+997:           152,
+998:           159,
+999:           179,
+1000:           191,
+1001:           201,
+1002:           215,
+1003:           112,
+1004:           131,
+1005:           145,
+1006:           165,
+1007:           168,
+1008:           192,
+1009:           237,
+1010:           324,
+1011:           319,
+1012:           299,
+1013:           286,
+1014:           271,
+1015:           252,
+1016:           245,
+1017:           228,
+1018:           325,
+1019:           320,
+1020:           305,
+1021:           289,
+1022:           266
+1023:         ]
+1024:       },
+1025:       "bots": [
+1026:         {
+1027:           "lane": "WU",
+1028:           "cards": 42
+1029:         },
+1030:         {
+1031:           "lane": "WU",
+1032:           "cards": 42
+1033:         },
+1034:         {
+1035:           "lane": "WU",
+1036:           "cards": 42
+1037:         },
+1038:         {
+1039:           "lane": "WU",
+1040:           "cards": 42
+1041:         },
+1042:         {
+1043:           "lane": "WU",
+1044:           "cards": 42
+1045:         },
+1046:         {
+1047:           "lane": "WU",
+1048:           "cards": 42
+1049:         },
+1050:         {
+1051:           "lane": "WU",
+1052:           "cards": 42
+1053:         }
+1054:       ]
+1055:     },
+1056:     {
+1057:       "seed": "bot-force-audit-8",
+1058:       "record": {
+1059:         "version": 2,
+1060:         "engineVersion": 3,
+1061:         "format": "fra-play-draft",
+1062:         "revision": "b8507e3f2b0065d879d9c570c3f321bd5c8ad90f64097d8b72967de38cf88bab",
+1063:         "seed": "bot-force-audit-8",
+1064:         "configs": [
+1065:           {
+1066:             "strategy": "force",
+1067:             "target": "WU"
+1068:           },
+1069:           {
+1070:             "strategy": "force",
+1071:             "target": "WU"
+1072:           },
+1073:           {
+1074:             "strategy": "force",
+1075:             "target": "WU"
+1076:           },
+1077:           {
+1078:             "strategy": "force",
+1079:             "target": "WU"
+1080:           },
+1081:           {
+1082:             "strategy": "force",
+1083:             "target": "WU"
+1084:           },
+1085:           {
+1086:             "strategy": "force",
+1087:             "target": "WU"
+1088:           },
+1089:           {
+1090:             "strategy": "force",
+1091:             "target": "WU"
+1092:           }
+1093:         ],
+1094:         "picks": [
+1095:           11,
+1096:           101,
+1097:           95,
+1098:           81,
+1099:           63,
+1100:           51,
+1101:           36,
+1102:           26,
+1103:           3,
+1104:           108,
+1105:           86,
+1106:           73,
+1107:           61,
+1108:           53,
+1109:           114,
+1110:           129,
+1111:           149,
+1112:           159,
+1113:           171,
+1114:           183,
+1115:           198,
+1116:           220,
+1117:           113,
+1118:           135,
+1119:           143,
+1120:           154,
+1121:           175,
+1122:           185,
+1123:           234,
+1124:           333,
+1125:           311,
+1126:           299,
+1127:           291,
+1128:           269,
+1129:           261,
+1130:           246,
+1131:           231,
+1132:           324,
+1133:           315,
+1134:           298,
+1135:           287,
+1136:           271
+1137:         ]
+1138:       },
+1139:       "bots": [
+1140:         {
+1141:           "lane": "WU",
+1142:           "cards": 42
+1143:         },
+1144:         {
+1145:           "lane": "WU",
+1146:           "cards": 42
+1147:         },
+1148:         {
+1149:           "lane": "WU",
+1150:           "cards": 42
+1151:         },
+1152:         {
+1153:           "lane": "WU",
+1154:           "cards": 42
+1155:         },
+1156:         {
+1157:           "lane": "WU",
+1158:           "cards": 42
+1159:         },
+1160:         {
+1161:           "lane": "WU",
+1162:           "cards": 42
+1163:         },
+1164:         {
+1165:           "lane": "WU",
+1166:           "cards": 42
+1167:         }
+1168:       ]
+1169:     },
+1170:     {
+1171:       "seed": "bot-force-audit-9",
+1172:       "record": {
+1173:         "version": 2,
+1174:         "engineVersion": 3,
+1175:         "format": "fra-play-draft",
+1176:         "revision": "b8507e3f2b0065d879d9c570c3f321bd5c8ad90f64097d8b72967de38cf88bab",
+1177:         "seed": "bot-force-audit-9",
+1178:         "configs": [
+1179:           {
+1180:             "strategy": "force",
+1181:             "target": "WU"
+1182:           },
+1183:           {
+1184:             "strategy": "force",
+1185:             "target": "WU"
+1186:           },
+1187:           {
+1188:             "strategy": "force",
+1189:             "target": "WU"
+1190:           },
+1191:           {
+1192:             "strategy": "force",
+1193:             "target": "WU"
+1194:           },
+1195:           {
+1196:             "strategy": "force",
+1197:             "target": "WU"
+1198:           },
+1199:           {
+1200:             "strategy": "force",
+1201:             "target": "WU"
+1202:           },
+1203:           {
+1204:             "strategy": "force",
+1205:             "target": "WU"
+1206:           }
+1207:         ],
+1208:         "picks": [
+1209:           3,
+1210:           107,
+1211:           91,
+1212:           71,
+1213:           58,
+1214:           51,
+1215:           29,
+1216:           25,
+1217:           10,
+1218:           100,
+1219:           88,
+1220:           72,
+1221:           61,
+1222:           55,
+1223:           126,
+1224:           135,
+1225:           147,
+1226:           156,
+1227:           180,
+1228:           191,
+1229:           209,
+1230:           218,
+1231:           120,
+1232:           138,
+1233:           142,
+1234:           162,
+1235:           178,
+1236:           190,
+1237:           237,
+1238:           336,
+1239:           314,
+1240:           307,
+1241:           282,
+1242:           270,
+1243:           258,
+1244:           246,
+1245:           233,
+1246:           327,
+1247:           310,
+1248:           296,
+1249:           294,
+1250:           276
+1251:         ]
+1252:       },
+1253:       "bots": [
+1254:         {
+1255:           "lane": "WU",
+1256:           "cards": 42
+1257:         },
+1258:         {
+1259:           "lane": "WU",
+1260:           "cards": 42
+1261:         },
+1262:         {
+1263:           "lane": "WU",
+1264:           "cards": 42
+1265:         },
+1266:         {
+1267:           "lane": "WU",
+1268:           "cards": 42
+1269:         },
+1270:         {
+1271:           "lane": "WU",
+1272:           "cards": 42
+1273:         },
+1274:         {
+1275:           "lane": "WU",
+1276:           "cards": 42
+1277:         },
+1278:         {
+1279:           "lane": "WU",
+1280:           "cards": 42
+1281:         }
+1282:       ]
+1283:     }
+1284:   ]
+1285: }
+
+FILE reviews/draft-bots-20261029/reality-fracture-draft-mixed-v3.json
+1: {
+2:   "expansion": "reality-fracture",
+3:   "event": "draft",
+4:   "scenario": "mixed",
+5:   "engineVersion": 3,
+6:   "tables": 80,
+7:   "botPicks": 23520,
+8:   "formatRevision": "b8507e3f2b0065d879d9c570c3f321bd5c8ad90f64097d8b72967de38cf88bab",
+9:   "configs": [
+10:     {
+11:       "strategy": "signals",
+12:       "target": null
+13:     },
+14:     {
+15:       "strategy": "bomb",
+16:       "target": null
+17:     },
+18:     {
+19:       "strategy": "synergy",
+20:       "target": null
+21:     },
+22:     {
+23:       "strategy": "aggro",
+24:       "target": null
+25:     },
+26:     {
+27:       "strategy": "control",
+28:       "target": null
+29:     },
+30:     {
+31:       "strategy": "fixing",
+32:       "target": null
+33:     },
+34:     {
+35:       "strategy": "denial",
+36:       "target": null
+37:     }
+38:   ],
+39:   "humanPolicy": "signals v2, separate seeded RNG",
+40:   "ratingsDate": "21/09/2026",
+41:   "statisticsDate": "16 ottobre 2026",
+42:   "caveats": [
+43:     "Pick counts describe this simulation, not player results.",
+44:     "Passing a rare is not automatically a mistake. Same-lane rating gaps flag cases for review; curve, mana costs and synergy still matter.",
+45:     "GIH rates are historical observational data, not causal card grades.",
+46:     "First-pick color probe is synthetic; all draft examples use unmodified source data."
+47:   ],
+48:   "rareSelection": {
+49:     "mythic_scoreAtLeast4.5": {
+50:       "count": 204,
+51:       "pickSum": 587,
+52:       "afterPick4": 43,
+53:       "afterPick7": 17,
+54:       "histogram": {
+55:         "1": 94,
+56:         "2": 41,
+57:         "3": 16,
+58:         "4": 10,
+59:         "5": 11,
+60:         "6": 9,
+61:         "7": 6,
+62:         "8": 6,
+63:         "9": 1,
+64:         "10": 2,
+65:         "11": 3,
+66:         "12": 3,
+67:         "13": 2
+68:       },
+69:       "averagePick": 2.877450980392157
+70:     },
+71:     "rare_scoreBelow4": {
+72:       "count": 1197,
+73:       "pickSum": 10664,
+74:       "afterPick4": 999,
+75:       "afterPick7": 767,
+76:       "histogram": {
+77:         "1": 32,
+78:         "2": 39,
+79:         "3": 54,
+80:         "4": 73,
+81:         "5": 62,
+82:         "6": 81,
+83:         "7": 89,
+84:         "8": 83,
+85:         "9": 102,
+86:         "10": 97,
+87:         "11": 99,
+88:         "12": 106,
+89:         "13": 152,
+90:         "14": 128
+91:       },
+92:       "averagePick": 8.908939014202172
+93:     },
+94:     "rare_score4": {
+95:       "count": 399,
+96:       "pickSum": 1602,
+97:       "afterPick4": 116,
+98:       "afterPick7": 68,
+99:       "histogram": {
+100:         "1": 113,
+101:         "2": 76,
+102:         "3": 55,
+103:         "4": 39,
+104:         "5": 17,
+105:         "6": 15,
+106:         "7": 16,
+107:         "8": 14,
+108:         "9": 10,
+109:         "10": 6,
+110:         "11": 9,
+111:         "12": 14,
+112:         "13": 10,
+113:         "14": 5
+114:       },
+115:       "averagePick": 4.015037593984962
+116:     },
+117:     "mythic_scoreBelow4": {
+118:       "count": 159,
+119:       "pickSum": 1201,
+120:       "afterPick4": 108,
+121:       "afterPick7": 76,
+122:       "histogram": {
+123:         "1": 7,
+124:         "2": 8,
+125:         "3": 19,
+126:         "4": 17,
+127:         "5": 12,
+128:         "6": 12,
+129:         "7": 8,
+130:         "8": 10,
+131:         "9": 9,
+132:         "10": 8,
+133:         "11": 9,
+134:         "12": 9,
+135:         "13": 17,
+136:         "14": 14
+137:       },
+138:       "averagePick": 7.553459119496855
+139:     },
+140:     "rare_scoreAtLeast4.5": {
+141:       "count": 287,
+142:       "pickSum": 560,
+143:       "afterPick4": 21,
+144:       "afterPick7": 1,
+145:       "histogram": {
+146:         "1": 158,
+147:         "2": 61,
+148:         "3": 25,
+149:         "4": 22,
+150:         "5": 12,
+151:         "6": 7,
+152:         "7": 1,
+153:         "8": 1
+154:       },
+155:       "averagePick": 1.951219512195122
+156:     },
+157:     "mythic_score4": {
+158:       "count": 79,
+159:       "pickSum": 209,
+160:       "afterPick4": 13,
+161:       "afterPick7": 0,
+162:       "histogram": {
+163:         "1": 24,
+164:         "2": 23,
+165:         "3": 11,
+166:         "4": 8,
+167:         "5": 7,
+168:         "6": 3,
+169:         "7": 3
+170:       },
+171:       "averagePick": 2.6455696202531644
+172:     }
+173:   },
+174:   "byStrategy": {
+175:     "signals": {
+176:       "picks": 3360,
+177:       "highRatedRareAvailableInSameLane": 65,
+178:       "highRatedRarePassedForWeakerSameLane": 0
+179:     },
+180:     "bomb": {
+181:       "picks": 3360,
+182:       "highRatedRareAvailableInSameLane": 65,
+183:       "highRatedRarePassedForWeakerSameLane": 0
+184:     },
+185:     "synergy": {
+186:       "picks": 3360,
+187:       "highRatedRareAvailableInSameLane": 55,
+188:       "highRatedRarePassedForWeakerSameLane": 0
+189:     },
+190:     "aggro": {
+191:       "picks": 3360,
+192:       "highRatedRareAvailableInSameLane": 41,
+193:       "highRatedRarePassedForWeakerSameLane": 0
+194:     },
+195:     "control": {
+196:       "picks": 3360,
+197:       "highRatedRareAvailableInSameLane": 50,
+198:       "highRatedRarePassedForWeakerSameLane": 0
+199:     },
+200:     "fixing": {
+201:       "picks": 3360,
+202:       "highRatedRareAvailableInSameLane": 54,
+203:       "highRatedRarePassedForWeakerSameLane": 0
+204:     },
+205:     "denial": {
+206:       "picks": 3360,
+207:       "highRatedRareAvailableInSameLane": 56,
+208:       "highRatedRarePassedForWeakerSameLane": 0
+209:     }
+210:   },
+211:   "firstPickColorProbe": {
+212:     "lane": "WU",
+213:     "scores": [
+214:       {
+215:         "color": "W",
+216:         "score": 3,
+217:         "components": {
+218:           "potenza": 3,
+219:           "colori": 0,
+220:           "sinergia": 0,
+221:           "curva": 0,
+222:           "segnali": 0,
+223:           "mana": 0
+224:         }
+225:       },
+226:       {
+227:         "color": "U",
+228:         "score": 3,
+229:         "components": {
+230:           "potenza": 3,
+231:           "colori": 0,
+232:           "sinergia": 0,
+233:           "curva": 0,
+234:           "segnali": 0,
+235:           "mana": 0
+236:         }
+237:       },
+238:       {
+239:         "color": "B",
+240:         "score": 3,
+241:         "components": {
+242:           "potenza": 3,
+243:           "colori": 0,
+244:           "sinergia": 0,
+245:           "curva": 0,
+246:           "segnali": 0,
+247:           "mana": 0
+248:         }
+249:       },
+250:       {
+251:         "color": "R",
+252:         "score": 3,
+253:         "components": {
+254:           "potenza": 3,
+255:           "colori": 0,
+256:           "sinergia": 0,
+257:           "curva": 0,
+258:           "segnali": 0,
+259:           "mana": 0
+260:         }
+261:       },
+262:       {
+263:         "color": "G",
+264:         "score": 3,
+265:         "components": {
+266:           "potenza": 3,
+267:           "colori": 0,
+268:           "sinergia": 0,
+269:           "curva": 0,
+270:           "segnali": 0,
+271:           "mana": 0
+272:         }
+273:       }
+274:     ]
+275:   },
+276:   "suspiciousExamples": [],
+277:   "lateHighRatedRares": [
+278:     {
+279:       "seed": "bot-audit-0",
+280:       "strategy": "fixing",
+281:       "round": 2,
+282:       "pick": 7,
+283:       "lane": "UG",
+284:       "card": {
+285:         "id": "fra-122",
+286:         "name": "Avatar of Burgeoning Echoes",
+287:         "rarity": "mythic",
+288:         "colors": [
+289:           "G",
+290:           "U"
+291:         ],
+292:         "cost": "{G}{U}",
+293:         "base": 4.5,
+294:         "gih": 0.60338379,
+295:         "sample": 5615
+296:       }
+297:     },
+298:     {
+299:       "seed": "bot-audit-3",
+300:       "strategy": "control",
+301:       "round": 2,
+302:       "pick": 8,
+303:       "lane": "UG",
+304:       "card": {
+305:         "id": "fra-40",
+306:         "name": "Sphinx of False Conclusions",
+307:         "rarity": "rare",
+308:         "colors": [
+309:           "U"
+310:         ],
+311:         "cost": "{2}{U}{U}",
+312:         "base": 4.5,
+313:         "gih": 0.64345794,
+314:         "sample": 17120
+315:       }
+316:     },
+317:     {
+318:       "seed": "bot-audit-3",
+319:       "strategy": "denial",
+320:       "round": 3,
+321:       "pick": 8,
+322:       "lane": "RG",
+323:       "card": {
+324:         "id": "fra-352",
+325:         "name": "Kwia Vigorbloom",
+326:         "rarity": "mythic",
+327:         "colors": [
+328:           "G",
+329:           "W"
+330:         ],
+331:         "cost": "{3}{G}{W}{W}",
+332:         "base": 4.5,
+333:         "gih": 0.6247394,
+334:         "sample": 5756
+335:       }
+336:     },
+337:     {
+338:       "seed": "bot-audit-4",
+339:       "strategy": "fixing",
+340:       "round": 3,
+341:       "pick": 8,
+342:       "lane": "WU",
+343:       "card": {
+344:         "id": "fra-122",
+345:         "name": "Avatar of Burgeoning Echoes",
+346:         "rarity": "mythic",
+347:         "colors": [
+348:           "G",
+349:           "U"
+350:         ],
+351:         "cost": "{G}{U}",
+352:         "base": 4.5,
+353:         "gih": 0.60338379,
+354:         "sample": 5615
+355:       }
+356:     },
+357:     {
+358:       "seed": "bot-audit-5",
+359:       "strategy": "bomb",
+360:       "round": 2,
+361:       "pick": 11,
+362:       "lane": "WG",
+363:       "card": {
+364:         "id": "fra-349",
+365:         "name": "Denzilore Fatehold",
+366:         "rarity": "mythic",
+367:         "colors": [
+368:           "U",
+369:           "W"
+370:         ],
+371:         "cost": "{1}{W}{U}{U}",
+372:         "base": 4.5,
+373:         "gih": 0.61699203,
+374:         "sample": 7274
+375:       }
+376:     },
+377:     {
+378:       "seed": "bot-audit-6",
+379:       "strategy": "bomb",
+380:       "round": 2,
+381:       "pick": 7,
+382:       "lane": "WG",
+383:       "card": {
+384:         "id": "fra-140",
+385:         "name": "Kwia Vigorbloom",
+386:         "rarity": "mythic",
+387:         "colors": [
+388:           "G",
+389:           "W"
+390:         ],
+391:         "cost": "{3}{G}{W}{W}",
+392:         "base": 4.5,
+393:         "gih": 0.6247394,
+394:         "sample": 5756
+395:       }
+396:     },
+397:     {
+398:       "seed": "bot-audit-7",
+399:       "strategy": "denial",
+400:       "round": 2,
+401:       "pick": 13,
+402:       "lane": "WB",
+403:       "card": {
+404:         "id": "fra-128",
+405:         "name": "Denzilore Fatehold",
+406:         "rarity": "mythic",
+407:         "colors": [
+408:           "U",
+409:           "W"
+410:         ],
+411:         "cost": "{1}{W}{U}{U}",
+412:         "base": 4.5,
+413:         "gih": 0.61699203,
+414:         "sample": 7274
+415:       }
+416:     },
+417:     {
+418:       "seed": "bot-audit-29",
+419:       "strategy": "synergy",
+420:       "round": 3,
+421:       "pick": 7,
+422:       "lane": "UB",
+423:       "card": {
+424:         "id": "fra-358",
+425:         "name": "Uldaros Theorix",
+426:         "rarity": "mythic",
+427:         "colors": [
+428:           "B",
+429:           "U"
+430:         ],
+431:         "cost": "{3}{U}{B}{B}",
+432:         "base": 4.5,
+433:         "gih": 0.69351717,
+434:         "sample": 8268
+435:       }
+436:     },
+437:     {
+438:       "seed": "bot-audit-35",
+439:       "strategy": "control",
+440:       "round": 3,
+441:       "pick": 12,
+442:       "lane": "BR",
+443:       "card": {
+444:         "id": "fra-128",
+445:         "name": "Denzilore Fatehold",
+446:         "rarity": "mythic",
+447:         "colors": [
+448:           "U",
+449:           "W"
+450:         ],
+451:         "cost": "{1}{W}{U}{U}",
+452:         "base": 4.5,
+453:         "gih": 0.61699203,
+454:         "sample": 7274
+455:       }
+456:     },
+457:     {
+458:       "seed": "bot-audit-39",
+459:       "strategy": "signals",
+460:       "round": 3,
+461:       "pick": 10,
+462:       "lane": "WB",
+463:       "card": {
+464:         "id": "fra-159",
+465:         "name": "Uldaros Theorix",
+466:         "rarity": "mythic",
+467:         "colors": [
+468:           "B",
+469:           "U"
+470:         ],
+471:         "cost": "{3}{U}{B}{B}",
+472:         "base": 4.5,
+473:         "gih": 0.69351717,
+474:         "sample": 8268
+475:       }
+476:     },
+477:     {
+478:       "seed": "bot-audit-42",
+479:       "strategy": "control",
+480:       "round": 2,
+481:       "pick": 13,
+482:       "lane": "RG",
+483:       "card": {
+484:         "id": "fra-140",
+485:         "name": "Kwia Vigorbloom",
+486:         "rarity": "mythic",
+487:         "colors": [
+488:           "G",
+489:           "W"
+490:         ],
+491:         "cost": "{3}{G}{W}{W}",
+492:         "base": 4.5,
+493:         "gih": 0.6247394,
+494:         "sample": 5756
+495:       }
+496:     },
+497:     {
+498:       "seed": "bot-audit-44",
+499:       "strategy": "signals",
+500:       "round": 3,
+501:       "pick": 8,
+502:       "lane": "UB",
+503:       "card": {
+504:         "id": "fra-159",
+505:         "name": "Uldaros Theorix",
+506:         "rarity": "mythic",
+507:         "colors": [
+508:           "B",
+509:           "U"
+510:         ],
+511:         "cost": "{3}{U}{B}{B}",
+512:         "base": 4.5,
+513:         "gih": 0.69351717,
+514:         "sample": 8268
+515:       }
+516:     },
+517:     {
+518:       "seed": "bot-audit-44",
+519:       "strategy": "denial",
+520:       "round": 2,
+521:       "pick": 8,
+522:       "lane": "UG",
+523:       "card": {
+524:         "id": "fra-137",
+525:         "name": "Ingris Stingerquill",
+526:         "rarity": "mythic",
+527:         "colors": [
+528:           "B",
+529:           "R"
+530:         ],
+531:         "cost": "{B}{R}{R}",
+532:         "base": 4.5,
+533:         "gih": 0.57399655,
+534:         "sample": 4061
+535:       }
+536:     },
+537:     {
+538:       "seed": "bot-audit-46",
+539:       "strategy": "bomb",
+540:       "round": 2,
+541:       "pick": 11,
+542:       "lane": "WG",
+543:       "card": {
+544:         "id": "fra-349",
+545:         "name": "Denzilore Fatehold",
+546:         "rarity": "mythic",
+547:         "colors": [
+548:           "U",
+549:           "W"
+550:         ],
+551:         "cost": "{1}{W}{U}{U}",
+552:         "base": 4.5,
+553:         "gih": 0.61699203,
+554:         "sample": 7274
+555:       }
+556:     },
+557:     {
+558:       "seed": "bot-audit-47",
+559:       "strategy": "signals",
+560:       "round": 3,
+561:       "pick": 7,
+562:       "lane": "UB",
+563:       "card": {
+564:         "id": "fra-159",
+565:         "name": "Uldaros Theorix",
+566:         "rarity": "mythic",
+567:         "colors": [
+568:           "B",
+569:           "U"
+570:         ],
+571:         "cost": "{3}{U}{B}{B}",
+572:         "base": 4.5,
+573:         "gih": 0.69351717,
+574:         "sample": 8268
+575:       }
+576:     },
+577:     {
+578:       "seed": "bot-audit-52",
+579:       "strategy": "synergy",
+580:       "round": 3,
+581:       "pick": 7,
+582:       "lane": "WR",
+583:       "card": {
+584:         "id": "fra-79",
+585:         "name": "Curse-Marred Demon",
+586:         "rarity": "rare",
+587:         "colors": [
+588:           "R"
+589:         ],
+590:         "cost": "{2}{R}{R}",
+591:         "base": 4.5,
+592:         "gih": 0.56397433,
+593:         "sample": 10598
+594:       }
+595:     },
+596:     {
+597:       "seed": "bot-audit-53",
+598:       "strategy": "control",
+599:       "round": 3,
+600:       "pick": 7,
+601:       "lane": "UR",
+602:       "card": {
+603:         "id": "fra-140",
+604:         "name": "Kwia Vigorbloom",
+605:         "rarity": "mythic",
+606:         "colors": [
+607:           "G",
+608:           "W"
+609:         ],
+610:         "cost": "{3}{G}{W}{W}",
+611:         "base": 4.5,
+612:         "gih": 0.6247394,
+613:         "sample": 5756
+614:       }
+615:     },
+616:     {
+617:       "seed": "bot-audit-55",
+618:       "strategy": "control",
+619:       "round": 3,
+620:       "pick": 8,
+621:       "lane": "RG",
+622:       "card": {
+623:         "id": "fra-121",
+624:         "name": "Aerid Konstrari",
+625:         "rarity": "mythic",
+626:         "colors": [
+627:           "G",
+628:           "R"
+629:         ],
+630:         "cost": "{1}{R}{G}{G}",
+631:         "base": 4.5,
+632:         "gih": 0.64799621,
+633:         "sample": 6338
+634:       }
+635:     },
+636:     {
+637:       "seed": "bot-audit-57",
+638:       "strategy": "control",
+639:       "round": 2,
+640:       "pick": 8,
+641:       "lane": "UB",
+642:       "card": {
+643:         "id": "fra-159",
+644:         "name": "Uldaros Theorix",
+645:         "rarity": "mythic",
+646:         "colors": [
+647:           "B",
+648:           "U"
+649:         ],
+650:         "cost": "{3}{U}{B}{B}",
+651:         "base": 4.5,
+652:         "gih": 0.69351717,
+653:         "sample": 8268
+654:       }
+655:     },
+656:     {
+657:       "seed": "bot-audit-58",
+658:       "strategy": "denial",
+659:       "round": 3,
+660:       "pick": 12,
+661:       "lane": "WG",
+662:       "card": {
+663:         "id": "fra-121",
+664:         "name": "Aerid Konstrari",
+665:         "rarity": "mythic",
+666:         "colors": [
+667:           "G",
+668:           "R"
+669:         ],
+670:         "cost": "{1}{R}{G}{G}",
+671:         "base": 4.5,
+672:         "gih": 0.64799621,
+673:         "sample": 6338
+674:       }
+675:     },
+676:     {
+677:       "seed": "bot-audit-60",
+678:       "strategy": "control",
+679:       "round": 3,
+680:       "pick": 12,
+681:       "lane": "RG",
+682:       "card": {
+683:         "id": "fra-159",
+684:         "name": "Uldaros Theorix",
+685:         "rarity": "mythic",
+686:         "colors": [
+687:           "B",
+688:           "U"
+689:         ],
+690:         "cost": "{3}{U}{B}{B}",
+691:         "base": 4.5,
+692:         "gih": 0.69351717,
+693:         "sample": 8268
+694:       }
+695:     },
+696:     {
+697:       "seed": "bot-audit-61",
+698:       "strategy": "denial",
+699:       "round": 3,
+700:       "pick": 10,
+701:       "lane": "WG",
+702:       "card": {
+703:         "id": "fra-128",
+704:         "name": "Denzilore Fatehold",
+705:         "rarity": "mythic",
+706:         "colors": [
+707:           "U",
+708:           "W"
+709:         ],
+710:         "cost": "{1}{W}{U}{U}",
+711:         "base": 4.5,
+712:         "gih": 0.61699203,
+713:         "sample": 7274
+714:       }
+715:     },
+716:     {
+717:       "seed": "bot-audit-65",
+718:       "strategy": "signals",
+719:       "round": 1,
+720:       "pick": 7,
+721:       "lane": "BR",
+722:       "card": {
+723:         "id": "fra-128",
+724:         "name": "Denzilore Fatehold",
+725:         "rarity": "mythic",
+726:         "colors": [
+727:           "U",
+728:           "W"
+729:         ],
+730:         "cost": "{1}{W}{U}{U}",
+731:         "base": 4.5,
+732:         "gih": 0.61699203,
+733:         "sample": 7274
+734:       }
+735:     },
+736:     {
+737:       "seed": "bot-audit-70",
+738:       "strategy": "aggro",
+739:       "round": 3,
+740:       "pick": 9,
+741:       "lane": "UR",
+742:       "card": {
+743:         "id": "fra-121",
+744:         "name": "Aerid Konstrari",
+745:         "rarity": "mythic",
+746:         "colors": [
+747:           "G",
+748:           "R"
+749:         ],
+750:         "cost": "{1}{R}{G}{G}",
+751:         "base": 4.5,
+752:         "gih": 0.64799621,
+753:         "sample": 6338
+754:       }
+755:     },
+756:     {
+757:       "seed": "bot-audit-75",
+758:       "strategy": "denial",
+759:       "round": 2,
+760:       "pick": 11,
+761:       "lane": "WR",
+762:       "card": {
+763:         "id": "fra-122",
+764:         "name": "Avatar of Burgeoning Echoes",
+765:         "rarity": "mythic",
+766:         "colors": [
+767:           "G",
+768:           "U"
+769:         ],
+770:         "cost": "{G}{U}",
+771:         "base": 4.5,
+772:         "gih": 0.60338379,
+773:         "sample": 5615
+774:       }
+775:     }
+776:   ],
+777:   "ratingReview": {
+778:     "highGradeLowGIH": [
+779:       {
+780:         "name": "Massacre Girl, Most Wanted",
+781:         "base": 4,
+782:         "gih": 0.50085555,
+783:         "sample": 14026
+784:       },
+785:       {
+786:         "name": "Ghalta the Unstoppable",
+787:         "base": 4,
+788:         "gih": 0.53411166,
+789:         "sample": 18073
+790:       },
+791:       {
+792:         "name": "Mabel, Bitter Recluse",
+793:         "base": 4,
+794:         "gih": 0.5369807,
+795:         "sample": 20051
+796:       },
+797:       {
+798:         "name": "Draconic Visitor",
+799:         "base": 4.5,
+800:         "gih": 0.53899031,
+801:         "sample": 8874
+802:       },
+803:       {
+804:         "name": "Koth of the Homestead",
+805:         "base": 4,
+806:         "gih": 0.54409762,
+807:         "sample": 19831
+808:       },
+809:       {
+810:         "name": "Vindictive Triumph",
+811:         "base": 4,
+812:         "gih": 0.54501348,
+813:         "sample": 5565
+814:       },
+815:       {
+816:         "name": "Vraska's Final Mercy",
+817:         "base": 4,
+818:         "gih": 0.54541718,
+819:         "sample": 9732
+820:       },
+821:       {
+822:         "name": "Way of the Wildspeaker",
+823:         "base": 4,
+824:         "gih": 0.54831925,
+825:         "sample": 27577
+826:       }
+827:     ],
+828:     "lowGradeHighGIH": [
+829:       {
+830:         "name": "Twinned Vision",
+831:         "base": 2.5,
+832:         "gih": 0.58166141,
+833:         "sample": 78054
+834:       },
+835:       {
+836:         "name": "Dark Matter Manipulator",
+837:         "base": 2.5,
+838:         "gih": 0.57651787,
+839:         "sample": 9207
+840:       },
+841:       {
+842:         "name": "Unsummon",
+843:         "base": 2.5,
+844:         "gih": 0.57509775,
+845:         "sample": 79543
+846:       },
+847:       {
+848:         "name": "Something Worth Saving",
+849:         "base": 2.5,
+850:         "gih": 0.57011583,
+851:         "sample": 41353
+852:       },
+853:       {
+854:         "name": "Heartwood Crafter",
+855:         "base": 2.5,
+856:         "gih": 0.56960079,
+857:         "sample": 30560
+858:       },
+859:       {
+860:         "name": "Murmuring Volume",
+861:         "base": 2.5,
+862:         "gih": 0.5667082,
+863:         "sample": 49754
+864:       },
+865:       {
+866:         "name": "Way of the Paradox",
+867:         "base": 2.5,
+868:         "gih": 0.56447417,
+869:         "sample": 21528
+870:       },
+871:       {
+872:         "name": "Sphinx's Approach",
+873:         "base": 2.5,
+874:         "gih": 0.56176595,
+875:         "sample": 28268
+876:       }
+877:     ]
+878:   }
+879: }
+
+FILE reviews/draft-bots-20261029/input-manifest.json
+1: {"date":"2026-10-29","commit":"3902b300db4a096769e6ce1c9cbdcb1b80c63d72","node":"v24.20.0","python":"Python 3.15.0","sha256":{"draft-engine.js":"592d264dcdc39533d516618f42a16863784ea57d6dcb9acaf1cfa9266fdf83bd","collation.js":"1c03f1a9d987592d0f689ba111b5d91e07668d55a0453509c23052d3bc5cf351","expansion_data.py":"6e43bf588e5b70c9420e44b0696889d49cf7a560d25444a5a7ce68a486c146e3","audit-draft-bots.cjs":"b876fa9cf575ef8885f46813df1d8d804bbd3ba85f7f40b7e66c0b90911d8a9a","verify-draft-bots.cjs":"859b3a1cb2e89c0414c665ff423cb96b0ff5b24be5ae80351d357f711673f1f5","expansions/reality-fracture/archetypes.json":"ab00b54ef3473376885a312400ce4ff49a600c24d88951f1bff7d2d98ba3702d","expansions/reality-fracture/cards.json":"0a8bf7494212799aab077d642dec8fbd34d0143389a0ac58a20958ce540197b6","expansions/reality-fracture/combos.json":"a8832143781a996c316be0c8aded6c667c1e781d593879138d0a683a42ec9b39","expansions/reality-fracture/discovery.json":"9014705882c74af3de1ba3477fb594620dcf788a5b966d151fd11130798ba67b","expansions/reality-fracture/expansion.json":"71cd6cfd87489e9f90df442d1c4fa735b8a6be9cb2e72e4225e5699324a15314","expansions/reality-fracture/guides.json":"93356688fa30867aa15b47f58fcb79dedf32285b852051ef2765867b478e5eee","expansions/reality-fracture/limited.json":"ed130c13e58a4b872481f589df596beb31c095fa9c719c189f0c8ab1a44a181b","expansions/reality-fracture/prices.json":"8719708b6574c31ada4a23f1f3defe1e9126bba4edde47e4e72875be8a7e4b43","expansions/reality-fracture/printings.json":"fc7c6f9c5ebd63e357535edd9587ad83f0d919eff4cf5bf8164edadcf668c14b","expansions/reality-fracture/products.json":"8ce6ad6345213a683312f69d8daf2ca2938051ed8f764820668f2fa229c3258c","expansions/reality-fracture/prospects-commander-20261022.json":"45a4d8dbecf3b99be2fffb12c38f6c835147ebf84ec6e822ceb84f0b5609aa2a","expansions/reality-fracture/ratings.json":"59c2ee044828cc73521846e1dc0fca3192133cc7bc29a33d088417240841f03b","expansions/reality-fracture/sentiment.json":"1151a9884de7700f2a081295af3a6ba5680aae319f922f61cacbde62a8c8e7f5","expansions/reality-fracture/sources.json":"af5f458b88ff7988cdc666d00d2ae7faf5f0a2b893f062f0afc80e46ae9a3a44","expansions/reality-fracture/statistics.json":"9914632479111fc6482992975c64ff2f3794284e9097e6adf6e5bbeabcf98818","expansions/reality-fracture/ui.json":"40183ce4c9e9ec353f40ac3b9900775324921fc277573e717b8a2c8325260dea","expansions/bloomburrow/archetypes.json":"6b77e39ecdff71e43b72e3a44f4541058333e5816805bb5a773deb5ac706a00b","expansions/bloomburrow/cards.json":"3f9e725a6eff56e3f8b928ceeecdcbfe4a1ecfa72734947cbcaa00a7a2b7bd03","expansions/bloomburrow/combos.json":"a5338d955b09046ec0b16f3a9625b7955c763aae07dc722e474e6078745f932f","expansions/bloomburrow/discovery.json":"23d8756cee37459f06e499f6047f7a96a678f2b80bb88014e92a4415ee5aaae6","expansions/bloomburrow/expansion.json":"0a7d0f62ff3bbfe97efc959b383ea0c74eb1bd4f32600042db40b52e07930e8c","expansions/bloomburrow/guides.json":"b701b52b839b15c5d960eefe2c38d65fe68ceb26caa8641831b820582aa3a0dc","expansions/bloomburrow/limited.json":"1f362a1b7a414ac14df178c12b00de5860e324d105b129bbaffde6ae6356f139","expansions/bloomburrow/prices.json":"0c13358e2026499788acf62a25502d2769ca925a1a02133990c88c09274bb9bd","expansions/bloomburrow/printings.json":"5f0e956806db01a4789e0f332a7a0dd27233847ab4a47499b7216fe8b1517706","expansions/bloomburrow/products.json":"3265e6919a5cbba45d87fdce56a10c81d1d31b1f9880dd01f02f8777afcafb11","expansions/bloomburrow/ratings.json":"23c11a4906d4bb5375f3728f393b202c2d65c5ff9e33372e9387f8e2843e4eb8","expansions/bloomburrow/sentiment.json":"4bba1851c0ce42cbe77a8188ae50a4c84c50d8fa5d6fbd21500dcfe9a27b618a","expansions/bloomburrow/sources.json":"5ffcc0ea1f82bb2be5ed1931f0d4502b6c9079bf98c2a4afa9ff0e274edbdbd8","expansions/bloomburrow/statistics.json":"67bc6b795fe099c3af9dc3d4c5b40a84ded2b3a047d44460cf6e8f7890e0a9a0","expansions/bloomburrow/ui.json":"066abd400ddebcc3ef5ae77f463f4ab4e43dc7b55dfae9b715e9453ea64429f1","expansions/foundations/archetypes.json":"1fbea038c41dda710922517feceff1b80cb1398eb503d44cdf73607ba5ef53d2","expansions/foundations/cards.json":"a4b72a523a9f2b956c70cad3a3beb6b77d6009e7c9062b9192e91b4240bb4669","expansions/foundations/combos.json":"a5338d955b09046ec0b16f3a9625b7955c763aae07dc722e474e6078745f932f","expansions/foundations/discovery.json":"5a9eae878f9717f2dd1ba8c5a287e4343002ca883e3b411a93cb7e92766703a5","expansions/foundations/expansion.json":"692db77115dacfc3d630c42c6649a3b011dcaf2bde8eb50e6089c7d306d42e9e","expansions/foundations/guides.json":"0437210a820a557553f9022f941e851ef460c7612dac32fd152fa58c17aa6c7e","expansions/foundations/limited.json":"2d417bca6262fb1d6c1c79635ec47d1d3c5b94bf959cef928b6caa46b0df7ab1","expansions/foundations/prices.json":"18477e41327441305c464bf7cd6ecec393b805efe9c76e319f834920ab225bff","expansions/foundations/printings.json":"e0fad63cdef182491455e3afbf3d3d258f71a3973963e95c5682e140db9ae13c","expansions/foundations/products.json":"3846d462b210eaf7ae08096b3a21daf5fd73b727c6877a79b9c6f2a72f8367d3","expansions/foundations/ratings.json":"241fdcf2fdf28969e6623e8066d36618a661a853944d4ce000f16852754c7c03","expansions/foundations/sentiment.json":"5c1783888537578fd07c363a571e8ed58de11ea26f67c23d580ebd854bb34c7a","expansions/foundations/sources.json":"73bcd340abfeb00d2c596c9a9aac9f4f1ada6b198df0d99f86fca53c4ba89ac7","expansions/foundations/statistics.json":"09d7d179df96b96152404fa79d154d24b43a634d6e14e82ab39a61405e44153f","expansions/foundations/ui.json":"6ef17f0dff985a90cfcd0ea9c5d63e11e46eb2b26640372918c426c3fa05e75d"},"notes":["Snapshots omit UI and printing metadata unused by the evaluator.","The existing full-table audit loads live repository inputs; compare these hashes before rerunning."]}
+
+DECISIONI E CONFRONTO DEI GIRI PRECEDENTI
+{
+  "scope": "Ottimizzazione dei requisiti BOT, senza implementazione della politica",
+  "status": "revised_awaiting_opus",
+  "rounds": [
+    {
+      "round": 1,
+      "actualModel": "claude-opus-5-5",
+      "approved": false,
+      "decisions": [
+        {
+          "id": "OPUS-R1-01",
+          "decision": "confermato",
+          "evidence": "rankModern.available conta fonti nel pool senza verificare basi del main, costo del ciclo o accessibilità; la frase del requisito imponeva un'alternativa esclusiva nella lista.",
+          "resolution": "BOT-04 distingue uno slot e contributi alternativi condizionati, preservando la flessibilità. Non adottata una penalità universale: costo e tempo dipendono dal caso."
+        },
+        {
+          "id": "OPUS-R1-02",
+          "decision": "confermato",
+          "evidence": "CR ufficiali del 25 settembre 2026, 100.2b e 100.5: minimo 40, nessun massimo generale; struttura del match non dichiarata nella specifica.",
+          "resolution": "40 come obiettivo del costruttore, pool distinto. Scelta progettuale per il futuro valutatore: BO3 di default, override BO1; contesto sconosciuto senza bonus di sideboard. Nessuna affermazione su eventi già implementati."
+        },
+        {
+          "id": "OPUS-R1-03",
+          "decision": "confermato",
+          "evidence": "Il requisito precedente confrontava il main senza definire sostituibilità per ruolo e poteva escludere benefici legittimi del colore.",
+          "resolution": "BOT-03 aggiunge disponibilità attesa approssimata da conoscenza statica e pick restanti; colore utile se migliora una lista, senza leggere buste future."
+        },
+        {
+          "id": "OPUS-R1-04",
+          "decision": "confermato",
+          "evidence": "La vecchia clausola 'soltanto valore autonomo' contraddice la speculazione precoce; mancavano rendimenti non lineari e risorse condivise.",
+          "resolution": "BOT-05 introduce opzione condizionata, valore bidirezionale, massa critica e competizione. Nessun bonus speculativo se i dati non lo sostengono."
+        },
+        {
+          "id": "OPUS-R1-05",
+          "decision": "parzialmente_fondato",
+          "evidence": "observe usa il massimo per colore, non profondità/residuo rispetto all'atteso; una gerarchia universale fra tre giocabili e una rara sarebbe però errata senza qualità e contesto.",
+          "resolution": "BOT-06 richiede un modello dichiarato e fixture controllate con qualità fissate. Non adottata come regola universale la preferenza per qualunque gruppo di tre carte."
+        },
+        {
+          "id": "OPUS-R1-06",
+          "decision": "confermato",
+          "evidence": "rating usa c.score con fallback 2.5, dati ruoli e archetipi hanno copertura disomogenea; la specifica non decideva fonte e soglie.",
+          "resolution": "Qualità base da ratings.json Limited, misure osservate separate. Prerequisiti minimi al 100% delle stampe attive non base; stato esplicito anche per capacità aggiuntive, profilo indisponibile o sperimentale secondo lacune. Non imposta una codifica esaustiva di ogni interazione."
+        },
+        {
+          "id": "OPUS-R1-07",
+          "decision": "confermato",
+          "evidence": "L'ambito della migrazione degli specialisti non era deciso, con confronto potenzialmente confuso fra capacità e preferenze.",
+          "resolution": "Tutti gli specialisti aggiornati usano capacità condivise; Potenza pura resta controllo, Forzato conserva il vincolo. Adattivo è configurazione neutra. Replay v3 invariati, confronto con v3 e specialisti aggiornati."
+        },
+        {
+          "id": "OPUS-R1-08",
+          "decision": "confermato",
+          "evidence": "createSession usa un solo RNG per collazione e chiamate take dei posti in ordine; le buste sono generate prima delle pick, ma un diverso consumo futuro potrebbe spostare il RNG degli altri bot.",
+          "resolution": "BOT-11 isola posto, tipo e decisione (busta/pick/subscelta), preservando lo schema storico. Il requisito non pretende che scelte diverse lascino identiche le buste poi passate: quello è un effetto legittimo del draft."
+        },
+        {
+          "id": "OPUS-R1-09",
+          "decision": "confermato",
+          "evidence": "L'audit copre un solo set e la vecchia specifica non separava fixture/taratura né congelava il costruttore diagnostico.",
+          "resolution": "BOT-13 prevede aspettative congelate, casi riservati, rubrica identica e valutazione cieca. Risultati circoscritti agli eventi simulati, niente WR. Esito ambiguo mantiene il candidato sperimentale."
+        },
+        {
+          "id": "OPUS-R1-10",
+          "decision": "confermato",
+          "evidence": "L'ordine precedente collocava confronto e compatibilità alla fine.",
+          "resolution": "Versione isolata, banco di prova, replay e RNG all'avvio; costruttore applicato ai pool v3 prima della taratura. Spiegazioni e confronti incrementali."
+        },
+        {
+          "id": "OPUS-R1-11",
+          "decision": "parzialmente_fondato",
+          "evidence": "verify-draft-bots usa createEvaluator(data) senza versione per diverse aspettative v3. È corretto fissare quelle aspettative; non è corretto vietare universalmente sinergie fra carte dello stesso nome.",
+          "resolution": "BOT-14 e docs/draft-engine.md precisano versioni esplicite prima del nuovo default. Nuove fixture ammettono sinergie reali fra copie omonime, senza credito duplicato. Nessuna modifica ai test ora: la politica non è cambiata."
+        },
+        {
+          "id": "OPUS-R1-12",
+          "decision": "confermato",
+          "evidence": "'Valore abbandonato' era ambiguo fra contributo al mazzo futuro e costo affondato.",
+          "resolution": "BOT-07 confronta contributi ai mazzi costruibili, disponibilità e pick restanti; i vecchi voti spesi non creano inerzia di per sé."
+        }
+      ],
+      "optionalSuggestions": "Non trasformate in prerequisiti: segnalazione attiva ai vicini, modello ipergeometrico specifico, riorganizzazione UX, riuso Sealed e vantaggio informativo del counterpick. Valutazione di un campione di pick e mazzi inclusa nel protocollo, senza verità universale.",
+      "additionalClarification": "Richiesta ricerca limitata e misurazione dei tempi su ambiente dichiarato per evitare che costruzione e confronto candidati richiedano un ottimizzatore esaustivo nel browser."
+    },
+    {
+      "round": 2,
+      "actualModel": "claude-opus-5-5",
+      "approved": false,
+      "decisions": [
+        {
+          "id": "OPUS-R2-01",
+          "decision": "confermato",
+          "evidence": "Verifica autonoma delle CR ufficiali 702.29e del 25 settembre 2026: typecycling distingue sottotipo e supertipo; Mountaincycling non richiede il supertipo Basic.",
+          "resolution": "BOT-04 e riferimento CR precisano terre ricercabili, anche non base tipizzate, colori effettivamente prodotti e assenza di carte ricercabili. Usato il termine carte ricercabili, non bersagli: la ricerca non bersaglia."
+        },
+        {
+          "id": "OPUS-R2-02",
+          "decision": "confermato",
+          "evidence": "Le soglie erano riferite ad Adattivo, mentre gli specialisti avrebbero usato gli stessi componenti senza regola esplicita.",
+          "resolution": "Soglie estese alla nuova versione e a ogni profilo che usa componenti condivisi; senza minimi restano solo politiche storiche gia disponibili, senza nuove abilitazioni. Lacune e contributi disattivati uniformi."
+        },
+        {
+          "id": "OPUS-R2-03",
+          "decision": "confermato",
+          "evidence": "Costruttore identico garantisce confronto uniforme ma non indipendenza dalla funzione ottimizzata dal candidato.",
+          "resolution": "Metriche condivise dichiarate come coerenza interna. Promozione richiede anche aspettative congelate e revisione cieca. Non imposto un secondo costruttore: aggiungerebbe costo senza garantire da solo indipendenza."
+        },
+        {
+          "id": "OPUS-R2-04",
+          "decision": "confermato",
+          "evidence": "Le descrizioni di Segnali e Adattivo potevano produrre la stessa politica pur avendo due nomi.",
+          "resolution": "Adattivo configurazione di riferimento; Segnali preferisce evidenza e apertura. Fixture di divergenza utile, confronto riservato; se la distinzione non e materiale, profilo unico esposto. Il decimo profilo non e piu un risultato obbligatorio. Replay conservano tutti gli identificatori storici."
+        },
+        {
+          "id": "OPUS-R2-05",
+          "decision": "confermato",
+          "evidence": "Confrontare BO1/BO3 senza ipotesi fisse o risultato atteso rendeva la fixture vacua.",
+          "resolution": "Fixture con pool, piano e ipotesi della prima partita invariati: stesso main, riserve di sideboard pertinenti esplicite in BO3. Non adottata una regola universale di main identico se cambiano ipotesi o piano."
+        }
+      ],
+      "optionalSuggestions": "Integrate le precisazioni sulla memoria per lato e sul congelamento prima della taratura di ogni capacita. Budget numerico per pick non inventato senza implementazione o ambiente misurato; resta obbligo di misurare tempi e limiti della ricerca. Altri ampliamenti esclusi."
+    }
+  ]
+}

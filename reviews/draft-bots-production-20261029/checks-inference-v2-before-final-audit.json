@@ -1,0 +1,209 @@
+[
+  {
+    "command": [
+      "C:\\Program Files\\Python315\\python.exe",
+      "-m",
+      "unittest",
+      "test_expansion_data.py",
+      "test_bot_profiles.py"
+    ],
+    "exitCode": 0,
+    "stdout": "",
+    "stderr": "...........................................\n----------------------------------------------------------------------\nRan 43 tests in 331.592s\n\nOK\n",
+    "sourceHashes": {
+      "draft-policy.js": "35ae6980660c3158e290ce2452fa46d1026711d517447cbb79d390f261f69ae5",
+      "draft-engine.js": "5e7ee5acbdc830d1d85e8683b727a3d6fa0d2c52a21645d00c4d76dc02a83165",
+      "draft-worker.js": "2feb5a7fd028d91e38feb72174d1f32bba741b5128d574b82154ea5b47c8ee51",
+      "draft-worker-client.js": "58b67875ffbda8fdde0f122ae6bd6e3825aa3d2e8c4f6d815681066235283230",
+      "draft-table.js": "9da4b57a65b2e64a8cf5b6a40749c60bfb04b9d6852acbc84d00e1f5b2ff4c9c",
+      "bot_profiles.py": "8bb7263f1cd8a14ef0b34a01dfba19d90ea85c7e8fc1a787a0652d63f7f9344c"
+    }
+  },
+  {
+    "command": [
+      "node",
+      "verify-draft-bots.cjs"
+    ],
+    "exitCode": 0,
+    "stdout": "PASS: frozen v1/v2 replays and continuation; v3 replay; color neutrality; reported picks; bounded tactical bonuses; hybrid mana; duplicate support.\n",
+    "stderr": "",
+    "sourceHashes": {
+      "draft-policy.js": "35ae6980660c3158e290ce2452fa46d1026711d517447cbb79d390f261f69ae5",
+      "draft-engine.js": "5e7ee5acbdc830d1d85e8683b727a3d6fa0d2c52a21645d00c4d76dc02a83165",
+      "draft-worker.js": "2feb5a7fd028d91e38feb72174d1f32bba741b5128d574b82154ea5b47c8ee51",
+      "draft-worker-client.js": "58b67875ffbda8fdde0f122ae6bd6e3825aa3d2e8c4f6d815681066235283230",
+      "draft-table.js": "9da4b57a65b2e64a8cf5b6a40749c60bfb04b9d6852acbc84d00e1f5b2ff4c9c",
+      "bot_profiles.py": "8bb7263f1cd8a14ef0b34a01dfba19d90ea85c7e8fc1a787a0652d63f7f9344c"
+    }
+  },
+  {
+    "command": [
+      "node",
+      "verify-draft-engine.cjs"
+    ],
+    "exitCode": 0,
+    "stdout": "{\"packs\":30000,\"guestRate\":0.019366666666666667,\"rareMainRate\":0.7475333333333334,\"foilLandRate\":0.1969,\"drafted\":336,\"replay\":\"identical\",\"strategies\":9}\n",
+    "stderr": "",
+    "sourceHashes": {
+      "draft-policy.js": "35ae6980660c3158e290ce2452fa46d1026711d517447cbb79d390f261f69ae5",
+      "draft-engine.js": "5e7ee5acbdc830d1d85e8683b727a3d6fa0d2c52a21645d00c4d76dc02a83165",
+      "draft-worker.js": "2feb5a7fd028d91e38feb72174d1f32bba741b5128d574b82154ea5b47c8ee51",
+      "draft-worker-client.js": "58b67875ffbda8fdde0f122ae6bd6e3825aa3d2e8c4f6d815681066235283230",
+      "draft-table.js": "9da4b57a65b2e64a8cf5b6a40749c60bfb04b9d6852acbc84d00e1f5b2ff4c9c",
+      "bot_profiles.py": "8bb7263f1cd8a14ef0b34a01dfba19d90ea85c7e8fc1a787a0652d63f7f9344c"
+    }
+  },
+  {
+    "command": [
+      "node",
+      "verify-expansions.cjs"
+    ],
+    "exitCode": 0,
+    "stdout": "PASS: 3,000 historical packs identical; legacy replay; revision rejection; Pick-Two, odd packs, four seats, partial replay and card conservation.\n",
+    "stderr": "",
+    "sourceHashes": {
+      "draft-policy.js": "35ae6980660c3158e290ce2452fa46d1026711d517447cbb79d390f261f69ae5",
+      "draft-engine.js": "5e7ee5acbdc830d1d85e8683b727a3d6fa0d2c52a21645d00c4d76dc02a83165",
+      "draft-worker.js": "2feb5a7fd028d91e38feb72174d1f32bba741b5128d574b82154ea5b47c8ee51",
+      "draft-worker-client.js": "58b67875ffbda8fdde0f122ae6bd6e3825aa3d2e8c4f6d815681066235283230",
+      "draft-table.js": "9da4b57a65b2e64a8cf5b6a40749c60bfb04b9d6852acbc84d00e1f5b2ff4c9c",
+      "bot_profiles.py": "8bb7263f1cd8a14ef0b34a01dfba19d90ea85c7e8fc1a787a0652d63f7f9344c"
+    }
+  },
+  {
+    "command": [
+      "C:\\Program Files\\Python315\\python.exe",
+      "verify-collation-contract.py"
+    ],
+    "exitCode": 0,
+    "stdout": "PASS: Python validation and JavaScript engine agree on correlated exclusions, feasible pairs and exhausted groups.\n",
+    "stderr": "",
+    "sourceHashes": {
+      "draft-policy.js": "35ae6980660c3158e290ce2452fa46d1026711d517447cbb79d390f261f69ae5",
+      "draft-engine.js": "5e7ee5acbdc830d1d85e8683b727a3d6fa0d2c52a21645d00c4d76dc02a83165",
+      "draft-worker.js": "2feb5a7fd028d91e38feb72174d1f32bba741b5128d574b82154ea5b47c8ee51",
+      "draft-worker-client.js": "58b67875ffbda8fdde0f122ae6bd6e3825aa3d2e8c4f6d815681066235283230",
+      "draft-table.js": "9da4b57a65b2e64a8cf5b6a40749c60bfb04b9d6852acbc84d00e1f5b2ff4c9c",
+      "bot_profiles.py": "8bb7263f1cd8a14ef0b34a01dfba19d90ea85c7e8fc1a787a0652d63f7f9344c"
+    }
+  },
+  {
+    "command": [
+      "node",
+      "verify-draft-policy.cjs"
+    ],
+    "exitCode": 0,
+    "stdout": "PASS: v3 frozen digests; v4 symmetric colors, mana, typed cycling, density, reference grades, resource contention, minimum main, BO1/BO3, side memory, replay, RNG isolation and joint Pick-Two.\n",
+    "stderr": "",
+    "sourceHashes": {
+      "draft-policy.js": "35ae6980660c3158e290ce2452fa46d1026711d517447cbb79d390f261f69ae5",
+      "draft-engine.js": "5e7ee5acbdc830d1d85e8683b727a3d6fa0d2c52a21645d00c4d76dc02a83165",
+      "draft-worker.js": "2feb5a7fd028d91e38feb72174d1f32bba741b5128d574b82154ea5b47c8ee51",
+      "draft-worker-client.js": "58b67875ffbda8fdde0f122ae6bd6e3825aa3d2e8c4f6d815681066235283230",
+      "draft-table.js": "9da4b57a65b2e64a8cf5b6a40749c60bfb04b9d6852acbc84d00e1f5b2ff4c9c",
+      "bot_profiles.py": "8bb7263f1cd8a14ef0b34a01dfba19d90ea85c7e8fc1a787a0652d63f7f9344c"
+    }
+  },
+  {
+    "command": [
+      "node",
+      "verify-draft-policy-regressions.cjs"
+    ],
+    "exitCode": 0,
+    "stdout": "PASS: main refill, ghost support, primary double pips, reductions, C lands, fetch, own sources, alternative modes, hybrid union, joint phases, absolute plans, signal deltas, late filler and splash basics.\n",
+    "stderr": "",
+    "sourceHashes": {
+      "draft-policy.js": "35ae6980660c3158e290ce2452fa46d1026711d517447cbb79d390f261f69ae5",
+      "draft-engine.js": "5e7ee5acbdc830d1d85e8683b727a3d6fa0d2c52a21645d00c4d76dc02a83165",
+      "draft-worker.js": "2feb5a7fd028d91e38feb72174d1f32bba741b5128d574b82154ea5b47c8ee51",
+      "draft-worker-client.js": "58b67875ffbda8fdde0f122ae6bd6e3825aa3d2e8c4f6d815681066235283230",
+      "draft-table.js": "9da4b57a65b2e64a8cf5b6a40749c60bfb04b9d6852acbc84d00e1f5b2ff4c9c",
+      "bot_profiles.py": "8bb7263f1cd8a14ef0b34a01dfba19d90ea85c7e8fc1a787a0652d63f7f9344c"
+    }
+  },
+  {
+    "command": [
+      "node",
+      "verify-draft-production.cjs"
+    ],
+    "exitCode": 0,
+    "stdout": "PASS: owned sources balance added basics; identical mana does not gain value by relabeling a primary color as splash.\n",
+    "stderr": "",
+    "sourceHashes": {
+      "draft-policy.js": "35ae6980660c3158e290ce2452fa46d1026711d517447cbb79d390f261f69ae5",
+      "draft-engine.js": "5e7ee5acbdc830d1d85e8683b727a3d6fa0d2c52a21645d00c4d76dc02a83165",
+      "draft-worker.js": "2feb5a7fd028d91e38feb72174d1f32bba741b5128d574b82154ea5b47c8ee51",
+      "draft-worker-client.js": "58b67875ffbda8fdde0f122ae6bd6e3825aa3d2e8c4f6d815681066235283230",
+      "draft-table.js": "9da4b57a65b2e64a8cf5b6a40749c60bfb04b9d6852acbc84d00e1f5b2ff4c9c",
+      "bot_profiles.py": "8bb7263f1cd8a14ef0b34a01dfba19d90ea85c7e8fc1a787a0652d63f7f9344c"
+    }
+  },
+  {
+    "command": [
+      "node",
+      "verify-draft-worker.cjs"
+    ],
+    "exitCode": 0,
+    "stdout": "PASS: worker and synchronous engine have identical records, full logs and final main; pending privacy and incompatible replay rejection.\n",
+    "stderr": "",
+    "sourceHashes": {
+      "draft-policy.js": "35ae6980660c3158e290ce2452fa46d1026711d517447cbb79d390f261f69ae5",
+      "draft-engine.js": "5e7ee5acbdc830d1d85e8683b727a3d6fa0d2c52a21645d00c4d76dc02a83165",
+      "draft-worker.js": "2feb5a7fd028d91e38feb72174d1f32bba741b5128d574b82154ea5b47c8ee51",
+      "draft-worker-client.js": "58b67875ffbda8fdde0f122ae6bd6e3825aa3d2e8c4f6d815681066235283230",
+      "draft-table.js": "9da4b57a65b2e64a8cf5b6a40749c60bfb04b9d6852acbc84d00e1f5b2ff4c9c",
+      "bot_profiles.py": "8bb7263f1cd8a14ef0b34a01dfba19d90ea85c7e8fc1a787a0652d63f7f9344c"
+    }
+  },
+  {
+    "command": [
+      "node",
+      "verify-draft-worker-client.cjs"
+    ],
+    "exitCode": 0,
+    "stdout": "PASS: failed worker step preserves committed export and current pack, rejects retry, and replay cancellation terminates the worker.\n",
+    "stderr": "",
+    "sourceHashes": {
+      "draft-policy.js": "35ae6980660c3158e290ce2452fa46d1026711d517447cbb79d390f261f69ae5",
+      "draft-engine.js": "5e7ee5acbdc830d1d85e8683b727a3d6fa0d2c52a21645d00c4d76dc02a83165",
+      "draft-worker.js": "2feb5a7fd028d91e38feb72174d1f32bba741b5128d574b82154ea5b47c8ee51",
+      "draft-worker-client.js": "58b67875ffbda8fdde0f122ae6bd6e3825aa3d2e8c4f6d815681066235283230",
+      "draft-table.js": "9da4b57a65b2e64a8cf5b6a40749c60bfb04b9d6852acbc84d00e1f5b2ff4c9c",
+      "bot_profiles.py": "8bb7263f1cd8a14ef0b34a01dfba19d90ea85c7e8fc1a787a0652d63f7f9344c"
+    }
+  },
+  {
+    "command": [
+      "node",
+      "verify-draft-async.cjs"
+    ],
+    "exitCode": 0,
+    "stdout": "PASS: asynchronous and sequential records, pools and logs identical for ordinary/Pick-Two; failed or malformed results leave committed state intact.\n",
+    "stderr": "",
+    "sourceHashes": {
+      "draft-policy.js": "35ae6980660c3158e290ce2452fa46d1026711d517447cbb79d390f261f69ae5",
+      "draft-engine.js": "5e7ee5acbdc830d1d85e8683b727a3d6fa0d2c52a21645d00c4d76dc02a83165",
+      "draft-worker.js": "2feb5a7fd028d91e38feb72174d1f32bba741b5128d574b82154ea5b47c8ee51",
+      "draft-worker-client.js": "58b67875ffbda8fdde0f122ae6bd6e3825aa3d2e8c4f6d815681066235283230",
+      "draft-table.js": "9da4b57a65b2e64a8cf5b6a40749c60bfb04b9d6852acbc84d00e1f5b2ff4c9c",
+      "bot_profiles.py": "8bb7263f1cd8a14ef0b34a01dfba19d90ea85c7e8fc1a787a0652d63f7f9344c"
+    }
+  },
+  {
+    "command": [
+      "node",
+      "verify-draft-policy-optimization.cjs"
+    ],
+    "exitCode": 0,
+    "stdout": "PASS: cached direct colors and zero-source fast path preserve all bot pool/log digests for ordinary and Pick-Two fixtures.\n",
+    "stderr": "",
+    "sourceHashes": {
+      "draft-policy.js": "35ae6980660c3158e290ce2452fa46d1026711d517447cbb79d390f261f69ae5",
+      "draft-engine.js": "5e7ee5acbdc830d1d85e8683b727a3d6fa0d2c52a21645d00c4d76dc02a83165",
+      "draft-worker.js": "2feb5a7fd028d91e38feb72174d1f32bba741b5128d574b82154ea5b47c8ee51",
+      "draft-worker-client.js": "58b67875ffbda8fdde0f122ae6bd6e3825aa3d2e8c4f6d815681066235283230",
+      "draft-table.js": "9da4b57a65b2e64a8cf5b6a40749c60bfb04b9d6852acbc84d00e1f5b2ff4c9c",
+      "bot_profiles.py": "8bb7263f1cd8a14ef0b34a01dfba19d90ea85c7e8fc1a787a0652d63f7f9344c"
+    }
+  }
+]

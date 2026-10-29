@@ -226,6 +226,9 @@ class Expansion:
             calculator=combo.get('calculator')
             if calculator and (calculator.get('kind')!='netMana' or type(calculator.get('netPerCycle')) not in (int,float) or any(not isinstance(calculator.get(field),str) for field in ('label','unit','note'))):fail('calcolatore combo non supportato o incompleto')
         for key, event in self.data['limited']['events'].items():
+            if 'botPolicy' in event:
+                from bot_profiles import validate_config
+                validate_config(event['botPolicy'], [p['id'] for p in self.data['printings']['cards']], self.data['archetypes'])
             if event.get('kind') not in ('draft','sealed'): fail(f'tipo evento non supportato: {key}')
             for field in ('packsPerPlayer','minDeckSize','picksPerTurn','seats'):
                 if not isinstance(event.get(field),int) or isinstance(event[field],bool) or event[field] < (0 if field == 'picksPerTurn' else 1): fail(f'{key}: {field} non valido')
@@ -417,6 +420,7 @@ class Expansion:
             card = {**printing}
             review = catalog.get(card['id']) or {}
             card.update(score=review.get('score'),role=review.get('role',''))
+            card.update(power=review.get('power'),toughness=review.get('toughness'),faces=review.get('faces',[]))
             card['catalogId'] = review.get('id')
             card['archetypes'] = [k for k,a in archetypes.items() if card['name'] in a['core']+a['support']]
             cards.append(card)
@@ -431,7 +435,12 @@ class Expansion:
         revision = hashlib.sha256(json.dumps(engine,sort_keys=True,ensure_ascii=True).encode()).hexdigest()
         compatibility=self.manifest.get('draftReplayCompatibility',{}).get(event_id,{})
         previous=compatibility.get('previousRevisions',[]) if compatibility.get('revision')==revision else []
+        from bot_profiles import payload
+        bot_policy=payload(cards, active, event, event.get('botPolicy', {}),
+                           event.get('kind')=='draft' and self.draft_event_availability(event_id)['available'], archetypes)
         return {'version':1,'id':event['id'],'set':self.manifest['code'],'name':event['name'],
+                'botPolicy':bot_policy,'minDeckSize':event['minDeckSize'],
+                'extraBasicLands':event.get('extraBasicLands',False),'maxCopies':event.get('maxCopies'),
                 'seats':event['seats'],'rounds':event['packsPerPlayer'],'packSize':product['packSize'],'productName':product['name'],
                 'picksPerTurn':event['picksPerTurn'],'directions':event.get('directions',[]),
                 'assumptions':product.get('assumptions',[]),'cards':cards,'archetypes':archetypes,

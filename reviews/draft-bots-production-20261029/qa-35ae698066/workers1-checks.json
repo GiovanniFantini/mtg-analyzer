@@ -1,0 +1,36 @@
+[
+  {
+    "command": [
+      "node",
+      "verify-draft-worker-browser.cjs"
+    ],
+    "exitCode": 0,
+    "stdout": "PASS: dead-worker resume, failed-save worker lifecycle, mixed-code hash rejection preserves original record, classical fallback.\n",
+    "stderr": "",
+    "sourceHashes": {
+      "draft-policy.js": "35ae6980660c3158e290ce2452fa46d1026711d517447cbb79d390f261f69ae5",
+      "draft-engine.js": "5e7ee5acbdc830d1d85e8683b727a3d6fa0d2c52a21645d00c4d76dc02a83165",
+      "draft-worker.js": "2feb5a7fd028d91e38feb72174d1f32bba741b5128d574b82154ea5b47c8ee51",
+      "draft-worker-client.js": "58b67875ffbda8fdde0f122ae6bd6e3825aa3d2e8c4f6d815681066235283230",
+      "draft-table.js": "9da4b57a65b2e64a8cf5b6a40749c60bfb04b9d6852acbc84d00e1f5b2ff4c9c",
+      "bot_profiles.py": "8bb7263f1cd8a14ef0b34a01dfba19d90ea85c7e8fc1a787a0652d63f7f9344c"
+    }
+  },
+  {
+    "command": [
+      "node",
+      "verify-draft-policy-browser.cjs"
+    ],
+    "exitCode": 0,
+    "stdout": "PASS: default v3, opt-in v4 BO1, worker heartbeat {\"ticks\":129,\"maxGap\":36.89999997615814,\"longestTask\":0}, partial and complete resume, detailed review, privacy, mouse/keyboard/touch, 390px, full backup and backup failure.\n",
+    "stderr": "",
+    "sourceHashes": {
+      "draft-policy.js": "35ae6980660c3158e290ce2452fa46d1026711d517447cbb79d390f261f69ae5",
+      "draft-engine.js": "5e7ee5acbdc830d1d85e8683b727a3d6fa0d2c52a21645d00c4d76dc02a83165",
+      "draft-worker.js": "2feb5a7fd028d91e38feb72174d1f32bba741b5128d574b82154ea5b47c8ee51",
+      "draft-worker-client.js": "58b67875ffbda8fdde0f122ae6bd6e3825aa3d2e8c4f6d815681066235283230",
+      "draft-table.js": "9da4b57a65b2e64a8cf5b6a40749c60bfb04b9d6852acbc84d00e1f5b2ff4c9c",
+      "bot_profiles.py": "8bb7263f1cd8a14ef0b34a01dfba19d90ea85c7e8fc1a787a0652d63f7f9344c"
+    }
+  }
+]

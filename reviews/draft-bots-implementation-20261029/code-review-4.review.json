@@ -1,0 +1,41 @@
+{
+  "findings": [
+    {
+      "id": "CODE-21",
+      "priority": "P1",
+      "file": "draft-policy.js",
+      "scenario": "Pick successiva all'apertura, senza target. Il contesto ordina WU primo con value 20,0 e BR secondo con 19,5. Nella busta ci sono una carta B da 3,0, che porterebbe il miglior mazzo BR a 19,8, e una carta G che nessun piano usa (oppure un riempitivo WU escluso dal main).",
+      "evidence": "In rank, per pool non vuoto candidatePlans=ctx.plans.slice(0,style.open?3:2), quindi plans[0] è sempre valutato. Per quel piano, se la carta non migliora il mazzo, vale after=plan.deck e quindi delta=before.deck.score+before.signalValue-before.value=0. Per BR invece delta=19,8-20,0, cioè negativo. evaluated prende il massimo, quindi la carta B ottiene 0. Anche la carta G ottiene 0, tramite fallback o carta non usata. Le signature sono diverse, quindi take non sorteggia e l'ordinamento finale decide con stable(entry), cioè per id/uid.",
+      "impact": "Un piano alternativo quasi equivalente non riceve alcun valore finché non supera il primo. Una carta che sostiene un pivot plausibile vale quanto una carta inutile e lo spareggio dipende dall'identificatore. Questo contrasta con BOT-02 (alternative di colori e piano) e con BOT-07 (confronto fra piani candidati, pivot sostenibile), soprattutto a metà draft quando le pick restanti rendono il secondo piano ancora realistico.",
+      "fix": "Sostituire il massimo con un aggregato liscio dei piani, per esempio log-sum-exp o media pesata per plausibilità con temperatura decrescente con remaining. Ogni carta va valutata come variazione dell'aggregato. In alternativa, aggiungere un termine di opzione dichiarato per i miglioramenti dei piani entro una distanza fissata dal primo, che si annulla a fine draft. Fixture: due piani distanti mezzo punto, carta che rafforza il secondo contro carta inutile; la prima deve prevalere."
+    },
+    {
+      "id": "CODE-22",
+      "priority": "P2",
+      "file": "draft-policy.js",
+      "scenario": "Evento con extraBasicLands false, quindi allowedBasics vuoto. Il pool contiene Plains e Island possedute e una fetch base non ristretta, per esempio sacrificio e ricerca di una terra base.",
+      "evidence": "landColors risolve la fetch solo con COLORS.filter(color=>basics[color]>0). basics è l'oggetto delle basi aggiunte, che senza basi libere resta a zero. Le basi possedute stanno in lands, che landColors non considera. Anche payable controlla soltanto basics. allocate però include sempre la fetch (profile(c).mana.fetch&&!restricted). Il landcycling base, al contrario, usa targets con le terre possedute basic:true.",
+      "impact": "La fetch occupa uno slot di terra senza produrre alcun colore in sourceModel, castability e manaEstimates. Il costruttore la preferisce comunque ad altre carte e sottostima i colori del main. bestBuild, che usa freeBasics.includes(color) per la fetch, non la riconosce nemmeno come fonte di splash. L'incoerenza con il trattamento del landcycling è dimostrabile.",
+      "fix": "Calcolare i colori ricercabili dalla fetch anche sulle terre base possedute nella configurazione candidata, per esempio passando a landColors l'insieme delle terre base in lands oltre a basics, con lo stesso criterio usato per targets. Allineare bestBuild. Fixture senza basi libere con Plains e Island possedute più la fetch."
+    },
+    {
+      "id": "CODE-23",
+      "priority": "P2",
+      "file": "draft-policy.js",
+      "scenario": "Piano WU con basi libere. Il pool contiene tre terre che entrano tappate e producono W o B, senza altri ruoli nel profilo, e il mazzo non ha splash B.",
+      "evidence": "allocate seleziona ogni terra posseduta con direct(c).some(x=>colors.includes(x)), ordinata solo per tapped e id, fino a landTarget. Ogni terra selezionata riduce add, quindi le Plains aggiunte. In landSources e sourceModel la terra tappata vale 0 al turno 1 e 0,8 fino al turno 3, mentre la Plains sostituita varrebbe 1. Il colore B non entra in colors e non porta beneficio. Il costruttore non confronta mai la configurazione con la base libera.",
+      "impact": "Il main finale, mostrato nella revisione e usato dal costruttore diagnostico comune, include terre strettamente peggiori, secondo il modello stesso, di basi gratuite. Castabilità iniziale e punteggio scendono. È lo stesso tipo di difetto di CODE-04, limitato prima alle terre solo C, ora sulle terre tappate con un solo colore pertinente.",
+      "fix": "Con basi libere del colore prodotto, includere una terra non base solo se fornisce almeno due colori in colors, se serve a C o splash, oppure se non è tappata. In alternativa, valutare in allocate la sostituzione con la base corrispondente e tenerla solo se la castabilità non peggiora. Fixture WU con terre W/B tappate."
+    },
+    {
+      "id": "CODE-24",
+      "priority": "P2",
+      "file": "draft-policy.js",
+      "scenario": "Il contesto ha WU come primo piano. Una carta rossa forte viene valutata e vince nel piano BR scelto come challenger, perché il mazzo BR con la carta supera il value di WU.",
+      "evidence": "replaces=before.deck.spells.filter(e=>!after.spells.some(x=>x.uid===e.uid)) confronta il main WU di before con il main BR di after. Ne risultano tutte le carte WU assenti dal main BR. Il motivo scelto è comunque 'Migliora uno slot del main provvisorio.' perché replaces non è vuoto. take registra replaces nel log e la revisione lo mostra come 'Carte sostituite nel main'. Anche il motivo sulle giocate iniziali confronta deficits di piani diversi.",
+      "impact": "La spiegazione di un pivot dichiara come sostituite dalla carta decine di carte che escono per il cambio di piano, e non segnala il cambio. Questo contraddice BOT-12, che chiede di citare bisogni e conseguenze concrete sul mazzo.",
+      "fix": "Se plan.lane differisce da before.lane, registrare un motivo esplicito di cambio piano con lane di partenza e di arrivo. Separare le carte che escono per il pivot dalle sostituzioni nello stesso piano, calcolando replaces rispetto a plan.deck. Confrontare i deficit solo all'interno dello stesso piano."
+    }
+  ],
+  "summary": "Le correzioni dei round precedenti risultano coerenti con il codice: refill del main, fonti per copia, splash con basi libere, finalBuild senza segnali, memoria per lato, isolamento casuale, replay versionato e disattivazione uniforme delle sinergie. Resta un difetto P1 nel valore di selezione. Poiché il piano principale è sempre fra i candidati e la sua configurazione precedente fa da minimo, ogni carta che rafforza soltanto un piano alternativo non ancora in testa vale zero come una carta inutile, con spareggio per identificatore; manca quindi il valore delle alternative richiesto da BOT-02 e BOT-07. Restano inoltre tre P2: la fetch ignora le basi possedute negli eventi senza basi libere, il costruttore preferisce terre tappate con un solo colore pertinente alle basi gratuite, e le spiegazioni dei pivot presentano come sostituzioni le carte del piano abbandonato."
+}

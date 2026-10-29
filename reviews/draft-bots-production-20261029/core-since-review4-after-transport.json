@@ -1,0 +1,21 @@
+{
+  "unchanged": [
+    "draft-policy.js",
+    "draft-engine.js"
+  ],
+  "changed": [
+    "draft-worker.js",
+    "draft-worker-client.js",
+    "draft-table.js",
+    "bot_profiles.py"
+  ],
+  "currentHashes": {
+    "draft-policy.js": "35ae6980660c3158e290ce2452fa46d1026711d517447cbb79d390f261f69ae5",
+    "draft-engine.js": "5e7ee5acbdc830d1d85e8683b727a3d6fa0d2c52a21645d00c4d76dc02a83165",
+    "draft-worker.js": "d851613586061ac0593b2a74d25baaa1ca812e6445bdef3c79f86013a205e3ea",
+    "draft-worker-client.js": "8f90e8b50000ccd00c75d2702fe5b108cea1725cffb11c94370e01ab4db7a43e",
+    "draft-table.js": "13106b0d85e502d9ffe35ee9d653bb15ecc9f0e5a6a5a822eb2da1de2f00d506",
+    "bot_profiles.py": "cca6cef5d08fefa151d18bced61df079127db0ebf30c18128be6765e71e0cbb6"
+  },
+  "reason": "Mana policy and sequential engine unchanged. Post-review4 profile audit, async review placeholder and compact worker transport/export changed; actual final Opus review pending."
+}

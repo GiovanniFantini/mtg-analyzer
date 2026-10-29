@@ -1,0 +1,1285 @@
+{
+  "engineVersion": 3,
+  "inventory": {
+    "reality-fracture": {
+      "cards": 411,
+      "revision": "b8507e3f2b0065d879d9c570c3f321bd5c8ad90f64097d8b72967de38cf88bab",
+      "collationPresent": true,
+      "roles": 411,
+      "archetypeTags": 56,
+      "hash": "cd18073b189301cb5193af349e1c57fa3623abd703487c8d0edb7612c1db7ff5"
+    },
+    "bloomburrow": {
+      "cards": 407,
+      "revision": "bab0cf55ab558f8bafbe3695ce0800884f653f48a26a2a0a128304dacb496301",
+      "collationPresent": false,
+      "roles": 258,
+      "archetypeTags": 11,
+      "hash": "dd289302988d33a2016b56c46d0f3e7a6a075846a51e29b931ff69bbef8ef184"
+    },
+    "foundations": {
+      "cards": 781,
+      "revision": "00e3085937651dd235d6daadeae773fe83d25705f56880b7fddf30caf2cb91d0",
+      "collationPresent": false,
+      "roles": 0,
+      "archetypeTags": 21,
+      "hash": "7d739073e84ada30b284f572660eefb7162021b1a102152fc56adfc05a93c42b"
+    }
+  },
+  "synthetic": {
+    "copies": {
+      "one": [
+        {
+          "id": "payoff",
+          "score": 4.791000000000001,
+          "components": {
+            "potenza": 2.7,
+            "colori": 1.815,
+            "sinergia": 0.12600000000000003,
+            "curva": 0.15,
+            "segnali": 0,
+            "mana": 0
+          },
+          "playable": true
+        }
+      ],
+      "eight": [
+        {
+          "id": "payoff",
+          "score": 4.441000000000001,
+          "components": {
+            "potenza": 2.7,
+            "colori": 1.815,
+            "sinergia": 0.12600000000000003,
+            "curva": -0.2,
+            "segnali": 0,
+            "mana": 0
+          },
+          "playable": true
+        }
+      ]
+    },
+    "unrelatedSameTag": 0.12600000000000003,
+    "mana": {
+      "noSources": [
+        {
+          "id": "red-bomb",
+          "score": 2.31,
+          "components": {
+            "potenza": 4.95,
+            "colori": -2.64,
+            "sinergia": 0,
+            "curva": 0,
+            "segnali": 0,
+            "mana": 0
+          },
+          "playable": false
+        }
+      ],
+      "inaccessibleSources": [
+        {
+          "id": "red-bomb",
+          "score": 4.686,
+          "components": {
+            "potenza": 4.95,
+            "colori": -0.264,
+            "sinergia": 0,
+            "curva": 0,
+            "segnali": 0,
+            "mana": 0
+          },
+          "playable": false
+        }
+      ]
+    },
+    "signals": {
+      "round1": {
+        "W": 4,
+        "U": 3,
+        "B": 0,
+        "R": 0,
+        "G": 0
+      },
+      "round3": {}
+    },
+    "qualityCap": [
+      {
+        "id": "solid",
+        "score": 4.8549999999999995,
+        "components": {
+          "potenza": 3.24,
+          "colori": 1.815,
+          "sinergia": 0,
+          "curva": -0.2,
+          "segnali": 0,
+          "mana": 0
+        },
+        "playable": true
+      },
+      {
+        "id": "supported-payoff",
+        "score": 4.441000000000001,
+        "components": {
+          "potenza": 2.7,
+          "colori": 1.815,
+          "sinergia": 0.12600000000000003,
+          "curva": -0.2,
+          "segnali": 0,
+          "mana": 0
+        },
+        "playable": true
+      }
+    ],
+    "phaseAt28AfterExplore": {
+      "trials": 500,
+      "phases": {
+        "0": 46,
+        "1": 51,
+        "2": 157,
+        "3": 246
+      }
+    }
+  },
+  "forced": [
+    {
+      "seed": "bot-force-audit-0",
+      "record": {
+        "version": 2,
+        "engineVersion": 3,
+        "format": "fra-play-draft",
+        "revision": "b8507e3f2b0065d879d9c570c3f321bd5c8ad90f64097d8b72967de38cf88bab",
+        "seed": "bot-force-audit-0",
+        "configs": [
+          {
+            "strategy": "force",
+            "target": "WU"
+          },
+          {
+            "strategy": "force",
+            "target": "WU"
+          },
+          {
+            "strategy": "force",
+            "target": "WU"
+          },
+          {
+            "strategy": "force",
+            "target": "WU"
+          },
+          {
+            "strategy": "force",
+            "target": "WU"
+          },
+          {
+            "strategy": "force",
+            "target": "WU"
+          },
+          {
+            "strategy": "force",
+            "target": "WU"
+          }
+        ],
+        "picks": [
+          0,
+          100,
+          94,
+          76,
+          57,
+          46,
+          34,
+          14,
+          10,
+          107,
+          84,
+          74,
+          62,
+          48,
+          119,
+          126,
+          151,
+          165,
+          172,
+          190,
+          201,
+          220,
+          113,
+          135,
+          142,
+          163,
+          175,
+          189,
+          227,
+          332,
+          312,
+          297,
+          292,
+          278,
+          261,
+          241,
+          229,
+          330,
+          313,
+          301,
+          285,
+          270
+        ]
+      },
+      "bots": [
+        {
+          "lane": "WU",
+          "cards": 42
+        },
+        {
+          "lane": "WU",
+          "cards": 42
+        },
+        {
+          "lane": "WU",
+          "cards": 42
+        },
+        {
+          "lane": "WU",
+          "cards": 42
+        },
+        {
+          "lane": "WU",
+          "cards": 42
+        },
+        {
+          "lane": "WU",
+          "cards": 42
+        },
+        {
+          "lane": "WU",
+          "cards": 42
+        }
+      ]
+    },
+    {
+      "seed": "bot-force-audit-1",
+      "record": {
+        "version": 2,
+        "engineVersion": 3,
+        "format": "fra-play-draft",
+        "revision": "b8507e3f2b0065d879d9c570c3f321bd5c8ad90f64097d8b72967de38cf88bab",
+        "seed": "bot-force-audit-1",
+        "configs": [
+          {
+            "strategy": "force",
+            "target": "WU"
+          },
+          {
+            "strategy": "force",
+            "target": "WU"
+          },
+          {
+            "strategy": "force",
+            "target": "WU"
+          },
+          {
+            "strategy": "force",
+            "target": "WU"
+          },
+          {
+            "strategy": "force",
+            "target": "WU"
+          },
+          {
+            "strategy": "force",
+            "target": "WU"
+          },
+          {
+            "strategy": "force",
+            "target": "WU"
+          }
+        ],
+        "picks": [
+          3,
+          106,
+          95,
+          80,
+          68,
+          43,
+          33,
+          17,
+          12,
+          108,
+          92,
+          74,
+          56,
+          44,
+          120,
+          127,
+          144,
+          154,
+          168,
+          185,
+          205,
+          210,
+          117,
+          137,
+          143,
+          163,
+          173,
+          189,
+          234,
+          333,
+          313,
+          296,
+          280,
+          277,
+          252,
+          248,
+          224,
+          334,
+          315,
+          300,
+          285,
+          266
+        ]
+      },
+      "bots": [
+        {
+          "lane": "WU",
+          "cards": 42
+        },
+        {
+          "lane": "WU",
+          "cards": 42
+        },
+        {
+          "lane": "WU",
+          "cards": 42
+        },
+        {
+          "lane": "WU",
+          "cards": 42
+        },
+        {
+          "lane": "WU",
+          "cards": 42
+        },
+        {
+          "lane": "WU",
+          "cards": 42
+        },
+        {
+          "lane": "WU",
+          "cards": 42
+        }
+      ]
+    },
+    {
+      "seed": "bot-force-audit-2",
+      "record": {
+        "version": 2,
+        "engineVersion": 3,
+        "format": "fra-play-draft",
+        "revision": "b8507e3f2b0065d879d9c570c3f321bd5c8ad90f64097d8b72967de38cf88bab",
+        "seed": "bot-force-audit-2",
+        "configs": [
+          {
+            "strategy": "force",
+            "target": "WU"
+          },
+          {
+            "strategy": "force",
+            "target": "WU"
+          },
+          {
+            "strategy": "force",
+            "target": "WU"
+          },
+          {
+            "strategy": "force",
+            "target": "WU"
+          },
+          {
+            "strategy": "force",
+            "target": "WU"
+          },
+          {
+            "strategy": "force",
+            "target": "WU"
+          },
+          {
+            "strategy": "force",
+            "target": "WU"
+          }
+        ],
+        "picks": [
+          2,
+          102,
+          97,
+          75,
+          65,
+          55,
+          39,
+          15,
+          5,
+          105,
+          93,
+          77,
+          69,
+          54,
+          121,
+          128,
+          152,
+          155,
+          175,
+          188,
+          202,
+          223,
+          122,
+          135,
+          153,
+          161,
+          170,
+          195,
+          236,
+          331,
+          320,
+          307,
+          291,
+          276,
+          254,
+          244,
+          226,
+          330,
+          311,
+          303,
+          284,
+          274
+        ]
+      },
+      "bots": [
+        {
+          "lane": "WU",
+          "cards": 42
+        },
+        {
+          "lane": "WU",
+          "cards": 42
+        },
+        {
+          "lane": "WU",
+          "cards": 42
+        },
+        {
+          "lane": "WU",
+          "cards": 42
+        },
+        {
+          "lane": "WU",
+          "cards": 42
+        },
+        {
+          "lane": "WU",
+          "cards": 42
+        },
+        {
+          "lane": "WU",
+          "cards": 42
+        }
+      ]
+    },
+    {
+      "seed": "bot-force-audit-3",
+      "record": {
+        "version": 2,
+        "engineVersion": 3,
+        "format": "fra-play-draft",
+        "revision": "b8507e3f2b0065d879d9c570c3f321bd5c8ad90f64097d8b72967de38cf88bab",
+        "seed": "bot-force-audit-3",
+        "configs": [
+          {
+            "strategy": "force",
+            "target": "WU"
+          },
+          {
+            "strategy": "force",
+            "target": "WU"
+          },
+          {
+            "strategy": "force",
+            "target": "WU"
+          },
+          {
+            "strategy": "force",
+            "target": "WU"
+          },
+          {
+            "strategy": "force",
+            "target": "WU"
+          },
+          {
+            "strategy": "force",
+            "target": "WU"
+          },
+          {
+            "strategy": "force",
+            "target": "WU"
+          }
+        ],
+        "picks": [
+          12,
+          109,
+          97,
+          84,
+          59,
+          51,
+          28,
+          23,
+          0,
+          108,
+          91,
+          78,
+          61,
+          44,
+          120,
+          139,
+          145,
+          158,
+          177,
+          190,
+          211,
+          214,
+          126,
+          135,
+          152,
+          162,
+          172,
+          191,
+          236,
+          332,
+          320,
+          307,
+          290,
+          280,
+          259,
+          249,
+          231,
+          325,
+          318,
+          303,
+          282,
+          279
+        ]
+      },
+      "bots": [
+        {
+          "lane": "WU",
+          "cards": 42
+        },
+        {
+          "lane": "WU",
+          "cards": 42
+        },
+        {
+          "lane": "WU",
+          "cards": 42
+        },
+        {
+          "lane": "WU",
+          "cards": 42
+        },
+        {
+          "lane": "WU",
+          "cards": 42
+        },
+        {
+          "lane": "WU",
+          "cards": 42
+        },
+        {
+          "lane": "WU",
+          "cards": 42
+        }
+      ]
+    },
+    {
+      "seed": "bot-force-audit-4",
+      "record": {
+        "version": 2,
+        "engineVersion": 3,
+        "format": "fra-play-draft",
+        "revision": "b8507e3f2b0065d879d9c570c3f321bd5c8ad90f64097d8b72967de38cf88bab",
+        "seed": "bot-force-audit-4",
+        "configs": [
+          {
+            "strategy": "force",
+            "target": "WU"
+          },
+          {
+            "strategy": "force",
+            "target": "WU"
+          },
+          {
+            "strategy": "force",
+            "target": "WU"
+          },
+          {
+            "strategy": "force",
+            "target": "WU"
+          },
+          {
+            "strategy": "force",
+            "target": "WU"
+          },
+          {
+            "strategy": "force",
+            "target": "WU"
+          },
+          {
+            "strategy": "force",
+            "target": "WU"
+          }
+        ],
+        "picks": [
+          2,
+          105,
+          92,
+          72,
+          65,
+          44,
+          39,
+          23,
+          3,
+          104,
+          86,
+          77,
+          59,
+          49,
+          113,
+          138,
+          151,
+          164,
+          179,
+          186,
+          199,
+          213,
+          114,
+          130,
+          143,
+          166,
+          173,
+          189,
+          231,
+          334,
+          319,
+          297,
+          290,
+          270,
+          257,
+          241,
+          230,
+          332,
+          314,
+          300,
+          284,
+          274
+        ]
+      },
+      "bots": [
+        {
+          "lane": "WU",
+          "cards": 42
+        },
+        {
+          "lane": "WU",
+          "cards": 42
+        },
+        {
+          "lane": "WU",
+          "cards": 42
+        },
+        {
+          "lane": "WU",
+          "cards": 42
+        },
+        {
+          "lane": "WU",
+          "cards": 42
+        },
+        {
+          "lane": "WU",
+          "cards": 42
+        },
+        {
+          "lane": "WU",
+          "cards": 42
+        }
+      ]
+    },
+    {
+      "seed": "bot-force-audit-5",
+      "record": {
+        "version": 2,
+        "engineVersion": 3,
+        "format": "fra-play-draft",
+        "revision": "b8507e3f2b0065d879d9c570c3f321bd5c8ad90f64097d8b72967de38cf88bab",
+        "seed": "bot-force-audit-5",
+        "configs": [
+          {
+            "strategy": "force",
+            "target": "WU"
+          },
+          {
+            "strategy": "force",
+            "target": "WU"
+          },
+          {
+            "strategy": "force",
+            "target": "WU"
+          },
+          {
+            "strategy": "force",
+            "target": "WU"
+          },
+          {
+            "strategy": "force",
+            "target": "WU"
+          },
+          {
+            "strategy": "force",
+            "target": "WU"
+          },
+          {
+            "strategy": "force",
+            "target": "WU"
+          }
+        ],
+        "picks": [
+          10,
+          109,
+          91,
+          74,
+          65,
+          52,
+          34,
+          22,
+          4,
+          101,
+          87,
+          71,
+          61,
+          55,
+          125,
+          135,
+          151,
+          162,
+          178,
+          194,
+          207,
+          214,
+          117,
+          130,
+          140,
+          164,
+          174,
+          192,
+          234,
+          326,
+          311,
+          299,
+          280,
+          274,
+          262,
+          238,
+          233,
+          327,
+          309,
+          306,
+          291,
+          279
+        ]
+      },
+      "bots": [
+        {
+          "lane": "WU",
+          "cards": 42
+        },
+        {
+          "lane": "WU",
+          "cards": 42
+        },
+        {
+          "lane": "WU",
+          "cards": 42
+        },
+        {
+          "lane": "WU",
+          "cards": 42
+        },
+        {
+          "lane": "WU",
+          "cards": 42
+        },
+        {
+          "lane": "WU",
+          "cards": 42
+        },
+        {
+          "lane": "WU",
+          "cards": 42
+        }
+      ]
+    },
+    {
+      "seed": "bot-force-audit-6",
+      "record": {
+        "version": 2,
+        "engineVersion": 3,
+        "format": "fra-play-draft",
+        "revision": "b8507e3f2b0065d879d9c570c3f321bd5c8ad90f64097d8b72967de38cf88bab",
+        "seed": "bot-force-audit-6",
+        "configs": [
+          {
+            "strategy": "force",
+            "target": "WU"
+          },
+          {
+            "strategy": "force",
+            "target": "WU"
+          },
+          {
+            "strategy": "force",
+            "target": "WU"
+          },
+          {
+            "strategy": "force",
+            "target": "WU"
+          },
+          {
+            "strategy": "force",
+            "target": "WU"
+          },
+          {
+            "strategy": "force",
+            "target": "WU"
+          },
+          {
+            "strategy": "force",
+            "target": "WU"
+          }
+        ],
+        "picks": [
+          6,
+          108,
+          89,
+          81,
+          67,
+          52,
+          39,
+          24,
+          1,
+          110,
+          87,
+          79,
+          62,
+          49,
+          124,
+          132,
+          149,
+          165,
+          169,
+          189,
+          199,
+          216,
+          113,
+          127,
+          141,
+          155,
+          171,
+          196,
+          234,
+          332,
+          310,
+          297,
+          287,
+          277,
+          265,
+          239,
+          230,
+          333,
+          318,
+          302,
+          284,
+          280
+        ]
+      },
+      "bots": [
+        {
+          "lane": "WU",
+          "cards": 42
+        },
+        {
+          "lane": "WU",
+          "cards": 42
+        },
+        {
+          "lane": "WU",
+          "cards": 42
+        },
+        {
+          "lane": "WU",
+          "cards": 42
+        },
+        {
+          "lane": "WU",
+          "cards": 42
+        },
+        {
+          "lane": "WU",
+          "cards": 42
+        },
+        {
+          "lane": "WU",
+          "cards": 42
+        }
+      ]
+    },
+    {
+      "seed": "bot-force-audit-7",
+      "record": {
+        "version": 2,
+        "engineVersion": 3,
+        "format": "fra-play-draft",
+        "revision": "b8507e3f2b0065d879d9c570c3f321bd5c8ad90f64097d8b72967de38cf88bab",
+        "seed": "bot-force-audit-7",
+        "configs": [
+          {
+            "strategy": "force",
+            "target": "WU"
+          },
+          {
+            "strategy": "force",
+            "target": "WU"
+          },
+          {
+            "strategy": "force",
+            "target": "WU"
+          },
+          {
+            "strategy": "force",
+            "target": "WU"
+          },
+          {
+            "strategy": "force",
+            "target": "WU"
+          },
+          {
+            "strategy": "force",
+            "target": "WU"
+          },
+          {
+            "strategy": "force",
+            "target": "WU"
+          }
+        ],
+        "picks": [
+          6,
+          99,
+          93,
+          77,
+          62,
+          52,
+          30,
+          14,
+          12,
+          104,
+          86,
+          75,
+          63,
+          43,
+          123,
+          132,
+          152,
+          159,
+          179,
+          191,
+          201,
+          215,
+          112,
+          131,
+          145,
+          165,
+          168,
+          192,
+          237,
+          324,
+          319,
+          299,
+          286,
+          271,
+          252,
+          245,
+          228,
+          325,
+          320,
+          305,
+          289,
+          266
+        ]
+      },
+      "bots": [
+        {
+          "lane": "WU",
+          "cards": 42
+        },
+        {
+          "lane": "WU",
+          "cards": 42
+        },
+        {
+          "lane": "WU",
+          "cards": 42
+        },
+        {
+          "lane": "WU",
+          "cards": 42
+        },
+        {
+          "lane": "WU",
+          "cards": 42
+        },
+        {
+          "lane": "WU",
+          "cards": 42
+        },
+        {
+          "lane": "WU",
+          "cards": 42
+        }
+      ]
+    },
+    {
+      "seed": "bot-force-audit-8",
+      "record": {
+        "version": 2,
+        "engineVersion": 3,
+        "format": "fra-play-draft",
+        "revision": "b8507e3f2b0065d879d9c570c3f321bd5c8ad90f64097d8b72967de38cf88bab",
+        "seed": "bot-force-audit-8",
+        "configs": [
+          {
+            "strategy": "force",
+            "target": "WU"
+          },
+          {
+            "strategy": "force",
+            "target": "WU"
+          },
+          {
+            "strategy": "force",
+            "target": "WU"
+          },
+          {
+            "strategy": "force",
+            "target": "WU"
+          },
+          {
+            "strategy": "force",
+            "target": "WU"
+          },
+          {
+            "strategy": "force",
+            "target": "WU"
+          },
+          {
+            "strategy": "force",
+            "target": "WU"
+          }
+        ],
+        "picks": [
+          11,
+          101,
+          95,
+          81,
+          63,
+          51,
+          36,
+          26,
+          3,
+          108,
+          86,
+          73,
+          61,
+          53,
+          114,
+          129,
+          149,
+          159,
+          171,
+          183,
+          198,
+          220,
+          113,
+          135,
+          143,
+          154,
+          175,
+          185,
+          234,
+          333,
+          311,
+          299,
+          291,
+          269,
+          261,
+          246,
+          231,
+          324,
+          315,
+          298,
+          287,
+          271
+        ]
+      },
+      "bots": [
+        {
+          "lane": "WU",
+          "cards": 42
+        },
+        {
+          "lane": "WU",
+          "cards": 42
+        },
+        {
+          "lane": "WU",
+          "cards": 42
+        },
+        {
+          "lane": "WU",
+          "cards": 42
+        },
+        {
+          "lane": "WU",
+          "cards": 42
+        },
+        {
+          "lane": "WU",
+          "cards": 42
+        },
+        {
+          "lane": "WU",
+          "cards": 42
+        }
+      ]
+    },
+    {
+      "seed": "bot-force-audit-9",
+      "record": {
+        "version": 2,
+        "engineVersion": 3,
+        "format": "fra-play-draft",
+        "revision": "b8507e3f2b0065d879d9c570c3f321bd5c8ad90f64097d8b72967de38cf88bab",
+        "seed": "bot-force-audit-9",
+        "configs": [
+          {
+            "strategy": "force",
+            "target": "WU"
+          },
+          {
+            "strategy": "force",
+            "target": "WU"
+          },
+          {
+            "strategy": "force",
+            "target": "WU"
+          },
+          {
+            "strategy": "force",
+            "target": "WU"
+          },
+          {
+            "strategy": "force",
+            "target": "WU"
+          },
+          {
+            "strategy": "force",
+            "target": "WU"
+          },
+          {
+            "strategy": "force",
+            "target": "WU"
+          }
+        ],
+        "picks": [
+          3,
+          107,
+          91,
+          71,
+          58,
+          51,
+          29,
+          25,
+          10,
+          100,
+          88,
+          72,
+          61,
+          55,
+          126,
+          135,
+          147,
+          156,
+          180,
+          191,
+          209,
+          218,
+          120,
+          138,
+          142,
+          162,
+          178,
+          190,
+          237,
+          336,
+          314,
+          307,
+          282,
+          270,
+          258,
+          246,
+          233,
+          327,
+          310,
+          296,
+          294,
+          276
+        ]
+      },
+      "bots": [
+        {
+          "lane": "WU",
+          "cards": 42
+        },
+        {
+          "lane": "WU",
+          "cards": 42
+        },
+        {
+          "lane": "WU",
+          "cards": 42
+        },
+        {
+          "lane": "WU",
+          "cards": 42
+        },
+        {
+          "lane": "WU",
+          "cards": 42
+        },
+        {
+          "lane": "WU",
+          "cards": 42
+        },
+        {
+          "lane": "WU",
+          "cards": 42
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "attempt": "validate-final.cjs initially used Node E.replay against Chromium export",
+  "exitCode": 1,
+  "nodeVersion": "v24.20.0",
+  "observedExample": {
+    "nodeScore": 3.943429385428113,
+    "chromiumScore": 3.9434293854281166
+  },
+  "limitation": "Exact binary floating scores cannot be asserted across these two runtimes from this acquisition. Cause inferred to be runtime numeric differences; no approximate log comparison is accepted as a substitute.",
+  "replacement": "validate-browser-sequential.cjs runs original E.replay on verified exact bytes in the same Chromium build, requires full export hash identity, then Node performs conservation and paired construction. Raw browser exports remain unchanged."
+}

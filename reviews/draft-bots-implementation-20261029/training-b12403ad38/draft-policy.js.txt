@@ -1,0 +1,422 @@
+'use strict';
+/* Policy 4: bounded deck search over public data and the seat's own history.
+ * No table/session object, future packs, storage or DOM is accepted here.
+ * Objective values and source weights are heuristics, never win probabilities.
+ */
+((root)=>{
+ const COLORS=[...'WUBRG'],MANA=[...COLORS,'C'],TYPES=['Plains','Island','Swamp','Mountain','Forest'];
+ const STYLES={power:{},adaptive:{signals:.45},signals:{signals:1.35,open:.2},bomb:{anchor:.45},
+  force:{},synergy:{synergy:1.25},aggro:{attack:.3,early:.3},control:{defense:.3,answers:.25},
+  fixing:{splash:.25},denial:{denial:true}};
+ const clamp=(x,a,b)=>Math.max(a,Math.min(b,x)),sum=a=>a.reduce((n,x)=>n+x,0);
+ const compare=(a,b)=>String(a)<String(b)?-1:String(a)>String(b)?1:0;
+ const stable=(a,b)=>compare(a.id,b.id)||compare(a.uid,b.uid);
+ function create(format){
+  const config=format.botPolicy;if(!config?.available)throw Error('Politica v4 non disponibile: dati minimi incompleti');
+  const byId=Object.fromEntries(format.cards.map(c=>[c.id,c])),profiles=config.profiles;
+  const active=Object.keys(profiles).map(id=>byId[id]);
+  if(active.some(c=>!c||(!c.basic&&!Number.isFinite(c.score))))throw Error('V4 richiede voti espliciti sulle stampe attive');
+  const rating=c=>c.basic?0:c.score,profile=c=>profiles[c.id];
+  const has=(c,r)=>profile(c)?.roles.includes(r),total=format.rounds*format.packSize;
+  const target=config.minDeckSize,freeBasics=config.allowedBasics||[];
+  // Stable expectation from declared recipe. Dependencies/exclusions are an
+  // approximation here, not a second collator or a claim about unopened packs.
+  const weights={};
+  if(format.collation?.schemaVersion===1){
+   const slots={};
+   for(const rule of format.collation.recipe){
+    const dist={};const count=(rule.count||1)*(rule.op==='replace'?rule.chance:1);
+    for(const branch of rule.branches){const ids=format.collation.groups[branch.group];
+     for(const id of ids){dist[id]=(dist[id]||0)+count*branch.weight/ids.length;
+      if(rule.op==='pair'){const pair=(format.collation.partners||[]).find(p=>p.includes(id));if(pair){const other=pair.find(x=>x!==id);dist[other]=(dist[other]||0)+count*branch.weight/ids.length;}}}}
+    if(rule.op==='replace'&&slots[rule.target])for(const [id,w] of Object.entries(slots[rule.target]))weights[id]-=w*count/Math.max(1,sum(Object.values(slots[rule.target])));
+    for(const [id,w] of Object.entries(dist))weights[id]=(weights[id]||0)+w;slots[rule.id]=dist;
+   }
+  }
+  const weightTotal=sum(Object.values(weights).map(w=>Math.max(0,w)));
+  const frequency=c=>weightTotal?Math.max(0,weights[c.id]||0)/weightTotal:1/Math.max(1,active.length);
+  function needs(c,colors,sources={}){
+   const need={};
+   for(const symbol of profile(c).symbols){
+    const choices=symbol.split('/').filter(x=>MANA.includes(x));
+    if(!choices.length||symbol.includes('P')||symbol.split('/').some(x=>/^\d+$/.test(x)))continue;
+    const allowed=choices.filter(x=>x==='C'||colors.includes(x));if(!allowed.length)return null;
+    const color=allowed.sort((a,b)=>(sources[b]||0)-(sources[a]||0)||(need[a]||0)-(need[b]||0)||MANA.indexOf(a)-MANA.indexOf(b))[0];need[color]=(need[color]||0)+1;
+   }
+   return need;
+  }
+  const fits=(c,lane)=>needs(c,lane)!==null;
+  function turn(c,own){
+   const p=profile(c);if(p.variable)return Math.max(3,c.mv+2);if(!p.curve.reduction)return Math.max(1,c.mv);
+   const available=own.filter(x=>x.creature&&x.mv<=4),resource=p.curve.reductionResource;
+   const reduction=['power','toughness'].includes(resource)?Math.max(0,...available.map(x=>profile(x).curve[resource]||0)):
+    resource==='creatures'?available.length*.5:resource==='artifacts'?own.filter(x=>profile(x).curve.artifact&&x.mv<=4).length:0;
+   // Deployment and survival are uncertain. A printed reduction is never
+   // silently converted into a guaranteed early play.
+   return reduction?Math.min(Math.max(1,c.mv),Math.max(4,c.mv-reduction)):Math.max(1,c.mv);
+  }
+  function probability(size,sources,draws,required){
+   // Hypergeometric tail, linearly interpolated for declared fractional sources.
+   if(required<=0)return 1;
+   if(sources<=0)return 0;
+   const exact=k=>{k=clamp(k,0,size);let dist=Array(required).fill(0);dist[0]=1;let success=0;
+    for(let d=0;d<Math.min(size,draws);d++){const next=Array(required).fill(0);for(let n=0;n<required;n++){const p=clamp((k-n)/(size-d),0,1);next[n]+=dist[n]*(1-p);if(n+1===required)success+=dist[n]*p;else next[n+1]+=dist[n]*p;}dist=next;}return clamp(success,0,1);};
+   const low=Math.floor(sources);return exact(low)*(1-(sources-low))+exact(low+1)*(sources-low);
+  }
+  const probabilityCache=new Map();
+  const sourceCache=new Map();
+  function chance(sources,t,pips=1){const s=Math.round(sources*20)/20,key=[s,t,pips].join(':');
+   if(!probabilityCache.has(key))probabilityCache.set(key,probability(target,s,Math.min(target,7+Math.max(0,Math.ceil(t)-1)),pips));return probabilityCache.get(key);}
+  function direct(c){const m=profile(c).mana;return [...new Set(m.abilities.filter(a=>!a.restricted).flatMap(a=>a.colors))];}
+  function landColors(c,basics,t=6){const fetch=profile(c).mana.fetch;
+   const payable=fetch?.cost?.every(symbol=>{const choices=symbol.split('/').filter(x=>COLORS.includes(x));return !choices.length||choices.some(x=>basics[x]>0);})??true;
+   return fetch&&!fetch.restricted&&payable&&t>=(fetch.readyTurn||1)?[...new Set([...direct(c),...COLORS.filter(color=>basics[color]>0)])]:direct(c);
+  }
+  function landSources(lands,basics,t){
+   const counts=Object.fromEntries(MANA.map(x=>[x,basics[x]||0]));
+   for(const c of lands)for(const color of landColors(c,basics,t)){const tapped=profile(c).mana.tapped||profile(c).mana.fetch?.tapped;counts[color]+=(tapped&&t===1?0:tapped&&t<=3?.8:1);}
+   return counts;
+  }
+  function sourceModel(spells,lands,basics,targetTurn=6){
+   const cacheKey=[spells.map((c,i)=>c.id+':'+(c._entry?.uid??i)+':'+!!c._modeOnly).join(','),lands.map(c=>c.id).sort().join(','),...COLORS.map(c=>basics[c]||0),targetTurn].join('|');
+   if(sourceCache.has(cacheKey))return sourceCache.get(cacheKey);
+   const base=landSources(lands,basics,targetTurn),sources={...base},uses={},units=[
+    ...lands.map(c=>{const tapped=profile(c).mana.tapped||profile(c).mana.fetch?.tapped;return Object.fromEntries(landColors(c,basics,targetTurn).map(color=>[color,tapped&&targetTurn===1?0:tapped&&targetTurn<=3?.8:1]));}),
+    ...Object.entries(basics).filter(([,n])=>n>0).map(([color,n])=>({[color]:n}))];
+   const targets=[...lands.map(c=>({colors:direct(c),basic:c.basic,subtypes:profile(c).mana.subtypes})),
+    ...Object.entries(basics).flatMap(([color,count])=>Array.from({length:count},()=>({colors:[color],basic:true,subtypes:[TYPES[COLORS.indexOf(color)]]})))];
+   const cyclers=spells.filter(c=>profile(c).mana.cycling.length),baseUnits=[...units];
+   for(const [index,c] of spells.entries()){const p=profile(c),entryUse={uid:c._entry?.uid??'spell-'+index,cycling:0,producer:0,alternativeLand:0,colors:[],weights:{}};
+    const alternate=p.mana.alternativeLand;
+    if(alternate&&!alternate.restricted&&!(alternate.tapped&&targetTurn<=1)){
+     const weight=(alternate.tapped&&targetTurn<=3?.4:.5)*(c._modeOnly?2:1);entryUse.alternativeLand=weight;
+     for(const color of alternate.colors){entryUse.weights[color]=Math.max(entryUse.weights[color]||0,weight);entryUse.colors.push(color);}
+    }
+    for(const cycle of p.mana.cycling){
+     const eligible=targets.filter(x=>cycle.kind==='basic'?x.basic:x.subtypes.includes(cycle.type));
+     const cost=sum([...cycle.cost.matchAll(/\{([^}]+)\}/g)].map(m=>Math.max(...m[1].split('/').map(x=>/^\d+$/.test(x)?+x:1))));
+     const symbols=[...cycle.cost.matchAll(/\{([^}]+)\}/g)].map(m=>m[1]);
+     if(!eligible.length||targetTurn<=cost)continue;
+     const access=Math.min(chance(lands.length+sum(Object.values(basics)),Math.max(1,cost),cost),symbolChance(symbols,MANA,baseUnits,Math.max(2,cost)));
+     if(access<.65)continue;
+     for(const color of new Set(eligible.flatMap(x=>x.colors))){
+      const competitors=cyclers.filter(other=>profile(other).mana.cycling.some(cy=>targets.some(x=>x.colors.includes(color)&&(cy.kind==='basic'?x.basic:x.subtypes.includes(cy.type))))).length;
+      const weight=(c._modeOnly?1:.5)*access*Math.min(1,eligible.filter(x=>x.colors.includes(color)).length/Math.max(1,competitors));
+      entryUse.cycling=Math.max(entryUse.cycling,weight);entryUse.weights[color]=Math.max(entryUse.weights[color]||0,weight);entryUse.colors.push(color);
+     }
+    }
+    // Only direct, accessible nonlands can help. Restricted abilities do not
+    // silently become unrestricted sources. Expensive producers are very slow.
+    const n=needs(c,MANA,base),cast=!c._modeOnly&&!p.variable&&n&&chance(lands.length+sum(Object.values(basics)),Math.max(1,c.mv),Math.ceil(c.mv))>=.65&&Object.entries(n).every(([color,pips])=>chance(base[color],turn(c,spells),pips)>=.65);
+    if(cast&&targetTurn>=Math.max(1,c.mv+1))for(const color of direct(c)){
+     const activation=profile(c).mana.abilities.find(a=>!a.restricted&&a.colors.includes(color))?.activation||'';
+     const activationColors=[...activation.matchAll(/\{([WUBRGC])\}/g)].map(m=>m[1]);
+     if(activationColors.some(x=>!base[x]))continue;
+     const activationMana=sum([...activation.matchAll(/\{(\d+)\}/g)].map(m=>+m[1]));
+     const weight=(c.mv<=3?.35:c.mv<=5?.15:0)/(1+activationMana);entryUse.weights[color]=Math.max(entryUse.weights[color]||0,weight);entryUse.producer=Math.max(entryUse.producer,weight);entryUse.colors.push(color);
+    }
+    uses[c.id]=(uses[c.id]||[]).concat(entryUse);units.push({...entryUse.weights,_uid:entryUse.uid,_cardId:c.id,_spell:true});
+   }
+   for(const color of MANA)sources[color]=sum(units.map(u=>u[color]||0));
+   const result={base,sources,uses,targets,units};if(sourceCache.size>4000)sourceCache.clear();sourceCache.set(cacheKey,result);return result;
+  }
+  function castability(c,colors,model,t){
+   const ownUid=c._entry?.uid??model.units.find(u=>u._spell&&u._cardId===c.id)?._uid;
+   const units=model.units.filter(u=>!(u._spell&&u._uid===ownUid));
+   return symbolChance(profile(c).symbols,colors,units,t);
+  }
+  function symbolChance(symbols,colors,units,t){
+   const groups=[];
+   for(const symbol of symbols){
+    if(symbol.includes('P')||symbol.split('/').some(x=>/^\d+$/.test(x)))continue;
+    const options=symbol.split('/').filter(x=>MANA.includes(x)&&(x==='C'||colors.includes(x)));
+    if(!options.length){if(/[WUBRGC]/.test(symbol))return 0;continue;}
+    groups.push(options.reduce((n,color)=>n|1<<MANA.indexOf(color),0));
+   }
+   let masks=new Set();for(const group of groups){const previous=[...masks];masks.add(group);for(const mask of previous)masks.add(mask|group);}
+   if(masks.size===1){const mask=[...masks][0];if((mask&(mask-1))===0)return chance(sum(units.map(u=>u[MANA[Math.log2(mask)]]||0)),t,groups.length);}
+   let value=1;
+   for(const mask of masks){const pips=groups.filter(group=>(group&mask)===group).length;
+    const colors=MANA.filter((_,i)=>mask&1<<i),count=sum(units.map(unit=>Math.max(0,...colors.map(color=>unit[color]||0))));
+    value=Math.min(value,chance(count,t,pips));
+   }
+   return value;
+  }
+  function synergy(c,own,remaining=0){
+   if(!config.coverage.synergies)return {adjustment:0,option:0};
+   const traits=profile(c).synergy;let adjustment=0,option=0;
+   for(const relation of config.relations){
+    const axis=relation.id,others=own.filter(x=>x!==c),payoff=traits.payoffs[axis]||0;
+    const density=sum(others.map(x=>profile(x).synergy.enablers[axis]||0));
+    if(payoff){
+     let support=density;
+     if(relation.resource){const consumers=sum(own.map(x=>sum(config.relations.filter(r=>r.resource===relation.resource).map(r=>profile(x).synergy.payoffs[r.id]||0))));support=Math.min(support,(relation.resourceBudget??support)/Math.max(1,consumers));}
+     const utility=n=>{const threshold=relation.threshold||0,saturation=Math.max(threshold+1,relation.saturation||8);return clamp((n-threshold)/(saturation-threshold),0,1);};
+     const reference=profile(c).reference.support?.[axis]??relation.referenceSupport??0,strength=(relation.strength??.6)*payoff;
+     adjustment+=(utility(support)-utility(reference))*strength;
+     const expected=sum(active.map(x=>frequency(x)*(profile(x).synergy.enablers[axis]||0)))*Math.max(0,remaining)*.25;
+     option+=Math.max(0,utility(support+expected)-utility(support))*strength;
+    }
+    if(traits.enablers[axis]){const beneficiaries=sum(others.map(x=>profile(x).synergy.payoffs[axis]||0));
+     // Enabler reference is explicit; it does not count each payoff at full value.
+     adjustment+=clamp((beneficiaries-(profile(c).reference.payoffs?.[axis]??relation.referencePayoffs??0))*.06,-.2,.3)*Math.min(1,traits.enablers[axis]);}
+   }
+   return {adjustment,option};
+  }
+  const fillExpectations=new Map();
+  function replacement(role,lane,remaining,holes){
+   if(!holes||remaining<=0)return 0;
+   const key=lane+':'+role;
+   if(!fillExpectations.has(key)){
+    const cards=active.filter(c=>!c.land&&fits(c,lane)&&(role==='spell'||role==='creature'&&c.creature||role==='interaction'&&has(c,'interaction')&&!c.creature));
+    const mass=sum(cards.map(frequency));fillExpectations.set(key,{mass,value:mass?sum(cards.map(c=>rating(c)*frequency(c)))/mass:0});
+   }
+   const row=fillExpectations.get(key);
+   // Public marginal mass, remaining own picks and a conservative retention
+   // factor estimate uncovered slots. Owned cards keep their absolute value.
+   return holes*row.value*(1-Math.exp(-remaining*row.mass*.35/holes));
+  }
+  function tactical(c,style,own){
+   const p=profile(c),early=turn(c,own)<=3;
+   return (p.curve.attacker?(style.attack||0):0)+(p.curve.defensive?(style.defense||0):0)
+    +(has(c,'interaction')&&(early||!c.creature)?(style.answers||0):0)+(c.creature&&early?(style.early||0):0)
+    +(has(c,'evasion')?.06:0);
+  }
+  function build(pool,lane,strategy='adaptive',options={}){
+   const style=STYLES[strategy]||STYLES.adaptive,remaining=options.remaining??Math.max(0,total-pool.length),match=options.match??config.match;
+   const physical=pool.map(e=>({...byId[e.id],_entry:e})).filter(c=>profile(c));
+   const splash=options.splash||null,colors=[...new Set([...lane,...(splash?[splash]:[])])];
+   const landTarget=clamp(Math.round(target*(strategy==='aggro'?.4:strategy==='control'?.45:.425)),0,target),spellTarget=target-landTarget;
+   const candidates=physical.filter(c=>!c.land&&fits(c,colors)&&(!splash||fits(c,lane)||rating(c)>=3.5));
+   const alternativeColors=c=>{
+    const m=profile(c).mana,produced=new Set(m.alternativeLand&&!m.alternativeLand.restricted?m.alternativeLand.colors:[]);
+    for(const cy of m.cycling){
+    const costs=[...cy.cost.matchAll(/\{([^}]+)\}/g)].map(m=>m[1]);
+    if(!costs.every(symbol=>{const choices=symbol.split('/').filter(x=>COLORS.includes(x));return symbol.includes('P')||symbol.split('/').some(x=>/^\d+$/.test(x))||!choices.length||choices.some(x=>colors.includes(x));}))continue;
+    if(cy.kind==='basic'){
+     for(const color of freeBasics.filter(x=>colors.includes(x)))produced.add(color);
+     for(const land of physical.filter(x=>x.land&&x.basic))for(const color of direct(land).filter(x=>colors.includes(x)))produced.add(color);
+    }
+    else{
+     const color=COLORS[TYPES.indexOf(cy.type)];if(colors.includes(color)&&freeBasics.includes(color))produced.add(color);
+     for(const land of physical.filter(x=>x.land&&profile(x).mana.subtypes.includes(cy.type)))for(const color of direct(land).filter(x=>colors.includes(x)))produced.add(color);
+    }
+    }return [...produced].filter(x=>colors.includes(x));
+   };
+   const canAlternate=c=>!c.land&&alternativeColors(c).length>0;
+   const sourceUtility=c=>{
+    const provides=new Set(alternativeColors(c));
+    return (splash&&provides.has(splash)?10:0)+colors.filter(x=>provides.has(x)).length;
+   };
+   const manaOnly=physical.filter(canAlternate).sort((a,b)=>sourceUtility(b)-sourceUtility(a)||stable(a._entry,b._entry)).slice(0,options.sourceModes||0).map(c=>({...c,_modeOnly:true}));
+   let spells=[],choices=candidates.filter(c=>!manaOnly.some(x=>x._entry.uid===c._entry.uid)),rejected=new Set();
+   const choose=()=>{
+    while(spells.length<spellTarget&&choices.length){
+     const early=spells.filter(c=>c.creature&&!profile(c).variable&&turn(c,spells)<=3).length,answers=spells.filter(c=>has(c,'interaction')&&!c.creature).length;
+     let best=-1,value=-Infinity;
+     for(let i=0;i<choices.length;i++){
+      const c=choices[i];if(rejected.has(c._entry.uid)||config.maxCopies&&[...spells,...manaOnly].filter(x=>x.full===c.full).length>=config.maxCopies)continue;
+      const syn=config.coverage.synergies?synergy(c,[...spells,c],remaining):{adjustment:0,option:0},earlyCard=c.creature&&!profile(c).variable&&turn(c,spells)<=3;
+      const q=rating(c)+tactical(c,style,spells)+(syn.adjustment+syn.option)*(style.synergy||1)
+       +(earlyCard&&early<spellTarget*(strategy==='aggro'?.38:strategy==='control'?.23:.3)?.3:0)
+       +(has(c,'interaction')&&!c.creature&&answers<Math.max(2,spellTarget*.17)?.2:0)-(fits(c,lane)?0:.65-(style.splash||0));
+      if(q>value||q===value&&best>=0&&stable(c._entry,choices[best]._entry)<0){best=i;value=q;}
+     }
+     if(best<0)break;spells.push(choices.splice(best,1)[0]);
+    }
+   };
+   function allocate(){
+    const lands=[],needsC=spells.some(c=>profile(c).symbols.includes('C'));
+    for(const c of physical.filter(c=>c.land&&(direct(c).some(x=>colors.includes(x)||x==='C'&&(needsC||!freeBasics.length))||profile(c).mana.fetch&&!profile(c).mana.fetch.restricted)).sort((a,b)=>Number(profile(a).mana.tapped||profile(a).mana.fetch?.tapped)-Number(profile(b).mana.tapped||profile(b).mana.fetch?.tapped)||stable(a._entry,b._entry))){
+     if(lands.length>=landTarget-manaOnly.length)break;if(!c.basic&&config.maxCopies&&lands.filter(x=>x.full===c.full).length>=config.maxCopies)continue;lands.push(c);
+    }
+    const basics=Object.fromEntries(COLORS.map(x=>[x,0])),demand=Object.fromEntries(COLORS.map(x=>[x,0]));
+    for(const c of spells)for(const [color,pips] of Object.entries(needs(c,colors)||{}))demand[color]=(demand[color]||0)+pips*(turn(c,spells)<=3?2:1);
+    let add=Math.max(0,landTarget-lands.length-manaOnly.length);
+    const permitted=colors.filter(c=>freeBasics.includes(c));
+    if(!permitted.length&&freeBasics.length)permitted.push(freeBasics[0]);
+    if(splash&&permitted.includes(splash)){const n=Math.min(add,options.splashBasics??2);basics[splash]=n;add-=n;}
+    while(add>0&&permitted.length){const eligible=permitted.filter(c=>c!==splash||permitted.length===1);
+     const color=eligible.sort((a,b)=>(demand[b]||.1)/(basics[b]+1)-(demand[a]||.1)/(basics[a]+1)||COLORS.indexOf(a)-COLORS.indexOf(b))[0];basics[color]++;add--;}
+    return {lands,basics,demand,permitted};
+   }
+   // Reject and refill to a fixed point. A removed card cannot remain a source,
+   // reduction resource, curve play or synergy support in the final objective.
+   choose();let allocation;
+   for(let pass=0;pass<=candidates.length;pass++){
+    allocation=allocate();const all=[...spells,...manaOnly],models=new Map(),bad=[];
+    for(const c of spells){const t=turn(c,spells)+(!fits(c,lane)?2:0),key=Math.ceil(t);if(!models.has(key))models.set(key,sourceModel(all,allocation.lands,allocation.basics,key));
+     const m=models.get(key),p=castability(c,colors,m,t),n=needs(c,colors,m.sources),off=!fits(c,lane);
+     if(!n||p===0||off&&(p<.65||Object.entries(n).some(([color,pips])=>!lane.includes(color)&&pips>1)))bad.push(c);
+    }
+    if(!bad.length)break;
+    for(const c of bad)rejected.add(c._entry.uid);
+    spells=spells.filter(c=>!rejected.has(c._entry.uid));choose();
+   }
+   allocation=allocate();const {lands,basics,demand,permitted}=allocation;
+   const missingSpells=Math.max(0,spellTarget-spells.length),manaErrors=[];
+   if(remaining===0&&freeBasics.length){let fill=target-spells.length-manaOnly.length-lands.length-sum(Object.values(basics));
+    while(fill>0&&permitted.length){const color=permitted.sort((a,b)=>(demand[b]||.1)/(basics[b]+1)-(demand[a]||.1)/(basics[a]+1)||COLORS.indexOf(a)-COLORS.indexOf(b))[0];basics[color]++;fill--;}
+   }
+   if(remaining===0&&!freeBasics.length){
+    const used=new Set([...spells,...manaOnly,...lands].map(c=>c._entry.uid));
+    for(const c of physical.filter(c=>!used.has(c._entry.uid)).sort((a,b)=>Number(fits(b,colors))-Number(fits(a,colors))||rating(b)-rating(a)||stable(a._entry,b._entry))){
+     if(spells.length+manaOnly.length+lands.length>=target)break;
+     if(!c.basic&&config.maxCopies&&[...spells,...lands,...manaOnly].filter(x=>x.full===c.full).length>=config.maxCopies)continue;
+     (c.land?lands:spells).push(c);manaErrors.push({id:c.id,reason:'Ripiego per completare il main senza basi aggiungibili: mana o piano insufficienti.'});
+    }
+   }
+   const all=[...spells,...manaOnly],model=sourceModel(all,lands,basics),timed=new Map(),manaEstimates=[];let score=0,manaPenalty=0,creatures=0,early=0,answers=0;
+   for(const c of spells){const costTurn=turn(c,spells),t=costTurn+(!fits(c,lane)?2:0),key=Math.ceil(t);if(!timed.has(key))timed.set(key,sourceModel(all,lands,basics,key));
+    const m=timed.get(key),colored=castability(c,colors,m,t),ownUid=c._entry.uid;
+    const indirect=sum(Object.values(m.uses).flat().filter(u=>u.uid!==ownUid).map(u=>Math.max(u.alternativeLand||0,u.cycling||0,u.producer||0)));
+    const count=lands.length+sum(Object.values(basics))+indirect,mana=colored*chance(count,t,Math.ceil(Math.min(costTurn,count+1)));
+    manaEstimates.push({id:c.id,uid:c._entry.uid,turn:t,requiredSources:Math.ceil(costTurn),probability:mana});
+    const ownUse=(m.uses[c.id]||[]).find(u=>u.uid===ownUid),use=Math.max(ownUse?.cycling||0,ownUse?.alternativeLand||0);
+    if(colored>0){if(c.creature){creatures+=1-use;if(t<=3&&!profile(c).variable)early+=1-use;}if(has(c,'interaction'))answers+=c.creature?.4:1;}
+    const penalty=(1-mana)*(fits(c,lane)?1:1.8),syn=config.coverage.synergies?synergy(c,spells,remaining):{adjustment:0,option:0};manaPenalty+=penalty;
+    score+=(colored?rating(c):0)+(colored?tactical(c,style,spells)+(syn.adjustment+syn.option)*(style.synergy||1):0)-penalty;
+   }
+   const progress=clamp(1-remaining/Math.max(1,total),0,1),deficits={early:Math.max(0,spellTarget*(strategy==='aggro'?.38:strategy==='control'?.23:.3)-early),
+    creatures:Math.max(0,spellTarget*(strategy==='control'?.52:.65)-creatures),interaction:Math.max(0,spellTarget*.16-answers)};
+   const creatureHoles=Math.min(missingSpells,Math.ceil(deficits.creatures)),answerHoles=Math.min(missingSpells-creatureHoles,Math.ceil(deficits.interaction));
+   score+=replacement('creature',lane,remaining,creatureHoles)+replacement('interaction',lane,remaining,answerHoles)+replacement('spell',lane,remaining,missingSpells-creatureHoles-answerHoles);
+   score+=spells.length*progress*.65;score-=progress*(deficits.early*.14+deficits.creatures*.08+deficits.interaction*.12+missingSpells*.25);
+   const used=new Set([...all,...lands].map(c=>c._entry.uid)),excluded=physical.filter(c=>!used.has(c._entry.uid));
+   const sideboard=match==='BO3'?excluded.filter(c=>has(c,'sideboard')&&fits(c,lane)).map(c=>c._entry):[];
+   return {lane,colors:colors.join(''),splash,spells:all.map(c=>c._entry),manaOnly:manaOnly.map(c=>c._entry),lands:lands.map(c=>c._entry),basics,
+    excluded:excluded.map(c=>c._entry),sideboard,holes:{spells:missingSpells,lands:Math.max(0,landTarget-lands.length-manaOnly.length-sum(Object.values(basics)))},
+    targetSize:target,slots:all.length+lands.length+sum(Object.values(basics)),score,deficits,manaPenalty,manaErrors,
+    sources:model.sources,sourceTurn:6,alternativeUses:model.uses,manaEstimates,match,
+    assumptions:['Ricerca limitata per piani, fonti indirette frazionarie, lancio ipergeometrico senza mulligan; vincoli di pagamento approssimati.',
+     'Costi ridotti stimati con prudenza; splash valutato due turni dopo il costo nominale. Attese di riempimento con fattore prudenziale 0,35. Carte solo fixing non sono minacce.',
+     ...(match==='unknown'?['Contesto match sconosciuto: nessun valore di sideboarding.']:[])]};
+  }
+  function bestBuild(pool,lane,strategy,options={}){
+   const base=build(pool,lane,strategy,options),off=pool.map(e=>byId[e.id]).filter(c=>!c.land&&!fits(c,lane)&&rating(c)>=3.5);
+   let best=base;
+   // All off-plan colors are considered, with two bounded base configurations.
+   const colors=[...new Set(off.flatMap(c=>c.colors.filter(x=>!lane.includes(x))))].filter(color=>pool.some(e=>{
+    const c=byId[e.id];return freeBasics.includes(color)||direct(c).includes(color)||profile(c).mana.alternativeLand?.colors.includes(color)||profile(c).mana.fetch&&freeBasics.includes(color)||profile(c).mana.cycling.some(cy=>cy.kind==='basic'||cy.type===TYPES[COLORS.indexOf(color)]);
+   })).sort();
+   for(const color of colors)for(const splashBasics of [2,3]){
+    const alternate=pool.some(e=>{const c=byId[e.id];return !c.land&&(profile(c).mana.cycling.length||profile(c).mana.alternativeLand&&!profile(c).mana.alternativeLand.restricted);});
+    for(const sourceModes of alternate?[0,1]:[0]){const candidate=build(pool,lane,strategy,{...options,splash:color,splashBasics,sourceModes});if(candidate.score>best.score+.05)best=candidate;}
+   }
+   return best;
+  }
+  function finalBuild(pool,strategy='adaptive',options={}){
+   const lanes=options.target?[options.target]:Object.keys(format.archetypes).sort();
+   return lanes.map(lane=>bestBuild(pool,lane,strategy,{...options,remaining:0})).sort((a,b)=>b.score-a.score||compare(a.lane,b.lane))[0];
+  }
+  function observe(bot,pack,round,pick){
+   bot.memory??={sides:{},observations:{},packets:{},demand:Object.fromEntries(COLORS.map(c=>[c,0]))};
+   const memory=bot.memory,key=[round,pick,pack.packetId].join(':');if(memory.observations[key])return;
+   memory.observations[key]=true;const direction=String(format.directions[round-1]),side=memory.sides[direction]??={values:Object.fromEntries(COLORS.map(c=>[c,0])),count:0};
+   const previous=memory.packets[pack.packetId],now=new Set(pack.cards.map(e=>e.uid));
+   if(previous)for(const entry of previous)if(!now.has(entry.uid)){const c=byId[entry.id];for(const color of c.colors)memory.demand[color]+=Math.max(0,rating(c)-2.5)/Math.max(1,c.colors.length);}
+   if(pick>1){side.count++;
+    for(const color of COLORS){
+     const actual=sum(pack.cards.map(e=>byId[e.id]).filter(c=>!c.land&&c.colors.includes(color)).map(c=>Math.max(0,rating(c)-2.3)));
+     const expected=sum(active.filter(c=>!c.land&&c.colors.includes(color)).map(c=>frequency(c)*Math.max(0,rating(c)-2.3)))*pack.cards.length/Math.max(1,Math.sqrt(pick));
+     const confidence=Math.min(1,(pick-1)/Math.max(2,format.seats-1)),wheel=previous?1.25:1;
+     side.values[color]=clamp(side.values[color]*.88+(actual-expected)*confidence*wheel,-5,5);
+    }
+   }
+  }
+  function context(bot,round,options={}){
+   const direction=String(format.directions[round-1]),side=bot.memory?.sides[direction],sig=side?.values||{},style=STYLES[bot.strategy]||STYLES.adaptive;
+   const lanes=bot.target?[bot.target]:[...new Set([...Object.keys(format.archetypes),...(bot.pool.length<total*(.28+(style.open||0))?COLORS:[])])].sort();
+   const remaining=Math.max(0,total-bot.pool.length),plans=lanes.map(lane=>{
+    const deck=bestBuild(bot.pool,lane,bot.strategy,{...options,remaining}),signal=sum([...lane].map(c=>sig[c]||0))/Math.max(1,lane.length);
+    const confidence=side?Math.min(1,side.count/4):0;
+    const signalValue=signal*(style.signals??.45)*confidence*.2;
+    return {lane,deck,signalValue,value:deck.score+signalValue};
+   }).sort((a,b)=>b.value-a.value||compare(a.lane,b.lane));
+   return {pool:bot.pool.map(e=>byId[e.id]),sig,plans,lane:plans[0].lane,remaining,confidence:side?Math.min(1,side.count/4):0};
+  }
+  function phase(bot,ctx){const progress=bot.pool.length/total,style=STYLES[bot.strategy]||STYLES.adaptive;return progress>.7?3:progress>.35+(style.open||0)&&ctx.confidence>.3?2:progress>.12?1:0;}
+  function rank(bot,pack,round,pick,random,transition=true,options={}){
+   const ctx=context(bot,round,options),style=STYLES[bot.strategy]||STYLES.adaptive,before=ctx.plans[0];
+   const opening=bot.pool.length===0;
+   const scores=pack.map(entry=>{
+    const c=byId[entry.id];if(!profile(c)||!Number.isFinite(rating(c)))throw Error('Carta senza profilo/voto v4: '+entry.id);
+    if(bot.strategy==='power')return {entry,card:c,score:rating(c),lane:ctx.lane,playable:!c.land,components:{potenza:rating(c)},reasons:['Profilo di confronto sulla sola qualità individuale.'],signature:'power'};
+    const candidatePlans=opening?ctx.plans.filter(p=>fits(c,p.lane)):ctx.plans.slice(0,style.open?3:2);
+    // A genuinely new color must be allowed to challenge the current shortlist.
+    if(!bot.target&&!opening){const challenger=ctx.plans.find(p=>fits(c,p.lane)&&!candidatePlans.includes(p));if(challenger)candidatePlans.push(challenger);}
+    const evaluated=(candidatePlans.length?candidatePlans:ctx.plans.slice(0,1)).map(plan=>{
+     let after=bestBuild([...bot.pool,entry],plan.lane,bot.strategy,{...options,remaining:ctx.remaining});
+     // Adding a card permits retaining every previous configuration.
+     if(after.score<plan.deck.score)after=plan.deck;
+     const used=[...after.spells,...after.lands].some(e=>e.uid===entry.uid),delta=after.score+plan.signalValue-before.value;
+     const signal=used?sum(c.colors.map(color=>ctx.sig[color]||0))/Math.max(1,c.colors.length)*(style.signals??.45)*ctx.confidence*.08:0;
+     const replaces=before.deck.spells.filter(e=>!after.spells.some(x=>x.uid===e.uid));
+     const own=[...bot.pool,entry].map(e=>({...byId[e.id],_entry:e}));
+     const support=synergy(own.find(x=>x._entry.uid===entry.uid),own,ctx.remaining);
+     const components={mazzo:delta,segnali:signal,ancora:bot.anchor&&style.anchor&&after.spells.some(e=>e.id===bot.anchor)?style.anchor:0};
+     let side=0;if(!used&&after.match==='BO3'&&after.sideboard.some(e=>e.uid===entry.uid)&&before.deck.holes.spells===0)side=.12;
+     components.sideboard=side;
+     let denial=0;if(style.denial&&!used&&ctx.remaining<total*.35&&rating(c)>=3.5&&Object.values(before.deck.deficits).every(x=>x<2)){
+      const demand=Math.max(0,...c.colors.map(color=>bot.memory?.demand[color]||0));denial=Math.min(.15,demand*.01);}
+     components.negazione=denial;
+     const reasons=[used?(replaces.length?'Migliora uno slot del main provvisorio.':'Copre un posto ancora disponibile nel mazzo.'):'Non migliora il main in questa configurazione.',
+      after.deficits.early<before.deck.deficits.early?'Aumenta le giocate iniziali affidabili.':'',
+      after.splash?'Lo splash è confrontato con basi e consistenza dei colori principali.':'',
+      after.manaOnly.some(e=>e.uid===entry.uid)?'Usata soltanto come fixing: il corpo non conta fra le minacce.':'',
+      config.coverage.synergies?'Sinergie come scarto dal contesto del voto.':'Sinergie contestuali disattivate uniformemente: copertura incompleta.',
+      denial?'Negazione incerta dedotta dal wheel, con beneficio limitato.':'',side?'Riserva di sideboard, senza rinunciare al completamento del main.':''].filter(Boolean);
+     return {entry,card:c,score:sum(Object.values(components)),components,lane:plan.lane,playable:used,deck:after,replaces:replaces.map(e=>e.id),
+      synergy:support,reasons,signature:[c.id,plan.lane,used,after.manaOnly.some(e=>e.uid===entry.uid),profile(c).roles.slice().sort().join(','),after.holes.spells>0,after.manaErrors.length>0].join('|')};
+    }).sort((a,b)=>b.score-a.score||compare(a.lane,b.lane));return evaluated[0];
+   }).sort((a,b)=>b.score-a.score||stable(a.entry,b.entry));
+   if(style.denial&&scores.some(s=>s.playable&&s.components.mazzo>1e-6||s.components.sideboard>0)){
+    for(const s of scores){s.score-=s.components.negazione||0;s.components.negazione=0;}
+    scores.sort((a,b)=>b.score-a.score||stable(a.entry,b.entry));
+   }
+   if(transition)bot.phase=phase(bot,ctx);
+   return {scores,ctx};
+  }
+  function take(bot,pack,round,pick,random,options={}){
+   observe(bot,pack,round,pick);const prior=bot.pool.map(e=>({...e})),{scores,ctx}=rank(bot,pack.cards,round,pick,random,true,options),best=scores[0];
+   const close=options.deterministic?[best]:scores.filter(s=>s.signature===best.signature&&s.score>=best.score-.04);
+   const selected=close[Math.floor(random()*close.length)];
+   bot.lane=selected.lane;bot.pool.push(selected.entry);if(!bot.anchor&&!selected.card.land&&rating(selected.card)>=4)bot.anchor=selected.entry.id;
+   bot.memory.packets[pack.packetId]=pack.cards.filter(e=>e.uid!==selected.entry.uid).map(e=>({...e}));
+   bot.log.push({round,pick,packetId:pack.packetId,id:selected.entry.id,uid:selected.entry.uid,phase:['esplora','orienta','consolida','completa'][bot.phase],lane:bot.lane,
+    score:selected.score,components:selected.components,observed:pack.cards.map(e=>e.id),poolBefore:prior,bestId:best.entry.id,randomized:selected!==best,
+    reasons:selected.reasons,replaces:selected.replaces||[],gaps:config.gaps,deck:selected.deck||null,
+    alternatives:scores.slice(0,3).map(s=>({id:s.entry.id,score:s.score,lane:s.lane,reasons:s.reasons,replaces:s.replaces||[]}))});
+   return selected.entry;
+  }
+  function takeGroup(bot,pack,round,pick,count,random,options={}){
+   if(count<=1)return [take(bot,pack,round,pick,random,options)];
+   observe(bot,pack,round,pick);
+   // Bounded beam, evaluating combinations on cloned own state. No observation
+   // is counted twice; only the final committed choices reach the real bot.
+   const first=rank(bot,pack.cards,round,pick,random,false,options).scores.slice(0,4);let best=null;
+   for(const candidate of first){const clone=JSON.parse(JSON.stringify(bot));
+    const left={packetId:pack.packetId,cards:[...pack.cards]};let value=0;const selected=[];
+    for(let n=0;n<Math.min(count,pack.cards.length);n++){
+     const scored=rank(clone,left.cards,round,pick,random,false,options).scores;
+     const choice=n===0?scored.find(s=>s.entry.uid===candidate.entry.uid):scored[0];value+=choice.score;
+     clone.pool.push(choice.entry);clone.lane=choice.lane;if(!clone.anchor&&!choice.card.land&&rating(choice.card)>=4)clone.anchor=choice.entry.id;selected.push(choice.entry);left.cards=left.cards.filter(e=>e.uid!==choice.entry.uid);
+    }
+    if(!best||value>best.value)best={selected,value};
+   }
+   const result=[];for(const selected of best.selected){
+    // Reuse normal logging, but restrict selection to the jointly selected card.
+    observe(bot,pack,round,pick);const ranking=rank(bot,pack.cards,round,pick,random,false,options).scores,scored=ranking.find(s=>s.entry.uid===selected.uid);
+    const prior=bot.pool.map(e=>({...e}));bot.phase=phase(bot,context(bot,round,options));bot.pool.push(selected);bot.lane=scored.lane;if(!bot.anchor&&!scored.card.land&&rating(scored.card)>=4)bot.anchor=selected.id;
+    bot.log.push({round,pick,packetId:pack.packetId,id:selected.id,uid:selected.uid,phase:['esplora','orienta','consolida','completa'][bot.phase],lane:bot.lane,components:scored.components,score:scored.score,
+     poolBefore:prior,bestId:ranking[0].entry.id,randomized:false,joint:true,reasons:[...scored.reasons,'Combinazione valutata con ricerca limitata nella stessa busta.'],replaces:scored.replaces||[],deck:scored.deck||null,gaps:config.gaps,
+     observed:pack.cards.map(e=>e.id),alternatives:ranking.slice(0,3).map(s=>({id:s.entry.id,score:s.score}))});
+    pack.cards=pack.cards.filter(e=>e.uid!==selected.uid);result.push(selected);
+   }
+   bot.memory.packets[pack.packetId]=pack.cards.map(e=>({...e}));return result;
+  }
+  return {byId,rating,profile,needs,fits,turn,probability,chance,sourceModel,castability,synergy,build,bestBuild,finalBuild,observe,context,rank,take,takeGroup,
+   assumptions:{frequency:'Marginali della ricetta; dipendenze ed esclusioni approssimate soltanto per le attese, non per generare buste.'}};
+ }
+ const api={create,STYLES};if(typeof module!=='undefined')module.exports=api;else root.DraftPolicy=api;
+})(globalThis);

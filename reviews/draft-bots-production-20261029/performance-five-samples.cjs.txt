@@ -1,0 +1,35 @@
+'use strict';
+const {chromium}=require(process.env.MTG_PLAYWRIGHT_MODULE||'playwright');
+const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
+const output=process.env.MTG_QA_DIR,record=JSON.parse(fs.readFileSync(path.join(output,'v4-record.json'),'utf8'));
+const base=process.env.MTG_SITE_URL,key='mtg-draft-table-fra-v1';
+(async()=>{
+ const browser=await chromium.launch({headless:true,...(process.env.MTG_BROWSER_CHANNEL?{channel:process.env.MTG_BROWSER_CHANNEL}:{})}),results=[];
+ try{for(const mobile of [false,true]){
+  const context=await browser.newContext({viewport:mobile?{width:390,height:844}:{width:1440,height:1050},isMobile:mobile,hasTouch:mobile});context.setDefaultTimeout(180000);
+  await context.route('https://**/*',route=>route.abort());
+  await context.addInitScript(({key,record})=>{if(!localStorage.getItem(key))localStorage.setItem(key,JSON.stringify(record));},{key,record:{...record,picks:record.picks.slice(0,28)}});
+  const page=await context.newPage();
+  if(mobile){const cdp=await context.newCDPSession(page);await cdp.send('Emulation.setCPUThrottlingRate',{rate:4});}
+  // Viewport/touch emulation on this desktop, not a claim about real phone CPU.
+  await page.goto(base+'sets/reality-fracture/Reality-Fracture-Draft-Engine.html');
+  const boot=await page.evaluate(()=>performance.getEntriesByType('navigation')[0].domContentLoadedEventEnd-performance.getEntriesByType('navigation')[0].responseEnd);
+  assert.equal(page.workers().length,0);assert.ok(boot<=1000,`Renderer boot ${boot}ms`);
+  await page.evaluate(()=>{window.longestTask=0;window.maxGap=0;let last=performance.now();window.observer=new PerformanceObserver(list=>list.getEntries().forEach(e=>window.longestTask=Math.max(window.longestTask,e.duration)));window.observer.observe({type:'longtask'});window.timer=setInterval(()=>{const now=performance.now();window.maxGap=Math.max(window.maxGap,now-last);last=now;},25);});
+  const started=Date.now();await page.locator('#resume').click();await page.waitForFunction(()=>!document.querySelector('#start').disabled);const replayMs=Date.now()-started;
+  const times=[];for(let n=0;n<5;n++){const t=Date.now();await page.locator('#pack [data-pick]').first().click();await page.waitForFunction(()=>!document.querySelector('#start').disabled);times.push(Date.now()-t);}
+  const metrics=await page.evaluate(()=>{clearInterval(window.timer);return {longestTask:window.longestTask,maxGap:window.maxGap};});
+  const p95=[...times].sort((a,b)=>a-b).at(-1),result={profile:mobile?'mobile viewport/touch, CDP 4x renderer throttle; worker CPU not certified':'desktop',sample:5,rendererBootMs:boot,replay28Ms:replayMs,decisionMs:times,p95Ms:p95,...metrics};results.push(result);
+  fs.writeFileSync(path.join(output,'performance.json'),JSON.stringify(results,null,2));console.log(JSON.stringify(result));
+  assert.ok(metrics.longestTask<=200,JSON.stringify(result));assert.ok(metrics.maxGap<500,JSON.stringify(result));assert.ok(p95<=(mobile?15000:5000),JSON.stringify(result));
+  if(!mobile){
+   await page.evaluate(({key,record})=>localStorage.setItem(key,JSON.stringify(record)),{key,record});await page.reload();assert.equal(page.workers().length,0);
+   await page.evaluate(()=>{window.longestTask=0;window.maxGap=0;let last=performance.now();new PerformanceObserver(list=>list.getEntries().forEach(e=>window.longestTask=Math.max(window.longestTask,e.duration))).observe({type:'longtask'});window.timer=setInterval(()=>{const now=performance.now();window.maxGap=Math.max(window.maxGap,now-last);last=now;},25);});
+   const fullStarted=Date.now();await page.locator('#resume').click();await page.locator('#review').waitFor({state:'visible'});assert.equal(await page.locator('#bot-review .review-pick').count(),42);
+   const download=page.waitForEvent('download');await page.locator('#export').click();const file=await download;assert.equal(JSON.parse(fs.readFileSync(await file.path(),'utf8')).review.length,7);
+   result.fullReplayAndExport={durationMs:Date.now()-fullStarted,...await page.evaluate(()=>{clearInterval(window.timer);return {longestTask:window.longestTask,maxGap:window.maxGap};})};
+   fs.writeFileSync(path.join(output,'performance.json'),JSON.stringify(results,null,2));assert.ok(result.fullReplayAndExport.longestTask<=200,JSON.stringify(result));assert.ok(result.fullReplayAndExport.maxGap<500,JSON.stringify(result));
+  }
+  await context.close();
+ }}finally{await browser.close();}
+})().catch(error=>{console.error(error);process.exitCode=1;});

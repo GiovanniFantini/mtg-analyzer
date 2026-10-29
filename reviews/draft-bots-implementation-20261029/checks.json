@@ -1,0 +1,68 @@
+[
+  {
+    "command": [
+      "C:\\Program Files\\Python315\\python.exe",
+      "-m",
+      "unittest",
+      "test_expansion_data.py",
+      "test_bot_profiles.py"
+    ],
+    "exitCode": 0,
+    "stdout": "",
+    "stderr": "..........................................\n----------------------------------------------------------------------\nRan 42 tests in 406.722s\n\nOK\n"
+  },
+  {
+    "command": [
+      "node",
+      "verify-draft-bots.cjs"
+    ],
+    "exitCode": 0,
+    "stdout": "PASS: frozen v1/v2 replays and continuation; v3 replay; color neutrality; reported picks; bounded tactical bonuses; hybrid mana; duplicate support.\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "node",
+      "verify-draft-engine.cjs"
+    ],
+    "exitCode": 0,
+    "stdout": "{\"packs\":30000,\"guestRate\":0.019366666666666667,\"rareMainRate\":0.7475333333333334,\"foilLandRate\":0.1969,\"drafted\":336,\"replay\":\"identical\",\"strategies\":9}\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "node",
+      "verify-expansions.cjs"
+    ],
+    "exitCode": 0,
+    "stdout": "PASS: 3,000 historical packs identical; legacy replay; revision rejection; Pick-Two, odd packs, four seats, partial replay and card conservation.\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "C:\\Program Files\\Python315\\python.exe",
+      "verify-collation-contract.py"
+    ],
+    "exitCode": 0,
+    "stdout": "PASS: Python validation and JavaScript engine agree on correlated exclusions, feasible pairs and exhausted groups.\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "node",
+      "verify-draft-policy.cjs"
+    ],
+    "exitCode": 0,
+    "stdout": "PASS: v3 frozen digests; v4 symmetric colors, mana, typed cycling, density, reference grades, resource contention, minimum main, BO1/BO3, side memory, replay, RNG isolation and joint Pick-Two.\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "node",
+      "verify-draft-policy-regressions.cjs"
+    ],
+    "exitCode": 0,
+    "stdout": "PASS: main refill, ghost support, primary double pips, reductions, C lands, fetch, own sources, alternative modes, hybrid union, joint phases, absolute plans, signal deltas, late filler and splash basics.\n",
+    "stderr": ""
+  }
+]

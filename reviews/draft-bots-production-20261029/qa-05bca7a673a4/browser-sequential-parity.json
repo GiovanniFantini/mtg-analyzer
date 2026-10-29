@@ -1,0 +1,38 @@
+{
+  "complete": true,
+  "runtime": "Same Chromium build as acquired exports, source bytes verified, original synchronous E.replay inside isolated worker without auxiliary pool. Two independent cases in parallel after performance acquisition.",
+  "results": [
+    {
+      "seed": "production-reserved-223",
+      "scenario": "default",
+      "exactFullExportParity": true,
+      "actualHash": "bb8477fc47979723bee2af2372b362487b4bb69517f865325cad0604f3793abe",
+      "expectedHash": "bb8477fc47979723bee2af2372b362487b4bb69517f865325cad0604f3793abe",
+      "sequentialReplayMs": 61859
+    },
+    {
+      "seed": "production-reserved-211",
+      "scenario": "default",
+      "exactFullExportParity": true,
+      "actualHash": "332ab508aee2b2480d0fbb8d6744922430d97993636e882388664315691e28d0",
+      "expectedHash": "332ab508aee2b2480d0fbb8d6744922430d97993636e882388664315691e28d0",
+      "sequentialReplayMs": 82656
+    },
+    {
+      "seed": "production-reserved-229",
+      "scenario": "power",
+      "exactFullExportParity": true,
+      "actualHash": "25cd68bd5623b56db4e9e87cff15515465b3e968959c7a14ad1dc1ebeb1d5584",
+      "expectedHash": "25cd68bd5623b56db4e9e87cff15515465b3e968959c7a14ad1dc1ebeb1d5584",
+      "sequentialReplayMs": 1014
+    },
+    {
+      "seed": "production-reserved-227",
+      "scenario": "default",
+      "exactFullExportParity": true,
+      "actualHash": "da9a2d639e9d09db67c08f06d870d3a5dfeacb6587c2001072edf8f265993507",
+      "expectedHash": "da9a2d639e9d09db67c08f06d870d3a5dfeacb6587c2001072edf8f265993507",
+      "sequentialReplayMs": 56436
+    }
+  ]
+}

@@ -24,7 +24,7 @@ const base=process.env.MTG_SITE_URL||'http://127.0.0.1:8871/';
   });
   await page.evaluate(value=>localStorage.setItem('mtg-draft-table-fra-v1',JSON.stringify(value)),record);
   await page.reload();
-  assert.match(await page.locator('#save-status').innerText(),/non leggibile/);
+  assert.match(await page.locator('#save-status').innerText(),/incompatibile/);
   assert.equal(await page.locator('#resume').isVisible(),false);
   assert.deepEqual(await page.evaluate(()=>JSON.parse(localStorage.getItem('mtg-draft-table-fra-v1'))),record);
   await page.locator('#start').click();

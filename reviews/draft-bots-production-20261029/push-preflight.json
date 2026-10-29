@@ -1,0 +1,20 @@
+{
+  "scope": "Offline build of exact staged LF bytes, matching Linux checkout. No untracked local files copied.",
+  "indexTreeBeforeEvidence": "66cedd574e284011b7bbefd01006b6bb6623f7e6",
+  "sourceHashes": {
+    "draft-policy.js": "08458d1ca2350a4d2289834e8e3bc853aab66ecd7329bd9b1ed735a1dceae3a0",
+    "draft-engine.js": "52ea53fc11975321e095d707038329193d4c45df9aa3e67f8b41628e6f61c9a4",
+    "draft-worker.js": "d851613586061ac0593b2a74d25baaa1ca812e6445bdef3c79f86013a205e3ea",
+    "draft-worker-client.js": "8f90e8b50000ccd00c75d2702fe5b108cea1725cffb11c94370e01ab4db7a43e",
+    "draft-table.js": "8715e1bfe16a23927eb9699766a4bbd13160244250e6d767719d3eb5069cd4d0",
+    "bot_profiles.py": "003ec3992176c2a703d67d32e1235289215aecf10083809b656b364f84fa15a7"
+  },
+  "command": [
+    "python",
+    "build_site.py"
+  ],
+  "exitCode": 0,
+  "stdout": "Site built: 21 expansion(s), 290 HTML pages. Local links verified.\n",
+  "stderr": "",
+  "externalReview": "Final Opus approval remains pending quota; user explicitly authorized push."
+}

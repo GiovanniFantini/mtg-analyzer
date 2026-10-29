@@ -1,0 +1,36 @@
+[
+  {
+    "command": [
+      "node",
+      "verify-draft-worker-browser.cjs"
+    ],
+    "exitCode": 0,
+    "stdout": "PASS: dead-worker resume, failed-save worker lifecycle, mixed-code hash rejection preserves original record, classical fallback.\n",
+    "stderr": "",
+    "sourceHashes": {
+      "draft-policy.js": "35ae6980660c3158e290ce2452fa46d1026711d517447cbb79d390f261f69ae5",
+      "draft-engine.js": "5e7ee5acbdc830d1d85e8683b727a3d6fa0d2c52a21645d00c4d76dc02a83165",
+      "draft-worker.js": "5041d79dd145197a64bf142e2edec3a276903d5506bfa2c73dec476faea3ed5f",
+      "draft-worker-client.js": "8f90e8b50000ccd00c75d2702fe5b108cea1725cffb11c94370e01ab4db7a43e",
+      "draft-table.js": "13106b0d85e502d9ffe35ee9d653bb15ecc9f0e5a6a5a822eb2da1de2f00d506",
+      "bot_profiles.py": "cca6cef5d08fefa151d18bced61df079127db0ebf30c18128be6765e71e0cbb6"
+    }
+  },
+  {
+    "command": [
+      "node",
+      "verify-draft-policy-browser.cjs"
+    ],
+    "exitCode": 0,
+    "stdout": "PASS: default v3, opt-in v4 BO1, worker heartbeat {\"ticks\":126,\"maxGap\":52.5,\"longestTask\":0}, partial and complete resume, detailed review, privacy, mouse/keyboard/touch, 390px, full backup and backup failure.\n",
+    "stderr": "",
+    "sourceHashes": {
+      "draft-policy.js": "35ae6980660c3158e290ce2452fa46d1026711d517447cbb79d390f261f69ae5",
+      "draft-engine.js": "5e7ee5acbdc830d1d85e8683b727a3d6fa0d2c52a21645d00c4d76dc02a83165",
+      "draft-worker.js": "5041d79dd145197a64bf142e2edec3a276903d5506bfa2c73dec476faea3ed5f",
+      "draft-worker-client.js": "8f90e8b50000ccd00c75d2702fe5b108cea1725cffb11c94370e01ab4db7a43e",
+      "draft-table.js": "13106b0d85e502d9ffe35ee9d653bb15ecc9f0e5a6a5a822eb2da1de2f00d506",
+      "bot_profiles.py": "cca6cef5d08fefa151d18bced61df079127db0ebf30c18128be6765e71e0cbb6"
+    }
+  }
+]
