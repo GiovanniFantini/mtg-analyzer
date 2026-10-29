@@ -44,9 +44,9 @@
   if(saved!==null){
    if(!saved||typeof saved!=='object'||Array.isArray(saved)||!saved.pool||typeof saved.pool!=='object'||Array.isArray(saved.pool)||!source?.nested&&saved.version!=null)throw Error();
    if(source?.nested)ManualPoolRecord.validate(saved,identities);
-   if(Object.entries(saved.pool).some(([name,n])=>!(source?.nested?byId:byName).has(name)||!Number.isInteger(n)||n<1||n>(source?.nested?999:100)))throw Error();
+   if(Object.entries(saved.pool).some(([name,n])=>!(source?.nested?byId:byName).has(name)||!Number.isInteger(n)||n<(source?.nested?0:1)||n>(source?.nested?999:100)))throw Error();
    savedExtra=saved;
-   for(const [name,n] of Object.entries(saved.pool)){const display=source?.nested?byId.get(name).name:name;pool[display]=(pool[display]||0)+n;}
+   for(const [name,n] of Object.entries(saved.pool)){if(n===0)continue;const display=source?.nested?byId.get(name).name:name;pool[display]=(pool[display]||0)+n;}
   }
   if(syncForm)for(const [id,value] of [['mode',savedExtra.mode==='bo3'?'bo3':'bo1'],['notes',typeof savedExtra.notes==='string'?savedExtra.notes.slice(0,4000):'']]){
    if(document.activeElement!==el(id)&&el(id).value!==value)el(id).value=value;

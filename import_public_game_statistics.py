@@ -6,6 +6,28 @@ Only derived counts, rates and acquisition metadata are kept in the repository.
 import argparse, concurrent.futures, csv, gzip, hashlib, io, json, tempfile, urllib.request
 from datetime import date
 from pathlib import Path
+from tournament_index import identity_aliases,name_key
+MATCHING_VERSION=2
+MISSING_PUBLIC_DATA_NOTE='Statistiche 17Lands non integrate: gli aggregati API non sono riutilizzati in attesa di derivazione dai dataset pubblici con licenza verificata.'
+
+def updated_limitations(notes):
+    return [note for note in notes if note!=MISSING_PUBLIC_DATA_NOTE]
+
+def matching_fingerprint(cards):
+    identities=sorted((c['id'],c.get('oracleId'),sorted(identity_aliases(c))) for c in cards)
+    return hashlib.sha256(json.dumps(identities,ensure_ascii=False).encode('utf-8')).hexdigest()
+
+def match_card_rows(cards,totals):
+    names={name_key(n):n for n in totals['cards']};rows=[];matched=set();owners={}
+    for c in cards:
+        candidates=[names[k] for k in sorted(identity_aliases(c)) if k in names]
+        if not candidates:continue
+        if len(candidates)>1:raise ValueError('Ambiguous game-data aliases: '+c['id'])
+        name=candidates[0];identity=c.get('oracleId') or name_key(c.get('full') or c['name'])
+        if name in owners and owners[name]!=identity:raise ValueError('Game-data column matches different card identities: '+name)
+        owners[name]=identity;matched.add(name);v=totals['cards'][name]
+        rows.append({'catalogId':c['id'],'name':c['name'],'sourceName':name,'sourceUrl':'https://www.17lands.com/public_datasets','metrics':{'inHandWinRate':100*v['wins']/v['games'] if v['games'] else None,'games':v['games'],'wins':v['wins']}})
+    return rows,matched
 
 def aggregate(path):
     import numpy as np
@@ -27,7 +49,13 @@ def aggregate(path):
 def acquire(manifest,event,out):
     root=Path(manifest).parent;m=json.loads(Path(manifest).read_text(encoding='utf-8'));code=m['code']
     result_path=out/(m['id']+'-'+event+'.json')
-    if result_path.exists():return json.loads(result_path.read_text(encoding='utf-8'))
+    if result_path.exists():
+        cached=json.loads(result_path.read_text(encoding='utf-8'))
+        if cached.get('status')=='unavailable':return cached
+        if cached.get('matchingVersion')==MATCHING_VERSION:
+            cards=json.loads((root/'cards.json').read_text(encoding='utf-8'))['cards']
+            if cached.get('matchingFingerprint')==matching_fingerprint(cards):return cached
+        raise ValueError('Cached card matching predates the current method. Use a new dated --output directory; previous snapshots are preserved.')
     url=f'https://17lands-public.s3.amazonaws.com/analysis_data/game_data/game_data_public.{code}.{event}.csv.gz'
     try:
         with urllib.request.urlopen(url,timeout=60) as response, tempfile.NamedTemporaryFile(suffix='.csv.gz',delete=False) as dest:
@@ -40,13 +68,8 @@ def acquire(manifest,event,out):
         result_path.write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n',encoding='utf-8');return result
     try:totals=aggregate(path)
     finally:path.unlink(missing_ok=True)
-    cards=json.loads((root/'cards.json').read_text(encoding='utf-8'))['cards'];rows=[];matched=set()
-    for c in cards:
-        name=next((n for n in [c.get('full'),c['name'],c.get('oracleName')] if n in totals['cards']),None)
-        if not name:continue
-        matched.add(name);v=totals['cards'][name]
-        rows.append({'catalogId':c['id'],'name':c['name'],'sourceName':name,'sourceUrl':'https://www.17lands.com/public_datasets','metrics':{'inHandWinRate':100*v['wins']/v['games'] if v['games'] else None,'games':v['games'],'wins':v['wins']}})
-    result={'schemaVersion':1,'provider':'17Lands public datasets','url':'https://www.17lands.com/public_datasets','retrieved':date.today().isoformat(),'rateUnit':'percent',
+    cards=json.loads((root/'cards.json').read_text(encoding='utf-8'))['cards'];rows,matched=match_card_rows(cards,totals)
+    result={'schemaVersion':1,'matchingVersion':MATCHING_VERSION,'matchingFingerprint':matching_fingerprint(cards),'provider':'17Lands public datasets','url':'https://www.17lands.com/public_datasets','retrieved':date.today().isoformat(),'rateUnit':'percent',
       'filters':{'event':event,'ranks':'Tutti i ranghi nel dataset','archetype':'Tutti gli archetipi','period':'Intero dataset pubblico; aggiornamento '+str(last)},
       'metrics':{'inHandWinRate':{'label':'GIH WR: partite vinte quando la carta era nella mano iniziale o pescata','unit':'percent','status':'public'},'games':{'label':'Partite con la carta nella mano iniziale o pescata','unit':'games','status':'public'},'wins':{'label':'Vittorie nelle partite del campione GIH','unit':'games','status':'public'}},
       'cards':rows,'coverage':{'catalogCards':len(cards),'matchedCards':len(rows),'withWinRate':sum(r['metrics']['inHandWinRate'] is not None for r in rows),'missingCatalogIds':[c['id'] for c in cards if c['id'] not in {r['catalogId'] for r in rows}],'unmatchedSourceNames':sorted(set(totals['cards'])-matched)},
@@ -74,8 +97,8 @@ def main():
         for m,e,r in results:
             if r.get('status')=='unavailable':continue
             root=Path(m).parent;path=root/'statistics.json';s=json.loads(path.read_text(encoding='utf-8'));kind='sealed' if e=='Sealed' else 'draft';s.setdefault(kind,{}).setdefault('externalSources',{})['17lands-public']=r
-            if kind=='draft' and 'limitations' in s[kind]:s[kind]['limitations']=[n for n in s[kind]['limitations'] if '17Lands' not in n and '17lands' not in n]
-            s['limitations']=[n for n in s.get('limitations',[]) if '17Lands' not in n and '17lands' not in n]
+            if kind=='draft' and 'limitations' in s[kind]:s[kind]['limitations']=updated_limitations(s[kind]['limitations'])
+            s['limitations']=updated_limitations(s.get('limitations',[]))
             path.write_text(json.dumps(s,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
             sp=root/'sources.json';sources=json.loads(sp.read_text(encoding='utf-8'));sources.setdefault('externalStatistics',{})[kind+'17landsPublic']={k:r[k] for k in ['provider','url','retrieved','filters','derivation','coverage']};sp.write_text(json.dumps(sources,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     (a.output/'coverage.json').write_text(json.dumps([{'expansion':Path(m).parent.name,'event':e,'status':r.get('status','ok'),'coverage':r.get('coverage')} for m,e,r in results],ensure_ascii=False,indent=2)+'\n',encoding='utf-8')

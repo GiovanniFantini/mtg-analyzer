@@ -22,10 +22,11 @@ I percorsi dei comandi sono relativi alla radice del repository. Questa skill co
 
 ## Integrare
 
-- Creare `expansions/<slug>/expansion.json` e i dataset previsti da `schemas/` e `expansion_data.py`; registrare il manifest in `expansions.json`. Riutilizzare una presentazione condivisa, route univoche e chiavi storage proprie. I manifest esistenti sono esempi di struttura, non dati da copiare insieme a rating, collazione o statistiche.
+- Creare `expansions/<slug>/expansion.json` e i dataset previsti da `schemas/` e `expansion_data.py`; registrare il manifest in `expansions.json`. Usare Atlas, route univoche e chiavi storage proprie; i template preview rimangono compatibilità storica. I manifest esistenti sono esempi di struttura, non dati da copiare insieme a rating, collazione o statistiche.
 - Collegare catalogo e stampe con identità stabili; registrare le date separatamente per catalogo, legalità, rating e statistiche. Acquisire tutte le pagine dei cataloghi e controllare ospiti, facce e varianti. Il flag `booster` da solo non certifica la collazione.
 - Conservare acquisizioni datate in `research/<slug>-<AAAAMMGG>/`, con URL, contesto, data e copertura. Conservare i vecchi snapshot. Usare gli importatori solo quando le assunzioni documentate in [sources.md](references/sources.md) sono vere.
 - Completare i dati effettivi richiesti da ogni funzione. Se mancano, mantenere la lacuna esplicita: `collation: null` per prodotto incompleto; `null` per misura assente; nessun rating inventato. `features.*.requested` esprime una richiesta, non la disponibilità. Valutare ogni evento con il proprio prodotto.
+- Nell'inventario includere separatamente WR Draft, WR Sealed e prospettive Standard/Pioneer/Modern/Pauper, seguendo `docs/statistics.md`. Controllare che il metagame contenga osservazioni effettive e che le carte siano abbinate al catalogo; un `discovery.json` vuoto o la sola presenza dei filtri non completa la ricerca Constructed. Etichettare i profili con sole misure di torneo senza presentarli come recensioni strategiche complete.
 - Non creare builder del set, condizioni sul suo nome nei motori, database o interfacce amministrative. Se una nuova procedura di gioco non rientra nelle operazioni esistenti, descrivere il limite e realizzare solo l'estensione condivisa necessaria nel perimetro autorizzato.
 
 ## Chiudere con evidenze

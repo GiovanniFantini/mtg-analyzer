@@ -57,10 +57,14 @@ def apply_printed_identity(card, raw):
 
 def normalize_printing(raw):
     faces = raw.get('card_faces', [])
+    face_oracles={f.get('oracle_id') for f in faces if f.get('oracle_id')}
+    oracle_id=raw.get('oracle_id')
+    if raw.get('layout')=='reversible_card' and len(face_oracles)==1 and all(f.get('oracle_id') for f in faces):
+        oracle_id=oracle_id or next(iter(face_oracles))
     first = faces[0] if faces else raw
     images = raw.get('image_uris') or first.get('image_uris', {})
     return {
-        'id': raw['id'], 'oracleId': raw.get('oracle_id'),
+        'id': raw['id'], 'oracleId': oracle_id,
         'name': raw['name'], 'full': raw['name'],
         'set': raw['set'].upper(), 'number': raw['collector_number'],
         'mana': raw.get('mana_cost', first.get('mana_cost', '')),
@@ -75,7 +79,7 @@ def normalize_printing(raw):
         'keywords': raw.get('keywords', []), 'layout': raw.get('layout', ''),
         'power': first.get('power', ''), 'toughness': first.get('toughness', ''),
         'loyalty': first.get('loyalty', ''),
-        'faces': [{k: f[k] for k in ('name', 'printed_name', 'mana_cost', 'oracle_text', 'printed_text', 'type_line', 'printed_type_line', 'power', 'toughness', 'loyalty', 'colors', 'image_uris') if k in f} for f in faces],
+        'faces': [{k: f[k] for k in ('name', 'oracle_id', 'printed_name', 'mana_cost', 'oracle_text', 'printed_text', 'type_line', 'printed_type_line', 'power', 'toughness', 'loyalty', 'colors', 'image_uris') if k in f} for f in faces],
         'finishes': raw.get('finishes', []), 'booster': raw.get('booster'),
         'games': raw.get('games', []), 'releasedAt': raw.get('released_at'),
         'digital': raw.get('digital', False), 'promo': raw.get('promo', False),

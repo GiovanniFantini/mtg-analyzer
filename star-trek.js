@@ -56,7 +56,7 @@
   function validate(value,selectedMode=mode) {
     const rules=eventRules(selectedMode);
     if(!rules)throw Error('Regole del formato non disponibili.');
-    if (!value || typeof value !== 'object') throw Error('Salvataggio non valido.');
+    if (!value || typeof value !== 'object' || Array.isArray(value) || value.version!=null&&value.version!==1) throw Error('Salvataggio non valido o incompatibile.');
     const next = {...value,pool:validCounts(value.pool),deck:validCounts(value.deck),basics:validCounts(value.basics)};
     if(!rules.extraBasicLands&&Object.keys(next.basics).length)throw Error('Terre base aggiuntive non previste dal profilo.');
     for(const [id,n] of Object.entries(next.deck))if(!basicCard(id)&&rules.maxCopies!=null&&n>rules.maxCopies)throw Error('Limite di copie del formato superato.');
@@ -136,7 +136,7 @@
     let watch=false;
     try { watch=JSON.parse(localStorage.getItem(EXPANSION_CONFIG.storage.watch)||'[]').some(value=>value===c.id||value===c.name); } catch {}
     const legal=$('trk-legality')?.value;
-    return `<article class="trk-card">${variants&&c.image?`<img class="trk-card-image" src="${esc(c.image)}" width="488" height="680" loading="lazy" decoding="async" alt="${esc(c.name)}" data-card-preview="${esc(c.name)}" tabindex="0" role="button" aria-label="Mostra immagine ingrandita: ${esc(c.name)}">`:''}<h3>${ref(c)}</h3><div class="trk-meta">${esc(c.set)} #${esc(c.number)} · ${esc(c.mana||'Senza costo di mana')} · ${esc(c.rarity)} · MV ${c.cmc}</div><p>${esc(c.type)}</p>${catalog?catalog.summary(c):''}<p class="trk-oracle">${esc(c.text)}</p><p><a href="${esc(c.url)}" target="_blank" rel="noopener" aria-label="Testo e dettagli: ${esc(c.name)}">Testo e dettagli ↗</a></p>${legal?`<p>Stato ${esc(legal)}: ${esc(legality(c,legal)||'non disponibile')} (${$('trk-legality-scope')?.value==='release'?'ammissibilità prevista all’uscita':esc(DATA.date||'data non disponibile')}).</p>`:''}${c.prospects&&window.CardProspects?`<details class="trk-prospects"><summary>Analisi, formati, prezzi e fonti</summary>${window.CardProspects.render(c,DATA.prospectSources||[])}</details>`:''}${controls?actions(c):''}${pageKey==='discovery'?`<button data-op="watch" data-id="${c.id}" type="button" aria-pressed="${watch}">${watch?'Osservata':'Segui carta'}</button>`:''}${variants&&c.prints.length>1?`<details><summary>${c.prints.length} stampe nello snapshot</summary><p>La presenza nel catalogo non certifica l’apertura nel prodotto selezionato per questo evento. Trattamenti e idoneità vanno verificati nella guida ufficiale.</p><div class="trk-variants">${c.prints.map(p=>`<div>${p.image?`<img src="${esc(p.image)}" loading="lazy" alt="${esc(c.name)} #${esc(p.number)}">`:''}<p>#${esc(p.number)} · ${esc(p.finishes.join(', '))}</p></div>`).join('')}</div></details>`:''}</article>`;
+    return `<article class="trk-card">${variants&&c.image?`<img class="trk-card-image" src="${esc(c.image)}" width="488" height="680" loading="lazy" decoding="async" alt="${esc(c.name)}" data-card-preview="${esc(c.name)}" tabindex="0" role="button" aria-label="Mostra immagine ingrandita: ${esc(c.name)}">`:''}<h3>${ref(c)}</h3><div class="trk-meta">${esc(c.set)} #${esc(c.number)} · ${esc(c.mana||'Senza costo di mana')} · ${esc(c.rarity)} · MV ${c.cmc}</div><p>${esc(c.type)}</p>${catalog?catalog.summary(c):''}<p class="trk-oracle">${esc(c.text)}</p><p><a href="${esc(c.url)}" target="_blank" rel="noopener" aria-label="Testo e dettagli: ${esc(c.name)}">Testo e dettagli ↗</a></p>${legal?`<p>Stato ${esc(legal)}: ${esc(legality(c,legal)||'non disponibile')} (${$('trk-legality-scope')?.value==='release'?'ammissibilità prevista all’uscita':esc(c.legalitiesRetrieved||DATA.legalityDate||'data non disponibile')}).</p>`:''}${c.prospects&&window.CardProspects?`<details class="trk-prospects"><summary>Analisi, formati, prezzi e fonti</summary>${window.CardProspects.render(c,DATA.prospectSources||[])}</details>`:''}${controls?actions(c):''}${pageKey==='discovery'?`<button data-op="watch" data-id="${c.id}" type="button" aria-pressed="${watch}">${watch?'Osservata':'Segui carta'}</button>`:''}${variants&&c.prints.length>1?`<details><summary>${c.prints.length} stampe nello snapshot</summary><p>La presenza nel catalogo non certifica l’apertura nel prodotto selezionato per questo evento. Trattamenti e idoneità vanno verificati nella guida ufficiale.</p><div class="trk-variants">${c.prints.map(p=>`<div>${p.image?`<img src="${esc(p.image)}" loading="lazy" alt="${esc(c.name)} #${esc(p.number)}">`:''}<p>#${esc(p.number)} · ${esc(p.finishes.join(', '))}</p></div>`).join('')}</div></details>`:''}</article>`;
   }
   function legality(c,format) { return $('trk-legality-scope')?.value==='release' ? c.prospects?.formats?.[format]?.releaseEligibility?.status||c.legalities[format] : c.legalities[format]; }
   function filtered() {
@@ -250,7 +250,7 @@
     await writes;
     try { state=stored(key(),state).value; }
     catch { status('Salvataggio non leggibile: il contenuto originale è conservato e non verrà sovrascritto.');return; }
-    const data={version:1,set:EXPANSION_CONFIG.code,mode,snapshot:DATA.date,...state};
+    const data={...state,version:1,set:EXPANSION_CONFIG.code,mode,snapshot:DATA.date,playMode:['bo1','bo3'].includes(state.mode)?state.mode:null};
     const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');
     a.href=url;a.download=EXPANSION_CONFIG.id+'-'+mode+'-pool.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
   });
@@ -260,9 +260,13 @@
     try{
       if(file.size>1000000)throw Error('File troppo grande.');
       const imported=JSON.parse(await file.text());
-      if(imported.version!==1||imported.set!==EXPANSION_CONFIG.code||imported.mode!==importMode)throw Error('File di un altro set, formato o versione. Seleziona prima il pool corretto.');
-      const next=validate(imported);
-      await changeState(value=>{Object.assign(value,next);},importMode);
+      const legacyDraft=['bo1','bo3'].includes(imported.mode)&&eventRules(importMode).kind==='draft';
+      if(imported.version!==1||imported.set!==EXPANSION_CONFIG.code||imported.mode!==importMode&&!legacyDraft)throw Error('File di un altro set, formato o versione. Seleziona prima il pool corretto.');
+      if(legacyDraft&&!window.confirm('Il file indica BO1/BO3 senza identificare l’evento. Importarlo nel pool '+eventRules(importMode).name+' selezionato?'))return;
+      const {version,set,mode:fileMode,snapshot,playMode,...record}=imported;
+      const preference=['bo1','bo3'].includes(playMode)?playMode:legacyDraft?fileMode:null;
+      const next=validate(record,importMode);
+      await changeState(value=>{const previousMode=value.mode;Object.assign(value,next);if(preference)value.mode=preference;else if(['bo1','bo3'].includes(previousMode))value.mode=previousMode;else delete value.mode;},importMode);
       status(storageError||'Pool e mazzo importati.');
     }catch(error){$('trk-storage-status').textContent='Importazione non eseguita: '+error.message;}
     event.target.value='';

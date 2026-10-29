@@ -19,12 +19,20 @@ class AtlasMigrationTests(unittest.TestCase):
                 self.assertFalse(any('/preview/' in p.get('template','') for p in e.manifest['presentation']['pages'].values()))
 
     def test_original_storage_keys_and_urls_remain(self):
-        for e in self.expansions:
-            old=self.before[e.manifest['id']]
+        by_id={e.manifest['id']:e for e in self.expansions}
+        for ident,old in self.before.items():
+            e=by_id[ident]
             for key,value in old['storage'].items():
                 self.assertEqual(e.manifest['storage'][key],value)
             current={p['url'] for p in e.manifest['presentation']['pages'].values()}
             self.assertTrue(set(old['routes'].values())<=current)
+
+    def test_only_catalog_payload_contains_full_card_analyses(self):
+        e=self.expansions[0]
+        self.assertIn('prospects',data_for_page(e,'gallery')['cards'][0])
+        for page in ('analysis','combos','simulator'):
+            self.assertTrue(all('prospects' not in c for c in data_for_page(e,page)['cards']))
+        self.assertIn('prospects',e.cards[0], 'Payload pruning must not mutate the catalog.')
 
     def test_manual_workbenches_and_adapters_share_original_records(self):
         for e in self.expansions:

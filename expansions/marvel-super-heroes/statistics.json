@@ -220,6 +220,17 @@
             }
           },
           {
+            "catalogId": "61237530-ad49-469c-a952-67c92315708e",
+            "name": "Jennifer Walters // The Sensational She-Hulk",
+            "sourceName": "Jennifer Walters",
+            "sourceUrl": "https://www.17lands.com/public_datasets",
+            "metrics": {
+              "inHandWinRate": 68.74340021119325,
+              "games": 947,
+              "wins": 651
+            }
+          },
+          {
             "catalogId": "401f9ccf-f30c-4777-9a5b-4c340e724fff",
             "name": "Kree Commandos",
             "sourceName": "Kree Commandos",
@@ -261,6 +272,17 @@
               "inHandWinRate": 53.54477611940298,
               "games": 1072,
               "wins": 574
+            }
+          },
+          {
+            "catalogId": "3f995518-b12a-4623-9ab3-b79a5cef3cba",
+            "name": "Monica Rambeau // Photon, Living Light",
+            "sourceName": "Monica Rambeau",
+            "sourceUrl": "https://www.17lands.com/public_datasets",
+            "metrics": {
+              "inHandWinRate": 66.10767872903796,
+              "games": 1133,
+              "wins": 749
             }
           },
           {
@@ -536,6 +558,17 @@
               "inHandWinRate": 59.441189725101395,
               "games": 4438,
               "wins": 2638
+            }
+          },
+          {
+            "catalogId": "e0dbbdcf-84e1-494f-8b8c-0a094f603fa9",
+            "name": "Bruce Banner // The Incredible Hulk",
+            "sourceName": "Bruce Banner",
+            "sourceUrl": "https://www.17lands.com/public_datasets",
+            "metrics": {
+              "inHandWinRate": 63.422818791946305,
+              "games": 894,
+              "wins": 567
             }
           },
           {
@@ -866,6 +899,17 @@
               "inHandWinRate": 55.657492354740064,
               "games": 654,
               "wins": 364
+            }
+          },
+          {
+            "catalogId": "4cea42fd-035e-4b8f-8b1d-ff363b694f14",
+            "name": "Tony Stark // The Invincible Iron Man",
+            "sourceName": "Tony Stark",
+            "sourceUrl": "https://www.17lands.com/public_datasets",
+            "metrics": {
+              "inHandWinRate": 63.47687400318979,
+              "games": 627,
+              "wins": 398
             }
           },
           {
@@ -2387,6 +2431,17 @@
             }
           },
           {
+            "catalogId": "add7d3ce-aa58-4da0-8c2a-cfd01c3a8975",
+            "name": "King T'Challa // Black Panther, Hope Enduring",
+            "sourceName": "King T'Challa",
+            "sourceUrl": "https://www.17lands.com/public_datasets",
+            "metrics": {
+              "inHandWinRate": 61.16152450090744,
+              "games": 1102,
+              "wins": 674
+            }
+          },
+          {
             "catalogId": "495c08ea-5502-4bfe-aa15-fa85556755ae",
             "name": "The Kingpin of Crime",
             "sourceName": "The Kingpin of Crime",
@@ -3709,14 +3764,9 @@
         ],
         "coverage": {
           "catalogCards": 375,
-          "matchedCards": 334,
-          "withWinRate": 330,
+          "matchedCards": 339,
+          "withWinRate": 335,
           "missingCatalogIds": [
-            "61237530-ad49-469c-a952-67c92315708e",
-            "3f995518-b12a-4623-9ab3-b79a5cef3cba",
-            "e0dbbdcf-84e1-494f-8b8c-0a094f603fa9",
-            "4cea42fd-035e-4b8f-8b1d-ff363b694f14",
-            "add7d3ce-aa58-4da0-8c2a-cfd01c3a8975",
             "ec191a2f-12b1-438b-b2fe-f88fb82d9b87",
             "5d587b65-8c90-41e3-96e0-ecb3bbfb0ac7",
             "5a0b9b21-4d7f-4b02-aef1-3598eae2f581",
@@ -3754,13 +3804,7 @@
             "5a2f6ccf-af93-4922-973d-6abfeb4d7cfc",
             "71c9ed41-8832-440d-a455-f52f284e8d14"
           ],
-          "unmatchedSourceNames": [
-            "Bruce Banner",
-            "Jennifer Walters",
-            "King T'Challa",
-            "Monica Rambeau",
-            "Tony Stark"
-          ]
+          "unmatchedSourceNames": []
         },
         "derivation": {
           "datasetUrl": "https://17lands-public.s3.amazonaws.com/analysis_data/game_data/game_data_public.MSH.Sealed.csv.gz",
@@ -3777,7 +3821,14 @@
           "La WR descrive le partite osservate, non la probabilità causale di vittoria della carta.",
           "Nessuna soglia minima applicata: consultare il campione, soprattutto quando è piccolo.",
           "Carte assenti o mai viste in mano conservano WR null. Il dataset pubblico ha una propria finestra storica."
-        ]
+        ],
+        "matchingVersion": 2,
+        "matchingFingerprint": "5d4ae31d6bea55db27a995860534d58de1f888d07d56dd2c1a543a4c8368a02e",
+        "reusedDerivedAcquisition": {
+          "path": "research/production-opus-20261028/17lands-corrections/marvel-super-heroes-Sealed.json",
+          "sha256": "f005d204d4f4c82dc66404dfa65d6ec4d345d90b627ede2b763954b3f14ce0ab",
+          "reason": "Same verified first-face matching method; acquisition preserved while adding explicit cache method metadata."
+        }
       }
     }
   },
@@ -4002,6 +4053,17 @@
             }
           },
           {
+            "catalogId": "61237530-ad49-469c-a952-67c92315708e",
+            "name": "Jennifer Walters // The Sensational She-Hulk",
+            "sourceName": "Jennifer Walters",
+            "sourceUrl": "https://www.17lands.com/public_datasets",
+            "metrics": {
+              "inHandWinRate": 65.49755301794454,
+              "games": 4904,
+              "wins": 3212
+            }
+          },
+          {
             "catalogId": "401f9ccf-f30c-4777-9a5b-4c340e724fff",
             "name": "Kree Commandos",
             "sourceName": "Kree Commandos",
@@ -4043,6 +4105,17 @@
               "inHandWinRate": 51.88776562822364,
               "games": 4847,
               "wins": 2515
+            }
+          },
+          {
+            "catalogId": "3f995518-b12a-4623-9ab3-b79a5cef3cba",
+            "name": "Monica Rambeau // Photon, Living Light",
+            "sourceName": "Monica Rambeau",
+            "sourceUrl": "https://www.17lands.com/public_datasets",
+            "metrics": {
+              "inHandWinRate": 63.4345080464453,
+              "games": 4909,
+              "wins": 3114
             }
           },
           {
@@ -4318,6 +4391,17 @@
               "inHandWinRate": 57.89271293981927,
               "games": 46809,
               "wins": 27099
+            }
+          },
+          {
+            "catalogId": "e0dbbdcf-84e1-494f-8b8c-0a094f603fa9",
+            "name": "Bruce Banner // The Incredible Hulk",
+            "sourceName": "Bruce Banner",
+            "sourceUrl": "https://www.17lands.com/public_datasets",
+            "metrics": {
+              "inHandWinRate": 60.577959887858526,
+              "games": 4637,
+              "wins": 2809
             }
           },
           {
@@ -4648,6 +4732,17 @@
               "inHandWinRate": 52.35201440468152,
               "games": 4443,
               "wins": 2326
+            }
+          },
+          {
+            "catalogId": "4cea42fd-035e-4b8f-8b1d-ff363b694f14",
+            "name": "Tony Stark // The Invincible Iron Man",
+            "sourceName": "Tony Stark",
+            "sourceUrl": "https://www.17lands.com/public_datasets",
+            "metrics": {
+              "inHandWinRate": 60.94251171971379,
+              "games": 4053,
+              "wins": 2470
             }
           },
           {
@@ -6169,6 +6264,17 @@
             }
           },
           {
+            "catalogId": "add7d3ce-aa58-4da0-8c2a-cfd01c3a8975",
+            "name": "King T'Challa // Black Panther, Hope Enduring",
+            "sourceName": "King T'Challa",
+            "sourceUrl": "https://www.17lands.com/public_datasets",
+            "metrics": {
+              "inHandWinRate": 61.722211519938355,
+              "games": 5191,
+              "wins": 3204
+            }
+          },
+          {
             "catalogId": "495c08ea-5502-4bfe-aa15-fa85556755ae",
             "name": "The Kingpin of Crime",
             "sourceName": "The Kingpin of Crime",
@@ -7491,14 +7597,9 @@
         ],
         "coverage": {
           "catalogCards": 375,
-          "matchedCards": 334,
-          "withWinRate": 334,
+          "matchedCards": 339,
+          "withWinRate": 339,
           "missingCatalogIds": [
-            "61237530-ad49-469c-a952-67c92315708e",
-            "3f995518-b12a-4623-9ab3-b79a5cef3cba",
-            "e0dbbdcf-84e1-494f-8b8c-0a094f603fa9",
-            "4cea42fd-035e-4b8f-8b1d-ff363b694f14",
-            "add7d3ce-aa58-4da0-8c2a-cfd01c3a8975",
             "ec191a2f-12b1-438b-b2fe-f88fb82d9b87",
             "5d587b65-8c90-41e3-96e0-ecb3bbfb0ac7",
             "5a0b9b21-4d7f-4b02-aef1-3598eae2f581",
@@ -7536,13 +7637,7 @@
             "5a2f6ccf-af93-4922-973d-6abfeb4d7cfc",
             "71c9ed41-8832-440d-a455-f52f284e8d14"
           ],
-          "unmatchedSourceNames": [
-            "Bruce Banner",
-            "Jennifer Walters",
-            "King T'Challa",
-            "Monica Rambeau",
-            "Tony Stark"
-          ]
+          "unmatchedSourceNames": []
         },
         "derivation": {
           "datasetUrl": "https://17lands-public.s3.amazonaws.com/analysis_data/game_data/game_data_public.MSH.PremierDraft.csv.gz",
@@ -7559,7 +7654,14 @@
           "La WR descrive le partite osservate, non la probabilità causale di vittoria della carta.",
           "Nessuna soglia minima applicata: consultare il campione, soprattutto quando è piccolo.",
           "Carte assenti o mai viste in mano conservano WR null. Il dataset pubblico ha una propria finestra storica."
-        ]
+        ],
+        "matchingVersion": 2,
+        "matchingFingerprint": "5d4ae31d6bea55db27a995860534d58de1f888d07d56dd2c1a543a4c8368a02e",
+        "reusedDerivedAcquisition": {
+          "path": "research/production-opus-20261028/17lands-corrections/marvel-super-heroes-PremierDraft.json",
+          "sha256": "4aca6d2ab0de4af1f361269e0294165bf57703af947de2ca75e0551c55950c5f",
+          "reason": "Same verified first-face matching method; acquisition preserved while adding explicit cache method metadata."
+        }
       }
     }
   }

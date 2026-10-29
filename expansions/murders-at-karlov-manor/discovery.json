@@ -33,6 +33,8 @@
           "reason": null,
           "status": "repeated",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/10/case-of-the-uneaten-feast?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -52,15 +54,24 @@
             "sharePct": 9.113924050632912
           },
           "trend": {
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
             "status": "rising",
-            "deltaPoints": 5.5873,
+            "deltaPoints": 6.3718,
             "previous": {
-              "decks": 507,
-              "withCard": 30
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 352,
+              "withCard": 20
             },
             "recent": {
-              "decks": 678,
-              "withCard": 78
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 448,
+              "withCard": 54
             }
           },
           "outlook": {
@@ -155,7 +166,8 @@
           ]
         }
       },
-      "generatedBy": "official-tournament-corpus-20261028"
+      "generatedBy": "official-tournament-corpus-20261028",
+      "generatedKind": "tournament-measurement"
     },
     {
       "name": "Doorkeeper Thrull",
@@ -191,6 +203,8 @@
           "reason": null,
           "status": "repeated",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/13/doorkeeper-thrull?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -210,15 +224,24 @@
             "sharePct": 3.3755274261603376
           },
           "trend": {
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
             "status": "rising",
-            "deltaPoints": 2.7971,
+            "deltaPoints": 1.9683,
             "previous": {
-              "decks": 507,
-              "withCard": 9
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 352,
+              "withCard": 8
             },
             "recent": {
-              "decks": 678,
-              "withCard": 31
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 448,
+              "withCard": 19
             }
           },
           "outlook": {
@@ -333,6 +356,8 @@
           "reason": null,
           "status": "first_sightings",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/13/doorkeeper-thrull?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -352,15 +377,24 @@
             "sharePct": 0.8948545861297539
           },
           "trend": {
-            "status": "falling",
-            "deltaPoints": -1.0591,
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
+            "status": "stable",
+            "deltaPoints": 0.0,
             "previous": {
-              "decks": 204,
-              "withCard": 3
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 128,
+              "withCard": 0
             },
             "recent": {
-              "decks": 243,
-              "withCard": 1
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 128,
+              "withCard": 0
             }
           },
           "outlook": {
@@ -430,6 +464,8 @@
           "reason": null,
           "status": "repeated",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/13/doorkeeper-thrull?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -449,14 +485,23 @@
             "sharePct": 1.2226512226512227
           },
           "trend": {
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
             "status": "falling",
-            "deltaPoints": -1.918,
+            "deltaPoints": -2.1181,
             "previous": {
-              "decks": 781,
-              "withCard": 17
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 576,
+              "withCard": 14
             },
             "recent": {
-              "decks": 773,
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 640,
               "withCard": 2
             }
           },
@@ -565,7 +610,8 @@
           ]
         }
       },
-      "generatedBy": "official-tournament-corpus-20261028"
+      "generatedBy": "official-tournament-corpus-20261028",
+      "generatedKind": "tournament-measurement"
     },
     {
       "name": "Novice Inspector",
@@ -601,6 +647,8 @@
           "reason": null,
           "status": "first_sightings",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/29/novice-inspector?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -620,14 +668,23 @@
             "sharePct": 0.16877637130801687
           },
           "trend": {
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
             "status": "stable",
-            "deltaPoints": -0.0497,
+            "deltaPoints": -0.0609,
             "previous": {
-              "decks": 507,
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 352,
               "withCard": 1
             },
             "recent": {
-              "decks": 678,
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 448,
               "withCard": 1
             }
           },
@@ -684,6 +741,8 @@
           "reason": null,
           "status": "first_sightings",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/29/novice-inspector?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -703,15 +762,24 @@
             "sharePct": 0.6711409395973155
           },
           "trend": {
-            "status": "rising",
-            "deltaPoints": 1.2346,
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
+            "status": "stable",
+            "deltaPoints": 1.5625,
             "previous": {
-              "decks": 204,
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 128,
               "withCard": 0
             },
             "recent": {
-              "decks": 243,
-              "withCard": 3
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 128,
+              "withCard": 2
             }
           },
           "outlook": {
@@ -821,6 +889,8 @@
           "reason": null,
           "status": "repeated",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/29/novice-inspector?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -840,15 +910,24 @@
             "sharePct": 4.993909866017052
           },
           "trend": {
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
             "status": "stable",
-            "deltaPoints": -0.9444,
+            "deltaPoints": -0.4688,
             "previous": {
-              "decks": 442,
-              "withCard": 24
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 384,
+              "withCard": 21
             },
             "recent": {
-              "decks": 379,
-              "withCard": 17
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 320,
+              "withCard": 16
             }
           },
           "outlook": {
@@ -930,7 +1009,8 @@
           "archetypes": []
         }
       },
-      "generatedBy": "official-tournament-corpus-20261028"
+      "generatedBy": "official-tournament-corpus-20261028",
+      "generatedKind": "tournament-measurement"
     },
     {
       "name": "Cryptic Coat",
@@ -965,6 +1045,8 @@
           "reason": null,
           "status": "first_sightings",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/50/cryptic-coat?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -984,14 +1066,23 @@
             "sharePct": 0.08438818565400844
           },
           "trend": {
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
             "status": "stable",
-            "deltaPoints": -0.1972,
+            "deltaPoints": 0.0,
             "previous": {
-              "decks": 507,
-              "withCard": 1
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 352,
+              "withCard": 0
             },
             "recent": {
-              "decks": 678,
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 448,
               "withCard": 0
             }
           },
@@ -1034,6 +1125,8 @@
           "reason": null,
           "status": "repeated",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/50/cryptic-coat?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -1053,15 +1146,24 @@
             "sharePct": 0.3861003861003861
           },
           "trend": {
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
             "status": "stable",
-            "deltaPoints": 0.2614,
+            "deltaPoints": 0.2951,
             "previous": {
-              "decks": 781,
-              "withCard": 2
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 576,
+              "withCard": 1
             },
             "recent": {
-              "decks": 773,
-              "withCard": 4
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 640,
+              "withCard": 3
             }
           },
           "outlook": {
@@ -1127,7 +1229,8 @@
           "archetypes": []
         }
       },
-      "generatedBy": "official-tournament-corpus-20261028"
+      "generatedBy": "official-tournament-corpus-20261028",
+      "generatedKind": "tournament-measurement"
     },
     {
       "name": "Deduce",
@@ -1161,6 +1264,8 @@
           "reason": null,
           "status": "repeated",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/52/deduce?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -1180,19 +1285,28 @@
             "sharePct": 3.3557046979865772
           },
           "trend": {
-            "status": "rising",
-            "deltaPoints": 1.6642,
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
+            "status": "stable",
+            "deltaPoints": 0.7812,
             "previous": {
-              "decks": 204,
-              "withCard": 5
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 128,
+              "withCard": 2
             },
             "recent": {
-              "decks": 243,
-              "withCard": 10
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 128,
+              "withCard": 3
             }
           },
           "outlook": {
-            "status": "watch",
+            "status": "repeated_use",
             "kind": "observational_signal_not_forecast"
           },
           "history": {
@@ -1298,7 +1412,8 @@
           "archetypes": []
         }
       },
-      "generatedBy": "official-tournament-corpus-20261028"
+      "generatedBy": "official-tournament-corpus-20261028",
+      "generatedKind": "tournament-measurement"
     },
     {
       "name": "Proft's Eidetic Memory",
@@ -1332,6 +1447,8 @@
           "reason": null,
           "status": "repeated",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/67/profts-eidetic-memory?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -1351,15 +1468,24 @@
             "sharePct": 10.738255033557047
           },
           "trend": {
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
             "status": "falling",
-            "deltaPoints": -5.495,
+            "deltaPoints": -6.25,
             "previous": {
-              "decks": 204,
-              "withCard": 28
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 128,
+              "withCard": 21
             },
             "recent": {
-              "decks": 243,
-              "withCard": 20
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 128,
+              "withCard": 13
             }
           },
           "outlook": {
@@ -1474,7 +1600,8 @@
           "archetypes": []
         }
       },
-      "generatedBy": "official-tournament-corpus-20261028"
+      "generatedBy": "official-tournament-corpus-20261028",
+      "generatedKind": "tournament-measurement"
     },
     {
       "name": "Steamcore Scholar",
@@ -1509,6 +1636,8 @@
           "reason": null,
           "status": "repeated",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/71/steamcore-scholar?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -1528,15 +1657,24 @@
             "sharePct": 2.869198312236287
           },
           "trend": {
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
             "status": "rising",
-            "deltaPoints": 1.9122,
+            "deltaPoints": 2.5974,
             "previous": {
-              "decks": 507,
-              "withCard": 9
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 352,
+              "withCard": 5
             },
             "recent": {
-              "decks": 678,
-              "withCard": 25
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 448,
+              "withCard": 18
             }
           },
           "outlook": {
@@ -1647,6 +1785,8 @@
           "reason": null,
           "status": "first_sightings",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/71/steamcore-scholar?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -1666,14 +1806,23 @@
             "sharePct": 0.19305019305019305
           },
           "trend": {
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
             "status": "stable",
-            "deltaPoints": 0.1307,
+            "deltaPoints": 0.1389,
             "previous": {
-              "decks": 781,
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 576,
               "withCard": 1
             },
             "recent": {
-              "decks": 773,
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 640,
               "withCard": 2
             }
           },
@@ -1737,7 +1886,8 @@
           "archetypes": []
         }
       },
-      "generatedBy": "official-tournament-corpus-20261028"
+      "generatedBy": "official-tournament-corpus-20261028",
+      "generatedKind": "tournament-measurement"
     },
     {
       "name": "Deadly Cover-Up",
@@ -1772,6 +1922,8 @@
           "reason": null,
           "status": "repeated",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/83/deadly-cover-up?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -1791,19 +1943,28 @@
             "sharePct": 14.345991561181435
           },
           "trend": {
-            "status": "rising",
-            "deltaPoints": 4.0451,
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
+            "status": "stable",
+            "deltaPoints": 0.7102,
             "previous": {
-              "decks": 507,
-              "withCard": 61
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 352,
+              "withCard": 47
             },
             "recent": {
-              "decks": 678,
-              "withCard": 109
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 448,
+              "withCard": 63
             }
           },
           "outlook": {
-            "status": "watch",
+            "status": "repeated_use",
             "kind": "observational_signal_not_forecast"
           },
           "history": {
@@ -1952,6 +2113,8 @@
           "reason": null,
           "status": "repeated",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/83/deadly-cover-up?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -1971,15 +2134,24 @@
             "sharePct": 1.5659955257270695
           },
           "trend": {
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
             "status": "stable",
-            "deltaPoints": 0.1755,
+            "deltaPoints": -0.7812,
             "previous": {
-              "decks": 204,
-              "withCard": 3
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 128,
+              "withCard": 2
             },
             "recent": {
-              "decks": 243,
-              "withCard": 4
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 128,
+              "withCard": 1
             }
           },
           "outlook": {
@@ -2086,7 +2258,8 @@
           "archetypes": []
         }
       },
-      "generatedBy": "official-tournament-corpus-20261028"
+      "generatedBy": "official-tournament-corpus-20261028",
+      "generatedKind": "tournament-measurement"
     },
     {
       "name": "Extract a Confession",
@@ -2120,6 +2293,8 @@
           "reason": null,
           "status": "repeated",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/84/extract-a-confession?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -2139,15 +2314,24 @@
             "sharePct": 24.116930572472594
           },
           "trend": {
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
             "status": "falling",
-            "deltaPoints": -9.5094,
+            "deltaPoints": -10.7812,
             "previous": {
-              "decks": 442,
-              "withCard": 126
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 384,
+              "withCard": 111
             },
             "recent": {
-              "decks": 379,
-              "withCard": 72
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 320,
+              "withCard": 58
             }
           },
           "outlook": {
@@ -2233,7 +2417,8 @@
           "archetypes": []
         }
       },
-      "generatedBy": "official-tournament-corpus-20261028"
+      "generatedBy": "official-tournament-corpus-20261028",
+      "generatedKind": "tournament-measurement"
     },
     {
       "name": "Outrageous Robbery",
@@ -2267,6 +2452,8 @@
           "reason": null,
           "status": "repeated",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/97/outrageous-robbery?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -2286,15 +2473,24 @@
             "sharePct": 5.063291139240507
           },
           "trend": {
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
             "status": "falling",
-            "deltaPoints": -1.8371,
+            "deltaPoints": -1.6234,
             "previous": {
-              "decks": 507,
-              "withCard": 31
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 352,
+              "withCard": 23
             },
             "recent": {
-              "decks": 678,
-              "withCard": 29
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 448,
+              "withCard": 22
             }
           },
           "outlook": {
@@ -2404,7 +2600,8 @@
           ]
         }
       },
-      "generatedBy": "official-tournament-corpus-20261028"
+      "generatedBy": "official-tournament-corpus-20261028",
+      "generatedKind": "tournament-measurement"
     },
     {
       "name": "Toxin Analysis",
@@ -2438,6 +2635,8 @@
           "reason": null,
           "status": "repeated",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/107/toxin-analysis?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -2457,15 +2656,24 @@
             "sharePct": 6.577344701583435
           },
           "trend": {
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
             "status": "stable",
-            "deltaPoints": 0.5253,
+            "deltaPoints": -0.2604,
             "previous": {
-              "decks": 442,
-              "withCard": 28
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 384,
+              "withCard": 25
             },
             "recent": {
-              "decks": 379,
-              "withCard": 26
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 320,
+              "withCard": 20
             }
           },
           "outlook": {
@@ -2551,7 +2759,8 @@
           "archetypes": []
         }
       },
-      "generatedBy": "official-tournament-corpus-20261028"
+      "generatedBy": "official-tournament-corpus-20261028",
+      "generatedKind": "tournament-measurement"
     },
     {
       "name": "Anzrag's Rampage",
@@ -2585,6 +2794,8 @@
           "reason": null,
           "status": "repeated",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/111/anzrags-rampage?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -2604,15 +2815,24 @@
             "sharePct": 0.6751054852320675
           },
           "trend": {
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
             "status": "stable",
-            "deltaPoints": 0.8352,
+            "deltaPoints": 0.6088,
             "previous": {
-              "decks": 507,
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 352,
               "withCard": 1
             },
             "recent": {
-              "decks": 678,
-              "withCard": 7
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 448,
+              "withCard": 4
             }
           },
           "outlook": {
@@ -2682,7 +2902,8 @@
           ]
         }
       },
-      "generatedBy": "official-tournament-corpus-20261028"
+      "generatedBy": "official-tournament-corpus-20261028",
+      "generatedKind": "tournament-measurement"
     },
     {
       "name": "Case of the Crimson Pulse",
@@ -2717,6 +2938,8 @@
           "reason": null,
           "status": "repeated",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/114/case-of-the-crimson-pulse?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -2736,15 +2959,24 @@
             "sharePct": 0.5063291139240507
           },
           "trend": {
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
             "status": "stable",
-            "deltaPoints": 0.5402,
+            "deltaPoints": 0.6088,
             "previous": {
-              "decks": 507,
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 352,
               "withCard": 1
             },
             "recent": {
-              "decks": 678,
-              "withCard": 5
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 448,
+              "withCard": 4
             }
           },
           "outlook": {
@@ -2862,6 +3094,8 @@
           "reason": null,
           "status": "first_sightings",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/114/case-of-the-crimson-pulse?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -2881,15 +3115,24 @@
             "sharePct": 0.44742729306487694
           },
           "trend": {
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
             "status": "stable",
-            "deltaPoints": 0.823,
+            "deltaPoints": 0.7812,
             "previous": {
-              "decks": 204,
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 128,
               "withCard": 0
             },
             "recent": {
-              "decks": 243,
-              "withCard": 2
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 128,
+              "withCard": 1
             }
           },
           "outlook": {
@@ -2978,7 +3221,8 @@
           "archetypes": []
         }
       },
-      "generatedBy": "official-tournament-corpus-20261028"
+      "generatedBy": "official-tournament-corpus-20261028",
+      "generatedKind": "tournament-measurement"
     },
     {
       "name": "Krenko's Buzzcrusher",
@@ -3012,6 +3256,8 @@
           "reason": null,
           "status": "repeated",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/136/krenkos-buzzcrusher?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -3031,15 +3277,24 @@
             "sharePct": 1.342281879194631
           },
           "trend": {
-            "status": "falling",
-            "deltaPoints": -1.1377,
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
+            "status": "stable",
+            "deltaPoints": -1.5625,
             "previous": {
-              "decks": 204,
-              "withCard": 4
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 128,
+              "withCard": 2
             },
             "recent": {
-              "decks": 243,
-              "withCard": 2
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 128,
+              "withCard": 0
             }
           },
           "outlook": {
@@ -3143,7 +3398,8 @@
           "archetypes": []
         }
       },
-      "generatedBy": "official-tournament-corpus-20261028"
+      "generatedBy": "official-tournament-corpus-20261028",
+      "generatedKind": "tournament-measurement"
     },
     {
       "name": "Shock",
@@ -3177,6 +3433,8 @@
           "reason": null,
           "status": "repeated",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/144/shock?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -3196,15 +3454,24 @@
             "sharePct": 0.5907172995780591
           },
           "trend": {
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
             "status": "stable",
-            "deltaPoints": -0.0017,
+            "deltaPoints": -0.1826,
             "previous": {
-              "decks": 507,
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 352,
               "withCard": 3
             },
             "recent": {
-              "decks": 678,
-              "withCard": 4
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 448,
+              "withCard": 3
             }
           },
           "outlook": {
@@ -3315,7 +3582,8 @@
           ]
         }
       },
-      "generatedBy": "official-tournament-corpus-20261028"
+      "generatedBy": "official-tournament-corpus-20261028",
+      "generatedKind": "tournament-measurement"
     },
     {
       "name": "Vengeful Tracker",
@@ -3350,6 +3618,8 @@
           "reason": null,
           "status": "repeated",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/147/vengeful-tracker?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -3369,15 +3639,24 @@
             "sharePct": 5.063291139240507
           },
           "trend": {
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
             "status": "stable",
-            "deltaPoints": -0.8029,
+            "deltaPoints": -0.2232,
             "previous": {
-              "decks": 507,
-              "withCard": 28
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 352,
+              "withCard": 22
             },
             "recent": {
-              "decks": 678,
-              "withCard": 32
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 448,
+              "withCard": 27
             }
           },
           "outlook": {
@@ -3481,6 +3760,8 @@
           "reason": null,
           "status": "first_sightings",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/147/vengeful-tracker?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -3500,15 +3781,24 @@
             "sharePct": 0.22371364653243847
           },
           "trend": {
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
             "status": "stable",
-            "deltaPoints": 0.4115,
+            "deltaPoints": 0.0,
             "previous": {
-              "decks": 204,
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 128,
               "withCard": 0
             },
             "recent": {
-              "decks": 243,
-              "withCard": 1
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 128,
+              "withCard": 0
             }
           },
           "outlook": {
@@ -3543,7 +3833,8 @@
           "archetypes": []
         }
       },
-      "generatedBy": "official-tournament-corpus-20261028"
+      "generatedBy": "official-tournament-corpus-20261028",
+      "generatedKind": "tournament-measurement"
     },
     {
       "name": "Aftermath Analyst",
@@ -3578,6 +3869,8 @@
           "reason": null,
           "status": "repeated",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/148/aftermath-analyst?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -3597,15 +3890,24 @@
             "sharePct": 1.1185682326621924
           },
           "trend": {
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
             "status": "rising",
-            "deltaPoints": 1.1559,
+            "deltaPoints": 1.5625,
             "previous": {
-              "decks": 204,
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 128,
               "withCard": 1
             },
             "recent": {
-              "decks": 243,
-              "withCard": 4
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 128,
+              "withCard": 3
             }
           },
           "outlook": {
@@ -3677,6 +3979,8 @@
           "reason": null,
           "status": "repeated",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/148/aftermath-analyst?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -3696,15 +4000,24 @@
             "sharePct": 2.187902187902188
           },
           "trend": {
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
             "status": "stable",
-            "deltaPoints": 0.5373,
+            "deltaPoints": 0.7465,
             "previous": {
-              "decks": 781,
-              "withCard": 15
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 576,
+              "withCard": 11
             },
             "recent": {
-              "decks": 773,
-              "withCard": 19
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 640,
+              "withCard": 17
             }
           },
           "outlook": {
@@ -3833,7 +4146,8 @@
           "archetypes": []
         }
       },
-      "generatedBy": "official-tournament-corpus-20261028"
+      "generatedBy": "official-tournament-corpus-20261028",
+      "generatedKind": "tournament-measurement"
     },
     {
       "name": "Analyze the Pollen",
@@ -3867,6 +4181,8 @@
           "reason": null,
           "status": "repeated",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/150/analyze-the-pollen?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -3886,14 +4202,23 @@
             "sharePct": 0.9282700421940928
           },
           "trend": {
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
             "status": "falling",
-            "deltaPoints": -1.1354,
+            "deltaPoints": -1.6031,
             "previous": {
-              "decks": 507,
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 352,
               "withCard": 8
             },
             "recent": {
-              "decks": 678,
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 448,
               "withCard": 3
             }
           },
@@ -3976,7 +4301,8 @@
           "archetypes": []
         }
       },
-      "generatedBy": "official-tournament-corpus-20261028"
+      "generatedBy": "official-tournament-corpus-20261028",
+      "generatedKind": "tournament-measurement"
     },
     {
       "name": "Archdruid's Charm",
@@ -4011,6 +4337,8 @@
           "reason": null,
           "status": "first_sightings",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/151/archdruids-charm?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -4030,15 +4358,24 @@
             "sharePct": 0.16877637130801687
           },
           "trend": {
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
             "status": "stable",
-            "deltaPoints": 0.295,
+            "deltaPoints": 0.2232,
             "previous": {
-              "decks": 507,
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 352,
               "withCard": 0
             },
             "recent": {
-              "decks": 678,
-              "withCard": 2
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 448,
+              "withCard": 1
             }
           },
           "outlook": {
@@ -4139,6 +4476,8 @@
           "reason": null,
           "status": "first_sightings",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/151/archdruids-charm?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -4158,14 +4497,23 @@
             "sharePct": 0.2574002574002574
           },
           "trend": {
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
             "status": "stable",
-            "deltaPoints": 0.0027,
+            "deltaPoints": -0.0347,
             "previous": {
-              "decks": 781,
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 576,
               "withCard": 2
             },
             "recent": {
-              "decks": 773,
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 640,
               "withCard": 2
             }
           },
@@ -4230,7 +4578,8 @@
           "archetypes": []
         }
       },
-      "generatedBy": "official-tournament-corpus-20261028"
+      "generatedBy": "official-tournament-corpus-20261028",
+      "generatedKind": "tournament-measurement"
     },
     {
       "name": "Hard-Hitting Question",
@@ -4264,6 +4613,8 @@
           "reason": null,
           "status": "repeated",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/164/hard-hitting-question?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -4283,15 +4634,24 @@
             "sharePct": 2.9535864978902953
           },
           "trend": {
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
             "status": "rising",
-            "deltaPoints": 2.7491,
+            "deltaPoints": 2.8206,
             "previous": {
-              "decks": 507,
-              "withCard": 7
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 352,
+              "withCard": 5
             },
             "recent": {
-              "decks": 678,
-              "withCard": 28
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 448,
+              "withCard": 19
             }
           },
           "outlook": {
@@ -4376,7 +4736,8 @@
           ]
         }
       },
-      "generatedBy": "official-tournament-corpus-20261028"
+      "generatedBy": "official-tournament-corpus-20261028",
+      "generatedKind": "tournament-measurement"
     },
     {
       "name": "Pick Your Poison",
@@ -4412,6 +4773,8 @@
           "reason": null,
           "status": "repeated",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/170/pick-your-poison?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -4431,15 +4794,24 @@
             "sharePct": 2.278481012658228
           },
           "trend": {
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
             "status": "rising",
-            "deltaPoints": 1.9139,
+            "deltaPoints": 1.9278,
             "previous": {
-              "decks": 507,
-              "withCard": 6
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 352,
+              "withCard": 5
             },
             "recent": {
-              "decks": 678,
-              "withCard": 21
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 448,
+              "withCard": 15
             }
           },
           "outlook": {
@@ -4542,6 +4914,8 @@
           "reason": null,
           "status": "first_sightings",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/170/pick-your-poison?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -4561,14 +4935,23 @@
             "sharePct": 0.44742729306487694
           },
           "trend": {
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
             "status": "stable",
-            "deltaPoints": -0.9804,
+            "deltaPoints": 0.0,
             "previous": {
-              "decks": 204,
-              "withCard": 2
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 128,
+              "withCard": 0
             },
             "recent": {
-              "decks": 243,
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 128,
               "withCard": 0
             }
           },
@@ -4639,6 +5022,8 @@
           "reason": null,
           "status": "repeated",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/170/pick-your-poison?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -4658,15 +5043,24 @@
             "sharePct": 1.1583011583011582
           },
           "trend": {
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
             "status": "stable",
-            "deltaPoints": 0.0119,
+            "deltaPoints": -0.1215,
             "previous": {
-              "decks": 781,
-              "withCard": 9
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 576,
+              "withCard": 7
             },
             "recent": {
-              "decks": 773,
-              "withCard": 9
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 640,
+              "withCard": 7
             }
           },
           "outlook": {
@@ -4742,7 +5136,8 @@
           "archetypes": []
         }
       },
-      "generatedBy": "official-tournament-corpus-20261028"
+      "generatedBy": "official-tournament-corpus-20261028",
+      "generatedKind": "tournament-measurement"
     },
     {
       "name": "Rubblebelt Maverick",
@@ -4777,6 +5172,8 @@
           "reason": null,
           "status": "repeated",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/174/rubblebelt-maverick?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -4796,14 +5193,23 @@
             "sharePct": 0.4219409282700422
           },
           "trend": {
-            "status": "stable",
-            "deltaPoints": -0.9862,
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
+            "status": "falling",
+            "deltaPoints": -1.1364,
             "previous": {
-              "decks": 507,
-              "withCard": 5
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 352,
+              "withCard": 4
             },
             "recent": {
-              "decks": 678,
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 448,
               "withCard": 0
             }
           },
@@ -4875,6 +5281,8 @@
           "reason": null,
           "status": "first_sightings",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/174/rubblebelt-maverick?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -4894,15 +5302,24 @@
             "sharePct": 0.3654080389768575
           },
           "trend": {
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
             "status": "stable",
-            "deltaPoints": 0.3015,
+            "deltaPoints": 0.0521,
             "previous": {
-              "decks": 442,
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 384,
               "withCard": 1
             },
             "recent": {
-              "decks": 379,
-              "withCard": 2
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 320,
+              "withCard": 1
             }
           },
           "outlook": {
@@ -4965,7 +5382,8 @@
           "archetypes": []
         }
       },
-      "generatedBy": "official-tournament-corpus-20261028"
+      "generatedBy": "official-tournament-corpus-20261028",
+      "generatedKind": "tournament-measurement"
     },
     {
       "name": "Vitu-Ghazi Inspector",
@@ -4999,6 +5417,8 @@
           "reason": null,
           "status": "repeated",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/183/vitu-ghazi-inspector?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -5018,15 +5438,24 @@
             "sharePct": 4.38489646772229
           },
           "trend": {
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
             "status": "falling",
-            "deltaPoints": -1.2834,
+            "deltaPoints": -2.3438,
             "previous": {
-              "decks": 442,
-              "withCard": 22
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 384,
+              "withCard": 21
             },
             "recent": {
-              "decks": 379,
-              "withCard": 14
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 320,
+              "withCard": 10
             }
           },
           "outlook": {
@@ -5105,7 +5534,8 @@
           "archetypes": []
         }
       },
-      "generatedBy": "official-tournament-corpus-20261028"
+      "generatedBy": "official-tournament-corpus-20261028",
+      "generatedKind": "tournament-measurement"
     },
     {
       "name": "Assassin's Trophy",
@@ -5141,6 +5571,8 @@
           "reason": null,
           "status": "first_sightings",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/187/assassins-trophy?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -5160,15 +5592,24 @@
             "sharePct": 0.25316455696202533
           },
           "trend": {
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
             "status": "stable",
-            "deltaPoints": 0.0977,
+            "deltaPoints": -0.2841,
             "previous": {
-              "decks": 507,
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 352,
               "withCard": 1
             },
             "recent": {
-              "decks": 678,
-              "withCard": 2
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 448,
+              "withCard": 0
             }
           },
           "outlook": {
@@ -5243,6 +5684,8 @@
           "reason": null,
           "status": "repeated",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/187/assassins-trophy?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -5262,15 +5705,24 @@
             "sharePct": 1.7897091722595078
           },
           "trend": {
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
             "status": "falling",
-            "deltaPoints": -1.2164,
+            "deltaPoints": -1.5625,
             "previous": {
-              "decks": 204,
-              "withCard": 5
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 128,
+              "withCard": 4
             },
             "recent": {
-              "decks": 243,
-              "withCard": 3
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 128,
+              "withCard": 2
             }
           },
           "outlook": {
@@ -5384,6 +5836,8 @@
           "reason": null,
           "status": "first_sightings",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/187/assassins-trophy?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -5403,14 +5857,23 @@
             "sharePct": 0.19305019305019305
           },
           "trend": {
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
             "status": "stable",
-            "deltaPoints": -0.1267,
+            "deltaPoints": -0.191,
             "previous": {
-              "decks": 781,
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 576,
               "withCard": 2
             },
             "recent": {
-              "decks": 773,
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 640,
               "withCard": 1
             }
           },
@@ -5474,7 +5937,8 @@
           "archetypes": []
         }
       },
-      "generatedBy": "official-tournament-corpus-20261028"
+      "generatedBy": "official-tournament-corpus-20261028",
+      "generatedKind": "tournament-measurement"
     },
     {
       "name": "Break Out",
@@ -5509,6 +5973,8 @@
           "reason": null,
           "status": "first_sightings",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/190/break-out?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -5528,15 +5994,24 @@
             "sharePct": 0.25316455696202533
           },
           "trend": {
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
             "status": "stable",
-            "deltaPoints": 0.4425,
+            "deltaPoints": 0.2232,
             "previous": {
-              "decks": 507,
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 352,
               "withCard": 0
             },
             "recent": {
-              "decks": 678,
-              "withCard": 3
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 448,
+              "withCard": 1
             }
           },
           "outlook": {
@@ -5611,6 +6086,8 @@
           "reason": null,
           "status": "first_sightings",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/190/break-out?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -5630,15 +6107,24 @@
             "sharePct": 0.44742729306487694
           },
           "trend": {
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
             "status": "stable",
-            "deltaPoints": 0.823,
+            "deltaPoints": 0.0,
             "previous": {
-              "decks": 204,
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 128,
               "withCard": 0
             },
             "recent": {
-              "decks": 243,
-              "withCard": 2
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 128,
+              "withCard": 0
             }
           },
           "outlook": {
@@ -5687,7 +6173,8 @@
           "archetypes": []
         }
       },
-      "generatedBy": "official-tournament-corpus-20261028"
+      "generatedBy": "official-tournament-corpus-20261028",
+      "generatedKind": "tournament-measurement"
     },
     {
       "name": "Gleaming Geardrake",
@@ -5722,6 +6209,8 @@
           "reason": null,
           "status": "first_sightings",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/205/gleaming-geardrake?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -5741,14 +6230,23 @@
             "sharePct": 0.08438818565400844
           },
           "trend": {
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
             "status": "stable",
-            "deltaPoints": -0.1972,
+            "deltaPoints": 0.0,
             "previous": {
-              "decks": 507,
-              "withCard": 1
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 352,
+              "withCard": 0
             },
             "recent": {
-              "decks": 678,
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 448,
               "withCard": 0
             }
           },
@@ -5791,6 +6289,8 @@
           "reason": null,
           "status": "first_sightings",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/205/gleaming-geardrake?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -5810,15 +6310,24 @@
             "sharePct": 0.44742729306487694
           },
           "trend": {
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
             "status": "stable",
-            "deltaPoints": -0.0787,
+            "deltaPoints": 0.0,
             "previous": {
-              "decks": 204,
-              "withCard": 1
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 128,
+              "withCard": 0
             },
             "recent": {
-              "decks": 243,
-              "withCard": 1
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 128,
+              "withCard": 0
             }
           },
           "outlook": {
@@ -5907,7 +6416,8 @@
           "archetypes": []
         }
       },
-      "generatedBy": "official-tournament-corpus-20261028"
+      "generatedBy": "official-tournament-corpus-20261028",
+      "generatedKind": "tournament-measurement"
     },
     {
       "name": "Ill-Timed Explosion",
@@ -5941,6 +6451,8 @@
           "reason": null,
           "status": "repeated",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/207/ill-timed-explosion?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -5960,19 +6472,28 @@
             "sharePct": 1.4345991561181435
           },
           "trend": {
-            "status": "rising",
-            "deltaPoints": 1.4732,
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
+            "status": "stable",
+            "deltaPoints": 0.7711,
             "previous": {
-              "decks": 507,
-              "withCard": 3
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 352,
+              "withCard": 2
             },
             "recent": {
-              "decks": 678,
-              "withCard": 14
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 448,
+              "withCard": 6
             }
           },
           "outlook": {
-            "status": "watch",
+            "status": "repeated_use",
             "kind": "observational_signal_not_forecast"
           },
           "history": {
@@ -6092,7 +6613,8 @@
           ]
         }
       },
-      "generatedBy": "official-tournament-corpus-20261028"
+      "generatedBy": "official-tournament-corpus-20261028",
+      "generatedKind": "tournament-measurement"
     },
     {
       "name": "Leyline of the Guildpact",
@@ -6127,6 +6649,8 @@
           "reason": null,
           "status": "repeated",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/217/leyline-of-the-guildpact?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -6146,15 +6670,24 @@
             "sharePct": 6.487695749440716
           },
           "trend": {
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
             "status": "rising",
-            "deltaPoints": 10.1307,
+            "deltaPoints": 10.1562,
             "previous": {
-              "decks": 204,
-              "withCard": 2
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 128,
+              "withCard": 1
             },
             "recent": {
-              "decks": 243,
-              "withCard": 27
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 128,
+              "withCard": 14
             }
           },
           "outlook": {
@@ -6230,6 +6763,8 @@
           "reason": null,
           "status": "repeated",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/217/leyline-of-the-guildpact?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -6249,15 +6784,24 @@
             "sharePct": 5.341055341055341
           },
           "trend": {
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
             "status": "falling",
-            "deltaPoints": -1.3607,
+            "deltaPoints": -1.25,
             "previous": {
-              "decks": 781,
-              "withCard": 47
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 576,
+              "withCard": 36
             },
             "recent": {
-              "decks": 773,
-              "withCard": 36
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 640,
+              "withCard": 32
             }
           },
           "outlook": {
@@ -6402,7 +6946,8 @@
           ]
         }
       },
-      "generatedBy": "official-tournament-corpus-20261028"
+      "generatedBy": "official-tournament-corpus-20261028",
+      "generatedKind": "tournament-measurement"
     },
     {
       "name": "Lightning Helix",
@@ -6438,6 +6983,8 @@
           "reason": null,
           "status": "repeated",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/218/lightning-helix?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -6457,15 +7004,24 @@
             "sharePct": 3.628691983122363
           },
           "trend": {
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
             "status": "falling",
-            "deltaPoints": -2.6208,
+            "deltaPoints": -3.0641,
             "previous": {
-              "decks": 507,
-              "withCard": 26
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 352,
+              "withCard": 21
             },
             "recent": {
-              "decks": 678,
-              "withCard": 17
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 448,
+              "withCard": 13
             }
           },
           "outlook": {
@@ -6604,6 +7160,8 @@
           "reason": null,
           "status": "first_sightings",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/218/lightning-helix?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -6623,15 +7181,24 @@
             "sharePct": 0.8948545861297539
           },
           "trend": {
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
             "status": "rising",
-            "deltaPoints": 1.6461,
+            "deltaPoints": 2.3438,
             "previous": {
-              "decks": 204,
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 128,
               "withCard": 0
             },
             "recent": {
-              "decks": 243,
-              "withCard": 4
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 128,
+              "withCard": 3
             }
           },
           "outlook": {
@@ -6742,6 +7309,8 @@
           "reason": null,
           "status": "repeated",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/218/lightning-helix?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -6761,14 +7330,23 @@
             "sharePct": 0.8365508365508365
           },
           "trend": {
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
             "status": "stable",
-            "deltaPoints": 0.3947,
+            "deltaPoints": 0.5556,
             "previous": {
-              "decks": 781,
-              "withCard": 5
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 576,
+              "withCard": 4
             },
             "recent": {
-              "decks": 773,
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 640,
               "withCard": 8
             }
           },
@@ -6842,7 +7420,8 @@
           "archetypes": []
         }
       },
-      "generatedBy": "official-tournament-corpus-20261028"
+      "generatedBy": "official-tournament-corpus-20261028",
+      "generatedKind": "tournament-measurement"
     },
     {
       "name": "No More Lies",
@@ -6878,6 +7457,8 @@
           "reason": null,
           "status": "repeated",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/221/no-more-lies?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -6897,15 +7478,24 @@
             "sharePct": 10.126582278481013
           },
           "trend": {
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
             "status": "falling",
-            "deltaPoints": -4.019,
+            "deltaPoints": -3.3279,
             "previous": {
-              "decks": 507,
-              "withCard": 63
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 352,
+              "withCard": 40
             },
             "recent": {
-              "decks": 678,
-              "withCard": 57
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 448,
+              "withCard": 36
             }
           },
           "outlook": {
@@ -7057,6 +7647,8 @@
           "reason": null,
           "status": "repeated",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/221/no-more-lies?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -7076,15 +7668,24 @@
             "sharePct": 2.0134228187919465
           },
           "trend": {
-            "status": "stable",
-            "deltaPoints": -0.8049,
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
+            "status": "falling",
+            "deltaPoints": -2.3438,
             "previous": {
-              "decks": 204,
-              "withCard": 5
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 128,
+              "withCard": 4
             },
             "recent": {
-              "decks": 243,
-              "withCard": 4
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 128,
+              "withCard": 1
             }
           },
           "outlook": {
@@ -7198,6 +7799,8 @@
           "reason": null,
           "status": "repeated",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/221/no-more-lies?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -7217,15 +7820,24 @@
             "sharePct": 1.093951093951094
           },
           "trend": {
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
             "status": "stable",
-            "deltaPoints": 0.14,
+            "deltaPoints": -0.1042,
             "previous": {
-              "decks": 781,
-              "withCard": 8
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 576,
+              "withCard": 6
             },
             "recent": {
-              "decks": 773,
-              "withCard": 9
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 640,
+              "withCard": 6
             }
           },
           "outlook": {
@@ -7300,7 +7912,8 @@
           "archetypes": []
         }
       },
-      "generatedBy": "official-tournament-corpus-20261028"
+      "generatedBy": "official-tournament-corpus-20261028",
+      "generatedKind": "tournament-measurement"
     },
     {
       "name": "Commercial District",
@@ -7336,6 +7949,8 @@
           "reason": null,
           "status": "first_sightings",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/259/commercial-district?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -7355,15 +7970,24 @@
             "sharePct": 0.33755274261603374
           },
           "trend": {
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
             "status": "stable",
-            "deltaPoints": -0.0995,
+            "deltaPoints": -0.345,
             "previous": {
-              "decks": 507,
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 352,
               "withCard": 2
             },
             "recent": {
-              "decks": 678,
-              "withCard": 2
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 448,
+              "withCard": 1
             }
           },
           "outlook": {
@@ -7434,6 +8058,8 @@
           "reason": null,
           "status": "first_sightings",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/259/commercial-district?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -7453,15 +8079,24 @@
             "sharePct": 0.22371364653243847
           },
           "trend": {
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
             "status": "stable",
-            "deltaPoints": 0.4115,
+            "deltaPoints": 0.0,
             "previous": {
-              "decks": 204,
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 128,
               "withCard": 0
             },
             "recent": {
-              "decks": 243,
-              "withCard": 1
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 128,
+              "withCard": 0
             }
           },
           "outlook": {
@@ -7517,6 +8152,8 @@
           "reason": null,
           "status": "repeated",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/259/commercial-district?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -7536,15 +8173,24 @@
             "sharePct": 6.563706563706564
           },
           "trend": {
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
             "status": "falling",
-            "deltaPoints": -1.9917,
+            "deltaPoints": -2.9167,
             "previous": {
-              "decks": 781,
-              "withCard": 59
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 576,
+              "withCard": 51
             },
             "recent": {
-              "decks": 773,
-              "withCard": 43
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 640,
+              "withCard": 38
             }
           },
           "outlook": {
@@ -7692,7 +8338,8 @@
           ]
         }
       },
-      "generatedBy": "official-tournament-corpus-20261028"
+      "generatedBy": "official-tournament-corpus-20261028",
+      "generatedKind": "tournament-measurement"
     },
     {
       "name": "Elegant Parlor",
@@ -7728,6 +8375,8 @@
           "reason": null,
           "status": "repeated",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/260/elegant-parlor?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -7747,15 +8396,24 @@
             "sharePct": 0.4219409282700422
           },
           "trend": {
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
             "status": "stable",
-            "deltaPoints": -0.2967,
+            "deltaPoints": -0.345,
             "previous": {
-              "decks": 507,
-              "withCard": 3
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 352,
+              "withCard": 2
             },
             "recent": {
-              "decks": 678,
-              "withCard": 2
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 448,
+              "withCard": 1
             }
           },
           "outlook": {
@@ -7867,6 +8525,8 @@
           "reason": null,
           "status": "first_sightings",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/260/elegant-parlor?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -7886,14 +8546,23 @@
             "sharePct": 0.22371364653243847
           },
           "trend": {
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
             "status": "stable",
-            "deltaPoints": -0.4902,
+            "deltaPoints": -0.7812,
             "previous": {
-              "decks": 204,
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 128,
               "withCard": 1
             },
             "recent": {
-              "decks": 243,
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 128,
               "withCard": 0
             }
           },
@@ -7976,6 +8645,8 @@
           "reason": null,
           "status": "repeated",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/260/elegant-parlor?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -7995,15 +8666,24 @@
             "sharePct": 13.44916344916345
           },
           "trend": {
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
             "status": "falling",
-            "deltaPoints": -3.0791,
+            "deltaPoints": -3.2465,
             "previous": {
-              "decks": 781,
-              "withCard": 117
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 576,
+              "withCard": 88
             },
             "recent": {
-              "decks": 773,
-              "withCard": 92
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 640,
+              "withCard": 77
             }
           },
           "outlook": {
@@ -8162,7 +8842,8 @@
           ]
         }
       },
-      "generatedBy": "official-tournament-corpus-20261028"
+      "generatedBy": "official-tournament-corpus-20261028",
+      "generatedKind": "tournament-measurement"
     },
     {
       "name": "Escape Tunnel",
@@ -8197,6 +8878,8 @@
           "reason": null,
           "status": "repeated",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/261/escape-tunnel?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -8216,15 +8899,24 @@
             "sharePct": 11.729957805907173
           },
           "trend": {
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
             "status": "rising",
-            "deltaPoints": 6.7122,
+            "deltaPoints": 8.543,
             "previous": {
-              "decks": 507,
-              "withCard": 40
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 352,
+              "withCard": 21
             },
             "recent": {
-              "decks": 678,
-              "withCard": 99
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 448,
+              "withCard": 65
             }
           },
           "outlook": {
@@ -8373,6 +9065,8 @@
           "reason": null,
           "status": "first_sightings",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/261/escape-tunnel?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -8392,14 +9086,23 @@
             "sharePct": 0.22371364653243847
           },
           "trend": {
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
             "status": "stable",
-            "deltaPoints": -0.4902,
+            "deltaPoints": 0.0,
             "previous": {
-              "decks": 204,
-              "withCard": 1
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 128,
+              "withCard": 0
             },
             "recent": {
-              "decks": 243,
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 128,
               "withCard": 0
             }
           },
@@ -8435,7 +9138,8 @@
           "archetypes": []
         }
       },
-      "generatedBy": "official-tournament-corpus-20261028"
+      "generatedBy": "official-tournament-corpus-20261028",
+      "generatedKind": "tournament-measurement"
     },
     {
       "name": "Hedge Maze",
@@ -8471,6 +9175,8 @@
           "reason": null,
           "status": "first_sightings",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/262/hedge-maze?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -8490,14 +9196,23 @@
             "sharePct": 0.08438818565400844
           },
           "trend": {
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
             "status": "stable",
-            "deltaPoints": -0.1972,
+            "deltaPoints": 0.0,
             "previous": {
-              "decks": 507,
-              "withCard": 1
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 352,
+              "withCard": 0
             },
             "recent": {
-              "decks": 678,
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 448,
               "withCard": 0
             }
           },
@@ -8580,6 +9295,8 @@
           "reason": null,
           "status": "repeated",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/262/hedge-maze?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -8599,15 +9316,24 @@
             "sharePct": 1.1185682326621924
           },
           "trend": {
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
             "status": "rising",
-            "deltaPoints": 1.1559,
+            "deltaPoints": 1.5625,
             "previous": {
-              "decks": 204,
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 128,
               "withCard": 1
             },
             "recent": {
-              "decks": 243,
-              "withCard": 4
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 128,
+              "withCard": 3
             }
           },
           "outlook": {
@@ -8719,6 +9445,8 @@
           "reason": null,
           "status": "repeated",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/262/hedge-maze?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -8738,15 +9466,24 @@
             "sharePct": 6.435006435006435
           },
           "trend": {
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
             "status": "rising",
-            "deltaPoints": 2.1255,
+            "deltaPoints": 1.5799,
             "previous": {
-              "decks": 781,
-              "withCard": 42
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 576,
+              "withCard": 35
             },
             "recent": {
-              "decks": 773,
-              "withCard": 58
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 640,
+              "withCard": 49
             }
           },
           "outlook": {
@@ -8896,7 +9633,8 @@
           ]
         }
       },
-      "generatedBy": "official-tournament-corpus-20261028"
+      "generatedBy": "official-tournament-corpus-20261028",
+      "generatedKind": "tournament-measurement"
     },
     {
       "name": "Lush Portico",
@@ -8932,6 +9670,8 @@
           "reason": null,
           "status": "first_sightings",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/263/lush-portico?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -8951,15 +9691,24 @@
             "sharePct": 0.08438818565400844
           },
           "trend": {
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
             "status": "stable",
-            "deltaPoints": 0.1475,
+            "deltaPoints": 0.0,
             "previous": {
-              "decks": 507,
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 352,
               "withCard": 0
             },
             "recent": {
-              "decks": 678,
-              "withCard": 1
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 448,
+              "withCard": 0
             }
           },
           "outlook": {
@@ -9006,6 +9755,8 @@
           "reason": null,
           "status": "first_sightings",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/263/lush-portico?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -9025,14 +9776,23 @@
             "sharePct": 0.22371364653243847
           },
           "trend": {
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
             "status": "stable",
-            "deltaPoints": 0.4115,
+            "deltaPoints": 0.7812,
             "previous": {
-              "decks": 204,
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 128,
               "withCard": 0
             },
             "recent": {
-              "decks": 243,
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 128,
               "withCard": 1
             }
           },
@@ -9102,6 +9862,8 @@
           "reason": null,
           "status": "repeated",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/263/lush-portico?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -9121,15 +9883,24 @@
             "sharePct": 3.6036036036036037
           },
           "trend": {
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
             "status": "rising",
-            "deltaPoints": 1.5815,
+            "deltaPoints": 2.4132,
             "previous": {
-              "decks": 781,
-              "withCard": 22
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 576,
+              "withCard": 14
             },
             "recent": {
-              "decks": 773,
-              "withCard": 34
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 640,
+              "withCard": 31
             }
           },
           "outlook": {
@@ -9264,7 +10035,8 @@
           ]
         }
       },
-      "generatedBy": "official-tournament-corpus-20261028"
+      "generatedBy": "official-tournament-corpus-20261028",
+      "generatedKind": "tournament-measurement"
     },
     {
       "name": "Meticulous Archive",
@@ -9300,6 +10072,8 @@
           "reason": null,
           "status": "repeated",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/264/meticulous-archive?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -9319,15 +10093,24 @@
             "sharePct": 7.0886075949367084
           },
           "trend": {
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
             "status": "rising",
-            "deltaPoints": 2.0474,
+            "deltaPoints": 1.9278,
             "previous": {
-              "decks": 507,
-              "withCard": 30
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 352,
+              "withCard": 16
             },
             "recent": {
-              "decks": 678,
-              "withCard": 54
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 448,
+              "withCard": 29
             }
           },
           "outlook": {
@@ -9477,6 +10260,8 @@
           "reason": null,
           "status": "repeated",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/264/meticulous-archive?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -9496,15 +10281,24 @@
             "sharePct": 2.0134228187919465
           },
           "trend": {
-            "status": "stable",
-            "deltaPoints": -0.8049,
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
+            "status": "falling",
+            "deltaPoints": -2.3438,
             "previous": {
-              "decks": 204,
-              "withCard": 5
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 128,
+              "withCard": 4
             },
             "recent": {
-              "decks": 243,
-              "withCard": 4
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 128,
+              "withCard": 1
             }
           },
           "outlook": {
@@ -9618,6 +10412,8 @@
           "reason": null,
           "status": "repeated",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/264/meticulous-archive?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -9637,19 +10433,28 @@
             "sharePct": 14.22136422136422
           },
           "trend": {
-            "status": "stable",
-            "deltaPoints": 0.7899,
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
+            "status": "rising",
+            "deltaPoints": 1.684,
             "previous": {
-              "decks": 781,
-              "withCard": 108
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 576,
+              "withCard": 65
             },
             "recent": {
-              "decks": 773,
-              "withCard": 113
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 640,
+              "withCard": 83
             }
           },
           "outlook": {
-            "status": "repeated_use",
+            "status": "watch",
             "kind": "observational_signal_not_forecast"
           },
           "history": {
@@ -9804,7 +10609,8 @@
           ]
         }
       },
-      "generatedBy": "official-tournament-corpus-20261028"
+      "generatedBy": "official-tournament-corpus-20261028",
+      "generatedKind": "tournament-measurement"
     },
     {
       "name": "Raucous Theater",
@@ -9839,6 +10645,8 @@
           "reason": null,
           "status": "repeated",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/266/raucous-theater?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -9858,19 +10666,28 @@
             "sharePct": 0.5063291139240507
           },
           "trend": {
-            "status": "stable",
-            "deltaPoints": 0.885,
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
+            "status": "rising",
+            "deltaPoints": 1.1161,
             "previous": {
-              "decks": 507,
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 352,
               "withCard": 0
             },
             "recent": {
-              "decks": 678,
-              "withCard": 6
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 448,
+              "withCard": 5
             }
           },
           "outlook": {
-            "status": "repeated_use",
+            "status": "watch",
             "kind": "observational_signal_not_forecast"
           },
           "history": {
@@ -9944,6 +10761,8 @@
           "reason": null,
           "status": "repeated",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/266/raucous-theater?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -9963,15 +10782,24 @@
             "sharePct": 16.666666666666668
           },
           "trend": {
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
             "status": "rising",
-            "deltaPoints": 6.4781,
+            "deltaPoints": 6.5278,
             "previous": {
-              "decks": 781,
-              "withCard": 105
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 576,
+              "withCard": 83
             },
             "recent": {
-              "decks": 773,
-              "withCard": 154
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 640,
+              "withCard": 134
             }
           },
           "outlook": {
@@ -10128,7 +10956,8 @@
           ]
         }
       },
-      "generatedBy": "official-tournament-corpus-20261028"
+      "generatedBy": "official-tournament-corpus-20261028",
+      "generatedKind": "tournament-measurement"
     },
     {
       "name": "Shadowy Backstreet",
@@ -10163,6 +10992,8 @@
           "reason": null,
           "status": "first_sightings",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/268/shadowy-backstreet?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -10182,14 +11013,23 @@
             "sharePct": 0.16877637130801687
           },
           "trend": {
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
             "status": "stable",
-            "deltaPoints": -0.0497,
+            "deltaPoints": -0.0609,
             "previous": {
-              "decks": 507,
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 352,
               "withCard": 1
             },
             "recent": {
-              "decks": 678,
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 448,
               "withCard": 1
             }
           },
@@ -10246,6 +11086,8 @@
           "reason": null,
           "status": "repeated",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/268/shadowy-backstreet?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -10265,15 +11107,24 @@
             "sharePct": 5.148005148005148
           },
           "trend": {
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
             "status": "stable",
-            "deltaPoints": 0.053,
+            "deltaPoints": 0.0347,
             "previous": {
-              "decks": 781,
-              "withCard": 40
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 576,
+              "withCard": 25
             },
             "recent": {
-              "decks": 773,
-              "withCard": 40
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 640,
+              "withCard": 28
             }
           },
           "outlook": {
@@ -10416,7 +11267,8 @@
           "archetypes": []
         }
       },
-      "generatedBy": "official-tournament-corpus-20261028"
+      "generatedBy": "official-tournament-corpus-20261028",
+      "generatedKind": "tournament-measurement"
     },
     {
       "name": "Thundering Falls",
@@ -10452,6 +11304,8 @@
           "reason": null,
           "status": "repeated",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/269/thundering-falls?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -10471,15 +11325,24 @@
             "sharePct": 0.9282700421940928
           },
           "trend": {
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
             "status": "stable",
-            "deltaPoints": -0.446,
+            "deltaPoints": -0.6899,
             "previous": {
-              "decks": 507,
-              "withCard": 6
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 352,
+              "withCard": 4
             },
             "recent": {
-              "decks": 678,
-              "withCard": 5
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 448,
+              "withCard": 2
             }
           },
           "outlook": {
@@ -10601,6 +11464,8 @@
           "reason": null,
           "status": "repeated",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/269/thundering-falls?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -10620,15 +11485,24 @@
             "sharePct": 1.1185682326621924
           },
           "trend": {
-            "status": "falling",
-            "deltaPoints": -1.5493,
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
+            "status": "stable",
+            "deltaPoints": -1.5625,
             "previous": {
-              "decks": 204,
-              "withCard": 4
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 128,
+              "withCard": 2
             },
             "recent": {
-              "decks": 243,
-              "withCard": 1
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 128,
+              "withCard": 0
             }
           },
           "outlook": {
@@ -10739,6 +11613,8 @@
           "reason": null,
           "status": "repeated",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/269/thundering-falls?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -10758,15 +11634,24 @@
             "sharePct": 23.294723294723294
           },
           "trend": {
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
             "status": "falling",
-            "deltaPoints": -7.225,
+            "deltaPoints": -7.3785,
             "previous": {
-              "decks": 781,
-              "withCard": 210
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 576,
+              "withCard": 155
             },
             "recent": {
-              "decks": 773,
-              "withCard": 152
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 640,
+              "withCard": 125
             }
           },
           "outlook": {
@@ -10929,7 +11814,8 @@
           ]
         }
       },
-      "generatedBy": "official-tournament-corpus-20261028"
+      "generatedBy": "official-tournament-corpus-20261028",
+      "generatedKind": "tournament-measurement"
     },
     {
       "name": "Undercity Sewers",
@@ -10965,6 +11851,8 @@
           "reason": null,
           "status": "repeated",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/270/undercity-sewers?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -10984,15 +11872,24 @@
             "sharePct": 10.886075949367088
           },
           "trend": {
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
             "status": "rising",
-            "deltaPoints": 4.5478,
+            "deltaPoints": 2.4756,
             "previous": {
-              "decks": 507,
-              "withCard": 42
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 352,
+              "withCard": 29
             },
             "recent": {
-              "decks": 678,
-              "withCard": 87
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 448,
+              "withCard": 48
             }
           },
           "outlook": {
@@ -11143,6 +12040,8 @@
           "reason": null,
           "status": "repeated",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/270/undercity-sewers?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -11162,15 +12061,24 @@
             "sharePct": 1.1185682326621924
           },
           "trend": {
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
             "status": "stable",
-            "deltaPoints": 0.2542,
+            "deltaPoints": 0.0,
             "previous": {
-              "decks": 204,
-              "withCard": 2
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 128,
+              "withCard": 1
             },
             "recent": {
-              "decks": 243,
-              "withCard": 3
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 128,
+              "withCard": 1
             }
           },
           "outlook": {
@@ -11256,6 +12164,8 @@
           "reason": null,
           "status": "repeated",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/270/undercity-sewers?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -11275,19 +12185,28 @@
             "sharePct": 9.523809523809524
           },
           "trend": {
-            "status": "rising",
-            "deltaPoints": 1.3851,
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
+            "status": "stable",
+            "deltaPoints": 0.816,
             "previous": {
-              "decks": 781,
-              "withCard": 69
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 576,
+              "withCard": 52
             },
             "recent": {
-              "decks": 773,
-              "withCard": 79
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 640,
+              "withCard": 63
             }
           },
           "outlook": {
-            "status": "watch",
+            "status": "repeated_use",
             "kind": "observational_signal_not_forecast"
           },
           "history": {
@@ -11431,7 +12350,8 @@
           "archetypes": []
         }
       },
-      "generatedBy": "official-tournament-corpus-20261028"
+      "generatedBy": "official-tournament-corpus-20261028",
+      "generatedKind": "tournament-measurement"
     },
     {
       "name": "Underground Mortuary",
@@ -11467,6 +12387,8 @@
           "reason": null,
           "status": "repeated",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/271/underground-mortuary?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -11486,14 +12408,23 @@
             "sharePct": 0.4219409282700422
           },
           "trend": {
-            "status": "stable",
-            "deltaPoints": -0.9862,
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
+            "status": "falling",
+            "deltaPoints": -1.1364,
             "previous": {
-              "decks": 507,
-              "withCard": 5
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 352,
+              "withCard": 4
             },
             "recent": {
-              "decks": 678,
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 448,
               "withCard": 0
             }
           },
@@ -11605,6 +12536,8 @@
           "reason": null,
           "status": "repeated",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/271/underground-mortuary?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -11624,19 +12557,28 @@
             "sharePct": 2.0134228187919465
           },
           "trend": {
-            "status": "stable",
-            "deltaPoints": 0.0968,
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
+            "status": "rising",
+            "deltaPoints": 1.5625,
             "previous": {
-              "decks": 204,
-              "withCard": 4
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 128,
+              "withCard": 2
             },
             "recent": {
-              "decks": 243,
-              "withCard": 5
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 128,
+              "withCard": 4
             }
           },
           "outlook": {
-            "status": "repeated_use",
+            "status": "watch",
             "kind": "observational_signal_not_forecast"
           },
           "history": {
@@ -11734,6 +12676,8 @@
           "reason": null,
           "status": "repeated",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/mkm/271/underground-mortuary?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -11753,15 +12697,24 @@
             "sharePct": 5.662805662805662
           },
           "trend": {
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
             "status": "falling",
-            "deltaPoints": -3.0306,
+            "deltaPoints": -3.2812,
             "previous": {
-              "decks": 781,
-              "withCard": 56
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 576,
+              "withCard": 45
             },
             "recent": {
-              "decks": 773,
-              "withCard": 32
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 640,
+              "withCard": 29
             }
           },
           "outlook": {
@@ -11909,7 +12862,8 @@
           ]
         }
       },
-      "generatedBy": "official-tournament-corpus-20261028"
+      "generatedBy": "official-tournament-corpus-20261028",
+      "generatedKind": "tournament-measurement"
     },
     {
       "name": "Tragic Slip",
@@ -11943,6 +12897,8 @@
           "reason": null,
           "status": "first_sightings",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/spg/22/tragic-slip?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -11962,14 +12918,23 @@
             "sharePct": 0.243605359317905
           },
           "trend": {
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
             "status": "stable",
-            "deltaPoints": 0.0376,
+            "deltaPoints": 0.0521,
             "previous": {
-              "decks": 442,
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 384,
               "withCard": 1
             },
             "recent": {
-              "decks": 379,
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 320,
               "withCard": 1
             }
           },
@@ -12019,7 +12984,8 @@
           "archetypes": []
         }
       },
-      "generatedBy": "official-tournament-corpus-20261028"
+      "generatedBy": "official-tournament-corpus-20261028",
+      "generatedKind": "tournament-measurement"
     },
     {
       "name": "Tireless Tracker",
@@ -12053,6 +13019,8 @@
           "reason": null,
           "status": "first_sightings",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/spg/26/tireless-tracker?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -12072,15 +13040,24 @@
             "sharePct": 0.2574002574002574
           },
           "trend": {
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
             "status": "stable",
-            "deltaPoints": 0.2601,
+            "deltaPoints": 0.1562,
             "previous": {
-              "decks": 781,
-              "withCard": 1
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 576,
+              "withCard": 0
             },
             "recent": {
-              "decks": 773,
-              "withCard": 3
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 640,
+              "withCard": 1
             }
           },
           "outlook": {
@@ -12144,7 +13121,8 @@
           "archetypes": []
         }
       },
-      "generatedBy": "official-tournament-corpus-20261028"
+      "generatedBy": "official-tournament-corpus-20261028",
+      "generatedKind": "tournament-measurement"
     },
     {
       "name": "Drown in the Loch",
@@ -12179,6 +13157,8 @@
           "reason": null,
           "status": "repeated",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/spg/27/drown-in-the-loch?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -12198,19 +13178,28 @@
             "sharePct": 1.1185682326621924
           },
           "trend": {
-            "status": "rising",
-            "deltaPoints": 1.1559,
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
+            "status": "stable",
+            "deltaPoints": 0.7812,
             "previous": {
-              "decks": 204,
-              "withCard": 1
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 128,
+              "withCard": 0
             },
             "recent": {
-              "decks": 243,
-              "withCard": 4
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 128,
+              "withCard": 1
             }
           },
           "outlook": {
-            "status": "watch",
+            "status": "repeated_use",
             "kind": "observational_signal_not_forecast"
           },
           "history": {
@@ -12278,6 +13267,8 @@
           "reason": null,
           "status": "repeated",
           "legality": "legal",
+          "legalityDate": "2026-10-28",
+          "legalitySource": "https://scryfall.com/card/spg/27/drown-in-the-loch?utm_source=api",
           "eligibleFrom": "2024-02-09",
           "sample": {
             "start": "2026-10-01",
@@ -12297,15 +13288,24 @@
             "sharePct": 1.673101673101673
           },
           "trend": {
+            "method": "matched-cohort-v1",
+            "cohort": {
+              "kind": "recent-mtgo-challenge",
+              "publishedCoverage": "published-lists-only"
+            },
             "status": "stable",
-            "deltaPoints": 0.7894,
+            "deltaPoints": 0.7986,
             "previous": {
-              "decks": 781,
-              "withCard": 10
+              "start": "2026-10-01",
+              "end": "2026-10-14",
+              "decks": 576,
+              "withCard": 8
             },
             "recent": {
-              "decks": 773,
-              "withCard": 16
+              "start": "2026-10-15",
+              "end": "2026-10-28",
+              "decks": 640,
+              "withCard": 14
             }
           },
           "outlook": {
@@ -12385,13 +13385,24 @@
           "archetypes": []
         }
       },
-      "generatedBy": "official-tournament-corpus-20261028"
+      "generatedBy": "official-tournament-corpus-20261028",
+      "generatedKind": "tournament-measurement"
     }
   ],
   "tournamentResearch": {
     "method": "published-deck-share-v1",
     "start": "2026-10-01",
     "end": "2026-10-28",
+    "trendPeriods": {
+      "previous": {
+        "start": "2026-10-01",
+        "end": "2026-10-14"
+      },
+      "recent": {
+        "start": "2026-10-15",
+        "end": "2026-10-28"
+      }
+    },
     "events": [
       {
         "id": "pt-mkm-2024",
@@ -12399,6 +13410,7 @@
         "date": "2024-02-23",
         "format": "pioneer",
         "kind": "historical-pro-tour",
+        "trendKind": null,
         "publishedCoverage": "complete-field-published-in-parts",
         "players": 258,
         "pages": [
@@ -12416,6 +13428,7 @@
         "date": "2026-05-01",
         "format": "standard",
         "kind": "historical-pro-tour",
+        "trendKind": null,
         "publishedCoverage": "complete-field-published-in-parts",
         "players": null,
         "pages": [
@@ -12432,6 +13445,7 @@
         "date": "2026-07-17",
         "format": "modern",
         "kind": "historical-pro-tour",
+        "trendKind": null,
         "publishedCoverage": "complete-field-published-in-parts",
         "players": null,
         "pages": [
@@ -12448,6 +13462,7 @@
         "date": "2026-10-01",
         "format": "standard",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 34,
         "pages": [
@@ -12461,6 +13476,7 @@
         "date": "2026-10-01",
         "format": "modern",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 100,
         "pages": [
@@ -12474,6 +13490,7 @@
         "date": "2026-10-01",
         "format": "pauper",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 51,
         "pages": [
@@ -12487,6 +13504,7 @@
         "date": "2026-10-01",
         "format": "pioneer",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 40,
         "pages": [
@@ -12500,6 +13518,7 @@
         "date": "2026-10-02",
         "format": "standard",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 45,
         "pages": [
@@ -12513,6 +13532,7 @@
         "date": "2026-10-02",
         "format": "pauper",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 49,
         "pages": [
@@ -12526,6 +13546,7 @@
         "date": "2026-10-02",
         "format": "modern",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 105,
         "pages": [
@@ -12539,6 +13560,7 @@
         "date": "2026-10-02",
         "format": "standard",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 48,
         "pages": [
@@ -12552,6 +13574,7 @@
         "date": "2026-10-03",
         "format": "modern",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-qualifier",
         "publishedCoverage": "published-lists-only",
         "players": 344,
         "pages": [
@@ -12565,6 +13588,7 @@
         "date": "2026-10-03",
         "format": "modern",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 72,
         "pages": [
@@ -12578,6 +13602,7 @@
         "date": "2026-10-03",
         "format": "modern",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "complete-field",
         "players": 31,
         "pages": [
@@ -12591,6 +13616,7 @@
         "date": "2026-10-03",
         "format": "pauper",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "complete-field",
         "players": 28,
         "pages": [
@@ -12604,6 +13630,7 @@
         "date": "2026-10-04",
         "format": "modern",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 83,
         "pages": [
@@ -12617,6 +13644,7 @@
         "date": "2026-10-04",
         "format": "pauper",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 45,
         "pages": [
@@ -12630,6 +13658,7 @@
         "date": "2026-10-04",
         "format": "pioneer",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "complete-field",
         "players": 25,
         "pages": [
@@ -12643,6 +13672,7 @@
         "date": "2026-10-04",
         "format": "standard",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 38,
         "pages": [
@@ -12656,6 +13686,7 @@
         "date": "2026-10-05",
         "format": "modern",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 78,
         "pages": [
@@ -12669,6 +13700,7 @@
         "date": "2026-10-05",
         "format": "modern",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 111,
         "pages": [
@@ -12682,6 +13714,7 @@
         "date": "2026-10-05",
         "format": "pauper",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 52,
         "pages": [
@@ -12695,6 +13728,7 @@
         "date": "2026-10-05",
         "format": "pioneer",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 50,
         "pages": [
@@ -12708,6 +13742,7 @@
         "date": "2026-10-05",
         "format": "standard",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 59,
         "pages": [
@@ -12721,6 +13756,7 @@
         "date": "2026-10-06",
         "format": "modern",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 57,
         "pages": [
@@ -12734,6 +13770,7 @@
         "date": "2026-10-06",
         "format": "modern",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 38,
         "pages": [
@@ -12747,6 +13784,7 @@
         "date": "2026-10-06",
         "format": "pauper",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 33,
         "pages": [
@@ -12760,6 +13798,7 @@
         "date": "2026-10-06",
         "format": "modern",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 72,
         "pages": [
@@ -12773,6 +13812,7 @@
         "date": "2026-10-06",
         "format": "standard",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 44,
         "pages": [
@@ -12786,6 +13826,7 @@
         "date": "2026-10-06",
         "format": "standard",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "complete-field",
         "players": 24,
         "pages": [
@@ -12799,6 +13840,7 @@
         "date": "2026-10-07",
         "format": "modern",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 58,
         "pages": [
@@ -12812,6 +13854,7 @@
         "date": "2026-10-07",
         "format": "pauper",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 48,
         "pages": [
@@ -12825,6 +13868,7 @@
         "date": "2026-10-07",
         "format": "modern",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 104,
         "pages": [
@@ -12838,6 +13882,7 @@
         "date": "2026-10-07",
         "format": "standard",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "complete-field",
         "players": 27,
         "pages": [
@@ -12851,6 +13896,7 @@
         "date": "2026-10-07",
         "format": "standard",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "complete-field",
         "players": 24,
         "pages": [
@@ -12864,6 +13910,7 @@
         "date": "2026-10-08",
         "format": "standard",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "complete-field",
         "players": 30,
         "pages": [
@@ -12877,6 +13924,7 @@
         "date": "2026-10-08",
         "format": "pauper",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 56,
         "pages": [
@@ -12890,6 +13938,7 @@
         "date": "2026-10-08",
         "format": "pioneer",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 44,
         "pages": [
@@ -12903,6 +13952,7 @@
         "date": "2026-10-09",
         "format": "standard",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 44,
         "pages": [
@@ -12916,6 +13966,7 @@
         "date": "2026-10-09",
         "format": "standard",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "complete-field",
         "players": 24,
         "pages": [
@@ -12929,6 +13980,7 @@
         "date": "2026-10-09",
         "format": "pauper",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 52,
         "pages": [
@@ -12942,6 +13994,7 @@
         "date": "2026-10-09",
         "format": "standard",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 61,
         "pages": [
@@ -12955,6 +14008,7 @@
         "date": "2026-10-09",
         "format": "modern",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 55,
         "pages": [
@@ -12968,6 +14022,7 @@
         "date": "2026-10-10",
         "format": "modern",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "complete-field",
         "players": 29,
         "pages": [
@@ -12981,6 +14036,7 @@
         "date": "2026-10-10",
         "format": "pauper",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "complete-field",
         "players": 30,
         "pages": [
@@ -12994,6 +14050,7 @@
         "date": "2026-10-10",
         "format": "pioneer",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "complete-field",
         "players": 25,
         "pages": [
@@ -13007,6 +14064,7 @@
         "date": "2026-10-10",
         "format": "modern",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 57,
         "pages": [
@@ -13020,6 +14078,7 @@
         "date": "2026-10-10",
         "format": "modern",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 50,
         "pages": [
@@ -13033,6 +14092,7 @@
         "date": "2026-10-11",
         "format": "modern",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 51,
         "pages": [
@@ -13046,6 +14106,7 @@
         "date": "2026-10-11",
         "format": "pauper",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 58,
         "pages": [
@@ -13059,6 +14120,7 @@
         "date": "2026-10-11",
         "format": "pioneer",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "complete-field",
         "players": 26,
         "pages": [
@@ -13072,6 +14134,7 @@
         "date": "2026-10-11",
         "format": "standard",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 43,
         "pages": [
@@ -13085,6 +14148,7 @@
         "date": "2026-10-11",
         "format": "modern",
         "kind": "recent-published-top-finishers",
+        "trendKind": null,
         "publishedCoverage": "published-top-finishers",
         "players": null,
         "pages": [
@@ -13098,6 +14162,7 @@
         "date": "2026-10-12",
         "format": "pauper",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 44,
         "pages": [
@@ -13111,6 +14176,7 @@
         "date": "2026-10-12",
         "format": "standard",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 61,
         "pages": [
@@ -13124,6 +14190,7 @@
         "date": "2026-10-12",
         "format": "pioneer",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 40,
         "pages": [
@@ -13137,6 +14204,7 @@
         "date": "2026-10-12",
         "format": "modern",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "complete-field",
         "players": 24,
         "pages": [
@@ -13150,6 +14218,7 @@
         "date": "2026-10-13",
         "format": "modern",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 44,
         "pages": [
@@ -13163,6 +14232,7 @@
         "date": "2026-10-13",
         "format": "modern",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "complete-field",
         "players": 25,
         "pages": [
@@ -13176,6 +14246,7 @@
         "date": "2026-10-13",
         "format": "pauper",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 33,
         "pages": [
@@ -13189,6 +14260,7 @@
         "date": "2026-10-13",
         "format": "standard",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 63,
         "pages": [
@@ -13202,6 +14274,7 @@
         "date": "2026-10-13",
         "format": "modern",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "complete-field",
         "players": 32,
         "pages": [
@@ -13215,6 +14288,7 @@
         "date": "2026-10-14",
         "format": "modern",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 44,
         "pages": [
@@ -13228,6 +14302,7 @@
         "date": "2026-10-14",
         "format": "standard",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "complete-field",
         "players": 26,
         "pages": [
@@ -13241,6 +14316,7 @@
         "date": "2026-10-14",
         "format": "pauper",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 44,
         "pages": [
@@ -13254,6 +14330,7 @@
         "date": "2026-10-14",
         "format": "modern",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 54,
         "pages": [
@@ -13267,6 +14344,7 @@
         "date": "2026-10-15",
         "format": "standard",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "complete-field",
         "players": 24,
         "pages": [
@@ -13280,6 +14358,7 @@
         "date": "2026-10-15",
         "format": "standard",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 39,
         "pages": [
@@ -13293,6 +14372,7 @@
         "date": "2026-10-15",
         "format": "modern",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 72,
         "pages": [
@@ -13306,6 +14386,7 @@
         "date": "2026-10-15",
         "format": "pauper",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 48,
         "pages": [
@@ -13319,6 +14400,7 @@
         "date": "2026-10-15",
         "format": "pioneer",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 40,
         "pages": [
@@ -13332,6 +14414,7 @@
         "date": "2026-10-16",
         "format": "standard",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 57,
         "pages": [
@@ -13345,6 +14428,7 @@
         "date": "2026-10-16",
         "format": "pauper",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 54,
         "pages": [
@@ -13358,6 +14442,7 @@
         "date": "2026-10-16",
         "format": "standard",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 51,
         "pages": [
@@ -13371,6 +14456,7 @@
         "date": "2026-10-16",
         "format": "modern",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 51,
         "pages": [
@@ -13384,6 +14470,7 @@
         "date": "2026-10-17",
         "format": "modern",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-showcase",
         "publishedCoverage": "published-lists-only",
         "players": 286,
         "pages": [
@@ -13397,6 +14484,7 @@
         "date": "2026-10-17",
         "format": "modern",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "complete-field",
         "players": 26,
         "pages": [
@@ -13410,6 +14498,7 @@
         "date": "2026-10-17",
         "format": "pauper",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "complete-field",
         "players": 31,
         "pages": [
@@ -13423,6 +14512,7 @@
         "date": "2026-10-17",
         "format": "modern",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 44,
         "pages": [
@@ -13436,6 +14526,7 @@
         "date": "2026-10-17",
         "format": "pioneer",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "complete-field",
         "players": 26,
         "pages": [
@@ -13449,6 +14540,7 @@
         "date": "2026-10-17",
         "format": "modern",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 62,
         "pages": [
@@ -13462,6 +14554,7 @@
         "date": "2026-10-18",
         "format": "modern",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 63,
         "pages": [
@@ -13475,6 +14568,7 @@
         "date": "2026-10-18",
         "format": "pauper",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 64,
         "pages": [
@@ -13488,6 +14582,7 @@
         "date": "2026-10-18",
         "format": "pioneer",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "complete-field",
         "players": 32,
         "pages": [
@@ -13501,6 +14596,7 @@
         "date": "2026-10-18",
         "format": "standard",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 50,
         "pages": [
@@ -13514,6 +14610,7 @@
         "date": "2026-10-19",
         "format": "pauper",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 56,
         "pages": [
@@ -13527,6 +14624,7 @@
         "date": "2026-10-19",
         "format": "standard",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 51,
         "pages": [
@@ -13540,6 +14638,7 @@
         "date": "2026-10-19",
         "format": "pioneer",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 46,
         "pages": [
@@ -13553,6 +14652,7 @@
         "date": "2026-10-19",
         "format": "modern",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 72,
         "pages": [
@@ -13566,6 +14666,7 @@
         "date": "2026-10-20",
         "format": "modern",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": null,
         "pages": [
@@ -13579,6 +14680,7 @@
         "date": "2026-10-20",
         "format": "modern",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "complete-field",
         "players": 27,
         "pages": [
@@ -13592,6 +14694,7 @@
         "date": "2026-10-20",
         "format": "pauper",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "complete-field",
         "players": 28,
         "pages": [
@@ -13605,6 +14708,7 @@
         "date": "2026-10-20",
         "format": "standard",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 64,
         "pages": [
@@ -13618,6 +14722,7 @@
         "date": "2026-10-20",
         "format": "modern",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 72,
         "pages": [
@@ -13631,6 +14736,7 @@
         "date": "2026-10-21",
         "format": "modern",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 50,
         "pages": [
@@ -13644,6 +14750,7 @@
         "date": "2026-10-21",
         "format": "standard",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 36,
         "pages": [
@@ -13657,6 +14764,7 @@
         "date": "2026-10-21",
         "format": "modern",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 72,
         "pages": [
@@ -13670,6 +14778,7 @@
         "date": "2026-10-22",
         "format": "standard",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 43,
         "pages": [
@@ -13683,6 +14792,7 @@
         "date": "2026-10-22",
         "format": "modern",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 62,
         "pages": [
@@ -13696,6 +14806,7 @@
         "date": "2026-10-22",
         "format": "pauper",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 44,
         "pages": [
@@ -13709,6 +14820,7 @@
         "date": "2026-10-22",
         "format": "pioneer",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 40,
         "pages": [
@@ -13722,6 +14834,7 @@
         "date": "2026-10-23",
         "format": "standard",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 49,
         "pages": [
@@ -13735,6 +14848,7 @@
         "date": "2026-10-23",
         "format": "pauper",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 61,
         "pages": [
@@ -13748,6 +14862,7 @@
         "date": "2026-10-23",
         "format": "modern",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 59,
         "pages": [
@@ -13761,6 +14876,7 @@
         "date": "2026-10-23",
         "format": "standard",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 48,
         "pages": [
@@ -13774,6 +14890,7 @@
         "date": "2026-10-24",
         "format": "standard",
         "kind": "recent-premier",
+        "trendKind": null,
         "publishedCoverage": "complete-field-published-in-parts",
         "players": null,
         "pages": [
@@ -13788,6 +14905,7 @@
         "date": "2026-10-24",
         "format": "modern",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 44,
         "pages": [
@@ -13801,6 +14919,7 @@
         "date": "2026-10-24",
         "format": "modern",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "complete-field",
         "players": 24,
         "pages": [
@@ -13814,6 +14933,7 @@
         "date": "2026-10-24",
         "format": "pauper",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 33,
         "pages": [
@@ -13827,6 +14947,7 @@
         "date": "2026-10-24",
         "format": "standard",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 42,
         "pages": [
@@ -13840,6 +14961,7 @@
         "date": "2026-10-24",
         "format": "modern",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 52,
         "pages": [
@@ -13853,6 +14975,7 @@
         "date": "2026-10-24",
         "format": "pioneer",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "complete-field",
         "players": 27,
         "pages": [
@@ -13866,6 +14989,7 @@
         "date": "2026-10-25",
         "format": "modern",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 46,
         "pages": [
@@ -13879,6 +15003,7 @@
         "date": "2026-10-25",
         "format": "pauper",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 55,
         "pages": [
@@ -13892,6 +15017,7 @@
         "date": "2026-10-25",
         "format": "pioneer",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "complete-field",
         "players": 30,
         "pages": [
@@ -13905,6 +15031,7 @@
         "date": "2026-10-25",
         "format": "standard",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 36,
         "pages": [
@@ -13918,6 +15045,7 @@
         "date": "2026-10-26",
         "format": "modern",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 50,
         "pages": [
@@ -13931,6 +15059,7 @@
         "date": "2026-10-26",
         "format": "pauper",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 51,
         "pages": [
@@ -13944,6 +15073,7 @@
         "date": "2026-10-26",
         "format": "standard",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 62,
         "pages": [
@@ -13957,6 +15087,7 @@
         "date": "2026-10-26",
         "format": "pioneer",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 50,
         "pages": [
@@ -13970,6 +15101,7 @@
         "date": "2026-10-26",
         "format": "modern",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 45,
         "pages": [
@@ -13983,6 +15115,7 @@
         "date": "2026-10-27",
         "format": "modern",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 48,
         "pages": [
@@ -13996,6 +15129,7 @@
         "date": "2026-10-27",
         "format": "modern",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "complete-field",
         "players": 24,
         "pages": [
@@ -14009,6 +15143,7 @@
         "date": "2026-10-27",
         "format": "pauper",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 33,
         "pages": [
@@ -14022,6 +15157,7 @@
         "date": "2026-10-27",
         "format": "standard",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 77,
         "pages": [
@@ -14035,6 +15171,7 @@
         "date": "2026-10-27",
         "format": "modern",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 50,
         "pages": [
@@ -14048,6 +15185,7 @@
         "date": "2026-10-28",
         "format": "modern",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "published-lists-only",
         "players": 55,
         "pages": [
@@ -14061,6 +15199,7 @@
         "date": "2026-10-28",
         "format": "standard",
         "kind": "recent-mtgo-challenge",
+        "trendKind": "recent-mtgo-challenge",
         "publishedCoverage": "complete-field",
         "players": 30,
         "pages": [

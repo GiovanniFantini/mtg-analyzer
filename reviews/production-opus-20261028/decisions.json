@@ -1,0 +1,241 @@
+{
+  "stage": "Complete: both root and Opus ready; all confirmed findings resolved.",
+  "round1Model": "claude-opus-5-5",
+  "baselineChecks": {
+    "build": "21 sets / 290 HTML passed",
+    "python": "68 tests passed before fixes",
+    "browser": "21 catalogs/metagames passed before fixes",
+    "node": "catalog indices, pool record and local Draft tournament passed"
+  },
+  "targetedChecks": {
+    "python": "14 tournament + 3 source parser + 3 pure WR identity/cache tests passed; aggregation test passed separately using bundled pandas/numpy runtime",
+    "node": "pool reduction, price placeholder and dynamic date regressions passed",
+    "syntax": "Python and JS syntax; git diff --check passed"
+  },
+  "decisions": [
+    {
+      "id": "OPUS-1",
+      "decision": "confirmed",
+      "resolution": "Price placeholders carry not_collected; renderer treats old metric unavailable and new status as absence, never creates a printing label without metadata."
+    },
+    {
+      "id": "OPUS-2",
+      "decision": "confirmed",
+      "resolution": "Trend matched-cohort-v1 compares the single largest balanced kind+publishedCoverage cohort across both periods; score remains explicitly mixed published sample. Regression excludes a premier-only late event from trend."
+    },
+    {
+      "id": "OPUS-3",
+      "decision": "confirmed",
+      "resolution": "Saved unmatchedSourceNames match first-face aliases for 428 card/event rows across 12 expansions. Importer now normalizes aliases, refuses ambiguous sources or cross-oracle collisions. Full public-file reacquisition is running; data integration and final browser verification remain pending."
+    },
+    {
+      "id": "OPUS-4",
+      "decision": "partially_confirmed",
+      "resolution": "Ordinary manual +/- operations remove zeros, but contract validator and imported records accept zero. Gallery and Draft now accept and skip zero counts consistently; browser regression prepared."
+    },
+    {
+      "id": "OPUS-5",
+      "decision": "confirmed",
+      "resolution": "sample.start is clipped to known eligibility within the window; eligibleFrom is displayed. Unknown earliest historical printings remain a declared limitation; no earlier date is invented."
+    },
+    {
+      "id": "OPUS-6",
+      "decision": "confirmed",
+      "resolution": "Trend JSON includes previous/recent dates and cohort. Shared renderer and discovery read JSON boundaries, use undated labels for legacy snapshots."
+    },
+    {
+      "id": "OPUS-7",
+      "decision": "confirmed",
+      "resolution": "153 oracle groups have differing aliases across catalogs. Integrator now unions aliases per oracleId after supplemental facts, including face.oracleName. Context includes real Arena names and alias examples."
+    },
+    {
+      "id": "OPUS-8",
+      "decision": "confirmed",
+      "resolution": "refresh_editorial_indices updates all existing editorial cards with current indices including zero/null, removes stale indices without catalog identity. Regression covers positive-to-zero."
+    },
+    {
+      "id": "OPUS-9",
+      "decision": "confirmed",
+      "resolution": "Named reduction allocates deck copies before other pool copies while retaining existing ID order; regression verifies original2/bonus3 and deckbonus3 reduced5to4 preserves deck3."
+    },
+    {
+      "id": "OPUS-10",
+      "decision": "confirmed",
+      "resolution": "Discovery exposes Solo misure di torneo for data-only records without positive adoption and explains lack of a strategic review."
+    },
+    {
+      "id": "OPUS-11",
+      "decision": "confirmed",
+      "resolution": "Shared URL compares against DISCOVERY.defaultSort, preserving an explicitly chosen signal order. Browser regression prepared."
+    },
+    {
+      "id": "OPUS-12",
+      "decision": "confirmed",
+      "resolution": "Architecture section renamed to Pool, importazione e salvataggi Atlas."
+    },
+    {
+      "id": "OPUS-13",
+      "decision": "confirmed",
+      "resolution": "Archive replacement now uses a fresh nested record after a verified backup; failed replacement re-protects original; retries deduplicate raw backups; archive uses created. Browser regression includes successful archive, failed write and retry."
+    },
+    {
+      "id": "OPUS-14",
+      "decision": "confirmed",
+      "resolution": "Export envelope fields override record fields; playMode preserves BO1/BO3. Import strips envelope, preserves/imports play preference. Historical BO1/BO3 envelope accepted only for a Draft destination with explicit destination confirmation. Browser round-trip including legacy prepared."
+    },
+    {
+      "id": "OPUS-15",
+      "decision": "confirmed",
+      "resolution": "signal_level computes the aggregate tournamentLevel in the integrator and both selected/all views use it. Existing editorial levels retain explicit editorial dates; legend distinguishes measured from editorial labels."
+    },
+    {
+      "id": "OPUS-16",
+      "decision": "confirmed",
+      "resolution": "Cache now requires matchingVersion and catalog identity fingerprint; stale matching aborts with clear instruction to use a new dated output, preserving history. Complete raw-column totals are not cached, so full reacquisition cost remains an explicit limitation, not a silent old-method reuse. No additional cache-storage system needed for correctness."
+    },
+    {
+      "id": "OPUS-17",
+      "decision": "confirmed",
+      "resolution": "prepare_events distinguishes ordinary MTGO Challenge, Showcase and qualifier using official event names via trendKind. Cohort chooses trendKind+publishedCoverage. Documentation explicitly says coverage ratio need not be identical and selection bias is not eliminated; counts/players remain per-event."
+    },
+    {
+      "id": "OPUS-18",
+      "decision": "not_present_in_current_data",
+      "resolution": "Audit found zero non-tournament_data_only records with unavailable metric and editorial scenarios. Nonetheless renderer preserves substantive scenario conditions without presenting absent quote as a measurement; regression added."
+    },
+    {
+      "id": "OPUS-19",
+      "decision": "confirmed",
+      "resolution": "Historical verification records stay unchanged and attributed to baseline commit 756af33 in the final review record. New fingerprinted verification record for corrected sources/data will be produced after reacquisition/build/tests; current decisions explicitly say final checks pending."
+    },
+    {
+      "id": "ROOT-1",
+      "decision": "confirmed",
+      "resolution": "Generated tournament selection entries are recognized across corpus source dates via generatedKind and legacy source prefix; a new acquisition replaces old generated text rather than treating it as an editorial review."
+    },
+    {
+      "id": "OPUS-20",
+      "decision": "confirmed",
+      "resolution": "Tournament integrator is running with --apply and a new separate report. All 24 targeted WR datasets completed and applied; 20 safely reused verified whole-file results plus 4 reacquired after verifying 11 reversible-printing Oracle identities in Scryfall."
+    },
+    {
+      "id": "OPUS-21",
+      "decision": "confirmed",
+      "resolution": "Integrator adds --report, required with --apply and rejected if already existing. Dry-run without report only prints per-set summaries and never writes old coverage.json. New report fingerprints integrator and records unknown oracle IDs."
+    },
+    {
+      "id": "OPUS-22",
+      "decision": "confirmed",
+      "resolution": "After verified archive, save tries to validate prior nested record; a valid record retains deck/basics/notes/extensions, while only invalid input uses empty record. Browser cross-tab regression added."
+    },
+    {
+      "id": "OPUS-23",
+      "decision": "confirmed",
+      "resolution": "Catalog exports event and effective poolKey; wrong-event/key imports fail before mutation; legacy event-less nested files require explicit destination confirmation. Browser negative import regression added."
+    },
+    {
+      "id": "OPUS-24",
+      "decision": "confirmed",
+      "resolution": "An ineligible previous period has null dates and explicit reason. Renderer names actual cohort only if present, otherwise says no comparable cohort; wording acknowledges variable participant coverage."
+    },
+    {
+      "id": "OPUS-25",
+      "decision": "confirmed",
+      "resolution": "Audit found 24 editorial observations outside selection. Existing observations remain considered when recent measured level is absent, with editorial date shown separately. Analizzata no longer claims absence of documented adoption."
+    },
+    {
+      "id": "OPUS-26",
+      "decision": "confirmed",
+      "resolution": "Supplemental facts fill only missing fields. legalitiesRetrieved and legalitySource are per-card and copied into indices; legalities date is shown in shared details and manual catalog renderer."
+    },
+    {
+      "id": "OPUS-27",
+      "decision": "partially_confirmed",
+      "resolution": "Only one exact missing-public-data note exists in current inputs, so no actual historical data loss found. Broad string deletion replaced with exact documented sentinel removal; regression preserves historical note containing 17Lands."
+    },
+    {
+      "id": "OPUS-28",
+      "decision": "not_present_in_current_data",
+      "resolution": "Inverse alias audit found zero collisions and one unknown Oracle identity. Integrator now rejects any alias owned by different identity groups before applying data; missing oracle IDs reported. Reversible Oracle identities were independently verified and normalized rather than weakening the WR guard."
+    },
+    {
+      "id": "ROOT-2",
+      "decision": "confirmed",
+      "resolution": "Manual controller now rejects future record versions instead of silently treating incompatible saves as valid."
+    },
+    {
+      "id": "OPUS-29",
+      "decision": "confirmed",
+      "resolution": "Discovery reuses shared reason-aware compact output. Unavailable index details omit applicable-sample/count/trend statements; historical presence remains explicitly historical when relevant. Minimum usable sample excludes null ranks. Unit and real Leyline Binding discovery/modal browser regressions passed."
+    },
+    {
+      "id": "OPUS-30",
+      "decision": "confirmed_documented_limitation",
+      "resolution": "Accepted the reviewer alternative: documentation explicitly says eligibility can depend on that identity sightings, thus per-card windows/denominators can differ, including early digital availability. Dates, eligibleFrom and denominators are visible. No group release date inferred from a reprint or a single identity."
+    },
+    {
+      "id": "OPUS-31",
+      "decision": "confirmed",
+      "resolution": "Filter labels now Non legale / vietata and Non applicabile (terra base), matching card states."
+    },
+    {
+      "id": "OPUS-32",
+      "decision": "confirmed",
+      "resolution": "Browser reproduction corrected our earlier assumption: #pool remains reachable and does not redirect. Catalog now exports a full record for nested pools and restores deck/basics/notes/extensions on reimport. Pool-only historical files warn about deck reduction; clear warning requests full export. Browser traverses #pool, downloads, clears, reimports, and verifies restoration, then independently verifies the manual exporter."
+    },
+    {
+      "id": "OPUS-33",
+      "decision": "confirmed",
+      "resolution": "Migration preservation iterates historical baseline IDs, so new registered expansions do not cause a baseline KeyError. Existing migrated sets remain required."
+    },
+    {
+      "id": "OPUS-34",
+      "decision": "confirmed",
+      "resolution": "Current integrator rerun with --apply/new report v3; SHA matches current source; all 63 cards/discovery/sources files are byte-identical. New comparison report and current verification-v2 provided."
+    },
+    {
+      "id": "OPUS-35",
+      "decision": "confirmed_and_reduced",
+      "resolution": "Measured rather than inferred: baseline 8ab652e 57,173,307 bytes for 2 sets/22 pages; before pruning 772,808,807 bytes for 21 sets; current 425,439,715 bytes for 21 sets/290 pages. Unused Constructed profiles removed from noncatalog inline payloads, Atlas manual runtime and discovery previews. Gallery retains full analysis; preview compatibility retains required profiles. No lazy-loading feature added to the gallery, no pipeline changes."
+    },
+    {
+      "id": "OPUS-36",
+      "decision": "confirmed_fixed",
+      "resolution": "Duplicate sentence removed from the nested pool export contract."
+    },
+    {
+      "id": "OPUS-37",
+      "decision": "confirmed_fixed",
+      "resolution": "Documentation names the effective poolSource key and its archive suffix for prefixed profiles; storage.draftPool applies only to flat profiles."
+    },
+    {
+      "id": "OPUS-38",
+      "decision": "confirmed_fixed",
+      "resolution": "Format rows attribute prior editorial counts to publisher and research date and call them a distinct sample; measured labels show the official-list index date. Node regression renders the actual older Postboard case."
+    },
+    {
+      "id": "OPUS-39",
+      "decision": "confirmed_fixed",
+      "resolution": "Backup labels and download filenames use the selected event name/ID, retaining existing DOM IDs and storage keys. Browser regression checks Draft original/archive filenames and label."
+    },
+    {
+      "id": "OPUS-40",
+      "decision": "confirmed_fixed",
+      "resolution": "Edited fixture verifier now falls back to the portable playwright module name, with MTG_PLAYWRIGHT_MODULE still supported."
+    },
+    {
+      "id": "OPUS-41",
+      "decision": "confirmed_fixed",
+      "resolution": "Generated browser checklist now explicitly includes the Draft backup label/filename assertions already executed; final rerun passed and its checks array equals the verification record."
+    }
+  ],
+  "rootVerdict": "Ready for production in the verified scope. Opus independently confirmed readiness in rounds 5 and 6; no product change after the sixth verdict.",
+  "verification": "verification-v4.json",
+  "additionalResolutionNotes": [
+    "Reversible printing identities verified in the official API; 11 cards normalized, not inferred by display name.",
+    "Historical preview fixture now explicitly has no discovery research and its own legality snapshot date, avoiding unintended promotion by live data. Watch-alias regression selects an actual legacy alias from the runtime mapping.",
+    "Acquisition-only provenance guard extraction after regeneration does not change current runtime fields; actual data fingerprint audit passed, and the latest identity-only supplement regression preserves the earlier legality date.",
+    "Our initial assumption that #pool redirected to the manual page was disproved by the browser test. OPUS-32 is confirmed and fixed, not dismissed as unreachable."
+  ],
+  "cleanupNote": "Optional recursive deletion of the owned temporary baseline checkout was blocked by automatic approval review. The temporary checkout is retained outside the project; this does not affect source/data/tests."
+}

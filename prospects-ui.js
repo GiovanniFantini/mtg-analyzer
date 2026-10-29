@@ -11,20 +11,24 @@ window.CardProspects=(()=>{
  function href(value){try{const url=new URL(value,location.href);return ['http:','https:'].includes(url.protocol)?esc(url.href):''}catch{return ''}}
  function link(value,label){const url=href(value);return url?`<a href="${url}" target="_blank" rel="noopener">${esc(label)}</a>`:esc(label)}
  function list(items){return items?.length?`<ul>${items.map(item=>`<li>${esc(item)}</li>`).join('')}</ul>`:''}
- function formatRow(key,assessment,p){
+ function formatRow(key,assessment,p,card,sourceMap){
   let finding=evidenceLabels[assessment.evidence]||'Valutazione da approfondire';
-  const measured=window.TournamentProspects?.assessment({prospects:p},key);
+  const measured=window.TournamentProspects?.assessment(card,key);
   const row=Number.isInteger(assessment.observation)?p.tournamentObservations?.[assessment.observation]:null;
-  if(row)finding=`${row.decklistsWithCard} liste${row.averageCopies==null?'':`, ${row.averageCopies.toLocaleString('it-IT')} copie medie`}. Presenze nel campione, non percentuale di vittorie.`;
+  if(row){const publisher=sourceMap.get(row.source)?.publisher||row.source||'fonte non indicata';finding=`Osservazione editoriale di ${publisher}, ricerca del ${date(row.date||p.date)}: ${row.decklistsWithCard} liste${row.averageCopies==null?'':`, ${row.averageCopies.toLocaleString('it-IT')} copie medie`}. Campione distinto dall’indice da liste ufficiali, non percentuale di vittorie.`;}
   if(key==='commander'&&p.commanderObservations?.length){const row=p.commanderObservations.find(r=>r.group?.startsWith('Cards')||r.group==='Reprints');if(row)finding=`${row.decksDisplay||row.decks.toLocaleString('it-IT')} liste pubblicate${row.eligibleDecks?` su ${row.eligibleDecks.toLocaleString('it-IT')} compatibili`:''}${row.countsPrecision==='display_rounded'?' (conteggio arrotondato dalla fonte)':''}. Non sono risultati di torneo.${row.date?' Rilevazione del '+date(row.date)+'.':''}`}
   if(key==='cedh'&&p.cedhObservation){const row=p.cedhObservation;finding=`${row.lists.toLocaleString('it-IT')} liste su ${row.window.decklists.toLocaleString('it-IT')}, dal ${date(row.window.start)} al ${date(row.window.end)}. Possibili duplicati; non win rate.`}
   if(assessment.tournament){const t=assessment.tournament;finding+=` ${t.placing}° posto a ${t.event}, ${date(t.date)}, ${t.players} partecipanti.`}
   if(assessment.rule)finding=`L'effetto non funziona nelle regole ordinarie di questo formato (regola ${assessment.rule}).`;
   const examples=row?.deckExamples?.slice(0,2).map(r=>link(r.url,r.label)).join(' · ');
-  return `<tr><th scope="row">${esc(formatLabels[key]||key)}</th><td>${esc(legalityLabels[assessment.legality]||'Da verificare')}${assessment.releaseEligibility?`<p>Prevista dal ${date(assessment.releaseEligibility.date)}: ${esc(legalityLabels[assessment.releaseEligibility.status]||'Da verificare')}</p>`:''}</td><td>${esc(measured?.label||prospectLabels[assessment.prospect]||'Da verificare')}</td><td>${esc(finding)}${assessment.note?`<p>${esc(assessment.note)}</p>`:''}${examples?`<p>${examples}</p>`:''}</td></tr>`;
+  return `<tr><th scope="row">${esc(formatLabels[key]||key)}</th><td>${esc(legalityLabels[card.legalities?.[key]||measured?.tournament?.legality||assessment.legality]||'Da verificare')}${measured?.tournament?.legalityDate?`<p>Legalità registrata il ${date(measured.tournament.legalityDate)}</p>`:''}${assessment.releaseEligibility?`<p>Prevista dal ${date(assessment.releaseEligibility.date)}: ${esc(legalityLabels[assessment.releaseEligibility.status]||'Da verificare')}</p>`:''}</td><td>${esc(measured?.label||prospectLabels[assessment.prospect]||'Da verificare')}${measured?`<small>Indice da liste ufficiali al ${date(measured.tournament.date)}</small>`:''}</td><td>${esc(finding)}${assessment.note?`<p>${esc(assessment.note)}</p>`:''}${examples?`<p>${examples}</p>`:''}</td></tr>`;
  }
- function priceHTML(price){
-  if(!price)return '<p>Non sono disponibili riferimenti di prezzo verificati per questa carta.</p>';
+ function priceHTML(price,coverage){
+  if(!price||price.status==='not_collected')return '<p>Non sono disponibili riferimenti di prezzo verificati per questa carta.</p>';
+  if(price.metric==='non disponibile'){
+   const scenario=price.outlook,editorial=coverage!=='tournament_data_only'&&(scenario?.thesis||scenario?.upsideConditions?.length||scenario?.downsideRisks?.length);
+   return '<p>Non sono disponibili riferimenti di prezzo verificati per questa carta.</p>'+(editorial?`<p>Scenario editoriale: ${esc(scenario.thesis||'')}</p>${list(scenario.upsideConditions)}${list(scenario.downsideRisks)}`:'');
+  }
   const comparison=price.comparison,outlook=price.outlook,change=comparison?.changePct,hasMinimum=price.from!==undefined;
   const box=(label,value)=>`<div><span>${esc(label)}</span><p>${money(value)}</p></div>`;
   const boxes=hasMinimum?box(price.metricLabel||'Minimo del prodotto',price.from)+box(price.nonfoil==null?'Non foil · da verificare':'Non foil · filtro verificato',price.nonfoil)+box(price.foil==null?'Foil · da verificare':'Foil · filtro verificato',price.foil):box('Non foil',price.nonfoil)+box('Foil',price.foil)+box('Non foil precedente',comparison?.nonfoil);
@@ -33,15 +37,16 @@ window.CardProspects=(()=>{
   const metrics=price.marketMetrics;
   const market=metrics?`<details><summary>Tendenza e medie pubblicate dalla fonte</summary><p class="prospect-note">Filtro della scheda: ${metrics.finishFilter==='nonfoil'?'non foil':'qualsiasi finitura'}. Minimo, Price Trend e medie sono metriche diverse.</p><div class="prospect-table" role="region" tabindex="0" aria-label="Tendenza e medie di prezzo"><table><tbody>${[['Price Trend',metrics.trend],['Media 30 giorni',metrics.average30],['Media 7 giorni',metrics.average7],['Media 1 giorno',metrics.average1]].map(([label,value])=>`<tr><th scope="row">${label}</th><td>${money(value)}</td></tr>`).join('')}</tbody></table></div>${outlook?.windowAssessment?`<p>${esc(outlook.windowAssessment.note)}</p>`:''}<p class="prospect-note">I conteggi delle vendite non sono stati verificati; le medie non misurano la liquidità.</p></details>`:'';
   const finishes=['nonfoil','foil'].filter(key=>price.finishReadings?.[key]).map(key=>link(price.finishReadings[key].url,key==='foil'?'Offerte foil filtrate':'Offerte non foil filtrate')).join(' · ');
-  return `<p>${esc(outlook?.thesis||'Prospettiva non disponibile.')}</p>${outlook?.marketAssessment?`<p>${esc(outlook.marketAssessment)}</p>`:''}<p class="prospect-note">${esc(price.sourceLabel||'Fonte indicata nei dati')} · rilevazione del ${date(price.date)} · ${esc(price.productName||'stampa '+price.set?.toUpperCase()+' #'+price.number)}.</p><div class="prospect-price-grid">${boxes}</div>${price.url?`<p>${link(price.url,'Apri il prodotto su '+(price.sourceLabel||'fonte'))}${finishes?' · '+finishes:''}</p>`:''}<p class="prospect-note">${esc(price.methodNote||price.metric)}</p>${price.coverageNote?`<p class="prospect-note">${esc(price.coverageNote)}</p>`:''}${history}${market}<h5>Cosa potrebbe sostenere la domanda</h5>${list(outlook?.upsideConditions)}<h5>Rischi e condizioni</h5>${list(outlook?.downsideRisks)}<p class="prospect-note">Scenari a ${esc(outlook?.horizonsMonths?.join(' e ')||'più')} mesi, con confidenza ${esc(outlook?.confidence||'non indicata')}. Nessun prezzo obiettivo o probabilità di rialzo.</p>`;
+  const printing=price.productName||(price.set&&price.number!=null?'stampa '+price.set.toUpperCase()+' #'+price.number:'');
+  return `<p>${esc(outlook?.thesis||'Prospettiva non disponibile.')}</p>${outlook?.marketAssessment?`<p>${esc(outlook.marketAssessment)}</p>`:''}<p class="prospect-note">${esc(price.sourceLabel||'Fonte indicata nei dati')} · rilevazione del ${date(price.date)}${printing?' · '+esc(printing):''}.</p><div class="prospect-price-grid">${boxes}</div>${price.url?`<p>${link(price.url,'Apri il prodotto su '+(price.sourceLabel||'fonte'))}${finishes?' · '+finishes:''}</p>`:''}<p class="prospect-note">${esc(price.methodNote||price.metric)}</p>${price.coverageNote?`<p class="prospect-note">${esc(price.coverageNote)}</p>`:''}${history}${market}<h5>Cosa potrebbe sostenere la domanda</h5>${list(outlook?.upsideConditions)}<h5>Rischi e condizioni</h5>${list(outlook?.downsideRisks)}<p class="prospect-note">Scenari a ${esc(outlook?.horizonsMonths?.join(' e ')||'più')} mesi, con confidenza ${esc(outlook?.confidence||'non indicata')}. Nessun prezzo obiettivo o probabilità di rialzo.</p>`;
  }
  function render(card,sourceRegistry=[]){
   const p=card?.prospects;if(!p)return '';
   const sourceMap=new Map(sourceRegistry.map(source=>[source.id,source]));
   const primary=['standard','pioneer','modern','legacy','vintage','pauper','commander','cedh','duel'];
-  const table=keys=>`<div class="prospect-table" role="region" tabindex="0" aria-label="Analisi per formato"><table><thead><tr><th>Formato</th><th>Legalità</th><th>Prospettiva</th><th>Riscontri e limiti</th></tr></thead><tbody>${keys.filter(key=>p.formats?.[key]).map(key=>formatRow(key,p.formats[key],p)).join('')}</tbody></table></div>`;
+  const table=keys=>`<div class="prospect-table" role="region" tabindex="0" aria-label="Analisi per formato"><table><thead><tr><th>Formato</th><th>Legalità</th><th>Prospettiva</th><th>Riscontri e limiti</th></tr></thead><tbody>${keys.filter(key=>p.formats?.[key]).map(key=>formatRow(key,p.formats[key],p,card,sourceMap)).join('')}</tbody></table></div>`;
   const other=Object.keys(p.formats||{}).filter(key=>!primary.includes(key));
-  const priceBody=priceHTML(p.price);
+  const priceBody=priceHTML(p.price,p.analysisCoverage);
   const sources=(p.sources||[]).map(id=>sourceMap.get(id)).filter(Boolean);
   const automated=(p.automatedEvaluations||[]).map(row=>`<p>${link(sourceMap.get(row.source)?.url,sourceMap.get(row.source)?.publisher||row.source)}: ${esc(row.display??row.value)}/5. ${esc(row.context)}. Modello automatico, senza equivalenza con voti Limited o WR.</p>`).join('');
   const notes=(p.researchNotes||[]).map(row=>`<p>${esc(row.context)}: ${esc(row.finding)} (${date(row.date)}).</p>`).join('');

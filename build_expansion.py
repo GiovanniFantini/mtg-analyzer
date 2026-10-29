@@ -144,10 +144,10 @@ def manual_pool_source(expansion, kind):
             'keys':{key:prefix+key+'-v1' for key in expansion.data['limited']['events']}} if prefix and event else None
 
 
-def catalog_data(expansion):
+def catalog_data(expansion, include_prospects=True):
     from catalog_metrics import catalog_performance
     d = expansion.data
-    cards=expansion.cards
+    cards=expansion.cards if include_prospects else [{k:v for k,v in c.items() if k!='prospects'} for c in expansion.cards]
     covered=[c['sentiment'] for c in cards if c.get('sentiment')]
     meta={**(d['sentiment'].get('meta') or {}),'covered':len(covered),
           'userCards':sum(s.get('kind')=='utenti' for s in covered),
@@ -166,7 +166,7 @@ def catalog_data(expansion):
                                'filters': snapshot.get('filters', {}), 'cards': win_rates},
             'stats':d['statistics'].get('catalog',[]),'scale':d['ratings'].get('scale',{}),
             'combos':d['combos'],'sentimentMeta':meta,
-            'prospectSources':d['sources'].get('research',{}).get('sources',[]),
+            'prospectSources':d['sources'].get('research',{}).get('sources',[]) if include_prospects else [],
             'previewCards':d['discovery'].get('previews',[]),
             'poolSource':manual_pool_source(expansion, 'sealed')}
 
@@ -246,6 +246,7 @@ def data_for_page(expansion, key):
         previews=list(discovery.get('previews') or [])
         known={card.get('name') for card in previews if card.get('image')}
         previews.extend(card for card in expansion.cards if card['name'] in requested and card['name'] not in known)
+        previews=[{k:v for k,v in card.items() if k!='prospects'} for card in previews]
         return {'cards':[],**discovery,'previews':previews,'watchNames':{card['id']:card['name'] for card in expansion.cards}}
     if key == 'draft-engine':
         from expansion_data import load_expansions
@@ -262,7 +263,7 @@ def data_for_page(expansion, key):
         data['unavailableFormats']=[{'name':expansion.data['limited']['events'][key]['name'],'missing':value['missing']} for key,value in states.items() if not value['available']]
         data['unavailableFormats'] += [{'name':other.manifest['name'],'missing':other.availability['draftTable']['missing']} for other in load_expansions() if other.manifest['id']!=expansion.manifest['id'] and not other.availability['draftTable']['available']]
         return data
-    data = catalog_data(expansion)
+    data = catalog_data(expansion, include_prospects=key=='gallery')
     if key == 'simulator' and expansion.availability['sealedSimulator']['available']:
         data['format']=expansion.draft_format(expansion.default_event_id('sealed'))
     return data
@@ -344,10 +345,11 @@ def build(expansion, dest):
         if filename in written: raise ValueError('Due pagine scrivono lo stesso URL: '+filename)
         (dest/filename).write_text(content,encoding='utf-8');written.add(filename)
     # Runtime preview data keeps its existing DOM contract; the document is the same catalog.
-    preview = {**expansion.data['cards'],'cards':expansion.cards,
-               'catalogWinRates':catalog_data(expansion)['catalogWinRates'],
-               'catalogPerformance':catalog_data(expansion)['catalogPerformance'],
-               'prospectSources':catalog_data(expansion)['prospectSources']}
+    runtime_catalog=catalog_data(expansion,include_prospects=expansion.manifest['presentation']['style']=='preview')
+    preview = {**expansion.data['cards'],'cards':runtime_catalog['cards'],
+               'catalogWinRates':runtime_catalog['catalogWinRates'],
+               'catalogPerformance':runtime_catalog['catalogPerformance'],
+               'prospectSources':runtime_catalog['prospectSources']}
     (dest/'expansion-data.js').write_text('const DATA='+js(preview)+';\n',encoding='utf-8')
     for pattern in ('*.css','*.js'):
         for path in ROOT.glob(pattern):

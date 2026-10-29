@@ -1,0 +1,155 @@
+{
+  "findings": [
+    {
+      "id": "OPUS-1",
+      "priority": "P2",
+      "file": "prospects-ui.js",
+      "line": 36,
+      "title": "Profili creati dalla sola acquisizione tornei mostrano una rilevazione di prezzo e uno scenario economico inesistenti",
+      "scenario": "Aprire nel catalogo Atlas di una qualsiasi espansione una carta che prima dell'integrazione non aveva prospects (la maggior parte delle carte dei 20 set migrati), poi 'Constructed, formati e prezzi'. Lo stesso avviene dalla vista 'Tutte le analisi' della discovery.",
+      "evidence": "integrate_tournament_prospects.py:10 crea per ogni carta priva di analisi price = {date: END, metric: 'non disponibile', nonfoil/foil null, outlook...} senza set, number, productName o sourceLabel. priceHTML non entra nel ramo '!price' e produce: 'Fonte indicata nei dati · rilevazione del 28 ottobre 2026 · stampa undefined #undefined.', tre riquadri 'Dato non disponibile', le sezioni 'Cosa potrebbe sostenere la domanda' e 'Rischi e condizioni' vuote e 'Scenari a più mesi, con confidenza bassa'.",
+      "impact": "Un dato mancante viene presentato come rilevazione economica datata, con attribuzione generica e testo 'undefined'. Il lettore può credere che una lettura Cardmarket del 28 ottobre esista e sia vuota. Il problema riguarda migliaia di schede in 21 cataloghi.",
+      "suggested_fix": "Marcare il placeholder con un'estensione compatibile, per esempio price.status = 'not_collected', e conservare price.date null se lo schema lo consente (altrimenti lasciarla ma non mostrarla). In priceHTML trattare status not_collected o metric 'non disponibile' come assenza: mostrare solo 'Non sono disponibili riferimenti di prezzo verificati per questa carta.' Non comporre 'stampa ...' quando set o number mancano. In docs/statistics.md, riga 85, dichiarare che l'integratore crea profili tournament_data_only con prezzo non rilevato.",
+      "certainty": "certain"
+    },
+    {
+      "id": "OPUS-2",
+      "priority": "P2",
+      "file": "tournament_index.py",
+      "line": 65,
+      "title": "Trend e denominatore mescolano coorti eterogenee, in contraddizione con il nuovo contratto documentale",
+      "scenario": "Standard, finestra 1-28 ottobre. La prima metà (1-14) contiene solo liste MTGO Challenge, circa 507, quasi tutte top 32 pubblicate. La seconda metà contiene circa 502 liste MTGO più le 176 liste a campo completo di Arena Championship 13 del 24 ottobre. AC13 è quindi circa il 26% del denominatore 'recent' e manca del tutto da 'previous'.",
+      "evidence": "Riga 62: recent include ogni evento del formato senza distinguere kind e publishedCoverage. Righe 65 e 69-70: old e new sono confrontati su quelle stesse popolazioni. Una carta al 10% in AC13 e allo 0% nelle top 32 MTGO passa a circa 2,6 punti con 17 presenze. Viene quindi classificata 'rising' e l'outlook diventa 'watch'. docs/statistics.md:73, aggiunta non committata, afferma invece: 'Non mescolare automaticamente campi completi, selezioni dei migliori risultati e liste pubblicate parzialmente'. Anche RC Los Angeles (published-top-finishers) entra nel denominatore Modern insieme a Challenge complete-field.",
+      "impact": "Segnali di crescita o calo spuri, causati dalla composizione del campione e non dall'adozione. La documentazione corrente descrive una regola che il calcolo non applica.",
+      "suggested_fix": "Calcolare il trend su una sola coorte omogenea presente in entrambe le metà, per esempio kind recent-mtgo-challenge, oppure stratificare per kind e richiedere segnali concordi. Per lo score scegliere tra due strade: separare le coorti in campi distinti, oppure conservare la miscela e correggere docs/statistics.md:73 dichiarando che la misura combina coorti diverse. Aggiungere un test con un evento a campo completo presente solo nella seconda metà.",
+      "certainty": "certain"
+    },
+    {
+      "id": "OPUS-3",
+      "priority": "P2",
+      "file": "import_public_game_statistics.py",
+      "line": 45,
+      "title": "Le carte a più facce non vengono abbinate alle colonne 17Lands e restano N/D",
+      "scenario": "Importare il dataset di un set con carte trasformabili, MDFC, adventure o battaglie. Nel catalogo name e full valgono 'Fronte // Retro'. Le colonne opening_hand_* e drawn_* del dataset pubblico usano il nome della faccia frontale.",
+      "evidence": "L'abbinamento prova soltanto full, name e oracleName, senza faces[0].name. tournament_index.identity_aliases (riga 34) include invece la prima faccia, quindi i due importatori usano regole di identità diverse. Le carte perse finiscono in coverage.missingCatalogIds e i nomi frontali in unmatchedSourceNames. L'audit numerico dichiarato in verification.json ricalcola le WR abbinate, non verifica le mancate corrispondenze.",
+      "impact": "WR Draft e Sealed realmente osservate vengono mostrate come dato assente, e il conteggio di copertura del catalogo risulta più basso. Il dato mancante è un errore di importazione, non una lacuna della fonte.",
+      "suggested_fix": "Riusare nell'importatore la logica di identity_aliases, con nomi normalizzati e prima faccia. Rifiutare l'applicazione se una stessa colonna sorgente viene abbinata a identità oracle diverse. Aggiungere un test con colonne 'opening_hand_Front' per una carta 'Front // Back'. Prima di correggere, verificare unmatchedSourceNames nei JSON salvati.",
+      "certainty": "hypothesis"
+    },
+    {
+      "id": "OPUS-4",
+      "priority": "P2",
+      "file": "templates/atlas/gallery.html",
+      "line": 76,
+      "title": "Due validatori incoerenti possono proteggere come incompatibile un salvataggio annidato valido",
+      "scenario": "Un record annidato scritto dal banco manuale contiene una quantità 0 in pool, per esempio dopo un decremento non ripulito dal controller. Aprire il catalogo Atlas della stessa espansione.",
+      "evidence": "ManualPoolRecord.validate (pool-record.js:10) accetta n >= 0. cleanPool (gallery.html:74) rifiuta n < 1 e il catch chiama protectPool. Se l'utente usa poi 'Archivia il precedente e salva questo pool', save() scrive withPool(previous, pool in memoria). Quel pool contiene soltanto le carte aggiunte dopo il fallimento, quindi il record principale perde pool e mazzo, che restano solo nel backup. Non è osservabile senza star-trek.js se il controller produca davvero zeri.",
+      "impact": "Un salvataggio valido appare come incompatibile. Le scritture vengono bloccate e il percorso proposto sostituisce il record principale con un pool quasi vuoto. Il backup integrale esiste, ma il risultato contraddice la conservazione attesa.",
+      "suggested_fix": "Allineare i due validatori. Nel ramo nested filtrare le quantità 0 dopo validate invece di rifiutare l'intero record, oppure rendere identica la regola in cleanPool e in validate. Aggiungere a test-pool-record.cjs, o a un test di pagina, un record con un conteggio 0.",
+      "certainty": "hypothesis"
+    },
+    {
+      "id": "OPUS-5",
+      "priority": "P3",
+      "file": "tournament_index.py",
+      "line": 73,
+      "title": "sample.start dichiara l'inizio della finestra globale anche quando il campione della carta parte più tardi",
+      "scenario": "Carta senza avvistamenti con releasedAt successivo al 1 ottobre, oppure ristampa la cui data registrata è quella della stampa nel set nuovo.",
+      "evidence": "Righe 61-62: recent contiene soltanto eventi con data >= eligible_from. La riga 73 salva però sample.start = START. competitive-prospects-ui.js:25 mostra 'Campione dal 2026-10-01 al 2026-10-28: N liste' con un N ridotto, e le 'Prime due settimane' possono risultare 0/0. releasedAt deriva da released_at della stampa (import_expansion_catalogs.py:80), non dalla prima uscita dell'identità oracle. Per le ristampe senza avvistamenti la finestra ammissibile quindi si accorcia senza motivo.",
+      "impact": "Il denominatore viene attribuito a un periodo diverso da quello realmente usato, e carte dello stesso formato sembrano confrontate sulla stessa finestra anche quando non lo sono.",
+      "suggested_fix": "Salvare sample.start = max(START, eligible_from) e mostrare eligibleFrom nei dettagli quando è posteriore a START. Per le ristampe usare la prima uscita dell'oracle_id, se disponibile in card-facts, invece della data della stampa. Aggiungere un test che verifichi sample.start per una carta uscita a metà finestra.",
+      "certainty": "certain"
+    },
+    {
+      "id": "OPUS-6",
+      "priority": "P3",
+      "file": "competitive-prospects-ui.js",
+      "line": 25,
+      "title": "Periodi del trend scritti nel renderer invece che letti dal JSON",
+      "scenario": "Nuova acquisizione con START, END o MID diversi in tournament_index.py, per esempio novembre.",
+      "evidence": "Il renderer scrive fisso 'fra 1-14 e 15-28 ottobre' e 'Prime due settimane'. discovery.js:104 ripete le stesse date. L'indice salvato non contiene i confini dei due periodi: trend.previous e trend.recent hanno solo decks e withCard. docs/statistics.md:85 richiede di aggiornare esplicitamente la finestra a ogni acquisizione.",
+      "impact": "Dopo un aggiornamento dei dati l'interfaccia mostrerebbe periodi sbagliati accanto a conteggi corretti, una discrepanza tra JSON e renderer.",
+      "suggested_fix": "Aggiungere a trend.previous e trend.recent i campi start ed end (estensione compatibile, additionalProperties è true) e usarli nei due renderer. Usare 'periodo precedente' e 'periodo recente' quando i campi mancano.",
+      "certainty": "certain"
+    },
+    {
+      "id": "OPUS-7",
+      "priority": "P3",
+      "file": "tournament_index.py",
+      "line": 34,
+      "title": "Gli alias di una carta non sono condivisi tra cataloghi con la stessa identità oracle",
+      "scenario": "Una lista contiene il nome stampato di una carta di Through the Omenpaths, oppure il nome oracle della faccia frontale di una carta rinominata a due facce.",
+      "evidence": "identity_aliases usa solo i campi della singola voce di catalogo. Per OM1 include oracleName e la prima faccia, che per le carte rinominate è il nome stampato, ma non face.oracleName. La voce corrispondente di Marvel Spider-Man non conosce il nome stampato OM1. Se Arena Championship pubblica i nomi Arena, la stessa identità oracle riceve indici diversi nei due cataloghi. Va verificato sui JSON degli eventi quali nomi compaiano.",
+      "impact": "Presenze sottostimate o incoerenti per la stessa identità di gioco, contro la regola che le ristampe condividono l'identità.",
+      "suggested_fix": "In integrate_tournament_prospects.py costruire una mappa oracleId verso l'unione degli alias di tutti i cataloghi registrati, includendo face.oracleName, e passarla a calculate_index. Aggiungere un test con un nome stampato e un nome oracle per la stessa identità.",
+      "certainty": "hypothesis"
+    },
+    {
+      "id": "OPUS-8",
+      "priority": "P3",
+      "file": "integrate_tournament_prospects.py",
+      "line": 68,
+      "title": "Su una nuova acquisizione le voci editoriali della discovery possono conservare indici superati",
+      "scenario": "Seconda esecuzione con un nuovo campione in cui una carta selezionata editorialmente non ha più score positivi in nessun formato.",
+      "evidence": "old['tournamentIndices'] viene aggiornato solo se la carta compare in all_measured, cioè con score > 0. Altrimenti resta il valore della corsa precedente. discovery.js:60 legge prima c.tournamentIndices, quindi mostra e ordina con indici e date vecchie, mentre cards.json contiene quelli nuovi.",
+      "impact": "La pagina metagame e il catalogo divergono e mostrano una presenza non più osservata.",
+      "suggested_fix": "Per le voci editoriali ricalcolare sempre tournamentIndices da c['prospects']['formats'], includendo zeri e N/D, oppure rimuovere il campo quando la carta non ha indici positivi.",
+      "certainty": "certain"
+    },
+    {
+      "id": "OPUS-9",
+      "priority": "P3",
+      "file": "pool-record.js",
+      "line": 23,
+      "title": "Rimuovere una copia per nome può ridurre il mazzo anche quando restano copie fuori dal mazzo",
+      "scenario": "Il pool contiene {original: 2, bonus: 3} con deck {bonus: 3}. L'utente passa Shock da 5 a 4 nel banco Draft.",
+      "evidence": "Il primo ciclo conserva le identità nell'ordine di inserimento: original prende 2 e bonus 2. withPool riduce poi deck.bonus da 3 a 2, anche se le due copie di original non erano nel mazzo. test-pool-record.cjs verifica soltanto l'invarianza e l'aumento.",
+      "impact": "Il mazzo salvato perde una carta che l'utente non ha tolto. architecture.md:134 promette di ridurre il mazzo solo quando necessario.",
+      "suggested_fix": "Nel primo ciclo assegnare prima le quantità usate nel mazzo (min(pool, deck) per ID), poi le copie rimanenti. Aggiungere il caso di decremento al test.",
+      "certainty": "certain"
+    },
+    {
+      "id": "OPUS-10",
+      "priority": "P3",
+      "file": "discovery.js",
+      "line": 83,
+      "title": "'Analizzata' descritta come giudizio disponibile anche per profili con sole misure di torneo",
+      "scenario": "Aprire Discovery, poi 'Tutte le analisi', in una delle espansioni migrate.",
+      "evidence": "Ora ogni carta ha prospects e candidate() assegna 'Analizzata' quando nessuno score è positivo. Il messaggio dice 'Analizzata significa che il giudizio è disponibile, con prove ancora insufficienti'. Per i profili tournament_data_only non esiste un giudizio strategico: prospects-ui.js lo dichiara correttamente, mentre questo testo lo contraddice.",
+      "impact": "Misure osservate e valutazioni editoriali vengono confuse, e la ricerca Constructed sembra più completa di quanto sia.",
+      "suggested_fix": "Distinguere analysisCoverage tournament_data_only, per esempio con il livello o l'etichetta 'Solo misure di torneo', e aggiornare il testo di stato.",
+      "certainty": "certain"
+    },
+    {
+      "id": "OPUS-11",
+      "priority": "P3",
+      "file": "discovery.js",
+      "line": 59,
+      "title": "Il link condiviso perde l'ordinamento 'signal' quando il predefinito è 'tournament'",
+      "scenario": "L'utente sceglie 'Solidità del segnale' e copia il link ai filtri, in un set dove l'integratore ha impostato defaultSort a 'tournament'.",
+      "evidence": "filterURL omette sort quando vale 'signal'. All'apertura del link la riga 17 applica DISCOVERY.defaultSort, cioè 'tournament'.",
+      "impact": "Il link condiviso riproduce un ordinamento diverso da quello scelto.",
+      "suggested_fix": "Confrontare con (DISCOVERY.defaultSort || 'signal') invece che con la costante 'signal'.",
+      "certainty": "certain"
+    },
+    {
+      "id": "OPUS-12",
+      "priority": "P3",
+      "file": "docs/architecture.md",
+      "line": 124,
+      "title": "Titolo di sezione ancora riferito alla presentazione preview",
+      "scenario": "Lettura documentale dopo la migrazione completa ad Atlas.",
+      "evidence": "Il titolo è 'Pool e importazione nella presentazione preview', ma il testo descrive l'assistente e i record Atlas. AGENTS.md, README e la riga 21 della stessa pagina affermano che tutte le espansioni usano Atlas.",
+      "impact": "Instradamento documentale ambiguo per chi cerca le regole sui salvataggi Atlas.",
+      "suggested_fix": "Rinominare la sezione in 'Pool, importazione e salvataggi Atlas' e citare la preview solo come compatibilità storica.",
+      "certainty": "certain"
+    }
+  ],
+  "additional_context_needed": [
+    "star-trek.js: serve per confermare la forma dei record annidati (chiavi di basics come ID di catalogo, eventuali quantità 0, note e campi aggiuntivi) letti da gallery.html tramite ManualPoolRecord.validate e cleanPool, e quindi per chiudere OPUS-4.",
+    "Un estratto di statistics.json con coverage.missingCatalogIds e unmatchedSourceNames dello snapshot 17lands-public per un set con carte a due facce: serve per confermare o escludere OPUS-3.",
+    "Un evento Arena Championship 13 salvato in research/tournament-prospects-20261028/events/: serve per verificare i nomi usati per le carte OM1 (OPUS-7)."
+  ],
+  "ready": false,
+  "summary": "Verdetto: non pronto per produzione nel perimetro esaminato. Bloccano due rilievi certi P2: le schede create dall'integrazione tornei presentano un prezzo non rilevato come rilevazione datata, con testo 'undefined' (OPUS-1); il trend Standard confronta coorti diverse, perché Arena Championship 13 compare solo nella seconda metà, e la documentazione non committata dichiara una regola che il codice non applica (OPUS-2). Restano da chiudere due ipotesi P2: le WR 17Lands delle carte a più facce perse per l'abbinamento dei nomi (OPUS-3) e l'incoerenza tra validatori del pool annidato (OPUS-4), che richiede star-trek.js. Gli altri rilievi sono P3 su finestra dichiarata, renderer, coerenza fra cataloghi, discovery e documentazione. Aspetti risultati corretti dalla lettura: zero e null restano distinti nel calcolo e nei filtri; Pro Tour storici esclusi dal denominatore recente; una lista conta una volta tra main e sideboard; validazione di score e conteggi; separazione tra snapshot Draft e Sealed senza medie; chiavi storage e route preservate secondo test_atlas_migration; escaping dei contenuti dinamici esaminati; build senza accesso di rete nei moduli forniti. Limiti: revisione statica dei soli file allegati. Non ho eseguito build, test o browser e non ho verificato gli hash. Gli esiti in verification.json sono attribuiti al loro autore e alla versione indicata, non sono verifiche mie. Non ho esaminato star-trek.js, card-hover.js, gli script verify-* non allegati, i JSON delle espansioni né le fonti esterne. Non certifico copertura dei cataloghi, correttezza delle legalità o completezza degli eventi MTGO acquisiti."
+}

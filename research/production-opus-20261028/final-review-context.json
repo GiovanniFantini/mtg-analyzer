@@ -1,0 +1,275 @@
+{
+  "priceNotCollectedProfiles": 874,
+  "actualDataExamples": [
+    {
+      "kind": "historical-editorial",
+      "expansion": "reality-fracture",
+      "card": "Unflinching Hortimancer",
+      "date": "2026-10-22",
+      "observations": [
+        {
+          "name": "Unflinching Hortimancer",
+          "format": "pauper",
+          "decklistsWithCard": 7,
+          "eventWeightedSharePct": 0.5,
+          "averageCopies": 4.0,
+          "deckExamples": [
+            {
+              "label": "Orzhov Aggro",
+              "url": "https://www.postboard.gg/decks/123841?set=fra&card=Unflinching%20Hortimancer"
+            },
+            {
+              "label": "Mono-White Aggro",
+              "url": "https://www.postboard.gg/decks/120223?set=fra&card=Unflinching%20Hortimancer"
+            },
+            {
+              "label": "Gruul Ramp",
+              "url": "https://www.postboard.gg/decks/124196?set=fra&card=Unflinching%20Hortimancer"
+            }
+          ],
+          "source": "postboard",
+          "coverage": "tiles require at least 3 lists; early sightings and hidden singletons are not represented here"
+        }
+      ],
+      "standard": {
+        "schemaVersion": 1,
+        "method": "published-deck-share-v1",
+        "date": "2026-10-28",
+        "score": 0.0,
+        "reason": null,
+        "status": "not_observed",
+        "legality": "legal",
+        "legalityDate": "2026-10-28",
+        "legalitySource": "https://scryfall.com/card/fra/23/unflinching-hortimancer?utm_source=api",
+        "eligibleFrom": "2026-10-02",
+        "sample": {
+          "start": "2026-10-02",
+          "end": "2026-10-28",
+          "decks": 1153,
+          "events": 33
+        },
+        "observed": {
+          "withCard": 0,
+          "mainDecks": 0,
+          "sideboardDecks": 0,
+          "mainCopies": 0,
+          "sideboardCopies": 0,
+          "eventsWithCard": 0,
+          "top8Lists": 0,
+          "winningLists": 0,
+          "sharePct": 0.0
+        },
+        "trend": {
+          "method": "matched-cohort-v1",
+          "cohort": {
+            "kind": "recent-mtgo-challenge",
+            "publishedCoverage": "published-lists-only"
+          },
+          "status": "stable",
+          "deltaPoints": 0.0,
+          "previous": {
+            "start": "2026-10-02",
+            "end": "2026-10-14",
+            "decks": 320,
+            "withCard": 0
+          },
+          "recent": {
+            "start": "2026-10-15",
+            "end": "2026-10-28",
+            "decks": 448,
+            "withCard": 0
+          }
+        },
+        "outlook": {
+          "status": "no_signal",
+          "kind": "observational_signal_not_forecast"
+        },
+        "history": {
+          "decks": 0,
+          "withCard": 0,
+          "events": 0,
+          "sharePct": null
+        },
+        "eventsWithCard": [],
+        "examples": [],
+        "historicalExamples": [],
+        "archetypes": []
+      }
+    },
+    {
+      "kind": "data-only",
+      "expansion": "marvel-super-heroes",
+      "card": "Leyline Binding",
+      "analysisCoverage": "tournament_data_only",
+      "tournamentLevel": "Confermata",
+      "price": {
+        "date": "2026-10-28",
+        "currency": "EUR",
+        "metric": "non disponibile",
+        "printingId": null,
+        "nonfoil": null,
+        "foil": null,
+        "comparison": {
+          "date": null,
+          "samePrinting": null,
+          "nonfoil": null,
+          "changePct": null,
+          "status": "missing_reference"
+        },
+        "variants": [],
+        "outlook": {
+          "kind": "scenario_condizionale",
+          "thesis": "Prospettive economiche non valutate in questa acquisizione.",
+          "confidence": "bassa",
+          "targetPrice": null,
+          "probabilityOfRise": null
+        },
+        "status": "not_collected"
+      },
+      "standard": {
+        "schemaVersion": 1,
+        "method": "published-deck-share-v1",
+        "date": "2026-10-28",
+        "score": null,
+        "reason": "not_legal",
+        "status": "unavailable",
+        "legality": "not_legal",
+        "legalityDate": "2026-10-28",
+        "legalitySource": "https://scryfall.com/card/mar/2/leyline-binding?utm_source=api",
+        "eligibleFrom": "2024-04-19",
+        "sample": {
+          "start": "2026-10-01",
+          "end": "2026-10-28",
+          "decks": 1185,
+          "events": 34
+        },
+        "observed": {
+          "withCard": 0,
+          "mainDecks": 0,
+          "sideboardDecks": 0,
+          "mainCopies": 0,
+          "sideboardCopies": 0,
+          "eventsWithCard": 0,
+          "top8Lists": 0,
+          "winningLists": 0,
+          "sharePct": 0.0
+        },
+        "trend": {
+          "method": "matched-cohort-v1",
+          "cohort": {
+            "kind": "recent-mtgo-challenge",
+            "publishedCoverage": "published-lists-only"
+          },
+          "status": "stable",
+          "deltaPoints": 0.0,
+          "previous": {
+            "start": "2026-10-01",
+            "end": "2026-10-14",
+            "decks": 352,
+            "withCard": 0
+          },
+          "recent": {
+            "start": "2026-10-15",
+            "end": "2026-10-28",
+            "decks": 448,
+            "withCard": 0
+          }
+        },
+        "outlook": {
+          "status": "not_assessed",
+          "kind": "observational_signal_not_forecast"
+        },
+        "history": {
+          "decks": 325,
+          "withCard": 0,
+          "events": 0,
+          "sharePct": 0.0
+        },
+        "eventsWithCard": [],
+        "examples": [],
+        "historicalExamples": [],
+        "archetypes": []
+      },
+      "discoveryTrendPeriods": {
+        "previous": {
+          "start": "2026-10-01",
+          "end": "2026-10-14"
+        },
+        "recent": {
+          "start": "2026-10-15",
+          "end": "2026-10-28"
+        }
+      }
+    },
+    {
+      "kind": "multiface-wr",
+      "expansion": "marvel-super-heroes",
+      "provider": "17Lands public datasets",
+      "matchingVersion": 2,
+      "coverage": {
+        "catalogCards": 375,
+        "matchedCards": 339,
+        "withWinRate": 339,
+        "missingCatalogIds": [
+          "ec191a2f-12b1-438b-b2fe-f88fb82d9b87",
+          "5d587b65-8c90-41e3-96e0-ecb3bbfb0ac7",
+          "5a0b9b21-4d7f-4b02-aef1-3598eae2f581",
+          "2bb8ede7-ca50-4df8-aa30-f1b14520163f",
+          "4266ac5c-40dc-4fe3-9f42-e03cea5277ea",
+          "9a581f34-521c-4d28-96d4-be1e8dbc30b8",
+          "e23cbf2a-c07b-4202-826d-9b3c4a35a02e",
+          "deda48c4-527f-4367-83ed-3b3c30beaab8",
+          "75b75aaf-499d-47b0-ab6d-873240b641b2",
+          "5df07a06-e585-412d-a6db-cb5a78a68b6e",
+          "ac1042e0-af4d-42b0-9d43-34b3fa5daf92",
+          "3b4d51b9-f99e-4253-83d7-4dc6ef9bbe41",
+          "d7706745-60fd-4fdb-9083-931b05a3e2b1",
+          "cf10e116-d1da-4570-be0e-c597a9e75d72",
+          "0db3f148-4ede-4134-b2e0-2bb513d9cefc",
+          "82d69044-8d8c-4ae3-853e-de180f4706ca",
+          "d7b0a0d5-a9fe-49ea-9250-8825b36accc0",
+          "3e560cb9-3036-46a2-a5c7-edb04d0095b7",
+          "eea57be1-032d-40ec-8091-92f89670e4a1",
+          "c47d09a5-a6d2-4bc2-bf65-b32e3c897c49",
+          "7ebd1f51-2db6-4c3f-95cb-8035a410a8e8",
+          "08eb1bef-b00d-490b-a631-2849e0d1fd8e",
+          "e473a591-9aae-4af2-9b25-96820b317df8",
+          "291ffa45-f395-420f-8862-9a685b65ce69",
+          "8066310c-dcd6-465b-a0ae-44c8602367de",
+          "2f8e351a-ce09-4f7d-8b4e-bcffcab66aa1",
+          "33ba9e5a-d078-4a47-b181-0ca7d1596919",
+          "a6e83b7b-07df-4ff0-8942-8fdb3f1502f9",
+          "77e2f5ac-5c0d-4503-b8ab-fee00eaaa4a3",
+          "255544be-db0f-4dcc-8787-f05652cd2684",
+          "96c20d6f-6272-42f1-bfda-308ce7c4206a",
+          "0c9c514f-f506-4b2c-af58-79922834cde7",
+          "dcc41152-ca20-40d6-82ac-6b7fcd471a42",
+          "10c51d68-9a69-4784-9ce1-d6beaafa3ed3",
+          "5a2f6ccf-af93-4922-973d-6abfeb4d7cfc",
+          "71c9ed41-8832-440d-a455-f52f284e8d14"
+        ],
+        "unmatchedSourceNames": []
+      },
+      "example": {
+        "catalogId": "e0dbbdcf-84e1-494f-8b8c-0a094f603fa9",
+        "name": "Bruce Banner // The Incredible Hulk",
+        "sourceName": "Bruce Banner",
+        "sourceUrl": "https://www.17lands.com/public_datasets",
+        "metrics": {
+          "inHandWinRate": 60.577959887858526,
+          "games": 4637,
+          "wins": 2809
+        }
+      }
+    }
+  ],
+  "unchangedHistoricalReports": {
+    "commit": "756af33908348788e89c14d89c83ff13dbd64b16",
+    "files": [
+      "research/atlas-unification-20261028/verification.json",
+      "research/catalog-indices-20261028/verification.json",
+      "research/tournament-prospects-20261028/verification.json"
+    ]
+  },
+  "provenanceGuardNote": "supplement_facts was extracted after regeneration to prevent an identity-only supplement from changing an existing legality date. Current data already have per-card legalitiesRetrieved; the one unknown oracle has no fact to supplement. Targeted test preserves a prior banned legality/date while adding an oracle ID. No regenerated runtime field changes from this acquisition-only guard."
+}

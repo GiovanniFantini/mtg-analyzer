@@ -9,7 +9,7 @@ description: Ricercare e integrare aggiornamenti, recensioni, statistiche per ca
 
 - Valutazione di pool o mazzi Limited, sinergie e confronti fra draft: leggere [Valutare le sinergie Limited](references/limited-synergies.md). Per testi e interazioni applicare le verifiche Oracle della sezione Recensioni.
 - Aggiornamenti e recensioni: seguire il flusso comune e la sezione Recensioni.
-- Statistiche per carta: leggere `docs/statistics.md` per il contratto e le definizioni.
+- Statistiche per carta, metagame e indici di adozione nei tornei: leggere `docs/statistics.md` per contratto, campioni, metodo e importatori. Un aggiornamento di misure osservate non richiede automaticamente uno studio editoriale completo.
 - Prospettive complete: applicare la sezione Analisi complete; leggere `docs/economics.md` per i valori economici.
 - Prezzi o box: leggere `docs/economics.md`. Per il box personale Reality Fracture leggere anche `docs/local/reality-fracture-box.md`, se presente.
 - Consultazione per legalità: leggere `docs/requirements.md`; verificare se la vista richiesta esiste prima di descriverne il percorso.
@@ -26,6 +26,14 @@ Per integrare analisi e prezzi leggere anche la sezione Analisi per carta e prez
 4. Per richieste di estrazione o aggiornamento di ogni carta, acquisire e abbinare sistematicamente le osservazioni all'intero catalogo pertinente, ospiti comprese. Controllare identità stabili, duplicati, varianti, corrispondenze, anomalie e copertura per metrica. Pochi esempi o la conferma che la fonte esiste non completano l'estrazione.
 5. Se è richiesto l'aggiornamento del repository, salvare acquisizioni datate, provenienza e importazione riproducibile; integrare osservazioni sostanziali nei JSON appropriati. `sources.json` conserva provenienza, `sentiment.json` osservazioni e sintesi, `guides.json` contenuti e sequenze, `statistics.json` misure osservate. Riutilizzare campi equivalenti e preservare estensioni compatibili. La build resta offline.
 6. Verificare le modifiche pertinenti con `docs/verification.md`. Dichiarare catalogo coperto, lacune, dati salvati, interfaccia aggiornata ed eventuale pubblicazione effettivamente verificata. Acquisire dati non modifica automaticamente modelli di valutazione o UI.
+
+## Metagame e prospettive dai tornei
+
+Per ciascun formato richiesto partire dalle liste pubblicate di eventi pertinenti: Pro Tour quando disponibili e rappresentativi del periodo, altri eventi ufficiali quando servono campioni recenti o formati diversi. Dichiarare periodo, criteri di selezione, completezza delle liste e denominatore; separare lo storico dal campione recente. Verificare paginazione e duplicati, identità delle ristampe, data di prima uscita e legalità. Non attribuire assenze a eventi precedenti all'uscita della carta.
+
+Usare il metodo versionato in `docs/statistics.md` per indici ordinabili e segnali di uso ripetuto o variazione. Separare presenza, copie e risultati dei mazzi; adozione e piazzamenti non misurano una WR causale della carta. Uno zero richiede un campione ammissibile osservato; dati assenti o non applicabili restano N/D con motivo. Le etichette prospettiche descrivono segnali osservati, senza trasformarli in probabilità di successo o previsioni economiche.
+
+Conservare recensioni attribuite, osservazioni Commander, date e prezzi già presenti. Dichiarare la copertura per carta e formato, distinguendo misure di torneo, analisi strategica e dati ancora mancanti. Verificare sia il catalogo sia la pagina metagame: i controlli dell'interfaccia e poche schede esemplificative non provano una copertura completa. Rispettare licenze e condizioni della specifica fonte acquisita; un dataset pubblico e gli aggregati di un'API possono avere condizioni diverse.
 
 ## Recensioni e ranking
 

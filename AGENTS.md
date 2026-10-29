@@ -6,6 +6,7 @@
 - Per regole verificare Oracle e documenti ufficiali aggiornati: Comprehensive Rules (CR), Magic Tournament Rules (MTR), Magic Infraction Procedure Guide (IPG) o Judging at Regular Rules Enforcement Level (JAR), secondo necessità. Distinguere regole e policy considerando il Rules Enforcement Level (REL) dell'evento. Nelle risposte di arbitraggio l'assistente non deve presentarsi come Judge certificato o attribuirsi qualifiche personali reali. Per strategie usare ricerche pertinenti, esempi di carte del set, colori e sequenze concrete, anche nelle versioni per telefono.
 - Nel deck building valutare piano, sinergie, curva, base di mana, consistenza, vittorie, sideboard e matchup secondo formato, legalità, budget e metagame pertinenti. Chiedere dettagli mancanti solo se incidono sulla risposta, esplicitando le ipotesi utili.
 - Distinguere espansione selezionata, formato di gioco Constructed ed evento Limited. Verificare informazioni variabili e dichiarare cataloghi parziali, dati mancanti e incertezze.
+- Tutte le espansioni usano Atlas. Mantenere gli indici WR Draft, WR Sealed e prospettive Standard/Pioneer/Modern/Pauper secondo [statistiche](docs/statistics.md), con lacune esplicite. Una pagina o un filtro disponibile non dimostra che la ricerca o il metagame siano completi: verificarne i dati per carta e formato.
 - Ogni riferimento a una carta nel sito deve offrire anteprima con mouse, tastiera e tocco, compresi i contenuti dinamici.
 - Modificare sorgenti e template, non pagine generate o `dist/`. La build deve riuscire offline dai soli file del repository.
 - Espansioni in `expansions/<slug>/`, registrate in `expansions.json`. Nessun builder dedicato o condizione sul nome del set nei motori condivisi. Prodotto ed evento restano distinti; non inventare collazione, probabilità, voti o statistiche per abilitare strumenti.
@@ -21,6 +22,7 @@
 | Contratti JSON, nuova espansione, renderer, collazione, disponibilità o salvataggi | [Architettura](docs/architecture.md) |
 | Inserimento di una nuova espansione e riuso delle fonti | [Skill mtg-new-set](.agents/skills/mtg-new-set/SKILL.md) |
 | Ricerca, ranking, recensioni, pool e mazzi Limited, sinergie, confronti fra draft, estrazione per carta, prospettive, prezzi o box | [Skill mtg-research](.agents/skills/mtg-research/SKILL.md) |
+| WR, liste di torneo, metagame e indici confrontabili per formato | [Statistiche e metodo degli indici](docs/statistics.md), con la skill di ricerca |
 | Scelte sospette o modifica delle politiche dei bot Draft | [Skill mtg-draft-bots](.agents/skills/mtg-draft-bots/SKILL.md) |
 | Restyling o miglioramento generale dell'esperienza | [Skill mtg-site-ux](.agents/skills/mtg-site-ux/SKILL.md) |
 | Review indipendente richiesta, Sonnet o cicli di correzione | [Skill mtg-review](.agents/skills/mtg-review/SKILL.md) |

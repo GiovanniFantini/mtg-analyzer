@@ -8,7 +8,7 @@ Quando si chiedono tutte le carte di un'espansione ammesse in Pauper, o in un al
 
 Distinguere legalità alla data dello snapshot, ammissibilità prevista all'uscita e valutazione competitiva. Nelle anteprime `not_legal` non prova l'esclusione futura: una previsione richiede fonte, data e basi verificabili, altrimenti è incerta. Dichiarare cataloghi parziali. Per Pauper contano eventuali stampe comuni precedenti ammesse e banlist, non solo la rarità della stampa corrente. Ospiti, ristampe e prodotti collegati mantengono condizioni proprie.
 
-Stato riportato nel README del commit `f2805a1ee52c9b9aa81a3a6d94fb621597cdbba0`, sezione Consultazione per legalità: al 22 ottobre 2026 Reality Fracture offre `Metagame e carte → Tutte le analisi` con filtro Pauper sulla legalità registrata; Star Trek non offre quel filtro nel selettore Constructed né una vista dell'ammissibilità prevista all'uscita. Non è stata implementata alcuna vista durante la riorganizzazione documentale.
+I limiti delle versioni precedenti sono documentati nei [resoconti storici](history/2026-10-22.md). Per lo stato corrente dei filtri e degli indici condivisi consultare [statistiche](statistics.md) e verificare i JSON e le route dell'espansione interessata. La legalità futura richiede comunque una verifica separata.
 
 Nelle risposte sulla consultazione indicare percorso e link filtrato quando realmente supportato. Se manca la vista, dirlo; un filtro di rarità non è un sostituto del filtro di legalità.
 
@@ -16,4 +16,10 @@ Nelle risposte sulla consultazione indicare percorso e link filtrato quando real
 
 Una richiesta di analisi per ogni carta nel contesto del sito comprende consultazione dell'intero catalogo, ricerca, filtri, dettagli per formato, prezzi e fonti. La selezione editoriale è una vista aggiuntiva; l'appendice Commander resta separata dal Limited.
 
-Ricerca, filtri e dettagli espandibili sono la base funzionale. Confronti affiancati e ordinamenti per uso, variazione di prezzo e solidità delle prove sono possibili sviluppi successivi, non requisiti aggiunti automaticamente né funzionalità già disponibili. Un giudizio sulla UX deve verificare quanto è facile trovare, leggere e confrontare le informazioni.
+Ricerca, filtri e dettagli espandibili sono la base funzionale. Gli ordinamenti per adozione documentata seguono il contratto delle statistiche. Confronti affiancati e ordinamenti per variazione di prezzo o solidità delle prove sono possibili sviluppi successivi, non requisiti aggiunti automaticamente né funzionalità già disponibili. Un giudizio sulla UX deve verificare quanto è facile trovare, leggere e confrontare le informazioni.
+
+## Indici e metagame per ogni espansione
+
+La base comune comprende WR Draft, WR Sealed e prospettive Standard, Pioneer, Modern e Pauper, con filtri e ordinamenti secondo il [contratto delle statistiche](statistics.md). Per le prospettive, le liste di torneo offrono una misura documentabile dell'adozione e segnali da seguire. Recensioni strategiche e previsioni restano contenuti distinti.
+
+Verificare separatamente disponibilità dei controlli, copertura delle misure e contenuti del metagame. Un'espansione registrata in Atlas non è automaticamente ricercata in ogni formato. Mostrare le lacune e distinguere assenza osservata, campione assente, carta non legale e dato non applicabile; non assegnare punteggi per rendere completo un ordinamento.

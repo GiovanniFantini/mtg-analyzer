@@ -1,6 +1,6 @@
 # MTG Analyzer
 
-Sito statico in italiano per consultare e analizzare espansioni di Magic: The Gathering: cataloghi, guide Limited, pool personali, sinergie, analisi delle carte e strumenti di simulazione. Reality Fracture e Star Trek usano motori condivisi e documenti JSON distinti. Ogni strumento è disponibile in base ai dati effettivamente presenti.
+Sito statico in italiano per consultare e analizzare espansioni di Magic: The Gathering: cataloghi, guide Limited, pool personali, sinergie, analisi delle carte e strumenti di simulazione. Tutte le espansioni registrate usano Atlas, motori condivisi e documenti JSON distinti. Ogni strumento è disponibile in base ai dati effettivamente presenti.
 
 [Apri il sito](https://giovannifantini.github.io/mtg-analyzer/).
 
@@ -35,7 +35,7 @@ Modificare i sorgenti e i template. `dist/` e le pagine generate non sono sorgen
 | Serve a | Leggere |
 | --- | --- |
 | Aggiungere un'espansione o cambiare il contratto | [Architettura e JSON](docs/architecture.md) |
-| Importare statistiche esterne | [Statistiche per carta](docs/statistics.md) |
+| Importare WR, ricercare metagame o aggiornare gli indici Constructed | [Statistiche per carta e metodo dei tornei](docs/statistics.md) |
 | Capire il motore e i profili dei bot | [Motore Draft](docs/draft-engine.md) |
 | Verificare prezzi o valore di un box | [Metodo economico](docs/economics.md) |
 | Consultare requisiti e limiti delle viste per formato | [Requisiti](docs/requirements.md) |
@@ -52,6 +52,8 @@ Il [gestore torneo Draft locale](docs/tournament.md), raggiungibile da Home e da
 Nella pagina Draft della presentazione Atlas, “La prossima pick” offre un assistente per draft informali: ricerca per nome, colore, costo e tipo, registrazione nel pool Draft esistente, confronto contestuale di due carte e priorità fra le sole comuni. “Solo assistente” concentra la pagina sui controlli per telefono. I consigli sono euristiche sui voti Limited e sulle sinergie già documentate, non probabilità di vittoria o letture dei segnali del tavolo. Il piano si può scegliere manualmente o suggerire dal pool. `node verify-draft-assistant.cjs`, con le variabili browser documentate, verifica decisioni contestuali, costi ibridi e facce principali, telefono, anteprime, sincronizzazione e protezione dei salvataggi.
 
 Espansione selezionata, formato di gioco ed evento Limited sono dimensioni distinte. Cataloghi, statistiche, recensioni e prezzi hanno date e coperture proprie: rigenerare il sito non li aggiorna. Le informazioni mancanti restano esplicite e non vengono inventate per abilitare strumenti. Nuove rilevazioni economiche usano Cardmarket; i modelli storici con fonti miste conservano il proprio metodo.
+
+Ogni catalogo espone WR Draft e WR Sealed separati e prospettive per Standard, Pioneer, Modern e Pauper. Filtri e ordinamenti indicano fonte, campione e lacune. Gli indici Constructed misurano l'adozione nelle liste pubblicate; segnali di crescita e uso ripetuto aiutano a scegliere cosa seguire, senza stimare probabilità future. I Pro Tour storici restano distinti dal campione recente. Uno zero osservato e un dato non disponibile hanno significati diversi: il [metodo degli indici](docs/statistics.md) ne definisce il trattamento.
 
 Pool e carte osservate sono conservati nel browser del visitatore, senza account o sincronizzazione. Cambiare origine, per esempio da un file locale al sito HTTPS, non trasferisce i salvataggi: usare esportazione e importazione dove disponibili. Replay e salvataggi incompatibili richiedono conservazione integrale prima di una nuova scrittura.
 

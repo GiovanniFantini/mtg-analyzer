@@ -17,4 +17,7 @@ const unchanged=adapter.withNamedPool(duplicate,{Shock:5},identities);
 assert.equal(JSON.stringify(unchanged),JSON.stringify(duplicate),'Editing notes must not collapse distinct existing IDs.');
 const increased=adapter.withNamedPool(duplicate,{Shock:6},identities);
 assert.equal(increased.pool.original,3);assert.equal(increased.pool.bonus,3);assert.equal(increased.deck.bonus,2);
+const reduced=adapter.withNamedPool({...duplicate,deck:{bonus:3}},{Shock:4},identities);
+assert.equal(reduced.pool.original,1);assert.equal(reduced.pool.bonus,3);assert.equal(reduced.deck.bonus,3,'Remove sideboard copies before changing the deck.');
+assert.equal(adapter.validate({...old,pool:{spell:2,land:0}},cards).pool.land,0);
 console.log('PASS: manual pool IDs, deck, basics, notes and extensions preserved; invalid records rejected without mutation.');

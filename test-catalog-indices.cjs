@@ -17,3 +17,25 @@ console.log('PASS: attributed prospects remain visible in the format details tab
 const observed={id:'measured',legalities:{standard:'legal'},prospects:{date:'2026-10-22',formats:{standard:{evidence:'non_documentata',prospect:'da_verificare',tournamentIndex:{score:0,date:'2026-10-28',status:'not_observed',legality:'legal',reason:null,sample:{decks:100},observed:{withCard:0,eventsWithCard:0}}}}}};
 const newer=ctx.window.CatalogIndices.create({cards:[observed]});assert.equal(newer.assessment(observed,'standard').rank,0);assert.equal(newer.assessment(observed,'standard').state,'not_observed');observed.prospects.formats.standard.tournamentIndex.score=20;observed.prospects.formats.standard.tournamentIndex.status='repeated';assert.equal(newer.assessment(observed,'standard').rank,20);assert.equal(newer.assessment(observed,'standard').state,'documented');
 console.log('PASS: measured tournament share overrides ordinal legacy ranks while preserving observed zero');
+const missingPrice=ctx.window.CardProspects.render({prospects:{date:'2026-10-28',analysisCoverage:'tournament_data_only',formats:{},sources:[],price:{date:'2026-10-28',metric:'non disponibile',nonfoil:null,foil:null}}});
+assert.ok(missingPrice.includes('Non sono disponibili riferimenti di prezzo verificati'));
+assert.ok(!missingPrice.includes('rilevazione del'));assert.ok(!missingPrice.includes('undefined'));
+assert.equal(ctx.window.TournamentProspects.periodLabel({start:'2026-11-01',end:'2026-11-14'},''),'dal 2026-11-01 al 2026-11-14');
+console.log('PASS: uncollected prices remain absent; trend periods come from data.');
+const scenarioOnly=ctx.window.CardProspects.render({prospects:{date:'2026-10-01',formats:{},sources:[],price:{metric:'non disponibile',outlook:{thesis:'Domanda condizionata a risultati ripetuti',upsideConditions:['Adozione ripetuta'],downsideRisks:[]}}}});
+assert.ok(scenarioOnly.includes('Domanda condizionata'));assert.ok(!scenarioOnly.includes('rilevazione del'));
+for(const [reason,legality,label] of [['not_legal','not_legal','Non legale'],['basic_land','legal','Terra base'],['legality_unknown','unknown','Legalità da verificare']]){
+ const card={id:'unavailable',legalities:{standard:legality},prospects:{formats:{standard:{tournamentIndex:{score:null,reason,legality,date:'2026-10-28',status:'unavailable',sample:{decks:1185},observed:{withCard:50},history:{withCard:0},trend:{status:'rising',deltaPoints:10}}}}}};
+ const rendered=ctx.window.TournamentProspects.details(card);
+ assert.ok(rendered.includes(label));assert.ok(!rendered.includes('1185'));assert.ok(!rendered.includes('In crescita'));assert.ok(!rendered.includes('liste ammissibili'));
+ elements['prospect-format']={value:'standard'};elements['prospect-state']={value:''};elements['prospect-legality']={value:''};elements['prospect-sample']={value:'50'};
+ assert.equal(ctx.window.CatalogIndices.create({cards:[card]}).matches(card),false,'Unavailable indices do not satisfy a usable-sample filter.');
+}
+console.log('PASS: non-applicable indices have a reason, no observed-zero/trend claims and no usable sample.');
+ctx.URL=URL;ctx.location={href:'http://127.0.0.1/'};
+const legacyCard=JSON.parse(fs.readFileSync('expansions/reality-fracture/cards.json','utf8')).cards.find(c=>c.name==='Unflinching Hortimancer');
+const registry=JSON.parse(fs.readFileSync('expansions/reality-fracture/sources.json','utf8')).research.sources;
+const attributed=ctx.window.CardProspects.render(legacyCard,registry);
+assert.ok(attributed.includes('Osservazione editoriale di '));assert.ok(attributed.includes('Campione distinto dall’indice da liste ufficiali'));
+assert.ok(attributed.includes('Indice da liste ufficiali al '));assert.ok(attributed.includes('Postboard'));
+console.log('PASS: older editorial observations and measured indices keep distinct source/date attribution.');

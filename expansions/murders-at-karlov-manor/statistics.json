@@ -2355,6 +2355,17 @@
             }
           },
           {
+            "catalogId": "c49690c7-c282-4eb4-8da3-5e0c46a80fc4",
+            "name": "Kellan, Inquisitive Prodigy // Tail the Suspect",
+            "sourceName": "Kellan, Inquisitive Prodigy",
+            "sourceUrl": "https://www.17lands.com/public_datasets",
+            "metrics": {
+              "inHandWinRate": 60.44817643785725,
+              "games": 19769,
+              "wins": 11950
+            }
+          },
+          {
             "catalogId": "0c08ed44-2c13-4029-af2e-68585a76bb03",
             "name": "Kraul Whipcracker",
             "sourceName": "Kraul Whipcracker",
@@ -3171,10 +3182,9 @@
         ],
         "coverage": {
           "catalogCards": 289,
-          "matchedCards": 285,
-          "withWinRate": 285,
+          "matchedCards": 286,
+          "withWinRate": 286,
           "missingCatalogIds": [
-            "c49690c7-c282-4eb4-8da3-5e0c46a80fc4",
             "01c5ede0-a098-4f21-8b7e-795a83e75aae",
             "2c5a7550-fe1a-4797-9583-70ab56cfac0d",
             "bfa1bd2f-25bd-4fbd-877b-cef00ab7f92f"
@@ -3194,7 +3204,6 @@
             "High Alert",
             "Ixidor, Reality Sculptor",
             "Jace, Wielder of Mysteries",
-            "Kellan, Inquisitive Prodigy",
             "Krosan Tusker",
             "Kuldotha Rebirth",
             "Laid to Rest",
@@ -3238,7 +3247,14 @@
           "La WR descrive le partite osservate, non la probabilità causale di vittoria della carta.",
           "Nessuna soglia minima applicata: consultare il campione, soprattutto quando è piccolo.",
           "Carte assenti o mai viste in mano conservano WR null. Il dataset pubblico ha una propria finestra storica."
-        ]
+        ],
+        "matchingVersion": 2,
+        "matchingFingerprint": "f999b6a8087eecea08882ddf835ff597252a5e4d955203ca1d392604283cd048",
+        "reusedDerivedAcquisition": {
+          "path": "research/production-opus-20261028/17lands-corrections/murders-at-karlov-manor-PremierDraft.json",
+          "sha256": "3ecde1ad7ebc950c3ecaf67057e6331a07368e88eae2a148e74b199fc184326a",
+          "reason": "Same verified first-face matching method; acquisition preserved while adding explicit cache method metadata."
+        }
       }
     }
   },
@@ -5596,6 +5612,17 @@
             }
           },
           {
+            "catalogId": "c49690c7-c282-4eb4-8da3-5e0c46a80fc4",
+            "name": "Kellan, Inquisitive Prodigy // Tail the Suspect",
+            "sourceName": "Kellan, Inquisitive Prodigy",
+            "sourceUrl": "https://www.17lands.com/public_datasets",
+            "metrics": {
+              "inHandWinRate": 58.413251961639055,
+              "games": 1147,
+              "wins": 670
+            }
+          },
+          {
             "catalogId": "0c08ed44-2c13-4029-af2e-68585a76bb03",
             "name": "Kraul Whipcracker",
             "sourceName": "Kraul Whipcracker",
@@ -6412,10 +6439,9 @@
         ],
         "coverage": {
           "catalogCards": 289,
-          "matchedCards": 285,
-          "withWinRate": 284,
+          "matchedCards": 286,
+          "withWinRate": 285,
           "missingCatalogIds": [
-            "c49690c7-c282-4eb4-8da3-5e0c46a80fc4",
             "01c5ede0-a098-4f21-8b7e-795a83e75aae",
             "2c5a7550-fe1a-4797-9583-70ab56cfac0d",
             "bfa1bd2f-25bd-4fbd-877b-cef00ab7f92f"
@@ -6435,7 +6461,6 @@
             "High Alert",
             "Ixidor, Reality Sculptor",
             "Jace, Wielder of Mysteries",
-            "Kellan, Inquisitive Prodigy",
             "Krosan Tusker",
             "Kuldotha Rebirth",
             "Laid to Rest",
@@ -6479,7 +6504,14 @@
           "La WR descrive le partite osservate, non la probabilità causale di vittoria della carta.",
           "Nessuna soglia minima applicata: consultare il campione, soprattutto quando è piccolo.",
           "Carte assenti o mai viste in mano conservano WR null. Il dataset pubblico ha una propria finestra storica."
-        ]
+        ],
+        "matchingVersion": 2,
+        "matchingFingerprint": "f999b6a8087eecea08882ddf835ff597252a5e4d955203ca1d392604283cd048",
+        "reusedDerivedAcquisition": {
+          "path": "research/production-opus-20261028/17lands-corrections/murders-at-karlov-manor-Sealed.json",
+          "sha256": "734ca8552d5b590d1526c74fb0d4352ef5393bd7664db114d8e3337c24a22bc2",
+          "reason": "Same verified first-face matching method; acquisition preserved while adding explicit cache method metadata."
+        }
       }
     }
   },

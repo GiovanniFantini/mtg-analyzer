@@ -1,0 +1,36 @@
+{
+  "requestedModel": "opus",
+  "scope": "Atlas migration, save preservation, Draft/Sealed WR, Constructed tournament indices and metagames, current reusable documentation",
+  "baselineCommit": "8ab652e",
+  "head": "756af33908348788e89c14d89c83ff13dbd64b16",
+  "files": {
+    "docs/architecture.md": "efdb8d0549082e3928db20fcac8e84e57be3df1f1852551085d8986209de9086",
+    "prospects-ui.js": "f7cf8cb4028ff0c11c5964295056cff4ddf8137f1c07d682d8787305cb1ff5c5",
+    "templates/atlas/gallery.html": "33a71d373baeb803a77026848561f8d99abd6dfc27e6c2d340619a75893579a2",
+    "verify-expansion-review.cjs": "8450697de3d3b24a9cd707f9b6e4a7aabb6487a4f36a1972f27eae11caf6f0f2",
+    "test-catalog-indices.cjs": "a1f4d4988f04ae1fa106faa736a8d8037862b166379f101375eb2b95508a1c71",
+    "reviews/production-opus-20261028/verify-corrections.cjs": "245be88979fad3a32e77a7eb10ae09d753bab2191e32da17c8a8a8453471312f",
+    "reviews/production-opus-20261028/verification-v3.json": "73978e0266ba03984e9bafef5f99653270f59f130f695fed660a0a36f141fabc",
+    "templates/atlas/analysis.html": "4bd2107b8d0af70ecd67e13ff03d523f460e381b8a8f788fb5635f7090c2ba47",
+    "templates/atlas/combos.html": "3b790216f91c69a16b6c99e1ac2642bec226fc5bac1ba76cf9a7af00cec66b9e",
+    "templates/atlas/set.html": "c7c618318ec5b4614c49e38c76a6346c2a645e7c937ad8474fbe8742e8937465",
+    "sentiment-ui.js": "4538fc1a978cd1681b474b25b2910a726624c6dab50c5b68914b83e813dc200f",
+    "metric-help.js": "b0209e6cc616c044ccbcece243be964f9653ee6003cc8894add9c04a61e69421",
+    "card-hover.js": "d5dab35297e13dbb1169662e523290eda19cdf58b204cec6d3252d1b2a6a4034",
+    "build_expansion.py": "862edd1331d260b7be4769c0231f962c0fac72ca0778929763f1ce56c1f8caad"
+  },
+  "priorReadyReview": "round-5.result.json",
+  "changedSinceRound5": [
+    "docs/architecture.md",
+    "prospects-ui.js",
+    "templates/atlas/gallery.html",
+    "test-catalog-indices.cjs",
+    "reviews/production-opus-20261028/verify-corrections.cjs",
+    "verify-expansion-review.cjs"
+  ],
+  "requestSha256": "b230d696e94b3734d4f48913bfe991a2afee1f6c45c832ae0a0a36e2f19d6f41",
+  "actualModels": [
+    "claude-opus-5-5"
+  ],
+  "isError": false
+}

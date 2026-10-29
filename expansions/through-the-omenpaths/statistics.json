@@ -255,6 +255,17 @@
             }
           },
           {
+            "catalogId": "2ec821c3-3e5c-4af8-a6ef-e2e77aa8668c",
+            "name": "Surris, Spidersilk Innovator // Surris, Silk-Tech Vanguard",
+            "sourceName": "Surris, Spidersilk Innovator",
+            "sourceUrl": "https://www.17lands.com/public_datasets",
+            "metrics": {
+              "inHandWinRate": 62.16032608695652,
+              "games": 2944,
+              "wins": 1830
+            }
+          },
+          {
             "catalogId": "84285f17-dbf3-49f6-a61e-2f779cb3e798",
             "name": "Verilax the Havenskin",
             "sourceName": "Verilax the Havenskin",
@@ -340,6 +351,17 @@
               "inHandWinRate": 57.97846600532301,
               "games": 16532,
               "wins": 9585
+            }
+          },
+          {
+            "catalogId": "da13a060-36ee-41e9-bab1-af8ddcc893b8",
+            "name": "Goben, Gene-Splice Savant // Fleem, Goben's Creation",
+            "sourceName": "Goben, Gene-Splice Savant",
+            "sourceUrl": "https://www.17lands.com/public_datasets",
+            "metrics": {
+              "inHandWinRate": 61.11639708214399,
+              "games": 3153,
+              "wins": 1927
             }
           },
           {
@@ -783,6 +805,17 @@
             }
           },
           {
+            "catalogId": "42a3589f-f09e-4298-b1ae-7165de65bfb8",
+            "name": "Viggo, Enforcer of Ig's Crossing // Viggo, End of Ig's Crossing",
+            "sourceName": "Viggo, Enforcer of Ig's Crossing",
+            "sourceUrl": "https://www.17lands.com/public_datasets",
+            "metrics": {
+              "inHandWinRate": 55.71284125379171,
+              "games": 1978,
+              "wins": 1102
+            }
+          },
+          {
             "catalogId": "acd597bf-554e-4456-9215-98917e835d67",
             "name": "Villainous Wrath",
             "sourceName": "Villainous Wrath",
@@ -970,6 +1003,17 @@
             }
           },
           {
+            "catalogId": "a301083a-9130-4384-a355-efe7050871ca",
+            "name": "Nia, Skysail Storyteller // Nia, Fabled Skyclimber",
+            "sourceName": "Nia, Skysail Storyteller",
+            "sourceUrl": "https://www.17lands.com/public_datasets",
+            "metrics": {
+              "inHandWinRate": 58.87309110057925,
+              "games": 1899,
+              "wins": 1118
+            }
+          },
+          {
             "catalogId": "cd68f368-6b6c-4c1e-a971-11e549e029c3",
             "name": "Quint's Insight",
             "sourceName": "Quint's Insight",
@@ -1099,6 +1143,17 @@
               "inHandWinRate": 59.06549796397267,
               "games": 14489,
               "wins": 8558
+            }
+          },
+          {
+            "catalogId": "7feb1493-b73e-4ee3-968e-d69806360952",
+            "name": "Cren, Undercity Dreamer // Cren of the Spider Brood",
+            "sourceName": "Cren, Undercity Dreamer",
+            "sourceUrl": "https://www.17lands.com/public_datasets",
+            "metrics": {
+              "inHandWinRate": 62.05443940375891,
+              "games": 3086,
+              "wins": 1915
             }
           },
           {
@@ -2490,26 +2545,15 @@
         ],
         "coverage": {
           "catalogCards": 228,
-          "matchedCards": 223,
-          "withWinRate": 223,
-          "missingCatalogIds": [
-            "2ec821c3-3e5c-4af8-a6ef-e2e77aa8668c",
-            "da13a060-36ee-41e9-bab1-af8ddcc893b8",
-            "42a3589f-f09e-4298-b1ae-7165de65bfb8",
-            "a301083a-9130-4384-a355-efe7050871ca",
-            "7feb1493-b73e-4ee3-968e-d69806360952"
-          ],
+          "matchedCards": 228,
+          "withWinRate": 228,
+          "missingCatalogIds": [],
           "unmatchedSourceNames": [
-            "Cren, Undercity Dreamer",
             "Forest",
-            "Goben, Gene-Splice Savant",
             "Island",
             "Mountain",
-            "Nia, Skysail Storyteller",
             "Plains",
-            "Surris, Spidersilk Innovator",
-            "Swamp",
-            "Viggo, Enforcer of Ig's Crossing"
+            "Swamp"
           ]
         },
         "derivation": {
@@ -2527,7 +2571,14 @@
           "La WR descrive le partite osservate, non la probabilità causale di vittoria della carta.",
           "Nessuna soglia minima applicata: consultare il campione, soprattutto quando è piccolo.",
           "Carte assenti o mai viste in mano conservano WR null. Il dataset pubblico ha una propria finestra storica."
-        ]
+        ],
+        "matchingVersion": 2,
+        "matchingFingerprint": "47154b362ed0b67bcdf8b853672390ee8c69c793a94c8ff5ae12434e98efa2f1",
+        "reusedDerivedAcquisition": {
+          "path": "research/production-opus-20261028/17lands-corrections/through-the-omenpaths-PickTwoDraft.json",
+          "sha256": "6e60c1788a951952707e6a1d9a22ae414847dab8aad2626f2f6c1ec70bb34723",
+          "reason": "Same verified first-face matching method; acquisition preserved while adding explicit cache method metadata."
+        }
       }
     }
   },
@@ -2784,6 +2835,17 @@
             }
           },
           {
+            "catalogId": "2ec821c3-3e5c-4af8-a6ef-e2e77aa8668c",
+            "name": "Surris, Spidersilk Innovator // Surris, Silk-Tech Vanguard",
+            "sourceName": "Surris, Spidersilk Innovator",
+            "sourceUrl": "https://www.17lands.com/public_datasets",
+            "metrics": {
+              "inHandWinRate": 63.03116147308782,
+              "games": 706,
+              "wins": 445
+            }
+          },
+          {
             "catalogId": "84285f17-dbf3-49f6-a61e-2f779cb3e798",
             "name": "Verilax the Havenskin",
             "sourceName": "Verilax the Havenskin",
@@ -2869,6 +2931,17 @@
               "inHandWinRate": 59.77121067683508,
               "games": 1049,
               "wins": 627
+            }
+          },
+          {
+            "catalogId": "da13a060-36ee-41e9-bab1-af8ddcc893b8",
+            "name": "Goben, Gene-Splice Savant // Fleem, Goben's Creation",
+            "sourceName": "Goben, Gene-Splice Savant",
+            "sourceUrl": "https://www.17lands.com/public_datasets",
+            "metrics": {
+              "inHandWinRate": 59.9290780141844,
+              "games": 564,
+              "wins": 338
             }
           },
           {
@@ -3312,6 +3385,17 @@
             }
           },
           {
+            "catalogId": "42a3589f-f09e-4298-b1ae-7165de65bfb8",
+            "name": "Viggo, Enforcer of Ig's Crossing // Viggo, End of Ig's Crossing",
+            "sourceName": "Viggo, Enforcer of Ig's Crossing",
+            "sourceUrl": "https://www.17lands.com/public_datasets",
+            "metrics": {
+              "inHandWinRate": 59.6085409252669,
+              "games": 562,
+              "wins": 335
+            }
+          },
+          {
             "catalogId": "acd597bf-554e-4456-9215-98917e835d67",
             "name": "Villainous Wrath",
             "sourceName": "Villainous Wrath",
@@ -3499,6 +3583,17 @@
             }
           },
           {
+            "catalogId": "a301083a-9130-4384-a355-efe7050871ca",
+            "name": "Nia, Skysail Storyteller // Nia, Fabled Skyclimber",
+            "sourceName": "Nia, Skysail Storyteller",
+            "sourceUrl": "https://www.17lands.com/public_datasets",
+            "metrics": {
+              "inHandWinRate": 62.217194570135746,
+              "games": 442,
+              "wins": 275
+            }
+          },
+          {
             "catalogId": "cd68f368-6b6c-4c1e-a971-11e549e029c3",
             "name": "Quint's Insight",
             "sourceName": "Quint's Insight",
@@ -3628,6 +3723,17 @@
               "inHandWinRate": 60.38233355306526,
               "games": 3034,
               "wins": 1832
+            }
+          },
+          {
+            "catalogId": "7feb1493-b73e-4ee3-968e-d69806360952",
+            "name": "Cren, Undercity Dreamer // Cren of the Spider Brood",
+            "sourceName": "Cren, Undercity Dreamer",
+            "sourceUrl": "https://www.17lands.com/public_datasets",
+            "metrics": {
+              "inHandWinRate": 63.12433581296493,
+              "games": 941,
+              "wins": 594
             }
           },
           {
@@ -5019,26 +5125,15 @@
         ],
         "coverage": {
           "catalogCards": 228,
-          "matchedCards": 223,
-          "withWinRate": 220,
-          "missingCatalogIds": [
-            "2ec821c3-3e5c-4af8-a6ef-e2e77aa8668c",
-            "da13a060-36ee-41e9-bab1-af8ddcc893b8",
-            "42a3589f-f09e-4298-b1ae-7165de65bfb8",
-            "a301083a-9130-4384-a355-efe7050871ca",
-            "7feb1493-b73e-4ee3-968e-d69806360952"
-          ],
+          "matchedCards": 228,
+          "withWinRate": 225,
+          "missingCatalogIds": [],
           "unmatchedSourceNames": [
-            "Cren, Undercity Dreamer",
             "Forest",
-            "Goben, Gene-Splice Savant",
             "Island",
             "Mountain",
-            "Nia, Skysail Storyteller",
             "Plains",
-            "Surris, Spidersilk Innovator",
-            "Swamp",
-            "Viggo, Enforcer of Ig's Crossing"
+            "Swamp"
           ]
         },
         "derivation": {
@@ -5056,7 +5151,14 @@
           "La WR descrive le partite osservate, non la probabilità causale di vittoria della carta.",
           "Nessuna soglia minima applicata: consultare il campione, soprattutto quando è piccolo.",
           "Carte assenti o mai viste in mano conservano WR null. Il dataset pubblico ha una propria finestra storica."
-        ]
+        ],
+        "matchingVersion": 2,
+        "matchingFingerprint": "47154b362ed0b67bcdf8b853672390ee8c69c793a94c8ff5ae12434e98efa2f1",
+        "reusedDerivedAcquisition": {
+          "path": "research/production-opus-20261028/17lands-corrections/through-the-omenpaths-Sealed.json",
+          "sha256": "fdb27509b1c994537747debcb5dd296807b1764a7f38326a3c56f8b84bfce169",
+          "reason": "Same verified first-face matching method; acquisition preserved while adding explicit cache method metadata."
+        }
       }
     }
   }

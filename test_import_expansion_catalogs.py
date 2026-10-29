@@ -30,6 +30,15 @@ class CatalogImportTests(unittest.TestCase):
         self.assertNotIn('prices', card)
         self.assertNotIn('catalogId', card)
 
+    def test_reversible_faces_keep_their_verified_shared_oracle_identity(self):
+        raw=self.raw(layout='reversible_card',oracle_id=None)
+        for face in raw['card_faces']:face['oracle_id']='shared'
+        self.assertEqual(importer.normalize_printing(raw)['oracleId'],'shared')
+        raw['card_faces'][1]['oracle_id']='different'
+        self.assertIsNone(importer.normalize_printing(raw)['oracleId'])
+        raw['card_faces'][1].pop('oracle_id')
+        self.assertIsNone(importer.normalize_printing(raw)['oracleId'])
+
     def test_variants_map_to_one_card_per_set_and_refuse_overwrite(self):
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp)

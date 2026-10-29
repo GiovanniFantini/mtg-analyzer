@@ -179,6 +179,75 @@
         "status": "acquired"
       },
       {
+        "id": "scryfall-reversible-identity-20261028",
+        "publisher": "Scryfall",
+        "kind": "verified-reversible-card-oracle-identity",
+        "url": "https://scryfall.com/docs/api/cards",
+        "retrieved": "2026-10-28",
+        "cards": [
+          {
+            "url": "https://api.scryfall.com/cards/19cba6be-7291-4788-9241-87dad3b68363",
+            "expansion": "lorwyn-eclipsed",
+            "id": "19cba6be-7291-4788-9241-87dad3b68363",
+            "name": "Hallowed Fountain // Hallowed Fountain",
+            "oracleId": "f1750962-a87c-49f6-b731-02ae971ac6ea",
+            "retrieved": "2026-10-28",
+            "faceOracleIds": [
+              "f1750962-a87c-49f6-b731-02ae971ac6ea",
+              "f1750962-a87c-49f6-b731-02ae971ac6ea"
+            ]
+          },
+          {
+            "url": "https://api.scryfall.com/cards/eb96c335-9ed3-4f7d-b07a-185ff4044976",
+            "expansion": "lorwyn-eclipsed",
+            "id": "eb96c335-9ed3-4f7d-b07a-185ff4044976",
+            "name": "Steam Vents // Steam Vents",
+            "oracleId": "17039058-822d-409f-938c-b727a366ba63",
+            "retrieved": "2026-10-28",
+            "faceOracleIds": [
+              "17039058-822d-409f-938c-b727a366ba63",
+              "17039058-822d-409f-938c-b727a366ba63"
+            ]
+          },
+          {
+            "url": "https://api.scryfall.com/cards/28d37803-d3f9-4806-9a0b-79362a517a7a",
+            "expansion": "lorwyn-eclipsed",
+            "id": "28d37803-d3f9-4806-9a0b-79362a517a7a",
+            "name": "Blood Crypt // Blood Crypt",
+            "oracleId": "43985bbc-a0f6-4812-984e-392bc8562633",
+            "retrieved": "2026-10-28",
+            "faceOracleIds": [
+              "43985bbc-a0f6-4812-984e-392bc8562633",
+              "43985bbc-a0f6-4812-984e-392bc8562633"
+            ]
+          },
+          {
+            "url": "https://api.scryfall.com/cards/307fdde3-43f6-4d80-884a-4a85314ab8e4",
+            "expansion": "lorwyn-eclipsed",
+            "id": "307fdde3-43f6-4d80-884a-4a85314ab8e4",
+            "name": "Overgrown Tomb // Overgrown Tomb",
+            "oracleId": "975ec9a3-6f20-4177-8211-82526e092538",
+            "retrieved": "2026-10-28",
+            "faceOracleIds": [
+              "975ec9a3-6f20-4177-8211-82526e092538",
+              "975ec9a3-6f20-4177-8211-82526e092538"
+            ]
+          },
+          {
+            "url": "https://api.scryfall.com/cards/ec75b840-420d-4512-a74a-d70f19be0085",
+            "expansion": "lorwyn-eclipsed",
+            "id": "ec75b840-420d-4512-a74a-d70f19be0085",
+            "name": "Temple Garden // Temple Garden",
+            "oracleId": "f413a83d-a40d-434c-b20a-4c707c0527fa",
+            "retrieved": "2026-10-28",
+            "faceOracleIds": [
+              "f413a83d-a40d-434c-b20a-4c707c0527fa",
+              "f413a83d-a40d-434c-b20a-4c707c0527fa"
+            ]
+          }
+        ]
+      },
+      {
         "id": "official-tournament-corpus-20261028",
         "publisher": "Magic Online / Wizards of the Coast",
         "kind": "official-tournament-decklists",
@@ -196,6 +265,7 @@
             "date": "2024-02-23",
             "format": "pioneer",
             "kind": "historical-pro-tour",
+            "trendKind": null,
             "publishedCoverage": "complete-field-published-in-parts",
             "players": 258,
             "pages": [
@@ -213,6 +283,7 @@
             "date": "2026-05-01",
             "format": "standard",
             "kind": "historical-pro-tour",
+            "trendKind": null,
             "publishedCoverage": "complete-field-published-in-parts",
             "players": null,
             "pages": [
@@ -229,6 +300,7 @@
             "date": "2026-07-17",
             "format": "modern",
             "kind": "historical-pro-tour",
+            "trendKind": null,
             "publishedCoverage": "complete-field-published-in-parts",
             "players": null,
             "pages": [
@@ -245,6 +317,7 @@
             "date": "2026-10-01",
             "format": "standard",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 34,
             "pages": [
@@ -258,6 +331,7 @@
             "date": "2026-10-01",
             "format": "modern",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 100,
             "pages": [
@@ -271,6 +345,7 @@
             "date": "2026-10-01",
             "format": "pauper",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 51,
             "pages": [
@@ -284,6 +359,7 @@
             "date": "2026-10-01",
             "format": "pioneer",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 40,
             "pages": [
@@ -297,6 +373,7 @@
             "date": "2026-10-02",
             "format": "standard",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 45,
             "pages": [
@@ -310,6 +387,7 @@
             "date": "2026-10-02",
             "format": "pauper",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 49,
             "pages": [
@@ -323,6 +401,7 @@
             "date": "2026-10-02",
             "format": "modern",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 105,
             "pages": [
@@ -336,6 +415,7 @@
             "date": "2026-10-02",
             "format": "standard",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 48,
             "pages": [
@@ -349,6 +429,7 @@
             "date": "2026-10-03",
             "format": "modern",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-qualifier",
             "publishedCoverage": "published-lists-only",
             "players": 344,
             "pages": [
@@ -362,6 +443,7 @@
             "date": "2026-10-03",
             "format": "modern",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 72,
             "pages": [
@@ -375,6 +457,7 @@
             "date": "2026-10-03",
             "format": "modern",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "complete-field",
             "players": 31,
             "pages": [
@@ -388,6 +471,7 @@
             "date": "2026-10-03",
             "format": "pauper",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "complete-field",
             "players": 28,
             "pages": [
@@ -401,6 +485,7 @@
             "date": "2026-10-04",
             "format": "modern",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 83,
             "pages": [
@@ -414,6 +499,7 @@
             "date": "2026-10-04",
             "format": "pauper",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 45,
             "pages": [
@@ -427,6 +513,7 @@
             "date": "2026-10-04",
             "format": "pioneer",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "complete-field",
             "players": 25,
             "pages": [
@@ -440,6 +527,7 @@
             "date": "2026-10-04",
             "format": "standard",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 38,
             "pages": [
@@ -453,6 +541,7 @@
             "date": "2026-10-05",
             "format": "modern",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 78,
             "pages": [
@@ -466,6 +555,7 @@
             "date": "2026-10-05",
             "format": "modern",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 111,
             "pages": [
@@ -479,6 +569,7 @@
             "date": "2026-10-05",
             "format": "pauper",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 52,
             "pages": [
@@ -492,6 +583,7 @@
             "date": "2026-10-05",
             "format": "pioneer",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 50,
             "pages": [
@@ -505,6 +597,7 @@
             "date": "2026-10-05",
             "format": "standard",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 59,
             "pages": [
@@ -518,6 +611,7 @@
             "date": "2026-10-06",
             "format": "modern",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 57,
             "pages": [
@@ -531,6 +625,7 @@
             "date": "2026-10-06",
             "format": "modern",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 38,
             "pages": [
@@ -544,6 +639,7 @@
             "date": "2026-10-06",
             "format": "pauper",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 33,
             "pages": [
@@ -557,6 +653,7 @@
             "date": "2026-10-06",
             "format": "modern",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 72,
             "pages": [
@@ -570,6 +667,7 @@
             "date": "2026-10-06",
             "format": "standard",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 44,
             "pages": [
@@ -583,6 +681,7 @@
             "date": "2026-10-06",
             "format": "standard",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "complete-field",
             "players": 24,
             "pages": [
@@ -596,6 +695,7 @@
             "date": "2026-10-07",
             "format": "modern",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 58,
             "pages": [
@@ -609,6 +709,7 @@
             "date": "2026-10-07",
             "format": "pauper",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 48,
             "pages": [
@@ -622,6 +723,7 @@
             "date": "2026-10-07",
             "format": "modern",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 104,
             "pages": [
@@ -635,6 +737,7 @@
             "date": "2026-10-07",
             "format": "standard",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "complete-field",
             "players": 27,
             "pages": [
@@ -648,6 +751,7 @@
             "date": "2026-10-07",
             "format": "standard",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "complete-field",
             "players": 24,
             "pages": [
@@ -661,6 +765,7 @@
             "date": "2026-10-08",
             "format": "standard",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "complete-field",
             "players": 30,
             "pages": [
@@ -674,6 +779,7 @@
             "date": "2026-10-08",
             "format": "pauper",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 56,
             "pages": [
@@ -687,6 +793,7 @@
             "date": "2026-10-08",
             "format": "pioneer",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 44,
             "pages": [
@@ -700,6 +807,7 @@
             "date": "2026-10-09",
             "format": "standard",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 44,
             "pages": [
@@ -713,6 +821,7 @@
             "date": "2026-10-09",
             "format": "standard",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "complete-field",
             "players": 24,
             "pages": [
@@ -726,6 +835,7 @@
             "date": "2026-10-09",
             "format": "pauper",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 52,
             "pages": [
@@ -739,6 +849,7 @@
             "date": "2026-10-09",
             "format": "standard",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 61,
             "pages": [
@@ -752,6 +863,7 @@
             "date": "2026-10-09",
             "format": "modern",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 55,
             "pages": [
@@ -765,6 +877,7 @@
             "date": "2026-10-10",
             "format": "modern",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "complete-field",
             "players": 29,
             "pages": [
@@ -778,6 +891,7 @@
             "date": "2026-10-10",
             "format": "pauper",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "complete-field",
             "players": 30,
             "pages": [
@@ -791,6 +905,7 @@
             "date": "2026-10-10",
             "format": "pioneer",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "complete-field",
             "players": 25,
             "pages": [
@@ -804,6 +919,7 @@
             "date": "2026-10-10",
             "format": "modern",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 57,
             "pages": [
@@ -817,6 +933,7 @@
             "date": "2026-10-10",
             "format": "modern",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 50,
             "pages": [
@@ -830,6 +947,7 @@
             "date": "2026-10-11",
             "format": "modern",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 51,
             "pages": [
@@ -843,6 +961,7 @@
             "date": "2026-10-11",
             "format": "pauper",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 58,
             "pages": [
@@ -856,6 +975,7 @@
             "date": "2026-10-11",
             "format": "pioneer",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "complete-field",
             "players": 26,
             "pages": [
@@ -869,6 +989,7 @@
             "date": "2026-10-11",
             "format": "standard",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 43,
             "pages": [
@@ -882,6 +1003,7 @@
             "date": "2026-10-11",
             "format": "modern",
             "kind": "recent-published-top-finishers",
+            "trendKind": null,
             "publishedCoverage": "published-top-finishers",
             "players": null,
             "pages": [
@@ -895,6 +1017,7 @@
             "date": "2026-10-12",
             "format": "pauper",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 44,
             "pages": [
@@ -908,6 +1031,7 @@
             "date": "2026-10-12",
             "format": "standard",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 61,
             "pages": [
@@ -921,6 +1045,7 @@
             "date": "2026-10-12",
             "format": "pioneer",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 40,
             "pages": [
@@ -934,6 +1059,7 @@
             "date": "2026-10-12",
             "format": "modern",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "complete-field",
             "players": 24,
             "pages": [
@@ -947,6 +1073,7 @@
             "date": "2026-10-13",
             "format": "modern",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 44,
             "pages": [
@@ -960,6 +1087,7 @@
             "date": "2026-10-13",
             "format": "modern",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "complete-field",
             "players": 25,
             "pages": [
@@ -973,6 +1101,7 @@
             "date": "2026-10-13",
             "format": "pauper",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 33,
             "pages": [
@@ -986,6 +1115,7 @@
             "date": "2026-10-13",
             "format": "standard",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 63,
             "pages": [
@@ -999,6 +1129,7 @@
             "date": "2026-10-13",
             "format": "modern",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "complete-field",
             "players": 32,
             "pages": [
@@ -1012,6 +1143,7 @@
             "date": "2026-10-14",
             "format": "modern",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 44,
             "pages": [
@@ -1025,6 +1157,7 @@
             "date": "2026-10-14",
             "format": "standard",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "complete-field",
             "players": 26,
             "pages": [
@@ -1038,6 +1171,7 @@
             "date": "2026-10-14",
             "format": "pauper",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 44,
             "pages": [
@@ -1051,6 +1185,7 @@
             "date": "2026-10-14",
             "format": "modern",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 54,
             "pages": [
@@ -1064,6 +1199,7 @@
             "date": "2026-10-15",
             "format": "standard",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "complete-field",
             "players": 24,
             "pages": [
@@ -1077,6 +1213,7 @@
             "date": "2026-10-15",
             "format": "standard",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 39,
             "pages": [
@@ -1090,6 +1227,7 @@
             "date": "2026-10-15",
             "format": "modern",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 72,
             "pages": [
@@ -1103,6 +1241,7 @@
             "date": "2026-10-15",
             "format": "pauper",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 48,
             "pages": [
@@ -1116,6 +1255,7 @@
             "date": "2026-10-15",
             "format": "pioneer",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 40,
             "pages": [
@@ -1129,6 +1269,7 @@
             "date": "2026-10-16",
             "format": "standard",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 57,
             "pages": [
@@ -1142,6 +1283,7 @@
             "date": "2026-10-16",
             "format": "pauper",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 54,
             "pages": [
@@ -1155,6 +1297,7 @@
             "date": "2026-10-16",
             "format": "standard",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 51,
             "pages": [
@@ -1168,6 +1311,7 @@
             "date": "2026-10-16",
             "format": "modern",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 51,
             "pages": [
@@ -1181,6 +1325,7 @@
             "date": "2026-10-17",
             "format": "modern",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-showcase",
             "publishedCoverage": "published-lists-only",
             "players": 286,
             "pages": [
@@ -1194,6 +1339,7 @@
             "date": "2026-10-17",
             "format": "modern",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "complete-field",
             "players": 26,
             "pages": [
@@ -1207,6 +1353,7 @@
             "date": "2026-10-17",
             "format": "pauper",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "complete-field",
             "players": 31,
             "pages": [
@@ -1220,6 +1367,7 @@
             "date": "2026-10-17",
             "format": "modern",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 44,
             "pages": [
@@ -1233,6 +1381,7 @@
             "date": "2026-10-17",
             "format": "pioneer",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "complete-field",
             "players": 26,
             "pages": [
@@ -1246,6 +1395,7 @@
             "date": "2026-10-17",
             "format": "modern",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 62,
             "pages": [
@@ -1259,6 +1409,7 @@
             "date": "2026-10-18",
             "format": "modern",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 63,
             "pages": [
@@ -1272,6 +1423,7 @@
             "date": "2026-10-18",
             "format": "pauper",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 64,
             "pages": [
@@ -1285,6 +1437,7 @@
             "date": "2026-10-18",
             "format": "pioneer",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "complete-field",
             "players": 32,
             "pages": [
@@ -1298,6 +1451,7 @@
             "date": "2026-10-18",
             "format": "standard",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 50,
             "pages": [
@@ -1311,6 +1465,7 @@
             "date": "2026-10-19",
             "format": "pauper",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 56,
             "pages": [
@@ -1324,6 +1479,7 @@
             "date": "2026-10-19",
             "format": "standard",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 51,
             "pages": [
@@ -1337,6 +1493,7 @@
             "date": "2026-10-19",
             "format": "pioneer",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 46,
             "pages": [
@@ -1350,6 +1507,7 @@
             "date": "2026-10-19",
             "format": "modern",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 72,
             "pages": [
@@ -1363,6 +1521,7 @@
             "date": "2026-10-20",
             "format": "modern",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": null,
             "pages": [
@@ -1376,6 +1535,7 @@
             "date": "2026-10-20",
             "format": "modern",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "complete-field",
             "players": 27,
             "pages": [
@@ -1389,6 +1549,7 @@
             "date": "2026-10-20",
             "format": "pauper",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "complete-field",
             "players": 28,
             "pages": [
@@ -1402,6 +1563,7 @@
             "date": "2026-10-20",
             "format": "standard",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 64,
             "pages": [
@@ -1415,6 +1577,7 @@
             "date": "2026-10-20",
             "format": "modern",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 72,
             "pages": [
@@ -1428,6 +1591,7 @@
             "date": "2026-10-21",
             "format": "modern",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 50,
             "pages": [
@@ -1441,6 +1605,7 @@
             "date": "2026-10-21",
             "format": "standard",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 36,
             "pages": [
@@ -1454,6 +1619,7 @@
             "date": "2026-10-21",
             "format": "modern",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 72,
             "pages": [
@@ -1467,6 +1633,7 @@
             "date": "2026-10-22",
             "format": "standard",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 43,
             "pages": [
@@ -1480,6 +1647,7 @@
             "date": "2026-10-22",
             "format": "modern",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 62,
             "pages": [
@@ -1493,6 +1661,7 @@
             "date": "2026-10-22",
             "format": "pauper",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 44,
             "pages": [
@@ -1506,6 +1675,7 @@
             "date": "2026-10-22",
             "format": "pioneer",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 40,
             "pages": [
@@ -1519,6 +1689,7 @@
             "date": "2026-10-23",
             "format": "standard",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 49,
             "pages": [
@@ -1532,6 +1703,7 @@
             "date": "2026-10-23",
             "format": "pauper",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 61,
             "pages": [
@@ -1545,6 +1717,7 @@
             "date": "2026-10-23",
             "format": "modern",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 59,
             "pages": [
@@ -1558,6 +1731,7 @@
             "date": "2026-10-23",
             "format": "standard",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 48,
             "pages": [
@@ -1571,6 +1745,7 @@
             "date": "2026-10-24",
             "format": "standard",
             "kind": "recent-premier",
+            "trendKind": null,
             "publishedCoverage": "complete-field-published-in-parts",
             "players": null,
             "pages": [
@@ -1585,6 +1760,7 @@
             "date": "2026-10-24",
             "format": "modern",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 44,
             "pages": [
@@ -1598,6 +1774,7 @@
             "date": "2026-10-24",
             "format": "modern",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "complete-field",
             "players": 24,
             "pages": [
@@ -1611,6 +1788,7 @@
             "date": "2026-10-24",
             "format": "pauper",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 33,
             "pages": [
@@ -1624,6 +1802,7 @@
             "date": "2026-10-24",
             "format": "standard",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 42,
             "pages": [
@@ -1637,6 +1816,7 @@
             "date": "2026-10-24",
             "format": "modern",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 52,
             "pages": [
@@ -1650,6 +1830,7 @@
             "date": "2026-10-24",
             "format": "pioneer",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "complete-field",
             "players": 27,
             "pages": [
@@ -1663,6 +1844,7 @@
             "date": "2026-10-25",
             "format": "modern",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 46,
             "pages": [
@@ -1676,6 +1858,7 @@
             "date": "2026-10-25",
             "format": "pauper",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 55,
             "pages": [
@@ -1689,6 +1872,7 @@
             "date": "2026-10-25",
             "format": "pioneer",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "complete-field",
             "players": 30,
             "pages": [
@@ -1702,6 +1886,7 @@
             "date": "2026-10-25",
             "format": "standard",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 36,
             "pages": [
@@ -1715,6 +1900,7 @@
             "date": "2026-10-26",
             "format": "modern",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 50,
             "pages": [
@@ -1728,6 +1914,7 @@
             "date": "2026-10-26",
             "format": "pauper",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 51,
             "pages": [
@@ -1741,6 +1928,7 @@
             "date": "2026-10-26",
             "format": "standard",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 62,
             "pages": [
@@ -1754,6 +1942,7 @@
             "date": "2026-10-26",
             "format": "pioneer",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 50,
             "pages": [
@@ -1767,6 +1956,7 @@
             "date": "2026-10-26",
             "format": "modern",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 45,
             "pages": [
@@ -1780,6 +1970,7 @@
             "date": "2026-10-27",
             "format": "modern",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 48,
             "pages": [
@@ -1793,6 +1984,7 @@
             "date": "2026-10-27",
             "format": "modern",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "complete-field",
             "players": 24,
             "pages": [
@@ -1806,6 +1998,7 @@
             "date": "2026-10-27",
             "format": "pauper",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 33,
             "pages": [
@@ -1819,6 +2012,7 @@
             "date": "2026-10-27",
             "format": "standard",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 77,
             "pages": [
@@ -1832,6 +2026,7 @@
             "date": "2026-10-27",
             "format": "modern",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 50,
             "pages": [
@@ -1845,6 +2040,7 @@
             "date": "2026-10-28",
             "format": "modern",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "published-lists-only",
             "players": 55,
             "pages": [
@@ -1858,6 +2054,7 @@
             "date": "2026-10-28",
             "format": "standard",
             "kind": "recent-mtgo-challenge",
+            "trendKind": "recent-mtgo-challenge",
             "publishedCoverage": "complete-field",
             "players": 30,
             "pages": [
@@ -1893,31 +2090,10 @@
       },
       "coverage": {
         "catalogCards": 298,
-        "matchedCards": 286,
-        "withWinRate": 283,
-        "missingCatalogIds": [
-          "cb7d5bbb-4f68-4e38-8bb0-a95af21b24c8",
-          "b2d9d5ca-7e15-437a-bdfc-5972b42148fe",
-          "1dab370a-1067-4d94-be1f-10362d4abf5a",
-          "70adc870-f0db-4d4b-863b-673c2c258751",
-          "1f51adf8-8234-4dae-aedf-7633310d5111",
-          "7d7faefe-9c0d-45b6-8ea4-5fa666762a2c",
-          "2094f9b6-ce84-47d9-8819-81db14ba483f",
-          "19cba6be-7291-4788-9241-87dad3b68363",
-          "eb96c335-9ed3-4f7d-b07a-185ff4044976",
-          "28d37803-d3f9-4806-9a0b-79362a517a7a",
-          "307fdde3-43f6-4d80-884a-4a85314ab8e4",
-          "ec75b840-420d-4512-a74a-d70f19be0085"
-        ],
-        "unmatchedSourceNames": [
-          "Ashling, Rekindled",
-          "Brigid, Clachan's Heart",
-          "Eirdu, Carrier of Dawn",
-          "Grub, Storied Matriarch",
-          "Oko, Lorwyn Liege",
-          "Sygg, Wanderwine Wisdom",
-          "Trystan, Callous Cultivator"
-        ]
+        "matchedCards": 298,
+        "withWinRate": 295,
+        "missingCatalogIds": [],
+        "unmatchedSourceNames": []
       }
     },
     "draft17landsPublic": {
@@ -1943,31 +2119,10 @@
       },
       "coverage": {
         "catalogCards": 298,
-        "matchedCards": 286,
-        "withWinRate": 286,
-        "missingCatalogIds": [
-          "cb7d5bbb-4f68-4e38-8bb0-a95af21b24c8",
-          "b2d9d5ca-7e15-437a-bdfc-5972b42148fe",
-          "1dab370a-1067-4d94-be1f-10362d4abf5a",
-          "70adc870-f0db-4d4b-863b-673c2c258751",
-          "1f51adf8-8234-4dae-aedf-7633310d5111",
-          "7d7faefe-9c0d-45b6-8ea4-5fa666762a2c",
-          "2094f9b6-ce84-47d9-8819-81db14ba483f",
-          "19cba6be-7291-4788-9241-87dad3b68363",
-          "eb96c335-9ed3-4f7d-b07a-185ff4044976",
-          "28d37803-d3f9-4806-9a0b-79362a517a7a",
-          "307fdde3-43f6-4d80-884a-4a85314ab8e4",
-          "ec75b840-420d-4512-a74a-d70f19be0085"
-        ],
-        "unmatchedSourceNames": [
-          "Ashling, Rekindled",
-          "Brigid, Clachan's Heart",
-          "Eirdu, Carrier of Dawn",
-          "Grub, Storied Matriarch",
-          "Oko, Lorwyn Liege",
-          "Sygg, Wanderwine Wisdom",
-          "Trystan, Callous Cultivator"
-        ]
+        "matchedCards": 298,
+        "withWinRate": 298,
+        "missingCatalogIds": [],
+        "unmatchedSourceNames": []
       }
     }
   }

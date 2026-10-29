@@ -1,0 +1,121 @@
+{
+  "findings": [
+    {
+      "id": "OPUS-20",
+      "priority": "P2",
+      "file": "research/tournament-prospects-20261028/coverage.json",
+      "line": 158,
+      "title": "I dati derivati e i registri non sono stati rigenerati con il codice corretto",
+      "scenario": "Confrontare il codice corrente dell'integratore con il coverage.json della versione in esame, poi aprire un dettaglio torneo o la vista 'Tutte le analisi' di un catalogo.",
+      "evidence": "event_meta (integrate_tournament_prospects.py:14) ora include trendKind, e l'integratore riscrive coverage.json a ogni esecuzione (riga 97). Gli eventi di coverage.json non hanno la chiave trendKind, nemmeno Modern RC Super Qualifier (righe 158-169) e Modern Showcase Challenge (righe 989-1001). Il file è quindi stato prodotto dall'integratore precedente alle correzioni. Il ciclo precedente dichiara ancora in corso la rigenerazione dei dati, la riacquisizione WR 17Lands (wr-recovery-plan.json) e le verifiche finali. Non ho visto cards.json o discovery.json: ipotizzo che contengano ancora trend senza method, cohort e date, sample.start uguale a START, nessun tournamentLevel, nessun price.status e alias non condivisi per oracleId.",
+      "impact": "I renderer usano i rami di compatibilità: '(date non registrate)', livello del metagame calcolato con la vecchia regola nella vista completa, prezzo assente riconosciuto solo da metric. I problemi corretti nel codice restano quindi nei dati pubblicati: trend spurî di OPUS-2, livelli incoerenti di OPUS-15, presenze mancanti per alias di OPUS-7, WR multi faccia assenti di OPUS-3. docs/statistics.md descrive già matched-cohort-v1, trendKind e tournamentLevel, contraddicendo i JSON correnti.",
+      "suggested_fix": "Rieseguire l'integratore con --apply sul corpus esistente, scrivendo il rapporto in una posizione nuova (vedi OPUS-21). Completare la riacquisizione 17Lands in una cartella datata nuova e applicarla. Rieseguire build, test e verify-tournament-prospects.cjs, verify-catalog-indices.cjs e verify-corrections.cjs. Registrare gli esiti in un nuovo verification.json con commit e hash di sorgenti e dati.",
+      "certainty": "certain"
+    },
+    {
+      "id": "OPUS-21",
+      "priority": "P3",
+      "file": "integrate_tournament_prospects.py",
+      "line": 97,
+      "title": "Anche senza --apply l'integratore sovrascrive il coverage.json storico dell'acquisizione",
+      "scenario": "Eseguire 'integrate_tournament_prospects.py --research research/tournament-prospects-20261028' senza --apply, per esempio per controllare l'effetto delle correzioni prima di applicarle.",
+      "evidence": "La riga 97 scrive a.research/'coverage.json' in ogni caso, fuori dal blocco 'if a.apply'. Il file è citato come evidenza in research/tournament-prospects-20261028/verification.json (references). La skill mtg-new-set e docs/statistics.md:85 chiedono di conservare i vecchi snapshot e di non cambiare la data di un vecchio campione.",
+      "impact": "Una prova a secco altera un'evidenza datata attribuita al ciclo precedente. Il nuovo rapporto non dichiara versione o hash del codice, quindi il registro storico non permette più di distinguere quale integratore lo abbia prodotto.",
+      "suggested_fix": "Aggiungere un parametro --report obbligatorio o scrivere un file nuovo con data e hash del codice e dei cataloghi. Non sovrascrivere un rapporto esistente se non richiesto esplicitamente. In modalità senza --apply scrivere solo su stdout o in una cartella temporanea.",
+      "certainty": "certain"
+    },
+    {
+      "id": "OPUS-22",
+      "priority": "P3",
+      "file": "templates/atlas/gallery.html",
+      "line": 73,
+      "title": "Il recupero dopo un conflitto fra schede scarta mazzo, basi e note di un record annidato valido",
+      "scenario": "Set con poolPrefix. Nel catalogo aggiungere copie al pool Sealed. In un'altra scheda, nel banco manuale, modificare il mazzo dello stesso pool. Tornare al catalogo e premere +: compare 'Il pool è cambiato in un'altra scheda'. Premere 'Archivia il precedente e salva questo pool'.",
+      "evidence": "save (riga 78) con current diverso da storedRaw chiama protectPool(current), con un record valido. Il pulsante (riga 73) archivia il record e poi chiama sempre save(true). Con replaceArchived il record di base diventa {pool:{},deck:{},basics:{}} anche se il precedente supera ManualPoolRecord.validate. Prima della correzione di OPUS-13 questo caso conservava deck, basics, note ed estensioni tramite withPool. docs/architecture.md:140 limita la sostituzione completa al record illeggibile.",
+      "impact": "Il record principale perde il mazzo costruito, le terre base aggiunte, note, preferenza BO1/BO3 e piano dell'assistente scritti nell'altra scheda. Restano solo nell'archivio da scaricare. È una regressione del percorso di conflitto introdotta dalla correzione precedente.",
+      "suggested_fix": "Nel pulsante provare ManualPoolRecord.validate sul record archiviato. Se è valido usare withPool(record, pool), se non lo è partire dal record vuoto. Aggiungere a verify-corrections.cjs il caso del conflitto con un deck non vuoto.",
+      "certainty": "certain"
+    },
+    {
+      "id": "OPUS-23",
+      "priority": "P3",
+      "file": "templates/atlas/gallery.html",
+      "line": 106,
+      "title": "Esportazione e importazione del pool nel catalogo non identificano l'evento e permettono importazioni incrociate",
+      "scenario": "Set con poolPrefix e più eventi. Nel catalogo selezionare l'evento Draft, esportare il pool, passare all'evento Sealed e importare il file.",
+      "evidence": "L'esportazione scrive {format: storage.sealedPool, date, pool} anche quando KEY è la chiave annidata di un evento Draft (righe 53-54). L'importazione (riga 107) controlla solo format, poi save() sostituisce il pool dell'evento selezionato e withPool riduce il mazzo esistente al nuovo pool. Il banco manuale (star-trek.js:264) rifiuta invece file di un evento diverso, come prevede docs/architecture.md:136.",
+      "impact": "Un pool Draft sostituisce senza avviso il pool Sealed, o viceversa, e il mazzo di destinazione viene ridotto alle carte importate. Il precedente non viene archiviato.",
+      "suggested_fix": "Aggiungere all'esportazione l'ID dell'evento e la chiave effettiva. In importazione rifiutare un evento diverso, oppure chiedere conferma come per i file BO1/BO3 storici. Accettare i file precedenti senza evento solo con conferma esplicita.",
+      "certainty": "certain"
+    },
+    {
+      "id": "OPUS-24",
+      "priority": "P3",
+      "file": "tournament_index.py",
+      "line": 73,
+      "title": "Periodo precedente del trend con date fittizie e coorte dichiarata anche quando non esiste",
+      "scenario": "Carta con prima uscita o traccia documentata dopo il 14 ottobre, per esempio il 17 ottobre, poi aprire il dettaglio del formato.",
+      "evidence": "trend_samples calcola previous_end='2026-10-14' e start=min(sample_start, previous_end), quindi salva previous={start:'2026-10-14', end:'2026-10-14'} per una carta non ammissibile in quel periodo. In assenza di eventi nella prima metà chosen è None e cohort è null. competitive-prospects-ui.js:26 mostra comunque 'Periodo precedente dal 2026-10-14 al 2026-10-14: 0 / 0 liste' e la frase 'Il confronto usa una sola coorte omogenea per tipo di evento e copertura', perché controlla solo tr.method. Il renderer non mostra mai tr.cohort. docs/statistics.md:81 precisa che la coorte non garantisce una frazione identica dei partecipanti, mentre l'interfaccia la chiama omogenea.",
+      "impact": "Il dettaglio dichiara un periodo e una coorte che non esistono e non dice quale coorte abbia prodotto il confronto. L'aggettivo 'omogenea' è più forte del contratto documentato.",
+      "suggested_fix": "Salvare previous con start ed end null quando sample_start è successivo al periodo, oppure un campo reason. Nel renderer mostrare tipo e copertura della coorte solo se cohort non è null, sostituendo 'omogenea' con 'con stesso tipo di evento e stessa classificazione di copertura'.",
+      "certainty": "certain"
+    },
+    {
+      "id": "OPUS-25",
+      "priority": "P3",
+      "file": "discovery.js",
+      "line": 34,
+      "title": "Nella vista completa le osservazioni editoriali di torneo vengono ignorate e la carta è descritta come priva di adozione",
+      "scenario": "Una carta con scheda editoriale e tournamentObservations precedenti, per esempio 10 o più liste documentate, non presente nella selezione di DISCOVERY.cards e con indice zero o N/D nel nuovo campione. Aprire 'Tutte le analisi'.",
+      "evidence": "Con tournamentLevel null, il ramo measured.length viene valutato prima di isRepeated e observations.length. Poiché ora ogni carta ha tournamentIndex nei quattro formati, il livello diventa 'Analizzata'. La riga 83 spiega che 'Analizzata indica una scheda editoriale senza adozione documentata sufficiente'. prospects-ui.js:18 mostra nella stessa scheda le liste di tournamentObservations. Il ramo è certo; non ho visto i JSON per contare le carte interessate.",
+      "impact": "Una scheda con adozione documentata e datata viene presentata come priva di adozione, mescolando il campione nuovo con le osservazioni editoriali precedenti.",
+      "suggested_fix": "Valutare isRepeated e observations anche quando esistono indici misurati, oppure mostrare due livelli distinti: misura recente e osservazione editoriale con la sua data. Correggere di conseguenza il testo della riga 83.",
+      "certainty": "hypothesis"
+    },
+    {
+      "id": "OPUS-26",
+      "priority": "P3",
+      "file": "integrate_tournament_prospects.py",
+      "line": 49,
+      "title": "Legalità sostituite dai fatti del 28 ottobre senza data di provenienza nel catalogo",
+      "scenario": "Carta priva di releasedAt ma con legalità già presenti nel catalogo, oppure priva di legalità, in un'espansione con legalityDate anteriore al 28 ottobre.",
+      "evidence": "Le righe 45-50 sostituiscono legalities, releasedAt e oracleId con card-facts quando manca uno solo dei due campi. Impostano tournamentFactsRetrieved, ma non aggiornano cards.json legalityDate né salvano la data nella legalità dell'indice (tournamentIndex.legality non ha data). star-trek.js:139 mostra lo stato di legalità con DATA.date, cioè la data del catalogo.",
+      "impact": "Nello stesso catalogo convivono legalità di date diverse senza indicazione per carta. Una legalità del 28 ottobre viene mostrata con la data del catalogo, e un indice può risultare N/D o calcolato secondo una legalità di cui non è dichiarata la data.",
+      "suggested_fix": "Aggiornare solo i campi mancanti, oppure salvare legalitiesRetrieved e legalitySource per carta e copiarli nell'indice. Il renderer della legalità deve preferire la data per carta a quella del catalogo.",
+      "certainty": "certain"
+    },
+    {
+      "id": "OPUS-27",
+      "priority": "P3",
+      "file": "import_public_game_statistics.py",
+      "line": 96,
+      "title": "--apply rimuove ogni limitazione che menziona 17Lands, anche quelle riferite a snapshot precedenti",
+      "scenario": "Applicare l'importazione a un set il cui statistics.json contiene già limitazioni sullo snapshot 17Lands storico, per esempio periodo, ranghi o filtri del report Draft.",
+      "evidence": "Le righe 96-97 eliminano da statistics.draft.limitations e statistics.limitations ogni nota che contiene '17Lands' o '17lands', non solo quelle che dichiaravano assente il dataset pubblico. Lo snapshot storico e il drilldown restano nel documento. Non ho visto statistics.json per sapere quali note esistano.",
+      "impact": "Se presenti, i limiti dichiarati di dati ancora mostrati vengono cancellati: una lacuna o un vincolo del campione diventa invisibile.",
+      "suggested_fix": "Rimuovere solo le note con un identificatore esplicito, per esempio un campo kind 'missing-public-dataset', oppure un elenco esatto di testi sostituiti. Aggiungere un test con una nota storica che deve restare.",
+      "certainty": "hypothesis"
+    },
+    {
+      "id": "OPUS-28",
+      "priority": "P3",
+      "file": "integrate_tournament_prospects.py",
+      "line": 53,
+      "title": "L'unione degli alias per oracleId non controlla collisioni fra identità diverse",
+      "scenario": "Un nome stampato digitale o una prima faccia coincide, dopo name_key, con il nome di una carta di un'altra identità Oracle presente nelle liste.",
+      "evidence": "aliases_by_oracle unisce gli alias di tutti i cataloghi senza verificare che un alias appartenga a un solo oracleId. Le presenze vengono contate per ogni gruppo che contiene l'alias. L'importatore 17Lands invece rifiuta una colonna abbinata a identità diverse (import_public_game_statistics.py:23). Le carte senza oracleId usano il nome come chiave e non si uniscono al gruppo dell'oracleId corrispondente. Non ho verificato se esistano collisioni reali nei 153 gruppi di review-context.json.",
+      "impact": "Se esiste una collisione, una carta riceve presenze, Top 8 ed esempi di un'altra carta, e l'indice di adozione risulta sovrastimato.",
+      "suggested_fix": "Costruire la mappa inversa alias verso oracleId e fermare l'integrazione se un alias corrisponde a più identità. Elencare nel rapporto le carte senza oracleId escluse dall'unione.",
+      "certainty": "hypothesis"
+    }
+  ],
+  "additional_context_needed": [
+    "Dopo la rigenerazione: un tournamentIndex di cards.json con trend.method, cohort e date, un record con prospects.tournamentLevel e price.status, e discovery.json con trendPeriods. Servono per chiudere OPUS-20 e confermare la corrispondenza fra JSON e renderer.",
+    "Le limitazioni attuali di statistics.json per i set in wr-recovery-plan.json, prima e dopo --apply, per chiudere OPUS-27.",
+    "Il conteggio delle carte non incluse in DISCOVERY.cards con tournamentObservations non vuote e prospects.tournamentLevel null, per chiudere OPUS-25.",
+    "L'elenco degli alias normalizzati presenti in più gruppi oracleId, per chiudere OPUS-28.",
+    "Gli esiti finali di build, test e controlli browser con il commit a cui si riferiscono."
+  ],
+  "ready": false,
+  "summary": "Verdetto: non pronto per produzione nel perimetro esaminato. I rilievi del secondo ciclo risultano corretti nel codice alla lettura statica. OPUS-13: il recupero del pool annidato usa un record nuovo dopo il backup verificato, deduplica e usa created. OPUS-14: involucro di esportazione, playMode e conferma per i file BO1/BO3 storici. OPUS-15: livello unico calcolato da signal_level. OPUS-16: cache con matchingVersion e impronta del catalogo. OPUS-17: trendKind distinto e documentazione qualificata. OPUS-18: scenari editoriali conservati. OPUS-19 resta per scelta in attesa del nuovo registro. Blocca la prontezza OPUS-20 (P2, certo): coverage.json è stato prodotto dall'integratore precedente, quindi i dati pubblicati non riflettono ancora trend per coorte, alias condivisi, livelli unici e WR delle carte multi faccia, e la documentazione descrive campi assenti dai JSON. Il ciclo stesso dichiara pendenti rigenerazione, riacquisizione WR e verifiche finali. Gli altri rilievi sono P3. OPUS-21: una prova senza --apply sovrascrive un'evidenza storica. OPUS-22: regressione del recupero dopo un conflitto fra schede, che scarta mazzo e note. OPUS-23: importazione incrociata fra eventi nel catalogo. OPUS-24: periodi e coorte fittizi nel dettaglio. OPUS-26: legalità senza data di provenienza. Tre P3 restano ipotesi da chiudere sui dati: OPUS-25, OPUS-27 e OPUS-28. Coerenti alla lettura: zero e null distinti in calcolo, filtri e renderer; storico separato dal denominatore recente; una presenza per lista; validazione di score e conteggi; separazione di Draft e Sealed senza medie; riduzione per nome che protegge il mazzo; escaping dei contenuti dinamici esaminati; build senza rete nei moduli forniti. Limiti: revisione statica dei soli file e del diff allegati. Non ho eseguito build, test o browser, né letto fonti esterne o verificato gli hash. Gli esiti dei registri, delle decisioni e di verify-corrections.cjs sono attribuiti al loro autore e alla versione dichiarata. Non certifico completezza degli eventi acquisiti, legalità, date di uscita, copertura dei cataloghi né pubblicazione."
+}

@@ -18,11 +18,15 @@ window.ManualPoolRecord={
  },
  withNamedPool(record,counts,identities){
   const byId=new Map(identities.map(card=>[card.id,card.name])),left={...counts},pool={};
-  // Retain existing printing IDs before assigning newly added copies. Different
-  // bonus products can have the same name, so a name-to-one-ID conversion loses data.
+  // Preserve deck copies first, then sideboard copies, retaining printing IDs.
+  for(const id of Object.keys(record.pool||{}))pool[id]=0;
   for(const [id,n]of Object.entries(record.pool||{})){
-   const name=byId.get(id),take=Math.min(n,left[name]||0);
-   if(take){pool[id]=take;left[name]-=take;}
+   const name=byId.get(id),take=Math.min(n,record.deck?.[id]||0,left[name]||0);
+   pool[id]=take;left[name]=(left[name]||0)-take;
+  }
+  for(const [id,n]of Object.entries(record.pool||{})){
+   const name=byId.get(id),take=Math.min(n-pool[id],left[name]||0);
+   if(take){pool[id]+=take;left[name]-=take;}
   }
   for(const [name,n]of Object.entries(left))if(n>0){
    const previous=Object.keys(record.pool||{}).find(id=>byId.get(id)===name);
@@ -30,6 +34,6 @@ window.ManualPoolRecord={
    if(!id)throw Error('Carta sconosciuta: '+name);
    pool[id]=(pool[id]||0)+n;
   }
-  return this.withPool(record,pool);
+  return this.withPool(record,Object.fromEntries(Object.entries(pool).filter(([,n])=>n>0)));
  }
 };

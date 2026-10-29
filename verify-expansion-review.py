@@ -112,7 +112,11 @@ with tempfile.TemporaryDirectory(prefix='mtg-review-') as temporary:
     fixture('clean-atlas',0,clean_atlas)
     def generic_preview(m,d):
         m.update(name='Generic Preview',code='ABC',status='released')
-        d['cards'].update(complete=True,date='Snapshot 2099-01-02')
+        d['cards'].update(complete=True,date='Snapshot 2099-01-02',legalityDate='2099-01-02')
+        for card in d['cards']['cards']:card.pop('legalitiesRetrieved',None)
+        # Keep this historical fallback fixture independent of live tournament
+        # research, which would correctly promote discovery to the shared view.
+        d['discovery']={'cards':[],'previews':[]}
         d['guides']['fragments']={}
         d['ui'].pop('searchExample',None)
     fixture('generic-preview',1,generic_preview)

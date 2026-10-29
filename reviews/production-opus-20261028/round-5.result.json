@@ -1,0 +1,69 @@
+{
+  "findings": [
+    {
+      "id": "OPUS-36",
+      "priority": "P3",
+      "file": "docs/architecture.md",
+      "line": 140,
+      "title": "Frase duplicata nel contratto delle esportazioni dei pool annidati",
+      "scenario": "Leggere il paragrafo sulle esportazioni e importazioni dei pool annidati, nella sezione 'Pool, importazione e salvataggi Atlas'.",
+      "evidence": "L'ultima frase della riga 140 è 'Un evento diverso viene rifiutato: un evento diverso viene rifiutato, un file storico senza evento richiede conferma della destinazione.' La stessa regola compare due volte di seguito, separata dai due punti.",
+      "impact": "Solo leggibilità del contratto documentale. Non contraddice il codice: gallery.html:107 rifiuta evento o chiave diversi e chiede conferma per i file senza evento.",
+      "suggested_fix": "Sostituire con: 'Un file di un evento diverso viene rifiutato; un file storico senza evento richiede conferma della destinazione.'",
+      "certainty": "certain"
+    },
+    {
+      "id": "OPUS-37",
+      "priority": "P3",
+      "file": "docs/architecture.md",
+      "line": 128,
+      "title": "Chiavi del pool Draft e dell'archivio dei backup indicate come storage.draftPool anche per i profili con poolPrefix",
+      "scenario": "Un manutentore deve individuare il record Draft o l'archivio dei backup protetti di un set migrato, per esempio the-hobbit, che ha poolPrefix.",
+      "evidence": "La riga 126 afferma che l'assistente usa 'la chiave storage.draftPool' e la riga 128 che l'archivio è 'storage.draftPool + :protected-backups-v1'. In draft-pool.js:11 la chiave è però source.keys[selectedMode] o source.key, cioè poolPrefix + evento + '-v1', quando poolSource è annidato, e l'archivio (riga 14) è quella chiave più il suffisso. Anche gallery.html:68 usa KEY + ':protected-backups-v1' con la stessa chiave annidata. Expansion.storage crea comunque storage.draftPool come valore predefinito, quindi la chiave documentata esiste ma resta inutilizzata per questi set. La riga 134 descrive correttamente poolSource, quindi il documento è incoerente al suo interno.",
+      "impact": "Chi segue il contratto per recuperare o verificare salvataggi e backup dei 20 set con poolPrefix cerca una chiave vuota e può concludere che pool o archivio non esistano. Non c'è perdita di dati.",
+      "suggested_fix": "Alle righe 126 e 128 precisare che per i profili con poolPrefix la chiave è quella esposta da poolSource (poolPrefix + evento + '-v1'), condivisa fra assistente, catalogo e banco manuale, e che l'archivio usa quella chiave più ':protected-backups-v1'. storage.draftPool vale solo per i profili senza poolPrefix.",
+      "certainty": "certain"
+    },
+    {
+      "id": "OPUS-38",
+      "priority": "P3",
+      "file": "prospects-ui.js",
+      "line": 18,
+      "title": "Nella tabella per formato l'etichetta misurata e il riscontro editoriale di un'altra fonte compaiono nella stessa riga senza fonte né data",
+      "scenario": "Scheda editoriale con tournamentObservations collegate a un formato tramite assessment.observation, per esempio Unflinching Hortimancer di reality-fracture (Pauper, postboard, 7 liste, ricerca del 22 ottobre), che ha anche un tournamentIndex nello stesso formato calcolato sul corpus ufficiale del 28 ottobre. Aprire 'Constructed, formati e prezzi' e leggere la riga Pauper.",
+      "evidence": "formatRow mostra nella colonna Prospettiva measured.label, derivato dall'indice ufficiale (per esempio 'Non osservata nel campione' o 'Prime presenze'). La colonna Riscontri mostra invece il testo editoriale '7 liste, 4 copie medie. Presenze nel campione, non percentuale di vittorie.', senza indicare row.source, la data dell'osservazione o il fatto che il campione sia diverso. La fonte emerge solo dai link degli esempi. Il difetto di attribuzione è certo; se nel caso citato le due colonne si contraddicano dipende dall'indice Pauper della carta, che non ho visto.",
+      "impact": "Due misure osservate di fonti e date diverse vengono presentate come lo stesso 'campione' nella stessa riga. Quando l'indice ufficiale è zero, la riga può dire insieme 'Non osservata nel campione' e '7 liste... presenze nel campione'.",
+      "suggested_fix": "Nel ramo row, comporre il riscontro con fonte e data, per esempio 'Osservazione editoriale postboard del 22 ottobre 2026: 7 liste...', usando row.source e row.date o p.date. Eventualmente far precedere l'etichetta misurata da 'Indice ufficiale al' con la data dell'indice.",
+      "certainty": "certain"
+    },
+    {
+      "id": "OPUS-39",
+      "priority": "P3",
+      "file": "templates/atlas/gallery.html",
+      "line": 72,
+      "title": "Backup e originali del pool Draft annidato scaricati dal catalogo con etichette e nomi di file Sealed",
+      "scenario": "Set con poolPrefix. Nel catalogo selezionare un evento Draft con 'Aggiungi le copie al pool' (?mode=draft), con un archivio di backup già presente o un record Draft protetto.",
+      "evidence": "Con mode=draft, KEY diventa la chiave annidata dell'evento Draft (righe 53-54) e poolArchiveKey è l'archivio condiviso con draft-pool.js. archivedPool crea però il link 'Scarica salvataggi Sealed archiviati' con file <id>-sealed-pool-archives.json, e protectPool (riga 73) crea 'Scarica il salvataggio originale' con file <id>-sealed-pool-original.json. Etichette e nomi non dipendono da DATA.poolSource.event.",
+      "impact": "L'utente scarica e conserva come Sealed un backup che appartiene al pool Draft. Il contenuto resta integro, ma l'archiviazione manuale dei salvataggi può essere confusa fra eventi distinti, in contrasto con l'isolamento per evento richiesto.",
+      "suggested_fix": "Derivare etichetta e nome del file da EXPANSION_CONFIG.events[DATA.poolSource?.event]?.name e dal suo kind, oppure dall'ID dell'evento, mantenendo 'sealed' solo quando l'evento selezionato è Sealed o quando poolSource è assente.",
+      "certainty": "certain"
+    },
+    {
+      "id": "OPUS-40",
+      "priority": "P3",
+      "file": "verify-expansion-review.cjs",
+      "line": 2,
+      "title": "Percorso personale fisso come modulo Playwright predefinito",
+      "scenario": "Eseguire python verify-expansion-review.py, indicato da AGENTS.md:40 e docs/verification.md:22, su una macchina diversa senza impostare MTG_PLAYWRIGHT_MODULE.",
+      "evidence": "La riga 2 usa come valore predefinito 'C:/Users/mimir/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright'. AGENTS.md:41 e docs/verification.md:41 vietano percorsi personali fissi. verify-tournament-prospects.cjs e verify-corrections.cjs usano invece process.env.MTG_PLAYWRIGHT_MODULE||'playwright'. Il file è stato modificato in questa attività, ma la riga 2 non compare nel diff non committato. Non ho verificato se sia stata introdotta dopo la baseline 8ab652e.",
+      "impact": "Il controllo delle fixture fallisce con un errore di modulo poco chiaro dove il percorso non esiste, e il repository conserva un nome utente locale. Non riguarda il sito pubblicato: la build copia soltanto *.js e *.css della radice.",
+      "suggested_fix": "Usare require(process.env.MTG_PLAYWRIGHT_MODULE||'playwright'), come negli altri script di verifica.",
+      "certainty": "certain"
+    }
+  ],
+  "additional_context_needed": [
+    "Facoltativo, non bloccante per il verdetto: templates/atlas/analysis.html, combos.html e set.html, con gli script che caricano. Servono a confermare staticamente che nessuno legga cards[].prospects o prospectSources, che dopo la riduzione dei payload (OPUS-35) sono assenti fuori dal catalogo. Oggi questa conclusione si basa su test_atlas_migration.py e sugli esiti attribuiti di verify-expansion-review."
+  ],
+  "ready": true,
+  "summary": "Verdetto: pronto per produzione nel perimetro esaminato, con i limiti indicati sotto. Non ho trovato rilievi P1 o P2. I cinque rilievi nuovi sono P3 e non bloccanti: due correzioni documentali in architecture.md (frase duplicata, chiavi dei pool annidati e dell'archivio), l'attribuzione mancante del riscontro editoriale nella tabella per formato, etichette Sealed sui backup del pool Draft scaricati dal catalogo, un percorso personale predefinito in uno script di verifica. Alla lettura statica risultano risolti i rilievi del quarto ciclo. OPUS-29: la discovery usa compact con motivo per i casi non legale, terra base e legalità da verificare; i dettagli N/D omettono campione, presenze e trend; il filtro sul campione minimo esclude gli indici nulli. OPUS-30: il limite è ora dichiarato in docs/statistics.md. OPUS-31: etichette del filtro allineate alle schede. OPUS-32: esportazione e reimportazione del record completo dal catalogo, avvisi su svuotamento e file con sole copie. OPUS-33: il test itera sulla baseline. OPUS-34: il rapporto v3 dichiara lo stesso SHA dell'integratore presente nella versione. OPUS-35: payload ridotti fuori dal catalogo. Ricalcoli manuali sui file allegati, non esecuzioni: 26636 indici corrispondono a 6659 carte per 4 formati; i conteggi per motivo e stato sommano al numero di carte di ogni set nel rapporto v3. Per Enlightened Confidant il trend 17/352 contro 54/448 dà 7,224 punti, e la coorte scelta (sole liste pubblicate, minimo 352) è coerente con l'elenco eventi Standard rispetto al campo completo (155 e 54). Il denominatore Standard di 1185 liste in 34 eventi corrisponde alla somma per evento. Zero e N/D restano distinti in calcolo, filtri e renderer. Lo storico resta fuori dal denominatore recente, ogni lista conta una volta, Draft e Sealed restano separati senza medie, e le misure non sono presentate come WR causali o previsioni. Gli esiti di build, test, browser, confronto byte per byte dei 63 file e misure dei payload sono attribuiti a Codex e alla versione in verification-v2.json, non sono verifiche mie; non ho ricalcolato hash. Limiti: verification-v2.json non registra, dopo la riduzione dei payload, il controllo browser di tutte le route Atlas (verify-atlas-expansions.cjs); non ho esaminato i template di analisi, combo e panoramica. Non ho verificato la completezza dell'inventario MTGO, ricavato da una sola pagina indice, né il significato degli eventi 'Special' classificati come Challenge ordinari. Il corpus è una selezione di liste pubblicate, anche parziali e dichiarate tali, non un censimento del metagame. Non certifico copertura dei cataloghi, legalità, date di uscita, licenze, limiti dell'hosting né pubblicazione, che resta locale."
+}

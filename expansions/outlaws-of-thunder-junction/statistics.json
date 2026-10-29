@@ -4126,6 +4126,17 @@
             }
           },
           {
+            "catalogId": "ed39ecb5-6c7c-428d-8ff3-7bd30edf00d5",
+            "name": "Brazen Borrower // Petty Theft",
+            "sourceName": "Brazen Borrower",
+            "sourceUrl": "https://www.17lands.com/public_datasets",
+            "metrics": {
+              "inHandWinRate": 58.16326530612245,
+              "games": 2156,
+              "wins": 1254
+            }
+          },
+          {
             "catalogId": "f51053d1-f158-4c62-96f4-0c93f1ec9007",
             "name": "Desertion",
             "sourceName": "Desertion",
@@ -4216,14 +4227,10 @@
         ],
         "coverage": {
           "catalogCards": 381,
-          "matchedCards": 380,
-          "withWinRate": 380,
-          "missingCatalogIds": [
-            "ed39ecb5-6c7c-428d-8ff3-7bd30edf00d5"
-          ],
-          "unmatchedSourceNames": [
-            "Brazen Borrower"
-          ]
+          "matchedCards": 381,
+          "withWinRate": 381,
+          "missingCatalogIds": [],
+          "unmatchedSourceNames": []
         },
         "derivation": {
           "datasetUrl": "https://17lands-public.s3.amazonaws.com/analysis_data/game_data/game_data_public.OTJ.PremierDraft.csv.gz",
@@ -4240,7 +4247,14 @@
           "La WR descrive le partite osservate, non la probabilità causale di vittoria della carta.",
           "Nessuna soglia minima applicata: consultare il campione, soprattutto quando è piccolo.",
           "Carte assenti o mai viste in mano conservano WR null. Il dataset pubblico ha una propria finestra storica."
-        ]
+        ],
+        "matchingVersion": 2,
+        "matchingFingerprint": "fa5ab67a18acd81c81e6da17226bf172eeddb52323950d71edf574f409a4dc0f",
+        "reusedDerivedAcquisition": {
+          "path": "research/production-opus-20261028/17lands-corrections/outlaws-of-thunder-junction-PremierDraft.json",
+          "sha256": "e911d770efc7415e38234967199ba928d3705a9749581e1529f1ba13d4f06d65",
+          "reason": "Same verified first-face matching method; acquisition preserved while adding explicit cache method metadata."
+        }
       }
     }
   },
@@ -8369,6 +8383,17 @@
             }
           },
           {
+            "catalogId": "ed39ecb5-6c7c-428d-8ff3-7bd30edf00d5",
+            "name": "Brazen Borrower // Petty Theft",
+            "sourceName": "Brazen Borrower",
+            "sourceUrl": "https://www.17lands.com/public_datasets",
+            "metrics": {
+              "inHandWinRate": 69.76744186046511,
+              "games": 86,
+              "wins": 60
+            }
+          },
+          {
             "catalogId": "f51053d1-f158-4c62-96f4-0c93f1ec9007",
             "name": "Desertion",
             "sourceName": "Desertion",
@@ -8459,14 +8484,10 @@
         ],
         "coverage": {
           "catalogCards": 381,
-          "matchedCards": 380,
-          "withWinRate": 378,
-          "missingCatalogIds": [
-            "ed39ecb5-6c7c-428d-8ff3-7bd30edf00d5"
-          ],
-          "unmatchedSourceNames": [
-            "Brazen Borrower"
-          ]
+          "matchedCards": 381,
+          "withWinRate": 379,
+          "missingCatalogIds": [],
+          "unmatchedSourceNames": []
         },
         "derivation": {
           "datasetUrl": "https://17lands-public.s3.amazonaws.com/analysis_data/game_data/game_data_public.OTJ.Sealed.csv.gz",
@@ -8483,7 +8504,14 @@
           "La WR descrive le partite osservate, non la probabilità causale di vittoria della carta.",
           "Nessuna soglia minima applicata: consultare il campione, soprattutto quando è piccolo.",
           "Carte assenti o mai viste in mano conservano WR null. Il dataset pubblico ha una propria finestra storica."
-        ]
+        ],
+        "matchingVersion": 2,
+        "matchingFingerprint": "fa5ab67a18acd81c81e6da17226bf172eeddb52323950d71edf574f409a4dc0f",
+        "reusedDerivedAcquisition": {
+          "path": "research/production-opus-20261028/17lands-corrections/outlaws-of-thunder-junction-Sealed.json",
+          "sha256": "046a815003c7d8842e28c628a2877faadd2849eb157764fa5d44f49f3b3df3dd",
+          "reason": "Same verified first-face matching method; acquisition preserved while adding explicit cache method metadata."
+        }
       }
     }
   },

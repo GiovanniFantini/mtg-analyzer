@@ -1,0 +1,30 @@
+{
+  "ready": true,
+  "date": "2026-10-29",
+  "researchSnapshot": "2026-10-28",
+  "independentReviewer": [
+    "claude-opus-5-5"
+  ],
+  "reviewRounds": 6,
+  "readyVerdicts": [
+    5,
+    6
+  ],
+  "rootVerdict": "Ready in the declared scope",
+  "remainingConfirmedFindings": [],
+  "finalEvidenceNote": "OPUS-41 was reporting metadata only. Checklist corrected and rerun; product code and datasets unchanged after round 6.",
+  "verification": "verification-v4.json",
+  "decisions": "decisions.json",
+  "headCommit": "756af33908348788e89c14d89c83ff13dbd64b16",
+  "workingTreeChanges": true,
+  "pushPerformed": false,
+  "deploymentPerformed": false,
+  "limits": [
+    "Published-list indices are observations, not causal win rates or forecasts.",
+    "Catalog and source coverage gaps remain explicitly declared."
+  ],
+  "cleanup": {
+    "temporaryBaselineCheckout": "Retained outside the project because automatic approval review blocked optional recursive deletion.",
+    "productImpact": "None"
+  }
+}

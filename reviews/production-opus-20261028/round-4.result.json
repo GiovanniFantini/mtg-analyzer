@@ -1,0 +1,93 @@
+{
+  "findings": [
+    {
+      "id": "OPUS-29",
+      "priority": "P2",
+      "file": "discovery.js",
+      "line": 63,
+      "title": "Carte non legali, terre base e legalità sconosciute mostrate come campionate, con 'Dati insufficienti', conteggi zero e trend",
+      "scenario": "Aprire Discovery in marvel-super-heroes e scegliere 'Tutte le analisi' con formato 'Tutti'. Cercare Leyline Binding, che in final-review-context.json ha Standard not_legal. La riga Standard mostra 'N/D · Dati insufficienti' con '0 / 1185 liste · 0 eventi'. Lo stesso accade per quasi ogni rara o mitica nella riga Pauper, e per le schede editoriali della vista selezionata, perché refresh_editorial_indices copia tutti e quattro i formati. Nel catalogo, il dettaglio 'Indice dai tornei' della stessa carta scrive 'Campione dal 2026-10-01 al 2026-10-28: 1185 liste ammissibili', 'Presenze: 0 liste', 'Stabile nel campione: 0 punti percentuali' e 'Periodo precedente ... 0 / 352 liste'. Per una terra base compaiono presenze reali e un eventuale trend 'In calo' accanto a un indice N/D. Il filtro 'Liste campionate, minimo 50' include le carte non legali.",
+      "evidence": "calculate_index (tournament_index.py:84-91) calcola observed, sample e trend prima di applicare reason, e li salva anche quando reason vale not_legal, basic_land o legality_unknown. Nell'esempio di Leyline Binding risultano reason not_legal, sample.decks 1185 e trend stable con deltaPoints 0.0. tournamentHTML usa TournamentProspects.labels[status]: status unavailable diventa 'Dati insufficienti' senza leggere reason, e il testo mostra comunque observed.withCard / sample.decks. competitive-prospects-ui.js:27 compone campione 'ammissibile', presenze e trend senza controllare reason. catalog-indices.js:32 applica il filtro del campione a t.sample.decks senza escludere score null. La sintesi del catalogo (compact) gestisce invece correttamente 'Non legale' e 'Terra base'.",
+      "impact": "Una carta non legale appare come carta osservata e assente in un campione di oltre mille liste, oppure come dato insufficiente. Questo contraddice docs/statistics.md:79 e docs/requirements.md:25, che chiedono di distinguere carta non legale, dato non applicabile, campione assente e assenza osservata. Riguarda ogni scheda della vista completa nelle 21 espansioni e tutte le schede editoriali, quindi anche il formato predefinito della pagina metagame.",
+      "suggested_fix": "Correggere soltanto i renderer, senza rigenerare i dati. In discovery.js derivare l'etichetta da reason (Non legale o Vietata, Terra base, Legalità da verificare, Campione dopo l'uscita non verificato), come già fa TournamentProspects.assessment, e mostrare liste ed eventi solo quando score non è null. In competitive-prospects-ui.js, quando reason non è null, omettere le frasi su campione 'ammissibile', presenze e trend, oppure dichiararle non applicabili alla carta, conservando lo storico solo se pertinente. In catalog-indices.js considerare non soddisfatto il filtro del campione minimo quando score è null.",
+      "certainty": "certain"
+    },
+    {
+      "id": "OPUS-30",
+      "priority": "P3",
+      "file": "tournament_index.py",
+      "line": 80,
+      "title": "La finestra ammissibile dipende dalle presenze della carta stessa: denominatori diversi per carte dello stesso set",
+      "scenario": "Reality Fracture, Standard. In final-data-audit.json Enlightened Confidant ha eligibleFrom 2026-10-01, campione 1185 liste in 34 eventi e periodo precedente del trend con 352 liste. Flickering Hound, dello stesso set e mai osservata, ha eligibleFrom 2026-10-02, 1153 liste in 33 eventi e 320 liste nel periodo precedente.",
+      "evidence": "eligible_from è il minimo fra prima uscita e date delle presenze della carta (righe 80-81). L'evento del 1 ottobre entra quindi nel numeratore e nel denominatore solo per le carte presenti in quell'evento. La presenza di una carta del set dimostra però che il set era già giocabile quel giorno, quindi lo zero delle altre carte dello stesso set viene escluso senza motivo. trend_samples sceglie la coorte su eventi già filtrati per questa ammissibilità, mentre docs/statistics.md:81 afferma che la coorte è scelta 'senza usare le presenze della carta'. La regola è pensata per le ristampe con identità precedente (docs/statistics.md:79), ma qui si applica a una carta nuova.",
+      "impact": "Le carte viste presto hanno una piccola distorsione verso l'alto, le altre carte dello stesso set perdono zeri validi, e l'ordinamento del catalogo confronta finestre diverse all'interno dello stesso set. Nell'esempio l'effetto riguarda circa 32 liste su 1150, ma dipende dalle date di uscita registrate rispetto alla disponibilità digitale.",
+      "suggested_fix": "Calcolare l'ammissibilità per gruppo di uscita: la presenza più antica di una qualsiasi carta con lo stesso set e la stessa releasedAt, nel formato, vale per tutte le carte del gruppo. Oppure registrare, con fonte, la data di disponibilità digitale del set. Mantenere la regola per carta soltanto per le ristampe la cui prima uscita registrata è anteriore. In alternativa, correggere docs/statistics.md:79 e 81 dichiarando che la finestra per carta dipende anche dalle sue presenze.",
+      "certainty": "certain"
+    },
+    {
+      "id": "OPUS-31",
+      "priority": "P3",
+      "file": "catalog-indices.js",
+      "line": 51,
+      "title": "Il filtro 'Prospettiva' chiama 'Non applicabile' lo stato delle carte non legali",
+      "scenario": "Nel catalogo scegliere formato Pauper e aprire il menu Prospettiva.",
+      "evidence": "L'opzione value='not_legal' ha il testo 'Non applicabile'. L'opzione value='not_applicable', che corrisponde a reason basic_land, ha il testo 'Terra base'. compact() e assessment() chiamano invece lo stesso stato 'Non legale' o 'Vietata'.",
+      "impact": "Il filtro unisce sotto un'etichetta sbagliata due condizioni che docs/requirements.md:25 chiede di distinguere. L'etichetta del filtro non corrisponde a quella della scheda.",
+      "suggested_fix": "Rinominare le opzioni in 'Non legale / vietata' e 'Non applicabile (terra base)'.",
+      "certainty": "certain"
+    },
+    {
+      "id": "OPUS-32",
+      "priority": "P3",
+      "file": "templates/atlas/gallery.html",
+      "line": 108,
+      "title": "Nei record annidati, Svuota e Importa del catalogo azzerano il mazzo, e l'esportazione consigliata non lo contiene",
+      "scenario": "In the-hobbit costruire un mazzo nel banco manuale del pool Sealed. Aprire il catalogo, sezione #pool, e premere 'Esporta pool JSON' come suggerito dalla conferma. Premere poi 'Svuota pool' e reimportare il file esportato.",
+      "evidence": "La conferma di Svuota dice 'Esporta prima se vuoi conservarle'. L'esportazione (riga 106) contiene solo format, poolKey, event, date e pool, senza deck, basics e note. save() applica ManualPoolRecord.withPool, che riduce deck al nuovo pool: con pool vuoto il mazzo viene azzerato. La reimportazione ripristina il pool ma non il mazzo, e l'importazione (riga 107) riduce allo stesso modo il mazzo esistente senza archiviarlo.",
+      "impact": "L'utente segue il consiglio della pagina e perde comunque il mazzo costruito. Il record è valido, quindi non scatta alcun backup integrale. Prima della migrazione Atlas il catalogo non scriveva nei record annidati dei 20 set migrati.",
+      "suggested_fix": "Per poolSource.nested, includere deck, basics, note e campi compatibili nell'esportazione del catalogo, oppure indicare l'esportazione del banco manuale, che conserva l'intero record. Nella conferma di Svuota e di Importa dichiarare che il mazzo viene ridotto o azzerato. In alternativa archiviare il record nella chiave ':protected-backups-v1' prima della sostituzione.",
+      "certainty": "certain"
+    },
+    {
+      "id": "OPUS-33",
+      "priority": "P3",
+      "file": "test_atlas_migration.py",
+      "line": 23,
+      "title": "Il test di migrazione fallisce con KeyError per qualsiasi espansione aggiunta dopo la migrazione",
+      "scenario": "Aggiungere una nuova espansione seguendo la skill mtg-new-set e rieseguire 'python -m unittest test_atlas_migration.py', indicato in docs/verification.md:74.",
+      "evidence": "test_original_storage_keys_and_urls_remain esegue self.before[e.manifest['id']] per ogni espansione registrata. before-manifests.json contiene soltanto le 21 espansioni presenti alla migrazione.",
+      "impact": "Il controllo documentato per la migrazione blocca il flusso ordinario di aggiunta di un set, senza un difetto reale nel nuovo set.",
+      "suggested_fix": "Iterare sugli ID presenti nella baseline, oppure saltare con subTest le espansioni assenti da before-manifests.json, mantenendo il controllo completo per quelle migrate.",
+      "certainty": "certain"
+    },
+    {
+      "id": "OPUS-34",
+      "priority": "P3",
+      "file": "research/production-opus-20261028/tournament-coverage-v2.json",
+      "line": 3,
+      "title": "I dati rigenerati provengono da un integratore diverso da quello registrato nella verifica finale",
+      "scenario": "Confrontare l'integratore che ha prodotto i dati con quello indicato nella versione in esame e in reviews/production-opus-20261028/verification.json.",
+      "evidence": "Il rapporto dichiara integratorSha256 55dee8f3.... La versione in esame e verification.json, in codeSha256, indicano per integrate_tournament_prospects.py 6fb9526b.... Lo stesso verification.json associa questo codice ai dataSha256. final-review-context.json afferma che l'estrazione successiva di supplement_facts non cambia alcun campo runtime, ma non è allegata una nuova esecuzione del codice corrente né un confronto degli hash.",
+      "impact": "Il registro presenta i dati come verificati con il codice corrente, mentre li ha prodotti una versione precedente. L'equivalenza è plausibile ma resta un'affermazione non documentata, proprio sul percorso che decide legalità e date per carta.",
+      "suggested_fix": "Rieseguire l'integratore corrente con --apply e un nuovo --report su una copia del repository, quindi confrontare gli hash di cards.json, discovery.json e sources.json con dataSha256. In alternativa dichiarare in verification.json che i dati derivano dall'integratore 55dee8f3, indicando il motivo dell'equivalenza.",
+      "certainty": "certain"
+    },
+    {
+      "id": "OPUS-35",
+      "priority": "P3",
+      "file": "build_expansion.py",
+      "line": 163,
+      "title": "Profili completi delle carte replicati in pagine che non li usano: peso delle pagine e del sito",
+      "scenario": "Aprire su telefono le pagine analisi, combo, simulatore, pool, banco Draft o prova del mazzo di foundations o avatar-the-last-airbender, con oltre 500 carte.",
+      "evidence": "catalog_data restituisce expansion.cards completi, con prospects, quattro tournamentIndex con esempi, eventsWithCard ed esempi storici. Questi dati sono incorporati in ogni pagina con __DATA__ e in expansion-data.js (riga 347), usato da pool, workbench e practice, che non caricano prospects-ui.js. verification.json riporta builtArtifactBytes 772808807. Non ho visto le dimensioni per pagina né quelle della baseline.",
+      "impact": "Ipotesi: pagine di diversi megabyte su telefono, e un sito vicino al limite di dimensione dei siti pubblicati indicato da GitHub (1 GB, da ricontrollare sulla fonte ufficiale). Un nuovo set potrebbe superarlo.",
+      "suggested_fix": "Escludere prospects dai payload delle pagine che non li mostrano. Nel catalogo valutare il caricamento differito da data/cards.json, come già fa discovery.js. Non servono modifiche alla pipeline.",
+      "certainty": "hypothesis"
+    }
+  ],
+  "additional_context_needed": [
+    "Per OPUS-35: le dimensioni dei file generati più grandi per set (catalogo HTML, expansion-data.js, data/cards.json) e la dimensione totale di dist/ al baseline 8ab652e."
+  ],
+  "ready": false,
+  "summary": "Verdetto: non pronto per produzione nel perimetro esaminato, per un solo rilievo P2 certo e circoscritto ai renderer (OPUS-29). La pagina metagame e i dettagli del catalogo mostrano carte non legali, terre base e legalità sconosciute come campionate, con 'Dati insufficienti', conteggi zero e trend. La correzione non richiede di rigenerare i dati. Gli altri rilievi sono P3. OPUS-30: finestra ammissibile per carta condizionata dalle proprie presenze, con denominatori diversi nello stesso set. OPUS-31: etichetta del filtro per le carte non legali. OPUS-32: mazzo azzerato da Svuota e Importa nel catalogo, con un consiglio di esportazione insufficiente. OPUS-33: test di migrazione che si rompe con un nuovo set. OPUS-34: dati prodotti da un integratore diverso da quello registrato. OPUS-35 è un'ipotesi sul peso delle pagine. Dalla lettura statica risultano risolti i rilievi del terzo ciclo: --report obbligatorio e non sovrascrivibile (OPUS-21), conservazione di mazzo e note nel conflitto fra schede (OPUS-22), evento e chiave nelle esportazioni del catalogo (OPUS-23), periodi null con motivo e coorte nominata solo se presente (OPUS-24), livello editoriale considerato in assenza di misura (OPUS-25), legalità con data e fonte per carta, aggiornata solo se mancante (OPUS-26), rimozione della sola nota esatta (OPUS-27), rifiuto degli alias condivisi da identità diverse (OPUS-28). Per OPUS-20 e OPUS-19, gli estratti di dati allegati mostrano campi coerenti con il codice corretto: trend.method, cohort e date del periodo, tournamentLevel, price.status, trendPeriods e trendKind. Gli hash della versione coincidono con quelli in codeSha256 del nuovo registro: è un confronto delle stringhe, non un ricalcolo. Coerenti alla lettura: zero e null distinti nel calcolo e nei filtri del catalogo; storico separato dal denominatore recente; una presenza per lista; validazione di score e conteggi; Draft e Sealed separati senza medie; protezione e backup dei record illeggibili; separazione fra mode e playMode; escaping dei contenuti dinamici esaminati; build senza rete nei moduli forniti; documentazione allineata al metodo, salvo il punto di OPUS-30. Limiti: revisione statica dei soli file, diff ed estratti allegati. Non ho eseguito build, test o browser, non ho letto fonti esterne e non ho ricalcolato hash. Gli esiti dei registri, delle decisioni e degli script di verifica sono attribuiti al loro autore e alla versione dichiarata. Non ho esaminato i JSON completi delle espansioni. Non certifico copertura dei cataloghi, legalità, date di uscita, completezza degli eventi MTGO acquisiti, limiti dell'hosting né la pubblicazione."
+}

@@ -1,0 +1,95 @@
+{
+  "findings": [
+    {
+      "id": "OPUS-13",
+      "priority": "P2",
+      "file": "templates/atlas/gallery.html",
+      "line": 73,
+      "title": "Pool annidato protetto nel catalogo: il backup riesce ma la sostituzione fallisce sempre",
+      "scenario": "Espansione con poolPrefix, per esempio the-hobbit. Il record poolPrefix+'sealed-v1' contiene un ID non più presente nel catalogo oppure JSON non valido. Aprire il catalogo Atlas: compare la protezione. Premere 'Archivia il precedente e salva questo pool'.",
+      "evidence": "protectPool (riga 73) imposta storedRaw al testo illeggibile. Il pulsante scrive l'archivio, imposta poolBlocked=false e chiama save(). save (riga 78) trova current===storedRaw e nel ramo nested esegue ManualPoolRecord.validate(JSON.parse(current)) sullo stesso record non valido. L'eccezione finisce nel catch, che mostra 'Impossibile salvare nel browser' e restituisce false. Il pulsante resta e ogni nuovo clic aggiunge all'archivio un'altra copia integrale. Poiché poolBlocked è ormai false, ogni +/- successivo ripete lo stesso errore. star-trek.js (righe 74-97) non offre alcun percorso di archiviazione per la stessa chiave, quindi il record Sealed annidato non ha recupero. Inoltre il catalogo può selezionare un evento Draft e condividere così KEY+':protected-backups-v1' con draft-pool.js: qui i record usano il campo date, mentre draft-pool.js:74 e docs/architecture.md:128 usano created.",
+      "impact": "Non si perdono dati, ma il recupero proposto non funziona per i set migrati con record annidati. Il messaggio attribuisce il problema alla memoria del browser, le modifiche restano solo nella pagina e l'archivio cresce a ogni tentativo, con rischio di superare la quota. L'esito contraddice quello promesso dal pulsante.",
+      "suggested_fix": "Dopo aver verificato l'archivio, nel ramo nested rimuovere la chiave principale o scrivere un record nuovo {pool, deck:{}, basics:{}}. Allineare poi storedRaw al valore effettivamente presente e solo allora chiamare save(). In alternativa, passare a save() l'indicazione che il precedente è già archiviato e va considerato vuoto. Evitare di archiviare due volte lo stesso raw. Uniformare il campo a created come nel contratto, accettando date in lettura. Aggiungere una regressione browser con un record annidato non valido.",
+      "certainty": "certain"
+    },
+    {
+      "id": "OPUS-14",
+      "priority": "P2",
+      "file": "star-trek.js",
+      "line": 253,
+      "title": "Il campo mode del pool Draft collide con l'involucro di esportazione: un pool Draft toccato dall'assistente non si reimporta",
+      "scenario": "Set con poolPrefix. Nella pagina Draft Atlas aggiungere una pick dall'assistente: draft-pool.js scrive il record annidato poolPrefix+'draft-v1'. Aprire Pool e mazzo Draft (draft-workbench.html?mode=draft), esportare e poi importare lo stesso file, come suggerito dal README per cambiare origine.",
+      "evidence": "draft-pool.js:33 scrive sempre mode:'bo1' o 'bo3' nel record annidato. star-trek.js:253 compone {version,set,mode,snapshot,...state}; lo state riletto (righe 60 e 72) contiene mode='bo1', che sovrascrive l'ID dell'evento. All'importazione la riga 263 confronta imported.mode con importMode ('draft') e rifiuta il file come 'di un altro set, formato o versione'. Nel verso opposto, un file esportato prima dell'uso dell'assistente viene fuso con Object.assign (riga 265). Il record riceve così mode='draft', version, set e snapshot, e draft-pool.js:33 riscrive poi mode come 'bo1', perdendo la preferenza BO3.",
+      "impact": "Per i pool Draft annidati l'esportazione, unico modo documentato per conservare o trasferire i salvataggi, produce un file che l'interfaccia non riesce a reimportare. L'importazione inoltre azzera la preferenza BO3. È una regressione introdotta dalla migrazione, perché prima draft-pool.js non scriveva i record annidati.",
+      "suggested_fix": "In star-trek.js costruire l'involucro come {...state,version:1,set,mode,snapshot}. All'importazione rimuovere i campi dell'involucro prima di Object.assign e conservare il mode BO1/BO3 del record. Per i file già esportati con mode 'bo1' o 'bo3', accettarli quando set coincide e la pagina carica un evento Draft, con conferma dell'evento di destinazione. Aggiungere una verifica browser del giro assistente, esportazione, importazione.",
+      "certainty": "certain"
+    },
+    {
+      "id": "OPUS-15",
+      "priority": "P3",
+      "file": "discovery.js",
+      "line": 34,
+      "title": "Livelli del metagame calcolati con regole diverse e presentati come valutazioni editoriali",
+      "scenario": "Una carta con presenze in un solo evento recente. Se rientra nella selezione dei primi 20 per formato riceve il livello dall'integratore; se non rientra, nella vista 'Tutte le analisi' lo calcola discovery.js. Filtrare per 'Emergente' o 'Preliminare'.",
+      "evidence": "integrate_tournament_prospects.py:26 assegna 'Confermata' se lo stato del formato con lo score più alto è repeated, 'Emergente' se eventsWithCard>=2, altrimenti 'Preliminare'. discovery.js:34 assegna 'Confermata' se almeno un formato è repeated ed 'Emergente' per qualsiasi presenza positiva. La stessa evidenza produce quindi 'Preliminare' o 'Emergente' secondo l'appartenenza alla selezione. templates/atlas/discovery.html:9 dichiara: 'Le etichette sono valutazioni editoriali', ma questi livelli derivano automaticamente dalle misure.",
+      "impact": "Il filtro per solidità del segnale restituisce insiemi incoerenti, e misure osservate vengono presentate come giudizi editoriali, contro la distinzione richiesta fra misura e valutazione.",
+      "suggested_fix": "Definire il livello in un'unica funzione condivisa, per esempio in tournament_index.py, salvarla nell'indice e usarla nei due punti. Aggiornare la legenda distinguendo livelli calcolati dalle liste e livelli editoriali (editorialDate).",
+      "certainty": "certain"
+    },
+    {
+      "id": "OPUS-16",
+      "priority": "P3",
+      "file": "import_public_game_statistics.py",
+      "line": 43,
+      "title": "La cache dell'importatore conserva gli abbinamenti precedenti e non permette di riabbinare senza riscaricare",
+      "scenario": "Rieseguire l'importatore, dopo la correzione per prima faccia e alias, con la stessa cartella --output della prima acquisizione.",
+      "evidence": "acquire restituisce il JSON salvato se esiste, quindi match_card_rows non viene rieseguito. Il JSON contiene solo le righe abbinate e coverage, non i totali per colonna prodotti da aggregate. Con la stessa --output restano invariati abbinamenti, unmatchedSourceNames e WR mancanti. Per applicare il nuovo abbinamento bisogna riscaricare e riaggregare tutti i file pubblici. docs/statistics.md:64 non avverte di usare una cartella nuova.",
+      "impact": "Una correzione del metodo di abbinamento può sembrare applicata senza esserlo, e la riproducibilità dipende da una condizione non documentata. Ogni riabbinamento costa il download completo dei dataset.",
+      "suggested_fix": "Salvare, accanto al risultato, i totali per colonna con hash e Last-Modified del file. Separare acquisizione e abbinamento, rieseguendo match_card_rows a ogni esecuzione. Registrare una versione del metodo di abbinamento e invalidare la cache quando cambia. Documentare il comportamento in docs/statistics.md.",
+      "certainty": "certain"
+    },
+    {
+      "id": "OPUS-17",
+      "priority": "P3",
+      "file": "research_tournament_lists.py",
+      "line": 69,
+      "title": "La coorte 'omogenea' del trend riunisce eventi con coperture molto diverse",
+      "scenario": "Trend Modern con la coorte recent-mtgo-challenge + published-lists-only.",
+      "evidence": "publishedCoverage vale complete-field solo se players==len(decks), altrimenti published-lists-only, e il kind è recent-mtgo-challenge per tutti gli eventi MTGO. Nella stessa coorte finiscono Modern Challenge da 32 liste su 38 partecipanti, Modern RC Super Qualifier (32 su 344, 3 ottobre) e Modern Showcase Challenge (32 su 286, 17 ottobre), come risulta da coverage.json. trend_samples (tournament_index.py:60) li tratta come un'unica coorte, e docs/statistics.md:81 e discovery.js:104 la descrivono omogenea per tipo e copertura.",
+      "impact": "Alcune liste rappresentano circa il 9% migliore del campo, altre quasi tutto il campo. Uno squilibrio fra periodi nella quota di eventi di qualificazione può generare crescita o calo legati alla selezione e non all'adozione. La classificazione è certa; l'entità dell'effetto sui trend salvati non è verificata.",
+      "suggested_fix": "Conservare players e publishedDecks e classificare come published-top-finishers gli eventi sotto una soglia di copertura dichiarata, oppure assegnare un kind distinto a qualificazioni e Showcase. In alternativa, correggere la documentazione chiarendo che la coorte dipende dall'etichetta e non dal tasso di copertura.",
+      "certainty": "certain"
+    },
+    {
+      "id": "OPUS-18",
+      "priority": "P3",
+      "file": "prospects-ui.js",
+      "line": 27,
+      "title": "La nuova condizione sul prezzo può nascondere scenari editoriali preesistenti",
+      "scenario": "Una scheda editoriale precedente, non tournament_data_only, con price.metric 'non disponibile' ma con outlook.thesis, upsideConditions o downsideRisks compilati.",
+      "evidence": "Il ramo anticipato restituisce soltanto 'Non sono disponibili riferimenti di prezzo verificati' quando metric vale 'non disponibile', anche se lo status non è not_collected. Prima della modifica tesi e condizioni venivano mostrate. L'integratore marca già il placeholder con status not_collected (integrate_tournament_prospects.py:60), quindi la condizione su metric serve solo ai record precedenti. Non ho visto i JSON per sapere se esistono record di questo tipo.",
+      "impact": "Se esistono, gli scenari economici attribuiti e datati spariscono dall'interfaccia: un dato presente diventa assenza mascherata.",
+      "suggested_fix": "Limitare il ramo a status not_collected, oppure a metric 'non disponibile' senza outlook editoriale. Per gli altri casi mostrare tesi e condizioni senza riquadri di prezzo.",
+      "certainty": "hypothesis"
+    },
+    {
+      "id": "OPUS-19",
+      "priority": "P3",
+      "file": "research/tournament-prospects-20261028/verification.json",
+      "line": 77,
+      "title": "Registri di verifica senza versione verificata e anteriori alle correzioni",
+      "scenario": "Un lettore o un agente che segue AGENTS.md consulta i registri del 28 ottobre per conoscere lo stato della versione in esame.",
+      "evidence": "Questo file dichiara 68 test e il controllo browser su 21 set; research/catalog-indices-20261028/verification.json:22 dichiara 48+7+1 test e 5437/5398 WR per carta. Nessuno dei due indica commit o hash dei sorgenti e dei dati. Dopo le correzioni (trend matched-cohort-v1, alias condivisi, sample.start, prezzi, abbinamento 17Lands) test_tournament_index.py contiene 12 casi, e il ciclo precedente indica rigenerazione dei dati e verifica finale ancora in corso. I file sono inclusi nella versione in esame senza distinguerli dagli esiti futuri.",
+      "impact": "Esiti ottenuti prima delle correzioni possono essere letti come verifica della versione corrente. I conteggi WR non riflettono la riacquisizione con abbinamento per prima faccia.",
+      "suggested_fix": "Aggiungere a ogni registro commit o hash dei sorgenti e dei dati verificati. Registrare gli esiti successivi alle correzioni in un nuovo record datato, lasciando invariati i precedenti come storico.",
+      "certainty": "certain"
+    }
+  ],
+  "additional_context_needed": [
+    "Dopo la rigenerazione: un estratto di statistics.json (snapshot 17lands-public, coverage.missingCatalogIds e unmatchedSourceNames) per un set con carte a due facce, e un tournamentIndex di cards.json con trend.method, cohort e date. Servono per chiudere sui dati OPUS-3, OPUS-6 e OPUS-7 e per confermare che i JSON pubblicati corrispondono al codice corretto.",
+    "Il conteggio, per espansione, delle carte con price.metric 'non disponibile' e analysisCoverage diversa da tournament_data_only che hanno outlook.thesis o condizioni non vuote. Serve per confermare o escludere OPUS-18.",
+    "Gli esiti delle verifiche finali eseguite dopo le correzioni (build, unittest, node, verify-tournament-prospects.cjs, reviews/production-opus-20261028/verify-corrections.cjs), con la versione a cui si riferiscono."
+  ],
+  "ready": false,
+  "summary": "Verdetto: non pronto per produzione nel perimetro esaminato. Questo secondo ciclo numera i nuovi rilievi da OPUS-13. Dalla lettura statica del codice risultano corretti i rilievi OPUS-1, OPUS-2, OPUS-4, OPUS-5, OPUS-6, OPUS-7, OPUS-8, OPUS-9, OPUS-10, OPUS-11 e OPUS-12, e OPUS-3 sul lato del codice. Per OPUS-3, OPUS-6 e OPUS-7 la rigenerazione dei dati non è documentata dal materiale fornito, e il ciclo stesso la indica come ancora in corso. Due nuovi rilievi certi P2 riguardano i salvataggi introdotti con la migrazione Atlas. Il primo: nel catalogo il percorso 'Archivia e salva' per un pool annidato protetto archivia il record ma non riesce mai a sostituirlo, e ripete il backup a ogni clic (OPUS-13). Il secondo: il campo mode scritto dall'assistente Draft sovrascrive l'evento nell'esportazione del banco manuale, quindi il file non si reimporta e l'importazione azzera la preferenza BO3 (OPUS-14). I rilievi P3 riguardano livelli del metagame incoerenti e presentati come editoriali (OPUS-15), la cache dell'importatore 17Lands che impedisce di riabbinare (OPUS-16), una coorte del trend definita da un'etichetta che riunisce coperture dal 9% al 94% (OPUS-17), una possibile scomparsa di scenari economici preesistenti (OPUS-18, ipotesi) e registri di verifica senza versione e anteriori alle correzioni (OPUS-19). Aspetti risultati coerenti alla lettura: zero e null distinti nel calcolo, nei filtri e nei renderer; storico separato dal denominatore recente; una presenza per lista fra main e sideboard; trend su una sola coorte, con periodi letti dal JSON; sample.start ed eligibleFrom esposti; alias condivisi per oracleId; selezioni editoriali aggiornate anche a zero o N/D; riduzione del pool per nome che protegge le copie nel mazzo; quantità zero accettate e scartate in modo coerente; escaping dei contenuti dinamici esaminati; build senza accesso di rete nei moduli forniti; documentazione statistica allineata al nuovo metodo. Limiti: revisione statica dei soli file e del diff allegati. Non ho eseguito build, test, browser o letture esterne e non ho verificato gli hash. Gli esiti in verification.json, nelle decisioni del ciclo e in verify-corrections.cjs sono attribuiti al loro autore e alla versione dichiarata, non sono verifiche mie. Non ho esaminato i JSON delle espansioni, card-hover.js e gli script verify-* non allegati. Non certifico copertura dei cataloghi, legalità, date di uscita, completezza degli eventi acquisiti né la pubblicazione."
+}
