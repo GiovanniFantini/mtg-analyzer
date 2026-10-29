@@ -30,6 +30,16 @@ La versione dell'algoritmo è distinta dall'impronta funzionale dei dati. Conser
 
 ## Indagine e controlli
 
+### Tavolo visuale
+
+Durante il draft il tavolo occupa il viewport: busta in alto, pick impilate per valore di mana in basso e riepilogo laterale. `draft-visual.js` genera soltanto presentazione e conteggi, senza modificare voti, politica o record. La curva usa il valore di mana stampato delle magie; i tipi assegnano una sola categoria principale per carta e i colori contano una multicolore in ciascun colore. Questi conteggi descrivono il pool, non un main già scelto o le fonti di mana. Le pile adattano l'altezza allo spazio disponibile e possono essere ingrandite; gli accumuli più lunghi mantengono lo scorrimento interno. Sul telefono Busta, Pick e Analisi sono viste separate, con immagini più grandi e scorrimento della sola zona di lavoro.
+
+Rarità e copie foil rimangono leggibili nella busta e nelle pile, anche nei nomi accessibili. Le anteprime flottanti evitano la carta di origine e vengono chiuse durante scorrimento, ridimensionamento e ritorno dal dialogo. Il layout a viste vale anche per schermi tattili bassi in orizzontale. La shell coordina `inert` con l'evento `draft-table-mode-change`, mantenendo esclusa la navigazione coperta e ricalcolando il menu all'uscita. Se lo storage non è accessibile, la configurazione permette di esportare e riprendere la sessione ancora in memoria; dopo un errore del worker può ricostruire il suo ultimo record completato senza sovrascrivere record incompatibili privi di backup.
+
+A sessione conclusa il selettore comprende ogni bot e il giocatore. I classici mostrano il pool completo, senza dichiararlo un mazzo costruito. La v4 espone separatamente main proposto, basi da aggiungere, riserve e pool; il riepilogo segue la vista selezionata. Le basi disponibili nel catalogo conservano l'anteprima. Le motivazioni delle singole pick sono raccolte in un dettaglio espandibile. Durante la sessione i pool avversari restano nascosti.
+
+`verify-draft-table-visual.cjs` verifica ingombri del viewport, busta e riepiloghi su desktop, pile, ingrandimento senza scritture, revisione classica, salvataggio, anteprime e viste per telefono. Salva screenshot nella directory temporanea o in `MTG_QA_DIR`. Il flusso completo v4 rimane coperto da `verify-draft-policy-browser.cjs`.
+
 Conservare i seguenti casi di regressione quando si modifica la politica, senza trasformarne i vecchi pesi in vincoli universali:
 
 - A sostegno equivalente, l'ordine degli archetipi nei dati non assegna una preferenza iniziale a un colore o coppia.

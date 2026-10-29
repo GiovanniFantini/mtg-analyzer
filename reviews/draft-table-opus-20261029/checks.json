@@ -1,0 +1,155 @@
+{
+  "status": "All required checks passed; no pending checks.",
+  "checks": [
+    {
+      "command": [
+        "test-draft-visual.cjs"
+      ],
+      "exitCode": 0,
+      "stdout": "PASS: repeated foil and nonfoil copies preserve rarity and finish; names escaped; curve excludes lands, counts copies and 6+; primary types and extra basics retain correct totals; contextual empty state.\n",
+      "stderr": "",
+      "sourceHashes": {
+        "draft-table.js": "5173eb0fe3e4ed673e8e22f1bc3bc147f04f26f9928404f8de0c41abb128b42b",
+        "draft-visual.js": "b417cf6c8155c61500d7ef191fdef128bba10fab58a4c3574a3495ed25c802b5",
+        "draft-engine.css": "4bc66d9d961185b1bc978541e65ef91c135156082168f9ab1f41ffae560c8aba",
+        "site.js": "ee02a26e6b42fcaf9f56c9527f12d1f8984744083d4a07fce3ab77979b53307f",
+        "templates/atlas/draft-engine.html": "63ee099647ac684405908eda3eb0bb1ce6d073907d14bda27c43080486f16c37"
+      },
+      "testHashes": {
+        "test-draft-visual.cjs": "d0c8d17b4dc6a76cf9f81ca4b2d4f00acffd7a318037b4f965ccabb309224873"
+      }
+    },
+    {
+      "command": [
+        "verify-draft-table-visual.cjs"
+      ],
+      "exitCode": 0,
+      "stdout": "PASS: viewport table at 1440/1366, full pack and summaries without scrolling, visual stacks, read-only enlargement, classic review, player switch, preserved save, mouse/keyboard/touch, 390/320px. Screenshots: C:\\repos\\Codex\\MTG\\reviews\\draft-table-opus-20261029\\browser-production-confirmed\n",
+      "stderr": "",
+      "sourceHashes": {
+        "draft-table.js": "5173eb0fe3e4ed673e8e22f1bc3bc147f04f26f9928404f8de0c41abb128b42b",
+        "draft-visual.js": "b417cf6c8155c61500d7ef191fdef128bba10fab58a4c3574a3495ed25c802b5",
+        "draft-engine.css": "4bc66d9d961185b1bc978541e65ef91c135156082168f9ab1f41ffae560c8aba",
+        "site.js": "ee02a26e6b42fcaf9f56c9527f12d1f8984744083d4a07fce3ab77979b53307f",
+        "templates/atlas/draft-engine.html": "63ee099647ac684405908eda3eb0bb1ce6d073907d14bda27c43080486f16c37"
+      },
+      "testHashes": {
+        "verify-draft-table-visual.cjs": "8ed1991fe3e2c5617ac75bfaa7abee2ae4d41feb1a60c2bd1cab9feeddec03ec"
+      }
+    },
+    {
+      "command": [
+        "verify-draft-table-recovery.cjs"
+      ],
+      "exitCode": 0,
+      "stdout": "PASS: blocked storage retains classic memory session after reset; setup export downloads exact progress; failed v4 worker retains downloadable snapshot and resumes that snapshot without storage.\n",
+      "stderr": "",
+      "sourceHashes": {
+        "draft-table.js": "5173eb0fe3e4ed673e8e22f1bc3bc147f04f26f9928404f8de0c41abb128b42b",
+        "draft-visual.js": "b417cf6c8155c61500d7ef191fdef128bba10fab58a4c3574a3495ed25c802b5",
+        "draft-engine.css": "4bc66d9d961185b1bc978541e65ef91c135156082168f9ab1f41ffae560c8aba",
+        "site.js": "ee02a26e6b42fcaf9f56c9527f12d1f8984744083d4a07fce3ab77979b53307f",
+        "templates/atlas/draft-engine.html": "63ee099647ac684405908eda3eb0bb1ce6d073907d14bda27c43080486f16c37"
+      },
+      "testHashes": {
+        "verify-draft-table-recovery.cjs": "e8f0b4f904c8080d8bd8e02ca5a594ba0276f5d11e3736b223de665c7621d886"
+      }
+    },
+    {
+      "command": [
+        "verify-draft-bots-browser.cjs"
+      ],
+      "exitCode": 0,
+      "stdout": "PASS: v2 saved draft resumes and stays v2; new v3 draft completes, reloads and exports identical review; mouse, keyboard and touch card previews; no browser errors.\n",
+      "stderr": "",
+      "sourceHashes": {
+        "draft-table.js": "5173eb0fe3e4ed673e8e22f1bc3bc147f04f26f9928404f8de0c41abb128b42b",
+        "draft-visual.js": "b417cf6c8155c61500d7ef191fdef128bba10fab58a4c3574a3495ed25c802b5",
+        "draft-engine.css": "4bc66d9d961185b1bc978541e65ef91c135156082168f9ab1f41ffae560c8aba",
+        "site.js": "ee02a26e6b42fcaf9f56c9527f12d1f8984744083d4a07fce3ab77979b53307f",
+        "templates/atlas/draft-engine.html": "63ee099647ac684405908eda3eb0bb1ce6d073907d14bda27c43080486f16c37"
+      },
+      "testHashes": {
+        "verify-draft-bots-browser.cjs": "a9d3dbe0487339436ca56139807ebaa5b1644088548556348bf7c11d2bc25e79"
+      }
+    },
+    {
+      "command": [
+        "verify-draft-policy-browser.cjs"
+      ],
+      "exitCode": 0,
+      "stdout": "PASS: default v3, opt-in v4 BO1, worker heartbeat {\"ticks\":59,\"maxGap\":70.8000000002794,\"longestTask\":0}, partial and complete resume, detailed review, privacy, mouse/keyboard/touch, 390px, full backup and backup failure.\n",
+      "stderr": "",
+      "sourceHashes": {
+        "draft-table.js": "5173eb0fe3e4ed673e8e22f1bc3bc147f04f26f9928404f8de0c41abb128b42b",
+        "draft-visual.js": "b417cf6c8155c61500d7ef191fdef128bba10fab58a4c3574a3495ed25c802b5",
+        "draft-engine.css": "4bc66d9d961185b1bc978541e65ef91c135156082168f9ab1f41ffae560c8aba",
+        "site.js": "ee02a26e6b42fcaf9f56c9527f12d1f8984744083d4a07fce3ab77979b53307f",
+        "templates/atlas/draft-engine.html": "63ee099647ac684405908eda3eb0bb1ce6d073907d14bda27c43080486f16c37"
+      },
+      "testHashes": {
+        "verify-draft-policy-browser.cjs": "b48802a0952c4ab85ddb4a77220882f3faf914fe6e5b62b43ae6cfa26e038cef"
+      }
+    }
+  ],
+  "build": [
+    {
+      "command": [
+        "build_site.py"
+      ],
+      "exitCode": 0,
+      "stdout": "Site built: 21 expansion(s), 290 HTML pages. Local links verified.\n",
+      "stderr": "",
+      "sourceHashes": {
+        "draft-table.js": "5173eb0fe3e4ed673e8e22f1bc3bc147f04f26f9928404f8de0c41abb128b42b",
+        "draft-visual.js": "b417cf6c8155c61500d7ef191fdef128bba10fab58a4c3574a3495ed25c802b5",
+        "draft-engine.css": "4bc66d9d961185b1bc978541e65ef91c135156082168f9ab1f41ffae560c8aba",
+        "site.js": "ee02a26e6b42fcaf9f56c9527f12d1f8984744083d4a07fce3ab77979b53307f",
+        "templates/atlas/draft-engine.html": "63ee099647ac684405908eda3eb0bb1ce6d073907d14bda27c43080486f16c37"
+      },
+      "testHashes": {
+        "build_site.py": "aca51a335accc441524ad17f55c22bd3b6a007067cd01925b74c1a9976f71fc3"
+      }
+    }
+  ],
+  "unit": {
+    "command": [
+      "-m",
+      "unittest",
+      "test_expansion_data.py"
+    ],
+    "exitCode": 0,
+    "stdout": "",
+    "stderr": ".....................................\n----------------------------------------------------------------------\nRan 37 tests in 256.690s\n\nOK\n",
+    "sourceHashes": {
+      "draft-table.js": "379a0d67dd94efc279fcb13a9c2d7a255bc595a2fa5172e33fb036272a47fe9f",
+      "draft-visual.js": "b417cf6c8155c61500d7ef191fdef128bba10fab58a4c3574a3495ed25c802b5",
+      "draft-engine.css": "4bc66d9d961185b1bc978541e65ef91c135156082168f9ab1f41ffae560c8aba",
+      "site.js": "ee02a26e6b42fcaf9f56c9527f12d1f8984744083d4a07fce3ab77979b53307f",
+      "templates/atlas/draft-engine.html": "63ee099647ac684405908eda3eb0bb1ce6d073907d14bda27c43080486f16c37"
+    }
+  },
+  "unitScope": "Il test JSON/renderer è passato prima del solo ritocco R2 al testo di errore frontend. Nessun contratto o renderer è cambiato da quella esecuzione. Il comportamento frontend definitivo è verificato dalle cinque acquisizioni correnti qui sopra.",
+  "shellChecks": [
+    {
+      "route": "",
+      "menuOpen": true,
+      "escape": true,
+      "desktopRestore": true
+    },
+    {
+      "route": "sets/star-trek/index.html",
+      "menuOpen": true,
+      "escape": true,
+      "desktopRestore": true
+    }
+  ],
+  "builtAssetHashes": {
+    "draft-table.js": "5173eb0fe3e4ed673e8e22f1bc3bc147f04f26f9928404f8de0c41abb128b42b",
+    "draft-visual.js": "b417cf6c8155c61500d7ef191fdef128bba10fab58a4c3574a3495ed25c802b5",
+    "draft-engine.css": "4bc66d9d961185b1bc978541e65ef91c135156082168f9ab1f41ffae560c8aba",
+    "site.js": "ee02a26e6b42fcaf9f56c9527f12d1f8984744083d4a07fce3ab77979b53307f"
+  },
+  "pending": null,
+  "testSynchronization": "Il timeout precedente è conservato in checks-production-candidate.json. L iniezione del guasto poteva anticipare la fine della pick; il test ora aspetta conteggio e busy=false. Nessun sorgente di produzione modificato dopo round-3.manifest.json."
+}

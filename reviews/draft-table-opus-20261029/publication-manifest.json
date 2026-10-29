@@ -1,0 +1,155 @@
+{
+  "review": "round-4.manifest.json",
+  "lineEndings": "Git normalizes Windows CRLF to LF. The reviewed source text matches the index for every file. Existing engine/worker code is context and remains unmodified.",
+  "sources": {
+    "draft-table.js": {
+      "reviewedWorkingBytesSha256": "5173eb0fe3e4ed673e8e22f1bc3bc147f04f26f9928404f8de0c41abb128b42b",
+      "gitIndexBytesSha256": "f4b1444ff352f5a8be76d088b97bd04b723a44486339bede1258b121fa1a0880",
+      "sameTextAfterLineEndingNormalization": true
+    },
+    "draft-visual.js": {
+      "reviewedWorkingBytesSha256": "b417cf6c8155c61500d7ef191fdef128bba10fab58a4c3574a3495ed25c802b5",
+      "gitIndexBytesSha256": "b417cf6c8155c61500d7ef191fdef128bba10fab58a4c3574a3495ed25c802b5",
+      "sameTextAfterLineEndingNormalization": true
+    },
+    "draft-engine.css": {
+      "reviewedWorkingBytesSha256": "4bc66d9d961185b1bc978541e65ef91c135156082168f9ab1f41ffae560c8aba",
+      "gitIndexBytesSha256": "ed1f7a7885a60269655ad5269af7a5ea08798bc8d5883b03f4a89f3fe2c2bdcd",
+      "sameTextAfterLineEndingNormalization": true
+    },
+    "templates/atlas/draft-engine.html": {
+      "reviewedWorkingBytesSha256": "63ee099647ac684405908eda3eb0bb1ce6d073907d14bda27c43080486f16c37",
+      "gitIndexBytesSha256": "1258ab6c31c97caf35d4f7bccf158376bce8492896a54707db06d674b3af09b8",
+      "sameTextAfterLineEndingNormalization": true
+    },
+    "site.js": {
+      "reviewedWorkingBytesSha256": "ee02a26e6b42fcaf9f56c9527f12d1f8984744083d4a07fce3ab77979b53307f",
+      "gitIndexBytesSha256": "1b2a78f1b625ed037d571eb68ca7bfa9961e84ae92b5179b8dea8babe723c466",
+      "sameTextAfterLineEndingNormalization": true
+    },
+    "site.css": {
+      "reviewedWorkingBytesSha256": "6e048f9b7b197e5b93c9dae8f099cec64160284d52a3ca23cc42b04dc01e30bd",
+      "gitIndexBytesSha256": "3a9af4381a75d4d4c2d473db927def603e938034391ca7ce56703035441a6452",
+      "sameTextAfterLineEndingNormalization": true
+    },
+    "draft-worker-client.js": {
+      "reviewedWorkingBytesSha256": "8f90e8b50000ccd00c75d2702fe5b108cea1725cffb11c94370e01ab4db7a43e",
+      "gitIndexBytesSha256": "8f90e8b50000ccd00c75d2702fe5b108cea1725cffb11c94370e01ab4db7a43e",
+      "sameTextAfterLineEndingNormalization": true
+    },
+    "verify-draft-table-visual.cjs": {
+      "reviewedWorkingBytesSha256": "8ed1991fe3e2c5617ac75bfaa7abee2ae4d41feb1a60c2bd1cab9feeddec03ec",
+      "gitIndexBytesSha256": "8ed1991fe3e2c5617ac75bfaa7abee2ae4d41feb1a60c2bd1cab9feeddec03ec",
+      "sameTextAfterLineEndingNormalization": true
+    },
+    "draft-worker.js": {
+      "reviewedWorkingBytesSha256": "d851613586061ac0593b2a74d25baaa1ca812e6445bdef3c79f86013a205e3ea",
+      "gitIndexBytesSha256": "d851613586061ac0593b2a74d25baaa1ca812e6445bdef3c79f86013a205e3ea",
+      "sameTextAfterLineEndingNormalization": true
+    },
+    "draft-engine.js": {
+      "reviewedWorkingBytesSha256": "5e7ee5acbdc830d1d85e8683b727a3d6fa0d2c52a21645d00c4d76dc02a83165",
+      "gitIndexBytesSha256": "52ea53fc11975321e095d707038329193d4c45df9aa3e67f8b41628e6f61c9a4",
+      "sameTextAfterLineEndingNormalization": true
+    },
+    "test-draft-visual.cjs": {
+      "reviewedWorkingBytesSha256": "d0c8d17b4dc6a76cf9f81ca4b2d4f00acffd7a318037b4f965ccabb309224873",
+      "gitIndexBytesSha256": "d0c8d17b4dc6a76cf9f81ca4b2d4f00acffd7a318037b4f965ccabb309224873",
+      "sameTextAfterLineEndingNormalization": true
+    },
+    "verify-draft-table-recovery.cjs": {
+      "reviewedWorkingBytesSha256": "e8f0b4f904c8080d8bd8e02ca5a594ba0276f5d11e3736b223de665c7621d886",
+      "gitIndexBytesSha256": "e8f0b4f904c8080d8bd8e02ca5a594ba0276f5d11e3736b223de665c7621d886",
+      "sameTextAfterLineEndingNormalization": true
+    },
+    "verify-draft-bots-browser.cjs": {
+      "reviewedWorkingBytesSha256": "a9d3dbe0487339436ca56139807ebaa5b1644088548556348bf7c11d2bc25e79",
+      "gitIndexBytesSha256": "a9d3dbe0487339436ca56139807ebaa5b1644088548556348bf7c11d2bc25e79",
+      "sameTextAfterLineEndingNormalization": true
+    },
+    "verify-draft-policy-browser.cjs": {
+      "reviewedWorkingBytesSha256": "b48802a0952c4ab85ddb4a77220882f3faf914fe6e5b62b43ae6cfa26e038cef",
+      "gitIndexBytesSha256": "6b0aaebc8cc8b00bf70968493dbddc1969cb8b2f138249609338b8926dec4454",
+      "sameTextAfterLineEndingNormalization": true
+    },
+    "docs/draft-engine.md": {
+      "reviewedWorkingBytesSha256": "403bb4c7eca6d5207a3b774e368bee79d55e6f03a8b35a24873bb955618695b3",
+      "gitIndexBytesSha256": "a5fd7bfa7e3311f89c1ad1ef5eb1f7a53987ccc41240b2c738895bc5185f9cc3",
+      "sameTextAfterLineEndingNormalization": true
+    },
+    "docs/verification.md": {
+      "reviewedWorkingBytesSha256": "951e8d1bd051366dc3b3848a6a629845e8a1a51f90ab0ae62ad6ee389baf02a9",
+      "gitIndexBytesSha256": "23d60bf60147a6f70983bebcb37c842cf413635fb3c28a7bc77a5897fbd25aea",
+      "sameTextAfterLineEndingNormalization": true
+    }
+  },
+  "files": [
+    "docs/draft-engine.md",
+    "docs/verification.md",
+    "draft-engine.css",
+    "draft-table.js",
+    "draft-visual.js",
+    "reviews/draft-table-opus-20261029/browser-production-candidate/laptop-bot-pool.png",
+    "reviews/draft-table-opus-20261029/browser-production-candidate/laptop-draft.png",
+    "reviews/draft-table-opus-20261029/browser-production-candidate/phone-analysis.png",
+    "reviews/draft-table-opus-20261029/browser-production-candidate/phone-pack.png",
+    "reviews/draft-table-opus-20261029/browser-production-candidate/phone-pick.png",
+    "reviews/draft-table-opus-20261029/browser-production-confirmed/laptop-bot-pool.png",
+    "reviews/draft-table-opus-20261029/browser-production-confirmed/laptop-draft.png",
+    "reviews/draft-table-opus-20261029/browser-production-confirmed/phone-analysis.png",
+    "reviews/draft-table-opus-20261029/browser-production-confirmed/phone-pack.png",
+    "reviews/draft-table-opus-20261029/browser-production-confirmed/phone-pick.png",
+    "reviews/draft-table-opus-20261029/browser-production-confirmed/policy-v4-desktop.png",
+    "reviews/draft-table-opus-20261029/browser-production-confirmed/policy-v4-mobile.png",
+    "reviews/draft-table-opus-20261029/browser-production-confirmed/v4-record.json",
+    "reviews/draft-table-opus-20261029/browser-round-1-fixes/laptop-bot-pool.png",
+    "reviews/draft-table-opus-20261029/browser-round-1-fixes/laptop-draft.png",
+    "reviews/draft-table-opus-20261029/browser-round-1-fixes/phone-analysis.png",
+    "reviews/draft-table-opus-20261029/browser-round-1-fixes/phone-pack.png",
+    "reviews/draft-table-opus-20261029/browser-round-1-fixes/phone-pick.png",
+    "reviews/draft-table-opus-20261029/browser-round-1-fixes/policy-v4-desktop.png",
+    "reviews/draft-table-opus-20261029/browser-round-1-fixes/policy-v4-mobile.png",
+    "reviews/draft-table-opus-20261029/browser-round-1-fixes/v4-record.json",
+    "reviews/draft-table-opus-20261029/checks-final-audit.json",
+    "reviews/draft-table-opus-20261029/checks-first-fixes.json",
+    "reviews/draft-table-opus-20261029/checks-production-candidate.json",
+    "reviews/draft-table-opus-20261029/checks-production-confirmed.json",
+    "reviews/draft-table-opus-20261029/checks-round-1-fixes.json",
+    "reviews/draft-table-opus-20261029/checks-round-2-fix.json",
+    "reviews/draft-table-opus-20261029/checks.json",
+    "reviews/draft-table-opus-20261029/checks.py",
+    "reviews/draft-table-opus-20261029/decisions.json",
+    "reviews/draft-table-opus-20261029/probe.cjs",
+    "reviews/draft-table-opus-20261029/probes-fixed.json",
+    "reviews/draft-table-opus-20261029/probes.json",
+    "reviews/draft-table-opus-20261029/report.md",
+    "reviews/draft-table-opus-20261029/review.py",
+    "reviews/draft-table-opus-20261029/round-1.manifest.json",
+    "reviews/draft-table-opus-20261029/round-1.request.txt",
+    "reviews/draft-table-opus-20261029/round-1.response.json",
+    "reviews/draft-table-opus-20261029/round-1.review.json",
+    "reviews/draft-table-opus-20261029/round-1.stderr.txt",
+    "reviews/draft-table-opus-20261029/round-2.manifest.json",
+    "reviews/draft-table-opus-20261029/round-2.request.txt",
+    "reviews/draft-table-opus-20261029/round-2.response.json",
+    "reviews/draft-table-opus-20261029/round-2.review.json",
+    "reviews/draft-table-opus-20261029/round-2.stderr.txt",
+    "reviews/draft-table-opus-20261029/round-3.manifest.json",
+    "reviews/draft-table-opus-20261029/round-3.request.txt",
+    "reviews/draft-table-opus-20261029/round-3.response.json",
+    "reviews/draft-table-opus-20261029/round-3.review.json",
+    "reviews/draft-table-opus-20261029/round-3.stderr.txt",
+    "reviews/draft-table-opus-20261029/round-4.manifest.json",
+    "reviews/draft-table-opus-20261029/round-4.request.txt",
+    "reviews/draft-table-opus-20261029/round-4.response.json",
+    "reviews/draft-table-opus-20261029/round-4.review.json",
+    "reviews/draft-table-opus-20261029/round-4.stderr.txt",
+    "reviews/draft-table-opus-20261029/shell-checks.json",
+    "site.js",
+    "templates/atlas/draft-engine.html",
+    "test-draft-visual.cjs",
+    "verify-draft-policy-browser.cjs",
+    "verify-draft-table-recovery.cjs",
+    "verify-draft-table-visual.cjs"
+  ]
+}

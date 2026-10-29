@@ -1,0 +1,77 @@
+[
+  {
+    "command": [
+      "test-draft-visual.cjs"
+    ],
+    "exitCode": 0,
+    "stdout": "PASS: repeated foil and nonfoil copies preserve rarity and finish; names escaped; curve excludes lands, counts copies and 6+; primary types and extra basics retain correct totals; contextual empty state.\n",
+    "stderr": "",
+    "sourceHashes": {
+      "draft-table.js": "379a0d67dd94efc279fcb13a9c2d7a255bc595a2fa5172e33fb036272a47fe9f",
+      "draft-visual.js": "b417cf6c8155c61500d7ef191fdef128bba10fab58a4c3574a3495ed25c802b5",
+      "draft-engine.css": "4bc66d9d961185b1bc978541e65ef91c135156082168f9ab1f41ffae560c8aba",
+      "site.js": "ee02a26e6b42fcaf9f56c9527f12d1f8984744083d4a07fce3ab77979b53307f",
+      "templates/atlas/draft-engine.html": "63ee099647ac684405908eda3eb0bb1ce6d073907d14bda27c43080486f16c37"
+    }
+  },
+  {
+    "command": [
+      "verify-draft-table-visual.cjs"
+    ],
+    "exitCode": 0,
+    "stdout": "PASS: viewport table at 1440/1366, full pack and summaries without scrolling, visual stacks, read-only enlargement, classic review, player switch, preserved save, mouse/keyboard/touch, 390/320px. Screenshots: C:\\repos\\Codex\\MTG\\reviews\\draft-table-opus-20261029\\browser-round-1-fixes\n",
+    "stderr": "",
+    "sourceHashes": {
+      "draft-table.js": "379a0d67dd94efc279fcb13a9c2d7a255bc595a2fa5172e33fb036272a47fe9f",
+      "draft-visual.js": "b417cf6c8155c61500d7ef191fdef128bba10fab58a4c3574a3495ed25c802b5",
+      "draft-engine.css": "4bc66d9d961185b1bc978541e65ef91c135156082168f9ab1f41ffae560c8aba",
+      "site.js": "ee02a26e6b42fcaf9f56c9527f12d1f8984744083d4a07fce3ab77979b53307f",
+      "templates/atlas/draft-engine.html": "63ee099647ac684405908eda3eb0bb1ce6d073907d14bda27c43080486f16c37"
+    }
+  },
+  {
+    "command": [
+      "verify-draft-table-recovery.cjs"
+    ],
+    "exitCode": 0,
+    "stdout": "PASS: blocked storage retains classic memory session after reset; setup export downloads exact progress; failed v4 worker retains downloadable snapshot and resumes that snapshot without storage.\n",
+    "stderr": "",
+    "sourceHashes": {
+      "draft-table.js": "379a0d67dd94efc279fcb13a9c2d7a255bc595a2fa5172e33fb036272a47fe9f",
+      "draft-visual.js": "b417cf6c8155c61500d7ef191fdef128bba10fab58a4c3574a3495ed25c802b5",
+      "draft-engine.css": "4bc66d9d961185b1bc978541e65ef91c135156082168f9ab1f41ffae560c8aba",
+      "site.js": "ee02a26e6b42fcaf9f56c9527f12d1f8984744083d4a07fce3ab77979b53307f",
+      "templates/atlas/draft-engine.html": "63ee099647ac684405908eda3eb0bb1ce6d073907d14bda27c43080486f16c37"
+    }
+  },
+  {
+    "command": [
+      "verify-draft-bots-browser.cjs"
+    ],
+    "exitCode": 0,
+    "stdout": "PASS: v2 saved draft resumes and stays v2; new v3 draft completes, reloads and exports identical review; mouse, keyboard and touch card previews; no browser errors.\n",
+    "stderr": "",
+    "sourceHashes": {
+      "draft-table.js": "379a0d67dd94efc279fcb13a9c2d7a255bc595a2fa5172e33fb036272a47fe9f",
+      "draft-visual.js": "b417cf6c8155c61500d7ef191fdef128bba10fab58a4c3574a3495ed25c802b5",
+      "draft-engine.css": "4bc66d9d961185b1bc978541e65ef91c135156082168f9ab1f41ffae560c8aba",
+      "site.js": "ee02a26e6b42fcaf9f56c9527f12d1f8984744083d4a07fce3ab77979b53307f",
+      "templates/atlas/draft-engine.html": "63ee099647ac684405908eda3eb0bb1ce6d073907d14bda27c43080486f16c37"
+    }
+  },
+  {
+    "command": [
+      "verify-draft-policy-browser.cjs"
+    ],
+    "exitCode": 0,
+    "stdout": "PASS: default v3, opt-in v4 BO1, worker heartbeat {\"ticks\":61,\"maxGap\":56.200000000186265,\"longestTask\":0}, partial and complete resume, detailed review, privacy, mouse/keyboard/touch, 390px, full backup and backup failure.\n",
+    "stderr": "",
+    "sourceHashes": {
+      "draft-table.js": "379a0d67dd94efc279fcb13a9c2d7a255bc595a2fa5172e33fb036272a47fe9f",
+      "draft-visual.js": "b417cf6c8155c61500d7ef191fdef128bba10fab58a4c3574a3495ed25c802b5",
+      "draft-engine.css": "4bc66d9d961185b1bc978541e65ef91c135156082168f9ab1f41ffae560c8aba",
+      "site.js": "ee02a26e6b42fcaf9f56c9527f12d1f8984744083d4a07fce3ab77979b53307f",
+      "templates/atlas/draft-engine.html": "63ee099647ac684405908eda3eb0bb1ce6d073907d14bda27c43080486f16c37"
+    }
+  }
+]

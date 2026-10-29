@@ -1,0 +1,129 @@
+{
+  "approved": false,
+  "summary": "Il tavolo visuale soddisfa la parte principale del requisito sui viewport desktop misurati, 1440x900 e 1366x768. Restano cinque difetti bloccanti. Il primo è la perdita di rarità e foil nella busta e nelle pile. Il secondo riguarda i viewport bassi, telefono in orizzontale e zoom: la busta si comprime fino a diventare illeggibile perché la regola max-height è inefficace. Il terzo è l'anteprima fissa in basso a destra, che copre il bersaglio con il focus e ricompare dopo la chiusura del dialog sui touch oltre 560px. Il quarto è l'isolamento inert della shell, annullato da site.js quando il viewport attraversa 1000px. Il quinto è il percorso senza storage, dove il ritorno alla configurazione o la caduta del worker rendono irraggiungibile l'export richiesto dal messaggio. Seguono quattro rilievi minori su analisi in errore, misura circolare delle pile, nomi ARIA su elementi generici e copertura di test e documentazione. Politiche dei bot, collazione e formato dei record non risultano toccati. La privacy prima del completamento e le generazioni della review sono gestite correttamente.",
+  "findings": [
+    {
+      "id": "R1-01",
+      "priority": "P2",
+      "file": "draft-engine.css",
+      "line": 61,
+      "title": "Rarità, foil e slot spariscono dalla busta e dalle pile del tavolo",
+      "scenario": "Draft su desktop o telefono con una busta che contiene una rara o mitica, oppure una stampa foil prodotta dallo slot foil della collazione. Lo stesso accade dopo la pick, nelle pile e nella revisione.",
+      "evidence": "In render() (draft-table.js:96) ogni carta riceve un elemento small con rarità, foil e slot. La regola '.site-page-draft-engine #table .draft-card small{display:none}' (draft-engine.css:61) lo nasconde a tutte le larghezze. Nessun altro elemento visibile lo sostituisce. L'aria-label di .art contiene solo il nome. V.stacks (draft-visual.js:11-15) raggruppa per entry.id e non legge entry.foil né la rarità.",
+      "impact": "Le informazioni di rarità e finitura scompaiono sia alla vista sia per i lettori di schermo. Nella vista precedente erano presenti, quindi è una regressione su un dato utile per leggere busta e segnali.",
+      "suggested_fix": "Aggiungere nella barra del nome un badge compatto con la rarità (iniziale o colore) e un simbolo foil, al posto di nascondere small. Includere rarità e foil negli aria-label di .art e di .stack-card. In V.stacks contare separatamente le copie foil, per esempio con chiave id+foil o con un contatore foil mostrato nella pila. Aggiungere al test visuale una busta con foil e un'asserzione sul testo accessibile.",
+      "blocking": true
+    },
+    {
+      "id": "R1-02",
+      "priority": "P2",
+      "file": "draft-engine.css",
+      "line": 143,
+      "title": "Viewport bassi: la regola per altezze ridotte è inefficace e la busta diventa illeggibile in orizzontale e con lo zoom",
+      "scenario": "Telefono in orizzontale (844x390 o 915x412), oppure laptop con zoom tra il 125 e il 175 per cento (1440x900 al 150 per cento corrisponde a circa 960x600). La larghezza supera 760px, quindi si applica il layout desktop.",
+      "evidence": "draft-engine.css:56 imposta 'grid-template-rows:repeat(2,minmax(0,1fr))'. La media query a riga 143 modifica soltanto 'grid-auto-rows:minmax(155px,1fr)', che non agisce sulle due righe esplicite, quindi l'altezza minima prevista non si applica mai. Le viste telefono dipendono solo da max-width:760px (riga 116). A 844x390 la zona busta resta circa 129px per due righe: carte di circa 60px, 32px di pulsante, circa 17px di arte. La barra del nome (absolute, bottom 39px, min-height 32px, riga 60) copre tutta l'arte e su due o tre righe sporge sopra la carta precedente. A 960x600 l'arte resta circa 80px ed è coperta per metà dal nome.",
+      "impact": "Nel caso esplicito dei viewport bassi e dello zoom la busta non è più leggibile e i nomi si sovrappongono. Sul telefono in orizzontale non sono disponibili né le viste separate né lo scorrimento interno previsti dal requisito.",
+      "suggested_fix": "Nella media query per altezze ridotte impostare 'grid-template-rows:none' oppure 'repeat(2,minmax(155px,1fr))', così la busta scorre internamente con carte di altezza minima leggibile. Attivare il layout a viste anche per '(max-height:500px)', almeno con pointer:coarse. Aggiungere al test visuale i viewport 844x390 e 960x600, verificando l'altezza minima dell'arte e l'assenza di intersezione fra la barra del nome e la carta precedente.",
+      "blocking": true
+    },
+    {
+      "id": "R1-03",
+      "priority": "P2",
+      "file": "draft-table.js",
+      "line": 145,
+      "title": "L'anteprima fissa copre la carta con il focus o sotto il puntatore e ricompare dopo la chiusura del dialog sui touch",
+      "scenario": "A: desktop 1024x768 o 1100x768, con mouse o Tab sul nome della quattordicesima carta (ultima colonna, seconda riga) o su una carta della pila Terre. B: tablet tra 768 e 1024px con tocco: tap su un nome, poi Chiudi nel dialog.",
+      "evidence": "#card-hover è fisso in basso a destra, largo min(300px,30vw), con z-index 1200 (draft-engine.css:37). A 1024x768 occupa circa x 700-1000 e y 326-744. Questo copre quasi tutta l'ultima colonna della busta (circa x 686-788, compresi nome e Scegli), la colonna Terre delle pile (circa x 698-789) e metà del riepilogo. hover() viene invocato su ogni focusin (riga 145) senza distinguere il focus da tastiera. Alla chiusura del dialog il browser restituisce il focus all'invocatore e focusin mostra di nuovo l'anteprima. display:none vale solo sotto 560px (draft-engine.css:1), quindi su tablet e sui telefoni in orizzontale l'immagine resta sopra il tavolo fino al tocco successivo.",
+      "impact": "Il controllo con il focus resta coperto quasi interamente (WCAG 2.4.11). Il nome e il pulsante della carta esaminata vengono nascosti proprio quando l'utente la sta leggendo. Sui touch resta un'immagine sovrapposta a pile e statistiche.",
+      "suggested_fix": "Calcolare la posizione dell'anteprima da getBoundingClientRect del bersaglio, sul lato opposto e dentro il viewport, oppure ancorarla in una zona che non contenga il bersaglio. In focusin mostrarla solo quando event.target.matches(':focus-visible'). Ignorare il focus di ritorno dopo l'evento close del dialog. Aggiungere un test a 1024x768 che verifichi l'assenza di intersezione fra #card-hover e il bersaglio con hover e con focus.",
+      "blocking": true
+    },
+    {
+      "id": "R1-04",
+      "priority": "P2",
+      "file": "draft-table.js",
+      "line": 33,
+      "title": "L'isolamento inert della shell viene annullato da site.js quando il viewport attraversa 1000px",
+      "scenario": "Draft avviato su tablet in verticale (al massimo 1000px, con la sidebar già inert per site.js) e poi ruotato in orizzontale oltre 1000px. Lo stesso accade ridimensionando una finestra desktop attraverso 1000px durante il draft.",
+      "evidence": "tableMode(true) salta i fratelli già inert ('sibling.inert' e continue) e non li registra in tableInert. Al cambio di matchMedia, site.js:37 chiama setMenu(false), che su desktop imposta 'sidebar.inert = mobile.matches && !open', cioè false (site.js:11). draft-table.js non riapplica inert. Anche quando la sidebar era stata registrata da tableMode, il resize ne sovrascrive lo stato.",
+      "impact": "I link della sidebar, coperti dal tavolo fisso a z-index 1000, tornano raggiungibili con Tab. Il focus finisce dietro l'overlay e diventa invisibile, quindi la shell non è più isolata.",
+      "suggested_fix": "In draft-table.js registrare un listener sullo stesso matchMedia o un MutationObserver sull'attributo inert. Quando body ha draft-active, riapplicare inert ai fratelli dopo site.js, per esempio in requestAnimationFrame. All'uscita non forzare false sulla sidebar: ricalcolare lo stato atteso da site.js (mobile e menu chiuso). Test: avviare a 900px, passare a 1200px, verificare sidebar.inert e che Tab resti dentro #table.",
+      "blocking": true
+    },
+    {
+      "id": "R1-05",
+      "priority": "P2",
+      "file": "draft-table.js",
+      "line": 141,
+      "title": "Senza storage, il ritorno alla configurazione o la caduta del worker rendono irraggiungibile l'export richiesto dal messaggio",
+      "scenario": "localStorage inaccessibile (storage bloccato e SecurityError in lettura), quindi saved è null. L'utente preme Torna alla configurazione durante o dopo il draft. In alternativa, con v4 e senza salvataggio riuscito, il worker cade durante una pick.",
+      "evidence": "La riga 141 nasconde #table, che contiene l'unico pulsante #export, e poi mostra 'esporta prima di cambiare tavolo'. #resume resta hidden perché saved è null. Anche se fosse visibile, il gestore a riga 137 con saved null valuta saved.engineVersion e lancia un TypeError. Alla riga 143, con session.alive===false e saved null, il messaggio invita a usare Esporta sessione dopo aver nascosto il tavolo, anche se exportDownload restituirebbe ancora l'ultimo snapshot.",
+      "impact": "La sessione in memoria non è più raggiungibile e va persa, mentre l'interfaccia chiede un'azione impossibile. Con il tavolo a tutto schermo non esiste un altro accesso all'export. L'occultamento del tavolo potrebbe essere preesistente, ma il nuovo overlay e i messaggi lo rendono incoerente.",
+      "suggested_fix": "Quando saved è null o storageAvailable è false e una sessione esiste, mostrare Riprendi collegato alla sessione in memoria. Nel gestore di ripresa usare session o loadedSession quando saved è null. In alternativa chiedere conferma prima di uscire e offrire l'export anche nel pannello di configurazione. Nel ramo del worker caduto lasciare raggiungibile l'export dello snapshot. Test: getItem che lancia un'eccezione, reset, verifica che ripresa o export restino disponibili.",
+      "blocking": true
+    },
+    {
+      "id": "R1-06",
+      "priority": "P3",
+      "file": "draft-table.js",
+      "line": 110,
+      "title": "Dopo un errore della review v4 il riepilogo resta 'in calcolo'",
+      "scenario": "Draft v4 completato: la chiamata review del worker fallisce oppure il worker è già caduto, poi l'utente seleziona un bot.",
+      "evidence": "renderReview imposta #table-analysis a 'Composizione del bot in calcolo.' (riga 108). Il catch alla riga 110 aggiorna soltanto #bot-review, aria-busy e lo stato.",
+      "impact": "Il pannello Analisi, che sul telefono è la vista dedicata, dichiara indefinitamente un calcolo che non arriverà.",
+      "suggested_fix": "Nel catch, se la generazione è corrente, mostrare l'analisi del pool dal riepilogo session.bots[seat].pool, oppure un messaggio di errore coerente con quello di #bot-review.",
+      "blocking": false
+    },
+    {
+      "id": "R1-07",
+      "priority": "P3",
+      "file": "draft-engine.css",
+      "line": 65,
+      "title": "Le pile desktop misurano la propria altezza di contenuto: Ingrandisci cresce a scatti",
+      "scenario": "Desktop 1366x768, pool con una pila lunga (per esempio 9 o 10 carte a 3 mana), poi Ingrandisci pick.",
+      "evidence": "Su desktop .card-stacks non ha flex:1, che è presente solo a riga 132 per il telefono. L'altezza di #human-pool dipende quindi dal contenuto, limitato dalla zona. fitStacks (draft-visual.js:33-37) legge container.clientHeight per calcolare --stack-row e --stack-tail. Queste variabili cambiano l'altezza dello stesso elemento osservato dal ResizeObserver (draft-table.js:39): ogni callback produce una nuova misura di pochi pixel.",
+      "impact": "Dopo l'ingrandimento le pile crescono per molti frame prima di convergere, con possibili notifiche 'ResizeObserver loop completed with undelivered notifications'. La misura non rappresenta lo spazio disponibile descritto dalla documentazione.",
+      "suggested_fix": "Applicare '.collection-zone>.card-stacks{flex:1}' anche su desktop, così clientHeight corrisponde allo spazio della zona e non al contenuto.",
+      "blocking": false
+    },
+    {
+      "id": "R1-08",
+      "priority": "P3",
+      "file": "templates/atlas/draft-engine.html",
+      "line": 11,
+      "title": "Zone scorrevoli focalizzabili con aria-label su elementi generici",
+      "scenario": "Un utente di lettore di schermo raggiunge con Tab #human-pool o #bot-review, oppure la striscia delle basi.",
+      "evidence": "#human-pool (riga 11), #bot-review (riga 13) e .basic-land-strip (draft-table.js:123) sono div senza role con aria-label. ARIA 1.2 vieta il nome sugli elementi generic e diversi lettori lo ignorano, quindi viene annunciato un contenitore anonimo.",
+      "impact": "Nelle zone di scorrimento manca il contesto per orientarsi.",
+      "suggested_fix": "Aggiungere role='region' alle zone scorrevoli e role='group' alla striscia, oppure usare aria-labelledby verso l'intestazione della zona.",
+      "blocking": false
+    },
+    {
+      "id": "R1-09",
+      "priority": "P3",
+      "file": "verify-draft-table-visual.cjs",
+      "line": 23,
+      "title": "Copertura di test e indice delle verifiche incompleti per le nuove parti visuali",
+      "scenario": "Regressioni sui casi descritti in R1-01, R1-02 e R1-03 o sulla nuova revisione v4.",
+      "evidence": "Il test visuale copre soltanto 1440x900, 1366x768, 390 e 320 di larghezza. Non copre viewport bassi o in orizzontale, rarità e foil, né la sovrapposizione dell'anteprima. Nessuno script esercita i pulsanti Mazzo, Riserve e Pool della v4, l'anteprima delle basi con mouse, tastiera e tocco, l'analisi che segue la vista o il cambio di vista durante un cambio di posto. Lo script carica le immagini dalla rete, a differenza degli altri due. docs/verification.md non elenca verify-draft-table-visual.cjs nella tabella degli script browser.",
+      "impact": "Le regressioni dell'interfaccia introdotta possono passare inosservate e l'indice delle verifiche non guida a questo controllo.",
+      "suggested_fix": "Estendere verify-draft-policy-browser o il test visuale con le viste v4, l'anteprima di una base e l'asserzione sul titolo dell'analisi. Aggiungere i casi delle correzioni R1-01, R1-02 e R1-03. Bloccare la rete con context.route come negli altri script. Aggiungere la riga dello script in docs/verification.md.",
+      "blocking": false
+    }
+  ],
+  "optional_suggestions": [
+    "Escludere le terre dal conteggio dei colori o indicarle a parte: oggi le terre non base del pool o del main aumentano la voce Incolore.",
+    "In Riprendi reimpostare mobileView('pack') e reviewPart='main', come avviene in Inizia.",
+    "Dopo la caduta del worker spostare il focus sul messaggio o su Riprendi, perché ora va perso sul body.",
+    "Aggiungere overscroll-behavior:contain alle zone scorrevoli del tavolo per evitare lo scorrimento a catena su iOS.",
+    "Nella fascia 761-900px (tablet in verticale), sette colonne di busta, otto pile e 200px di riepilogo restano strette: valutare una soglia più alta per le viste o meno colonne.",
+    "Rendere #table-analysis focalizzabile solo quando scorre, come site.js fa per le tabelle.",
+    "Le note dell'analisi a 9px con altezza fino a 850px sono al limite della leggibilità."
+  ],
+  "review_limits": [
+    "Nessuna prova eseguita in browser: le misure in pixel sono stime ricavate dal CSS fornito.",
+    "draft-worker.js, draft-engine.js e il markup completo della shell generata non sono stati forniti. La forma dello snapshot v4 (policyOptions, configs, bots), l'ordine di caricamento di site.js e la parentela fra sidebar e .site-body sono presunti.",
+    "Non è verificabile se c.type sia in inglese, presupposto delle espressioni regolari di classificazione dei tipi in draft-visual.js.",
+    "Le prove indicate sono state eseguite dall'implementatore e non sono state ripetute."
+  ]
+}

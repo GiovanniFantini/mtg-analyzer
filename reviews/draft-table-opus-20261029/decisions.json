@@ -1,0 +1,55 @@
+{
+  "round": 2,
+  "findings": [
+    {
+      "id": "R1-01",
+      "decision": "parzialmente confermato e corretto",
+      "evidence": "Confermato display:none sul metadata della busta. Le pile precedenti non distinguevano già le finiture; ora contano le copie foil dello stesso ID e mostrano rarità e finitura sia nel testo sia nel nome accessibile. Test busta foil e test-draft-visual.cjs passati."
+    },
+    {
+      "id": "R1-02",
+      "decision": "confermato e corretto",
+      "evidence": "Probe originale 800x400: carta alta 55px e nome che sporge a y95 sopra la carta a y145. Righe esplicite ora minimo 155px, scorrimento interno; modalità a viste anche per pointer coarse con altezza <=500px. Test 800x400, touch 844x390 e nomi entro la carta passati."
+    },
+    {
+      "id": "R1-03",
+      "decision": "confermato e corretto",
+      "evidence": "Il rettangolo fisso poteva sovrapporsi all origine. Le posizioni vengono ora scelte verificando la mancata intersezione con l intera carta e i limiti del viewport. Solo mouse fine o focus-visible, guardia durante il dialogo e chiusura a scroll/resize/close. Test non intersezione a 1024px e nessuna riapertura touch a 844/900px passati."
+    },
+    {
+      "id": "R1-04",
+      "decision": "confermato e corretto",
+      "evidence": "Probe originale: sidebar.inert da true a false attraversando 1000px e false all uscita mobile. Coordinamento esplicito con site.js mediante evento draft-table-mode-change e stato draft-active. Test resize, focus bloccato e ripristino mobile passati."
+    },
+    {
+      "id": "R1-05",
+      "decision": "confermato e corretto",
+      "evidence": "Percorso in parte preesistente, ma confermato: unico export nascosto senza saved. La configurazione offre export della sessione in memoria e Riprendi usa la sessione viva oppure il suo record completato se il worker è caduto. La guardia di backup incompatibile non viene azzerata riprendendo memoria. Test storage SecurityError, reset, download, worker fallito e ricostruzione passati; ulteriore regressione backup attraverso ripresa in verifica finale."
+    },
+    {
+      "id": "R1-06",
+      "decision": "confermato e corretto",
+      "evidence": "Il catch corrente aggiorna anche Analisi con errore coerente. Non si usa il pool di session.bots perché lo snapshot v4 contiene solo strategy/lane: si veda draft-worker.js. Test errore review e ritorno al bot precedente passato."
+    },
+    {
+      "id": "R1-07",
+      "decision": "confermato e corretto",
+      "evidence": "Confermata dipendenza circolare nella misura del contenitore flessibile. collection-zone > card-stacks ora ha flex:1 anche su desktop, così ResizeObserver misura lo spazio assegnato. Test ingrandimento e assenza di errori browser passati."
+    },
+    {
+      "id": "R1-08",
+      "decision": "confermato e corretto",
+      "evidence": "role=region aggiunto ai due contenitori focalizzabili; role=group alla striscia delle basi."
+    },
+    {
+      "id": "R1-09",
+      "decision": "confermato e corretto",
+      "evidence": "Aggiunti test delle viste v4 con conteggi 42/0/40 in BO1, errore review, anteprime basi mouse/tastiera/tocco, foil, viewport bassi, resize e memoria senza storage. Rete immagini bloccata nei test, indice verifiche aggiornato. Il cambio vista mantiene reviewedCards=null durante una nuova review e la generazione impedisce risultati obsoleti. Tutti i controlli browser round-1-fixes passati."
+    },
+    {
+      "id": "R2-01",
+      "decision": "confermato e corretto",
+      "evidence": "draft-worker-client.fail rende davvero indisponibile ogni review successiva e fa esportare il solo record. Il catch corrente distingue session.alive===false, spiega il recupero tramite configurazione/Riprendi e avvisa sull export ridotto; lo stesso avviso viene mostrato se si esporta dopo un arresto senza aver cambiato bot. Test reale mediante mainDraftWorker.onerror a draft concluso, cambio bot, download fallback e ricostruzione aggiunto alla suite v4, in esecuzione dopo nuova build."
+    }
+  ]
+}

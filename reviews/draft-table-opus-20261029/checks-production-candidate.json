@@ -1,0 +1,56 @@
+[
+  {
+    "command": [
+      "test-draft-visual.cjs"
+    ],
+    "exitCode": 0,
+    "stdout": "PASS: repeated foil and nonfoil copies preserve rarity and finish; names escaped; curve excludes lands, counts copies and 6+; primary types and extra basics retain correct totals; contextual empty state.\n",
+    "stderr": "",
+    "sourceHashes": {
+      "draft-table.js": "5173eb0fe3e4ed673e8e22f1bc3bc147f04f26f9928404f8de0c41abb128b42b",
+      "draft-visual.js": "b417cf6c8155c61500d7ef191fdef128bba10fab58a4c3574a3495ed25c802b5",
+      "draft-engine.css": "4bc66d9d961185b1bc978541e65ef91c135156082168f9ab1f41ffae560c8aba",
+      "site.js": "ee02a26e6b42fcaf9f56c9527f12d1f8984744083d4a07fce3ab77979b53307f",
+      "templates/atlas/draft-engine.html": "63ee099647ac684405908eda3eb0bb1ce6d073907d14bda27c43080486f16c37"
+    },
+    "testHashes": {
+      "test-draft-visual.cjs": "d0c8d17b4dc6a76cf9f81ca4b2d4f00acffd7a318037b4f965ccabb309224873"
+    }
+  },
+  {
+    "command": [
+      "verify-draft-table-visual.cjs"
+    ],
+    "exitCode": 0,
+    "stdout": "PASS: viewport table at 1440/1366, full pack and summaries without scrolling, visual stacks, read-only enlargement, classic review, player switch, preserved save, mouse/keyboard/touch, 390/320px. Screenshots: C:\\repos\\Codex\\MTG\\reviews\\draft-table-opus-20261029\\browser-production-candidate\n",
+    "stderr": "",
+    "sourceHashes": {
+      "draft-table.js": "5173eb0fe3e4ed673e8e22f1bc3bc147f04f26f9928404f8de0c41abb128b42b",
+      "draft-visual.js": "b417cf6c8155c61500d7ef191fdef128bba10fab58a4c3574a3495ed25c802b5",
+      "draft-engine.css": "4bc66d9d961185b1bc978541e65ef91c135156082168f9ab1f41ffae560c8aba",
+      "site.js": "ee02a26e6b42fcaf9f56c9527f12d1f8984744083d4a07fce3ab77979b53307f",
+      "templates/atlas/draft-engine.html": "63ee099647ac684405908eda3eb0bb1ce6d073907d14bda27c43080486f16c37"
+    },
+    "testHashes": {
+      "verify-draft-table-visual.cjs": "8ed1991fe3e2c5617ac75bfaa7abee2ae4d41feb1a60c2bd1cab9feeddec03ec"
+    }
+  },
+  {
+    "command": [
+      "verify-draft-table-recovery.cjs"
+    ],
+    "exitCode": 1,
+    "stdout": "",
+    "stderr": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#pack [data-pick]').first()\u001b[22m\n\u001b[2m    - locator resolved to <button class=\"pick\" data-pick=\"0\" aria-label=\"Scegli Tethermage's Advantage\">Scegli</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    57 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is not visible\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\n    at C:\\repos\\Codex\\MTG\\verify-draft-table-recovery.cjs:21:51 {\n  log: [\n    \"  - waiting for locator('#pack [data-pick]').first()\",\n    `    - locator resolved to <button class=\"pick\" data-pick=\"0\" aria-label=\"Scegli Tethermage's Advantage\">Scegli</button>`,\n    '  - attempting click action',\n    '    2 × waiting for element to be visible, enabled and stable',\n    '      - element is not visible',\n    '    - retrying click action',\n    '    - waiting 20ms',\n    '    2 × waiting for element to be visible, enabled and stable',\n    '      - element is not visible',\n    '    - retrying click action',\n    '      - waiting 100ms',\n    '    57 × waiting for element to be visible, enabled and stable',\n    '       - element is not visible',\n    '     - retrying click action',\n    '       - waiting 500ms'\n  ],\n  name: 'TimeoutError'\n}\n",
+    "sourceHashes": {
+      "draft-table.js": "5173eb0fe3e4ed673e8e22f1bc3bc147f04f26f9928404f8de0c41abb128b42b",
+      "draft-visual.js": "b417cf6c8155c61500d7ef191fdef128bba10fab58a4c3574a3495ed25c802b5",
+      "draft-engine.css": "4bc66d9d961185b1bc978541e65ef91c135156082168f9ab1f41ffae560c8aba",
+      "site.js": "ee02a26e6b42fcaf9f56c9527f12d1f8984744083d4a07fce3ab77979b53307f",
+      "templates/atlas/draft-engine.html": "63ee099647ac684405908eda3eb0bb1ce6d073907d14bda27c43080486f16c37"
+    },
+    "testHashes": {
+      "verify-draft-table-recovery.cjs": "d2d5fbe7dc23df239645a2cd2ffe9bd3d9654ae1fd7f9f5e4ee5bf0c05df7b1f"
+    }
+  }
+]

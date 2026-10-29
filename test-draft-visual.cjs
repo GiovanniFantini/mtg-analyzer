@@ -1,0 +1,12 @@
+'use strict';
+const assert=require('node:assert/strict');
+require('./draft-visual.js');
+const cards={a:{name:'A <test>',rarity:'rare',colors:['W'],mv:2,creature:true,type:'Artifact Creature',image:'a'},b:{name:'B',rarity:'common',colors:[],mv:0,land:true,type:'Land',image:'b'},c:{name:'C',rarity:'mythic',colors:['W','U'],mv:7,type:'Instant',image:'c'}};
+const entries=[{id:'a',foil:true},{id:'a',foil:false},{id:'b'},{id:'c'}];
+const stack=DraftVisual.stacks(entries,cards);
+assert.match(stack,/2 copie, 1 foil/);assert.match(stack,/A &lt;test&gt;/);assert.match(stack,/Rara · 1 foil/);assert.match(stack,/Mitica/);
+const text=DraftVisual.analysis(entries,cards,{basics:{W:3}});
+assert.match(text,/7 <span>carte/);assert.match(text,/2 mana: 2/);assert.match(text,/6 o più mana: 1/);
+assert.match(text,/Creature<\/span>.*?<span>2<\/span>/);assert.match(text,/Terre<\/span>.*?<span>4<\/span>/);
+assert.match(DraftVisual.stacks([],cards,{emptyText:'Nessuna riserva.'}),/Nessuna riserva\./);
+console.log('PASS: repeated foil and nonfoil copies preserve rarity and finish; names escaped; curve excludes lands, counts copies and 6+; primary types and extra basics retain correct totals; contextual empty state.');

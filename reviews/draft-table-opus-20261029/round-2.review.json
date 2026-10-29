@@ -1,0 +1,31 @@
+{
+  "approved": true,
+  "summary": "Round 2: ho riesaminato il codice corrente rispetto alle nove decisioni del primo giro. Le correzioni sono presenti nei sorgenti e coerenti con le evidenze dichiarate. Rarità e foil compaiono nella busta, nelle pile e nei nomi accessibili. I viewport bassi usano righe minime con scorrimento interno su desktop con puntatore fine e la modalità a viste sui touch bassi. L'anteprima flottante sceglie una posizione che non interseca la carta di origine e non si riapre al ritorno dal dialogo, perché il focus viene ripristinato prima dell'evento close mentre cardDialogActive è ancora vero. La shell coordina inert tramite draft-table-mode-change, anche attraversando 1000px. La sessione in memoria si esporta e si riprende dalla configurazione. La review asincrona è protetta da reviewGeneration, compresi reset, nuovo avvio e cambio di posto. ResizeObserver misura un contenitore flex che non dipende dal contenuto. Le zone focalizzabili sono regioni etichettate. Non restano difetti sostanziali nel perimetro. Rimane un difetto minore e non bloccante nel percorso d'errore della review v4 quando il worker è terminato.",
+  "findings": [
+    {
+      "id": "R2-01",
+      "priority": "P3",
+      "file": "draft-table.js",
+      "line": 117,
+      "title": "Errore della review v4 con worker terminato attribuito al singolo bot e senza indicazione di recupero",
+      "scenario": "Draft v4 completato, tavolo in revisione. Il worker risponde con un errore al comando review, per esempio un'eccezione in finalBuild, oppure va in crash (onerror). L'utente seleziona poi altri bot o preme Esporta sessione dal tavolo.",
+      "evidence": "draft-worker-client.js:10 chiama fail(error) per qualunque risposta con errore. fail termina il worker e fa rifiutare ogni chiamata successiva con lo stesso errore (riga 12). draft-table.js:117 scrive sempre 'Bot N: messaggio' e non controlla session.alive, a differenza del percorso della pick a riga 152. Dopo il fallimento, exportDownload (client riga 21) restituisce soltanto state.record, senza il resoconto dei bot.",
+      "impact": "Ogni posto selezionato mostra lo stesso errore come se riguardasse quel bot. L'interfaccia non spiega che per rivedere i mazzi bisogna tornare alla configurazione e usare Riprendi. L'export dal tavolo perde il resoconto finale senza avviso. Il salvataggio locale e il record restano integri, quindi non c'è perdita di dati.",
+      "suggested_fix": "Nel catch di renderReview, se session.alive===false, mostra un messaggio non attribuito al posto, per esempio: 'Il calcolo dei bot si è fermato. Torna alla configurazione e usa Riprendi per ricostruire la revisione; l'esportazione attuale contiene soltanto il record delle pick.' Facoltativamente sposta il focus su #reset. Aggiungi un test che provochi un errore lato worker durante la review (per esempio mainDraftWorker.onerror dopo il completamento) e verifichi il messaggio e il recupero tramite Riprendi.",
+      "blocking": false
+    }
+  ],
+  "optional_suggestions": [
+    "Il badge di rarità e slot in alto a destra della carta nella busta desktop (draft-engine.css:62) copre la zona del costo stampato nell'immagine ritagliata dall'alto. Valuta di spostarlo a sinistra o sopra il nome, così il costo resta leggibile senza anteprima.",
+    "Telefono in orizzontale (844x390): con due colonne e righe minime di 264px la card supera l'area visibile della busta (circa 190px) e il pulsante Scegli richiede scorrimento. Con larghezze sopra 600px si possono usare tre o quattro colonne.",
+    "Se l'utente apre l'anteprima durante il calcolo v4, render() rimuove il pulsante d'origine e la chiamata a $('progress').focus() fallisce mentre il dialogo modale è aperto. Alla chiusura il focus finisce su body. Si può memorizzare un ritorno di focus a #progress nell'evento close quando l'origine non è più connessa.",
+    "Lo slot mostrato nella busta usa l'identificativo interno inglese (per esempio 'common'). È un comportamento preesistente: si potrebbe localizzare o omettere quando coincide con la rarità.",
+    "#human-pool è sempre una fermata di tabulazione anche quando non scorre. Si potrebbe assegnare tabindex solo in caso di overflow, come fa site.js per le tabelle."
+  ],
+  "review_limits": [
+    "Analisi statica dei soli sorgenti forniti: nessuna esecuzione in browser e nessuna misura di layout indipendente. I valori di ingombro derivano dai probe e dai test dell'implementatore.",
+    "checks.json associa gli hash dei sorgenti dell'interfaccia ma non quelli degli script di test. Dichiara inoltre ancora in sospeso la ripetizione finale e l'asserzione di backup dopo la ripresa in memoria (verify-draft-policy-browser.cjs righe 69-70). Ho verificato la logica di quell'asserzione sul codice, non il suo esito.",
+    "Non ho ricevuto draft-policy.js né il template della shell Atlas. La forma delle voci restituite da finalBuild (in particolare la presenza di foil in spells, lands e sideboard) e l'albero degli antenati usato per inert sono stati dedotti.",
+    "I calcoli di altezza per i viewport intermedi (per esempio 1280x720 e i tablet touch fra 501 e 650px) sono stime dalle regole CSS, non misure."
+  ]
+}

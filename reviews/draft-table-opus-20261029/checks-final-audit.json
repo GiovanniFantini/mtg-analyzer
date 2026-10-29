@@ -1,0 +1,34 @@
+[
+  {
+    "command": [
+      "-m",
+      "unittest",
+      "test_expansion_data.py"
+    ],
+    "exitCode": 0,
+    "stdout": "",
+    "stderr": ".....................................\n----------------------------------------------------------------------\nRan 37 tests in 256.690s\n\nOK\n",
+    "sourceHashes": {
+      "draft-table.js": "379a0d67dd94efc279fcb13a9c2d7a255bc595a2fa5172e33fb036272a47fe9f",
+      "draft-visual.js": "b417cf6c8155c61500d7ef191fdef128bba10fab58a4c3574a3495ed25c802b5",
+      "draft-engine.css": "4bc66d9d961185b1bc978541e65ef91c135156082168f9ab1f41ffae560c8aba",
+      "site.js": "ee02a26e6b42fcaf9f56c9527f12d1f8984744083d4a07fce3ab77979b53307f",
+      "templates/atlas/draft-engine.html": "63ee099647ac684405908eda3eb0bb1ce6d073907d14bda27c43080486f16c37"
+    }
+  },
+  {
+    "command": [
+      "verify-draft-policy-browser.cjs"
+    ],
+    "exitCode": 0,
+    "stdout": "PASS: default v3, opt-in v4 BO1, worker heartbeat {\"ticks\":63,\"maxGap\":68.29999999981374,\"longestTask\":0}, partial and complete resume, detailed review, privacy, mouse/keyboard/touch, 390px, full backup and backup failure.\n",
+    "stderr": "",
+    "sourceHashes": {
+      "draft-table.js": "379a0d67dd94efc279fcb13a9c2d7a255bc595a2fa5172e33fb036272a47fe9f",
+      "draft-visual.js": "b417cf6c8155c61500d7ef191fdef128bba10fab58a4c3574a3495ed25c802b5",
+      "draft-engine.css": "4bc66d9d961185b1bc978541e65ef91c135156082168f9ab1f41ffae560c8aba",
+      "site.js": "ee02a26e6b42fcaf9f56c9527f12d1f8984744083d4a07fce3ab77979b53307f",
+      "templates/atlas/draft-engine.html": "63ee099647ac684405908eda3eb0bb1ce6d073907d14bda27c43080486f16c37"
+    }
+  }
+]
