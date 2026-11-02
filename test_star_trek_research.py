@@ -17,12 +17,15 @@ class StarTrekResearchTests(unittest.TestCase):
         cls.cards = cls.doc['cards']
         cls.sources = read('expansions/star-trek/sources.json')['research']
 
-    def test_complete_matching_without_claiming_complete_catalog(self):
+    def test_complete_matching_and_explicit_printing_scope(self):
         ids = {c['id'] for c in self.cards}
         old = read(self.sources.get('previousCatalogSnapshot', 'star-trek-cards-20261022.json'))['cards']
         self.assertTrue({c['id'] for c in old} <= ids)
         self.assertEqual(len(ids), len(self.cards))
-        self.assertFalse(self.doc['complete'])
+        self.assertTrue(self.doc['complete'])
+        self.assertFalse(self.doc['printingCoverage']['complete'])
+        for code, count in [('TRK', 311), ('SDS', 30)]:
+            self.assertEqual({int(c['number']) for c in self.cards if c['set'] == code}, set(range(1, count + 1)))
         self.assertEqual(sum(len(c['prints']) for c in self.cards), self.doc['print_count'])
         registry = {s['id'] for s in self.sources['sources']}
         for card in self.cards:
@@ -39,7 +42,13 @@ class StarTrekResearchTests(unittest.TestCase):
         ratings = read('expansions/star-trek/ratings.json')['cards']
         for rating in ratings.values():
             self.assertIsNone(rating.get('score'))
-            self.assertIsNone(rating.get('community'))
+        reviews = read('research/star-trek-20261102/limited-reviews.json')
+        expert = {r['catalogId']: r for r in reviews['cards']}
+        for ident, rating in ratings.items():
+            self.assertEqual(rating.get('community'), expert.get(ident, {}).get('value'))
+            if ident in expert:
+                self.assertEqual(rating['evidence'][0]['original'], expert[ident]['original'])
+                self.assertEqual(rating['evidence'][0]['stars'], expert[ident]['value'])
         self.assertEqual(sum(bool(c['prospects'].get('automatedEvaluations')) for c in self.cards), scores['matchedCards'])
 
     def test_forecasts_preserve_snapshot_legalities(self):
@@ -109,11 +118,40 @@ class StarTrekResearchTests(unittest.TestCase):
 
     def test_current_summary_uses_current_catalog_and_preserves_price_date(self):
         guides = read('expansions/star-trek/guides.json')['fragments']
-        self.assertIn(str(len(self.cards)) + ' carte', guides['analysis.panel-1'])
+        self.assertIn(str(len(self.cards)) + ' identità', guides['analysis.panel-1'])
         self.assertIn(str(self.doc['print_count']) + ' stampe', guides['analysis.panel-1'])
-        self.assertIn(self.sources['catalogSnapshot'], guides['method.panel-0'])
+        self.assertIn(Path(self.sources['catalogSnapshot']).name, guides['method.panel-0'])
         self.assertNotIn('Nessun minimo Cardmarket verificato', guides['method.panel-1'])
-        self.assertIn('rilevato il 27 ottobre', guides['method.panel-1'])
+        self.assertIn('rilevati il 27 ottobre', guides['method.panel-1'])
+
+    def test_every_identity_has_specific_assessment_and_sds_has_no_borrowed_grade(self):
+        self.assertEqual(self.sources['coverage']['specificEditorialNotes'], len(self.cards))
+        self.assertEqual(sum(c.get('community') is not None for c in self.cards), 306)
+        for card in self.cards:
+            self.assertEqual(card['why'], card['prospects']['gameplayReview']['finding'])
+            if card['set'] == 'SDS':
+                self.assertIsNone(card.get('community'))
+                self.assertNotIn('limitedReview', card['prospects'])
+            for note in card['prospects'].get('researchNotes', []):
+                self.assertTrue(note.get('context'))
+                self.assertTrue(note.get('date'))
+
+    def test_commander_catalog_is_separate_and_does_not_claim_competitive_coverage(self):
+        appendix = read('research/star-trek-20261102/commander-appendix.json')
+        self.assertEqual(appendix['catalogCards'], 336)
+        self.assertEqual(len({r['oracleId'] for r in appendix['cards']}), 336)
+        for card in appendix['cards']:
+            self.assertEqual(card['scope'], 'commander_appendix')
+            self.assertIsNone(card['cedhResults'])
+            self.assertIsNone(card['price'])
+        self.assertFalse(any(c['set'] == 'TRC' for c in self.cards))
+
+    def test_written_guides_are_really_available(self):
+        from expansion_data import Expansion
+        expansion = Expansion(ROOT / 'expansions/star-trek/expansion.json')
+        for feature in ('sealedGuide', 'draftGuide', 'pickGuide', 'pickDecisions', 'draftCombos'):
+            self.assertTrue(expansion.availability[feature]['available'], feature)
+        self.assertFalse(expansion.availability['draftTable']['available'])
 
 
 if __name__ == '__main__':

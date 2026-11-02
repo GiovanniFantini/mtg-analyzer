@@ -8784,5 +8784,90 @@
     ],
     "missingSourcePages": 0
   },
-  "defaultSort": "tournament"
+  "defaultSort": "tournament",
+  "previews": [
+    {
+      "id": "8407c498-b972-49fe-b30a-a864c39ddc7a",
+      "name": "Pest Infestation",
+      "full": "Pest Infestation",
+      "image": "https://cards.scryfall.io/normal/front/8/4/8407c498-b972-49fe-b30a-a864c39ddc7a.jpg?1783911720",
+      "url": "https://scryfall.com/card/otp/30/pest-infestation?utm_source=api",
+      "type": "Sorcery",
+      "colors": [
+        "G"
+      ],
+      "faces": []
+    },
+    {
+      "id": "fra-44",
+      "name": "Theorist's Proxy",
+      "full": "Theorist's Proxy",
+      "image": "https://cards.scryfall.io/normal/front/7/1/710302ca-c4be-4069-8ce1-f531414c74e9.jpg?1788878151",
+      "url": "https://scryfall.com/card/fra/44/theorists-proxy?utm_source=api",
+      "oracle": "Theorist's Proxy {1}{U}\nCreature — Illusion\nFlash\nWhen this creature enters, empower Jace 3. (Put three loyalty counters on a Jace token you control. If you don't control one, first create a blue Jace planeswalker token with \"[−1]: Surveil 1\" and \"[−3]: Draw a card.\")\n{U}, Sacrifice this creature: The next spell you cast this turn can't be countered.",
+      "cost": "{1}{U}",
+      "type": "Creature — Illusion",
+      "colors": [
+        "U"
+      ],
+      "faces": [
+        {
+          "name": "Theorist's Proxy",
+          "mana_cost": "{1}{U}",
+          "type_line": "Creature — Illusion",
+          "oracle_text": "Flash\nWhen this creature enters, empower Jace 3. (Put three loyalty counters on a Jace token you control. If you don't control one, first create a blue Jace planeswalker token with \"[−1]: Surveil 1\" and \"[−3]: Draw a card.\")\n{U}, Sacrifice this creature: The next spell you cast this turn can't be countered.",
+          "power": "0",
+          "toughness": "3"
+        }
+      ]
+    },
+    {
+      "id": "1b8be000-e2fd-4157-ace2-7b8603c03fba",
+      "name": "Voq, Torchbearer",
+      "full": "Voq, Torchbearer",
+      "image": "https://cards.scryfall.io/normal/front/0/b/0b4d2344-d615-4982-b656-44419565121a.jpg?1793196920",
+      "url": "https://scryfall.com/card/trc/63/voq-torchbearer",
+      "oracle": "Menace\nChoH'a' — You may have Voq enter as a copy of a creature card in a graveyard, except he's a Klingon Spy in addition to his other types and has menace.",
+      "cost": "{3}{B}",
+      "type": "Legendary Creature — Klingon Spy",
+      "colors": [
+        "B"
+      ],
+      "source": "scryfall-api",
+      "checked": "2026-11-02",
+      "scope": "preview_reference_only"
+    },
+    {
+      "id": "8e7b079d-9ede-421c-bd2b-f9a5126a8e6f",
+      "name": "Esika's Chariot",
+      "full": "Esika's Chariot",
+      "image": "https://cards.scryfall.io/normal/front/a/8/a87606cc-fbf0-4e2c-9798-f1c935d0573d.jpg?1783928215",
+      "url": "https://scryfall.com/card/khm/169/esikas-chariot",
+      "oracle": "When Esika's Chariot enters, create two 2/2 green Cat creature tokens.\nWhenever Esika's Chariot attacks, create a token that's a copy of target token you control.\nCrew 4",
+      "cost": "{3}{G}",
+      "type": "Legendary Artifact — Vehicle",
+      "colors": [
+        "G"
+      ],
+      "source": "scryfall-api",
+      "checked": "2026-11-02",
+      "scope": "preview_reference_only"
+    },
+    {
+      "id": "80e9a42e-f4f4-4bfc-91a2-ad124737dca2",
+      "name": "Deep Forest Hermit",
+      "full": "Deep Forest Hermit",
+      "image": "https://cards.scryfall.io/normal/front/3/2/3287775f-7bec-4e8f-bb8d-daf5ce92e4a8.jpg?1783933100",
+      "url": "https://scryfall.com/card/mh1/161/deep-forest-hermit",
+      "oracle": "Vanishing 3 (This creature enters with three time counters on it. At the beginning of your upkeep, remove a time counter from it. When the last is removed, sacrifice it.)\nWhen this creature enters, create four 1/1 green Squirrel creature tokens.\nSquirrels you control get +1/+1.",
+      "cost": "{3}{G}{G}",
+      "type": "Creature — Elf Druid",
+      "colors": [
+        "G"
+      ],
+      "source": "scryfall-api",
+      "checked": "2026-11-02",
+      "scope": "preview_reference_only"
+    }
+  ]
 }

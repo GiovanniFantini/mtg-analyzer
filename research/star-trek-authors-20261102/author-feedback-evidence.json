@@ -1,0 +1,1534 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-02",
+  "method": "attributed-human-opinions-v1",
+  "sources": [
+    {
+      "id": "authors-usman-fra",
+      "label": "Usman e Kai: Cube Review FRA",
+      "publisher": "Usman Jamil",
+      "url": "https://usmantherad.com/2026/09/22/cube-review-reality-fracture-with-kai/",
+      "published": "2026-09-22",
+      "retrieved": "2026-11-02",
+      "checked": "2026-11-02",
+      "authors": [
+        "Usman Jamil",
+        "Kai"
+      ],
+      "context": "Cube ad alta potenza",
+      "kind": "attributed-human-review",
+      "status": "read",
+      "finding": "",
+      "captureSha256": "1f9c75186ff390701c9760f1360721a10cf0dffcd5951e03f846c14fe031f235",
+      "captureBytes": 253458
+    },
+    {
+      "id": "authors-usman-trk",
+      "label": "Usman e Kai: Cube Review Star Trek",
+      "publisher": "Usman Jamil",
+      "url": "https://usmantherad.com/2026/11/02/star-trek-for-cube/",
+      "published": "2026-11-02",
+      "retrieved": "2026-11-02",
+      "checked": "2026-11-02",
+      "authors": [
+        "Usman Jamil",
+        "Kai"
+      ],
+      "context": "Cube ad alta potenza",
+      "kind": "attributed-human-review",
+      "status": "read",
+      "finding": "Recensione con giudizi distinti dei due autori; selezione di osservazioni estratta, non recensione integrale.",
+      "captureSha256": "51dd196b86358fd2128243ac3697513e0e0dd118d5b9b3f46ee7a902c9c8f10e",
+      "captureBytes": 203850
+    },
+    {
+      "id": "authors-steve-trk",
+      "label": "Steve: Star Trek NO CONTEXT TIER LIST",
+      "publisher": "Steve’s Substack",
+      "url": "https://stevemanadventures.substack.com/p/star-trek-no-context-tier-list",
+      "published": "2026-11-01",
+      "retrieved": "2026-11-02",
+      "checked": "2026-11-02",
+      "authors": [
+        "steve_man"
+      ],
+      "context": "Cube ad alta potenza",
+      "kind": "attributed-human-review",
+      "status": "read",
+      "finding": "Fasce senza ordine interno. Criteri dichiarati: diffusione nei Cube, durata prevista e concorrenza per ruolo e costo.",
+      "captureSha256": "d13724cb9aa27a00a803a566649bf5ce858a13632db464ebcb8ab0e01c3e9d7d",
+      "captureBytes": 133509
+    },
+    {
+      "id": "authors-mtgs-jace",
+      "label": "Discussione FRA: The Theorist, Jace Beleren",
+      "publisher": "MTG Salvation",
+      "url": "https://www.mtgsalvation.com/forums/the-game/the-cube-forum/cube-card-and-archetype/cube-new-card-discussion/838717-fra-cube-the-theorist-jace-beleren",
+      "published": "2026-07-17",
+      "retrieved": "2026-11-02",
+      "checked": "2026-11-02",
+      "authors": [
+        "steve_man",
+        "Usman",
+        "Leftsynner",
+        "altri"
+      ],
+      "context": "Cube",
+      "kind": "attributed-human-review",
+      "status": "read",
+      "finding": "Letti i post datati, incluse obiezioni. Steve positivo il 17 luglio; Usman il 20 luglio; Leftsynner propone una prova, non un risultato."
+    },
+    {
+      "id": "authors-mtgs-inclusions",
+      "label": "Star Trek Inclusions and Testing Results",
+      "publisher": "MTG Salvation",
+      "url": "https://www.mtgsalvation.com/forums/the-game/the-cube-forum/cube-card-and-archetype/cube-new-card-discussion/839073-trk-trc-cube-star-trek-inclusions-and-testing",
+      "published": "2026-10-31",
+      "retrieved": "2026-11-02",
+      "checked": "2026-11-02",
+      "authors": [
+        "steve_man",
+        "wtwlf123",
+        "Red13th",
+        "meltingsho",
+        "Goodking",
+        "Monkey D Luffy"
+      ],
+      "context": "Cube",
+      "kind": "attributed-human-review",
+      "status": "read",
+      "finding": "Piani di inclusione e prove autodichiarate, non risultati di eventi. Il titolo non dimostra che ogni carta sia stata testata."
+    },
+    {
+      "id": "authors-mtgs-seven",
+      "label": "Seven of Nine: pareri a confronto",
+      "publisher": "MTG Salvation",
+      "url": "https://www.mtgsalvation.com/forums/the-game/the-cube-forum/cube-card-and-archetype/cube-new-card-discussion/839036-trk-cube-seven-of-nine-unassimilated",
+      "published": "2026-10-22",
+      "retrieved": "2026-11-02",
+      "checked": "2026-11-02",
+      "authors": [
+        "Leftsynner",
+        "steve_man",
+        "Red13th",
+        "MadRobot"
+      ],
+      "context": "Cube",
+      "kind": "attributed-human-review",
+      "status": "read",
+      "finding": "Entusiasmo condizionato al tipo artefatto e alle terre; critiche alla tempistica del loot. Discussione letta fino al 1 novembre."
+    },
+    {
+      "id": "authors-reddit-jace",
+      "label": "Cautious_Handle2547: previsione su Jace",
+      "publisher": "Reddit r/mtgfinance",
+      "url": "https://www.reddit.com/r/mtgfinance/comments/1wvk1yl/comment/pdcvc8e/",
+      "published": null,
+      "retrieved": "2026-11-02",
+      "checked": "2026-11-02",
+      "authors": [
+        "Cautious_Handle2547"
+      ],
+      "context": "Previsione economica Commander",
+      "kind": "attributed-human-review",
+      "status": "read",
+      "finding": "Prevede ulteriore rialzo di una carta già costosa; nella discussione richiama Commander. Il lettore espone solo 1mo ago: timestamp assoluto non verificato."
+    },
+    {
+      "id": "authors-reddit-jace-spike",
+      "label": "Jace spiking: segnalazione successiva al movimento",
+      "publisher": "Reddit r/mtgfinance",
+      "url": "https://www.reddit.com/r/mtgfinance/comments/1x4ctg8/the_theorist_jace_beleren_spiking/",
+      "published": null,
+      "retrieved": "2026-11-02",
+      "checked": "2026-11-02",
+      "authors": [
+        "jmeyer40"
+      ],
+      "context": "Reazione a rialzo",
+      "kind": "attributed-human-review",
+      "status": "read",
+      "finding": "Segnalazione di un movimento già avvenuto. Non è stata contata come previsione anticipatrice."
+    },
+    {
+      "id": "authors-reddit-salt-modern",
+      "label": "Salt Vampire: proposte e riserve Modern",
+      "publisher": "Reddit r/ModernMagic",
+      "url": "https://www.reddit.com/r/ModernMagic/comments/1uwipsb/salt_vampire/",
+      "published": null,
+      "retrieved": "2026-11-02",
+      "checked": "2026-11-02",
+      "authors": [
+        "TongueMountain",
+        "Moist_Username"
+      ],
+      "context": "Modern",
+      "kind": "attributed-human-review",
+      "status": "read",
+      "finding": "Il lettore riporta 3mo ago. Nessuna prova agonistica TRK: ipotesi di mazzo e critiche al costo opportunità."
+    },
+    {
+      "id": "authors-reddit-genesis",
+      "label": "Genesis Device: landfall e costo di attivazione",
+      "publisher": "Reddit r/magicTCG",
+      "url": "https://www.reddit.com/r/magicTCG/comments/1xgykp3/trk_genesis_device_steve_saylor/",
+      "published": null,
+      "retrieved": "2026-11-02",
+      "checked": "2026-11-02",
+      "authors": [
+        "warcrap101010",
+        "Halinn"
+      ],
+      "context": "Commander / terre",
+      "kind": "attributed-human-review",
+      "status": "read",
+      "finding": "Timestamp relativo incoerente con la scansione: data assoluta non certificata; registrata solo la data di acquisizione."
+    },
+    {
+      "id": "authors-reddit-specs",
+      "label": "Star Trek specs: ipotesi e obiezioni",
+      "publisher": "Reddit r/mtgfinance",
+      "url": "https://www.reddit.com/r/mtgfinance/comments/1xbj2h6/star_trek_specs/",
+      "published": "2026-10-21",
+      "retrieved": "2026-11-02",
+      "checked": "2026-11-02",
+      "authors": [
+        "FailLog404",
+        "ThatDamnedHansel",
+        "realmendontflash",
+        "oberpat"
+      ],
+      "context": "Speculazione Commander",
+      "kind": "attributed-human-review",
+      "status": "read",
+      "finding": "Data 21 ottobre dall’indice di ricerca; i singoli commenti hanno solo età relativa. Ipotesi, non rendimenti verificati."
+    },
+    {
+      "id": "authors-whatif-fra",
+      "label": "What If Brews: Top Cards FRA",
+      "publisher": "What If Brews",
+      "url": "https://whatifbrews.substack.com/p/my-top-cards-from-reality-fracture",
+      "published": "2026-09-20",
+      "retrieved": "2026-11-02",
+      "checked": "2026-11-02",
+      "authors": [
+        "laa11"
+      ],
+      "context": "Standard brewing",
+      "kind": "attributed-human-review",
+      "status": "read",
+      "finding": "Voce critica su Jace: teme lentezza e impatto insufficiente da solo; considera possibile un pacchetto Jace dedicato.",
+      "captureSha256": "c3ed77583af89ea1564526fd8b90d6ea3a5c8f569b23bfbcf80836d8290a48c5",
+      "captureBytes": 719525
+    },
+    {
+      "id": "authors-mtgs-holo",
+      "label": "Holo-Engineer: ragionamento di Steve",
+      "url": "https://www.mtgsalvation.com/forums/the-game/the-cube-forum/cube-card-and-archetype/cube-new-card-discussion/839054-trk-cube-holo-engineer",
+      "publisher": "MTG Salvation",
+      "authors": [
+        "steve_man"
+      ],
+      "published": "2026-10-26",
+      "retrieved": "2026-11-02",
+      "checked": "2026-11-02",
+      "context": "Cube",
+      "kind": "attributed-human-review",
+      "status": "read",
+      "finding": "Confronto favorevole con Esika’s Chariot: sei punti di forza iniziali e potenziale con Pest Infestation o Deep Forest Hermit."
+    },
+    {
+      "id": "authors-mtgs-tasha",
+      "label": "Tasha Yar, Out of Time: ragionamento di Steve",
+      "url": "https://www.mtgsalvation.com/forums/the-game/the-cube-forum/cube-card-and-archetype/cube-new-card-discussion/839049-trk-cube-tasha-yar-out-of-time",
+      "publisher": "MTG Salvation",
+      "authors": [
+        "steve_man"
+      ],
+      "published": "2026-10-26",
+      "retrieved": "2026-11-02",
+      "checked": "2026-11-02",
+      "context": "Cube",
+      "kind": "attributed-human-review",
+      "status": "read",
+      "finding": "Apprezza aggressione, ritorno economico dal cimitero e sinergie con esilio, scarto e permanenti leggendari."
+    }
+  ],
+  "authors": [
+    {
+      "author": "Cautious_Handle2547",
+      "historicalCaseCards": [
+        "The Theorist, Jace Beleren"
+      ],
+      "currentTrkSources": [],
+      "reliabilityScore": null,
+      "reason": "Nessun insieme completo di previsioni e risultati economici confrontabili.",
+      "sameAuthorMatch": "same_byline_or_handle"
+    },
+    {
+      "author": "steve_man",
+      "historicalCaseCards": [
+        "The Theorist, Jace Beleren"
+      ],
+      "currentTrkSources": [
+        "authors-mtgs-inclusions",
+        "authors-mtgs-seven",
+        "authors-steve-trk"
+      ],
+      "reliabilityScore": null,
+      "reason": "Nessun insieme completo di previsioni e risultati economici confrontabili.",
+      "sameAuthorMatch": "linked_from_primary_forum"
+    },
+    {
+      "author": "Usman Jamil",
+      "historicalCaseCards": [
+        "Carnivorous Cultivator",
+        "Flickering Hound",
+        "Stingcaster Mage",
+        "The Theorist, Jace Beleren"
+      ],
+      "currentTrkSources": [
+        "authors-usman-trk"
+      ],
+      "reliabilityScore": null,
+      "reason": "Nessun insieme completo di previsioni e risultati economici confrontabili.",
+      "sameAuthorMatch": "same_byline_or_handle"
+    },
+    {
+      "author": "Kai",
+      "historicalCaseCards": [
+        "Carnivorous Cultivator",
+        "Flickering Hound",
+        "The Theorist, Jace Beleren"
+      ],
+      "currentTrkSources": [
+        "authors-usman-trk"
+      ],
+      "reliabilityScore": null,
+      "reason": "Nessun insieme completo di previsioni e risultati economici confrontabili.",
+      "sameAuthorMatch": "same_byline_or_handle"
+    },
+    {
+      "author": "Leftsynner",
+      "historicalCaseCards": [
+        "The Theorist, Jace Beleren"
+      ],
+      "currentTrkSources": [
+        "authors-mtgs-seven"
+      ],
+      "reliabilityScore": null,
+      "reason": "Nessun insieme completo di previsioni e risultati economici confrontabili.",
+      "sameAuthorMatch": "same_byline_or_handle"
+    },
+    {
+      "author": "laa11",
+      "historicalCaseCards": [
+        "The Theorist, Jace Beleren"
+      ],
+      "currentTrkSources": [],
+      "reliabilityScore": null,
+      "reason": "Nessun insieme completo di previsioni e risultati economici confrontabili.",
+      "sameAuthorMatch": "same_byline_or_handle"
+    }
+  ],
+  "historicalCases": [
+    {
+      "card": "The Theorist, Jace Beleren",
+      "author": "Cautious_Handle2547",
+      "source": "authors-reddit-jace",
+      "published": null,
+      "dateDisplay": "1mo ago",
+      "claim": "Prevede un ulteriore rialzo, richiamando l’utilità Commander.",
+      "kind": "financial_forecast",
+      "chronology": "absolute_timestamp_unverified",
+      "economicOutcome": "not_verified_against_comparable_cardmarket_readings",
+      "currentTrkSources": [],
+      "limitation": "Una previsione esplicita non dimostra che preceda l’intero rialzo; profilo pubblico senza storico consultabile, ricerca TRK senza esiti attribuibili."
+    },
+    {
+      "card": "The Theorist, Jace Beleren",
+      "author": "steve_man",
+      "source": "authors-mtgs-jace",
+      "published": "2026-07-17",
+      "claim": "Positivo su protezione e pescata simultanee per controllo blu.",
+      "kind": "early_gameplay_assessment",
+      "chronology": "dated_before_release",
+      "currentTrkSources": [
+        "authors-steve-trk",
+        "authors-mtgs-inclusions",
+        "authors-mtgs-seven"
+      ],
+      "limitation": "Giudizio Cube, non previsione economica."
+    },
+    {
+      "card": "The Theorist, Jace Beleren",
+      "author": "Usman Jamil",
+      "source": "authors-mtgs-jace",
+      "published": "2026-07-20",
+      "claim": "Prevede un buon inserimento nei Cube: vantaggio carte mentre aumenta la lealtà e crea presenza sul campo.",
+      "kind": "early_gameplay_assessment",
+      "chronology": "dated_before_release",
+      "currentTrkSources": [
+        "authors-usman-trk"
+      ],
+      "limitation": "Non è una previsione di prezzo e non costituisce una misura del rendimento dell’autore."
+    },
+    {
+      "card": "The Theorist, Jace Beleren",
+      "author": "Leftsynner",
+      "source": "authors-mtgs-jace",
+      "published": "2026-07-17",
+      "claim": "Propone di provarlo al posto di JTMS per consistenza e difesa.",
+      "kind": "early_gameplay_assessment",
+      "chronology": "dated_before_release",
+      "currentTrkSources": [
+        "authors-mtgs-seven"
+      ],
+      "limitation": "Proposta di prova, senza esito numerico."
+    },
+    {
+      "card": "The Theorist, Jace Beleren",
+      "author": "Kai",
+      "source": "authors-usman-fra",
+      "published": "2026-09-22",
+      "claim": "Lo seleziona tra i preferiti, ma mantiene dubbi sulla sostituzione di JTMS.",
+      "kind": "early_gameplay_assessment",
+      "chronology": "dated_before_release",
+      "currentTrkSources": [
+        "authors-usman-trk"
+      ],
+      "limitation": "Conservato il dubbio originale; nessuna previsione economica."
+    },
+    {
+      "card": "Stingcaster Mage",
+      "author": "Usman Jamil",
+      "source": "authors-usman-fra",
+      "published": "2026-09-22",
+      "claim": "Da iniziale riempitivo a giudizio molto favorevole dopo prove Cube: pressione con magie riutilizzate.",
+      "kind": "self_reported_revision",
+      "chronology": "dated_before_release",
+      "currentTrkSources": [
+        "authors-usman-trk"
+      ],
+      "limitation": "Revisione positiva documentata, prove e vittorie autodichiarate, senza campione acquisito."
+    },
+    {
+      "card": "Carnivorous Cultivator",
+      "author": "Usman Jamil e Kai",
+      "source": "authors-usman-fra",
+      "published": "2026-09-22",
+      "claim": "Favorevoli con terre da sacrificare; Usman limita il giudizio quando manca questo supporto.",
+      "kind": "conditional_gameplay_assessment",
+      "chronology": "dated_before_release",
+      "currentTrkSources": [
+        "authors-usman-trk"
+      ],
+      "limitation": "Condizione del Cube essenziale. Non prova il potenziale economico di Nog."
+    },
+    {
+      "card": "Flickering Hound",
+      "author": "Usman Jamil e Kai",
+      "source": "authors-usman-fra",
+      "published": "2026-09-22",
+      "claim": "Dissenso: Usman segnala dipendenza dal supporto; Kai più favorevole con monarch e initiative.",
+      "kind": "documented_disagreement",
+      "chronology": "dated_before_release",
+      "currentTrkSources": [
+        "authors-usman-trk"
+      ],
+      "limitation": "Caso di dissenso conservato per evitare la selezione dei soli giudizi positivi."
+    },
+    {
+      "card": "The Theorist, Jace Beleren",
+      "author": "laa11",
+      "source": "authors-whatif-fra",
+      "published": "2026-09-20",
+      "claim": "Cauto in Standard: quattro mana con impatto insufficiente da solo, possibile pacchetto di sinergie Jace.",
+      "kind": "early_cautious_assessment",
+      "chronology": "dated_before_release",
+      "currentTrkSources": [],
+      "limitation": "Non trasformato in errore economico: contesto Standard distinto. Ricerca TRK senza recensione attribuibile trovata."
+    },
+    {
+      "card": "The Theorist, Jace Beleren",
+      "author": "jmeyer40",
+      "source": "authors-reddit-jace-spike",
+      "claim": "Segnala una salita già avvenuta.",
+      "kind": "post_movement_reaction",
+      "chronology": "not_an_advance_prediction",
+      "currentTrkSources": [],
+      "limitation": "Escluso dal gruppo delle previsioni anticipatrici."
+    }
+  ],
+  "observations": [
+    {
+      "id": "e698e5c7d94a9a08",
+      "name": "Tasha Yar, Out of Time",
+      "author": "steve_man",
+      "source": "authors-steve-trk",
+      "context": "Cube ad alta potenza",
+      "finding": "Fascia TOP nella selezione Cube di Steve. Nessun ordine all’interno della fascia e nessuna previsione di prezzo.",
+      "kind": "ordinal_cube_tier",
+      "tier": "TOP",
+      "catalogId": "1a9607a2-58cb-4bb8-b454-4813528221f8"
+    },
+    {
+      "id": "37122ea4314c77fd",
+      "name": "Holo-Engineer",
+      "author": "steve_man",
+      "source": "authors-steve-trk",
+      "context": "Cube ad alta potenza",
+      "finding": "Fascia TOP nella selezione Cube di Steve. Nessun ordine all’interno della fascia e nessuna previsione di prezzo.",
+      "kind": "ordinal_cube_tier",
+      "tier": "TOP",
+      "catalogId": "0d830d0c-3339-49cc-8527-4f4edf787925"
+    },
+    {
+      "id": "60fbf62d5c22d07e",
+      "name": "Salt Vampire",
+      "author": "steve_man",
+      "source": "authors-steve-trk",
+      "context": "Cube ad alta potenza",
+      "finding": "Fascia HIGH nella selezione Cube di Steve. Nessun ordine all’interno della fascia e nessuna previsione di prezzo.",
+      "kind": "ordinal_cube_tier",
+      "tier": "HIGH",
+      "catalogId": "31c7453e-33b8-4eb6-abac-28cdb35fb993"
+    },
+    {
+      "id": "7462062e6b7e8506",
+      "name": "Nog, Ambitious Cadet",
+      "author": "steve_man",
+      "source": "authors-steve-trk",
+      "context": "Cube ad alta potenza",
+      "finding": "Fascia HIGH nella selezione Cube di Steve. Nessun ordine all’interno della fascia e nessuna previsione di prezzo.",
+      "kind": "ordinal_cube_tier",
+      "tier": "HIGH",
+      "catalogId": "5a8ae1c0-1935-4d03-aa94-9e9088650821"
+    },
+    {
+      "id": "77a55f5ca1b97f93",
+      "name": "Deanna Troi, Psychic Counsel",
+      "author": "steve_man",
+      "source": "authors-steve-trk",
+      "context": "Cube ad alta potenza",
+      "finding": "Fascia HIGH-MID nella selezione Cube di Steve. Nessun ordine all’interno della fascia e nessuna previsione di prezzo.",
+      "kind": "ordinal_cube_tier",
+      "tier": "HIGH-MID",
+      "catalogId": "cf612cbe-7af8-48fd-875e-a669e05cfb49"
+    },
+    {
+      "id": "44f8238781faa74a",
+      "name": "Armus, Skin of Evil",
+      "author": "steve_man",
+      "source": "authors-steve-trk",
+      "context": "Cube ad alta potenza",
+      "finding": "Fascia HIGH-MID nella selezione Cube di Steve. Nessun ordine all’interno della fascia e nessuna previsione di prezzo.",
+      "kind": "ordinal_cube_tier",
+      "tier": "HIGH-MID",
+      "catalogId": "42c77c4d-90bb-45d6-a9e0-36704b5a2b11"
+    },
+    {
+      "id": "587a1a87d6b43f2e",
+      "name": "Captain James T. Kirk",
+      "author": "steve_man",
+      "source": "authors-steve-trk",
+      "context": "Cube ad alta potenza",
+      "finding": "Fascia HIGH-MID nella selezione Cube di Steve. Nessun ordine all’interno della fascia e nessuna previsione di prezzo.",
+      "kind": "ordinal_cube_tier",
+      "tier": "HIGH-MID",
+      "catalogId": "19edde54-153f-46b8-8a8d-a20fdef0667f"
+    },
+    {
+      "id": "d699fd6c0f5ea695",
+      "name": "Encounter the Unknown",
+      "author": "steve_man",
+      "source": "authors-steve-trk",
+      "context": "Cube ad alta potenza",
+      "finding": "Fascia HIGH-MID nella selezione Cube di Steve. Nessun ordine all’interno della fascia e nessuna previsione di prezzo.",
+      "kind": "ordinal_cube_tier",
+      "tier": "HIGH-MID",
+      "catalogId": "78c423ad-1f8b-4262-b64f-a98899da9372"
+    },
+    {
+      "id": "924813def6feb523",
+      "name": "The Wrath of Khan",
+      "author": "steve_man",
+      "source": "authors-steve-trk",
+      "context": "Cube ad alta potenza",
+      "finding": "Fascia HIGH-MID nella selezione Cube di Steve. Nessun ordine all’interno della fascia e nessuna previsione di prezzo.",
+      "kind": "ordinal_cube_tier",
+      "tier": "HIGH-MID",
+      "catalogId": "22249955-0741-470e-bc2b-f32d4510849b"
+    },
+    {
+      "id": "2f33932f1e625609",
+      "name": "MACO Strike Team",
+      "author": "steve_man",
+      "source": "authors-steve-trk",
+      "context": "Cube ad alta potenza",
+      "finding": "Fascia HIGH-MID nella selezione Cube di Steve. Nessun ordine all’interno della fascia e nessuna previsione di prezzo.",
+      "kind": "ordinal_cube_tier",
+      "tier": "HIGH-MID",
+      "catalogId": "0d60cfb1-dd77-4013-b862-41e95fdb53ae"
+    },
+    {
+      "id": "2c6ba4d87df45eef",
+      "name": "Captain Pike, Fullness of Time",
+      "author": "steve_man",
+      "source": "authors-steve-trk",
+      "context": "Cube ad alta potenza",
+      "finding": "Fascia HIGH-MID nella selezione Cube di Steve. Nessun ordine all’interno della fascia e nessuna previsione di prezzo.",
+      "kind": "ordinal_cube_tier",
+      "tier": "HIGH-MID",
+      "catalogId": "745633e6-8635-4d99-8a4e-edc5d500bb3d"
+    },
+    {
+      "id": "937b5bde58bea23b",
+      "name": "Deep Space 9",
+      "author": "steve_man",
+      "source": "authors-steve-trk",
+      "context": "Cube ad alta potenza",
+      "finding": "Fascia HIGH-MID nella selezione Cube di Steve. Nessun ordine all’interno della fascia e nessuna previsione di prezzo.",
+      "kind": "ordinal_cube_tier",
+      "tier": "HIGH-MID",
+      "catalogId": "14442f5b-0bad-4c58-b268-d775787571d8"
+    },
+    {
+      "id": "3e0989bbaf5a3cf0",
+      "name": "Command Subadjunct",
+      "author": "steve_man",
+      "source": "authors-steve-trk",
+      "context": "Cube ad alta potenza",
+      "finding": "Fascia LOW-MID nella selezione Cube di Steve. Nessun ordine all’interno della fascia e nessuna previsione di prezzo.",
+      "kind": "ordinal_cube_tier",
+      "tier": "LOW-MID",
+      "catalogId": "85b67121-340f-4cff-a26d-2160aa923ec3"
+    },
+    {
+      "id": "d39098f414dd1d83",
+      "name": "Antagonist Incorporator",
+      "author": "steve_man",
+      "source": "authors-steve-trk",
+      "context": "Cube ad alta potenza",
+      "finding": "Fascia LOW-MID nella selezione Cube di Steve. Nessun ordine all’interno della fascia e nessuna previsione di prezzo.",
+      "kind": "ordinal_cube_tier",
+      "tier": "LOW-MID",
+      "catalogId": "6f0b814b-94e6-48f2-9ccf-c376ca03bba3"
+    },
+    {
+      "id": "42ffbd9f9032ac46",
+      "name": "Set Phasers to . . .",
+      "author": "steve_man",
+      "source": "authors-steve-trk",
+      "context": "Cube ad alta potenza",
+      "finding": "Fascia LOW-MID nella selezione Cube di Steve. Nessun ordine all’interno della fascia e nessuna previsione di prezzo.",
+      "kind": "ordinal_cube_tier",
+      "tier": "LOW-MID",
+      "catalogId": "4da9b548-898d-431b-8aa5-9cb7bf579219"
+    },
+    {
+      "id": "c4b4cb233adc2697",
+      "name": "70,000 Light-Years from Home",
+      "author": "steve_man",
+      "source": "authors-steve-trk",
+      "context": "Cube ad alta potenza",
+      "finding": "Fascia LOW-MID nella selezione Cube di Steve. Nessun ordine all’interno della fascia e nessuna previsione di prezzo.",
+      "kind": "ordinal_cube_tier",
+      "tier": "LOW-MID",
+      "catalogId": "9356aee1-3d2b-4d17-8863-663e1ddf56f3"
+    },
+    {
+      "id": "43ad7c86e852ce20",
+      "name": "Data, New Life",
+      "author": "steve_man",
+      "source": "authors-steve-trk",
+      "context": "Cube ad alta potenza",
+      "finding": "Fascia LOW-MID nella selezione Cube di Steve. Nessun ordine all’interno della fascia e nessuna previsione di prezzo.",
+      "kind": "ordinal_cube_tier",
+      "tier": "LOW-MID",
+      "catalogId": "010630c6-5d7b-43e0-90a9-3e3cef9a4e6b"
+    },
+    {
+      "id": "abbdeb807ff4fd4e",
+      "name": "Seven of Nine, Unassimilated",
+      "author": "steve_man",
+      "source": "authors-steve-trk",
+      "context": "Cube ad alta potenza",
+      "finding": "Fascia LOW-MID nella selezione Cube di Steve. Nessun ordine all’interno della fascia e nessuna previsione di prezzo.",
+      "kind": "ordinal_cube_tier",
+      "tier": "LOW-MID",
+      "catalogId": "af9c9b8a-0713-4904-8e86-2b3331ec5495"
+    },
+    {
+      "id": "bb573a656bb14165",
+      "name": "Test of Priorities",
+      "author": "steve_man",
+      "source": "authors-steve-trk",
+      "context": "Cube ad alta potenza",
+      "finding": "Fascia LOW-MID nella selezione Cube di Steve. Nessun ordine all’interno della fascia e nessuna previsione di prezzo.",
+      "kind": "ordinal_cube_tier",
+      "tier": "LOW-MID",
+      "catalogId": "cd24de4f-ce88-4fbb-9e8d-93ea7c260b4c"
+    },
+    {
+      "id": "e9f75dc48ebb377e",
+      "name": "Scotty, Miracle Worker",
+      "author": "steve_man",
+      "source": "authors-steve-trk",
+      "context": "Cube ad alta potenza",
+      "finding": "Fascia LOW-MID nella selezione Cube di Steve. Nessun ordine all’interno della fascia e nessuna previsione di prezzo.",
+      "kind": "ordinal_cube_tier",
+      "tier": "LOW-MID",
+      "catalogId": "8e5057ae-165c-4fe4-b712-a638b7eea038"
+    },
+    {
+      "id": "9e35fbf1dc0588ed",
+      "name": "Subcommander T'Pol",
+      "author": "steve_man",
+      "source": "authors-steve-trk",
+      "context": "Cube ad alta potenza",
+      "finding": "Fascia LOW-MID nella selezione Cube di Steve. Nessun ordine all’interno della fascia e nessuna previsione di prezzo.",
+      "kind": "ordinal_cube_tier",
+      "tier": "LOW-MID",
+      "catalogId": "e6973668-4ea7-4920-82a5-73abfc1c9fd5"
+    },
+    {
+      "id": "2add43d71a79f0b7",
+      "name": "Test of Loyalty",
+      "author": "steve_man",
+      "source": "authors-steve-trk",
+      "context": "Cube ad alta potenza",
+      "finding": "Fascia LOW-MID nella selezione Cube di Steve. Nessun ordine all’interno della fascia e nessuna previsione di prezzo.",
+      "kind": "ordinal_cube_tier",
+      "tier": "LOW-MID",
+      "catalogId": "6cb1c3fb-033a-4de5-ad07-69d9ad0ca5ae"
+    },
+    {
+      "id": "2814700306a585d0",
+      "name": "Kai Winn, Faithless Leader",
+      "author": "steve_man",
+      "source": "authors-steve-trk",
+      "context": "Cube ad alta potenza",
+      "finding": "Fascia LOW-MID nella selezione Cube di Steve. Nessun ordine all’interno della fascia e nessuna previsione di prezzo.",
+      "kind": "ordinal_cube_tier",
+      "tier": "LOW-MID",
+      "catalogId": "16a5ed42-ee86-4dcb-b8ea-239ac2b13d67"
+    },
+    {
+      "id": "d738ea3ffc1c8202",
+      "name": "D'Ghor Bloodletter",
+      "author": "steve_man",
+      "source": "authors-steve-trk",
+      "context": "Cube ad alta potenza",
+      "finding": "Fascia LOW-MID nella selezione Cube di Steve. Nessun ordine all’interno della fascia e nessuna previsione di prezzo.",
+      "kind": "ordinal_cube_tier",
+      "tier": "LOW-MID",
+      "catalogId": "ae5ee92a-5915-49ce-aa4c-611ab711b2ef"
+    },
+    {
+      "id": "eb447c2e12a243a5",
+      "name": "Munitions Enthusiast",
+      "author": "steve_man",
+      "source": "authors-steve-trk",
+      "context": "Cube ad alta potenza",
+      "finding": "Fascia LOW-MID nella selezione Cube di Steve. Nessun ordine all’interno della fascia e nessuna previsione di prezzo.",
+      "kind": "ordinal_cube_tier",
+      "tier": "LOW-MID",
+      "catalogId": "0013f005-2b49-48a4-8a74-9bbdadc88c9f"
+    },
+    {
+      "id": "3b31790b5c509a13",
+      "name": "Transporter Malfunction",
+      "author": "steve_man",
+      "source": "authors-steve-trk",
+      "context": "Cube ad alta potenza",
+      "finding": "Fascia LOW-MID nella selezione Cube di Steve. Nessun ordine all’interno della fascia e nessuna previsione di prezzo.",
+      "kind": "ordinal_cube_tier",
+      "tier": "LOW-MID",
+      "catalogId": "6eb9865e-513c-43c6-81e1-6ad000e9c48e"
+    },
+    {
+      "id": "cd40571de598064c",
+      "name": "Test of Courage",
+      "author": "steve_man",
+      "source": "authors-steve-trk",
+      "context": "Cube ad alta potenza",
+      "finding": "Fascia LOW-MID nella selezione Cube di Steve. Nessun ordine all’interno della fascia e nessuna previsione di prezzo.",
+      "kind": "ordinal_cube_tier",
+      "tier": "LOW-MID",
+      "catalogId": "101b2387-58a1-4ef9-8395-0024713e217b"
+    },
+    {
+      "id": "e3269400e766a53c",
+      "name": "Jadzia Dax, Living Legacy",
+      "author": "steve_man",
+      "source": "authors-steve-trk",
+      "context": "Cube ad alta potenza",
+      "finding": "Fascia LOW-MID nella selezione Cube di Steve. Nessun ordine all’interno della fascia e nessuna previsione di prezzo.",
+      "kind": "ordinal_cube_tier",
+      "tier": "LOW-MID",
+      "catalogId": "67601646-f906-4824-9269-3cf89766d25f"
+    },
+    {
+      "id": "625510a0ef33083e",
+      "name": "Dr. Leonard \"Bones\" McCoy",
+      "author": "steve_man",
+      "source": "authors-steve-trk",
+      "context": "Cube ad alta potenza",
+      "finding": "Fascia LOW-MID nella selezione Cube di Steve. Nessun ordine all’interno della fascia e nessuna previsione di prezzo.",
+      "kind": "ordinal_cube_tier",
+      "tier": "LOW-MID",
+      "catalogId": "0157faee-f307-43c0-b308-bbf36ce02e32"
+    },
+    {
+      "id": "d59ba76476769ece",
+      "name": "Unexplored Territory",
+      "author": "steve_man",
+      "source": "authors-steve-trk",
+      "context": "Cube ad alta potenza",
+      "finding": "Fascia LOW-MID nella selezione Cube di Steve. Nessun ordine all’interno della fascia e nessuna previsione di prezzo.",
+      "kind": "ordinal_cube_tier",
+      "tier": "LOW-MID",
+      "catalogId": "6e5d4bbd-4999-4acd-8775-25e02d901035"
+    },
+    {
+      "id": "7b1f148f931f9d6e",
+      "name": "Kobayashi Maru Scenario",
+      "author": "steve_man",
+      "source": "authors-steve-trk",
+      "context": "Cube ad alta potenza",
+      "finding": "Fascia LOW nella selezione Cube di Steve. Nessun ordine all’interno della fascia e nessuna previsione di prezzo.",
+      "kind": "ordinal_cube_tier",
+      "tier": "LOW",
+      "catalogId": "2b7ac3e8-0a7d-4b8a-a6a6-4cacc9b4f9de"
+    },
+    {
+      "id": "ec17fcc35af85e49",
+      "name": "Pattern Buffer Preservation",
+      "author": "steve_man",
+      "source": "authors-steve-trk",
+      "context": "Cube ad alta potenza",
+      "finding": "Fascia LOW nella selezione Cube di Steve. Nessun ordine all’interno della fascia e nessuna previsione di prezzo.",
+      "kind": "ordinal_cube_tier",
+      "tier": "LOW",
+      "catalogId": "690d0d8f-48b9-40a6-b881-6f17ac19bf3b"
+    },
+    {
+      "id": "23d850abc8f383da",
+      "name": "Brazen Bluff",
+      "author": "steve_man",
+      "source": "authors-steve-trk",
+      "context": "Cube ad alta potenza",
+      "finding": "Fascia TRAPS nella selezione Cube di Steve. Nessun ordine all’interno della fascia e nessuna previsione di prezzo.",
+      "kind": "ordinal_cube_tier",
+      "tier": "TRAPS",
+      "catalogId": "9ac20f38-adc4-40a9-95c9-bbdc689b928b"
+    },
+    {
+      "id": "474dbfae885b40a1",
+      "name": "Dr. Leonard \"Bones\" McCoy",
+      "author": "Usman Jamil",
+      "source": "authors-usman-trk",
+      "context": "Cube ad alta potenza",
+      "finding": "Recupero di permanenti e corpo efficiente: favorito.",
+      "kind": "qualitative_review",
+      "powerScale": "scala Cube dell’autore, distinta dal Limited",
+      "cubePower": 5,
+      "catalogId": "0157faee-f307-43c0-b308-bbf36ce02e32"
+    },
+    {
+      "id": "f9d3de3a2414c97a",
+      "name": "Salt Vampire",
+      "author": "Usman Jamil",
+      "source": "authors-usman-trk",
+      "context": "Cube ad alta potenza",
+      "finding": "Esilio persistente utile anche scambiando il corpo.",
+      "kind": "qualitative_review",
+      "powerScale": "scala Cube dell’autore, distinta dal Limited",
+      "cubePower": 4.5,
+      "catalogId": "31c7453e-33b8-4eb6-abac-28cdb35fb993"
+    },
+    {
+      "id": "04d4477899cb3709",
+      "name": "Nog, Ambitious Cadet",
+      "author": "Usman Jamil",
+      "source": "authors-usman-trk",
+      "context": "Cube ad alta potenza",
+      "finding": "Minaccia intermedia valida; ultimo livello costoso.",
+      "kind": "qualitative_review",
+      "powerScale": "scala Cube dell’autore, distinta dal Limited",
+      "cubePower": 4.5,
+      "catalogId": "5a8ae1c0-1935-4d03-aa94-9e9088650821"
+    },
+    {
+      "id": "d9067619cef51c2d",
+      "name": "Captain James T. Kirk",
+      "author": "Usman Jamil",
+      "source": "authors-usman-trk",
+      "context": "Cube ad alta potenza",
+      "finding": "Modalità utili in aggro, soprattutto a mano vuota.",
+      "kind": "qualitative_review",
+      "powerScale": "scala Cube dell’autore, distinta dal Limited",
+      "cubePower": 4,
+      "catalogId": "19edde54-153f-46b8-8a8d-a20fdef0667f"
+    },
+    {
+      "id": "54ed0715fe3e2153",
+      "name": "Q, Stacking the Deck",
+      "author": "Usman Jamil",
+      "source": "authors-usman-trk",
+      "context": "Cube ad alta potenza",
+      "finding": "Meglio con poche rivelazioni inutilizzabili; impatto non immediato.",
+      "kind": "qualitative_review",
+      "powerScale": "scala Cube dell’autore, distinta dal Limited",
+      "cubePower": 4,
+      "catalogId": "6866f0a4-5fe6-40d9-bbfc-6f116f4e415d"
+    },
+    {
+      "id": "5f83eca728f74a5c",
+      "name": "Holo-Engineer",
+      "author": "Usman Jamil",
+      "source": "authors-usman-trk",
+      "context": "Cube ad alta potenza",
+      "finding": "Potenziale legato alla densità di pedine.",
+      "kind": "qualitative_review",
+      "powerScale": "scala Cube dell’autore, distinta dal Limited",
+      "cubePower": "3-4",
+      "catalogId": "0d830d0c-3339-49cc-8527-4f4edf787925"
+    },
+    {
+      "id": "77f3441b636d3c7f",
+      "name": "Wesley Crusher, Starfleet Cadet",
+      "author": "Usman Jamil",
+      "source": "authors-usman-trk",
+      "context": "Cube ad alta potenza",
+      "finding": "Ruolo flessibile; non lo considera imprescindibile.",
+      "kind": "qualitative_review",
+      "powerScale": "scala Cube dell’autore, distinta dal Limited",
+      "cubePower": 2.5,
+      "catalogId": "5c3cbb08-cbe1-42f5-9ac7-e558b85648bb"
+    },
+    {
+      "id": "76353cd169449867",
+      "name": "Captain Pike, Fullness of Time",
+      "author": "Usman Jamil",
+      "source": "authors-usman-trk",
+      "context": "Cube ad alta potenza",
+      "finding": "Preferisce alternative capaci di bloccare subito.",
+      "kind": "qualitative_review",
+      "powerScale": "scala Cube dell’autore, distinta dal Limited",
+      "cubePower": 2,
+      "catalogId": "745633e6-8635-4d99-8a4e-edc5d500bb3d"
+    },
+    {
+      "id": "2f6065e8100fe9a8",
+      "name": "Wesley Crusher, Starfleet Cadet",
+      "author": "Kai",
+      "source": "authors-usman-trk",
+      "context": "Cube ad alta potenza",
+      "finding": "Tra i suoi preferiti per flessibilità.",
+      "kind": "qualitative_review",
+      "powerScale": "scala Cube dell’autore, distinta dal Limited",
+      "catalogId": "5c3cbb08-cbe1-42f5-9ac7-e558b85648bb"
+    },
+    {
+      "id": "5ea26b33f4ce95c6",
+      "name": "Dr. Leonard \"Bones\" McCoy",
+      "author": "Kai",
+      "source": "authors-usman-trk",
+      "context": "Cube ad alta potenza",
+      "finding": "Interessante protezione e riutilizzo degli Elementali evoke.",
+      "kind": "qualitative_review",
+      "powerScale": "scala Cube dell’autore, distinta dal Limited",
+      "catalogId": "0157faee-f307-43c0-b308-bbf36ce02e32"
+    },
+    {
+      "id": "1b286f8b5abbb8f8",
+      "name": "Seven of Nine, Unassimilated",
+      "author": "Leftsynner",
+      "source": "authors-mtgs-seven",
+      "context": "Cube",
+      "finding": "Favorevole alla prova: robustezza, loot senza tap e cinque terre con nomi diversi; tempistica obbligata come limite.",
+      "kind": "qualitative_review",
+      "url": "https://www.mtgsalvation.com/forums/the-game/the-cube-forum/cube-card-and-archetype/cube-new-card-discussion/839036-trk-cube-seven-of-nine-unassimilated?comment=1",
+      "catalogId": "af9c9b8a-0713-4904-8e86-2b3331ec5495",
+      "published": "2026-10-22"
+    },
+    {
+      "id": "a8667a5304f034ef",
+      "name": "Seven of Nine, Unassimilated",
+      "author": "steve_man",
+      "source": "authors-mtgs-seven",
+      "context": "Cube",
+      "finding": "Preferisce Theorist’s Proxy per flash e valore immediato.",
+      "kind": "qualitative_review",
+      "url": "https://www.mtgsalvation.com/forums/the-game/the-cube-forum/cube-card-and-archetype/cube-new-card-discussion/839036-trk-cube-seven-of-nine-unassimilated?comment=2",
+      "catalogId": "af9c9b8a-0713-4904-8e86-2b3331ec5495",
+      "published": "2026-10-22"
+    },
+    {
+      "id": "04dfcaa34e0d2b29",
+      "name": "Seven of Nine, Unassimilated",
+      "author": "Red13th",
+      "source": "authors-mtgs-seven",
+      "context": "Cube",
+      "finding": "Non vede un miglioramento sui looter che già usa.",
+      "kind": "qualitative_review",
+      "url": "https://www.mtgsalvation.com/forums/the-game/the-cube-forum/cube-card-and-archetype/cube-new-card-discussion/839036-trk-cube-seven-of-nine-unassimilated?comment=3",
+      "catalogId": "af9c9b8a-0713-4904-8e86-2b3331ec5495",
+      "published": "2026-10-23"
+    },
+    {
+      "id": "449bae013a182318",
+      "name": "Seven of Nine, Unassimilated",
+      "author": "MadRobot",
+      "source": "authors-mtgs-seven",
+      "context": "Cube",
+      "finding": "Per preferirla occorre sfruttare il tipo artefatto; critica il loot nel proprio turno.",
+      "kind": "qualitative_review",
+      "url": "https://www.mtgsalvation.com/forums/the-game/the-cube-forum/cube-card-and-archetype/cube-new-card-discussion/839036-trk-cube-seven-of-nine-unassimilated?comment=5",
+      "catalogId": "af9c9b8a-0713-4904-8e86-2b3331ec5495",
+      "published": "2026-11-01"
+    },
+    {
+      "id": "9f141e8d7838f22b",
+      "name": "Data, New Life",
+      "author": "wtwlf123",
+      "source": "authors-mtgs-inclusions",
+      "context": "Cube",
+      "finding": "Indica questa carta per l’inclusione nel proprio Cube; non è un voto né un esito di torneo.",
+      "kind": "inclusion_plan",
+      "catalogId": "010630c6-5d7b-43e0-90a9-3e3cef9a4e6b",
+      "published": "2026-11-01"
+    },
+    {
+      "id": "71dc8bc100a59f65",
+      "name": "Salt Vampire",
+      "author": "wtwlf123",
+      "source": "authors-mtgs-inclusions",
+      "context": "Cube",
+      "finding": "Indica questa carta per l’inclusione nel proprio Cube; non è un voto né un esito di torneo.",
+      "kind": "inclusion_plan",
+      "catalogId": "31c7453e-33b8-4eb6-abac-28cdb35fb993",
+      "published": "2026-11-01"
+    },
+    {
+      "id": "2fa7d2db55128d62",
+      "name": "Armus, Skin of Evil",
+      "author": "wtwlf123",
+      "source": "authors-mtgs-inclusions",
+      "context": "Cube",
+      "finding": "Indica questa carta per l’inclusione nel proprio Cube; non è un voto né un esito di torneo.",
+      "kind": "inclusion_plan",
+      "catalogId": "42c77c4d-90bb-45d6-a9e0-36704b5a2b11",
+      "published": "2026-11-01"
+    },
+    {
+      "id": "8add379afff03692",
+      "name": "Captain James T. Kirk",
+      "author": "wtwlf123",
+      "source": "authors-mtgs-inclusions",
+      "context": "Cube",
+      "finding": "Indica questa carta per l’inclusione nel proprio Cube; non è un voto né un esito di torneo.",
+      "kind": "inclusion_plan",
+      "catalogId": "19edde54-153f-46b8-8a8d-a20fdef0667f",
+      "published": "2026-11-01"
+    },
+    {
+      "id": "e47d184c948784f4",
+      "name": "Captain Pike, Fullness of Time",
+      "author": "wtwlf123",
+      "source": "authors-mtgs-inclusions",
+      "context": "Cube",
+      "finding": "Indica questa carta per l’inclusione nel proprio Cube; non è un voto né un esito di torneo.",
+      "kind": "inclusion_plan",
+      "catalogId": "745633e6-8635-4d99-8a4e-edc5d500bb3d",
+      "published": "2026-11-01"
+    },
+    {
+      "id": "1d5e88b54dbaa0c4",
+      "name": "Captain James T. Kirk",
+      "author": "Red13th",
+      "source": "authors-mtgs-inclusions",
+      "context": "Cube",
+      "finding": "Indica questa carta per una prova nel proprio Cube, senza risultati misurati.",
+      "kind": "self_reported_testing",
+      "catalogId": "19edde54-153f-46b8-8a8d-a20fdef0667f",
+      "published": "2026-10-31"
+    },
+    {
+      "id": "b7b00d658e595cb5",
+      "name": "Nog, Ambitious Cadet",
+      "author": "Red13th",
+      "source": "authors-mtgs-inclusions",
+      "context": "Cube",
+      "finding": "Indica questa carta per una prova nel proprio Cube, senza risultati misurati.",
+      "kind": "self_reported_testing",
+      "catalogId": "5a8ae1c0-1935-4d03-aa94-9e9088650821",
+      "published": "2026-10-31"
+    },
+    {
+      "id": "ca495224bddb7a37",
+      "name": "Deanna Troi, Psychic Counsel",
+      "author": "meltingsho",
+      "source": "authors-mtgs-inclusions",
+      "context": "Cube",
+      "finding": "Indica questa carta per l’inclusione nel proprio Cube; non è un voto né un esito di torneo.",
+      "kind": "inclusion_plan",
+      "catalogId": "cf612cbe-7af8-48fd-875e-a669e05cfb49",
+      "published": "2026-11-01"
+    },
+    {
+      "id": "993ef58218263820",
+      "name": "Tasha Yar, Out of Time",
+      "author": "meltingsho",
+      "source": "authors-mtgs-inclusions",
+      "context": "Cube",
+      "finding": "Indica questa carta per l’inclusione nel proprio Cube; non è un voto né un esito di torneo.",
+      "kind": "inclusion_plan",
+      "catalogId": "1a9607a2-58cb-4bb8-b454-4813528221f8",
+      "published": "2026-11-01"
+    },
+    {
+      "id": "93b4c9d9361b8f8b",
+      "name": "Salt Vampire",
+      "author": "meltingsho",
+      "source": "authors-mtgs-inclusions",
+      "context": "Cube",
+      "finding": "Indica questa carta per l’inclusione nel proprio Cube; non è un voto né un esito di torneo.",
+      "kind": "inclusion_plan",
+      "catalogId": "31c7453e-33b8-4eb6-abac-28cdb35fb993",
+      "published": "2026-11-01"
+    },
+    {
+      "id": "bc4e425adbabb17f",
+      "name": "Nog, Ambitious Cadet",
+      "author": "meltingsho",
+      "source": "authors-mtgs-inclusions",
+      "context": "Cube",
+      "finding": "Indica questa carta per l’inclusione nel proprio Cube; non è un voto né un esito di torneo.",
+      "kind": "inclusion_plan",
+      "catalogId": "5a8ae1c0-1935-4d03-aa94-9e9088650821",
+      "published": "2026-11-01"
+    },
+    {
+      "id": "d11355f6b225f444",
+      "name": "Hit It!",
+      "author": "meltingsho",
+      "source": "authors-mtgs-inclusions",
+      "context": "Cube",
+      "finding": "Indica questa carta per l’inclusione nel proprio Cube; non è un voto né un esito di torneo.",
+      "kind": "inclusion_plan",
+      "catalogId": "62361438-3da4-4ce9-95b8-fc361b824f58",
+      "published": "2026-11-01"
+    },
+    {
+      "id": "97f88c10dc496f3e",
+      "name": "Salt Vampire",
+      "author": "Goodking",
+      "source": "authors-mtgs-inclusions",
+      "context": "Cube",
+      "finding": "Indica questa carta per l’inclusione nel proprio Cube; non è un voto né un esito di torneo.",
+      "kind": "inclusion_plan",
+      "catalogId": "31c7453e-33b8-4eb6-abac-28cdb35fb993",
+      "published": "2026-10-31"
+    },
+    {
+      "id": "a36a0642e67d2440",
+      "name": "Salt Vampire",
+      "author": "Monkey D Luffy",
+      "source": "authors-mtgs-inclusions",
+      "context": "Cube",
+      "finding": "Indica questa carta per l’inclusione nel proprio Cube; non è un voto né un esito di torneo.",
+      "kind": "inclusion_plan",
+      "catalogId": "31c7453e-33b8-4eb6-abac-28cdb35fb993",
+      "published": "2026-11-02"
+    },
+    {
+      "id": "c3d783d7904bd6a0",
+      "name": "Salt Vampire",
+      "author": "TongueMountain",
+      "source": "authors-reddit-salt-modern",
+      "context": "Modern",
+      "finding": "Propone una prova in Birthing Ritual e in strategie nere; segnala la sinergia con Narset e ingresso nel turno avversario. Ipotesi, senza risultati.",
+      "kind": "qualitative_review",
+      "url": "https://www.reddit.com/r/ModernMagic/comments/1uwipsb/salt_vampire/",
+      "catalogId": "31c7453e-33b8-4eb6-abac-28cdb35fb993",
+      "published": null
+    },
+    {
+      "id": "4bfa2efb63876fed",
+      "name": "Salt Vampire",
+      "author": "Moist_Username",
+      "source": "authors-reddit-salt-modern",
+      "context": "Modern",
+      "finding": "Cauto: manca flash, il 2/2 lifelink non basta e la carta pescata dall’avversario può annullare il beneficio della scelta.",
+      "kind": "qualitative_review",
+      "url": "https://www.reddit.com/r/ModernMagic/comments/1uwipsb/comment/oxjhic0/",
+      "catalogId": "31c7453e-33b8-4eb6-abac-28cdb35fb993",
+      "published": null
+    },
+    {
+      "id": "ecb12ee35940b036",
+      "name": "Genesis Device",
+      "author": "warcrap101010",
+      "source": "authors-reddit-genesis",
+      "context": "Commander / terre",
+      "finding": "Favorevole come accelerazione con un successivo effetto simile a Scapeshift.",
+      "kind": "qualitative_review",
+      "catalogId": "bb86849c-fdec-4ca5-a8c0-ed682d921759",
+      "published": null
+    },
+    {
+      "id": "acf47c2dc46757da",
+      "name": "Genesis Device",
+      "author": "Halinn",
+      "source": "authors-reddit-genesis",
+      "context": "Commander / terre",
+      "finding": "Ricorda che lancio e attivazione nello stesso turno richiedono otto mana complessivi.",
+      "kind": "qualitative_review",
+      "url": "https://www.reddit.com/r/magicTCG/comments/1xgykp3/comment/19rqpaw3qwrnm/",
+      "catalogId": "bb86849c-fdec-4ca5-a8c0-ed682d921759",
+      "published": null
+    },
+    {
+      "id": "a4690d5885898cf3",
+      "name": "Khan, Vengeful Heart",
+      "author": "FailLog404",
+      "source": "authors-reddit-specs",
+      "context": "Speculazione Commander",
+      "finding": "Propone l’interazione con Food Chain. Non indica un prezzo obiettivo né un risultato verificato.",
+      "kind": "financial_hypothesis",
+      "url": "https://www.reddit.com/r/mtgfinance/comments/1xbj2h6/comment/pi00g24/",
+      "catalogId": "d2a86d0c-a4fe-434c-a45c-812cdec9169f",
+      "published": null
+    },
+    {
+      "id": "89152179b5e99fe6",
+      "catalogId": "0d830d0c-3339-49cc-8527-4f4edf787925",
+      "name": "Holo-Engineer",
+      "author": "steve_man",
+      "source": "authors-mtgs-holo",
+      "context": "Cube",
+      "finding": "Confronto favorevole con Esika’s Chariot: sei punti di forza iniziali e potenziale con Pest Infestation o Deep Forest Hermit.",
+      "kind": "qualitative_review"
+    },
+    {
+      "id": "311ec7f6d5e57890",
+      "catalogId": "1a9607a2-58cb-4bb8-b454-4813528221f8",
+      "name": "Tasha Yar, Out of Time",
+      "author": "steve_man",
+      "source": "authors-mtgs-tasha",
+      "context": "Cube",
+      "finding": "Apprezza aggressione, ritorno economico dal cimitero e sinergie con esilio, scarto e permanenti leggendari.",
+      "kind": "qualitative_review"
+    }
+  ],
+  "commanderAppendixObservations": [
+    {
+      "id": "6ce285d6d9a30972",
+      "name": "Voq, Torchbearer",
+      "author": "steve_man",
+      "source": "authors-steve-trk",
+      "context": "Cube ad alta potenza",
+      "finding": "Fascia HIGH nella selezione Cube di Steve. Nessun ordine all’interno della fascia e nessuna previsione di prezzo.",
+      "kind": "ordinal_cube_tier",
+      "tier": "HIGH",
+      "oracleId": "1b8be000-e2fd-4157-ace2-7b8603c03fba",
+      "scope": "TRC, escluso dai pool Limited"
+    },
+    {
+      "id": "ab02745f28bef6a9",
+      "name": "Imperial Hullbreachers",
+      "author": "steve_man",
+      "source": "authors-steve-trk",
+      "context": "Cube ad alta potenza",
+      "finding": "Fascia HIGH-MID nella selezione Cube di Steve. Nessun ordine all’interno della fascia e nessuna previsione di prezzo.",
+      "kind": "ordinal_cube_tier",
+      "tier": "HIGH-MID",
+      "oracleId": "14c52244-4d09-49b9-b7c2-17ef1ffa2561",
+      "scope": "TRC, escluso dai pool Limited"
+    },
+    {
+      "id": "32d704c19d147f46",
+      "name": "Deliver from Chaos",
+      "author": "steve_man",
+      "source": "authors-steve-trk",
+      "context": "Cube ad alta potenza",
+      "finding": "Fascia HIGH-MID nella selezione Cube di Steve. Nessun ordine all’interno della fascia e nessuna previsione di prezzo.",
+      "kind": "ordinal_cube_tier",
+      "tier": "HIGH-MID",
+      "oracleId": "edea104c-b563-4fae-9e74-82164a8e090b",
+      "scope": "TRC, escluso dai pool Limited"
+    },
+    {
+      "id": "bc0542828dc0f8b3",
+      "name": "Lt. Arex, Ever-Adapting",
+      "author": "steve_man",
+      "source": "authors-steve-trk",
+      "context": "Cube ad alta potenza",
+      "finding": "Fascia HIGH-MID nella selezione Cube di Steve. Nessun ordine all’interno della fascia e nessuna previsione di prezzo.",
+      "kind": "ordinal_cube_tier",
+      "tier": "HIGH-MID",
+      "oracleId": "51a2671b-677e-434c-9f1a-d768fe1190c9",
+      "scope": "TRC, escluso dai pool Limited"
+    },
+    {
+      "id": "607b9ce6ed1d6d46",
+      "name": "The Borg Queen",
+      "author": "steve_man",
+      "source": "authors-steve-trk",
+      "context": "Cube ad alta potenza",
+      "finding": "Fascia HIGH-MID nella selezione Cube di Steve. Nessun ordine all’interno della fascia e nessuna previsione di prezzo.",
+      "kind": "ordinal_cube_tier",
+      "tier": "HIGH-MID",
+      "oracleId": "b03d6bc2-d9f1-4d03-b1b3-77993bec6547",
+      "scope": "TRC, escluso dai pool Limited"
+    },
+    {
+      "id": "897e4231740b8f5e",
+      "name": "Cryogenic Stasis",
+      "author": "steve_man",
+      "source": "authors-steve-trk",
+      "context": "Cube ad alta potenza",
+      "finding": "Fascia LOW-MID nella selezione Cube di Steve. Nessun ordine all’interno della fascia e nessuna previsione di prezzo.",
+      "kind": "ordinal_cube_tier",
+      "tier": "LOW-MID",
+      "oracleId": "846ba66c-a4eb-4d00-a0f1-d9f9524b9695",
+      "scope": "TRC, escluso dai pool Limited"
+    },
+    {
+      "id": "83264aa7c34188b0",
+      "name": "Planet Killer",
+      "author": "steve_man",
+      "source": "authors-steve-trk",
+      "context": "Cube ad alta potenza",
+      "finding": "Fascia LOW-MID nella selezione Cube di Steve. Nessun ordine all’interno della fascia e nessuna previsione di prezzo.",
+      "kind": "ordinal_cube_tier",
+      "tier": "LOW-MID",
+      "oracleId": "4c2c8cc6-bb90-468a-867b-db56f4eb7e59",
+      "scope": "TRC, escluso dai pool Limited"
+    },
+    {
+      "id": "d002e646296d70cc",
+      "name": "Beverly Crusher, Ship's Doctor",
+      "author": "steve_man",
+      "source": "authors-steve-trk",
+      "context": "Cube ad alta potenza",
+      "finding": "Fascia LOW nella selezione Cube di Steve. Nessun ordine all’interno della fascia e nessuna previsione di prezzo.",
+      "kind": "ordinal_cube_tier",
+      "tier": "LOW",
+      "oracleId": "7a33edc3-e938-463f-8568-7d7a458427c8",
+      "scope": "TRC, escluso dai pool Limited"
+    },
+    {
+      "id": "d542e85938b57506",
+      "name": "Voq, Torchbearer",
+      "author": "Usman Jamil",
+      "source": "authors-usman-trk",
+      "context": "Cube ad alta potenza",
+      "finding": "Rianimazione troppo inefficiente rispetto alle alternative.",
+      "kind": "qualitative_review",
+      "powerScale": "scala Cube dell’autore, distinta dal Limited",
+      "cubePower": 2,
+      "oracleId": "1b8be000-e2fd-4157-ace2-7b8603c03fba",
+      "scope": "TRC, escluso dai pool Limited"
+    },
+    {
+      "id": "20219932456ac265",
+      "name": "Qo'noS Quartermaster",
+      "author": "Kai",
+      "source": "authors-usman-trk",
+      "context": "Cube ad alta potenza",
+      "finding": "Preferisce Magda per le sinergie dei Tesori.",
+      "kind": "qualitative_review",
+      "powerScale": "scala Cube dell’autore, distinta dal Limited",
+      "oracleId": "b7115ed6-526c-491d-828f-f60b18437361",
+      "scope": "TRC, escluso dai pool Limited"
+    },
+    {
+      "id": "551e35ae6812ff94",
+      "name": "The Borg Queen",
+      "author": "wtwlf123",
+      "source": "authors-mtgs-inclusions",
+      "context": "Cube",
+      "finding": "Indica questa carta per l’inclusione nel proprio Cube; non è un voto né un esito di torneo.",
+      "kind": "inclusion_plan",
+      "oracleId": "b03d6bc2-d9f1-4d03-b1b3-77993bec6547",
+      "scope": "TRC, escluso dai pool Limited"
+    },
+    {
+      "id": "354b41eb2d43138f",
+      "name": "Voq, Torchbearer",
+      "author": "meltingsho",
+      "source": "authors-mtgs-inclusions",
+      "context": "Cube",
+      "finding": "Indica questa carta per l’inclusione nel proprio Cube; non è un voto né un esito di torneo.",
+      "kind": "inclusion_plan",
+      "oracleId": "1b8be000-e2fd-4157-ace2-7b8603c03fba",
+      "scope": "TRC, escluso dai pool Limited"
+    }
+  ],
+  "excludedOrLimited": [
+    {
+      "publisher": "MTGGoldfish",
+      "urls": [
+        "https://www.mtggoldfish.com/articles/commander-clash-podcast-271-the-most-important-cards-from-reality-fracture",
+        "https://www.mtggoldfish.com/articles/podcast-611-star-trek-spoilers"
+      ],
+      "status": "synopsis_read_audio_not_transcribed",
+      "reason": "Pagine e riferimenti media acquisiti; le sinossi non consentono di attribuire giudizi per carta. Nessuna selezione dei singoli conduttori importata da riassunti secondari."
+    },
+    {
+      "publisher": "MTGPrice",
+      "url": "https://blog.mtgprice.com/2026/07/17/previews-and-specs-for-star-trek-x-magic-the-gathering/",
+      "status": "public_intro_only",
+      "reason": "Contenuto ProTrader non consultabile integralmente. Non attribuita una previsione Jace a Cliff Daigle."
+    },
+    {
+      "publisher": "Reddit",
+      "url": "https://www.reddit.com/user/Cautious_Handle2547/",
+      "status": "public_profile_history_unavailable",
+      "reason": "Profilo senza storico pubblico visualizzato. Nessun parere TRK attribuito mediante analogia o nome simile."
+    },
+    {
+      "publisher": "Reddit r/mtgfinance",
+      "url": "https://www.reddit.com/r/mtgfinance/comments/1xbj2h6/star_trek_specs/",
+      "status": "claims_not_imported_as_facts",
+      "reason": "Escluse le affermazioni non dimostrate su piccola tiratura Necron e variazioni dei prezzi. La domanda su nuove ristampe resta un rischio, non una collazione verificata."
+    }
+  ],
+  "limitations": [
+    "Raccolta mirata di opinioni, non censimento di internet e non campione rappresentativo dei giocatori.",
+    "Un autore rintracciato su FRA e TRK non ha automaticamente un track record economico validato.",
+    "Nessuna quotazione nuova acquisita. Le previsioni sono distinte dalle osservazioni Cardmarket storiche.",
+    "I giudizi Cube non misurano il potenziale Standard, Limited o cEDH.",
+    "Nessun tasso di successo degli autori calcolato: mancano un insieme completo di previsioni e gli esiti confrontabili."
+  ],
+  "oracleChecks": [
+    {
+      "name": "Genesis Device",
+      "finding": "Costo 3 per lanciarlo, 3GG più tap e sacrificio per attivare, solo come stregoneria. Otto mana nello stesso turno; il costo di attivazione resta necessario anche se entra prima.",
+      "source": "scryfall-api"
+    },
+    {
+      "name": "Dr. Leonard \"Bones\" McCoy",
+      "finding": "La prima modalità recupera una carta permanente non Doctor. La seconda restituisce la creatura morta all’inizio della prossima sottofase finale, non immediatamente; non recupera se stesso.",
+      "source": "wizards-release-trk"
+    },
+    {
+      "name": "Nog, Ambitious Cadet",
+      "finding": "Surveil si innesca quando diventa tappato, non solo quando attacca. Corpo base del livello intermedio 3/4. Il riferimento a 3/2 nella recensione non viene adottato.",
+      "source": "scryfall-api"
+    },
+    {
+      "name": "Holo-Engineer",
+      "finding": "Sostituisce le pedine create con Illusioni artefatto 3/3: un Tesoro sostituito non conserva la capacità di produrre mana.",
+      "source": "scryfall-api"
+    },
+    {
+      "name": "Dilemma e MDFC",
+      "finding": "Scegliere la faccia di una MDFC non equivale a scegliere un modo di una magia. Non importata la supposizione che tutte le carte a doppia faccia siano Dilemma.",
+      "source": "wizards-release-trk"
+    }
+  ],
+  "externalCardHypotheses": [
+    {
+      "name": "Cryptic Command",
+      "author": "ThatDamnedHansel",
+      "source": "authors-reddit-specs",
+      "url": "https://www.reddit.com/r/mtgfinance/comments/1xbj2h6/comment/phzxzpg/",
+      "claim": "Ipotesi di domanda per magie modali nei mazzi Seven e Sisko; il nome nel commento è scritto cryptid command.",
+      "status": "hypothesis_not_price_observation",
+      "limitations": [
+        "Non importata una quotazione né certificata la legalità Commander in una specifica lista.",
+        "Fuori dal catalogo TRK/SDS: non conteggiata come copertura di una nuova carta."
+      ]
+    }
+  ],
+  "previewReferences": [
+    {
+      "id": "8407c498-b972-49fe-b30a-a864c39ddc7a",
+      "name": "Pest Infestation",
+      "full": "Pest Infestation",
+      "image": "https://cards.scryfall.io/normal/front/8/4/8407c498-b972-49fe-b30a-a864c39ddc7a.jpg?1783911720",
+      "url": "https://scryfall.com/card/otp/30/pest-infestation?utm_source=api",
+      "type": "Sorcery",
+      "colors": [
+        "G"
+      ],
+      "faces": []
+    },
+    {
+      "id": "fra-44",
+      "name": "Theorist's Proxy",
+      "full": "Theorist's Proxy",
+      "image": "https://cards.scryfall.io/normal/front/7/1/710302ca-c4be-4069-8ce1-f531414c74e9.jpg?1788878151",
+      "url": "https://scryfall.com/card/fra/44/theorists-proxy?utm_source=api",
+      "oracle": "Theorist's Proxy {1}{U}\nCreature — Illusion\nFlash\nWhen this creature enters, empower Jace 3. (Put three loyalty counters on a Jace token you control. If you don't control one, first create a blue Jace planeswalker token with \"[−1]: Surveil 1\" and \"[−3]: Draw a card.\")\n{U}, Sacrifice this creature: The next spell you cast this turn can't be countered.",
+      "cost": "{1}{U}",
+      "type": "Creature — Illusion",
+      "colors": [
+        "U"
+      ],
+      "faces": [
+        {
+          "name": "Theorist's Proxy",
+          "mana_cost": "{1}{U}",
+          "type_line": "Creature — Illusion",
+          "oracle_text": "Flash\nWhen this creature enters, empower Jace 3. (Put three loyalty counters on a Jace token you control. If you don't control one, first create a blue Jace planeswalker token with \"[−1]: Surveil 1\" and \"[−3]: Draw a card.\")\n{U}, Sacrifice this creature: The next spell you cast this turn can't be countered.",
+          "power": "0",
+          "toughness": "3"
+        }
+      ]
+    },
+    {
+      "id": "1b8be000-e2fd-4157-ace2-7b8603c03fba",
+      "name": "Voq, Torchbearer",
+      "full": "Voq, Torchbearer",
+      "image": "https://cards.scryfall.io/normal/front/0/b/0b4d2344-d615-4982-b656-44419565121a.jpg?1793196920",
+      "url": "https://scryfall.com/card/trc/63/voq-torchbearer",
+      "oracle": "Menace\nChoH'a' — You may have Voq enter as a copy of a creature card in a graveyard, except he's a Klingon Spy in addition to his other types and has menace.",
+      "cost": "{3}{B}",
+      "type": "Legendary Creature — Klingon Spy",
+      "colors": [
+        "B"
+      ],
+      "source": "scryfall-api",
+      "checked": "2026-11-02",
+      "scope": "preview_reference_only"
+    },
+    {
+      "id": "8e7b079d-9ede-421c-bd2b-f9a5126a8e6f",
+      "name": "Esika's Chariot",
+      "full": "Esika's Chariot",
+      "image": "https://cards.scryfall.io/normal/front/a/8/a87606cc-fbf0-4e2c-9798-f1c935d0573d.jpg?1783928215",
+      "url": "https://scryfall.com/card/khm/169/esikas-chariot",
+      "oracle": "When Esika's Chariot enters, create two 2/2 green Cat creature tokens.\nWhenever Esika's Chariot attacks, create a token that's a copy of target token you control.\nCrew 4",
+      "cost": "{3}{G}",
+      "type": "Legendary Artifact — Vehicle",
+      "colors": [
+        "G"
+      ],
+      "source": "scryfall-api",
+      "checked": "2026-11-02",
+      "scope": "preview_reference_only"
+    },
+    {
+      "id": "80e9a42e-f4f4-4bfc-91a2-ad124737dca2",
+      "name": "Deep Forest Hermit",
+      "full": "Deep Forest Hermit",
+      "image": "https://cards.scryfall.io/normal/front/3/2/3287775f-7bec-4e8f-bb8d-daf5ce92e4a8.jpg?1783933100",
+      "url": "https://scryfall.com/card/mh1/161/deep-forest-hermit",
+      "oracle": "Vanishing 3 (This creature enters with three time counters on it. At the beginning of your upkeep, remove a time counter from it. When the last is removed, sacrifice it.)\nWhen this creature enters, create four 1/1 green Squirrel creature tokens.\nSquirrels you control get +1/+1.",
+      "cost": "{3}{G}{G}",
+      "type": "Creature — Elf Druid",
+      "colors": [
+        "G"
+      ],
+      "source": "scryfall-api",
+      "checked": "2026-11-02",
+      "scope": "preview_reference_only"
+    }
+  ]
+}

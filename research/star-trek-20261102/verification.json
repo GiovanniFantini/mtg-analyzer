@@ -1,0 +1,189 @@
+{
+  "date": "2026-11-02",
+  "build": {
+    "command": "python build_site.py",
+    "status": "passed",
+    "expansions": 21,
+    "htmlPages": 290,
+    "finalStarTrekRebuild": "Shared offline builder, 14 routes, followed by site-wide link validation.",
+    "networkRequired": false
+  },
+  "pythonTests": {
+    "combinedSuite": {
+      "command": "python -m unittest test_star_trek_research.py test_expansion_data.py",
+      "tests": 47,
+      "status": "passed"
+    },
+    "finalSpecificSuite": {
+      "command": "python -m unittest test_star_trek_research.py",
+      "tests": 11,
+      "status": "passed"
+    }
+  },
+  "checks": [
+    {
+      "command": "node verify-expansions.cjs",
+      "status": "passed"
+    },
+    {
+      "command": "node verify-draft-engine.cjs",
+      "status": "passed"
+    },
+    {
+      "command": "python verify-collation-contract.py",
+      "status": "passed"
+    },
+    {
+      "command": "node verify-atlas-expansions.cjs star-trek",
+      "status": "passed"
+    },
+    {
+      "command": "node verify-expansion-browser.cjs",
+      "status": "passed"
+    },
+    {
+      "command": "node verify-star-trek-knowledge.cjs",
+      "status": "passed"
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed"
+    }
+  ],
+  "historicalFixtures": {
+    "command": "python verify-expansion-review.py",
+    "status": "passed",
+    "fixtures": 19
+  },
+  "browser": {
+    "widths": [
+      1440,
+      390
+    ],
+    "routes": 14,
+    "javascriptErrors": [],
+    "previews": [
+      "mouse",
+      "keyboard",
+      "touch"
+    ],
+    "screenshotsVisuallyInspected": [
+      "draft-390.png",
+      "sealed-1440.png"
+    ],
+    "evidence": "browser-results.json"
+  },
+  "availability": {
+    "catalog": {
+      "available": true,
+      "missing": []
+    },
+    "pool": {
+      "available": true,
+      "missing": []
+    },
+    "analysis": {
+      "available": true,
+      "missing": []
+    },
+    "sealedGuide": {
+      "available": true,
+      "missing": []
+    },
+    "draftGuide": {
+      "available": true,
+      "missing": []
+    },
+    "draftStatistics": {
+      "available": false,
+      "missing": [
+        "Statistiche Draft con data e contesto."
+      ]
+    },
+    "draftDrilldown": {
+      "available": false,
+      "missing": [
+        "Snapshot dei contesti Draft con campioni e data di rilevazione."
+      ]
+    },
+    "pickGuide": {
+      "available": true,
+      "missing": []
+    },
+    "pickBaits": {
+      "available": false,
+      "missing": [
+        "Valutazioni delle rare e mitiche condizionali."
+      ]
+    },
+    "pickDecisions": {
+      "available": true,
+      "missing": []
+    },
+    "draftCombos": {
+      "available": true,
+      "missing": []
+    },
+    "sealedSimulator": {
+      "available": false,
+      "missing": [
+        "Profilo di collazione Sealed completo, verificato e supportato dal motore.",
+        "Corrispondenza fra stampe della busta Sealed e carte del catalogo.",
+        "Identificazione completa delle stampe ammesse e delle rispettive finiture; le identita di gioco TRK/SDS sono complete.",
+        "Risoluzione delle probabilità pubblicate come <1% e verifica della ricetta."
+      ]
+    },
+    "draftTable": {
+      "available": false,
+      "missing": [
+        "Profilo di collazione completo, verificato e supportato dal motore.",
+        "Identificazione completa delle stampe ammesse e delle rispettive finiture; le identita di gioco TRK/SDS sono complete.",
+        "Risoluzione delle probabilità pubblicate come <1% e verifica della ricetta.",
+        "Corrispondenza fra stampe della busta Draft e carte del catalogo.",
+        "Valutazioni delle carte non base del prodotto."
+      ]
+    },
+    "combos": {
+      "available": false,
+      "missing": [
+        "Combo e sequenze documentate."
+      ]
+    },
+    "sentiment": {
+      "available": false,
+      "missing": [
+        "Sintesi qualitative con fonti."
+      ]
+    },
+    "discovery": {
+      "available": true,
+      "missing": []
+    },
+    "boxEV": {
+      "available": false,
+      "missing": [
+        "Prezzi verificati con data e metrica.",
+        "Profilo di collazione completo, verificato e supportato dal motore.",
+        "Modello economico e risultati verificati.",
+        "Collazione eseguibile e copertura completa di stampe e finiture assenti: valore atteso del box non calcolabile.",
+        "Identificazione completa delle stampe ammesse e delle rispettive finiture; le identita di gioco TRK/SDS sono complete.",
+        "Risoluzione delle probabilità pubblicate come <1% e verifica della ricetta."
+      ]
+    },
+    "rules": {
+      "available": true,
+      "missing": []
+    }
+  },
+  "importRepeatCheck": "import-repeat-check.json",
+  "git": {
+    "update": "local",
+    "commit": false,
+    "push": false,
+    "pipelineChanges": false
+  },
+  "limitations": [
+    "Full-suite run passed before the final added availability assertion; the final 11-test set-specific suite includes that assertion.",
+    "No performance or predictive-strength claim: TRK win rates and executable collation remain unavailable."
+  ]
+}

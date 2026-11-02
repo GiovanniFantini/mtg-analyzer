@@ -1,0 +1,101 @@
+{
+  "date": "2026-11-02",
+  "offlineImportRepeat": "byte-identical",
+  "sourceAndIdentityMapping": "passed",
+  "historicalChronologyLabels": "passed",
+  "trcSeparation": "passed",
+  "limitedEngineScores": "unchanged-null",
+  "mainObservations": 68,
+  "trcObservations": 12,
+  "fileSha256": {
+    "expansions\\star-trek\\cards.json": "acd2bdd54b99d481cb26c4b8e5c1ff04af808afe06abe83bdb14de681a04f5cb",
+    "expansions\\star-trek\\guides.json": "6a4ec7307409d545cc8f6f7fb7718d3a07ae162038696367798ddb55b38346d2",
+    "expansions\\star-trek\\sources.json": "11e2d8fed1ad7581edb6aca61197604992b5ada221dec2b7c9800d59f10e18e1",
+    "expansions\\star-trek\\expansion.json": "79f4e03bbcec5166b434c1c9c51b6866d72dcb87fec389928be174d2af188c3b",
+    "expansions\\star-trek\\discovery.json": "f9be3423e5a3cbea42388abf3975fa7b98e26fd46a0e98a675620bb6f3195c53",
+    "research\\star-trek-authors-20261102\\author-feedback-coverage.json": "5dc30fe329caada54bd9b1e53a6579646c6865e7030c51bf50567cff14dc269e",
+    "research\\star-trek-authors-20261102\\author-feedback-evidence.json": "2163d301621da1e5300d4f3698a8312bdeef61bc92d393f2fef2ce8390aefe02",
+    "research\\star-trek-authors-20261102\\coverage.json": "5dc30fe329caada54bd9b1e53a6579646c6865e7030c51bf50567cff14dc269e",
+    "research\\star-trek-authors-20261102\\evidence.json": "2163d301621da1e5300d4f3698a8312bdeef61bc92d393f2fef2ce8390aefe02"
+  },
+  "fullBuild": {
+    "status": "passed",
+    "expansions": 21,
+    "htmlPages": 290,
+    "offline": true
+  },
+  "fullUnitSuite": {
+    "status": "passed",
+    "tests": 48,
+    "seconds": 235.33
+  },
+  "finalTrkSharedBuild": {
+    "status": "passed",
+    "globalLocalLinks": "passed"
+  },
+  "externalPreviewReferences": {
+    "count": 5,
+    "scope": "preview_only_excluded_from_game_catalog"
+  },
+  "finalSpecificUnitSuite": {
+    "status": "passed",
+    "tests": 11,
+    "seconds": 0.541
+  },
+  "browser": {
+    "results": [
+      {
+        "width": 1440,
+        "visibleNotes": true,
+        "sourceLinks": true,
+        "coverage": true,
+        "previews": [
+          "mouse-or-touch",
+          "keyboard"
+        ],
+        "errors": []
+      },
+      {
+        "width": 390,
+        "visibleNotes": true,
+        "sourceLinks": true,
+        "coverage": true,
+        "previews": [
+          "mouse-or-touch",
+          "keyboard"
+        ],
+        "errors": []
+      }
+    ]
+  },
+  "knowledgeBrowserRegression": {
+    "results": [
+      {
+        "width": 1440,
+        "cards": 341,
+        "grades": 306,
+        "packages": 10,
+        "decisions": 6,
+        "previews": [
+          "mouse-or-touch",
+          "keyboard"
+        ],
+        "errors": []
+      },
+      {
+        "width": 390,
+        "cards": 341,
+        "grades": 306,
+        "packages": 10,
+        "decisions": 6,
+        "previews": [
+          "mouse-or-touch",
+          "keyboard"
+        ],
+        "errors": []
+      }
+    ]
+  },
+  "diffCheck": "passed",
+  "notes": "Riepilogo spostato nel frammento iniziale visibile; build TRK finale con renderer condiviso e collegamenti globali validati. Nessuna modifica ai motori o a CI/CD."
+}

@@ -31,6 +31,10 @@ with tempfile.TemporaryDirectory(prefix='mtg-review-') as temporary:
         if source_index==1:
             # Explicitly retain historical preview fixtures after the live sets
             # move to Atlas. These scenarios still exercise old saved records.
+            # Live TRK now has real structured guides. Keep these historical
+            # scenarios independent; shared-preview supplies its own ready data.
+            for guide_key in ('pickGuide','pickBaits','pickDecisions','draftCombos','sealed'):
+                data['guides'].pop(guide_key,None)
             pages=manifest['presentation']['pages']
             if 'practice' in pages:pages['simulator']['url']=pages['practice']['url']
             for key in ('set','gallery','draft','pool','simulator','combos','analysis','discovery','rules','method'):

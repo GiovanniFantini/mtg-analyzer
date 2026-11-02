@@ -32,7 +32,8 @@ class ExpansionTests(unittest.TestCase):
         preview=load_expansions()[1]
         self.assertTrue(preview.availability['catalog']['available'])
         self.assertFalse(preview.availability['draftTable']['available'])
-        self.assertIn('Catalogo completo',preview.availability['draftTable']['missing'][0])
+        self.assertTrue(preview.data['cards']['complete'])
+        self.assertTrue(any('collazione' in item.lower() for item in preview.availability['draftTable']['missing']))
 
     def test_bad_recipe_is_rejected(self):
         def mutate(m,d):d['products']['products']['play']['collation']['recipe'][0]['branches'][0]['weight']=.8

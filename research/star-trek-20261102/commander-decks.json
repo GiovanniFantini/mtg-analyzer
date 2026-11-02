@@ -1,0 +1,13 @@
+{
+  "date": "2026-11-02",
+  "kind": "original_editorial_product_plans",
+  "sources": ["wizards-commander-lists", "cardkingdom-klingon", "edhrec-borg-queen"],
+  "decks": [
+    {"name":"Federation Fleet","colors":["U","R","W"],"commander":"Jean-Luc Picard, Luminary","plan":"Sfruttare Spacecraft e permanenti di supporto, conservando creature per station. Misurare il costo di preparazione di ogni nave e tenere risposte alle rimozioni globali.","risk":"Troppe navi senza equipaggio possono lasciare il campo indifeso. Gli ingressi delle navi e le abilità sbloccate dalle cariche sono risorse distinte."},
+    {"name":"Landing Party","colors":["G","W","U"],"commander":"Commander Spock","plan":"Sviluppare terre, esplorazione e una squadra diversificata. Le ricerche di terre devono risolvere il fixing oltre ad aumentare il numero di nomi.","risk":"La crescita di mana deve tradursi in pressione o vantaggio; non ogni terra aggiuntiva produce un nuovo nome."},
+    {"name":"Klingon Fury","colors":["R","W","B"],"commander":"Worf, Defiant Commander","plan":"Distribuire gli attaccanti fra più avversari e sostenere battlefront con corpi sacrificabili. Valutare i guadagni di carte e mana prima di investire in ulteriori potenziamenti.","risk":"Dichiarare attacchi espone il campo alle risposte multiplayer. Le pedine già attaccanti non equivalgono a dichiarare un attaccante contro un nuovo giocatore.","attributedObservation":{"source":"cardkingdom-klingon","finding":"Tom Anderson distingue Worf per il vantaggio nel tempo e Kor per la pressione immediata. La scelta dipende dal tavolo, senza implicare prestazioni cEDH."}},
+    {"name":"We Are the Borg","colors":["W","U","B"],"commander":"The Borg Queen","plan":"Accumulare creature artefatto e risorse assimilate, proteggendo i motori. Controllare sempre se il furto riguarda una carta esiliata dalla stessa istanza del permanente.","risk":"Assimilare sostituisce i tipi di creatura e può disattivare federation. La perdita del motore non annulla necessariamente un controllo già acquisito: decide il testo dell’effetto."}
+  ],
+  "separateDeckTech":{"name":"Borg Queen, Perfection Manifest","source":"edhrec-borg-queen","author":"Bennie Smith","finding":"Deck tech mono nero distinto dalla comandante Esper del precon. Non trasferire automaticamente lista, colori o sinergie fra le due regine."},
+  "limitations":["Piani editoriali, non simulazioni o valutazioni complete di tutte le singole carte dei quattro mazzi.","Nessun campione cEDH o Duel Commander TRK/TRC post-uscita acquisito.","Le inclusioni EDHREC precedenti non certificano risultati o appartenenza ai quattro mazzi."]
+}
