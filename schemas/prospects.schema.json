@@ -243,6 +243,55 @@
           "items": {
             "type": "string"
           }
+        },
+        "decisionReview": {
+          "type": "object",
+          "required": [
+            "date",
+            "kind",
+            "context",
+            "verdict",
+            "sections"
+          ],
+          "properties": {
+            "date": {
+              "type": "string",
+              "format": "date"
+            },
+            "kind": {
+              "type": "string"
+            },
+            "context": {
+              "type": "string",
+              "minLength": 1
+            },
+            "verdict": {
+              "type": "string",
+              "minLength": 1
+            },
+            "sections": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "required": [
+                  "title",
+                  "text"
+                ],
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "text": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            }
+          },
+          "additionalProperties": true
         }
       },
       "additionalProperties": true

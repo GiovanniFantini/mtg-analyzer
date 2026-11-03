@@ -33,7 +33,7 @@
   const measured=Object.values(p.formats||{}).map(a=>a.tournamentIndex).filter(Boolean),positive=measured.filter(t=>t.score>0);
   const editorialLevel=isRepeated?'Confermata':observations.length?'Emergente':null;
   const level=selected?.level||p.tournamentLevel||editorialLevel||(p.analysisCoverage==='tournament_data_only'?'Solo misure di torneo':'Analizzata');
-  return {name:card.name,editorialDate:selected?.editorialDate||(!p.tournamentLevel&&editorialLevel?p.date:null),product:card.set,image:card.image,formats:Object.entries(p.formats||{}).filter(([key,assessment])=>!['draft','sealed','pick_two'].includes(key)&&['legal','restricted'].includes(card.legalities?.[key]||assessment.legality)).map(([key])=>CardProspects.formatLabels[key]||key),level,role:'Analisi della carta',verdict:p.gameplayReview?.finding||p.editorialThesis,evidence:p.summary,line:p.gameplayReview?.finding,limit:p.price?.outlook?.thesis,sources:[],record:card};
+  return {name:card.name,editorialDate:selected?.editorialDate||(!p.tournamentLevel&&editorialLevel?p.date:null),product:card.set,image:card.image,formats:Object.entries(p.formats||{}).filter(([key,assessment])=>!['draft','sealed','pick_two'].includes(key)&&['legal','restricted'].includes(card.legalities?.[key]||assessment.legality)).map(([key])=>CardProspects.formatLabels[key]||key),level,role:'Analisi della carta',verdict:p.decisionReview?.verdict||p.gameplayReview?.finding||p.editorialThesis,evidence:p.summary,line:p.gameplayReview?.finding,limit:p.price?.outlook?.thesis,sources:[],record:card};
  }
  async function loadResearch(){
   if(allCards)return;

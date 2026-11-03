@@ -1,0 +1,18 @@
+'use strict';
+const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
+const sandbox={window:{},URL,location:{href:'https://example.test/catalogo.html'},Intl,Date};
+vm.runInNewContext(fs.readFileSync(require.resolve('./prospects-ui.js'),'utf8'),sandbox);
+const ui=sandbox.window.CardProspects;
+assert.equal(ui.decision({}), '');
+const card={prospects:{date:'2026-11-02',summary:'Profilo precedente',formats:{},sources:[],limitations:[],decisionReview:{date:'2026-11-03',context:'Draft',verdict:'<script>unsafe</script>',sections:[{title:'Piano',text:'<img src=x onerror=alert(1)>'}]}}};
+const decision=ui.decision(card);
+assert.ok(decision.includes('&lt;script&gt;'));
+assert.ok(!decision.includes('<script>'));
+assert.ok(!decision.includes('<img'));
+assert.ok(ui.render(card).includes('prospect-decision'));
+assert.ok(!ui.render(card,[],{includeDecision:false}).includes('prospect-decision'));
+card.prospects.researchNotes=[{context:'Autore / Cube',finding:'Parere',date:'2026-11-02',url:'javascript:alert(1)'}];
+assert.ok(!ui.render(card).includes('href="javascript:'));
+card.prospects.researchNotes[0]={context:'Autore / Draft',finding:'Parere',date:'2026-11-02',source:'review'};
+assert.ok(ui.render(card,[{id:'review',url:'https://example.test/review',publisher:'Autore'}]).includes('href="https://example.test/review"'));
+console.log('Editorial decisions: optional display, escaping, deduplication and source links passed.');

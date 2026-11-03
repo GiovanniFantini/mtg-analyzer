@@ -1,0 +1,105 @@
+{
+  "date": "2026-11-03",
+  "cards": 12,
+  "catalogCards": 341,
+  "offlineImportRepeat": "byte-identical",
+  "existingCardData": "unchanged outside decisionReview",
+  "preserved": [
+    "Oracle",
+    "legalities",
+    "prices and price dates",
+    "WR",
+    "tournament indices",
+    "attributed reviews",
+    "card IDs",
+    "gameplay profiles"
+  ],
+  "scope": "12 approfondimenti campione; non copertura analitica completa del set",
+  "unitTests": {
+    "expansionDataAndStarTrekResearch": {
+      "tests": 48,
+      "status": "passed"
+    },
+    "editorialImporter": {
+      "tests": 1,
+      "status": "passed"
+    }
+  },
+  "rendererChecks": {
+    "escaping": "passed",
+    "optionalFieldFallback": "passed",
+    "directSourceLinks": "passed",
+    "noDuplicateDecision": "passed"
+  },
+  "browser": {
+    "results": [
+      {
+        "width": 1440,
+        "cards": 12,
+        "indexLinks": 12,
+        "previews": [
+          "mouse-or-touch",
+          "keyboard"
+        ],
+        "sourceLinks": true,
+        "discovery": true,
+        "errors": []
+      },
+      {
+        "width": 390,
+        "cards": 12,
+        "indexLinks": 12,
+        "previews": [
+          "mouse-or-touch",
+          "keyboard"
+        ],
+        "sourceLinks": true,
+        "discovery": true,
+        "errors": []
+      }
+    ]
+  },
+  "fraBrowserRegression": {
+    "results": [
+      {
+        "id": "reality-fracture",
+        "routes": 11,
+        "manualRecordsPreserved": false,
+        "previews": [
+          "mouse",
+          "keyboard",
+          "touch"
+        ],
+        "errors": []
+      }
+    ]
+  },
+  "finalServedProfilesMatchSource": true,
+  "screenshotsInspected": [
+    1440,
+    390
+  ],
+  "gameDataDocumentsUnchanged": [
+    "ratings",
+    "statistics",
+    "expansion",
+    "limited",
+    "products",
+    "printings"
+  ],
+  "diffCheck": "passed",
+  "sourceAudit": "source-audit.json",
+  "studySha256": "32292face68e5c9d35bbe84bf92266710197a93fc850115794917c4fe432f54a",
+  "fullBuild": {
+    "status": "passed",
+    "expansions": 21,
+    "htmlPages": 290,
+    "offline": true
+  },
+  "finalSharedRendererBuild": {
+    "status": "passed",
+    "scope": "star-trek",
+    "globalLocalLinks": "passed",
+    "method": "shared builder into an empty temporary directory, then copy generated output"
+  }
+}
