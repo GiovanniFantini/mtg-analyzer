@@ -1,0 +1,235 @@
+{
+  "date": "2026-11-03",
+  "packages": [
+    {
+      "id": "limited-20261103-boimler-cariche",
+      "title": "W: il tap migliora cariche e crescita",
+      "colors": "W",
+      "role": "Motore",
+      "numbers": [
+        "5",
+        "26",
+        "31"
+      ],
+      "mana": "Brad Boimler, Eager Ensign {1}{W}; nave {1}{W}; Pure Energy {1}{W}.",
+      "sequence": "Con entrambi i permanenti presenti, tappa Brad Boimler, Eager Ensign per station di Oberth-Class Starship. Il suo trigger si risolve prima delle cariche: due dalla forza diventano tre. Nella stessa fase principale Pure Energy su un solo bersaglio assegna tre segnalini invece di due.",
+      "pick": "Dopo avere scelto Brad Boimler, Eager Ensign, le navi e i segnalini già buoni acquistano un collegamento concreto. Senza gli altri pezzi rimane un 2/2 lifelink.",
+      "risk": "Station è da stregoneria e toglie un possibile bloccante. Il bonus dura solo nel turno del tap; non modifica segnalini assegnati nei turni precedenti."
+    },
+    {
+      "id": "limited-20261103-ghost-assembly",
+      "title": "W: riusare un ingresso senza perdere la pedina",
+      "colors": "W",
+      "role": "Motore",
+      "numbers": [
+        "20",
+        "4"
+      ],
+      "mana": "Specialist {1}{W}; Ghost of Illyria {3}{W}.",
+      "sequence": "Con Assembly Specialist presente, lancia Ghost of Illyria e scegli di esiliare lo Specialist. Il Borg pedina già creato resta. Alla prossima sottofase finale lo Specialist torna e crea un altro Borg.",
+      "pick": "Sali con gli ingressi economici quando hai Ghost of Illyria, oppure considera Ghost of Illyria come volante con valore quando gli ingressi sono già nel pool.",
+      "risk": "Il corpo esiliato non blocca nel frattempo. Esiliare una pedina la fa cessare di esistere e non la recupera a fine turno."
+    },
+    {
+      "id": "limited-20261103-federation-tipi",
+      "title": "GW: una carta aggiunge più tipi utili",
+      "colors": "GW",
+      "role": "Preparazione",
+      "numbers": [
+        "193",
+        "33"
+      ],
+      "mana": "David and Carol David and Carol Marcus, Creators {2}{G}; Saavik {4}{W}.",
+      "sequence": "David and Carol Marcus, Creators aggiunge Human e Scientist fra i non Borg e lascia una Planet. Con altri tipi già sul campo, Saavik, Stoic Student può entrare con flash e infliggere danno sufficiente a un attaccante o bloccante.",
+      "pick": "I corpi che aggiungono tipi diversi possono sostenere federazione mentre sviluppano mana. Conta le unioni dei tipi, senza duplicare Human già presente.",
+      "risk": "L'esempio da solo dà due tipi, non garantisce una rimozione grande. I Borg non contribuiscono, e serve arrivare a cinque mana con il colore bianco."
+    },
+    {
+      "id": "limited-20261103-vash-specialist",
+      "title": "BG: una carta dal cimitero diventa pescata",
+      "colors": "BG",
+      "role": "Motore",
+      "numbers": [
+        "255",
+        "262"
+      ],
+      "mana": "Vash, Freelance Archaeologist {1}{B}{G}; Specialist {2}; attivazione {1} e tap.",
+      "sequence": "Con Vash, Freelance Archaeologist e Cybernetic Specialist presenti, paga uno e tappa lo Specialist per mettere una carta dal tuo cimitero sotto il mazzo. Quell'uscita fa pescare Vash, Freelance Archaeologist se non ha ancora innescato nel turno.",
+      "pick": "Cybernetic Specialist è un corpo incolore con surveil anche senza Vash, Freelance Archaeologist; con il payoff il mana residuo si converte in una carta.",
+      "risk": "Non recuperi in mano la carta messa sotto. Consumi carburante del cimitero e impegni un bloccante; la pescata di Vash, Freelance Archaeologist è al massimo una per turno."
+    },
+    {
+      "id": "limited-20261103-blastoneuron-listener",
+      "title": "B: scarto ripetuto e attacco temporaneo",
+      "colors": "B",
+      "role": "Motore",
+      "numbers": [
+        "96",
+        "107"
+      ],
+      "mana": "Fugitive Listener {2}{B}; Blastoneuron {3}{B}.",
+      "sequence": "Con Fugitive Listener nel cimitero, Blastoneuron la esilia e crea una copia con haste. Il nuovo ingresso fa scartare un'altra carta, mentre l'uscita dal cimitero può attivare il drain di Blastoneuron.",
+      "pick": "Un tre mana con ingresso utile diventa bersaglio per un quattro mana volante. Il valore non richiede un secondo colore o una rara.",
+      "risk": "La copia va sacrificata alla prossima sottofase finale e la carta originale resta esiliata. A mano avversaria vuota il secondo scarto non produce vantaggio."
+    },
+    {
+      "id": "limited-20261103-blocchi-sacrifici",
+      "title": "B: due corpi trasformati in risposta",
+      "colors": "B",
+      "role": "Interazione",
+      "numbers": [
+        "133",
+        "105"
+      ],
+      "mana": "Tenacious Drone {1}{B}; Eject {1}{B} e sacrificio.",
+      "sequence": "Se Tenacious Drone non serve più come attaccante o bloccante, sacrificalo come kicker di Eject the Warp Core: il removal dà -6/-6 e la morte lascia un Borg 1/1.",
+      "pick": "Il Drone rende meno doloroso il costo del removal e lascia una creatura artefatto per altri payoff. Senza rimozione rimane una normale giocata di curva.",
+      "risk": "La creatura viene sacrificata come costo, quindi perdi quel corpo anche se la magia viene neutralizzata. Il Borg non eredita i segnalini del Drone."
+    },
+    {
+      "id": "limited-20261103-borghive-menace",
+      "title": "B: l'evasione converte artefatti in carte",
+      "colors": "B",
+      "role": "Chiusura",
+      "numbers": [
+        "115",
+        "121",
+        "133"
+      ],
+      "mana": "Hive Mind {4}{B}; Unit {2}{B}; abilità {2}.",
+      "sequence": "Con Hive Mind Coprocessor e Organic Avulsion Unit presenti, paga due prima dei blocchi per dare menace alle creature artefatto. Ogni creatura artefatto che infligge danno al giocatore permette una pescata pagando una vita.",
+      "pick": "Se hai già molti Borg, cerca un modo per farli passare oltre ai payoff di pescata. Due creature buone non garantiscono da sole il collegamento.",
+      "risk": "Gli avversari possono comunque bloccare in coppia o rimuovere il motore. Le vite pagate e il numero di attaccanti vanno contati, senza assumere pescate gratuite."
+    },
+    {
+      "id": "limited-20261103-neelix-planets",
+      "title": "G: fixing che fa crescere il bloccante",
+      "colors": "G",
+      "role": "Payoff",
+      "numbers": [
+        "209",
+        "293"
+      ],
+      "mana": "Neelix, Moral Support {1}{G}; la Planet entra tappata; Food richiede {2} e sacrificio.",
+      "sequence": "Con Neelix, Moral Support presente, l'ingresso di Risa fa guadagnare una vita e gli assegna un segnalino. In un turno successivo puoi usare il Food per un altro evento di vita e un altro segnalino.",
+      "pick": "Una terra utile ai tuoi colori supporta il payoff senza occupare uno slot magia. Le fonti di vita già giocabili valgono più di magie deboli scelte solo per crescere.",
+      "risk": "Il tipo di sequenza richiede che la terra produca colori utili: qui il mazzo deve voler verde o bianco. Tre vite da un Food danno un solo trigger, non tre."
+    },
+    {
+      "id": "limited-20261103-supervisor-phlox",
+      "title": "GW: i segnalini devono superare i blocchi",
+      "colors": "GW",
+      "role": "Chiusura",
+      "numbers": [
+        "195",
+        "250",
+        "31"
+      ],
+      "mana": "Dominion Supervisor {2}{G}; Phlox, Unorthodox Doctor {2}{G}{W}; Pure Energy {1}{W}.",
+      "sequence": "Dominion Supervisor mette un segnalino su un tuo corpo e concede trample alle creature con segnalini. Con Phlox, Unorthodox Doctor, una di quelle creature che passa danni al giocatore fa pescare.",
+      "pick": "Dopo Phlox, Unorthodox Doctor cerca sia segnalini sia accesso al danno. Il Dominion Supervisor collega i due ruoli, invece di accumulare soltanto crescita su creature bloccabili.",
+      "risk": "Trample non garantisce un danno al giocatore contro ogni blocco. Rimuovere il Dominion Supervisor prima del danno può togliere la via di passaggio."
+    },
+    {
+      "id": "limited-20261103-landfall-doppio",
+      "title": "G: il ramp è anche carta e crescita",
+      "colors": "G",
+      "role": "Motore",
+      "numbers": [
+        "205",
+        "193",
+        "225"
+      ],
+      "mana": "Jake Sisko, War Correspondent {1}{G}; David and Carol Marcus, Creators {2}{G}; Xindi Surveyors {2}{G}.",
+      "sequence": "Con Jake Sisko, War Correspondent e Xindi Surveyors presenti, gioca la terra del turno e poi David and Carol Marcus, Creators. La Planet è il secondo ingresso: Jake Sisko, War Correspondent investiga e Xindi Surveyors riceve un secondo segnalino.",
+      "pick": "I produttori di terre con un corpo mantengono il campo mentre attivano il motore. Anche senza la sequenza completa svolgono un ruolo di curva e fixing.",
+      "risk": "Il corpo David and Carol Marcus, Creators richiede ancora tre mana e la Planet entra tappata. Senza due landfall nello stesso turno Jake Sisko, War Correspondent guadagna solo vite; l'Indizio va pagato per pescare."
+    },
+    {
+      "id": "limited-20261103-stun-ship",
+      "title": "WU: un ingresso compra il tempo di station",
+      "colors": "WU",
+      "role": "Preparazione",
+      "numbers": [
+        "58",
+        "239"
+      ],
+      "mana": "Enterprise {3}{U}; Hemmer, Fixing What Is Broken {W}{U}; station usa tap.",
+      "sequence": "Enterprise NX-01 tappa un bloccante e gli assegna stun. Nei turni successivi Hemmer, Fixing What Is Broken può dare due cariche con station e filtrare una carta, avvicinando le sei necessarie.",
+      "pick": "La nave interagisce prima di animarsi e Hemmer, Fixing What Is Broken rende utile il tap. Conta anche altri corpi, perché ripetere soltanto Hemmer, Fixing What Is Broken richiede più turni.",
+      "risk": "Il filtraggio non aumenta la mano netta e Hemmer, Fixing What Is Broken protegge le navi solo nel tuo turno. L'avversario può rispondere nel proprio turno o togliere le creature per station."
+    },
+    {
+      "id": "limited-20261103-cloistered-beam",
+      "title": "U: il rimbalzo è anche riciclo della selezione",
+      "colors": "U",
+      "role": "Interazione",
+      "numbers": [
+        "50",
+        "56"
+      ],
+      "mana": "Cloistered Telepath {1}{U}; Energize {1}{U}, beam {3}{U}.",
+      "sequence": "Dopo avere usato Energize, puoi rilanciarla dal cimitero per quattro mana riprendendo Cloistered Telepath. Un attaccante nemico torna in mano; rilanciare Cloistered Telepath in seguito aggiunge corpo e un'altra pescata con scarto.",
+      "pick": "Un bersaglio utile per beam me up rende il secondo uso più coerente, ma prima serve abbastanza mana per rispondere e ricostruire.",
+      "risk": "Togli il tuo corpo come costo, prima della risposta avversaria. Il rimbalzo non elimina la minaccia e può concedere di ripetere un ingresso avversario forte."
+    },
+    {
+      "id": "limited-20261103-red-sweep-ping",
+      "title": "R: una morte accende quattro danni",
+      "colors": "R",
+      "role": "Interazione",
+      "numbers": [
+        "158",
+        "162"
+      ],
+      "mana": "Munitions {1}{R}; Bombardment {R}.",
+      "sequence": "Fai uno scambio con Munitions Enthusiast: il danno alla morte può finire un bersaglio e la creatura morta accende Planetary Bombardment a quattro danni per un altro bersaglio nello stesso turno.",
+      "pick": "Le creature che scambiano lasciando danno rendono più affidabile il removal economico. Non serve un motore raro per collegare i due effetti.",
+      "risk": "Deve morire davvero una creatura: esilio e rimbalzo non bastano. Il danno del trigger e quello della magia devono risolvere su bersagli ancora validi."
+    },
+    {
+      "id": "limited-20261103-gray-copie",
+      "title": "U: magia economica, ingresso copiato",
+      "colors": "U",
+      "role": "Motore",
+      "numbers": [
+        "238",
+        "55",
+        "76"
+      ],
+      "mana": "Gray {2}{U/R}{U/R}; Crew {3}{U}; Open {U}.",
+      "sequence": "Con Gray and Adira, Forever Joined ed Emergency Holographic Crew presenti, lancia Open Communications prima del combattimento. All'inizio del combattimento crea la copia della Crew: l'ingresso recupera una nave o fa surveil e la copia ha haste.",
+      "pick": "In una base blu con accesso ai costi ibridi, cantrip e buoni ingressi diventano un pacchetto di valore, senza dovere aggiungere rosso per forza.",
+      "risk": "La copia viene sacrificata a fine turno. Serve il corpo da copiare prima del trigger, e una rimozione sul bersaglio può interrompere la sequenza."
+    },
+    {
+      "id": "limited-20261103-landfall-syndicate",
+      "title": "G: una terra cercata lascia più di una fonte",
+      "colors": "G",
+      "role": "Chiusura",
+      "numbers": [
+        "218",
+        "198"
+      ],
+      "mana": "Syndicate Liquidators {4}{G}; Final Frontier {2}{G} o beam {1}{G}.",
+      "sequence": "Con Syndicate Liquidators presente, il normale land drop dà due segnalini. Final Frontier aggiunge una seconda terra tappata e un altro trigger da due segnalini, distribuibili sui tuoi bersagli secondo le due risoluzioni.",
+      "pick": "Dopo un payoff di questo tipo, il ramp già utile acquista valore anche quando hai abbastanza mana: può diventare crescita che chiude.",
+      "risk": "Il bonus dipende dal fatto che il payoff resti presente quando entrano le terre. Il rilancio di Final Frontier riprende una creatura: non scegliere il payoff stesso se vuoi il trigger successivo."
+    },
+    {
+      "id": "limited-20261103-triangolo-recupero",
+      "title": "BG: il carburante può avere due destinazioni",
+      "colors": "BG",
+      "role": "Motore",
+      "numbers": [
+        "255",
+        "232",
+        "219"
+      ],
+      "mana": "Vash, Freelance Archaeologist {1}{B}{G}; Conqueror {2}{G}; Daniels {2}{B/G}{B/G}.",
+      "sequence": "Temporal Conqueror macina e può riprendere una terra: se Vash, Freelance Archaeologist è presente, l'uscita può far pescare. In un altro turno Daniels, Temporal Agent recupera una creatura e può produrre un nuovo trigger.",
+      "pick": "Combina sviluppo, carte e recuperi con corpi giocabili. Scegli quale risorsa rimuovere dal cimitero in base al piano e alle magie ancora in mano.",
+      "risk": "Vash, Freelance Archaeologist pesca una sola volta per turno: due uscite nello stesso turno non producono due carte. Non riprendere una terra invece della creatura decisiva senza confrontare i bisogni di mana."
+    }
+  ]
+}

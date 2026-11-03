@@ -292,6 +292,98 @@
             }
           },
           "additionalProperties": true
+        },
+        "limitedAnalysis": {
+          "type": "object",
+          "required": [
+            "date",
+            "kind",
+            "draft",
+            "sealed",
+            "partners",
+            "observedWinRates"
+          ],
+          "properties": {
+            "date": {
+              "type": "string",
+              "format": "date"
+            },
+            "kind": {
+              "const": "qualitative_editorial_prerelease"
+            },
+            "draft": {
+              "$ref": "#/$defs/limitedAssessment"
+            },
+            "sealed": {
+              "$ref": "#/$defs/limitedAssessment"
+            },
+            "partners": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "observedWinRates": {
+              "const": false
+            }
+          },
+          "additionalProperties": true
+        },
+        "limitedImpact": {
+          "type": "object",
+          "required": [
+            "date",
+            "kind",
+            "label",
+            "why",
+            "draft",
+            "sealed",
+            "before",
+            "after",
+            "limit"
+          ],
+          "properties": {
+            "date": {
+              "type": "string",
+              "format": "date"
+            },
+            "kind": {
+              "const": "editorial_game_changer"
+            },
+            "label": {
+              "type": "string",
+              "minLength": 1
+            },
+            "why": {
+              "type": "string",
+              "minLength": 1
+            },
+            "draft": {
+              "type": "string",
+              "minLength": 1
+            },
+            "sealed": {
+              "type": "string",
+              "minLength": 1
+            },
+            "limit": {
+              "type": "string",
+              "minLength": 1
+            },
+            "before": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "after": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "additionalProperties": true
         }
       },
       "additionalProperties": true
@@ -457,6 +549,30 @@
               ]
             }
           }
+        }
+      },
+      "additionalProperties": true
+    },
+    "limitedAssessment": {
+      "type": "object",
+      "required": [
+        "tier",
+        "note"
+      ],
+      "properties": {
+        "tier": {
+          "enum": [
+            "P",
+            "S",
+            "Y",
+            "F",
+            "B",
+            "N"
+          ]
+        },
+        "note": {
+          "type": "string",
+          "minLength": 1
         }
       },
       "additionalProperties": true

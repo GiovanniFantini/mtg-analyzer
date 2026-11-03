@@ -1,0 +1,85 @@
+{
+  "date": "2026-11-03",
+  "fullBuild": {
+    "status": "passed",
+    "expansions": 21,
+    "htmlPages": 290,
+    "offline": true,
+    "localLinks": "passed"
+  },
+  "finalSharedStarTrekBuild": "passed, including Sealed template integration",
+  "unitTests": {
+    "status": "passed",
+    "tests": 55,
+    "seconds": 366.537,
+    "finalFocusedTests": 6
+  },
+  "historicalFixtures": {
+    "status": "passed",
+    "scenarios": 19
+  },
+  "storageRegression": "passed: historical Sealed, incompatible Draft and backups preserved",
+  "rendererEscapingAndFallback": "passed",
+  "browser": {
+    "results": [
+      {
+        "width": 1440,
+        "editorialCards": 201,
+        "impactCards": 42,
+        "packages": 26,
+        "filters": true,
+        "zeroPreserved": true,
+        "previews": [
+          "mouse-or-touch",
+          "keyboard"
+        ],
+        "errors": []
+      },
+      {
+        "width": 390,
+        "editorialCards": 201,
+        "impactCards": 42,
+        "packages": 26,
+        "filters": true,
+        "zeroPreserved": true,
+        "previews": [
+          "mouse-or-touch",
+          "keyboard"
+        ],
+        "errors": []
+      }
+    ],
+    "noJavaScript": "201 assessments remain readable"
+  },
+  "fraRegression": {
+    "results": [
+      {
+        "id": "reality-fracture",
+        "routes": 11,
+        "manualRecordsPreserved": false,
+        "previews": [
+          "mouse",
+          "keyboard",
+          "touch"
+        ],
+        "errors": []
+      }
+    ]
+  },
+  "screenshotsInspected": [
+    1440,
+    390
+  ],
+  "integrationRegressionsFixed": [
+    "Scoped card-name attributes do not trigger the Draft statistics dialog",
+    "Sealed template includes the complete shared review and impact sections"
+  ],
+  "diffCheck": "passed",
+  "coverage": "coverage.json",
+  "scope": "Local data, build and UI verification before publication",
+  "sourceScalesDisplayedSeparately": true,
+  "cycleGradesLabelled": true,
+  "fraHistoricalReviewSchemaFallback": "passed",
+  "finalFocusedTests": 6,
+  "offlineRepeat": "byte-identical"
+}

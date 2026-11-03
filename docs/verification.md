@@ -60,6 +60,7 @@ Se il modulo è in un runtime esterno, assegnare il suo percorso effettivo a `MT
 | `verify-draft-workspace.cjs` | Quattro viste Draft, collegamenti diretti, cronologia, sei larghezze, tastiera, tocco, anteprime dinamiche e contenuti senza JavaScript. Screenshot e rapporto nella cartella temporanea, oppure in `MTG_QA_DIR` |
 | `python -m unittest test_draft_assistant.py` | Coerenza del pool con il catalogo quando lo snapshot statistico è parziale o obsoleto, conservazione delle metriche presenti e assenza di win rate inventati |
 | `verify-prospects-browser.cjs` | Consultazione delle analisi per carta; controllo datato con conteggi fissi e scrittura di screenshot, vedere sotto |
+| `verify-limited-study.cjs` | Studio Limited TRK datato: copertura comuni/non comuni, filtri Draft/Sealed, scale originali dei recensori e zero, sinergie, carte decisive, anteprime e lettura senza JavaScript. Usare una nuova `MTG_QA_DIR` |
 
 Ispezionare le route effettive negli script: conteggi storici di pagine o viewport non certificano espansioni aggiunte in seguito. Per ogni cambiamento visibile verificare le anteprime delle carte con hover, focus e tocco, anche nei risultati creati dopo il caricamento.
 

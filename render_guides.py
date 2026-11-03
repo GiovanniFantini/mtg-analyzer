@@ -12,6 +12,12 @@ def inline(text):
 
 def render(expansion, feature):
     guides=expansion.data['guides']
+    if feature in ('limitedReview', 'sealedReview'):
+        return render_limited(expansion, 'sealed' if feature=='sealedReview' else 'draft')
+    if feature=='limitedImpact':
+        return render_impacts(expansion)
+    if feature=='synergyReview':
+        return render(expansion,'draftCombos') if guides.get('limitedReview') else ''
     availability=expansion.availability[feature]
     if not availability['available']:
         id_={'pickGuide':'pick-guide','pickBaits':'pick-baits','pickDecisions':'pick-decisions','draftCombos':'draft-combos'}[feature]
@@ -88,3 +94,39 @@ def render(expansion, feature):
             rows.append('<article class="draft-package" data-colors="'+html.escape(p['colors'])+'" data-role="'+html.escape(p['role'])+'" data-search="'+html.escape(search,quote=True)+'"><h3>'+html.escape(p['title'])+'</h3><p class="small">'+html.escape(p['colors']+' · '+p['role'])+'</p><p><strong>Hai uno di questi pezzi?</strong> '+' + '.join(text(c) for c in p['cards'])+'</p><p>'+text(p['pick'])+'</p><details'+(' open' if index==0 else '')+'><summary>Sequenza, mana e limiti</summary>'+''.join('<p><strong>'+label+':</strong> '+text(p[key])+'</p>' for key,label in fields)+'</details></article>')
         return template.replace('__PACKAGES__',''.join(rows))
     raise ValueError('Renderer guida non supportato: '+feature)
+
+
+LIMITED_TIERS={'P':'Prioritaria','S':'Solida','Y':'Dipende dalle sinergie','F':'Riempitivo','B':'Riserva mirata','N':'Eviterei di base'}
+
+
+def render_impacts(expansion):
+    cards=[c for c in expansion.cards if c.get('prospects',{}).get('limitedImpact')]
+    if not cards:return ''
+    e=html.escape
+    rows=[]
+    for card in cards:
+        a=card['prospects']['limitedImpact']
+        rows.append('<article class="lr-card"><h3>'+e(card['name'])+'</h3><p>'+e(a['label'])+'</p><p>'+e(a['why'])+'</p><details><summary>Quando sceglierla e come rispondere</summary><p>Draft: '+e(a['draft'])+'</p><p>Sealed: '+e(a['sealed'])+'</p><p>Prima che risolva: '+e(', '.join(a['before']))+'.</p><p>Dopo la risoluzione: '+e(', '.join(a['after']))+'.</p><p>'+e(a['limit'])+'</p></details></article>')
+    return '<section id="limited-impact" class="limited-review"><h2>Carte capaci di cambiare la partita</h2><p>'+str(len(rows))+' valutazioni editoriali: impatto, mana, supporti e risposte. Una carta condizionata non diventa una bomba per il solo simbolo di rarità. Le ospiti mantengono identità e legalità proprie; presenza nel catalogo non certifica la collazione delle stampe.</p><div class="lr-results">'+''.join(rows)+'</div></section>'
+
+
+def render_limited(expansion, event):
+    study=expansion.data['guides'].get('limitedReview')
+    if not study:return ''
+    cards=[c for c in expansion.cards if c.get('prospects',{}).get('limitedAnalysis')]
+    if not cards:return ''
+    e=html.escape
+    rows=[]
+    for c in cards:
+        analysis=c['prospects']['limitedAnalysis']
+        tiers={context:analysis[context]['tier'] for context in ('draft','sealed')}
+        search=' '.join([c['name'],c['type'],analysis['draft']['note'],analysis['sealed']['note'],*analysis['partners']]).lower()
+        attrs=' '.join('data-'+context+'-'+kind+'="'+e(value,quote=True)+'"' for context in tiers for kind,value in [('tier',tiers[context]),('order',str(list(LIMITED_TIERS).index(tiers[context])))])
+        reviews=c['prospects'].get('limitedReviews',[])
+        opinions=' · '.join(e(r['author'])+': '+str(r['value'])+'/'+str(r['scaleMax'])+(' (ciclo)' if r.get('groupAssessment') else '') for r in reviews)
+        assessments=''.join('<div data-lr-context="'+context+'"><p>'+label+': '+LIMITED_TIERS[tiers[context]]+'</p><p>'+e(analysis[context]['note'])+'</p></div>' for context,label in [('draft','Draft'),('sealed','Sealed')])
+        rows.append('<article class="lr-card" data-lr-card data-lr-name="'+e(c['name'],quote=True)+'" data-search="'+e(search,quote=True)+'" data-colors="'+''.join(c['identity'])+'" data-rarity="'+e(c['rarity'])+'" '+attrs+'><h3>'+e(c['name'])+'</h3><p class="lr-meta">'+e('Comune' if c['rarity']=='common' else 'Non comune')+' · '+e(c['cost'] or 'Terra')+'</p>'+assessments+'<details><summary>Supporti e recensioni</summary><p>'+e(', '.join(analysis['partners']))+'</p><p>'+opinions+'</p><a href="'+e(expansion.manifest['presentation']['pages']['gallery']['url'])+'?card='+e(c['id'])+'#gallery">Apri scheda e fonti</a></details></article>')
+    options=''.join('<option value="'+code+'">'+label+'</option>' for code,label in LIMITED_TIERS.items())
+    contexts=''.join('<option value="'+key+'"'+(' selected' if key==event else '')+'>'+label+'</option>' for key,label in [('draft','Draft'),('sealed','Sealed')])
+    disagreements='<details class="lr-disagreements"><summary>Dove i recensori divergono e cosa verificare</summary>'+''.join('<h3>'+e(r['name'])+'</h3><p>'+' · '.join('<a href="'+e(o['url'],quote=True)+'" target="_blank" rel="noopener">'+e(o['author'])+'</a>: '+str(o['value'])+'/'+str(o['scaleMax']) for o in r['opinions'])+'</p><p>'+e(r['finding'])+'</p>' for r in study.get('disagreements',[]))+'</details>'
+    return '<section id="limited-review" class="limited-review" data-limited-review data-default-context="'+event+'"><h2>Comuni e non comuni: Draft e Sealed</h2><p>'+e(study['method'])+'</p><p>'+e(study['coverageNote'])+'</p>'+disagreements+'<div class="lr-controls"><label>Cerca carta, supporto o funzione<input type="search" data-lr-filter="query"></label><label>Contesto<select data-lr-filter="context">'+contexts+'</select></label><label>Colore / identità<select data-lr-filter="color"><option value="">Tutti</option><option value="W">Bianco</option><option value="U">Blu</option><option value="B">Nero</option><option value="R">Rosso</option><option value="G">Verde</option><option value="M">Multicolore</option><option value="C">Incolore</option></select></label><label>Rarità<select data-lr-filter="rarity"><option value="">Tutte</option><option value="common">Comuni</option><option value="uncommon">Non comuni</option></select></label><label>Giudizio<select data-lr-filter="tier"><option value="">Tutti</option>'+options+'</select></label><button type="button" data-lr-reset>Azzera filtri</button></div><p data-lr-count role="status" aria-live="polite">'+str(len(rows))+' carte</p><div class="lr-results" data-lr-results>'+''.join(rows)+'</div><p data-lr-empty hidden>Nessuna carta con questi filtri.</p></section>'
