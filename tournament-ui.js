@@ -3,6 +3,30 @@
 'use strict';
 const E=TournamentEngine,$=id=>document.getElementById(id),KEY='mtg-local-tournament-v1';
 let state=null,loaded=null,blocked=false,objectURL=null;
+let audio=null,soundEnabled=true,observedTimer=null;
+const Audio=window.AudioContext||window.webkitAudioContext;
+function soundStatus(){
+ $('t-sound-toggle').setAttribute('aria-pressed',String(soundEnabled));
+ text('t-sound-toggle',soundEnabled?'Disattiva avviso sonoro':'Attiva avviso sonoro');
+ text('t-sound-status',!Audio?'Avviso sonoro non disponibile in questo browser.':!soundEnabled?'Avviso sonoro disattivato.':audio?.state==='running'?'Avviso sonoro pronto. Tieni aperta questa pagina e il volume acceso.':'Per attivare l’audio, avvia il timer o premi Prova suono.');
+}
+async function prepareSound(){
+ if(!soundEnabled||!Audio)return false;
+ try{if(!audio){audio=new Audio();audio.addEventListener('statechange',soundStatus);}if(audio.state!=='running')await audio.resume();soundStatus();return audio.state==='running';}
+ catch(error){text('t-sound-status','Audio non attivato. Premi Prova suono per riprovare.');return false;}
+}
+function playSound(){
+ if(!soundEnabled||audio?.state!=='running')return;
+ try{
+  const start=audio.currentTime;
+  [880,880,660].forEach((frequency,i)=>{
+   const oscillator=audio.createOscillator(),gain=audio.createGain(),at=start+i*.4;
+   oscillator.frequency.value=frequency;gain.gain.setValueAtTime(0,at);gain.gain.linearRampToValueAtTime(.18,at+.02);gain.gain.linearRampToValueAtTime(0,at+.3);
+   oscillator.connect(gain);gain.connect(audio.destination);oscillator.start(at);oscillator.stop(at+.32);
+   oscillator.addEventListener('ended',()=>{oscillator.disconnect();gain.disconnect();},{once:true});
+  });
+ }catch(error){text('t-sound-status','Impossibile riprodurre l’avviso. Premi Prova suono per riprovare.');}
+}
 const pendingResults=new Map();
 const text=(id,value)=>$(id).textContent=value;
 const message=value=>text('t-status',value);
@@ -38,8 +62,11 @@ function renderMatch(m,index,current){
  wrap.append(form);return wrap;
 }
 function clock(){
- if(!state)return;const ms=E.remaining(state.timer),seconds=Math.ceil(ms/1000);text('t-clock',Math.floor(seconds/60).toString().padStart(2,'0')+':'+(seconds%60).toString().padStart(2,'0'));
+ if(!state){observedTimer=null;return;}const ms=E.remaining(state.timer),seconds=Math.ceil(ms/1000);text('t-clock',Math.floor(seconds/60).toString().padStart(2,'0')+':'+(seconds%60).toString().padStart(2,'0'));
  $('t-expired').hidden=ms>0;text('t-toggle-clock',state.timer.deadline!==null&&ms>0?'Pausa timer':'Avvia timer');
+ const key=!blocked&&state.status!=='complete'&&state.timer.deadline!==null?JSON.stringify([state.id,state.rounds.length,state.timer.deadline,state.timer.label]):null;
+ if(key&&ms>0)observedTimer=key;
+ else{const expired=key&&key===observedTimer;observedTimer=null;if(expired)playSound();}
 }
 function render(){
  $('t-create').hidden=!!state;$('t-event').hidden=!state;$('t-export').disabled=!state;$('t-new').hidden=!state&&!blocked;$('t-clock-panel').hidden=!state;
@@ -72,11 +99,16 @@ $('t-next').addEventListener('click',()=>change(s=>{
  if(s.rounds.length>=s.roundLimit||s.players.filter(p=>!p.dropped).length<2){s.status='complete';if(s.rounds.length<s.roundLimit)s.endedEarly=true;s.timer.remainingMs=E.remaining(s.timer);s.timer.deadline=null;return;}
  const round=E.pair(s);s.rounds.push(round);s.timer={label:'Turno',deadline:null,remainingMs:s.roundMinutes*60000};
 },'Turno aggiornato. I risultati precedenti sono nello storico.'));
-$('t-toggle-clock').addEventListener('click',()=>change(s=>{const ms=E.remaining(s.timer);if(s.timer.deadline!==null&&ms>0){s.timer.remainingMs=ms;s.timer.deadline=null;}else{if(ms<=0)throw new Error('Imposta una nuova durata per riavviare il timer.');s.timer.deadline=Date.now()+ms;}}));
+$('t-toggle-clock').addEventListener('click',()=>{void prepareSound();change(s=>{const ms=E.remaining(s.timer);if(s.timer.deadline!==null&&ms>0){s.timer.remainingMs=ms;s.timer.deadline=null;}else{if(ms<=0)throw new Error('Imposta una nuova durata per riavviare il timer.');s.timer.deadline=Date.now()+ms;}});});
+$('t-sound-toggle').addEventListener('click',()=>{soundEnabled=!soundEnabled;soundStatus();if(soundEnabled)void prepareSound();});
+$('t-sound-test').addEventListener('click',async()=>{soundEnabled=true;soundStatus();if(await prepareSound())playSound();});
+// A restored running timer can unlock audio on the first interaction with the page.
+for(const type of ['pointerdown','keydown'])document.addEventListener(type,()=>{if(soundEnabled&&audio?.state!=='running')void prepareSound();});
 $('t-reset-clock').addEventListener('click',()=>{if(state?.timer.deadline!==null&&!confirm('Sostituire il timer corrente con una nuova durata?'))return;change(s=>{const minutes=Number($('t-duration').value);if(!Number.isInteger(minutes)||minutes<1||minutes>180)throw new Error('Durata da 1 a 180 minuti.');s.timer={label:$('t-phase').value,remainingMs:minutes*60000,deadline:null};});});
 $('t-export').addEventListener('click',()=>{if(!state)return;const url=URL.createObjectURL(new Blob([JSON.stringify(state,null,2)],{type:'application/json'})),a=node('a');a.href=url;a.download='torneo-draft.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);});
 $('t-import').addEventListener('change',async event=>{const file=event.target.files[0];if(!file)return;try{if(file.size>1000000)throw new Error('Il JSON supera 1 MB.');const next=E.validate(JSON.parse(await file.text()));if(loaded&&!confirm('Importare questo torneo? Quello corrente verrà conservato in un backup locale.'))return;save(next,true);render();message('Torneo importato. Backup precedente disponibile per il download.');}catch(error){message(error.message);}finally{event.target.value='';}});
 $('t-new').addEventListener('click',()=>{if(!confirm('Preparare un nuovo torneo? Il precedente sarà conservato integralmente alla creazione del nuovo.'))return;state=null;render();message('Compila il nuovo torneo. Il precedente resta salvato finché non premi Crea torneo.');});
 window.addEventListener('storage',event=>{if(event.key!==KEY)return;blocked=true;message('Torneo modificato in un’altra scheda. Ricarica la pagina prima di proseguire.');});
-read();render();if(!blocked)message(state?'Torneo ripristinato da questo browser.':'Crea un torneo per iniziare.');setInterval(clock,500);
+if(!Audio){soundEnabled=false;$('t-sound-toggle').disabled=true;$('t-sound-test').disabled=true;}
+soundStatus();read();render();if(!blocked)message(state?'Torneo ripristinato da questo browser.':'Crea un torneo per iniziare.');setInterval(clock,500);
 })();

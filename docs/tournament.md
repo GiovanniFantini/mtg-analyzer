@@ -30,4 +30,6 @@ La chiave `mtg-local-tournament-v1` conserva un solo torneo corrente. Prima di i
 
 Il timer salva una scadenza assoluta quando corre e i millisecondi rimanenti quando è in pausa. Riaprendo la pagina il tempo trascorso viene conteggiato, senza dipendere dal numero di tick JavaScript.
 
-Verifiche: `node test-tournament.cjs`, `node verify-tournament-browser.cjs` con le variabili browser descritte in [verification.md](verification.md), più build offline e suite espansioni.
+Alla scadenza del timer, con la pagina aperta e l’audio attivo, viene riprodotto un avviso di tre toni una sola volta. Si può disattivare con il pulsante dedicato o ascoltare con «Prova suono». L’avvio del timer abilita l’audio; dopo una ricarica, se il timer sta ancora correndo, interagire con la pagina o premere «Prova suono». Un timer già scaduto alla riapertura non ripete l’avviso. Le impostazioni audio valgono per la pagina corrente e non modificano i JSON del torneo. Il dispositivo deve avere il volume acceso; pagina chiusa, sospensione del dispositivo e restrizioni del browser possono impedire il suono. L’avviso vale anche per i timer Draft e Costruzione mazzo.
+
+Verifiche: `node test-tournament.cjs`, `node verify-tournament-browser.cjs` e `node verify-tournament-audio-browser.cjs` con le variabili browser descritte in [verification.md](verification.md), più build offline e suite espansioni.
