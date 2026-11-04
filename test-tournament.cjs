@@ -1,6 +1,22 @@
 'use strict';
 const assert=require('node:assert/strict'),E=require('./tournament-engine.js');
 function event(n){const s=E.create('test','Test','Un set qualsiasi');s.players=Array.from({length:n},(_,i)=>({id:'p'+i,name:'Player '+i,dropped:false}));return s;}
+// Six players: one 2-0 and two 2-1 wins, regardless of table or winning seat.
+for(let clean=0;clean<3;clean++)for(let seats=0;seats<8;seats++){
+ const s=event(6);s.status='active';
+ s.rounds=[{number:1,matches:Array.from({length:3},(_,i)=>{
+  const score=i===clean?[2,0,0]:[2,1,0];
+  return {a:'p'+(i*2),b:'p'+(i*2+1),result:seats&(1<<i)?[score[1],score[0],0]:score};
+ })}];
+ const original=JSON.stringify(s),rows=E.standings(s),winners=rows.filter(p=>p.points===3),next=E.pair(s);
+ const opponent=id=>{const m=next.matches.find(m=>m.a===id||m.b===id);return rows.find(p=>p.id===(m.a===id?m.b:m.a));};
+ assert.equal(opponent(winners[0].id).points,3,'The 2-0 winner must meet another winner');
+ assert.equal(opponent(winners[1].id).points,3,'Keep the two highest ranked winners together');
+ assert.equal(opponent(winners[2].id).points,0,'Float the lowest ranked winner');
+ assert.equal(next.rematch,false);
+ for(const m of next.matches)assert.ok(!rows.find(p=>p.id===m.a).opponents.includes(m.b));
+ assert.equal(JSON.stringify(s),original,'Pairing must preserve the saved tournament');
+}
 for(let count=2;count<=8;count++){
  const s=event(count),seen=new Set(),byes=new Set();
  for(let r=0;r<Math.min(3,count-1);r++){

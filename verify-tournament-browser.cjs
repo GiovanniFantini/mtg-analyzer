@@ -39,8 +39,32 @@ const base=process.env.MTG_SITE_URL||'http://127.0.0.1:8765/';
    assert.equal(ended.status,'complete');assert.equal(ended.endedEarly,true);assert.equal(ended.roundLimit,3);assert.equal(ended.rounds.length,2);
    assert.deepEqual(errors,[]);await context.close();
   }
+  // Reported six-player case through real result entry, including shuffled seats.
+  for(const width of [1440,390])for(let clean=0;clean<3;clean++){
+   const context=await browser.newContext({viewport:{width,height:900},hasTouch:width===390}),page=await context.newPage();
+   await page.goto(base+'tournament.html');await page.locator('#t-create button').click();
+   for(const name of ['Ada','Bruno','Carla','Dario','Elena','Fabio']){await page.locator('#t-player').fill(name);await page.locator('#t-add button').click();}
+   await page.locator('#t-start').click();
+   const forms=page.locator('#t-current form');assert.equal(await forms.count(),3);
+   for(let i=0;i<3;i++){
+    const reversed=(i+clean)%2===1,loser=i===clean?0:1;
+    await forms.nth(i).locator('input').nth(0).fill(String(reversed?loser:2));
+    await forms.nth(i).locator('input').nth(1).fill(String(reversed?2:loser));
+    await forms.nth(i).locator('button').click();
+   }
+   await page.reload();
+   const first=await page.evaluate(()=>JSON.parse(localStorage.getItem('mtg-local-tournament-v1')).rounds[0]);
+   const winner=m=>m.result[0]>m.result[1]?m.a:m.b,winners=first.matches.map(winner),top=winner(first.matches[clean]);
+   await page.locator('#t-next').click();
+   const saved=await page.evaluate(()=>JSON.parse(localStorage.getItem('mtg-local-tournament-v1')));
+   assert.deepEqual(saved.rounds[0],first);assert.equal(saved.rounds.length,2);
+   const match=saved.rounds[1].matches.find(m=>m.a===top||m.b===top),opponent=match.a===top?match.b:match.a;
+   assert.ok(winners.includes(opponent),'The 2-0 winner must meet another winner after UI entry and reload');
+   assert.equal(saved.rounds[1].matches.filter(m=>winners.includes(m.a)!==winners.includes(m.b)).length,1);
+   await context.close();
+  }
   // Invalid old JSON is preserved and downloadable, including across reload.
   const context=await browser.newContext(),page=await context.newPage();await page.goto(base+'tournament.html');await page.evaluate(()=>localStorage.setItem('mtg-local-tournament-v1','{"old":true}'));await page.reload();assert.equal(await page.locator('#t-recovery').isVisible(),true);assert.equal(await page.evaluate(()=>localStorage.getItem('mtg-local-tournament-v1')),'{"old":true}');await context.close();
-  console.log('Tournament browser PASS: desktop/touch, full event, reload timer, results, ranking, export/import, invalid recovery and backup failure.');
+  console.log('Tournament browser PASS: desktop/touch, six-player 2-0/2-1/2-1 pairings, full event, reload timer, results, ranking, export/import, invalid recovery and backup failure.');
  }finally{await browser.close();}
 })().catch(error=>{console.error(error);process.exitCode=1;});
