@@ -28,6 +28,24 @@
  const stoppedReviewMessage='Il calcolo dei bot si è fermato. Torna alla configurazione e usa Riprendi per ricostruire la revisione. L’esportazione attuale contiene soltanto il record delle pick.';
  const V=DraftVisual;
  let reviewedCards=null,reviewPart='main',cardDialogActive=false;
+ let historyTurns=[],historyIndex=0;
+ function seatPool(entries,seat){
+  $('pool-title').textContent=seat===-1?'Le tue pick':`Bot ${seat+1} · pick`;$('pool-count').textContent=`(${entries.length})`;
+  $('human-pool').innerHTML=V.stacks(entries,byId);V.fitStacks($('human-pool'));
+  document.querySelector('[data-table-view="pool"]').textContent=seat===-1?'Le tue pick':`Pick Bot ${seat+1}`;
+ }
+ function renderHistoryTurn(){
+  const item=historyTurns[historyIndex];if(!item)return;
+  const cards=(entries,empty)=>`<div class="history-cards card-stacks">${V.stacks(entries,byId,{emptyText:empty})}</div>`;
+  $('pick-history').innerHTML=`<h4>Cronistoria · ${+$('review-seat').value===-1?'Tu':`Bot ${+$('review-seat').value+1}`}</h4><div class="history-controls"><button id="history-prev" ${historyIndex===0?'disabled':''} aria-label="Scelta precedente">←</button><label>Scelta<select id="history-turn">${historyTurns.map((t,i)=>`<option value="${i}" ${i===historyIndex?'selected':''}>Busta ${t.round} · Pick ${t.pick}</option>`).join('')}</select></label><button id="history-next" ${historyIndex===historyTurns.length-1?'disabled':''} aria-label="Scelta successiva">→</button></div><p role="status">Busta ${item.round} · Pick ${item.pick}. Pool prima: ${item.before.length}. Scelte: ${item.chosen.length}. Lasciate: ${item.left.length}.</p><section class="history-chosen"><h4>Carta${item.chosen.length===1?' scelta':'e scelte'} (${item.chosen.length})</h4>${cards(item.chosen,'Nessuna scelta.')}</section><section><h4>Pool prima della scelta (${item.before.length})</h4>${cards(item.before,'Pool vuoto: prima scelta del draft.')}</section><section class="history-left"><h4>Carte lasciate nella busta (${item.left.length})</h4><p>Le carte “scartate” da questa scelta passano al giocatore successivo.</p>${cards(item.left,'Nessuna: la busta è esaurita.')}</section>`;
+  $('history-turn').onchange=event=>{historyIndex=+event.target.value;renderHistoryTurn();$('history-turn').focus();};
+  for(const [id,delta] of [['history-prev',-1],['history-next',1]])$(id).onclick=()=>{historyIndex+=delta;renderHistoryTurn();$(id).disabled?$('history-turn').focus():$(id).focus();};
+ }
+ async function loadHistory(generation,seat){
+  $('pick-history').textContent='Ricostruzione della cronistoria.';
+  try{const turns=session.history?await session.history(seat):DraftHistory.timeline(session,seat);if(generation!==reviewGeneration)return;historyTurns=turns;historyIndex=0;renderHistoryTurn();}
+  catch(error){if(generation===reviewGeneration)$('pick-history').textContent='Cronistoria non disponibile. '+error.message;}
+ }
  const tableInert=new Set();
  function tableMode(active){
   document.body.classList.toggle('draft-active',active);
@@ -94,6 +112,7 @@
  }catch{storageAvailable=false;status('Salvataggio non disponibile: usa Esporta sessione.'+(saved||backupKey||incompatibleRaw!==null?' Il salvataggio precedente è conservato.':' La sessione resta temporanea.'));}}
  function render(){
   tableMode(true);document.body.classList.toggle('draft-complete',session.complete);
+  $('view-player').hidden=!session.complete;
   $('pack').style.setProperty('--pack-columns',Math.ceil(data.packSize/2));
   document.querySelector('[data-table-view="pack"]').textContent=session.complete?'Mazzi':'Busta';
   $('setup').hidden=true;$('table').hidden=false;$('review').hidden=true;
@@ -110,8 +129,9 @@
  }
  async function renderReview(){
   const generation=++reviewGeneration,seat=+$('review-seat').value;
+  loadHistory(generation,seat);
   reviewedCards=null;
-  if(seat===-1){$('review').hidden=false;$('bot-review').innerHTML=`<h3>Le tue pick · pool completo</h3><div class="review-stacks card-stacks">${V.stacks(session.human,byId)}</div>`;$('bot-review').setAttribute('aria-busy','false');$('table-analysis').innerHTML=V.analysis(session.human,byId);return;}
+  if(seat===-1){seatPool(session.human,seat);$('review').hidden=false;$('bot-review').innerHTML=`<h3>Le tue pick · pool completo</h3><div class="review-stacks card-stacks">${V.stacks(session.human,byId)}</div>`;$('bot-review').setAttribute('aria-busy','false');$('table-analysis').innerHTML=V.analysis(session.human,byId);return;}
   let bot=session.bots[seat];let deck='',reviewLane=bot.lane;
   $('table-analysis').innerHTML='<p>Composizione del bot in calcolo.</p>';
   $('bot-review').setAttribute('aria-busy','true');$('bot-review').textContent=`Bot ${seat+1}: ${E.STRATEGIES[bot.strategy]?.name||'Adattivo'}. Mazzo in calcolo.`;$('review').hidden=false;
@@ -119,6 +139,7 @@
    reviewedCards={bot,built,seat};
    reviewLane=built.lane;deck=`<p class="review-build-title">Mazzo costruibile: ${built.slots}/${built.targetSize} carte</p><div class="review-tabs" role="group" aria-label="Carte da mostrare"><button data-review-part="main">Mazzo</button><button data-review-part="sideboard">Riserve</button><button data-review-part="pool">Pool completo</button></div><div id="review-visual"></div><details class="build-details"><summary>Mana e limiti della costruzione</summary><p>Piano finale: ${esc(built.lane)}. ${built.spells.length-built.manaOnly.length} magie e ${built.manaOnly.length} carte usate soltanto come fixing. Fonti per colore al turno ${built.sourceTurn}: ${Object.entries(built.sources).filter(([,n])=>n>0).map(([c,n])=>`${esc(c)} ${n.toFixed(1)}`).join(' · ')}. Le fonti indirette hanno un peso approssimato.</p><p>Solo fixing: ${built.manaOnly.map(e=>ref(e.id)).join(', ')||'nessuna'}. Posti magia ancora scoperti: ${built.holes.spells}.</p><p>${esc(built.assumptions.join(' '))}</p></details>`;
   }
+  seatPool(bot.pool,seat);
   $('bot-review').innerHTML=`<p>${esc(E.STRATEGIES[bot.strategy]?.name||'Adattivo')} · ${esc(reviewLane)} · ${bot.pool.length} carte</p>${session.engineVersion===4&&bot.strategy==='synergy'&&!data.botPolicy?.coverage.synergies?'<p>'+esc(synergyNote)+'</p>':''}${deck||`<p>Pool completo del bot classico. Il motore classico non ricostruisce un mazzo finale.</p><div class="review-stacks card-stacks">${V.stacks(bot.pool,byId)}</div>`}<details class="review-decisions"><summary>Rivedi le ${bot.log.length} scelte e le motivazioni</summary>`+bot.log.map(item=>`<div class="review-pick">B${item.round} P${item.pick}: ${ref(item.id)}<p>${esc(item.phase)} · ${esc(item.lane)} · punteggio ${item.score.toFixed(2)}. ${Object.entries(item.components).map(([k,v])=>`${esc(k)} ${v.toFixed(2)}`).join(' · ')}</p>${item.reasons?`<p>${esc(item.reasons.join(' '))}</p><p>Migliore stimata: ${ref(item.bestId)}. ${item.joint?'Scelta valutata insieme alle altre carte dello stesso turno.':item.randomized?'Sorteggio fra alternative considerate equivalenti.':'Scelta della migliore valutazione stimata.'}</p>`:''}<p>Alternative valutate: ${item.alternatives.filter(a=>a.id!==item.id).map(a=>`${ref(a.id)} (${a.score.toFixed(2)})`).join(', ')||'nessuna'}</p>${item.poolBefore?`<details><summary>Busta, pool precedente e conseguenze</summary><p>Busta osservata: ${item.observed.map(ref).join(', ')}</p><p>Pool precedente: ${item.poolBefore.map(e=>ref(e.id)).join(', ')||'vuoto'}</p><p>Carte sostituite nel main: ${(item.replaces||[]).map(ref).join(', ')||'nessuna'}</p>${item.pivot?`<p>Cambio di piano: ${esc(item.pivot.from)} → ${esc(item.pivot.to)}. Carte escluse per il cambio: ${item.pivot.out.map(ref).join(', ')}.</p>`:''}<p>${esc((item.gaps||[]).join(' '))}</p></details>`:''}</div>`).join('')+'</details>';
   if(reviewedCards)renderReviewCards();else $('table-analysis').innerHTML=V.analysis(bot.pool,byId,{title:`Bot ${seat+1} · pool`});
   $('bot-review').setAttribute('aria-busy','false');$('review').hidden=false;
@@ -133,12 +154,12 @@
   $('table-analysis').innerHTML=V.analysis(entries,byId,{title:`Bot ${seat+1} · ${main?'mazzo':reviewPart==='pool'?'pool':'riserve'}`,note:main?'Mazzo proposto dal motore, comprese le basi da aggiungere.':'Analisi delle carte della vista selezionata.',basics});
  }
  document.addEventListener('click',event=>{const button=event.target.closest('[data-review-part]');if(button){reviewPart=button.dataset.reviewPart;renderReviewCards();}});
- $('review-seat').innerHTML=defaults.map((_,i)=>`<option value="${i}">Bot ${i+1} · posto ${i+2}</option>`).join('')+'<option value="-1">Tu · pool completo</option>';$('review-seat').addEventListener('change',renderReview);
+ $('review-seat').innerHTML='<option value="-1">Tu · posto 1</option>'+defaults.map((_,i)=>`<option value="${i}">Bot ${i+1} · posto ${i+2}</option>`).join('');$('review-seat').addEventListener('change',renderReview);
  $('start').addEventListener('click',async()=>{if(busy)return;const configs=defaults.map((_,i)=>{const strategy=document.querySelector(`[data-strategy="${i}"]`).value;return {strategy,target:strategy==='force'?document.querySelector(`[data-target="${i}"]`).value:null};});
   setBusy(true,'Preparazione del tavolo in corso.');try{const seed=$('seed').value||EXPANSION_CONFIG.id+'-tavolo-1',version=+$('policy-version').value,options={match:$('policy-match').value};
    const next=version===4?await DraftWorkerClient.create(data,{seed,configs,options}):E.createSession(data,seed,configs,version,options);
    if(session?.dispose)session.dispose();if(loadedSession!==session&&loadedSession?.dispose)loadedSession.dispose();
-   loadedSession=null;session=next;mobileView('pack');reviewPart='main';persist();render();$('progress').focus();
+   loadedSession=null;session=next;mobileView('pack');reviewPart='main';$('review-seat').value='-1';persist();render();$('progress').focus();
   }catch(error){if($('policy-version').value==='4'){$('policy-version').querySelector('option[value="4"]').disabled=true;$('policy-version').value='3';policyDescription();}status('Impossibile avviare i bot selezionati. '+error.message+' Puoi usare i bot classici.');}finally{setBusy(false);}
  });
  $('resume').addEventListener('click',async()=>{if(busy)return;setBusy(true,'Ripresa del draft in corso.');replayController=new AbortController();cancelReplay.hidden=false;const replayStarted=performance.now();

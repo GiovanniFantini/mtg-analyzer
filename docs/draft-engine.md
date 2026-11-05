@@ -1,5 +1,9 @@
 # Motore Draft e qualità dei bot
 
+## Revisione del tavolo
+
+A draft concluso il selettore Giocatore cambia pool, analisi e cronistoria per il proprio posto o un bot. La cronistoria mostra il pool prima della scelta, le carte scelte nello stesso turno e tutte le carte lasciate nella busta. Le scelte multiple restano raggruppate. `draft-history.js` ricostruisce le buste dai dati e dalle pick della sessione senza modificare decisioni, revisioni funzionali o salvataggi; mantiene identità, copie e finiture anche nei replay storici compatibili.
+
 ## Confini del motore
 
 `collation.js` esegue la ricetta del prodotto per Draft e Sealed. `draft-engine.js` gestisce stato, osservazioni, transizioni e politica dei bot senza DOM, rete o salvataggi; `draft-table.js` gestisce l'interfaccia. `build_draft_engine.py` è un adattatore del renderer comune. Gli input attivi sono i documenti dell'espansione, in particolare `products.json`, `limited.json`, `printings.json`, `ratings.json` e `archetypes.json`.

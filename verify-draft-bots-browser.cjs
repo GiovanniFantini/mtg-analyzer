@@ -26,10 +26,10 @@ const fixture=JSON.parse(fs.readFileSync('tests/fixtures/draft-bots-v2.json','ut
   await page.keyboard.press('Escape');await preview.focus();await page.locator('#card-hover').waitFor({state:'visible'});
   await page.keyboard.press('Enter');await page.locator('#card-dialog').waitFor({state:'visible'});await page.locator('#close-card').click();
   for(let i=0;i<42;i++)await page.locator('#pack [data-pick]').first().click();
-  await page.locator('#review').waitFor({state:'visible'});assert.equal(await page.locator('#bot-review .review-pick').count(),42);
+  await page.locator('#review').waitFor({state:'visible'});await page.selectOption('#review-seat','0');assert.equal(await page.locator('#bot-review .review-pick').count(),42);
   const completed=await readSave();assert.equal(completed.engineVersion,3);assert.equal(completed.picks.length,42);
   const before=await page.locator('#bot-review').innerText();
-  await page.reload();await page.locator('#resume').click();assert.equal(await page.locator('#bot-review').innerText(),before);
+  await page.reload();await page.locator('#resume').click();await page.selectOption('#review-seat','0');assert.equal(await page.locator('#bot-review').innerText(),before);
   const downloadPromise=page.waitForEvent('download');await page.locator('#export').click();const download=await downloadPromise;
   const exported=JSON.parse(fs.readFileSync(await download.path(),'utf8'));
   assert.equal(exported.engineVersion,3);assert.equal(exported.review.length,7);

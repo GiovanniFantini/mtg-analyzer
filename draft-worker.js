@@ -33,6 +33,7 @@ function seatPool(format){
  return {run:job=>new Promise((resolve,reject)=>{if(closed){reject(Error('Calcolo dei bot interrotto'));return;}queue.push({id:++next,job,resolve,reject});drain();}),dispose:()=>fail(Error('Sessione chiusa'))};
 }
 const decks=new Map();
+importScripts('draft-history.js');
 const snapshot=()=>({engineVersion:session.engineVersion,seed:session.seed,configs:session.configs,
  policyOptions:session.policyOptions,human:session.human,bots:session.complete?session.bots.map(b=>({strategy:b.strategy,lane:b.lane})):[],
  round:session.round,pick:session.pick,complete:session.complete,current:session.current(),record:session.export()});
@@ -48,6 +49,10 @@ self.onmessage=async event=>{
    if(command==='replay')for(const [index,pick] of record.picks.entries()){if(pool)await session.stepAsync(pick,pool.run);else session.step(pick);self.postMessage({id,progress:{done:index+1,total:record.picks.length}});}
    evaluator=DraftEngine.createEvaluator(format,4);decks.clear();result=snapshot();
   }else if(command==='step'){if(pool)await session.stepAsync(uid,pool.run);else session.step(uid);result=snapshot();}
+  else if(command==='history'){
+   if(!session?.complete||!Number.isInteger(seat)||seat< -1||seat>=session.bots.length)throw Error('Cronistoria non disponibile');
+   result=DraftHistory.timeline(session,seat);
+  }
   else if(command==='deck'||command==='review'){
    if(!session?.complete||!Number.isInteger(seat)||!session.bots[seat])throw Error('Revisione non disponibile');
    if(!decks.has(seat)){const bot=session.bots[seat];decks.set(seat,evaluator.finalBuild(bot.pool,bot.strategy,

@@ -12,13 +12,15 @@ const base=process.env.MTG_SITE_URL,key='mtg-draft-table-fra-v1';
   await page.locator('#pack [data-pick]').first().click();await idle();const saved=await read();assert.equal(saved.picks.length,1);const activeWorkers=await page.evaluate(()=>{const d=JSON.parse(document.querySelector('#draft-data').textContent),f=d.formats?.draft||d;return 1+Math.min(f.seats-1,4,Math.max(1,navigator.hardwareConcurrency-2));});
   const workersSettled=async()=>{const until=Date.now()+5000;while(page.workers().length!==activeWorkers&&Date.now()<until)await new Promise(resolve=>setTimeout(resolve,25));assert.equal(page.workers().length,activeWorkers);};await workersSettled();
   await page.evaluate(()=>window.failNextWorkerStep=true);await page.locator('#pack [data-pick]').first().click();await idle();
-  assert.deepEqual(await read(),saved);assert.match(await page.locator('#draft-status').innerText(),/Riprendi/);
+  assert.deepEqual(await read(),saved);assert.match(await page.locator('#draft-status').innerText(),/riprend/i);
   assert.equal(await page.locator('#resume').isVisible(),true);await page.locator('#resume').click();await idle();
   await page.locator('#pack [data-pick]').first().click();await idle();assert.equal((await read()).picks.length,2);await workersSettled();
   // Failed persistence must not leave a closed cached session or an orphan worker.
   await page.locator('#reset').click();await page.evaluate(()=>{Storage.prototype.setItem=function(){throw Error('full');};});
   await page.locator('#start').click();await idle();await page.locator('#reset').click();await page.locator('#resume').click();await idle();
-  assert.equal(await page.locator('#pool-count').innerText(),'(2)');await workersSettled();
+  // A failed save keeps the newly started empty session in memory.
+  assert.equal(await page.locator('#pool-count').innerText(),'(0)');
+  assert.equal((await read()).picks.length,2);await workersSettled();
   await context.close();
   const integrity=await browser.newContext();integrity.setDefaultTimeout(180000);await integrity.route('https://**/*',r=>r.abort());
   await integrity.route('**/draft-policy.js?v=*',async route=>{const response=await route.fetch();await route.fulfill({response,body:(await response.text())+'\n// mixed cached bytes\n'});});

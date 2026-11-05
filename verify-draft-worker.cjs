@@ -7,7 +7,7 @@ const E=require('./draft-engine.js'),{fixture}=require('./tests/draft-policy-fix
   const blobs=new Map();let blobId=0;
   class LocalURL extends URL {static createObjectURL(blob){const id='blob:'+ ++blobId;blobs.set(id,Buffer.concat(blob.parts.map(x=>Buffer.from(x))));return id;}static revokeObjectURL(id){blobs.delete(id);}}
   const context=vm.createContext({postMessage:data=>parentPort.postMessage(data),crypto:require('node:crypto').webcrypto,URL:LocalURL,Blob:class {constructor(parts){this.parts=parts;}},location:{href:'http://localhost/draft-worker.js'},fetch:async url=>({ok:true,arrayBuffer:async()=>fs.readFileSync(new URL(url).pathname.slice(1))})});
-  context.self=context;context.importScripts=(...names)=>names.forEach(name=>vm.runInContext(blobs.get(name).toString('utf8'),context,{filename:name}));
+  context.self=context;context.importScripts=(...names)=>names.forEach(name=>vm.runInContext((blobs.get(name)||fs.readFileSync(name)).toString('utf8'),context,{filename:name}));
   vm.runInContext(fs.readFileSync('draft-worker.js','utf8'),context);
   parentPort.on('message',data=>context.onmessage({data}));`,{eval:true});
  let id=0;
@@ -23,6 +23,8 @@ const E=require('./draft-engine.js'),{fixture}=require('./tests/draft-policy-fix
   assert.deepEqual(state.bots,sync.bots.map(b=>({strategy:b.strategy,lane:b.lane})));
   const full=JSON.parse(await call('export'));
   assert.deepEqual(full,{...sync.export(),review:sync.bots.map(({strategy,pool,log})=>({strategy,pool,log}))});
+  require('./draft-history.js');
+  for(const seat of [-1,0,1])assert.deepEqual(await call('history',{seat}),DraftHistory.timeline(sync,seat));
   const review=await call('review',{seat:0});
   assert.deepEqual(review.bot,{...sync.bots[0],log:sync.bots[0].log.map(({deck,...item})=>item)});
   const deck=await call('deck',{seat:0});assert.deepEqual(deck,E.createEvaluator(f,4).finalBuild(sync.bots[0].pool,'signals',{match:'BO1'}));

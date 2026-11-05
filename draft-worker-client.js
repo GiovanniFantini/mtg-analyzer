@@ -18,7 +18,7 @@
   try{state=await call(payload.record?'replay':'create',{format,...payload},onProgress);}catch(error){fail(error);throw error;}finally{signal?.removeEventListener('abort',abort);}
   const proxy={...state,current:()=>state.current,export:()=>structuredClone(state.record),
    async step(uid){state=await call('step',{uid});Object.assign(proxy,{...state,current:proxy.current});},
-   finalDeck:seat=>call('deck',{seat}),review:seat=>call('review',{seat}),exportDownload:()=>failed?Promise.resolve(JSON.stringify(state.record,null,2)):call('export'),dispose:()=>fail(Error('Sessione chiusa'))};
+   history:seat=>call('history',{seat}),finalDeck:seat=>call('deck',{seat}),review:seat=>call('review',{seat}),exportDownload:()=>failed?Promise.resolve(JSON.stringify(state.record,null,2)):call('export'),dispose:()=>fail(Error('Sessione chiusa'))};
   Object.defineProperty(proxy,'alive',{get:()=>!failed});
   return proxy;
  }
