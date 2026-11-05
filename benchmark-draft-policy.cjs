@@ -10,13 +10,14 @@ const f=root.formats?.draft||root,diagnostic=E.createEvaluator(f,4),hash=x=>cryp
 const algorithmFiles=['draft-policy.js','draft-engine.js','collation.js'];
 assert.equal(f.botPolicy.algorithmRevision,crypto.createHash('sha256').update(Buffer.concat(algorithmFiles.flatMap((p,i)=>[...(i?[Buffer.from([0])]:[]),fs.readFileSync(p)]))).digest('hex'),'Offline build must match the current algorithm');
 const benchmarkSource=fs.readFileSync(__filename,'utf8');
-const codeHash=hash(['draft-engine.js','draft-policy.js','bot_profiles.py','collation.js'].map(p=>fs.readFileSync(p,'utf8')).join('\n'));
-const output=path.join('reviews',production?'draft-bots-production-20261029':'draft-bots-implementation-20261029',mode+'-'+codeHash.slice(0,10));
+const capturedFiles=['draft-engine.js','draft-policy.js','bot_profiles.py','bot_statistics.py','expansion_data.py','collation.js'];
+const codeHash=hash(capturedFiles.map(p=>fs.readFileSync(p,'utf8')).join('\n'));
+const output=process.env.MTG_QA_DIR||path.join('reviews',production?'draft-bots-production-20261029':'draft-bots-implementation-20261029',mode+'-'+codeHash.slice(0,10));
 if(fs.existsSync(path.join(output,'results.json')))throw Error('Result already recorded; preserve this acquisition.');
 fs.mkdirSync(output,{recursive:true});
 const acquiredAt=new Date().toISOString();
 fs.writeFileSync(path.join(output,'format.json'),JSON.stringify(f,null,2)+'\n');
-for(const name of ['draft-engine.js','draft-policy.js','bot_profiles.py','collation.js'])fs.copyFileSync(name,path.join(output,name+'.txt'));
+for(const name of capturedFiles)fs.copyFileSync(name,path.join(output,name+'.txt'));
 fs.writeFileSync(path.join(output,'benchmark-draft-policy.cjs.txt'),benchmarkSource);
 const seeds=mode==='training'?frozen.trainingSeeds.slice(0,2):frozen.reservedSeeds;
 const defaults=['signals','bomb','synergy','aggro','control','fixing','denial'],results=[],blind=[],blindPicks=[],mapping=[],catalog=new Map();

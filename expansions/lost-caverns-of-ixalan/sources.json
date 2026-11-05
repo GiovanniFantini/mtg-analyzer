@@ -1993,7 +1993,7 @@
     "draft17landsPublic": {
       "provider": "17Lands public datasets",
       "url": "https://www.17lands.com/public_datasets",
-      "retrieved": "2026-10-28",
+      "retrieved": "2026-11-05",
       "filters": {
         "event": "PremierDraft",
         "ranks": "Tutti i ranghi nel dataset",
@@ -2009,7 +2009,8 @@
         "wins": 455749,
         "license": "CC BY 4.0",
         "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
-        "method": "Each game counts once per card if opening_hand + drawn > 0, irrespective of copies. Rate = wins / observed games * 100. Includes all ranks and archetypes in this complete public file; not the current live aggregate."
+        "method": "Each game counts once per card if opening_hand + drawn > 0, irrespective of copies. Rate = wins / observed games * 100. Includes all ranks and archetypes in this complete public file; not the current live aggregate.",
+        "contextMethod": "Source main_colors field, primary colors only; splash_colors is not merged. Same GIH observation rule within each context."
       },
       "coverage": {
         "catalogCards": 291,
@@ -2039,6 +2040,37 @@
         "license": "CC BY 4.0",
         "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
         "method": "Each game counts once per card if opening_hand + drawn > 0, irrespective of copies. Rate = wins / observed games * 100. Includes all ranks and archetypes in this complete public file; not the current live aggregate."
+      },
+      "coverage": {
+        "catalogCards": 291,
+        "matchedCards": 291,
+        "withWinRate": 291,
+        "missingCatalogIds": [],
+        "unmatchedSourceNames": []
+      }
+    },
+    "draft17landsPublic-traditional": {
+      "provider": "17Lands public datasets",
+      "url": "https://www.17lands.com/public_datasets",
+      "retrieved": "2026-11-05",
+      "filters": {
+        "event": "TradDraft",
+        "ranks": "Tutti i ranghi nel dataset",
+        "archetype": "Tutti gli archetipi",
+        "period": "Intero dataset pubblico; aggiornamento Wed, 27 Dec 2023 18:30:57 GMT"
+      },
+      "derivation": {
+        "datasetUrl": "https://17lands-public.s3.amazonaws.com/analysis_data/game_data/game_data_public.LCI.TradDraft.csv.gz",
+        "sha256": "a487f4ac5ed5749969839030f920268f2b30de77a07be439f0cff4ba8644038e",
+        "compressedBytes": 12944955,
+        "lastModified": "Wed, 27 Dec 2023 18:30:57 GMT",
+        "games": 169240,
+        "wins": 99944,
+        "license": "CC BY 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Each game counts once per card if opening_hand + drawn > 0, irrespective of copies. Rate = wins / observed games * 100. Includes all ranks and archetypes in this complete public file; not the current live aggregate.",
+        "contextMethod": "Source main_colors field, primary colors only; splash_colors is not merged. Same GIH observation rule within each context.",
+        "gameOneMethod": "TradDraft game_number == 1, before between-game sideboarding; same GIH observation rule. All-game rows remain separate."
       },
       "coverage": {
         "catalogCards": 291,

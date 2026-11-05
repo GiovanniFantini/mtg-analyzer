@@ -202,7 +202,7 @@ if(!base)throw Error('Run python verify-expansion-review.py');
   assert.match(await test.page.locator('#'+comboPool.id+' .pool').innerText(),/Tutti presenti/);
   assert.match(await test.page.locator('[data-pool-gallery]').getAttribute('href'),/mode=sealed/);
   await test.page.goto(test.root+test.data.routes.strategy);
-  const guideRef=test.page.locator('main .card-reference[tabindex="0"]:visible').first();await guideRef.focus();
+  const guideRef=test.page.locator('main .card-reference[tabindex="0"]:visible').first();await test.page.keyboard.press('Tab');await guideRef.focus();
   await test.page.locator('#mtg-card-preview').waitFor({state:'visible'});
   assert.equal(await test.page.locator('#mtg-card-preview').isVisible(),true);
   await test.page.goto(test.root+test.data.routes.discovery);

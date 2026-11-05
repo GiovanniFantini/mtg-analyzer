@@ -157,6 +157,46 @@
           "items": {
             "type": "string"
           }
+        },
+        "colorContexts": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/gameCohort"
+          }
+        },
+        "gameOne": {
+          "$ref": "#/$defs/gameCohort"
+        }
+      },
+      "additionalProperties": true
+    },
+    "gameCohort": {
+      "type": "object",
+      "required": [
+        "games",
+        "wins",
+        "cards"
+      ],
+      "properties": {
+        "games": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "wins": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "cards": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/cardObservation"
+          }
+        },
+        "colorContexts": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/gameCohort"
+          }
         }
       },
       "additionalProperties": true

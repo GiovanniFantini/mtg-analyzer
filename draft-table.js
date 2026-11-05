@@ -20,8 +20,10 @@
   policyInfo.textContent=modern?'Valutano il mazzo costruibile, il mana e i segnali ricevuti. Un aggiornamento del sito può impedire la ripresa dei draft sperimentali in corso. Puoi esportarne il record. '+(data.botPolicy.gaps||[]).join(' '):'Profili di allenamento classici. I draft già salvati conservano la politica con cui sono iniziati.';
   if(data.picksPerTurn!==1)policyInfo.textContent+=' Bot contestuali non disponibili in questo evento: tempi delle scelte multiple ancora da verificare.';
   if(!data.botPolicy?.available)policyInfo.textContent+=' Bot contestuali non disponibili: '+(data.botPolicy?.missing||['Profili strategici da completare.']).join(' ');
+  if(modern){const source=data.botPolicy.empirical?.modes?.[$('policy-match').value],date=source?.asOf?new Date(source.asOf):null,asOf=date&&!Number.isNaN(+date)?date.toLocaleDateString('it-IT',{timeZone:'UTC'}):'non indicata';policyInfo.textContent+=source?` Qualità empirica 17Lands ${source.event}${source.cohort==='game-one'?' (prima partita)':''}, dataset aggiornato al ${asOf}, acquisito il ${source.retrieved}: ${source.coverage.withEvidence}/${source.coverage.activeNonbasicPrintings} stampe non base con campione idoneo. Le altre usano le recensioni sulla stessa scala. I contesti di colore sono regolarizzati, non probabilità di vittoria.`:' Nessun dataset pubblico idoneo per questo contesto di match: qualità da recensioni, senza mescolare BO1 e BO3.';}
  }
  $('policy-match').value=data.botPolicy?.match||'BO3';$('policy-version').addEventListener('change',()=>{policyDescription();defaults.forEach((_,i)=>configDescription(i));});policyDescription();
+ $('policy-match').addEventListener('change',policyDescription);
  let busy=false,reviewGeneration=0,readyAt=0,replayController=null;
  const cancelReplay=document.createElement("button");cancelReplay.type="button";cancelReplay.id="cancel-replay";cancelReplay.hidden=true;cancelReplay.textContent="Annulla ripresa";$("resume").after(cancelReplay);cancelReplay.addEventListener("click",()=>replayController?.abort());
  const synergyNote="In questo evento usa la valutazione di riferimento: sinergie non coperte.";

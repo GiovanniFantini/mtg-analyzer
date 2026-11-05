@@ -2085,7 +2085,7 @@
     "draft17landsPublic": {
       "provider": "17Lands public datasets",
       "url": "https://www.17lands.com/public_datasets",
-      "retrieved": "2026-10-28",
+      "retrieved": "2026-11-05",
       "filters": {
         "event": "PremierDraft",
         "ranks": "Tutti i ranghi nel dataset",
@@ -2101,7 +2101,84 @@
         "wins": 530213,
         "license": "CC BY 4.0",
         "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
-        "method": "Each game counts once per card if opening_hand + drawn > 0, irrespective of copies. Rate = wins / observed games * 100. Includes all ranks and archetypes in this complete public file; not the current live aggregate."
+        "method": "Each game counts once per card if opening_hand + drawn > 0, irrespective of copies. Rate = wins / observed games * 100. Includes all ranks and archetypes in this complete public file; not the current live aggregate.",
+        "contextMethod": "Source main_colors field, primary colors only; splash_colors is not merged. Same GIH observation rule within each context."
+      },
+      "coverage": {
+        "catalogCards": 289,
+        "matchedCards": 286,
+        "withWinRate": 286,
+        "missingCatalogIds": [
+          "01c5ede0-a098-4f21-8b7e-795a83e75aae",
+          "2c5a7550-fe1a-4797-9583-70ab56cfac0d",
+          "bfa1bd2f-25bd-4fbd-877b-cef00ab7f92f"
+        ],
+        "unmatchedSourceNames": [
+          "Bishop of the Bloodstained",
+          "Burden of Guilt",
+          "Combine Chrysalis",
+          "Consign // Oblivion",
+          "Duskmantle, House of Shadow",
+          "Enlisted Wurm",
+          "Evolutionary Leap",
+          "Ghost Quarter",
+          "Gnaw to the Bone",
+          "Goblin Warchief",
+          "Hard Evidence",
+          "High Alert",
+          "Ixidor, Reality Sculptor",
+          "Jace, Wielder of Mysteries",
+          "Krosan Tusker",
+          "Kuldotha Rebirth",
+          "Laid to Rest",
+          "Leonin Relic-Warder",
+          "Magmaw",
+          "Mass Hysteria",
+          "Maverick Thopterist",
+          "Mentor of the Meek",
+          "Metalspinner's Puzzleknot",
+          "Millstone",
+          "Mistveil Plains",
+          "Molten Psyche",
+          "Monologue Tax",
+          "Mystery Key",
+          "Nyx Weaver",
+          "Possibility Storm",
+          "Putrid Warrior",
+          "Quintorius, Field Historian",
+          "Ranger-Captain of Eos",
+          "Shard of Broken Glass",
+          "Smuggler's Copter",
+          "Spell Snare",
+          "Stromkirk Captain",
+          "Syr Konrad, the Grim",
+          "Treacherous Terrain",
+          "Worldspine Wurm"
+        ]
+      }
+    },
+    "draft17landsPublic-traditional": {
+      "provider": "17Lands public datasets",
+      "url": "https://www.17lands.com/public_datasets",
+      "retrieved": "2026-11-05",
+      "filters": {
+        "event": "TradDraft",
+        "ranks": "Tutti i ranghi nel dataset",
+        "archetype": "Tutti gli archetipi",
+        "period": "Intero dataset pubblico; aggiornamento Wed, 20 Mar 2024 14:43:37 GMT"
+      },
+      "derivation": {
+        "datasetUrl": "https://17lands-public.s3.amazonaws.com/analysis_data/game_data/game_data_public.MKM.TradDraft.csv.gz",
+        "sha256": "ee869e6a155cfb72e5663911f055c811cf3d6884e8a3944c80674fd608a7ef3d",
+        "compressedBytes": 15580247,
+        "lastModified": "Wed, 20 Mar 2024 14:43:37 GMT",
+        "games": 200673,
+        "wins": 116514,
+        "license": "CC BY 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "method": "Each game counts once per card if opening_hand + drawn > 0, irrespective of copies. Rate = wins / observed games * 100. Includes all ranks and archetypes in this complete public file; not the current live aggregate.",
+        "contextMethod": "Source main_colors field, primary colors only; splash_colors is not merged. Same GIH observation rule within each context.",
+        "gameOneMethod": "TradDraft game_number == 1, before between-game sideboarding; same GIH observation rule. All-game rows remain separate."
       },
       "coverage": {
         "catalogCards": 289,

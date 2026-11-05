@@ -26,17 +26,18 @@ const base=process.env.MTG_SITE_URL||'http://127.0.0.1:8767/',key='mtg-draft-tab
   const raw=JSON.parse(fs.readFileSync(await (await pending).path(),'utf8'));assert.ok(!raw.review&&!raw.bots);
   await page.reload();assert.equal(page.workers().length,0);await page.locator('#resume').click();await page.locator('#pack [data-pick]').first().waitFor();assert.equal(await page.locator('#pool-count').innerText(),'(4)');
   for(let n=4;n<42;n++)await page.locator('#pack [data-pick]').first().click();
+  await page.locator('#review-seat').selectOption('0');
   await page.locator('#bot-review[aria-busy="false"]').waitFor({state:'visible'});assert.equal(await page.locator('#bot-review .review-pick').count(),42);
   await page.locator('[data-review-part=pool]').click();assert.equal(await page.locator('#table-analysis .analysis-total').innerText(),'42 carte');
   await page.locator('[data-review-part=sideboard]').click();assert.equal(await page.locator('#table-analysis .analysis-total').innerText(),'0 carte');
   await page.locator('[data-review-part=main]').click();assert.equal(await page.locator('#table-analysis .analysis-total').innerText(),'40 carte');
   const basic=page.locator('.basic-land-strip [data-preview]').first();await basic.hover();await page.locator('#card-hover').waitFor({state:'visible'});
-  await page.keyboard.press('Escape');await basic.focus();await page.locator('#card-hover').waitFor({state:'visible'});
+  await page.keyboard.press('Escape');await page.keyboard.press('Tab');await basic.focus();await page.locator('#card-hover').waitFor({state:'visible'});
   await page.keyboard.press('Enter');await page.locator('#card-dialog').waitFor({state:'visible'});await page.locator('#close-card').click();assert.equal(await page.locator('#card-hover').isVisible(),false);
   await page.locator('#bot-review .review-decisions > summary').click();await page.locator('#bot-review .review-pick details summary').first().click();
   const before=await page.locator('#bot-review').innerText();assert.match(before,/Mazzo costruibile: 40\/40/);assert.match(before,/Pool precedente/);
   const ref=page.locator('#bot-review .review-pick .card-ref').first();await ref.hover();await page.locator('#card-hover').waitFor({state:'visible'});
-  await page.keyboard.press('Escape');await ref.focus();await page.locator('#card-hover').waitFor({state:'visible'});
+  await page.keyboard.press('Escape');await page.keyboard.press('Tab');await ref.focus();await page.locator('#card-hover').waitFor({state:'visible'});
   await page.keyboard.press('Enter');await page.locator('#card-dialog').waitFor({state:'visible'});await page.locator('#close-card').click();
   await page.evaluate(()=>{window.originalWorkerPost=Worker.prototype.postMessage;Worker.prototype.postMessage=function(message,...args){if(message.command==='review'){setTimeout(()=>window.originalWorkerPost.call(this,message,...args),1200);return;}return window.originalWorkerPost.call(this,message,...args);};});
   await page.locator('#review-seat').selectOption('1');assert.match(await page.locator('#bot-review').innerText(),/Bot 2:.*Mazzo in calcolo/);assert.equal(await page.locator('#bot-review').getAttribute('aria-busy'),'true');
@@ -48,11 +49,11 @@ const base=process.env.MTG_SITE_URL||'http://127.0.0.1:8767/',key='mtg-draft-tab
   saved=await readSave();await page.reload();assert.equal(page.workers().length,0);
   await page.locator('#resume').click();await page.locator('#cancel-replay').click();await page.waitForFunction(()=>!document.querySelector('#start').disabled);
   assert.deepEqual(await readSave(),saved);await page.waitForTimeout(100);assert.equal(page.workers().length,0);
-  await page.locator('#resume').click();await page.locator('#bot-review .review-decisions > summary').click();await page.locator('#bot-review .review-pick details summary').first().click();assert.equal(await page.locator('#bot-review').innerText(),before);
+  await page.locator('#resume').click();await page.locator('#review-seat').selectOption('0');await page.locator('#bot-review .review-decisions > summary').click();await page.locator('#bot-review .review-pick details summary').first().click();assert.equal(await page.locator('#bot-review').innerText(),before);
   const output=process.env.MTG_QA_DIR;if(output){fs.mkdirSync(output,{recursive:true});fs.writeFileSync(path.join(output,'v4-record.json'),JSON.stringify(saved));await page.screenshot({path:path.join(output,'policy-v4-desktop.png'),fullPage:false});}
   const phone=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true});phone.setDefaultTimeout(120000);
   await phone.route('https://**/*',r=>r.abort());const mobile=await phone.newPage();mobile.on('pageerror',e=>errors.push(e.message));await mobile.goto(url);
-  await mobile.evaluate(({key,saved})=>localStorage.setItem(key,JSON.stringify(saved)),{key,saved});await mobile.reload();await mobile.locator('#resume').tap();
+  await mobile.evaluate(({key,saved})=>localStorage.setItem(key,JSON.stringify(saved)),{key,saved});await mobile.reload();await mobile.locator('#resume').tap();await mobile.locator('#review-seat').selectOption('0');
   await mobile.locator('#bot-review .review-decisions > summary').tap();await mobile.locator('#bot-review .review-pick .card-ref').first().tap();await mobile.locator('#card-dialog').waitFor({state:'visible'});await mobile.locator('#close-card').tap();
   await mobile.locator('.basic-land-strip [data-preview]').first().tap();await mobile.locator('#card-dialog').waitFor({state:'visible'});await mobile.locator('#close-card').tap();
   assert.ok(await mobile.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));

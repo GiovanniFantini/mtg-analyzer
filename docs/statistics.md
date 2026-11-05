@@ -12,7 +12,7 @@ Conservare per ciascuna metrica definizione, unità, fonte, data, finestra tempo
 
 Associare le righe al `catalogId` stabile. Controllare l'intero catalogo pertinente, comprese le carte ospiti, distinguendo carte osservate, carte con una specifica metrica e carte assenti. Ristampe e varianti non diventano nuove identità di gioco. Valori assenti o bloccati restano `null`, anomalie e precisione originale si conservano.
 
-Riutilizzare proprietà con lo stesso significato; aggiungere estensioni compatibili per informazioni diverse. Non mediare automaticamente servizi, popolazioni o eventi differenti e non trasformare una WR in un voto editoriale o in un peso dei bot. Il contratto Draft non si applica a Sealed o Pick-Two cambiandone soltanto l'etichetta.
+Riutilizzare proprietà con lo stesso significato; aggiungere estensioni compatibili per informazioni diverse. Non mediare automaticamente servizi, popolazioni o eventi differenti e non trasformare automaticamente una WR in un voto editoriale. L’uso esplicito nei bot contestuali segue il riferimento per evento e il metodo documentato in [draft-engine.md](draft-engine.md#qualità-empirica-e-contesti-di-colore). Il contratto Draft non si applica a Sealed o Pick-Two cambiandone soltanto l'etichetta.
 
 ## Importazione Untapped
 
@@ -85,3 +85,17 @@ Il livello aggregato `prospects.tournamentLevel` è calcolato una sola volta da 
 Acquisizione riproducibile: `research_tournament_lists.py --output research/<acquisizione>` scarica e normalizza le liste ufficiali, conservando URL, data e hash del documento. Per le vecchie pagine dinamiche del Pro Tour Pioneer di Karlov Manor usare anche `node capture_pioneer_pro_tour.cjs`, con Playwright configurato. Le 258 liste vengono estratte dal testo visibile delle cinque pagine ufficiali e controllate con i totali di main e sideboard. `integrate_tournament_prospects.py --research research/<acquisizione> --report research/<nuova-elaborazione>/coverage.json --apply` calcola gli indici di ogni carta nei cataloghi registrati e aggiorna discovery e fonti, comprese le selezioni editoriali che tornano a zero o N/D. I nuovi profili `tournament_data_only` non contengono recensioni strategiche; il prezzo placeholder ha stato `not_collected` e non rappresenta una rilevazione economica, indipendentemente dalla data tecnica del record. `tournament_index.py` contiene calcolo e validazione; `competitive-prospects-ui.js` presenta le misure condivise. Il rapporto richiede un percorso nuovo e conserva l’hash dell’integratore; senza `--apply` e senza `--report` nessuna evidenza viene riscritta. La data e la fonte della legalità sono conservate per carta e nell’indice: integrare metadati mancanti non sostituisce legalità già registrate. Le fonti restano locali per la build offline. La selezione datata dei tornei e la finestra del metodo devono essere aggiornate esplicitamente per una nuova acquisizione, senza cambiare la data di un vecchio campione.
 
 Controlli: `python -m unittest test_tournament_index.py test_research_tournament_lists.py`, `node test-catalog-indices.cjs`, controlli del contratto e browser pertinenti. Gli indici restano separati da WR Limited, voti, politiche dei bot, salvataggi e revisioni funzionali dei replay.
+
+## Contesti pubblici per i bot
+
+L’acquisizione conserva facoltativamente `colorContexts` (partite, vittorie e righe GIH per `main_colors`) e `gameOne` (stessa struttura, per `game_number == 1` nel Traditional). Non include gli splash nei colori principali. Le righe all-game del catalogo rimangono distinte dal campione pre-sideboard usato per il main dei bot. I conteggi di carta non possono superare la coorte e le vittorie non possono superare il denominatore.
+
+L’importatore accetta eventi espliciti `PremierDraft`, `TradDraft`, `QuickDraft`, `PickTwoDraft`, `Sealed`. Traditional e Quick hanno chiavi provider distinte, senza sovrascrivere Premier. Le sostituzioni di snapshot e provenienza sono atomiche: un errore non tronca il JSON precedente. Una cartella datata nuova preserva acquisizioni e metodi precedenti; la build resta offline.
+
+Esempio di acquisizione del riferimento Draft, senza combinare le popolazioni:
+
+```sh
+python import_public_game_statistics.py --output research/<acquisizione>/contexts --event PremierDraft --event TradDraft --workers 3 --apply
+```
+
+I dataset nuovi non cambiano v2/v3 o recensioni. Nella v4, un evento configurato esplicitamente con `statisticsReference` consuma le osservazioni idonee e ne include i valori funzionali nella propria revisione. I contesti insufficienti e le fonti assenti conservano un ripiego dichiarato. Controlli: `python -m unittest test_bot_statistics.py test_public_game_statistics.py`, `node test-draft-statistics.cjs`, più le verifiche della politica contestuale.

@@ -24,7 +24,25 @@
       },
       "sources": [
         "https://magic.wizards.com/en/formats/booster-draft"
-      ]
+      ],
+      "botPolicy": {
+        "schemaVersion": 1,
+        "statisticsReference": {
+          "population": "MTG Arena",
+          "purpose": "card-quality-prior",
+          "product": "play",
+          "events": {
+            "BO1": "PremierDraft",
+            "BO3": "TradDraft"
+          },
+          "provenance": {
+            "kind": "explicit-canonical-card-quality-reference",
+            "date": "2026-11-05",
+            "url": "https://www.17lands.com/public_datasets",
+            "note": "Riferimento empirico per identità canonica; non trasferisce collazione o WR complessiva al prodotto fisico. Un dato assente conserva il ripiego editoriale dichiarato."
+          }
+        }
+      }
     },
     "sealed": {
       "id": "tla-play-sealed",

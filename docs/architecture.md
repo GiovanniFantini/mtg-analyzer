@@ -163,3 +163,7 @@ Il riconoscimento è parziale, non un interprete completo di Oracle: ogni colleg
 Nuovi dati non richiedono builder dedicati né condizioni sul nome del set nei motori condivisi. Nuove operazioni di gioco richiedono invece supporto esplicito nel motore. Non aggiungere un'interfaccia di amministrazione per aggiornare i JSON.
 
 I payload delle pagine senza analisi Constructed escludono `cards[].prospects` e il relativo registro fonti. Il catalogo mantiene i profili completi; la discovery carica le analisi dal JSON locale e le sue anteprime non li duplicano. Per Atlas, `expansion-data.js` alimenta i banchi manuali con carte prive di questi profili; la compatibilità preview conserva i dati richiesti dalle sue schede.
+
+## Riferimenti statistici dei bot
+
+`botPolicy.statisticsReference` collega esplicitamente un prodotto e un evento Draft a una popolazione statistica usata soltanto come riferimento di qualità. Il contratto opzionale è nello schema 1 dei profili. `bot_statistics.py` prepara i dati con la libreria standard; `expansion_data.py` li passa alla politica v4 senza modificare i voti o il contratto funzionale v2/v3. L’assenza del riferimento, un prodotto diverso o un dataset incompatibile non abilita una trasposizione automatica. Contesti e metodo sono descritti in [statistics.md](statistics.md#contesti-pubblici-per-i-bot) e [draft-engine.md](draft-engine.md#qualità-empirica-e-contesti-di-colore).

@@ -437,7 +437,7 @@ class Expansion:
         previous=compatibility.get('previousRevisions',[]) if compatibility.get('revision')==revision else []
         from bot_profiles import payload
         bot_policy=payload(cards, active, event, event.get('botPolicy', {}),
-                           event.get('kind')=='draft' and self.draft_event_availability(event_id)['available'], archetypes)
+                           event.get('kind')=='draft' and self.draft_event_availability(event_id)['available'], archetypes, self.data['statistics'])
         return {'version':1,'id':event['id'],'set':self.manifest['code'],'name':event['name'],
                 'botPolicy':bot_policy,'minDeckSize':event['minDeckSize'],
                 'extraBasicLands':event.get('extraBasicLands',False),'maxCopies':event.get('maxCopies'),

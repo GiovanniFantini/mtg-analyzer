@@ -11,12 +11,32 @@
  const clamp=(x,a,b)=>Math.max(a,Math.min(b,x)),sum=a=>a.reduce((n,x)=>n+x,0);
  const compare=(a,b)=>String(a)<String(b)?-1:String(a)>String(b)?1:0;
  const stable=(a,b)=>compare(a.id,b.id)||compare(a.uid,b.uid);
- function create(format){
+ function create(format,requestedMatch){
   const config=format.botPolicy;if(!config?.available)throw Error('Politica v4 non disponibile: dati minimi incompleti');
   const byId=Object.fromEntries(format.cards.map(c=>[c.id,c])),profiles=config.profiles;
   const active=Object.keys(profiles).map(id=>byId[id]);
   if(active.some(c=>!c||(!c.basic&&!Number.isFinite(c.score))))throw Error('V4 richiede voti espliciti sulle stampe attive');
-  const rating=c=>c.basic?0:c.score,profile=c=>profiles[c.id];
+  const matchMode=requestedMatch??config.match??'BO3',empirical=config.empirical?.modes?.[matchMode],matchEvaluators=new Map();
+  const profile=c=>profiles[c.id],observation=c=>empirical?.cards?.[c.catalogId||c.id];
+  const fallback=c=>empirical?.fallbackModel?clamp(empirical.fallbackModel.intercept+empirical.fallbackModel.slope*c.score,0,5):c.score;
+  const rating=(c,lane)=>c.basic?0:observation(c)?.contexts?.[lane]?.utility??observation(c)?.utility??fallback(c);
+  function quality(c,lane){
+   const row=observation(c),context=row?.contexts?.[lane];
+   if(c.basic)return {kind:'basic',utility:0,editorial:null};
+   if(!row)return {kind:'editorial',utility:fallback(c),editorial:c.score,match:matchMode,reason:empirical?'Campione insufficiente o carta assente dalla fonte; recensione riportata sulla scala di utilità della coorte, senza inventare WR.':'Dataset idoneo assente per questo evento e contesto di match.'};
+   return {kind:'empirical',utility:rating(c,lane),editorial:c.score,match:matchMode,event:empirical.event,cohort:empirical.cohort,sourceId:empirical.sourceId,
+    method:config.empirical.method,asOf:empirical.asOf,retrieved:empirical.retrieved,datasetSha256:empirical.datasetSha256,
+    rate:row.rate,games:row.games,estimate:row.estimate,priorRate:row.priorRate,reliability:row.reliability,
+    ...(context?{context:{lane,rate:context.rate,games:context.games,adjustment:context.adjustment}}:{})};
+  }
+  function qualityReason(c,lane){const q=quality(c,lane);return q.kind==='empirical'?`Qualità regolarizzata ${q.utility.toFixed(2)}/5, GIH osservata ${q.rate.toFixed(1)}% su ${q.games} partite (${q.event}${q.cohort==='game-one'?', prima partita':''}). Prior editoriale calibrato; peso del campione ${Math.round(q.reliability*100)}%.${q.context?` Contesto ${q.context.lane}: ${q.context.rate.toFixed(1)}% su ${q.context.games}, correzione regolarizzata.`:''}`:q.kind==='editorial'?'Qualità da recensione: '+q.reason:'';}
+  // An already freely addable basic offers no reserve when the objective ties.
+  // Physical basics still compete normally when the event does not supply them.
+  const redundantBasic=c=>c.basic&&profile(c).mana.abilities.some(a=>!a.restricted&&a.colors.length&&a.colors.every(color=>freeBasics.includes(color)));
+  // Sub-nanounit roundoff is not strategic evidence. Quantized keys preserve
+  // a transitive order while keeping the full score in logs and explanations.
+  const scoreKey=value=>Math.round(value*1e9);
+  const scoreOrder=(a,b)=>scoreKey(b.score)-scoreKey(a.score)||Number(redundantBasic(a.card))-Number(redundantBasic(b.card))||scoreKey(b.contextScore??b.score)-scoreKey(a.contextScore??a.score)||stable(a.entry,b.entry);
   const has=(c,r)=>profile(c)?.roles.includes(r),total=format.rounds*format.packSize;
   const target=config.minDeckSize,freeBasics=config.allowedBasics||[];
   // Stable expectation from declared recipe. Dependencies/exclusions are an
@@ -177,7 +197,7 @@
    const key=lane+':'+role;
    if(!fillExpectations.has(key)){
     const cards=active.filter(c=>!c.land&&fits(c,lane)&&(role==='spell'||role==='creature'&&c.creature||role==='interaction'&&has(c,'interaction')&&!c.creature));
-    const mass=sum(cards.map(frequency));fillExpectations.set(key,{mass,value:mass?sum(cards.map(c=>rating(c)*frequency(c)))/mass:0});
+    const mass=sum(cards.map(frequency));fillExpectations.set(key,{mass,value:mass?sum(cards.map(c=>rating(c,lane)*frequency(c)))/mass:0});
    }
    const row=fillExpectations.get(key);
    // Public marginal mass, remaining own picks and a conservative retention
@@ -191,7 +211,7 @@
     +(has(c,'evasion')?.06:0);
   }
   function build(pool,lane,strategy='adaptive',options={}){
-   const style=STYLES[strategy]||STYLES.adaptive,remaining=options.remaining??Math.max(0,total-pool.length),match=options.match??config.match;
+   const style=STYLES[strategy]||STYLES.adaptive,remaining=options.remaining??Math.max(0,total-pool.length),match=options.match??matchMode;
    const physical=pool.map(e=>({...byId[e.id],_entry:e})).filter(c=>profile(c));
    const splash=options.splash||null,colors=[...new Set([...lane,...(splash?[splash]:[])])];
    const landTarget=clamp(Math.round(target*(strategy==='aggro'?.4:strategy==='control'?.45:.425)),0,target),spellTarget=target-landTarget;
@@ -226,7 +246,7 @@
      for(let i=0;i<choices.length;i++){
       const c=choices[i];if(rejected.has(c._entry.uid)||config.maxCopies&&[...spells,...manaOnly].filter(x=>x.full===c.full).length>=config.maxCopies)continue;
       const syn=config.coverage.synergies?synergy(c,[...spells,c],remaining):{adjustment:0,option:0},earlyCard=c.creature&&!profile(c).variable&&turn(c,spells)<=3;
-      const q=rating(c)+tactical(c,style,spells)+(syn.adjustment+syn.option)*(style.synergy||1)
+      const q=rating(c,lane)+tactical(c,style,spells)+(syn.adjustment+syn.option)*(style.synergy||1)
        +(earlyCard&&early<spellTarget*(strategy==='aggro'?.38:strategy==='control'?.23:.3)?.3:0)
        +(has(c,'interaction')&&!c.creature&&answers<Math.max(2,spellTarget*.17)?.2:0)-(fits(c,lane)?0:.65-(style.splash||0));
       if(q>value||q===value&&best>=0&&stable(c._entry,choices[best]._entry)<0){best=i;value=q;}
@@ -239,7 +259,7 @@
     const grouped=new Map(),all=[...spells,...manaOnly],hasSource=c=>profile(c).mana.cycling.length||profile(c).mana.alternativeLand||direct(c).length;
     for(const c of spells){const n=needs(c,colors)||{},t=turn(c,spells),symbols=profile(c).symbols,uid=hasSource(c)?c._entry.uid:null;
      for(const [color,pips] of Object.entries(n))demand[color]+=pips*(t<=3?2:1);
-     const key=JSON.stringify([symbols,t,uid]);if(!grouped.has(key))grouped.set(key,{symbols,t,uid,weight:0});grouped.get(key).weight+=rating(c);}
+     const key=JSON.stringify([symbols,t,uid]);if(!grouped.has(key))grouped.set(key,{symbols,t,uid,weight:0});grouped.get(key).weight+=rating(c,lane);}
     rows.push(...grouped.values());for(const row of rows)row.requirements=paymentConstraints(row.symbols,colors);
     const values=new Map(),turns=[...new Set(rows.map(row=>Math.ceil(row.t)))],masks=[...new Set(rows.flatMap(row=>(row.requirements||[]).map(r=>r.mask)))];let indirect={};
     const timedLands=physical.some(c=>c.land&&(profile(c).mana.tapped||profile(c).mana.fetch));
@@ -343,7 +363,7 @@
     const ownUse=(m.uses[c.id]||[]).find(u=>u.uid===ownUid),use=Math.max(ownUse?.cycling||0,ownUse?.alternativeLand||0);
     if(colored>0){if(c.creature){creatures+=1-use;if(t<=3&&!profile(c).variable)early+=(1-use)*mana;}if(has(c,'interaction'))answers+=c.creature?.4:1;}
     const penalty=(1-mana)*(fits(c,lane)?1:1.8),syn=config.coverage.synergies?synergy(c,spells,remaining):{adjustment:0,option:0};manaPenalty+=penalty;
-    score+=(colored?rating(c):0)+(colored?tactical(c,style,spells,mana)+(syn.adjustment+syn.option)*(style.synergy||1):0)-penalty;
+    score+=(colored?rating(c,lane):0)+(colored?tactical(c,style,spells,mana)+(syn.adjustment+syn.option)*(style.synergy||1):0)-penalty;
    }
    const progress=clamp(1-remaining/Math.max(1,total),0,1),deficits={early:Math.max(0,spellTarget*(strategy==='aggro'?.38:strategy==='control'?.23:.3)-early),
     creatures:Math.max(0,spellTarget*(strategy==='control'?.52:.65)-creatures),interaction:Math.max(0,spellTarget*.16-answers)};
@@ -412,7 +432,7 @@
    const opening=bot.pool.length===0;
    const scores=pack.map(entry=>{
     const c=byId[entry.id];if(!profile(c)||!Number.isFinite(rating(c)))throw Error('Carta senza profilo/voto v4: '+entry.id);
-    if(bot.strategy==='power')return {entry,card:c,score:rating(c),lane:ctx.lane,playable:!c.land,components:{potenza:rating(c)},reasons:['Profilo di confronto sulla sola qualità individuale.'],signature:'power|'+c.id};
+    if(bot.strategy==='power')return {entry,card:c,score:rating(c),lane:ctx.lane,playable:!c.land,components:{potenza:rating(c)},reasons:['Profilo di confronto sulla sola qualità individuale.',qualityReason(c)],signature:'power|'+c.id};
     const candidatePlans=opening?ctx.plans.filter(p=>fits(c,p.lane)):ctx.plans.slice(0,style.open?3:2);
     // A genuinely new color must be allowed to challenge the current shortlist.
     if(!bot.target&&!opening){const challenger=ctx.plans.find(p=>fits(c,p.lane)&&!candidatePlans.includes(p));if(challenger)candidatePlans.push(challenger);}
@@ -455,11 +475,23 @@
     const option=Math.min(.35,sum(alternatives.map(p=>p.optionGain*p.weight))*.25*(1+(style.open||0))*remaining/Math.max(1,total));
     best.components.opzioni=option;best.score+=option;
     if(option>0)best.reasons.push('Mantiene aperto il piano alternativo '+alternatives.sort((a,b)=>b.optionGain*b.weight-a.optionGain*a.weight)[0].evaluatedLane+', con valore limitato alle pick restanti.');
+    // With no owned cards, a hypothetical 40-card build is not evidence of a
+    // color commitment or a curve deficit. Start from the Limited grade and
+    // let actual owned cards progressively replace that prior. The prior is
+    // exhausted after one pack; mana, signals and construction then govern.
+    const initialWeight=(!bot.target||fits(c,bot.target))?Math.max(0,1-bot.pool.length/Math.max(1,format.packSize))/(1+bot.pool.length):0;
+    best.contextScore=best.score;
+    if(initialWeight>0){
+     best.components.qualitaIniziale=initialWeight*(rating(c)-best.components.mazzo);
+     best.score+=best.components.qualitaIniziale;
+     best.reasons.push('Pool iniziale ancora limitato: il voto Limited attenua il peso del mazzo ipotetico; il contributo si esaurisce nella prima busta.');
+    }
+    best.reasons.push(qualityReason(c,best.evaluatedLane));
     return best;
-   }).sort((a,b)=>b.score-a.score||stable(a.entry,b.entry));
+   }).sort(scoreOrder);
    if(style.denial&&scores.some(s=>s.playable&&s.components.mazzo>1e-6||s.components.sideboard>0||s.components.opzioni>0)){
     for(const s of scores){s.score-=s.components.negazione||0;s.components.negazione=0;}
-    scores.sort((a,b)=>b.score-a.score||stable(a.entry,b.entry));
+    scores.sort(scoreOrder);
    }
    if(transition)bot.phase=phase(bot,ctx);
    return {scores,ctx};
@@ -471,7 +503,7 @@
    bot.lane=selected.lane;bot.pool.push(selected.entry);if(!bot.anchor&&!selected.card.land&&rating(selected.card)>=4)bot.anchor=selected.entry.id;
    bot.memory.packets[pack.packetId]=pack.cards.filter(e=>e.uid!==selected.entry.uid).map(e=>({...e}));
    bot.log.push({round,pick,packetId:pack.packetId,id:selected.entry.id,uid:selected.entry.uid,phase:['esplora','orienta','consolida','completa'][bot.phase],lane:bot.lane,
-    score:selected.score,components:selected.components,observed:pack.cards.map(e=>e.id),poolBefore:prior,bestId:best.entry.id,randomized:selected!==best,
+    score:selected.score,components:selected.components,quality:quality(selected.card,selected.evaluatedLane),observed:pack.cards.map(e=>e.id),poolBefore:prior,bestId:best.entry.id,randomized:selected!==best,
     reasons:selected.reasons,replaces:selected.replaces||[],pivot:selected.pivot||null,gaps:config.gaps,deck:selected.deck||null,
     alternatives:scores.slice(0,3).map(s=>({id:s.entry.id,score:s.score,lane:s.lane,reasons:s.reasons,replaces:s.replaces||[]}))});
    return selected.entry;
@@ -496,14 +528,24 @@
     observe(bot,pack,round,pick);const ranked=result.length===0?initial:rank(bot,pack.cards,round,pick,random,false,options),ranking=ranked.scores,scored=ranking.find(s=>s.entry.uid===selected.uid);
     const prior=bot.pool.map(e=>({...e}));bot.phase=phase(bot,ranked.ctx);bot.pool.push(selected);bot.lane=scored.lane;if(!bot.anchor&&!scored.card.land&&rating(scored.card)>=4)bot.anchor=selected.id;
     bot.log.push({round,pick,packetId:pack.packetId,id:selected.id,uid:selected.uid,phase:['esplora','orienta','consolida','completa'][bot.phase],lane:bot.lane,components:scored.components,score:scored.score,
-     poolBefore:prior,bestId:ranking[0].entry.id,randomized:false,joint:true,reasons:[...scored.reasons,'Combinazione valutata con ricerca limitata nella stessa busta.'],replaces:scored.replaces||[],pivot:scored.pivot||null,deck:scored.deck||null,gaps:config.gaps,
+     quality:quality(scored.card,scored.evaluatedLane),poolBefore:prior,bestId:ranking[0].entry.id,randomized:false,joint:true,reasons:[...scored.reasons,'Combinazione valutata con ricerca limitata nella stessa busta.'],replaces:scored.replaces||[],pivot:scored.pivot||null,deck:scored.deck||null,gaps:config.gaps,
      observed:pack.cards.map(e=>e.id),alternatives:ranking.slice(0,3).map(s=>({id:s.entry.id,score:s.score}))});
     pack.cards=pack.cards.filter(e=>e.uid!==selected.uid);result.push(selected);
    }
    bot.memory.packets[pack.packetId]=pack.cards.map(e=>({...e}));return result;
   }
-  return {byId,rating,profile,needs,fits,turn,probability,chance,sourceModel,castability,synergy,build,bestBuild,finalBuild,observe,context,rank,take,takeGroup,
+  const api={byId,rating,quality,profile,needs,fits,turn,probability,chance,sourceModel,castability,synergy,build,bestBuild,finalBuild,observe,context,rank,take,takeGroup,
    assumptions:{frequency:'Marginali della ricetta; dipendenze ed esclusioni approssimate soltanto per le attese, non per generare buste.'}};
+  // A match cohort owns its caches. Switching BO1/BO3 must never reuse values
+  // normalized on another population, including in worker final-deck review.
+  for(const [name,index] of Object.entries({build:3,bestBuild:3,finalBuild:2,context:2,rank:6,take:5,takeGroup:6,quality:2})){
+   const operation=api[name];api[name]=(...args)=>{
+    const mode=args[index]?.match??matchMode;
+    if(mode!==matchMode){if(!matchEvaluators.has(mode))matchEvaluators.set(mode,create(format,mode));return matchEvaluators.get(mode)[name](...args);}
+    return operation(...args);
+   };
+  }
+  return api;
  }
  const api={create,STYLES};if(typeof module!=='undefined')module.exports=api;else root.DraftPolicy=api;
 })(globalThis);

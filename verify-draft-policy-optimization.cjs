@@ -7,7 +7,7 @@ let reference=policy.replace(fast,'').replace('const cached=allocationCache.get(
 assert.ok(!reference.includes('directColors'));
 const symbolStart=reference.indexOf('  function symbolChance('),symbolEnd=reference.indexOf('  function synergy(',symbolStart);
 reference=reference.slice(0,symbolStart)+fs.readFileSync('tests/fixtures/draft-symbol-chance-reference.js.txt','utf8')+reference.slice(symbolEnd);
-const groupStart=reference.indexOf('  function takeGroup('),groupEnd=reference.indexOf('  return {byId',groupStart);
+const groupStart=reference.indexOf('  function takeGroup('),groupEnd=reference.indexOf('  const api={byId',groupStart);
 reference=reference.slice(0,groupStart)+fs.readFileSync('tests/fixtures/draft-policy-group-reference.js.txt','utf8')+reference.slice(groupEnd);
 const load=source=>{const context=vm.createContext({module:{exports:{}}});vm.runInContext(source,context);return context.module.exports;};
 const implementation=source=>{const api=load(source),context=vm.createContext({module:{exports:{}},require:name=>name==='./draft-policy.js'?api:require(name)});vm.runInContext(engine,context);return context.module.exports;};
@@ -19,5 +19,7 @@ for(const picksPerTurn of [1,2]){
  digests.push({picksPerTurn,digest:hash(JSON.stringify(a.bots))});
 }
 const result={optimizedHash:hash(policy),referenceHash:hash(reference),digests};
-fs.writeFileSync('reviews/draft-bots-production-20261029/optimization-parity.json',JSON.stringify(result,null,2));
+const output=process.env.MTG_QA_DIR||fs.mkdtempSync(require('node:path').join(require('node:os').tmpdir(),'mtg-policy-optimization-'));
+fs.mkdirSync(output,{recursive:true});const destination=require('node:path').join(output,'optimization-parity.json');
+assert.ok(!fs.existsSync(destination),'Preserve earlier acquisition');fs.writeFileSync(destination,JSON.stringify(result,null,2));
 console.log('PASS: cached direct colors and zero-source fast path preserve all bot pool/log digests for ordinary and Pick-Two fixtures.');

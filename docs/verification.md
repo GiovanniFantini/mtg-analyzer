@@ -55,6 +55,8 @@ Se il modulo è in un runtime esterno, assegnare il suo percorso effettivo a `MT
 | `verify-draft-bots-browser.cjs` | Ripresa, completamento, esportazione e anteprime dei bot |
 | `verify-draft-table-visual.cjs` | Tavolo a viewport, pile e statistiche, isolamento della shell, buste con foil, finestre basse e anteprime mouse/tastiera/tocco. Screenshot in `MTG_QA_DIR` o nella directory temporanea |
 | `verify-draft-table-recovery.cjs` | Storage bloccato, ripresa della sessione in memoria, export dalla configurazione e ricostruzione dell'ultimo snapshot dopo errore del worker |
+| `node test-draft-statistics.cjs`; `python -m unittest test_bot_statistics.py` | Qualità empirica nel pick e nel main, coorti BO1/BO3, contesti colore, campioni e ripieghi, stampe canoniche, revisione funzionale e replay |
+| `node test-draft-basic-picks.cjs` | Spareggi con basi gratuite e fonti fisiche; qualità iniziale su cinque colori, sette profili e ordine delle buste |
 | `node test-draft-history.cjs` | Ricostruzione per tutti i posti, replay v2/v3, copie e foil, entrambi i versi, pool precedenti e scelte multiple |
 | `test-draft-visual.cjs` | Conteggi del riepilogo, copie e finiture nelle pile, escaping dei nomi e stato vuoto contestuale |
 | `verify-draft-assistant.cjs` | Confronto contestuale, costi ibridi e faccia principale, pick e annullamento, comuni, telefono, anteprime, sincronizzazione e salvataggi protetti |

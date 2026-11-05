@@ -8,7 +8,7 @@ import json
 import re
 from pathlib import Path
 
-VERSION = 3
+VERSION = 4
 COLORS = 'WUBRG'
 TYPES = ('Plains', 'Island', 'Swamp', 'Mountain', 'Forest')
 
@@ -19,6 +19,9 @@ def is_interaction(text):
         return re.split(r',|\bthen\b|\band\b', fragment, maxsplit=1, flags=re.I)[0]
     def own(fragment):
         return bool(re.search(r'\byou control\b', fragment, re.I))
+    chosen = re.search(r'choose target (?:nonland )?permanent\b[^.]*', text, re.I)
+    if chosen and not own(chosen[0]) and re.search(r'its owner may put it on top of their library', text, re.I) and re.search(r'put it on the bottom', text, re.I):
+        return True
     if re.search(r'target (?:opponent|player)', text, re.I) and re.search(r'(?:they|that player|target player|target opponent) discards?', text, re.I) and not re.search(r'\bdraw\b', text, re.I):
         return True
     for clause in re.split(r'[.\n;]', text):
@@ -60,7 +63,7 @@ def describe(card):
         'defense': r'\bdefender\b|prevent.*damage',
         'evasion': r'\bflying\b|can.t be blocked|\bmenace\b|\btrample\b',
         'ramp': r'search your library.*land.*battlefield',
-        'sideboard': r'destroy target (?:artifact|enchantment)|exile[^.\n]*(?:from a graveyard|from target player.s graveyard|all graveyards|each opponent.s graveyard)',
+        'sideboard': r'destroy target (?:artifact|enchantment)|exile[^.\n]*(?:from a graveyard|from target player.s graveyard|all graveyards|each opponent.s graveyard)|counter target (?:white|blue|black|red|green)(?: or (?:white|blue|black|red|green))? spell',
     }.items():
         if re.search(pattern, text, re.I):
             roles.append(role)
@@ -129,6 +132,14 @@ def validate_config(config, ids, plans=None):
         raise ValueError('botPolicy: schemaVersion non supportata')
     if config.get('match', 'BO3') not in ('BO1', 'BO3', 'unknown'):
         raise ValueError('botPolicy: contesto match non supportato')
+    if 'statisticsReference' in config:
+        reference = config['statisticsReference']
+        if (not isinstance(reference, dict) or reference.get('population') != 'MTG Arena'
+                or reference.get('purpose') != 'card-quality-prior' or not isinstance(reference.get('product'), str)
+                or not reference['product'] or not isinstance(reference.get('provenance'), dict)
+                or not isinstance(reference.get('events'), dict) or not reference['events']
+                or any(mode not in ('BO1', 'BO3') or value not in ('PremierDraft', 'TradDraft', 'PickTwoDraft') for mode, value in reference['events'].items())):
+            raise ValueError('botPolicy: riferimento statistico non valido')
     if not isinstance(config.get('cards', {}), dict) or not set(config.get('cards', {})) <= set(ids):
         raise ValueError('botPolicy: carta sconosciuta')
     relations = config.get('relations', [])
@@ -215,7 +226,9 @@ def validate_config(config, ids, plans=None):
                 raise ValueError('botPolicy: supporti della relazione non validi')
 
 
-def payload(cards, active, event, config, table_ready, plans=None):
+def payload(cards, active, event, config, table_ready, plans=None, statistics=None):
+    from bot_statistics import payload as statistical_payload, semantic as statistical_semantic
+    empirical = statistical_payload(statistics or {}, cards, active, event)
     profiles = {}
     for card in cards:
         if card['id'] not in active:
@@ -243,7 +256,7 @@ def payload(cards, active, event, config, table_ready, plans=None):
         'relations': [{k: r[k] for k in ('id', 'referenceSupport', 'referencePayoffs', 'saturation', 'strength', 'threshold', 'resource', 'resourceBudget') if k in r} for r in relations], 'match': config.get('match', 'BO3'),
         'plans': {key: {'status': value['status'], 'relations': value.get('relations', [])} for key, value in plan_coverage.items()},
         'minimum': event['minDeckSize'], 'extraBasics': event.get('extraBasicLands', False),
-        'maxCopies': event.get('maxCopies')}
+        'maxCopies': event.get('maxCopies'), 'empirical': statistical_semantic(empirical)}
     revision = hashlib.sha256(json.dumps(semantic, sort_keys=True, ensure_ascii=True).encode()).hexdigest()
     missing = []
     if not table_ready:
@@ -251,13 +264,15 @@ def payload(cards, active, event, config, table_ready, plans=None):
     if not minimum:
         missing.append('Voti o profili minimi incompleti sulle stampe attive.')
     gaps = [] if covered else ['Sinergie contestuali disattivate per tutto l’evento: relazioni o contesti di riferimento incompleti.']
+    if not empirical['available']:
+        gaps.append('Dati GIH pubblici idonei assenti: qualità basata sulle recensioni.')
     gaps.append('Costi ridotti, ruoli e fonti condizionate usano approssimazioni dichiarate, non un simulatore di partita.')
     root = Path(__file__).resolve().parent
     algorithm_revision = hashlib.sha256(b'\0'.join((root / name).read_bytes() for name in ('draft-policy.js', 'draft-engine.js', 'collation.js'))).hexdigest()
     worker_revision = hashlib.sha256((root / 'draft-worker.js').read_bytes()).hexdigest()
     return {'schemaVersion': 1, 'inferenceVersion': VERSION, 'revision': revision, 'algorithmRevision': algorithm_revision, 'workerRevision': worker_revision,
             'available': bool(table_ready and minimum), 'status': 'experimental',
-            'missing': missing, 'gaps': gaps, 'coverage': {
+            'missing': missing, 'gaps': gaps, 'empirical': empirical, 'coverage': {
                 'active': len(active_cards), 'minimum': sum(bool(p.get('roles')) and p['status'] == 'supported' for p in profiles.values()),
                 'synergies': covered,'plans': {plan: plan_coverage.get(plan, {'status':'unsupported'}) for plan in plans or []}}, 'profiles': profiles, 'relations': relations,
             'match': config.get('match', 'BO3'), 'minDeckSize': event['minDeckSize'],

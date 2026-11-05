@@ -66,3 +66,29 @@ def validate_provider_snapshots(statistics, catalog, kind):
                     fail(key + ': percentuale fuori scala: ' + metric)
                 if definition['unit'] == 'games' and type(value) is not int:
                     fail(key + ': numero partite non intero')
+            n, wins = values.get('games'), values.get('wins')
+            if type(n) is int and type(wins) is int and wins > n:
+                fail(key + ': vittorie superiori al campione')
+            limit = snapshot.get('games', snapshot.get('derivation', {}).get('games'))
+            if type(n) is int and type(limit) is int and n > limit:
+                fail(key + ': campione carta superiore alle partite della coorte')
+        if not isinstance(snapshot.get('colorContexts', {}), dict):
+            fail(key + ': contesti colori non validi')
+        for lane, context in snapshot.get('colorContexts', {}).items():
+            if (not isinstance(lane, str) or not lane or any(c not in 'WUBRG' for c in lane)
+                    or len(set(lane)) != len(lane) or not isinstance(context, dict)
+                    or type(context.get('games')) is not int or type(context.get('wins')) is not int
+                    or not 0 <= context['wins'] <= context['games'] or not isinstance(context.get('cards'), list)):
+                fail(key + ': contesto colori non valido')
+            nested = {**snapshot, **context}
+            nested.pop('colorContexts', None)
+            nested.pop('gameOne', None)
+            validate_provider_snapshots({'externalSources': {key + ':' + lane: nested}}, catalog, kind)
+        if 'gameOne' in snapshot:
+            first = snapshot['gameOne']
+            if (not isinstance(first, dict) or type(first.get('games')) is not int or type(first.get('wins')) is not int
+                    or not 0 <= first['wins'] <= first['games'] or not isinstance(first.get('cards'), list)):
+                fail(key + ': campione prima partita non valido')
+            nested = {**snapshot, **first, 'colorContexts': first.get('colorContexts', {})}
+            nested.pop('gameOne', None)
+            validate_provider_snapshots({'externalSources': {key + ':game-one': nested}}, catalog, kind)

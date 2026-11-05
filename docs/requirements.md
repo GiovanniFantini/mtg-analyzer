@@ -29,7 +29,7 @@ P0 indica prerequisiti dello sviluppo e della valutazione competitiva; P1 indica
 
 ### Dati e disponibilità: decisioni progettuali
 
-La qualità di base usa `ratings.json`, con scala e provenienza Limited del progetto. GIH e altre misure osservate restano evidenze separate per rivedere manualmente i voti discordanti, considerando contesto e campione; nessuna sostituzione automatica o media nascosta. Un voto mancante non diventa 2,5.
+I voti di `ratings.json` conservano scala e provenienza Limited e non vengono riscritti dalle statistiche. Per la v4 un riferimento statistico configurato esplicitamente per prodotto ed evento può guidare la qualità con GIH regolarizzata e contesti comparabili, secondo [il contratto empirico](draft-engine.md#qualità-empirica-e-contesti-di-colore). Recensioni, osservazioni e utilità interna restano distinte e spiegate; dati insufficienti usano un ripiego dichiarato, senza WR inventate o medie nascoste. La forza competitiva rimane da dimostrare su evidenze indipendenti. Un voto mancante non diventa 2,5.
 
 Prima di applicare scarti contestuali, documentare quale situazione assume il voto della scala usata e le eventuali eccezioni per carta: per esempio carta nel suo mazzo tipico con sostegno ordinario, oppure valore autonomo. Non attribuire retroattivamente un significato uniforme ai voti esistenti se le fonti non lo sostengono. I contributi sono scarti, anche negativi, da quel riferimento, non bonus per benefici già compresi nel voto. Se il riferimento manca è una lacuna da risolvere o disattivare secondo le soglie, non una definizione da inventare. Tre fixture controllano sostegno di riferimento, assente ed eccezionale, senza cambiare il voto originale per farle passare.
 
