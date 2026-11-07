@@ -1,0 +1,134 @@
+{
+  "ready": false,
+  "findings": [
+    {
+      "id": "R1",
+      "priority": "P1",
+      "file": "research/star-trek-20261107/format-notes.json; expansions/star-trek/cards.json",
+      "finding": "La correzione corrections[0] afferma che Engineered Explosives appartiene a SDS e che il riferimento Pioneer di Cards Realm è falso. Nel catalogo la carta ha però set TRK, come le shockland ristampate, e compare nei dati Draft e Sealed Untapped. Se è una ristampa del set principale TRK, l'ammissibilità Pioneer (e Standard) dall'uscita potrebbe essere corretta, e la nota di audit pubblicata come correzione sarebbe essa stessa un errore. In ogni caso catalogo e correzione si contraddicono.",
+      "fix": "Verificare codice set e numero di collezione su Scryfall o nelle release notes ufficiali. Se TRK: rimuovere la correzione, ripristinare la nota Cards Realm come ipotesi attribuita e registrare releaseEligibility Pioneer/Standard con data e fonte. Se SDS: correggere il campo set in cards.json e tutte le viste derivate. Aggiungere un test che confronti l'appartenenza al set dichiarata nelle correzioni con il catalogo."
+    },
+    {
+      "id": "R2",
+      "priority": "P2",
+      "file": "catalog_metrics.py",
+      "finding": "Per ogni carta catalog_performance espone games accanto alla WR in mano, perché la metrica games ha stato public. Lo snapshot dichiara però che games non è il denominatore della WR e che i conteggi sono arrotondati. I dati lo confermano: Kai Winn ha 28 partite e WR null, Shizo ne ha 22 con WR 76,9. Il filtro di campione minimo e la colonna partite del catalogo trattano quindi games come campione della WR. Valori come 93,3 Sealed per Captain James T. Kirk (probabilmente 14/15) restano in testa agli ordinamenti senza alcun segnale di incertezza.",
+      "fix": "Passare games come campione solo quando lo snapshot dichiara esplicitamente che è il denominatore, ad esempio con un campo role o denominatorOf nella definizione della metrica. Altrimenti mostrarlo come volume arrotondato non idoneo al filtro di campione minimo. Esporre nel catalogo i margini di confidenza pubblicati, se acquisiti."
+    },
+    {
+      "id": "R3",
+      "priority": "P2",
+      "file": "integrate_star_trek_20261107.py",
+      "finding": "coverage, researchAvailability e i testi di guides contengono valori scritti a mano: 322/280, 318/253, 1.800/890, 268/54, 498. Non sono ricavati dagli snapshot. Una nuova cattura produrrebbe coperture e pannelli incoerenti senza alcun errore, e coverage.json sembra calcolato quando non lo è.",
+      "fix": "Ricavare i conteggi da snapshot['coverage'], pick['coverage'], len(grades['cards']) e totalMatchesDisplay. Generare i testi dei pannelli da questi valori e fermare l'integrazione con un'asserzione se divergono da quanto già pubblicato."
+    },
+    {
+      "id": "R4",
+      "priority": "P2",
+      "file": "research/star-trek-20261107/normalize.py; research/star-trek-20261107/capture.cjs",
+      "finding": "Righe DOM Untapped, HTML del pick order e payload Limited Library restano soltanto in tempfile.gettempdir(). Sono dati fattuali, non articoli integrali, ma normalize.py non è rieseguibile dal repository e gli hash inputSha256 non sono verificabili. È una regressione rispetto al flusso documentato in docs/statistics.md, dove la cattura DOM datata (ad esempio untapped-card-data-dom.json di Reality Fracture) è salvata in research/.",
+      "fix": "Salvare in research/star-trek-20261107/ le catture fattuali normalizzabili (righe celle, gruppi del pick order, voti estratti) e far leggere a normalize.py da lì. Se una condizione d'uso lo impedisce, dichiararlo nel README con la fonte della restrizione."
+    },
+    {
+      "id": "R5",
+      "priority": "P2",
+      "file": "research_star_trek_20261107.py; research/star-trek-20261107/format-notes.json",
+      "finding": "Sono state scaricate cardsrealm-modern, draftsim-review, edhlab-review, arenazone-historic, metagame-guide, limitedmtg e mtgsold, ma nessuna produce note o voti, e il loro esito non è dichiarato. La limitazione afferma che non è stata acquisita una nuova recensione Modern completa, benché l'articolo Modern di Cards Realm sia nell'elenco delle acquisizioni.",
+      "fix": "Per ogni fonte dell'audit riportare in coverage o nel README lo stato (integrata, fallita, non pertinente, duplicato) e il motivo. Se l'articolo Modern Cards Realm e la recensione Draftsim sono stati letti correttamente, integrarli come pareri attribuiti, conservando la scala Draftsim senza conversione. Altrimenti correggere la limitazione indicando l'errore di acquisizione."
+    },
+    {
+      "id": "R6",
+      "priority": "P2",
+      "file": "research/star-trek-20261107/format-notes.json",
+      "finding": "Nota EDHREC su Saavik, Stoic Student: Rimozione ristretta alle creature attaccanti. Oracle indica attacking or blocking creature an opponent controls. La sintesi attribuita a Jeremy Rowe contiene quindi un errore Oracle, non segnalato come tale.",
+      "fix": "Correggere in creature attaccanti o bloccanti. Se l'errore è nell'articolo originale, conservare la citazione e aggiungere una correzione di audit separata."
+    },
+    {
+      "id": "R7",
+      "priority": "P2",
+      "file": "integrate_star_trek_20261107.py",
+      "finding": "Lo scenario Modern di The Holodeck considera solo il gioco dal cimitero. Nei tornei Constructed le carte fuori dal gioco corrispondono alla sideboard, quindi l'uso principale da valutare è un toolbox ripetibile di permanenti dalla sideboard una volta per turno. Lo scenario di Ravenous Cosmozoan contiene invece una frase sul Pauper, in contrasto con la separazione dei formati.",
+      "fix": "Riscrivere lo scenario Holodeck includendo l'accesso alla sideboard secondo le regole di torneo, con i limiti di costo e di tempistica. Togliere il riferimento Pauper dallo scenario Modern di Cosmozoan."
+    },
+    {
+      "id": "R8",
+      "priority": "P2",
+      "file": "prospects-ui.js",
+      "finding": "limited() afferma ancora Giudizi prima dell'uscita, senza WR osservate e Due opinioni non sono consenso statistico, mentre ora esistono WR early access e fino a quattro voti per carta. I 498 voti Limited Library sono researchNotes e finiscono nel riquadro Previsioni automatiche e letture delle fonti, mescolati alle previsioni automatiche. Per rare e SDS senza limitedAnalysis non compare alcuna sezione Limited, quindi i nuovi pareri restano poco accessibili.",
+      "fix": "Rendere il testo condizionato ai dati presenti (WR early access disponibili o meno, numero reale di opinioni). Mostrare i voti attribuiti Limited Library in un blocco Limited dedicato, anche per le carte senza analisi editoriale, con scala originale, autore, link al video e dicitura di attribuzione secondaria."
+    },
+    {
+      "id": "R9",
+      "priority": "P3",
+      "file": "integrate_star_trek_20261107.py",
+      "finding": "Le note dei voti Limited Library hanno formats ['draft','sealed'] mentre il testo dichiara Non è un voto Sealed distinto. Filtri o conteggi per formato potrebbero contarle come evidenza Sealed.",
+      "fix": "Usare formats ['draft'] oppure un contesto limited esplicito, coerente con la dichiarazione."
+    },
+    {
+      "id": "R10",
+      "priority": "P3",
+      "file": "research/star-trek-20261107/format-notes.json",
+      "finding": "La correzione su Starfleet Academy e la nota EDHREC indicano sei tipi per guadagnare mana. L'attivazione tappa anche l'Academy, che altrimenti produrrebbe {C}: con sei tipi il risultato pareggia (6 contro 5 più 1). Un guadagno netto richiede sette tipi, con il solo vantaggio di colore a sei.",
+      "fix": "Precisare il costo opportunità nella correzione di audit, distinguendolo dalla sintesi EDHREC."
+    },
+    {
+      "id": "R11",
+      "priority": "P3",
+      "file": "integrate_star_trek_20261107.py",
+      "finding": "Il passaggio di evidence da non_documentata a recensione non viene annullato a una riesecuzione: se una nota viene tolta da format-notes, l'evidenza resta senza fonte. Le correzioni sono collegate per indice (corrections[0], [2], [3], [4]): riordinarle collegherebbe il testo alla carta sbagliata. entry['note'] Draft/Sealed viene sovrascritta per intero, e il testo per le carte senza WR attribuisce allo snapshot la data del 7 novembre invece dell'evento del 4.",
+      "fix": "Registrare l'origine della modifica di evidence e ripristinare il valore precedente quando la nota scompare. Collegare le correzioni per nome di carta. Allineare le date nelle note (evento del 4 novembre, acquisizione del 7)."
+    },
+    {
+      "id": "R12",
+      "priority": "P3",
+      "file": "research/star-trek-20261107/capture.cjs",
+      "finding": "Lo scorrimento termina a una quota fissa di 26000 px senza verificare di aver raggiunto la fine della lista o un totale dichiarato dalla pagina. Le righe con aria-label nullo si sovrascrivono sulla stessa chiave.",
+      "fix": "Scorrere fino a quando il numero di righe non cresce più e l'altezza del documento è raggiunta. Confrontare il totale con quello mostrato dalla fonte e fallire su nomi nulli."
+    },
+    {
+      "id": "R13",
+      "priority": "P3",
+      "file": "research/star-trek-20261107/format-notes.json",
+      "finding": "Le fonti Cards Realm Pioneer e Legacy non hanno published, a differenza delle fonti EDHREC. La skill richiede data di pubblicazione oppure indisponibilità dichiarata.",
+      "fix": "Aggiungere published o published: null con il motivo."
+    },
+    {
+      "id": "R14",
+      "priority": "P3",
+      "file": "expansions/star-trek/guides.json",
+      "finding": "I pannelli non indicano che le WR Draft sono filtrate su Bronze-Platinum, mentre Sealed è Unranked. Non dichiarano neppure che in questo giro non ci sono nuove fonti Pauper, che erano parte della richiesta; resta valida la lettura Cards Realm Pauper del 2 novembre.",
+      "fix": "Indicare il filtro di rango accanto alle WR e aggiungere una riga sullo stato Pauper con la data della fonte conservata."
+    },
+    {
+      "id": "R15",
+      "priority": "P3",
+      "file": "expansions/star-trek/statistics.json",
+      "finding": "Nell'estratto ricevuto le righe non contengono sourceName, sourceUrl, display né confidenceMarginsDisplay, che normalize.py produce. Se il JSON pubblicato è davvero così, la limitazione sui margini conservati è falsa e i link per carta ricadono sull'URL generico.",
+      "fix": "Verificare il file effettivo. Se i campi mancano, rigenerare lo snapshot e aggiungere un controllo di presenza in validate_external_statistics."
+    }
+  ],
+  "researchNeeded": [
+    "Engineered Explosives: codice set e numero di collezione (TRK o SDS) su Scryfall e nelle release notes ufficiali, più l'ammissibilità Standard/Pioneer del set principale TRK dall'annuncio ufficiale.",
+    "Esito delle acquisizioni cardsrealm-modern, draftsim-review, edhlab-review, arenazone-historic: integrare come pareri attribuiti datati i contenuti letti, conservando scala e metodo Draftsim.",
+    "Untapped Card Data: verificare se pubblicamente sono disponibili filtri di rango più ampi di Bronze-Platinum e i margini di confidenza per carta.",
+    "Pauper: recensioni delle comuni TRK pubblicate dopo la galleria completa, o aggiornamenti della recensione Cards Realm Pauper, senza risultati prima dell'uscita."
+  ],
+  "summary": "Normalizzazione solida: celle bloccate verificate, Included WR sempre zero trattata come sospetta ed esclusa, copertura completa sui 341 ID con assenze esplicite, pick order coerente (268 + 54 = 322 righe Draft), voti inferred esclusi e note rimosse per origine a ogni esecuzione. Non pronto per la produzione per un motivo principale: la correzione su Engineered Explosives contraddice il catalogo, che la colloca in TRK, e potrebbe pubblicare come errore altrui un'ammissibilità Pioneer corretta. Prima del push vanno risolti anche i punti P2: games usato come campione della WR in catalogo, conteggi scritti a mano nell'integrazione, catture fattuali lasciate solo in una cartella temporanea, fonti scaricate ma non integrate né dichiarate, l'errore Oracle su Saavik, lo scenario Holodeck senza accesso alla sideboard e i testi UI non aggiornati che nascondono i nuovi voti.",
+  "modelUsage": {
+    "claude-opus-5-5": {
+      "inputTokens": 2,
+      "outputTokens": 23702,
+      "cacheReadInputTokens": 1545,
+      "cacheCreationInputTokens": 229927,
+      "webSearchRequests": 0,
+      "costUSD": 2.313773,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 18955,
+      "canonicalModel": "claude-opus-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "requestSha256": "031eea366524ffbbb1db5693bd44e36a3dacee72baacac3051ff065f25d52eae"
+}

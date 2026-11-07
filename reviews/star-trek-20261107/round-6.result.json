@@ -1,0 +1,22 @@
+{
+  "ready": true,
+  "findings": [],
+  "summary": "Le tre rifiniture P3 risultano chiuse nel materiale allegato. R1: capture-filters.cjs legge il testo dei controlli chiusi #filter-event-type e #limited-filter-event-time-range e gli alt delle immagini dentro #filter-rank-range, senza le opzioni del menu. In selected-filters.json risultano Premier Draft, Sealed, Latest Event, Bronze\\nPlatinum e Unranked Game Mode per le tre pagine. normalize.py confronta queste etichette esatte al caricamento del modulo, quindi prima di produrre qualsiasi snapshot. capture.cjs ripete lo stesso confronto esatto nella stessa sessione in cui acquisisce le righe Draft e Sealed. Il valore PremierDraft scritto nel codice è ora vincolato da un'etichetta verificata, e il periodo resta Early Access 2026-11-04 senza riferimenti al lancio pubblico. Restano due osservazioni non bloccanti. In capture_facts i controlli per sottostringa su bronze e platinum sono ancora presenti, ma ormai sono ridondanti rispetto al confronto esatto. Per il Pick Order la verifica dei filtri viene da una sessione separata dall'acquisizione HTML, sulla stessa URL con i filtri predefiniti e nella stessa data. R2: audit.py assegna not_acquired_local_tls quando l'errore contiene CERTIFICATE_VERIFY_FAILED, e source-assessments.json lo riporta con l'errore originale come motivazione. Il motivo 'Accesso fallito' nel dizionario excluded non viene più usato per questa fonte. Non risultano osservazioni EDH LAB importate. Il README non è incluso nel materiale allegato, quindi la sua formulazione non è verificabile qui. R3: integrate_limited_study.py non emette più l'affermazione sull'assenza di WR e scrive invece che voti dei recensori e statistiche di gioco sono prove distinte. Le frasi rimaste ('Le fasce sono qualitative, senza WR', observedWinRates false, observedStatisticsAdded false) descrivono correttamente lo studio editoriale. La guardia sulla data impedisce che l'import storico sostituisca la rilettura Draftsim del 7 novembre. test_star_trek_update.py esegue lo studio Limited e poi l'integratore del 7 novembre due volte, e verifica il testo finale, l'idempotenza e la preservazione del sentinel. test_limited_study.py verifica l'assenza della frase e l'invarianza di cards.json. Gli esiti dichiarati dei test e della build non sono stati verificati da me, perché non dispongo di strumenti. Il codice allegato è coerente con quegli esiti.",
+  "modelUsage": {
+    "claude-opus-5-5": {
+      "inputTokens": 2,
+      "outputTokens": 3117,
+      "cacheReadInputTokens": 1545,
+      "cacheCreationInputTokens": 35940,
+      "webSearchRequests": 0,
+      "costUSD": 0.350177,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 2133,
+      "canonicalModel": "claude-opus-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "requestSha256": "4946a1b3c40fb9cc2ca630f40a6b090495a03034a238511ef41a84456e6a0212"
+}

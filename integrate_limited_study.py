@@ -57,6 +57,8 @@ def integrate(folder, study_dir):
     source_id=reviews['source']
     for row in reviews['cards']:
         card=by_id[row['catalogId']];p=card['prospects'];rating=docs['ratings']['cards'][card['id']]
+        if any(r.get('author')==reviews['author'] and r.get('url')==reviews['url'] and r.get('date','')>reviews['date'] for r in p.get('limitedReviews',[])):
+            continue  # A historical import must not replace a later attributed review.
         prior=p.get('limitedReview')
         base=[]
         if prior:
@@ -103,7 +105,7 @@ def integrate(folder, study_dir):
     guides['fragments']['sealed.review-links']='<nav aria-label="Approfondimenti Sealed"><a href="#limited-review">Valutazioni di comuni e non comuni</a> · <a href="#limited-impact">Carte decisive e risposte</a></nav>'
     intro=guides['fragments'].get('draft.copy-0','')
     intro=re.sub(r'<span data-limited-summary>.*?</span>','',intro,flags=re.S)
-    guides['fragments']['draft.copy-0']=intro+'<span data-limited-summary> '+str(len(found))+' valutazioni separate Draft/Sealed, '+str(len(impact['cards']))+' carte decisive e '+str(len(existing))+' pacchetti di sinergie. I voti dei recensori sono confronti attribuiti, senza WR osservate.</span>'
+    guides['fragments']['draft.copy-0']=intro+'<span data-limited-summary> '+str(len(found))+' valutazioni separate Draft/Sealed, '+str(len(impact['cards']))+' carte decisive e '+str(len(existing))+' pacchetti di sinergie. Voti dei recensori e statistiche di gioco sono prove distinte.</span>'
     sealed=guides['fragments'].get('gallery.strategy','')
     sealed=re.sub(r'<p data-limited-study>.*?</p>','',sealed,flags=re.S)
     guides['fragments']['gallery.strategy']=sealed+'<p data-limited-study>Lo studio del '+date+' aggiunge il confronto Draftsim su '+str(len(seen))+' identità e giudizi Sealed specifici su tutte le comuni e non comuni non base. Nessun voto Draft viene trasferito automaticamente al Sealed; le valutazioni sono editoriali prima dell’uscita.</p>'

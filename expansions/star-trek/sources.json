@@ -66,9 +66,9 @@
   },
   "research": {
     "date": "2026-11-02",
-    "catalogSnapshot": "research/star-trek-20261102/catalog.json",
-    "rawSnapshot": "research/star-trek-20261102/scryfall.json",
-    "previousCatalogSnapshot": "star-trek-cards-20261028.json",
+    "catalogSnapshot": "research/star-trek-20261107/catalog.json",
+    "rawSnapshot": "research/star-trek-20261107/scryfall.json",
+    "previousCatalogSnapshot": "research/star-trek-20261102/catalog.json",
     "newDistinctCards": 76,
     "sources": [
       {
@@ -2947,6 +2947,348 @@
         "context": "Limited, recensione prima dell’uscita; nessun voto Sealed distinto",
         "method": "Voti trascritti, senza media. Quattro valutazioni di cicli sono espanse sui membri verificati; le SDS sono abbinate dal nome canonico fra parentesi.",
         "captureSha256": "3fac638dc7823c1c3efe28aa70d746f8ca59e04a23cd07428df3ef1841e3a8f2"
+      },
+      {
+        "id": "untapped-draft-20261107",
+        "origin": "research-update-20261107",
+        "publisher": "Untapped.gg",
+        "url": "https://mtga.untapped.gg/limited/draft/star-trek/card-data",
+        "retrieved": "2026-11-07",
+        "context": "Early Access 2026-11-04",
+        "coverage": {
+          "catalogCards": 341,
+          "observedCards": 322,
+          "cardsWithInHandWinRate": 280,
+          "missingCards": [
+            {
+              "catalogId": "4ff07b7c-e97a-4b57-bcf1-2f22c37a8bd6",
+              "name": "Flare of Fortitude",
+              "reason": "not_listed_by_source"
+            },
+            {
+              "catalogId": "fb777610-7562-4d9d-8497-62c562e6d7cb",
+              "name": "Sisay, Weatherlight Captain",
+              "reason": "not_listed_by_source"
+            },
+            {
+              "catalogId": "ea2614bc-00ad-4859-98f5-689f33357fe6",
+              "name": "Empress Galina",
+              "reason": "not_listed_by_source"
+            },
+            {
+              "catalogId": "0fdfe986-0216-468b-aac8-bbcf588fd894",
+              "name": "Arcum Dagsson",
+              "reason": "not_listed_by_source"
+            },
+            {
+              "catalogId": "274b999f-f193-48fd-9a4a-0fdaf535e6c3",
+              "name": "Bruvac the Grandiloquent",
+              "reason": "not_listed_by_source"
+            },
+            {
+              "catalogId": "8c3495bf-02e7-4ad9-949d-92eb3d2b662a",
+              "name": "Torbran, Thane of Red Fell",
+              "reason": "not_listed_by_source"
+            },
+            {
+              "catalogId": "f0c5864f-83c3-4d99-8f97-0ab92608fff3",
+              "name": "Sen Triplets",
+              "reason": "not_listed_by_source"
+            },
+            {
+              "catalogId": "65114758-9a75-43a7-96e8-0aa68faa6b24",
+              "name": "Isshin, Two Heavens as One",
+              "reason": "not_listed_by_source"
+            },
+            {
+              "catalogId": "c803b788-4213-4fab-b841-7e5bbf66088e",
+              "name": "Jhoira, Weatherlight Captain",
+              "reason": "not_listed_by_source"
+            },
+            {
+              "catalogId": "2e7a9ea9-f76c-4c12-950f-c613fa16cfa8",
+              "name": "Captain Sisay",
+              "reason": "not_listed_by_source"
+            },
+            {
+              "catalogId": "8c45bf9d-a017-43bf-9e32-67810a8a217b",
+              "name": "Talon Gates of Madara",
+              "reason": "not_listed_by_source"
+            },
+            {
+              "catalogId": "1861e642-21d5-4232-89f3-b5557f2946c1",
+              "name": "Phyrexian Tower",
+              "reason": "not_listed_by_source"
+            },
+            {
+              "catalogId": "9ac20f38-adc4-40a9-95c9-bbdc689b928b",
+              "name": "Brazen Bluff",
+              "reason": "not_listed_by_source"
+            },
+            {
+              "catalogId": "83f426db-3b25-4407-afd0-0465e3900c24",
+              "name": "Year of Hell",
+              "reason": "not_listed_by_source"
+            },
+            {
+              "catalogId": "bc71ebf6-2056-41f7-be35-b2e5c34afa99",
+              "name": "Plains",
+              "reason": "not_listed_by_source"
+            },
+            {
+              "catalogId": "b2c6aa39-2d2a-459c-a555-fb48ba993373",
+              "name": "Island",
+              "reason": "not_listed_by_source"
+            },
+            {
+              "catalogId": "56719f6a-1a6c-4c0a-8d21-18f7d7350b68",
+              "name": "Swamp",
+              "reason": "not_listed_by_source"
+            },
+            {
+              "catalogId": "a3fb7228-e76b-4e96-a40e-20b5fed75685",
+              "name": "Mountain",
+              "reason": "not_listed_by_source"
+            },
+            {
+              "catalogId": "b34bb2dc-c1af-4d77-b0b3-a0fb342a5fc6",
+              "name": "Forest",
+              "reason": "not_listed_by_source"
+            }
+          ]
+        }
+      },
+      {
+        "id": "untapped-sealed-20261107",
+        "origin": "research-update-20261107",
+        "publisher": "Untapped.gg",
+        "url": "https://mtga.untapped.gg/limited/sealed/star-trek/card-data?eventType=SEALED",
+        "retrieved": "2026-11-07",
+        "context": "Early Access 2026-11-04",
+        "coverage": {
+          "catalogCards": 341,
+          "observedCards": 318,
+          "cardsWithInHandWinRate": 253,
+          "missingCards": [
+            {
+              "catalogId": "d209b948-9afb-4fd1-a961-72c87282878c",
+              "name": "Kenrith, the Returned King",
+              "reason": "not_listed_by_source"
+            },
+            {
+              "catalogId": "fb777610-7562-4d9d-8497-62c562e6d7cb",
+              "name": "Sisay, Weatherlight Captain",
+              "reason": "not_listed_by_source"
+            },
+            {
+              "catalogId": "274b999f-f193-48fd-9a4a-0fdaf535e6c3",
+              "name": "Bruvac the Grandiloquent",
+              "reason": "not_listed_by_source"
+            },
+            {
+              "catalogId": "51780f71-bf60-4208-94ea-76fa84790fb6",
+              "name": "Drivnod, Carnage Dominus",
+              "reason": "not_listed_by_source"
+            },
+            {
+              "catalogId": "8c3495bf-02e7-4ad9-949d-92eb3d2b662a",
+              "name": "Torbran, Thane of Red Fell",
+              "reason": "not_listed_by_source"
+            },
+            {
+              "catalogId": "f6476884-f73f-465f-8e7f-ea312a5b306d",
+              "name": "Loot, Exuberant Explorer",
+              "reason": "not_listed_by_source"
+            },
+            {
+              "catalogId": "761021ce-4559-464e-aa03-85c2fe78e267",
+              "name": "Rishkar, Peema Renegade",
+              "reason": "not_listed_by_source"
+            },
+            {
+              "catalogId": "f0c5864f-83c3-4d99-8f97-0ab92608fff3",
+              "name": "Sen Triplets",
+              "reason": "not_listed_by_source"
+            },
+            {
+              "catalogId": "0715e860-3b3b-4331-9718-207973e94fee",
+              "name": "Tatyova, Benthic Druid",
+              "reason": "not_listed_by_source"
+            },
+            {
+              "catalogId": "1cfe6e3a-f8c9-4105-ad03-0faf1fcc4626",
+              "name": "Riku of Many Paths",
+              "reason": "not_listed_by_source"
+            },
+            {
+              "catalogId": "1e9b0fd6-5aae-401a-8df5-d94ce6442696",
+              "name": "Prosper, Tome-Bound",
+              "reason": "not_listed_by_source"
+            },
+            {
+              "catalogId": "e5912d21-e188-4b9e-8e92-a6e8196353c6",
+              "name": "Mogis, God of Slaughter",
+              "reason": "not_listed_by_source"
+            },
+            {
+              "catalogId": "17784f90-89a1-47a5-83ef-ae60dfc30bd1",
+              "name": "Minamo, School at Water's Edge",
+              "reason": "not_listed_by_source"
+            },
+            {
+              "catalogId": "008f2698-1721-45a3-8353-10f2f400dc8f",
+              "name": "Shizo, Death's Storehouse",
+              "reason": "not_listed_by_source"
+            },
+            {
+              "catalogId": "984e0426-10ba-4c17-b26e-ce21100ec398",
+              "name": "The Needs of the Many",
+              "reason": "not_listed_by_source"
+            },
+            {
+              "catalogId": "b19ce6f2-7778-4779-8173-973eb7ee0b02",
+              "name": "Peace in Our Time",
+              "reason": "not_listed_by_source"
+            },
+            {
+              "catalogId": "c7d8ed66-d66e-42fd-9c3e-8c2d8194e009",
+              "name": "Infinite Diversity",
+              "reason": "not_listed_by_source"
+            },
+            {
+              "catalogId": "ecf28b5d-a719-47d4-8ad9-d24b6297ebde",
+              "name": "The Holodeck",
+              "reason": "not_listed_by_source"
+            },
+            {
+              "catalogId": "bc71ebf6-2056-41f7-be35-b2e5c34afa99",
+              "name": "Plains",
+              "reason": "not_listed_by_source"
+            },
+            {
+              "catalogId": "b2c6aa39-2d2a-459c-a555-fb48ba993373",
+              "name": "Island",
+              "reason": "not_listed_by_source"
+            },
+            {
+              "catalogId": "56719f6a-1a6c-4c0a-8d21-18f7d7350b68",
+              "name": "Swamp",
+              "reason": "not_listed_by_source"
+            },
+            {
+              "catalogId": "a3fb7228-e76b-4e96-a40e-20b5fed75685",
+              "name": "Mountain",
+              "reason": "not_listed_by_source"
+            },
+            {
+              "catalogId": "b34bb2dc-c1af-4d77-b0b3-a0fb342a5fc6",
+              "name": "Forest",
+              "reason": "not_listed_by_source"
+            }
+          ]
+        }
+      },
+      {
+        "id": "limitedlibrary-20261107",
+        "origin": "research-update-20261107",
+        "publisher": "Limited Library",
+        "url": "https://limitedlibrary.com/sets/star-trek/",
+        "retrieved": "2026-11-07",
+        "context": "Aggregatore di voti attribuiti. Video originali collegati, non verificati tramite trascrizione indipendente.",
+        "inputSha256": "d17544c769075cd76b651812e1d99c8104cad97981e7f0b85bf0da796902de62"
+      },
+      {
+        "id": "draftsim-trk-limited-20261107",
+        "origin": "research-update-20261107",
+        "publisher": "Draftsim",
+        "author": "Andrew Quinn",
+        "published": "2026-11-02",
+        "retrieved": "2026-11-07",
+        "url": "https://draftsim.com/mtg-trk-limited-set-review/",
+        "coverage": 336,
+        "context": "Limited, recensione prima dell’uscita; nessun voto Sealed distinto",
+        "captureSha256": "46c31cd8375b2bd79472b0884d290a97a92284f09ddc91a599929d8c4ead5d48"
+      },
+      {
+        "id": "community-grades-20261107",
+        "origin": "research-update-20261107",
+        "publisher": "myLimitedGrades",
+        "url": "https://mylimitedgrades.com/games/magic-the-gathering/sets/TRK",
+        "retrieved": "2026-11-07",
+        "context": "Aggregati Community, non voti di esperti o statistiche di partite",
+        "coverage": {
+          "observed": 336,
+          "withGrade": 125
+        }
+      },
+      {
+        "id": "edhrec-typal-20261107",
+        "publisher": "EDHREC",
+        "author": "Jeremy Rowe",
+        "published": "2026-11-06",
+        "url": "https://edhrec.com/articles/star-trek-typal-set-review",
+        "formats": [
+          "commander"
+        ],
+        "origin": "research-update-20261107",
+        "retrieved": "2026-11-07",
+        "captureSha256": "078a1d5ca30f31c7bff1ec8f4dc8373df1ebcbc8876c9317bae21c5e29a209e8"
+      },
+      {
+        "id": "edhrec-artifacts-20261107",
+        "publisher": "EDHREC",
+        "author": "Nicholas Lucchesi",
+        "published": "2026-11-04",
+        "url": "https://edhrec.com/articles/the-best-lands-and-artifacts-in-star-trek",
+        "formats": [
+          "commander"
+        ],
+        "origin": "research-update-20261107",
+        "retrieved": "2026-11-07",
+        "captureSha256": "334a0419c10d1089393946b52426857f54c6cf7a15f498e2e4831e2761c52972"
+      },
+      {
+        "id": "cardsrealm-pioneer-20261107",
+        "publisher": "Cards Realm",
+        "author": "Romeu",
+        "published": "2026-11-03",
+        "updated": "2026-11-06",
+        "url": "https://mtg.cardsrealm.com/en-us/articles/pioneer-star-trek-review-goes-live",
+        "formats": [
+          "pioneer"
+        ],
+        "origin": "research-update-20261107",
+        "retrieved": "2026-11-07",
+        "captureSha256": "d539852bb7c77449c6983f37163531f3a4cb7639d3971e0b5b2c323a706c7e23"
+      },
+      {
+        "id": "cardsrealm-legacy-20261107",
+        "publisher": "Cards Realm",
+        "author": "Eltinho",
+        "published": "2026-11-04",
+        "url": "https://mtg.cardsrealm.com/en-us/articles/legacy-star-trek-set-review",
+        "formats": [
+          "legacy"
+        ],
+        "origin": "research-update-20261107",
+        "retrieved": "2026-11-07",
+        "captureSha256": "38883bf0a065bbdc98f4bfa56b195ea39f2d87ecc0e8def4379a95e229bec547"
+      },
+      {
+        "id": "oracle-modern-scenarios-20261107",
+        "origin": "research-update-20261107",
+        "publisher": "MTG Analyzer · analisi editoriale",
+        "url": "https://magic.wizards.com/en/news/feature/star-trek-release-notes",
+        "retrieved": "2026-11-07",
+        "context": "Scenari Modern sul testo Oracle, senza risultati o voti esterni"
+      },
+      {
+        "id": "research-audit-20261107",
+        "origin": "research-update-20261107",
+        "publisher": "MTG Analyzer · audit delle fonti",
+        "url": "https://magic.wizards.com/en/news/feature/star-trek-release-notes",
+        "retrieved": "2026-11-07",
+        "context": "Controlli Oracle e limiti delle sintesi secondarie"
       }
     ],
     "notes": [
@@ -2959,7 +3301,7 @@
     ],
     "coverage": {
       "catalogCards": 341,
-      "printings": 611,
+      "printings": 616,
       "gameplayProfiles": 341,
       "specificEditorialNotes": 341,
       "constructedModelCards": 306,
@@ -2978,13 +3320,14 @@
     },
     "limitations": [
       "Catalogo delle identità completo, ma censimento di varianti e collazione non certificati completi.",
-      "306 voti Draft attribuiti a un solo autore: non sono consenso multi-autore, WR o voti Sealed.",
-      "WR Draft e WR Sealed TRK assenti prima dell’apertura degli eventi Arena del 10 novembre.",
       "306 previsioni Constructed automatiche, distinte dalle recensioni strategiche e dai risultati di torneo.",
       "Gli indici torneo conservano il campione fino al 28 ottobre; le nuove TRK non hanno risultati post-uscita.",
       "Prezzi From Cardmarket del 27 ottobre conservati: 201 carte, nessuna copertura completa delle finiture.",
       "Inclusioni EDHREC del 27 ottobre conservate, senza ridatarle o trattarle come risultati cEDH.",
-      "Commander TRC in appendice separata, senza inserimento nel catalogo o nei pool Limited."
+      "Commander TRC in appendice separata, senza inserimento nel catalogo o nei pool Limited.",
+      "WR early access del 4 novembre: 280 carte Draft (Bronze-Platinum) e 253 Sealed (Unranked). Volume ridotto, non metagame stabilizzato.",
+      "498 voti espliciti aggiuntivi tramite Limited Library; video originali collegati, non trascritti indipendentemente.",
+      "Le valutazioni editoriali separate Draft/Sealed coprono 201 comuni e non comuni; le rare e SDS non ricevono automaticamente un voto Sealed distinto."
     ],
     "automatedEvaluationsSnapshot": "research/star-trek-20261102/standard-constructed-preview.json",
     "dataAudit": {
@@ -3066,9 +3409,29 @@
       ]
     },
     "latestUpdate": {
-      "snapshot": "research/star-trek-20261102/coverage.json",
-      "sourceAudit": "research/star-trek-20261102/source-assessments.json",
-      "method": "Confronto delle identità, acquisizione integrale dei voti pubblici, scenari editoriali e limiti distinti per formato."
+      "date": "2026-11-07",
+      "origin": "research-update-20261107",
+      "coverage": {
+        "catalogCards": 341,
+        "newCatalogIdentities": 0,
+        "draftObserved": 322,
+        "draftWithWinRate": 280,
+        "sealedObserved": 318,
+        "sealedWithWinRate": 253,
+        "untappedRanked": 268,
+        "untappedLowVolume": 54,
+        "additionalAttributedGrades": 498,
+        "inferredGradesExcluded": 8,
+        "gradeAuthors": [
+          "Limited Level-Ups",
+          "Nizzahon"
+        ],
+        "newFormatObservations": 75,
+        "modernEditorialScenarios": 8,
+        "separateEditorialDraftSealed": 201,
+        "communityCardsWithGrade": 125
+      },
+      "report": "research/star-trek-20261107/README.md"
     },
     "authorFeedback": {
       "date": "2026-11-02",
@@ -3129,7 +3492,40 @@
       "numericEngineScoresChanged": false,
       "observedStatisticsAdded": false,
       "sourceAudit": "research/star-trek-limited-20261103/source-audit.json"
-    }
+    },
+    "earlyAccessUpdate": {
+      "date": "2026-11-07",
+      "origin": "research-update-20261107",
+      "coverage": {
+        "catalogCards": 341,
+        "newCatalogIdentities": 0,
+        "draftObserved": 322,
+        "draftWithWinRate": 280,
+        "sealedObserved": 318,
+        "sealedWithWinRate": 253,
+        "untappedRanked": 268,
+        "untappedLowVolume": 54,
+        "additionalAttributedGrades": 498,
+        "inferredGradesExcluded": 8,
+        "gradeAuthors": [
+          "Limited Level-Ups",
+          "Nizzahon"
+        ],
+        "newFormatObservations": 75,
+        "modernEditorialScenarios": 8,
+        "separateEditorialDraftSealed": 201,
+        "communityCardsWithGrade": 125
+      },
+      "report": "research/star-trek-20261107/README.md"
+    },
+    "limitedReviewRefresh": {
+      "date": "2026-11-07",
+      "snapshot": "research/star-trek-20261107/draftsim-review-refresh.json",
+      "previousSnapshot": "research/star-trek-limited-20261103/draftsim-reviews.json",
+      "changedScores": 2
+    },
+    "evidenceMigrationVersion": 1,
+    "noteMigrationVersion": 1
   },
   "reviewAnalysis": {
     "date": "2026-10-22",
@@ -3321,6 +3717,115 @@
       "limitedExpertGrades": 306,
       "source": "research/star-trek-20261102/limited-reviews.json",
       "limitations": "Le precedenti verifiche del 22 ottobre restano storiche. Recensioni Draft, non partite osservate."
+    }
+  },
+  "externalRankings": {
+    "untappedPickOrder": {
+      "provider": "Untapped.gg",
+      "url": "https://mtga.untapped.gg/limited/draft/star-trek/pick-order",
+      "retrieved": "2026-11-07",
+      "filters": {
+        "tiering": "In Hand WR",
+        "eventType": "PremierDraft",
+        "event": "Early Access 2026-11-04",
+        "rank": "Bronze-Platinum",
+        "archetype": "All Archetypes",
+        "format": "PremierDraft",
+        "ranks": "Bronze-Platinum",
+        "period": "Early Access 2026-11-04"
+      },
+      "coverage": {
+        "catalogCards": 341,
+        "observedCards": 322,
+        "rankedCards": 268,
+        "lowMatchVolumeCards": 54,
+        "missingCards": [
+          {
+            "catalogId": "4ff07b7c-e97a-4b57-bcf1-2f22c37a8bd6",
+            "name": "Flare of Fortitude"
+          },
+          {
+            "catalogId": "fb777610-7562-4d9d-8497-62c562e6d7cb",
+            "name": "Sisay, Weatherlight Captain"
+          },
+          {
+            "catalogId": "ea2614bc-00ad-4859-98f5-689f33357fe6",
+            "name": "Empress Galina"
+          },
+          {
+            "catalogId": "0fdfe986-0216-468b-aac8-bbcf588fd894",
+            "name": "Arcum Dagsson"
+          },
+          {
+            "catalogId": "274b999f-f193-48fd-9a4a-0fdaf535e6c3",
+            "name": "Bruvac the Grandiloquent"
+          },
+          {
+            "catalogId": "8c3495bf-02e7-4ad9-949d-92eb3d2b662a",
+            "name": "Torbran, Thane of Red Fell"
+          },
+          {
+            "catalogId": "f0c5864f-83c3-4d99-8f97-0ab92608fff3",
+            "name": "Sen Triplets"
+          },
+          {
+            "catalogId": "65114758-9a75-43a7-96e8-0aa68faa6b24",
+            "name": "Isshin, Two Heavens as One"
+          },
+          {
+            "catalogId": "c803b788-4213-4fab-b841-7e5bbf66088e",
+            "name": "Jhoira, Weatherlight Captain"
+          },
+          {
+            "catalogId": "2e7a9ea9-f76c-4c12-950f-c613fa16cfa8",
+            "name": "Captain Sisay"
+          },
+          {
+            "catalogId": "8c45bf9d-a017-43bf-9e32-67810a8a217b",
+            "name": "Talon Gates of Madara"
+          },
+          {
+            "catalogId": "1861e642-21d5-4232-89f3-b5557f2946c1",
+            "name": "Phyrexian Tower"
+          },
+          {
+            "catalogId": "9ac20f38-adc4-40a9-95c9-bbdc689b928b",
+            "name": "Brazen Bluff"
+          },
+          {
+            "catalogId": "83f426db-3b25-4407-afd0-0465e3900c24",
+            "name": "Year of Hell"
+          },
+          {
+            "catalogId": "bc71ebf6-2056-41f7-be35-b2e5c34afa99",
+            "name": "Plains"
+          },
+          {
+            "catalogId": "b2c6aa39-2d2a-459c-a555-fb48ba993373",
+            "name": "Island"
+          },
+          {
+            "catalogId": "56719f6a-1a6c-4c0a-8d21-18f7d7350b68",
+            "name": "Swamp"
+          },
+          {
+            "catalogId": "a3fb7228-e76b-4e96-a40e-20b5fed75685",
+            "name": "Mountain"
+          },
+          {
+            "catalogId": "b34bb2dc-c1af-4d77-b0b3-a0fb342a5fc6",
+            "name": "Forest"
+          }
+        ]
+      },
+      "limitations": [
+        "Solo early access del 4 novembre 2026, volume ridotto: tier instabili prima dell’apertura pubblica.",
+        "Tier statistici In Hand WR di Arena, distinti dai voti editoriali e dalle recensioni.",
+        "Il gruppo Low Match Volume resta senza tier; le carte assenti non ricevono stime.",
+        "La posizione visualizzata entro un tier non viene interpretata come un voto o una priorità numerica.",
+        "Nessuna conversione in stelle, modifica dei pesi dei bot o dei replay."
+      ],
+      "inputSha256": "6c8443d084f0e776f993c538b024ed0504e225fcca618c4d4b5d7a775a080b6b"
     }
   }
 }

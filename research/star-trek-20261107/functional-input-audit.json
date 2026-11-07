@@ -1,0 +1,84 @@
+{
+  "date": "2026-11-07",
+  "engineFieldsFrom": "expansion_data.py:428",
+  "fields": [
+    "id",
+    "full",
+    "colors",
+    "identity",
+    "cost",
+    "mv",
+    "rarity",
+    "basic",
+    "land",
+    "creature",
+    "score",
+    "role",
+    "oracle",
+    "archetypes"
+  ],
+  "changedEngineCards": [],
+  "changedAdoptedRatings": [],
+  "comparisonStars": "Two Draftsim comparison grades changed, presentation only; evidence.stars is excluded from engine_fields.",
+  "baselineCommit": "bc2733df6a96ae21b43ae0eb829fd74fa897932d",
+  "replayEvents": {
+    "draft": {
+      "baselineRevision": "7999cdc766fb5d1fe0218ee5a53913bf8ed6ff32159e6bc122aad116802cb608",
+      "currentRevision": "7999cdc766fb5d1fe0218ee5a53913bf8ed6ff32159e6bc122aad116802cb608",
+      "baselineBotPolicyRevision": "71a6da66db007fd7adeb210be6005255e7f4b3943f481fc3ccb6e34580d9fcf0",
+      "currentBotPolicyRevision": "71a6da66db007fd7adeb210be6005255e7f4b3943f481fc3ccb6e34580d9fcf0",
+      "statisticsReference": {
+        "population": "MTG Arena",
+        "purpose": "card-quality-prior",
+        "product": "play",
+        "events": {
+          "BO1": "PremierDraft",
+          "BO3": "TradDraft"
+        },
+        "provenance": {
+          "kind": "explicit-canonical-card-quality-reference",
+          "date": "2026-11-05",
+          "url": "https://www.17lands.com/public_datasets",
+          "note": "Riferimento empirico per identità canonica; non trasferisce collazione o WR complessiva al prodotto fisico. Un dato assente conserva il ripiego editoriale dichiarato."
+        }
+      },
+      "beforeEmpiricalAvailable": false,
+      "afterEmpiricalAvailable": false,
+      "empiricalSemanticIdentical": true
+    },
+    "picktwo": {
+      "baselineRevision": "ae15df5a0f944f1e68623dd7acd11ad21e80addcd2ccd675ad46b9700d49c246",
+      "currentRevision": "ae15df5a0f944f1e68623dd7acd11ad21e80addcd2ccd675ad46b9700d49c246",
+      "baselineBotPolicyRevision": "aaa1f3049e1a44bd3f2f7a0d04a228dcfd7f78d4a1d2ff8f30bef26c31830cc7",
+      "currentBotPolicyRevision": "aaa1f3049e1a44bd3f2f7a0d04a228dcfd7f78d4a1d2ff8f30bef26c31830cc7",
+      "statisticsReference": {
+        "population": "MTG Arena",
+        "purpose": "card-quality-prior",
+        "product": "play",
+        "events": {
+          "BO1": "PickTwoDraft"
+        },
+        "provenance": {
+          "kind": "explicit-canonical-card-quality-reference",
+          "date": "2026-11-05",
+          "url": "https://www.17lands.com/public_datasets",
+          "note": "Riferimento empirico per identità canonica; non trasferisce collazione o WR complessiva al prodotto fisico. Un dato assente conserva il ripiego editoriale dichiarato."
+        }
+      },
+      "beforeEmpiricalAvailable": false,
+      "afterEmpiricalAvailable": false,
+      "empiricalSemanticIdentical": true
+    }
+  },
+  "untappedEligibility": {
+    "provider": "Untapped.gg",
+    "eligible": false,
+    "reasons": [
+      "filters.event is Early Access 2026-11-04, not one of the referenced canonical event labels.",
+      "No public wins count or documented exact WR denominator.",
+      "No licensed CC BY 4.0 17Lands S3 derivation.",
+      "bot_statistics.payload rejects it before fitting; empty eligible modes are preserved."
+    ]
+  },
+  "replayFingerprintsIdentical": true
+}

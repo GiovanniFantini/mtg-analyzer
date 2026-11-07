@@ -39,7 +39,8 @@ class LimitedStudyTests(unittest.TestCase):
             self.assertTrue(set(a['partners'])<={x['name'] for x in self.cards})
 
     def test_attribution_scales_zero_and_adopted_grades(self):
-        snapshot=read(STUDY/'draftsim-reviews.json')
+        research=read(FOLDER/'sources.json')['research']
+        snapshot=read(ROOT/research['limitedReviewRefresh']['snapshot']) if research.get('limitedReviewRefresh') else read(STUDY/'draftsim-reviews.json')
         ratings=read(FOLDER/'ratings.json')['cards']
         old={r['catalogId']:r for r in read(ROOT/'research/star-trek-20261102/limited-reviews.json')['cards']}
         self.assertEqual(snapshot['matchedCards'],336)
@@ -78,6 +79,7 @@ class LimitedStudyTests(unittest.TestCase):
             for n in names:shutil.copy2(FOLDER/(n+'.json'),target/(n+'.json'))
             before=read(target/'cards.json')
             integrate(target,STUDY)
+            self.assertNotIn('senza WR osservate',read(target/'guides.json')['fragments']['draft.copy-0'])
             first={n:hashlib.sha256((target/(n+'.json')).read_bytes()).hexdigest() for n in names}
             integrate(target,STUDY)
             self.assertEqual(first,{n:hashlib.sha256((target/(n+'.json')).read_bytes()).hexdigest() for n in names})

@@ -1,0 +1,21 @@
+{
+  "version":"working tree after round 2; hashes in next manifest",
+  "decisions":[
+    {"id":"R1","status":"confirmed_fixed","evidence":"Scryfall TRK 264, current Pioneer not_legal and releaseEligibility 2026-11-13 preserved. Wrong SDS audit withdrawn and corrected explicitly."},
+    {"id":"R2","status":"confirmed_fixed","evidence":"catalog_metrics exposes reportedGames separately; games requires documented denominator or GIH derivation. Minimum filter disabled and cleared otherwise. Public confidence margins shown."},
+    {"id":"R3","status":"confirmed_fixed","evidence":"Coverage and panels derived from snapshot coverage, len of grade observations, totalMatchesDisplay and per-card limitedAnalysis count."},
+    {"id":"R4","status":"confirmed_fixed","evidence":"captures/ holds factual rows, grade records and pick groups. normalize.py without arguments reads repository only, hashes those exact inputs."},
+    {"id":"R5","status":"confirmed_fixed","evidence":"source-assessments.json records all 54 captures individually. Modern URL is generic page, not review; EDH LAB inaccessible. Draftsim fully re-extracted: 336 rows, two changed scores integrated. Historic not transferred to Modern; other computations not used as observed games."},
+    {"id":"R6","status":"confirmed_fixed","evidence":"Saavik note now includes attacking or blocking and flags original summary error."},
+    {"id":"R7","status":"confirmed_fixed","evidence":"Holodeck Modern includes sideboard toolbox and cost/timing restrictions; verified official release notes. Pauper sentence removed from Modern Cosmozoan scenario."},
+    {"id":"R8","status":"confirmed_fixed","evidence":"prospects-ui Limited block no longer requires own analysis; numeric reviews and attributed originalGrade notes displayed there for rares/SDS, not automatic prediction block. No blanket claim of no observed WR or exactly two opinions."},
+    {"id":"R9","status":"confirmed_fixed","evidence":"Aggregator notes formats draft only, explicit disclaimer no separate Sealed score."},
+    {"id":"R10","status":"confirmed_fixed","evidence":"Audit and Modern note distinguish six types versus five paid from seven types for net gain including Academy opportunity cost."},
+    {"id":"R11","status":"confirmed_fixed","evidence":"Evidence changes record prior state and origin; initial migration uses dated baseline evidence. Corrections keyed by name. Early access event date 4 November distinct from retrieval 7 November."},
+    {"id":"R12","status":"confirmed_fixed","evidence":"Capture now requires stable row count at document bottom; fails on missing identities or failure to reach end. Current factual capture had scanned beyond full list extent."},
+    {"id":"R13","status":"confirmed_fixed","evidence":"Pioneer published 3 November, updated 6 November; Legacy 4 November, from page headings."},
+    {"id":"R14","status":"confirmed_fixed","evidence":"Panels show Bronze-Platinum versus Unranked; Pauper reread explicitly dated 31 October. Further searches found Common Ground 151 and StrataGames video, but no primary transcript acquired, so no invented card opinions."},
+    {"id":"R15","status":"rejected_excerpt_limitation","evidence":"Full published snapshots already contain sourceName, sourceUrl, display and confidenceMarginsDisplay; round 2 bundle abbreviated row metadata to reduce prompt size. New renderer consumes actual margin field. No dataset omission."}
+  ],
+  "remainingLimits":["No stable post-launch sample before Arena opens publicly.","No independently transcribed grades from original videos.","No new complete standalone Modern review or additional per-card Pauper transcript.","No distinct Sealed editorial ranking for every rare or SDS.","No individual full TRC/cEDH study or new Cardmarket prices."]
+}

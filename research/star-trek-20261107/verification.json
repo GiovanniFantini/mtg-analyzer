@@ -1,0 +1,134 @@
+{
+  "date": "2026-11-07",
+  "status": "ready_for_publication",
+  "checks": [
+    {
+      "command": "python build_site.py",
+      "status": "passed",
+      "result": "21 expansions, 290 HTML pages; local links verified; offline build."
+    },
+    {
+      "command": "python -m unittest test_expansion_data.py",
+      "status": "passed",
+      "tests": 37,
+      "seconds": 749.748
+    },
+    {
+      "command": "python -m unittest test_star_trek_update.py test_limited_study.py test_catalog_metrics.py test_catalog_statistics.py test_star_trek_research.py",
+      "status": "passed",
+      "tests": 33
+    },
+    {
+      "command": "python research/star-trek-20261107/audit-replays.py",
+      "status": "passed",
+      "events": [
+        "draft",
+        "picktwo"
+      ],
+      "v2RevisionsIdentical": true,
+      "v4BotPolicyRevisionsIdentical": true,
+      "empiricalSemanticIdentical": true
+    },
+    {
+      "command": "python -m unittest test_catalog_statistics.py test_catalog_metrics.py test_star_trek_update.py",
+      "status": "passed",
+      "tests": 14
+    },
+    {
+      "command": "node test-catalog-indices.cjs",
+      "status": "passed"
+    },
+    {
+      "command": "node verify-catalog-indices.cjs star-trek reality-fracture",
+      "status": "passed",
+      "expansions": 2,
+      "errors": [],
+      "evidence": "qa-indices.json"
+    },
+    {
+      "command": "node verify-atlas-expansions.cjs star-trek",
+      "status": "passed",
+      "routes": 14,
+      "manualRecordsPreserved": true,
+      "previews": [
+        "mouse",
+        "keyboard",
+        "touch"
+      ],
+      "errors": [],
+      "evidence": "qa-atlas.json"
+    },
+    {
+      "command": "node research/star-trek-20261107/verify-update.cjs",
+      "status": "passed",
+      "widths": [
+        1440,
+        390
+      ],
+      "checks": [
+        "Rare and SDS Limited sections",
+        "Secondary attribution and source date",
+        "Reported volume distinct from WR denominator",
+        "No undefined tier filter labels",
+        "External Scapeshift preview: mouse, keyboard and touch",
+        "No page overflow or JavaScript errors"
+      ],
+      "evidence": "qa-update.json"
+    },
+    {
+      "command": "git diff --cached --check",
+      "status": "passed"
+    }
+  ],
+  "sourceAudit": {
+    "acquiredPages": 54,
+    "arenaZoneComparedGrades": 306,
+    "arenaZoneChangedGrades": 0,
+    "draftsimComparedGrades": 336,
+    "draftsimChangedGrades": 2,
+    "communityPages": 4,
+    "communityCards": 336,
+    "communityCardsWithGrade": 125,
+    "communityRatersRange": [
+      3,
+      4
+    ]
+  },
+  "dataIntegrity": {
+    "identities": 341,
+    "printings": 616,
+    "newPrintings": 5,
+    "engineFieldsChanged": 0,
+    "adoptedRatingsChanged": 0,
+    "replayEventsWithIdenticalV2AndV4Fingerprints": [
+      "draft",
+      "picktwo"
+    ],
+    "idempotence": "Temporary-copy unittest passes and unrelated sentinel is preserved",
+    "rawSnapshotsPreserved": true
+  },
+  "browserVisualInspection": [
+    "browser-genesis-390.png",
+    "browser-genesis-1440.png"
+  ],
+  "notes": [
+    "An initial summary assertion failed after the panel changed; the missing active printing count was restored and the targeted test passed.",
+    "The historical Limited importer initially reintroduced an older review. It now preserves newer matching author and URL observations; its repeat test passes.",
+    "The first custom preview check selected another card whose text mentioned Genesis Device; selecting the exact catalog ID fixed the QA selector.",
+    "Visual inspection found undefined tier filter labels. Explicit format/ranks metadata and shared fallback labels corrected them, and final browser checks passed.",
+    "Card dataset schema URLs are rebased by the build, so raw file hashes differ for that expected field. Content is otherwise identical."
+  ],
+  "publication": {
+    "status": "authorized_after_opus_approval",
+    "condition": "Approval obtained. Commit/push and workflow/public-resource verification follow; receipt retained locally."
+  },
+  "review": {
+    "ready": true,
+    "findings": 0,
+    "model": [
+      "claude-opus-5-5"
+    ],
+    "fullReview": "reviews/star-trek-20261107/round-5.result.json",
+    "finalConfirmation": "reviews/star-trek-20261107/round-6.result.json"
+  }
+}

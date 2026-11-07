@@ -1,0 +1,10 @@
+{
+  "decisions":[
+    {"id":"R1","status":"verified_fixed","evidence":"audit-replays.py constructs the actual Expansion runtime for the current data and a deep-copied Git baseline bc2733d, replacing all manifest datasets with baseline content. Both v2 revision and v4 botPolicy.revision are identical for draft and picktwo, and empirical semantic payloads match. statisticsReference exists, but Untapped is rejected by canonical event matching, absence of public wins/exact denominator and absence of a licensed CC BY 4.0 17Lands S3 derivation. Current runtime tests assert these baseline fingerprints."},
+    {"id":"R2","status":"verified_fixed","evidence":"capture_facts now checks early-access date, Bronze-Platinum, Latest Event, All Archetypes and Tiering by In Hand WR in the saved Pick Order text before normalizing factual groups."},
+    {"id":"R3","status":"fixed","evidence":"Gallery tier badge includes event/period in both compact grid and extended card. Custom browser check asserts Early Access 2026-11-04 in both."},
+    {"id":"R4","status":"fixed","evidence":"Changed review membership is a catalogId set. A regression test checks previousReading in limitedReviews and matching author/URL evidence for both changed identities and its absence on the other 334 rows."},
+    {"id":"R5","status":"fixed","evidence":"Existing prints used number/image/finishes/frame_effects/promo_types without IDs. The five new variants now also retain printingId and Scryfall URL as compatible optional provenance fields. printings.json and collation are unchanged."}
+  ],
+  "additionalCorrection":"Expanded Gor Muldrak to the complete card name in the De-evolve note so the acquired preview identity matches. The shared preview browser check now covers that reference as well as Scapeshift. No change to the assessment or gameplay."
+}

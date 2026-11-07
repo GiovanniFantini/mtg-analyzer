@@ -19,4 +19,10 @@ class PerformanceTests(unittest.TestCase):
  def test_null_is_not_zero(self):
   s=self.snapshot(value=None);r=catalog_performance({'sealed':{'externalSources':{'one':s}}})
   self.assertIsNone(r['sealed'][0]['cards']['one']['value']);self.assertNotIn('two',r['sealed'][0]['cards'])
+ def test_reported_volume_is_not_win_rate_denominator(self):
+  s=self.snapshot();r=catalog_performance({'draft':{'externalSources':{'one':s}}})['draft'][0]
+  self.assertIsNone(r['cards']['one']['games']);self.assertEqual(r['cards']['one']['reportedGames'],10)
+  s['metrics']['games']['denominatorOf']='inHandWinRate'
+  r=catalog_performance({'draft':{'externalSources':{'one':s}}})['draft'][0]
+  self.assertEqual(r['cards']['one']['games'],10);self.assertTrue(r['gamesAreDenominator'])
 if __name__=='__main__':unittest.main()

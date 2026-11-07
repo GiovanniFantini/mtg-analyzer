@@ -38,8 +38,9 @@ window.CatalogIndices={create(DATA){
   const s=source(kind),v=rate(c,kind),r=s?.cards[c.id],title=kind==='draft'?'WR Draft':'WR Sealed';
   const value=v==null?'N/D':v.toLocaleString('it-IT',{maximumFractionDigits:1})+'%';
   const details=s?`${s.provider} · ${s.filters?.event||kind} · ${s.retrieved}`:'Nessun campione integrato';
-  const n=r?.games!=null?` · ${s?.derivation?'n=':'partite riportate: '}${r.games.toLocaleString('it-IT')}${s?.derivation&&r.games<100?' (campione ridotto)':''}`:'';
-  return `<p class="untapped-wr catalog-rate" data-wr-kind="${kind}"><span>${title}: ${value}</span><small>${esc(details)}${n}</small>${compact?'<small>In mano iniziale o pescata</small>':''}${!compact&&s?`<small>${esc(s.metric||'WR in mano')} · ${esc(s.filters?.period||'Periodo non indicato')} · ${esc(s.filters?.ranks||s.filters?.rankMin||'Ranghi non indicati')} · ${esc(s.filters?.archetype||'Archetipo non indicato')}</small>${!s.derivation?'<small>I conteggi riportati dalla fonte non sono un denominatore esatto documentato della WR.</small>':''}<a href="${esc(r?.url||s.url||'https://www.17lands.com/public_datasets')}" target="_blank" rel="noopener">Fonte e metodo</a>`:''}</p>`;
+  const n=r?.games!=null?` · n=${r.games.toLocaleString('it-IT')}${r.games<100?' (campione ridotto)':''}`:r?.reportedGames!=null?` · volume riportato: ${r.reportedGames.toLocaleString('it-IT')} (denominatore WR non disponibile)`:'';
+  const uncertainty=r?.confidenceMargin?`<small>Margine ${s?.confidenceLevel?'di confidenza '+esc(s.confidenceLevel)+'%':'pubblicato dalla fonte'}: ${esc(r.confidenceMargin)} punti percentuali</small>`:'';
+  return `<p class="untapped-wr catalog-rate" data-wr-kind="${kind}"><span>${title}: ${value}</span><small>${esc(details)}${n}</small>${uncertainty}${compact?'<small>In mano iniziale o pescata</small>':''}${!compact&&s?`<small>${esc(s.metric||'WR in mano')} · ${esc(s.filters?.period||'Periodo non indicato')} · ${esc(s.filters?.ranks||s.filters?.rankMin||'Ranghi non indicati')} · ${esc(s.filters?.archetype||'Archetipo non indicato')}</small>${!s.gamesAreDenominator?'<small>I conteggi riportati dalla fonte non sono un denominatore esatto documentato della WR.</small>':''}<a href="${esc(r?.url||s.url||'https://www.17lands.com/public_datasets')}" target="_blank" rel="noopener">Fonte e metodo</a>`:''}</p>`;
  }).join('')+'</div>'}
  function prospectHTML(c){return `<dl class="catalog-prospect-indices">${Object.entries(formats).map(([f,label])=>{const a=assessment(c,f);return `<div><dt>${label}</dt><dd>${a.tournament?TournamentProspects.compact(c,f):esc(a.label)}${!a.tournament&&a.date&&a.state!=='not_legal'?`<small>${esc(a.date)}</small>`:''}</dd></div>`}).join('')}</dl>`}
  function mount(target,order){
@@ -56,7 +57,11 @@ window.CatalogIndices={create(DATA){
    for(const kind of ['draft','sealed']){
     const s=source(kind),has=DATA.cards.some(c=>rate(c,kind)!=null),prefix=kind==='draft'?'wr':'sealed-wr';
     for(const suffix of ['min','max'])$(prefix+'-'+suffix).disabled=!has;
-    $(kind+'-wr-games').disabled=!has;$(kind+'-wr-source').disabled=snapshots[kind].length<2;
+    const hasSample=has&&s?.gamesAreDenominator!==false&&DATA.cards.some(c=>s?.cards[c.id]?.games!=null);
+    $(kind+'-wr-games').disabled=!hasSample;
+    $(kind+'-wr-games').title=hasSample?'Numero di partite nel denominatore della WR':'Denominatore della WR non disponibile per questa fonte';
+    if(!hasSample)$(kind+'-wr-games').value='';
+    $(kind+'-wr-source').disabled=snapshots[kind].length<2;
     $(prefix+'-data').querySelector('[value="present"]').disabled=!has;
     $(kind+'-wr-coverage').textContent=s?`${DATA.cards.filter(c=>rate(c,kind)!=null).length} / ${DATA.cards.length} carte con WR. ${s.retrieved} · ${s.filters?.period||'Periodo non indicato'}.`:'WR non disponibile per questa espansione. Le recensioni non sono percentuali di vittoria.';
     for(const value of [prefix,prefix+'-asc']){const o=order.querySelector(`[value="${value}"]`);o.disabled=!has;o.hidden=false;}

@@ -4,7 +4,8 @@ const {chromium}=require(process.env.MTG_PLAYWRIGHT_MODULE||'playwright');
 const base=process.env.MTG_SITE_URL;if(!base)throw Error('MTG_SITE_URL required');
 const out=process.env.MTG_QA_DIR||fs.mkdtempSync(path.join(os.tmpdir(),'mtg-indices-'));fs.mkdirSync(out,{recursive:true});
 const fixture=process.env.MTG_INDICES_FIXTURE==='1';
-const manifests=JSON.parse(fs.readFileSync('expansions.json','utf8')).map(r=>JSON.parse(fs.readFileSync(r.manifest,'utf8'))).filter(m=>!fixture||['reality-fracture','the-hobbit'].includes(m.id));
+const wanted=process.argv.slice(2);
+const manifests=JSON.parse(fs.readFileSync('expansions.json','utf8')).map(r=>JSON.parse(fs.readFileSync(r.manifest,'utf8'))).filter(m=>(!wanted.length||wanted.includes(m.id))&&(!fixture||['reality-fracture','the-hobbit'].includes(m.id)));
 (async()=>{const b=await chromium.launch({channel:process.env.MTG_BROWSER_CHANNEL||'msedge'}),results=[],errors=[];
 try{for(const m of manifests){const p=await b.newPage({viewport:{width:1440,height:1000}});p.on('pageerror',e=>errors.push(m.id+': '+e.message));
  if(fixture)await p.route('**/*',route=>{const u=new URL(route.request().url()),name=path.basename(u.pathname);if(name===path.basename(m.presentation.pages.gallery.url))return route.fulfill({path:path.join(os.tmpdir(),'mtg-indices-'+m.id+'.html'),contentType:'text/html'});if(['catalog-controls.js','catalog-indices.js','catalog-controls.css','prospects-ui.js'].includes(name))return route.fulfill({path:path.resolve(name),contentType:name.endsWith('css')?'text/css':'application/javascript'});return route.continue()});
@@ -33,7 +34,13 @@ try{for(const m of manifests){const p=await b.newPage({viewport:{width:1440,heig
  }
  await p.locator('#sealed-wr-data').selectOption('missing');assert.ok(await p.evaluate(()=>filtered.every(c=>catalog.indices.rate(c,'sealed')==null)));await p.locator('#reset').click();
  if(!await p.locator('#sealed-wr-min').isDisabled()){
-  await p.locator('#sealed-wr-min').fill('50');await p.locator('#sealed-wr-games').fill('100');assert.ok(await p.evaluate(()=>filtered.every(c=>catalog.indices.rate(c,'sealed')>=50&&catalog.indices.source('sealed').cards[c.id].games>=100)));
+  await p.locator('#sealed-wr-min').fill('50');
+  if(!await p.locator('#sealed-wr-games').isDisabled()){
+   await p.locator('#sealed-wr-games').fill('100');assert.ok(await p.evaluate(()=>filtered.every(c=>catalog.indices.rate(c,'sealed')>=50&&catalog.indices.source('sealed').cards[c.id].games>=100)));
+  }else{
+   assert.ok(await p.evaluate(()=>catalog.indices.source('sealed').gamesAreDenominator===false));
+   assert.ok(await p.evaluate(()=>filtered.every(c=>catalog.indices.rate(c,'sealed')>=50)));
+  }
   await p.locator('#sealed-wr-max').fill('40');assert.equal(await p.evaluate(()=>filtered.length),0);await p.locator('#reset').click();
  }
  assert.equal(await p.evaluate(()=>JSON.stringify({...localStorage})),baseline,'Filters must not alter saves');

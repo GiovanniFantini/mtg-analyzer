@@ -1,0 +1,48 @@
+{
+  "ready": true,
+  "findings": [
+    {
+      "id": "R1",
+      "priority": "P3",
+      "file": "research/star-trek-20261107/normalize.py; research/star-trek-20261107/capture.cjs; templates/atlas/gallery.html",
+      "finding": "Le verifiche dei filtri Untapped non distinguono il filtro selezionato dalle opzioni elencate. Il testo viene controllato con 'bronze' e 'platinum' come sottostringhe, o con la regex /Bronze[\\s\\S]*Platinum/. Il controllo passerebbe anche se la pagina mostrasse solo il menu completo dei ranghi con un altro filtro attivo. Inoltre eventType 'PremierDraft' è scritto nel codice, sia in Card Data sia nel Pick Order, e non viene verificato sulla pagina. L'evento early access potrebbe non essere una coda Premier. Il valore arriva comunque all'interfaccia: il badge del tier e la nota del ranking mostrano 'PremierDraft · Bronze-Platinum' accanto a 'Early Access 2026-11-04'. Non è bloccante, perché evento e limiti sono dichiarati chiaramente.",
+      "fix": "In capture.cjs leggere il testo del controllo selezionato (formato o coda, ranghi) e salvarlo nella cattura. In normalize.py confrontare l'etichetta esatta, non sottostringhe sparse. Se la coda non è verificabile, impostare eventType e format a null o a un'etichetta come 'early_access' invece di PremierDraft."
+    },
+    {
+      "id": "R2",
+      "priority": "P3",
+      "file": "research/star-trek-20261107/source-assessments.json; research/star-trek-20261107/README.md",
+      "finding": "EDH LAB è classificata 'unavailable', ma l'errore registrato è CERTIFICATE_VERIFY_FAILED 'unable to get local issuer certificate'. È un problema dell'archivio certificati locale di urllib, non un'indisponibilità della fonte. Lo stato attuale presenta come inaccessibile un parere Commander probabilmente leggibile, mentre la stessa pipeline dispone già di un percorso Playwright.",
+      "fix": "Riacquisire la pagina con il browser di capture.cjs e integrarne le osservazioni con le stesse regole delle note EDHREC. In alternativa, cambiare stato e motivazione in 'not_acquired_local_tls', senza dichiararla non disponibile."
+    },
+    {
+      "id": "R3",
+      "priority": "P3",
+      "file": "integrate_limited_study.py; integrate_star_trek_20261107.py",
+      "finding": "integrate_limited_study.py rigenera ancora lo span data-limited-summary di draft.copy-0 con la frase 'I voti dei recensori sono confronti attribuiti, senza WR osservate.'. L'integratore del 7 novembre la corregge solo con un replace esatto, che non segnala nulla se la frase non c'è. Se lo studio Limited viene rieseguito dopo l'aggiornamento, la pagina Draft torna ad affermare che non esistono WR osservate, il che ora è falso. L'esito dipende quindi dall'ordine di esecuzione e la regressione resta silenziosa.",
+      "fix": "Fare in modo che integrate_limited_study.py non emetta l'affermazione sulle WR, oppure che la condizioni alla presenza di snapshot pubblici in statistics. In alternativa, spostare la frase sulle WR in un frammento gestito solo dall'integratore del 7 novembre. Aggiungere un test che esegua i due integratori in sequenza e verifichi il testo finale."
+    }
+  ],
+  "researchNeeded": [
+    "EDH LAB, https://blog.edhlab.gg/magic-star-trek-set-review/: acquisizione tramite browser per le letture Commander, attualmente bloccata solo dalla verifica TLS locale.",
+    "Untapped.gg Card Data e Pick Order early access: etichetta esatta del filtro di coda o formato e dei ranghi selezionati, per confermare o correggere PremierDraft e Bronze-Platinum."
+  ],
+  "summary": "I cinque rilievi del giro precedente risultano risolti. Il P2 sul percorso bot v4 è chiuso: audit-replays.py ricostruisce il runtime dal commit bc2733d, le revisioni v2 e v4 di Draft e Pick-Two coincidono e bot_statistics.payload scarta Untapped perché l'evento non è canonico e manca una derivazione 17Lands con licenza CC BY 4.0. I test lo verificano. Pick Order, badge del tier con l'evento, previousReading per catalogId e printingId delle cinque stampe sono corretti. I dati sono coerenti: 322 righe Draft con 280 WR, 318 Sealed con 253 WR, assenze esplicite (19 e 23), null distinti dallo zero, Included WR sospetta ed esclusa, Games separato dal denominatore e margini al 95% conservati. Sono coerenti anche 268 tier e 54 low volume, 498 voti espliciti con attribuzione secondaria e 8 inferiti esclusi, 125 aggregati Community separati, 75 osservazioni attribuite (16+28+10+21), 8 scenari Modern editoriali, la distinzione fra legalità corrente e prevista di Engineered Explosives e le 54 fonti con stato motivato. Le lacune Pauper, Modern, Cardmarket e TRC sono dichiarate in modo legittimo. Restano tre rifiniture P3 non bloccanti: etichette di popolazione non verificate, stato EDH LAB fuorviante e dipendenza dall'ordine fra integratori. Per la pubblicazione occorre aggiornare verification.json dopo l'approvazione, quindi eseguire commit e push autorizzati e verificare workflow e risorse pubbliche.",
+  "modelUsage": {
+    "claude-opus-5-5": {
+      "inputTokens": 2,
+      "outputTokens": 16160,
+      "cacheReadInputTokens": 1545,
+      "cacheCreationInputTokens": 433742,
+      "webSearchRequests": 0,
+      "costUSD": 3.7934530000000004,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 14138,
+      "canonicalModel": "claude-opus-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "requestSha256": "d57dee537681ea43c1d42ad40eabb2cf1e04bbbf631eb3c0369d0ea68bde43a3"
+}

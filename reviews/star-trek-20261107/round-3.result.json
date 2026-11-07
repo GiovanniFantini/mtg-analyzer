@@ -1,0 +1,99 @@
+{
+  "ready": false,
+  "findings": [
+    {
+      "id": "R1",
+      "priority": "P2",
+      "file": "integrate_star_trek_20261107.py; expansions/star-trek/guides.json; research/star-trek-20261107/oracle-check.json",
+      "finding": "Il pannello analysis.panel-1 dichiara 611 stampe nel catalogo attivo, perché legge catalog['print_count']. oracle-check.json e il README registrano però 616 stampe nella nuova acquisizione Scryfall. La richiesta era aggiornare il pool. Le cinque stampe in più non risultano integrate, e nel pannello pubblicato non c'è una motivazione esplicita. L'utente legge quindi un conteggio superato senza saperlo.",
+      "fix": "Integrare le cinque stampe nel catalogo, conservando identità e catalogId esistenti, e aggiornare print_count. In alternativa, dichiarare nel pannello e nel README quali stampe mancano (numero, trattamento, prodotto) e perché restano escluse. Aggiungere un controllo che confronti print_count con oracle-check.json['printings'] e fallisca se divergono senza una decisione registrata."
+    },
+    {
+      "id": "R2",
+      "priority": "P2",
+      "file": "research/star-trek-20261107/source-assessments.json",
+      "finding": "La rilettura Draftsim ha trovato due punteggi cambiati rispetto al 3 novembre. Altre pagine che contengono voti già importati o importabili sono invece marcate acquisition_only, con la formula generica nessun nuovo dato estratto, senza confronto con l'acquisizione precedente: le sette review Limited MTG Arena Zone e myLimitedGrades. La stessa causa che ha cambiato Draftsim può aver cambiato queste fonti. Lo stato attuale non distingue conferma, modifica e mancato controllo.",
+      "fix": "Per ogni fonte con voti già presenti in ratings.json o limitedReviews, confrontare i voti estratti con lo snapshot precedente, non l'hash della pagina, che cambia anche per elementi dinamici. Registrare confirmed o changed con il conteggio, come per Draftsim. Per myLimitedGrades dichiarare se contiene voti espliciti di autori non ancora importati."
+    },
+    {
+      "id": "R3",
+      "priority": "P2",
+      "file": "integrate_star_trek_20261107.py; test_star_trek_update.py",
+      "finding": "Il refresh Draftsim aggiorna ratings.cards[].evidence[] cercando solo author == refreshed['author']. Un'eventuale evidenza dello stesso autore da un'altra fonte verrebbe sovrascritta. Inoltre stars viene riscritto per tutte le 336 carte e retrieved diventa il 7 novembre anche per i 334 voti invariati. La limitazione dichiara nessuna modifica di voti numerici o pesi bot, ma questo è un cambio numerico in ratings.json. Il test controlla solo che score sia None, non che stars e i riferimenti dei bot o dei replay restino coerenti. Il refresh non è reversibile dallo script, a differenza delle note con origin.",
+      "fix": "Abbinare per author e url o source. Aggiornare retrieved solo dove il voto è confermato o cambiato, registrando il valore precedente. Verificare se il motore Draft o le revisioni dei replay leggono evidence.stars: in quel caso documentare il cambio di Pure Energy e 70,000 Light-Years from Home nella revisione, oppure escluderlo dagli input dei bot. Correggere il testo della limitazione."
+    },
+    {
+      "id": "R4",
+      "priority": "P2",
+      "file": "git working tree",
+      "finding": "Il push in produzione richiede i file da cui dipendono integrazione e test: baseline-evidence.json, captures/, draftsim-review-refresh.json, preview-references.json, source-audit.json, untapped-*.json e attributed-grades.json. Non compaiono nel manifest, ma sono letti da integrate_star_trek_20261107.py e test_star_trek_update.py. Il working tree contiene anche molti file probabilmente estranei a questo lavoro: fra-*.json, script lifegain, PNG di QA, reviews/expansions-20261022, references/limited-synergies.md modificato. Il bundle non riporta inoltre l'esito di build_site.py, degli unittest e di verify-catalog-indices.cjs, che risulta modificato.",
+      "fix": "Preparare un commit selettivo con i soli file Star Trek del 7 novembre e i loro input in research/star-trek-20261107. Lasciare fuori i file non correlati e docs/local con testi di terzi. Prima del push allegare l'output reale dei test elencati nel README e del controllo browser del catalogo."
+    },
+    {
+      "id": "R5",
+      "priority": "P3",
+      "file": "research/star-trek-20261107/normalize.py; research/star-trek-20261107/capture.cjs",
+      "finding": "rank (Bronze-Platinum o Unranked), event (Early Access 2026-11-04) e i filtri del pick order sono scritti nel codice, non letti dalla pagina catturata. capture.cjs non imposta né verifica i filtri attivi. sourceUpdatedLabel resta il valore relativo 1 day ago, senza data assoluta.",
+      "fix": "Estrarre dal testo o dal DOM catturato le etichette dei filtri selezionati e confrontarle con quelle attese, fermandosi se differiscono. Salvare accanto all'etichetta relativa la data assoluta derivata (circa 2026-11-06), con il metodo di derivazione."
+    },
+    {
+      "id": "R6",
+      "priority": "P3",
+      "file": "catalog-indices.js; docs/statistics.md",
+      "finding": "Il catalogo presenta i valori ± come margine di confidenza 95% in punti percentuali, ma lo snapshot non registra la definizione data dalla fonte: livello di confidenza, base del calcolo, tipo di intervallo. È un'interpretazione non documentata.",
+      "fix": "Acquisire il tooltip o la documentazione Untapped e salvarne la definizione in metrics.inHandWinRate. Finché manca, mostrare solo margine pubblicato dalla fonte."
+    },
+    {
+      "id": "R7",
+      "priority": "P3",
+      "file": "integrate_star_trek_20261107.py; expansions/star-trek/guides.json",
+      "finding": "totalMatchesDisplay viene inserito così com'è nel testo italiano: 1,800 partite Draft. In italiano si legge come 1,8. Il README usa invece 1.800.",
+      "fix": "Formattare il numero con la convenzione italiana, oppure scrivere 1.800 (valore arrotondato dalla fonte) conservando il display originale nel JSON."
+    },
+    {
+      "id": "R8",
+      "priority": "P3",
+      "file": "integrate_star_trek_20261107.py",
+      "finding": "Il ramo di migrazione riapplica baseline-evidence.json a ogni esecuzione, per tutte le coppie carta/formato presenti in format-notes. Un aggiornamento successivo di quelle evidenze fatto da un altro processo verrebbe riportato al baseline senza avviso. entry['note'] Draft/Sealed resta sovrascritta per intero e il testo precedente non viene conservato. Manca un test che verifichi che due esecuzioni consecutive producano JSON identici.",
+      "fix": "Applicare la migrazione solo se manca un marcatore di migrazione già eseguita. Conservare la nota precedente o la sola parte aggiunta con origin. Aggiungere un test di idempotenza su copie temporanee dei JSON."
+    },
+    {
+      "id": "R9",
+      "priority": "P3",
+      "file": "prospects-ui.js; integrate_star_trek_20261107.py",
+      "finding": "Nel blocco Limited i voti Limited Library mostrano solo la data di acquisizione. La data del dataset, 3 novembre, compare solo nel campo finding, che limited() non visualizza. Il contesto e la frase fissa ripetono due volte l'attribuzione tramite aggregatore.",
+      "fix": "Salvare sourceUpdated come campo strutturato della nota e mostrarlo accanto alla data di acquisizione. Eliminare la ripetizione."
+    },
+    {
+      "id": "R10",
+      "priority": "P3",
+      "file": "research/star-trek-20261107/README.md",
+      "finding": "Il README descrive lo stato retrieved_unreviewed, che non compare in source-assessments.json (stati usati: acquisition_only, integrated, excluded_or_context_only, unavailable). Afferma inoltre che i nuovi voti compaiono anche per rare e SDS, ma nessun voto Limited Library riguarda carte SDS.",
+      "fix": "Allineare il README agli stati realmente usati. Precisare che i voti aggiunti coprono solo carte TRK, rare comprese."
+    }
+  ],
+  "researchNeeded": [
+    "MTG Arena Zone (review Limited per colore) e myLimitedGrades: confronto voto per voto con le acquisizioni del 2 e 3 novembre, conservando autore, scala e data.",
+    "Untapped Card Data: definizione pubblicata del margine ± e filtri effettivamente selezionati nella pagina (rango, evento, intervallo) al momento della cattura.",
+    "Scryfall TRK/SDS: elenco delle cinque stampe aggiuntive (numero, trattamento, prodotto) per decidere integrazione o esclusione motivata.",
+    "Pauper: una fonte scritta o trascritta attribuibile sulle comuni TRK, ad esempio Common Ground 151 o il video StrataGames del 6 novembre, solo se ottenibile senza ricostruire giudizi non verificati."
+  ],
+  "summary": "I rilievi del giro precedente risultano risolti in modo coerente. Engineered Explosives è registrata come TRK 264, con legalità corrente e prevista distinte. Il volume riportato è separato dal denominatore della WR, i conteggi sono derivati dagli snapshot e le catture fattuali sono nel repository. Restano corretti gli scenari Holodeck, Starfleet Academy e Saavik, lo stato di tutte le 54 fonti e i voti Limited Library limitati a Draft e visibili nel blocco Limited. Dati WR, campioni, null e zero, Included WR sospetta ed esclusa e separazione dei formati sono solidi. Non è ancora pronto per il push per quattro punti P2. Il pool pubblicato dichiara 611 stampe contro le 616 trovate. Fonti con voti già importati sono state riacquisite senza confronto dei voti, mentre Draftsim è cambiata. Il refresh Draftsim modifica valori numerici in ratings.json con un abbinamento solo per autore e un possibile effetto sui bot. Per la pubblicazione serve un commit selettivo, con gli input di ricerca e l'esito reale di test e verifica browser. I P3 sono rifiniture di metadati, formattazione e idempotenza.",
+  "modelUsage": {
+    "claude-opus-5-5": {
+      "inputTokens": 2,
+      "outputTokens": 18832,
+      "cacheReadInputTokens": 1545,
+      "cacheCreationInputTokens": 263155,
+      "webSearchRequests": 0,
+      "costUSD": 2.4821969999999998,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 15100,
+      "canonicalModel": "claude-opus-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "requestSha256": "bb7cca1afa19bc3a3c84a65f3e59cddf4b05343092f5113f67234aa5cd152313"
+}

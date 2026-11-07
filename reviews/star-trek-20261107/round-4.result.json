@@ -1,0 +1,61 @@
+{
+  "ready": false,
+  "findings": [
+    {
+      "id": "R1",
+      "priority": "P2",
+      "file": "research/star-trek-20261107/functional-input-audit.json; test_star_trek_update.py; expansions/star-trek/statistics.json",
+      "finding": "Il controllo funzionale esamina solo gli engine_fields di expansion_data.py:428 e i voti adottati. Il commit HEAD bc2733d introduce però un secondo canale d'ingresso per i bot: la politica v4 legge le osservazioni da statistics tramite botPolicy.statisticsReference e ne include i valori nella revisione funzionale. Questo aggiornamento popola per la prima volta statistics.draft.externalSources.untapped per Star Trek. Nessun file allegato dimostra che l'evento Draft TRK non abbia un statisticsReference, né che lo snapshot Untapped sia escluso da quel percorso. Le limitazioni dichiarano comunque 'nessuna modifica di pesi bot o replay'. Se il percorso fosse attivo, cambierebbe l'impronta funzionale e le sessioni Draft salvate verrebbero rifiutate.",
+      "fix": "Verificare che i profili Draft di star-trek non abbiano botPolicy.statisticsReference, oppure che bot_statistics.py scarti lo snapshot Untapped perché privo di denominatore, colorContexts e gameOne. Estendere functional-input-audit.json a questo percorso. Aggiungere a test_star_trek_update.py un'asserzione che l'impronta funzionale del replay TRK resti identica a quella di HEAD."
+    },
+    {
+      "id": "R2",
+      "priority": "P3",
+      "file": "research/star-trek-20261107/normalize.py",
+      "finding": "Il rilievo R5 precedente è risolto per Card Data ma non per il Pick Order. capture_facts non verifica sulla pagina Pick Order i valori tiering In Hand WR, Early Access 2026-11-04, Bronze-Platinum e All Archetypes: li scrive nel codice. Lo snapshot dei tier eredita quindi filtri non controllati sulla fonte.",
+      "fix": "Applicare al testo untapped-pick-order.txt le stesse asserzioni usate per Card Data (data dell'early access, ranghi, Latest Event, All Archetypes) prima di salvare la cattura."
+    },
+    {
+      "id": "R3",
+      "priority": "P3",
+      "file": "templates/atlas/gallery.html",
+      "finding": "Il badge per carta prodotto da untappedRank mostra formato, ranghi e data. Non mostra però che il tier deriva dall'early access del 4 novembre. In modalità compatta, cioè nella griglia, compare solo 'Draft Untapped: tier X'. Le WR riportano invece l'evento accanto al valore, quindi l'utente può leggere il tier come un ranking del lancio pubblico.",
+      "fix": "Aggiungere filters.event (o period) al badge, almeno nella scheda estesa, e un'indicazione breve 'early access' anche in modalità compatta."
+    },
+    {
+      "id": "R4",
+      "priority": "P3",
+      "file": "integrate_star_trek_20261107.py; test_star_trek_update.py",
+      "finding": "previousReading viene scritto solo se 'row in refreshed[\"changedScores\"]' risulta vero, quindi dipende dall'uguaglianza esatta fra dizionari. Se changedScores conservasse una forma diversa, per esempio con il valore precedente incluso, i due cambi Draftsim perderebbero la lettura precedente senza alcun errore. Nessun test verifica la presenza di previousReading per 70,000 Light-Years from Home e Pure Energy.",
+      "fix": "Confrontare per catalogId (insieme degli id in changedScores). Aggiungere un test che verifichi previousReading con il valore del 3 novembre su limitedReviews ed evidence per le due carte, e la sua assenza per le altre 334."
+    },
+    {
+      "id": "R5",
+      "priority": "P3",
+      "file": "integrate_star_trek_20261107.py; research/star-trek-20261107/printing-updates.json",
+      "finding": "Le cinque stampe TRK 327-331 vengono aggiunte a cards.json con i soli campi number, image, finishes, frame_effects e promo_types. Il printingId Scryfall è registrato in printing-updates.json ma non nella stampa attiva. Se le stampe esistenti conservano identificativo o URL, le nuove risultano disomogenee e meno verificabili.",
+      "fix": "Confrontare i campi delle stampe esistenti con quelli delle nuove e completare i campi equivalenti, almeno l'id di stampa Scryfall, senza toccare printings.json né la collazione."
+    }
+  ],
+  "researchNeeded": [
+    "Untapped Pick Order: etichette dei filtri attivi nella pagina catturata (evento, ranghi, archetipo, metrica di tiering) per confermare i valori ora scritti nel codice."
+  ],
+  "summary": "I dieci rilievi del giro precedente risultano affrontati in modo coerente. Il pool attivo ha 616 stampe, verificate da un test. MTG Arena Zone (306 voti) e myLimitedGrades (336 carte) sono stati confrontati, Draftsim è abbinato per autore e URL con lettura precedente, e il margine al 95% è documentato. Restano corretti i formati italiani, le migrazioni una tantum con test di idempotenza, la data del dataset Limited Library e l'allineamento del README. I dati WR sono solidi: popolazioni Draft e Sealed separate, conteggi di righe e assenze coerenti (322/280 e 318/253, 19 e 23 carte non elencate), null distinti da zero, Included WR sospetta ed esclusa, volume riportato separato dal denominatore. Lo confermano anche i margini pubblicati, incompatibili con Games come denominatore. Sono coerenti anche le attribuzioni secondarie e community, le 75 letture per formato, gli scenari Modern editoriali e le correzioni Oracle su Starfleet Academy, Genesis Device, The Holodeck, Saavik ed Engineered Explosives. Blocca la pubblicazione un solo P2: manca la prova che il nuovo snapshot Untapped non entri nel percorso bot v4 introdotto da HEAD. Senza questa prova, la dichiarazione di invarianza di bot e replay non è dimostrata. È una verifica rapida. I P3 sono rifiniture di provenienza, presentazione e test.",
+  "modelUsage": {
+    "claude-opus-5-5": {
+      "inputTokens": 2,
+      "outputTokens": 14794,
+      "cacheReadInputTokens": 1545,
+      "cacheCreationInputTokens": 417421,
+      "webSearchRequests": 0,
+      "costUSD": 3.6355649999999997,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 12575,
+      "canonicalModel": "claude-opus-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "requestSha256": "a22b3d395f8cf9fe39f3d85ae7328f7ec8a5e7ce82f160342681262dae0298c3"
+}
