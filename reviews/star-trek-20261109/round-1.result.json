@@ -1,0 +1,162 @@
+{
+  "ready": false,
+  "findings": [
+    {
+      "id": "R1",
+      "priority": "P1",
+      "file": "expansions/star-trek/cards.json (prospects.limitedAnalysis delle 201 comuni/non comuni) e integrate_star_trek_20261109.py",
+      "card": "Sistematico: Pure Energy, Dathon and Picard at El-Adrel, DOT-7 Repair Squad, Shuttle Ace, Tea, Earl Grey, Hot, Type-2 Phaser, Cybernetic Specialist, Tricorder, Astute Terraformer, Dominion Assault Force, Dominion Saboteur, Munitions Enthusiast e altri",
+      "finding": "Le due metà del catalogo usano la scala P/S/Y/F/B/N con ancore diverse, quindi l'ordinamento unico per giudizio non è attendibile. Nelle 201 schede ereditate (originalAssessmentDate 3 novembre, mai ricalibrate in questo giro) la Draft non usa mai F nel campione letto: B compare una volta (Test of Courage), N una volta (Combadge), mentre circa metà delle carte è S. Le 135 schede Opus invece usano spesso F, B e N. Il risultato è che carte con giudizi esterni unanimi in fascia D e note proprie condizionate risultano Solide. Esempi: Dathon and Picard at El-Adrel S/S con J2S 1/5, Andrew 1/10, LLU D+, LR D, Nizzahon D+. Pure Energy S in Draft con tutte le fonti fra D- e D. Shuttle Ace S/S con Andrew 1/10. Intanto rare come Gwyndala (F) o Captain Sisay (Y) finiscono sotto queste comuni. Non è un disaccordo di opinione su singole carte: due metodi non allineati confluiscono nello stesso filtro e ordinamento di render_limited.",
+      "fix": "Ricalibrare le 201 schede sulle stesse ancore delle 135, documentando nel metodo cosa significa ogni lettera, ad esempio P per rimozione premium o bomba e F per ventitreesima carta. Riesaminare almeno ogni S o P con giudizi esterni unanimi in fascia D, motivando nella nota l'eventuale scarto. Pubblicare la distribuzione dei tier per rarità e per formato in coverage.json e rendere un test bloccante se una fascia resta vuota per un intero gruppo di rarità."
+    },
+    {
+      "id": "R2",
+      "priority": "P2",
+      "file": "expansions/star-trek/cards.json (contributo Opus)",
+      "card": "Collation Trimatrix",
+      "finding": "La nota Sealed e le condizioni d'uso affermano che tappare tre corpi per pescare sacrifica la difesa. È falso: il costo non usa il simbolo tap della carta e l'attivazione è a velocità istantaneo. Usandola nella sottofase finale avversaria, dopo i blocchi, le tre creature si stappano nel tuo stap senza perdere né blocchi né attacchi. Il tier Sealed F poggia su questo argomento errato e contrasta senza discussione con Bryan Hohns (Bomb, fonte Sealed diretta), Andrew 7/10, LLU B+/A-.",
+      "fix": "Correggere nota e conditions indicando l'attivazione a fine turno avversario come uso standard, con l'unico costo di una vita per carta. Rivalutare il tier Sealed almeno a Y o S in funzione della densità Borg, e citare la divergenza con le fonti."
+    },
+    {
+      "id": "R3",
+      "priority": "P2",
+      "file": "integrate_star_trek_20261109.py (usage.role da ratings.cards[].role) e cards.json",
+      "card": "Final Frontier, Pure Energy, Test of Conviction, Make It So, First Contact, Reckless Impulse, Adversary by Algorithm, Test of Loyalty e circa 60 carte con role generico",
+      "finding": "Il ruolo è copiato da ratings.role e mostrato come Utilizzo previsto. Molte etichette sono sbagliate o vuote. Interazione è assegnata a ramp (Final Frontier), pump con segnalini (Pure Energy), pescata (Make It So), selezione (First Contact, Reckless Impulse) e generazione di pedine (Adversary by Algorithm). Test of Loyalty ha ruolo Scarto con scelta modale, ma la carta non scarta nulla: esilia dal cimitero e pesca, oppure recupera una creatura. La sua finding non descrive i modi e rimanda a un voto automatico Constructed 3,5/5. Decine di schede hanno ruoli Corpo e sinergie, Piano e condizioni o Permanente di supporto, privi di contenuto. È una proiezione presentata come utile che non lo è.",
+      "fix": "Derivare il ruolo dalla funzione Oracle, ad esempio ramp e fixing, rimozione, trucco, vantaggio carte o generatore di pedine. Correggere esplicitamente Test of Loyalty, sia ruolo sia finding, e aggiungere un controllo che vieti Interazione su carte senza bersagli avversari."
+    },
+    {
+      "id": "R4",
+      "priority": "P2",
+      "file": "prospects-ui.js (limited) e integrate_star_trek_20261109.py",
+      "card": "Tutte le 201 comuni e non comuni",
+      "finding": "Per le 201 schede lo script pone usage.conditions uguale alla nota Sealed e usage.plan uguale a gameplayReview.finding. render_guides elimina il duplicato delle conditions. limited() in prospects-ui.js invece mostra sempre usage.plan e usage.conditions. Nella scheda della galleria la nota Sealed compare quindi due volte, e la finding compare due volte (in cima a card-prospects e come piano). È una regressione di presentazione che gonfia la percezione di analisi aggiuntiva.",
+      "fix": "In limited() replicare la deduplicazione di render_limited, nascondendo conditions se uguale a una nota e plan se uguale a gameplayReview.finding. Meglio ancora, generare conditions e plan distinti oppure lasciarli vuoti per le schede ereditate."
+    },
+    {
+      "id": "R5",
+      "priority": "P2",
+      "file": "integrate_star_trek_20261109.py, prospects-ui.js",
+      "card": "Tutte le 201 comuni e non comuni",
+      "finding": "Lo script sovrascrive limitedAnalysis.date con il 9 novembre, conservando la data originale in originalAssessmentDate, e scrive in formats.draft/sealed.note Valutazione editoriale separata Draft del 9 novembre. limited() mostra a.date e non visualizza né originalAssessmentDate né method. I tier del 3 novembre, non riesaminati, appaiono quindi come giudizi del 9 novembre: è una freschezza dichiarata ma non avvenuta.",
+      "fix": "Mostrare la data originale accanto ai tier ereditati, ad esempio Giudizio del 3 novembre, ruolo aggiunto il 9 novembre. Correggere il testo della nota di formato in modo che distingua le due date."
+    },
+    {
+      "id": "R6",
+      "priority": "P2",
+      "file": "expansions/star-trek/cards.json",
+      "card": "Andoria, Bajor, Cardassia Prime, Earth, Sector 001, Ferenginar, Orion, Qo'noS, Risa, Romulus, Vulcan contro le otto shock land",
+      "finding": "In Draft le dieci Planet tappate sono S, mentre le shock land degli stessi colori sono Y. La shock offre le stesse due fonti con l'opzione di entrare stappata e due tipi base. La Planet aggiunge il tipo Planet e una vita. Le note delle Planet ripetono che entrano tappate e che non vanno giocate fuori colore. Il tier inverte un confronto quasi di pari valore.",
+      "fix": "Armonizzare i tier delle due famiglie con un criterio unico per le doppie in Draft, eventualmente Y per entrambe o con differenza motivata in nota."
+    },
+    {
+      "id": "R7",
+      "priority": "P2",
+      "file": "expansions/star-trek/cards.json (note Sealed)",
+      "card": "Nyota Uhura, Communications, Kai Winn, Faithless Leader, Brazen Bluff, Engineered Explosives, Flare of Fortitude, MACO Strike Team, Live Long and Prosper",
+      "finding": "Diverse motivazioni Sealed presuppongono partite al meglio delle tre e sideboard dopo la prima partita, ad esempio scegliere il numero di Uhura conoscendo la curva avversaria o inserire Engineered Explosives dopo la prima partita. Il Sealed Arena ordinario è al meglio di una, e anche gli eventi cartacei variano. La guida dichiara in generale che la valutazione dipende dall'evento, ma queste note alzano o giustificano il tier su un formato non garantito.",
+      "fix": "Condizionare queste frasi, ad esempio se l'evento prevede sideboard fra le partite, e verificare che il tier regga anche al meglio di una. In caso contrario indicare due letture o abbassare il tier."
+    },
+    {
+      "id": "R8",
+      "priority": "P2",
+      "file": "expansions/star-trek/sources.json (limited-editorial-20261109)",
+      "card": "Registro fonti",
+      "finding": "La fonte editoriale punta a github.com/GiovanniFantini/mtg-analyzer/tree/main/research/star-trek-20261109. Lo stato git mostra research/star-trek-20261109/ e reviews/star-trek-20261109/ come non tracciati rispetto a HEAD 0719c6b. Alla pubblicazione il link sarebbe rotto, e non risulta che il repository sia pubblico.",
+      "fix": "Fare commit e push dei file di ricerca e dei contributi prima della produzione, oppure puntare a un file pubblicato con il sito. Verificare la visibilità del repository."
+    },
+    {
+      "id": "R9",
+      "priority": "P2",
+      "file": "build_expansion.py (data_for_page draft), render_guides.py (stat, pickBaits)",
+      "card": "Quarantena WR early access",
+      "finding": "assessmentEligibility viene rispettato solo in catalog_performance e catalog_data. data_for_page('draft') inietta per intero statistics.draft, comprese externalSources e cards, nella pagina Draft e nell'assistente. render_guides.stat() e pickBaits leggono statistics.draft.cards[].gih e mostrano GIH WR se draftStatistics è disponibile. Dai materiali forniti non si può escludere che pagine Draft, pick guide o bot (statisticsReference) usino ancora i valori early access.",
+      "fix": "Verificare contenuto di statistics.draft.cards e availability.draftStatistics per TRK. Se derivano dall'early access, applicare lo stesso filtro di eleggibilità in data_for_page, nei renderer delle guide e nella politica dei bot, con un test che fallisca se un valore experimental_only raggiunge una vista ordinaria."
+    },
+    {
+      "id": "R10",
+      "priority": "P3",
+      "file": "expansions/star-trek/cards.json",
+      "card": "Drivnod, Carnage Dominus; All Good Things...",
+      "finding": "Drivnod: la nota Draft dice che l'8/3 chiude in due attacchi, ma 16 danni non bastano da 20 vite, ne servono tre senza altro danno. All Good Things: la nota Draft parla di tre carte nette, ma contando la Saga stessa il vantaggio netto è di due carte.",
+      "fix": "Correggere in tre attacchi da 20 vite e in due carte nette oltre alla Saga, o tre pescate nette a fronte della carta spesa."
+    },
+    {
+      "id": "R11",
+      "priority": "P3",
+      "file": "expansions/star-trek/cards.json",
+      "card": "Hull Breach",
+      "finding": "La nota Draft indica come bersagli le Spacecraft attivate. Hull Breach distrugge qualsiasi artefatto, quindi anche una Spacecraft non ancora creatura. Il solo limite reale, citato in Sealed, è l'antimalocchio di Romulan Bird-of-Prey quando non è creatura.",
+      "fix": "Sostituire con Spacecraft anche prima della soglia, salvo hexproof di Romulan Bird-of-Prey."
+    },
+    {
+      "id": "R12",
+      "priority": "P3",
+      "file": "expansions/star-trek/cards.json (contributo Opus)",
+      "card": "Rok-Tahk, Budding Scientist; Kira Nerys, Firebrand; Captain Benjamin Sisko; Mogis, God of Slaughter",
+      "finding": "I tier non seguono la motivazione. Rok-Tahk è F in Draft ma la nota lo definisce chiusura solida per il verde. Kira è F in Sealed con nota che la indica creatura efficiente da mettere nel mazzo RW. Sisko e Mogis valgono meno in Sealed che in Draft (Y/F e F/B), benché il loro valore cresca con la durata della partita, che le stesse note attribuiscono al Sealed. Sisko diverge inoltre da Bryan Hohns (Great, fonte Sealed diretta) senza discuterne.",
+      "fix": "Allineare tier e testo, ad esempio Rok-Tahk Y o S in Draft e Kira Y in Sealed. Per Sisko e Mogis spiegare perché il Sealed vale meno, o riallineare."
+    },
+    {
+      "id": "R13",
+      "priority": "P3",
+      "file": "expansions/star-trek/cards.json (contributo Opus)",
+      "card": "The Destruction of Praxis",
+      "finding": "La nota Sealed dice di lasciarla fuori con sole basi. Anche a X=2 o 3 è uno spazzamento in un formato pieno di pedine x/1 e x/2 (Officer, Borg, Klingon 2/1, Romulani 2/2), asimmetrico se il tuo mazzo ha corpi più robusti. Andrew 9/10, LLU A/A- e Bryan Bomb concordano in senso opposto e la nota non affronta questo argomento.",
+      "fix": "Rivedere la condizione d'esclusione in funzione della composizione del campo, non solo del numero di nomi di terra, e citare esplicitamente la divergenza."
+    },
+    {
+      "id": "R14",
+      "priority": "P3",
+      "file": "expansions/star-trek/cards.json",
+      "card": "Isshin, Two Heavens as One; Kobayashi Maru Scenario",
+      "finding": "Isshin afferma che le innescate whenever you attack dovrebbero raddoppiare secondo i ruling: in una guida pubblicata il condizionale va sostituito con una fonte. Kobayashi attribuisce alle release notes ufficiali il comportamento della quarta innescata neutralizzata da T'Pol. La regola sui modali senza modi disponibili è coerente, ma la citazione testuale non è nel materiale.",
+      "fix": "Citare i ruling ufficiali di Isshin e il passaggio delle release notes TRK con URL e data, oppure riformulare come lettura delle regole complete con riferimento."
+    },
+    {
+      "id": "R15",
+      "priority": "P3",
+      "file": "docs/statistics.md",
+      "card": "Contratto statistiche",
+      "finding": "La documentazione non descrive assessmentEligibility, lo stato experimental_only né i suoi effetti su catalog_performance, catalog_data e untappedPickOrder. Dice ancora che ?order=untapped attiva l'ordinamento per tier Untapped, che per TRK ora viene filtrato.",
+      "fix": "Aggiungere una sezione sulla quarantena diagnostica, con campi, effetti sulle viste e comportamento atteso di ordinamenti e filtri disabilitati."
+    },
+    {
+      "id": "R16",
+      "priority": "P3",
+      "file": "expansions/star-trek/cards.json, research/star-trek-20261109/editorial-corrections.json",
+      "card": "Vengeance Mission, Federation Probe, Test of Loyalty, shock land",
+      "finding": "Restano residui redazionali nel testo pubblico. Vengeance Mission: conserva l'identità del precedente nome provvisorio. Federation Probe e Test of Loyalty: riferimenti a punteggi automatici Constructed non pertinenti al Limited. Il testo condiviso delle shock scrive There's Coffee in That Nebula, mentre il nome Oracle è There's Coffee in that Nebula, e la frase compare anche sulle shock senza tipo Plains.",
+      "fix": "Rimuovere i residui, usare il nome Oracle esatto e limitare la frase su Coffee alle quattro shock con tipo Plains."
+    }
+  ],
+  "researchNeeded": [
+    "research/star-trek-20261109/attributed-grades.json: verificare 793 voti espliciti (LLU 293, Nizzahon 299, LR 201) e gli 8 inferred esclusi, che non compaiono in coverage.json",
+    "research/star-trek-20261109/sealed-review.json: verificare i 135 giudizi di Bryan Hohns, la data di pubblicazione del 5 novembre e la corrispondenza nome-carta",
+    "reviews/star-trek-20261109/contribution-*.json: file sorgente dei 135 contributi, non inclusi nel manifest",
+    "statistics.draft.cards, availability.json e statisticsReference dei bot TRK: provenienza dei valori GIH (vedi R9)",
+    "guides.json: pickGuide, pickBaits, pickDecisions, draftCombos, limitedImpact e disagreements, per escludere citazioni delle WR early access come prova",
+    "Esiti effettivi di test_catalog_statistics.py, test_catalog_metrics.py, test-catalog-indices.cjs, verify-catalog-indices.cjs, della build e del controllo browser, inclusa la disattivazione dell'ordinamento Tier Draft Untapped: nessun esito è stato fornito e non va considerato eseguito",
+    "Release notes ufficiali TRK su Kobayashi Maru Scenario e ruling ufficiali di Isshin",
+    "Visibilità del repository GitHub e push dei file di ricerca non tracciati",
+    "Data dell'acquisizione early access originale: NOTICE indica 4 novembre, mentre la cattura del 9 novembre riporta un aggiornamento di 3 giorni prima"
+  ],
+  "summary": "Copertura numerica coerente: 336 carte non base con giudizio Draft e Sealed, 5 basi N/A, conteggi J2SJosh 306 e Andrew 336, distinzione chiara fra fonti dirette, aggregatori e Community, SDS condizionate all'evento. La gran parte delle 135 note Opus è corretta sull'Oracle e sui tempi, con correzioni di regole valide (Enterprise-D, Sela, City on the Edge, Borg Cube, Holodeck, Geordi con le cariche d'ingresso). Il blocco principale è la calibrazione. Le 201 comuni e non comuni ereditate non usano mai F in Draft e sono in gran parte S, mentre le 135 nuove usano l'intera scala. L'ordinamento unico per giudizio confronta quindi due metri diversi e colloca come Solide carte unanimemente deboli. A questo si aggiungono un errore concreto con effetto sul tier (Collation Trimatrix), ruoli d'uso etichettati in modo errato o vuoto, duplicazioni nella scheda, date che presentano come del 9 novembre tier del 3 novembre, presupposti al meglio delle tre non garantiti, un link a file non pubblicati e una quarantena early access verificata solo nel catalogo. Dopo le correzioni la guida può essere pubblicata come editoriale completa e dichiaratamente non statistica, ma non come certificazione di affidabilità empirica.",
+  "modelUsage": {
+    "claude-opus-5-5": {
+      "inputTokens": 2,
+      "outputTokens": 45843,
+      "cacheReadInputTokens": 1545,
+      "cacheCreationInputTokens": 534254,
+      "webSearchRequests": 0,
+      "costUSD": 5.191209,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 39069,
+      "canonicalModel": "claude-opus-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "requestSha256": "da8df6dbb931149b9e44333805beaff3896c966ffca4f3929f846c25610846bf"
+}

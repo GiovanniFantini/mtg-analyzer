@@ -1,10 +1,15 @@
 """Catalog-only views of observed WR snapshots; populations are never averaged."""
 
+def assessment_eligible(snapshot):
+    """An explicit audit may retain a public observation only for diagnostics."""
+    return snapshot.get('assessmentEligibility', {}).get('status', 'eligible') == 'eligible'
+
 def catalog_performance(statistics):
     result={}
     for kind in ('draft','sealed'):
         snapshots=[]
         for key,snapshot in (statistics.get(kind) or {}).get('externalSources',{}).items():
+            if not assessment_eligible(snapshot):continue
             metric=snapshot.get('metrics',{}).get('inHandWinRate',{})
             if metric.get('status')!='public' or metric.get('unit')!='percent':continue
             public_games=snapshot.get('metrics',{}).get('games',{}).get('status')=='public'

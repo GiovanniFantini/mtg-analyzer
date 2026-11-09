@@ -1,0 +1,156 @@
+{
+  "date": "2026-11-09",
+  "method": "Correzioni editoriali verificate contro Oracle e release notes Wizards, senza modifica del testo funzionale o dei punteggi numerici.",
+  "cards": {
+    "Dr. Beverly Crusher": "Ogni evento di guadagno vite innesca due volte la sua abilità: cresce di due segnalini, oltre a raddoppiare altre innescate compatibili. Più creature con lifelink che infliggono danno generano eventi separati; necessita di supporti reali e non guadagna vite da sola.",
+    "U.S.S. Enterprise-D, Galaxy-Class": "Ogni prima aggiunta di cariche in ciascun tuo turno innesca l'esilio, anche usando soltanto station nei turni successivi. Altre fonti di segnalini sono acceleratori, non requisiti per ripetere l'effetto. Occorrono creature da tappare e il mana per giocare le carte esiliate secondo il testo.",
+    "Sela, Tal Shiar Paradox": "L'attacco può bersagliare una carta del tuo stesso cimitero, così Sela alimenta la propria creazione di Romulani se hai una carta disponibile. Esiliare soltanto dal cimitero avversario non soddisfa l'altra innescata. Ha bisogno di attaccare o di ulteriori effetti compatibili per produrre vantaggio ripetuto.",
+    "The City on the Edge of Forever": "Mette fuori fase artefatti e creature e crea un Umano che ne impedisce il rientro. Il terzo capitolo impone di sacrificare una pedina creatura: se è l'Umano, i permanenti rientrano nel successivo stap del rispettivo controllore. Una pedina alternativa permette di mantenere il blocco, ma l'avversario può rimuovere l'Umano.",
+    "Primary Unimatrix Adjunct": "Dà doppio attacco anche a se stessa, essendo una creatura artefatto. Migliora subito i combattimenti degli altri artefatti pronti ad attaccare; senza una massa di creature artefatto l'impatto resta più contenuto e il corpo fragile è esposto alle rimozioni.",
+    "Sisay, Weatherlight Captain": "Le leggende bianche contano anch'esse fra i colori delle altre leggende e possono portarla a 3/3 o 4/4. Il tutore richiede tutti e cinque i colori e trova solo permanenti leggendari di valore di mana inferiore alla sua forza: in Limited valuta prima il corpo, senza presumere l'attivazione WUBRG.",
+    "Captain Jean-Luc Picard": "Potenzia le altre creature e produce Officer quando lanci creature o Spacecraft. L’abilità che cerca una nave richiede sette Officer stappati da tappare come costo: sviluppa il campo senza contarla come accelerazione immediata. Gli stessi corpi non pagano anche station nello stesso momento.",
+    "The Holodeck": "Una volta in ciascun tuo turno consente di giocare un permanente posseduto dal cimitero o da fuori dal gioco, pagandone i costi e rispettando tempi e limite delle terre. Nel Limited da torneo fuori dal gioco indica le carte della propria riserva. È un motore da sette mana, non un ingresso gratuito o immediato del permanente scelto.",
+    "Test of Loyalty": "Un mana nero e una scelta modale: esilia una carta da un cimitero e pesca, oppure recupera una creatura dal tuo cimitero in mano. Occorre un bersaglio legale per il modo scelto. Alimenta dilemma e le strategie di ricorsione, senza far scartare o rimuovere creature sul campo.",
+    "Federation Probe": "Un 1/1 volante da un mana con ingresso modale: sorveglia 1 oppure dà +1/+1 a una creatura per il turno. Offre evasione per segnalini e dilemma, ma da sola infligge pochi danni; il bonus non è permanente.",
+    "Vengeance Mission": "Ogni morte di una creatura aumenta i segnalini e fa perdere vita all’avversario bersaglio; dalla settima quest perde due vite. Non richiede che la creatura morta sia tua. Sacrificare artefatti non creatura non basta: il piano richiede scambi, corpi e sacrifici reali.",
+    "Collation Trimatrix": "Tappare tre creature artefatto stappate pesca una carta e costa una vita. Puoi farlo a velocità istantanea: a fine turno avversario, dopo i blocchi, non rinunci alla difesa già effettuata e stappi subito dopo. Funziona anche con creature appena entrate, ma richiede densità e punti vita.",
+    "Cold-Blooded Crew": "Il corpo base è 4/4 e i due segnalini possono andare a se stesso, portandolo a 6/6, oppure a un’altra creatura. Non può essere bloccato da creature con forza due o meno. Cicloterra base a due mana garantisce un uso iniziale quando il finale da sei è lontano.",
+    "Ravenous Cosmozoan": "Il 3/3 volante con rapidità costa {5}{R}: ogni carta non creatura e non terra nel tuo cimitero riduce il costo di uno, lasciando comunque almeno il simbolo rosso. Quattro carte lo portano a due mana; gli artefatti creatura non contano e beam me up consuma carte che sostenevano lo sconto.",
+    "Class-F Shuttlecraft": "Artefatto da tre mana che può produrre subito mana di un colore qualsiasi. Station a sei cariche lo rende una creatura 2/4 con volare e cautela. Se lo animi nel turno in cui entra, la debolezza da evocazione impedisce il tap per mana; se lo controllavi dall’inizio del turno non si presenta quel problema.",
+    "Unexplored Territory": "Per uno, tap e sacrificio trova una carta terra base sul campo tappata, garantendo fixing e un ingresso di terra. Se sacrifichi l’unica copia perdi il vecchio nome: il numero di nomi non cresce automaticamente. Può dare il secondo landfall del turno se l’hai giocata come terra."
+  },
+  "shockLands": "Fixing bicolore con due tipi di terra base, ma la carta non è una terra base: Final Frontier e gli effetti che cercano una carta terra base non la trovano. I nomi diversi aiutano strange new worlds; pagare vite permette di mantenere il tempo quando necessario.",
+  "assessmentUpdates": {
+    "Collation Trimatrix": {
+      "sealed": {
+        "tier": "Y",
+        "note": "Con tre creature artefatto disponibili è un motore ripetibile: attivalo a fine turno avversario dopo aver difeso, poi stappa. La categoria Bomb di Bryan Hohns premia questo scenario; qui resta condizionato alla densità Borg e alla vita disponibile."
+      },
+      "usage": {
+        "plan": "Sviluppa creature artefatto e pedine, difendi con i blocchi, poi pesca a fine turno avversario usando i corpi ancora stappati.",
+        "conditions": "Servono tre creature artefatto per attivazione e una vita per carta. Il costo di tap conta se devi usarlo prima dei blocchi, non dopo."
+      }
+    },
+    "Drivnod, Carnage Dominus": {
+      "draft": {
+        "tier": "S",
+        "note": "Un 8/3 a cinque mana richiede tre attacchi non bloccati per togliere venti vite. Senza travolgere le pedine lo rallentano; l’indistruttibile e le innescate di morte richiedono cimitero e supporti, se presente nell’evento."
+      }
+    },
+    "All Good Things...": {
+      "draft": {
+        "tier": "Y",
+        "note": "Cinque mana in due colori per tre incrementi della mano distribuiti su tre turni: due carte nette contando la Saga spesa. Serve un mazzo GU che stabilizzi prima; le dieci vite sono un premio condizionato, non garantito."
+      },
+      "sealed": {
+        "tier": "S",
+        "note": "Un pool GU difensivo può investire nel vantaggio graduale: sei pescate meno tre esili e la Saga spesa producono due carte nette. Allineare i tipi esiliati può aggiungere dieci vite, senza peggiorare le scelte solo per inseguirle."
+      }
+    },
+    "Hull Breach": {
+      "draft": {
+        "tier": "Y",
+        "note": "Distrugge Borg, Equipaggiamenti e Spacecraft anche prima della soglia creatura, oppure un incantesimo; può fare entrambi. Richiede RG e bersagli rilevanti. La protezione di Romulan Bird-of-Prey non creatura resta un limite concreto."
+      },
+      "sealed": {
+        "tier": "Y",
+        "note": "In un pool RG con risposte insufficienti può entrare nel mazzo principale contro Spacecraft e altri artefatti. Romulan Bird-of-Prey non creatura ha hexproof. Se l’evento permette sideboard fra partite, rivalutala sul piano avversario; nel BO1 il bersaglio utile non è garantito."
+      }
+    },
+    "Rok-Tahk, Budding Scientist": {
+      "draft": {
+        "tier": "S",
+        "note": "Sei mana per un 5/5 e Murf indistruttibile stabilizzano il campo; il mana concesso alle altre creature può alimentare una seconda magia già in quel turno. Buona cima della curva verde, purché il mazzo arrivi a sei e abbia dove spendere il mana."
+      }
+    },
+    "Kira Nerys, Firebrand": {
+      "sealed": {
+        "tier": "Y",
+        "note": "Un 4/3 con travolgere a tre mana è efficiente in un pool RW capace di attaccare; la sinergia con ingressi durante il combattimento è un bonus. Nei pool difensivi due colori e fragilità ne riducono la priorità."
+      }
+    },
+    "Captain Benjamin Sisko": {
+      "sealed": {
+        "tier": "Y",
+        "note": "Conta le modali del pool e quante puoi usare nel tuo turno: con una sequenza regolare produce Officer e cresce in valore nelle partite lunghe. Bryan Hohns lo valuta Great; qui la priorità resta condizionata al supporto, non alla rara attivazione WUBRG."
+      }
+    },
+    "Mogis, God of Slaughter": {
+      "sealed": {
+        "tier": "Y",
+        "note": "Nei pool BR che mantengono pressione o puniscono le morti offre una chiusura persistente. L’avversario sceglie danno o sacrificio e può pagare con pedine: non è rimozione affidabile né un bloccante senza devozione sette."
+      }
+    },
+    "The Destruction of Praxis": {
+      "draft": {
+        "tier": "S",
+        "note": "Anche -2/-2 elimina molti Officer, Borg e Klingon: il valore dipende dalla tenuta dei tuoi corpi oltre che dai nomi di terra. La priorità sale con più nomi; non richiede necessariamente la soglia sei per essere una spazzata utile."
+      },
+      "sealed": {
+        "tier": "S",
+        "note": "Anche con sole due basi può fare più scambi contro pedine e creature piccole, se i tuoi corpi resistono. Bryan Hohns la chiama Bomb; qui valuto anche campi con minacce robuste e il rischio di colpire le tue creature."
+      },
+      "usage": {
+        "plan": "Costruisci con creature che sopravvivano al valore atteso di X e lanciala quando elimina più minacce avversarie dei tuoi permanenti.",
+        "conditions": "X conta i nomi alla risoluzione; due può già bastare contro pedine, quattro copre più minacce. L’indistruttibile non protegge dalla costituzione a zero."
+      }
+    },
+    "Isshin, Two Heavens as One": {
+      "draft": {
+        "tier": "Y",
+        "note": "Un 3/4 da tre mana richiede RWB: prendilo con due colori già definiti e fixing credibile. Raddoppia innescate direttamente causate dall’attaccare, comprese quelle whenever you attack, secondo i ruling Wizards del 18 febbraio 2022; non le innescate da tap."
+      }
+    },
+    "DOT-7 Repair Squad": {
+      "draft": {
+        "tier": "Y",
+        "note": "Il 3/3 volante da quattro mana è verificato, ma non basta a renderla una priorità. Sale con Spacecraft da stationare due volte sfruttando l’untap; gli autori la considerano altrimenti riempitivo."
+      },
+      "sealed": {
+        "tier": "F",
+        "note": "Un 3/3 volante da quattro può completare la curva, ma il mazzo ha poche posizioni per corpi senza impatto all’ingresso. L’untap a due mana conta con navi e altri bersagli utili già nel pool."
+      },
+      "usage": {
+        "confidence": "bassa"
+      }
+    },
+    "Shuttle Ace": {
+      "draft": {
+        "tier": "F",
+        "note": "Un 4/4 a cinque mana che vola soltanto nel tuo turno compete con finali più incisivi. Le vite al tap aiutano station e lifegain, ma non compensano automaticamente il costo del pick o lo slot alto."
+      },
+      "sealed": {
+        "tier": "F",
+        "note": "Può chiudere in aria e recuperare vite, ma non blocca volanti avversari e costa cinque senza impatto immediato. Usalo per completare un pool bianco povero di finali, salendo con payoff lifegain concreti."
+      },
+      "usage": {
+        "confidence": "bassa"
+      }
+    },
+    "Class-F Shuttlecraft": {
+      "usage": {
+        "plan": "Come artefatto appena entrato può produrre subito mana; in seguito caricalo per avere una minaccia volante quando il fixing non serve più.",
+        "conditions": "Animato nel turno d’ingresso non può tappare per mana senza rapidità. Station richiede altri corpi stappati e tempi da stregoneria."
+      }
+    },
+    "Mugato": {
+      "draft": {
+        "tier": "S",
+        "note": "Il 6/6 da cinque mana con cautela, raggiungere e tocco letale è verificato sul catalogo Oracle. Sostiene attacco e difesa; morsi e lotte trasformano il tocco letale in rimozione, senza richiedere quelle carte per essere giocabile."
+      },
+      "usage": {
+        "confidence": "media"
+      }
+    }
+  },
+  "sideboardCards": [
+    "Nyota Uhura, Communications",
+    "Kai Winn, Faithless Leader",
+    "Brazen Bluff",
+    "Engineered Explosives",
+    "Flare of Fortitude",
+    "MACO Strike Team",
+    "Live Long and Prosper",
+    "Hull Breach"
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "date": "2026-11-09",
+  "review": "round-1",
+  "decisions": [
+    {
+      "id": "R1",
+      "status": "confirmed",
+      "decision": "Riesame integrale201 comuni/noncomuni con ancore comuni alle rare e distribuzione pubblicata. Non si impone artificialmente che ogni fascia sia popolata: regressioni concrete e controllo manuale, non quote di voti."
+    },
+    {
+      "id": "R2",
+      "status": "confirmed",
+      "decision": "Corretto uso a fine turno avversario di Collation Trimatrix, tier SealedY condizionato alla densità artefatti, confronto BryanHohns esplicito."
+    },
+    {
+      "id": "R3",
+      "status": "confirmed",
+      "decision": "Ruoli specifici nuovi per201 carte, TestofLoyalty finding corretto. Il catalogo può usare il ruolo editoriale senza cambiare ratings.role funzionale e fingerprint dei bot."
+    },
+    {
+      "id": "R4",
+      "status": "confirmed",
+      "decision": "Deduplicazione di plan/conditions in CardProspects.limited; la ricalibrazione fornisce comunque contenuti distinti."
+    },
+    {
+      "id": "R5",
+      "status": "confirmed",
+      "decision": "Le201 carte vengono realmente riesaminate, non soltanto ridatate. La data9Nov descrive il riesame completo; lo studio3Nov resta disponibile nello snapshot storico."
+    },
+    {
+      "id": "R6",
+      "status": "confirmed",
+      "decision": "I criteri delle doppie sono inclusi nella ricalibrazione: fixing, SNW e costo del pick, senza bonus di rarità o penalità automatica."
+    },
+    {
+      "id": "R7",
+      "status": "confirmed",
+      "decision": "Note sulle carte mirate subordinano esplicitamente il sideboard fra partite all’evento; BO1 valutato contro avversario ignoto."
+    },
+    {
+      "id": "R8",
+      "status": "confirmed",
+      "decision": "Verificata visibilità PUBLIC tramite gh repo view. I file di ricerca e review pertinenti sono inclusi nel commit autorizzato prima della pubblicazione. Il push è ancora pendente durante la review."
+    },
+    {
+      "id": "R9",
+      "status": "verified_no_additional_code_change_needed",
+      "decision": "Verificato: statistics.draft.cards è vuoto, draftStatistics.available=false, empirical.available=false in Draft/PickTwo. Nessuna WR earlyaccess raggiunge ordinamenti o assistente/bot. I JSON grezzi sono conservati intenzionalmente per diagnostica. Fingerprint v2/v4 identici; nessun cambio di politica dei bot necessario."
+    },
+    {
+      "id": "R10",
+      "status": "confirmed",
+      "decision": "Corretto Drivnod: tre attacchi da20vite. AllGoodThings: due carte nette contando la Saga."
+    },
+    {
+      "id": "R11",
+      "status": "confirmed",
+      "decision": "HullBreach colpisce Spacecraft prima della soglia, rispettando hexproof e ward."
+    },
+    {
+      "id": "R12",
+      "status": "confirmed",
+      "decision": "RokTahk DraftS, Kira SealedY, Sisko SealedY con confrontoBryan, Mogis SealedY con pressioni e limiti espliciti."
+    },
+    {
+      "id": "R13",
+      "status": "confirmed",
+      "decision": "Praxis rivalutataS nei due contesti. Il -2/-2 può essere una spazzata utile; asimmetria dal campo effettivo, indistruttibile non protegge da costituzione0."
+    },
+    {
+      "id": "R14",
+      "status": "confirmed",
+      "decision": "Ruling Wizards Isshin18feb2022 acquisiti viaScryfall(source=wotc). ReleaseNotes4Nov verificate su modalità Kobayashi, station eCity, registrate inrule-evidence.json."
+    },
+    {
+      "id": "R15",
+      "status": "confirmed",
+      "decision": "Documentati assessmentEligibility eexperimental_only in statistics.md; schemi evalidatore aggiornati compatibilmente."
+    },
+    {
+      "id": "R16",
+      "status": "confirmed",
+      "decision": "Rimossi residui provvisori/Constructed dai finding di VengeanceMission, FederationProbe eTestOfLoyalty. Coffee solo sulle shock Plains, nome Oracle esatto."
+    }
+  ],
+  "note": "Decisioni di verifica e modifiche previste; nuova review richiesta sul risultato effettivo dopo i controlli."
+}

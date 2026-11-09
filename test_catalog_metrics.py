@@ -13,6 +13,11 @@ class PerformanceTests(unittest.TestCase):
  def test_public_values_only_no_fallback_between_events(self):
   stats={'draft':{'externalSources':{'locked':self.snapshot(status='locked',value=None),'suspect':self.snapshot(status='suspect',value=50)}}}
   self.assertEqual(catalog_performance(stats),{'draft':[],'sealed':[]})
+ def test_explicit_experimental_audit_excludes_public_values_without_mutation(self):
+  s=self.snapshot(value=93.3);s['assessmentEligibility']={'status':'experimental_only','reason':'Selected tiny event'}
+  original=copy.deepcopy(s)
+  self.assertEqual(catalog_performance({'draft':{'externalSources':{'one':s}}}),{'draft':[],'sealed':[]})
+  self.assertEqual(s,original)
  def test_sealed_validation_rejects_incorrect_percentage(self):
   stats={'sealed':{'externalSources':{'sealed':self.snapshot('Sealed',value=101)}}}
   with self.assertRaisesRegex(ValueError,'statistics.sealed'):validate_external_statistics(stats,[{'id':'one','name':'One'}])

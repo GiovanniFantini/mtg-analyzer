@@ -145,16 +145,19 @@ def manual_pool_source(expansion, kind):
 
 
 def catalog_data(expansion, include_prospects=True):
-    from catalog_metrics import catalog_performance
+    from catalog_metrics import catalog_performance, assessment_eligible
     d = expansion.data
     cards=expansion.cards if include_prospects else [{k:v for k,v in c.items() if k!='prospects'} for c in expansion.cards]
+    # Keep diagnostic rankings in their source JSON, outside ordinary pick filters.
+    cards=[{k:v for k,v in c.items() if k!='untappedPickOrder' or assessment_eligible(v)} for c in cards]
+    cards=[{**c,'role':c.get('prospects',{}).get('limitedAnalysis',{}).get('usage',{}).get('role') or c.get('role','')} for c in cards]
     covered=[c['sentiment'] for c in cards if c.get('sentiment')]
     meta={**(d['sentiment'].get('meta') or {}),'covered':len(covered),
           'userCards':sum(s.get('kind')=='utenti' for s in covered),
           'reviewCards':sum(s.get('kind')=='recensione' for s in covered),
           'mixedCards':sum(s.get('kind')=='misto' for s in covered)}
     snapshot = (d['statistics'].get('draft') or {}).get('externalSources', {}).get('untapped') or {}
-    public_wr = snapshot.get('metrics', {}).get('inHandWinRate', {}).get('status') == 'public'
+    public_wr = assessment_eligible(snapshot) and snapshot.get('metrics', {}).get('inHandWinRate', {}).get('status') == 'public'
     public_games = snapshot.get('metrics', {}).get('games', {}).get('status') == 'public'
     win_rates = {row['catalogId']: {'value': row['metrics']['inHandWinRate'],
                                   'games': row['metrics'].get('games') if public_games else None,
@@ -162,6 +165,7 @@ def catalog_data(expansion, include_prospects=True):
                  for row in snapshot.get('cards', [])} if public_wr else {}
     return {'date':d['cards'].get('date',''),'cards':cards,
             'catalogPerformance': catalog_performance(d['statistics']),
+            'statisticsNotice': d['statistics'].get('researchAvailability',{}).get('catalogNotice'),
             'catalogWinRates': {'provider': snapshot.get('provider'), 'retrieved': snapshot.get('retrieved'),
                                'filters': snapshot.get('filters', {}), 'cards': win_rates},
             'stats':d['statistics'].get('catalog',[]),'scale':d['ratings'].get('scale',{}),
@@ -347,6 +351,7 @@ def build(expansion, dest):
     # Runtime preview data keeps its existing DOM contract; the document is the same catalog.
     runtime_catalog=catalog_data(expansion,include_prospects=expansion.manifest['presentation']['style']=='preview')
     preview = {**expansion.data['cards'],'cards':runtime_catalog['cards'],
+               'statisticsNotice':runtime_catalog.get('statisticsNotice'),
                'catalogWinRates':runtime_catalog['catalogWinRates'],
                'catalogPerformance':runtime_catalog['catalogPerformance'],
                'prospectSources':runtime_catalog['prospectSources']}

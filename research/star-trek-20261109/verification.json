@@ -1,0 +1,96 @@
+{
+  "date": "2026-11-09",
+  "checks": [
+    {
+      "command": "python -m unittest test_star_trek_completion.py test_limited_study.py test_star_trek_update.py test_catalog_metrics.py test_catalog_statistics.py test_star_trek_research.py",
+      "status": "passed",
+      "tests": 40
+    },
+    {
+      "command": "python -m unittest test_expansion_data.py",
+      "status": "passed",
+      "tests": 37
+    },
+    {
+      "command": "python build_site.py",
+      "status": "passed",
+      "expansions": 21,
+      "pages": 290
+    },
+    {
+      "command": "offline build_expansion.build Star Trek and build_site.validate_site",
+      "status": "passed",
+      "note": "Uses fresh temporary output, then copies builder output to dist; no generated page hand edits."
+    },
+    {
+      "command": "node research/star-trek-20261109/verify-completion.cjs",
+      "status": "passed",
+      "evidence": {
+        "results": [
+          {
+            "width": 1440,
+            "editorialCards": 336,
+            "impactCards": 42,
+            "packages": 26,
+            "filters": true,
+            "zeroPreserved": true,
+            "previews": [
+              "mouse-or-touch",
+              "keyboard"
+            ],
+            "errors": []
+          },
+          {
+            "width": 390,
+            "editorialCards": 336,
+            "impactCards": 42,
+            "packages": 26,
+            "filters": true,
+            "zeroPreserved": true,
+            "previews": [
+              "mouse-or-touch",
+              "keyboard"
+            ],
+            "errors": []
+          }
+        ],
+        "noJavaScript": "336 assessments remain readable"
+      }
+    },
+    {
+      "command": "node verify-catalog-indices.cjs star-trek reality-fracture",
+      "status": "passed",
+      "errors": []
+    },
+    {
+      "command": "node verify-atlas-expansions.cjs star-trek",
+      "status": "passed",
+      "routes": 14,
+      "manualRecordsPreserved": true,
+      "previews": [
+        "mouse",
+        "keyboard",
+        "touch"
+      ],
+      "errors": []
+    },
+    {
+      "command": "node test-catalog-indices.cjs",
+      "status": "passed"
+    },
+    {
+      "command": "python research/star-trek-20261109/audit-replays.py",
+      "status": "passed",
+      "draftAndPickTwoV2V4FingerprintIdentical": true
+    }
+  ],
+  "inspection": "Screenshot Sealed390 inspected: readable, no horizontal overflow. Desktop/mobile filters and mouse/keyboard/touch previews checked by actual browser.",
+  "schema": "No new prospects schema errors. 265 preexisting price.outlook.kind mismatches retained and outside this Limited update; price data unchanged.",
+  "publication": {
+    "status": "not_pushed",
+    "reason": "Final Opus request rejected with429 usage_limit_reached; not a model approval. User condition remains pending.",
+    "serviceReset": "2026-11-09 13:40 Europe/Rome",
+    "nextReviewRound": 3
+  },
+  "currentBrowserEvidence": "Desktop1440 and mobile390, all336 assessments with JS and withoutJS, rarity/context/search/empty/reset, exact SDS modal, source attribution and disabled experimental ranking controls. Current full-build catalog indices and Atlas14 routes passed without errors; manual records preserved."
+}

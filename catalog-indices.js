@@ -44,6 +44,7 @@ window.CatalogIndices={create(DATA){
  }).join('')+'</div>'}
  function prospectHTML(c){return `<dl class="catalog-prospect-indices">${Object.entries(formats).map(([f,label])=>{const a=assessment(c,f);return `<div><dt>${label}</dt><dd>${a.tournament?TournamentProspects.compact(c,f):esc(a.label)}${!a.tournament&&a.date&&a.state!=='not_legal'?`<small>${esc(a.date)}</small>`:''}</dd></div>`}).join('')}</dl>`}
  function mount(target,order){
+  if(DATA.statisticsNotice){const note=document.createElement('p');note.className='catalog-note';note.textContent=DATA.statisticsNotice;(target.closest('details')||target).before(note);}
   const filters=target.querySelector('.catalog-extra-filters');
   $('wr-filters').querySelector('legend').textContent='WR Draft, % (in mano)';
   const sourceSelect=kind=>`<label>Fonte ed evento<select id="${kind}-wr-source" data-filter-source="true">${snapshots[kind].map(s=>`<option value="${esc(s.id)}">${esc(s.provider)} · ${esc(s.filters?.event||kind)}</option>`).join('')||'<option value="">Dati assenti</option>'}</select></label>`;

@@ -32,6 +32,11 @@ def validate_provider_snapshots(statistics, catalog, kind):
             fail(key + ': URL non valido')
         if snapshot['rateUnit'] != 'percent' or not isinstance(snapshot['filters'], dict):
             fail(key + ': unità o filtri non validi')
+        eligibility = snapshot.get('assessmentEligibility')
+        if eligibility is not None and (not isinstance(eligibility, dict)
+                or eligibility.get('status') not in ('eligible', 'experimental_only')
+                or not isinstance(eligibility.get('reason'), str) or not eligibility['reason'].strip()):
+            fail(key + ': idoneità alle valutazioni non valida')
         metrics = snapshot['metrics']
         if not isinstance(metrics, dict) or not metrics:
             fail(key + ': metriche mancanti')

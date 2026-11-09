@@ -1,0 +1,21 @@
+{
+  "date": "2026-11-09",
+  "captureSha256": "ad31ad923ffb2dc7f7f262f127050381f15e933d68f99c6274dc9d85e183ed33",
+  "pages": [
+    {
+      "url": "https://www.17lands.com/card_data?expansion=TRK&format=PremierDraft",
+      "status": 200,
+      "error": null,
+      "noDataMessage": true,
+      "trkInSetSelector": false
+    },
+    {
+      "url": "https://www.17lands.com/card_data?expansion=TRK&format=Sealed",
+      "status": 200,
+      "error": null,
+      "noDataMessage": true,
+      "trkInSetSelector": false
+    }
+  ],
+  "interpretation": "URL richiesti TRK PremierDraft e Sealed: pagina pubblica senza dati per la selezione; TRK non elencato nel selettore. Non equivale a dimostrare inesistenza di dataset o risultati cartacei. Non viene importata alcuna WR."
+}

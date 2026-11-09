@@ -50,6 +50,8 @@ def integrate(folder, study_dir):
     # All references have been checked before any document is written.
     for row in study['cards']:
         card=lookup(row['number'])
+        if card['prospects'].get('limitedAnalysis',{}).get('date','')>date:
+            continue  # Historical integrations must not replace a later editorial revision.
         card['prospects']['limitedAnalysis']={'date':date,'kind':'qualitative_editorial_prerelease',
             'draft':copy.deepcopy(row['draft']),'sealed':copy.deepcopy(row['sealed']),
             'partners':[lookup(n)['name'] for n in row['partners']],

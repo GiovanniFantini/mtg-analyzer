@@ -25,7 +25,9 @@ class StarTrekUpdateTests(unittest.TestCase):
    self.assertIn('Early Access',snapshot['filters']['event'])
    self.assertEqual(snapshot['metrics']['includedWinRate']['status'],'suspect')
    self.assertTrue(all(r['metrics']['playedWinRate'] is None for r in snapshot['cards']))
-  view=catalog_performance(self.stats)
+  self.assertEqual(catalog_performance(self.stats),{'draft':[],'sealed':[]})
+  historic={k:{'externalSources':{'untapped':read('research/star-trek-20261107/untapped-'+k+'.json')}} for k in ['draft','sealed']}
+  view=catalog_performance(historic)
   self.assertNotEqual(view['draft'][0]['cards'],view['sealed'][0]['cards'])
   self.assertTrue(all(r['games'] is None for r in view['draft'][0]['cards'].values()))
   self.assertTrue(any(r['confidenceMargin'] for r in view['draft'][0]['cards'].values()))
@@ -45,7 +47,8 @@ class StarTrekUpdateTests(unittest.TestCase):
   c=next(c for c in self.cards if c['name']=='Engineered Explosives')
   self.assertEqual(c['set'],'TRK')
   self.assertEqual(c['prospects']['formats']['pioneer']['legality'],c['legalities']['pioneer'])
-  self.assertEqual(c['prospects']['formats']['pioneer']['releaseEligibility']['date'],'2026-11-13')
+  self.assertEqual(c['prospects']['formats']['pioneer']['historicalReleaseEligibility']['date'],'2026-11-13')
+  self.assertEqual(c['legalitiesRetrieved'],'2026-11-09')
   self.assertTrue(any(r.get('source')=='research-audit-20261107' for r in c['prospects']['researchNotes']))
  def test_all_new_sources_resolve_and_tiers_preserve_absence(self):
   registry={s['id'] for s in read('expansions/star-trek/sources.json')['research']['sources']}

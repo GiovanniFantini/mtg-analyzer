@@ -309,7 +309,10 @@
               "format": "date"
             },
             "kind": {
-              "const": "qualitative_editorial_prerelease"
+              "enum": [
+                "qualitative_editorial_prerelease",
+                "qualitative_editorial"
+              ]
             },
             "draft": {
               "$ref": "#/$defs/limitedAssessment"
@@ -325,6 +328,37 @@
             },
             "observedWinRates": {
               "const": false
+            },
+            "usage": {
+              "type": "object",
+              "required": [
+                "role",
+                "plan",
+                "conditions",
+                "confidence"
+              ],
+              "properties": {
+                "role": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "plan": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "conditions": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "confidence": {
+                  "enum": [
+                    "bassa",
+                    "media",
+                    "alta"
+                  ]
+                }
+              },
+              "additionalProperties": true
             }
           },
           "additionalProperties": true
@@ -381,6 +415,29 @@
               "items": {
                 "type": "string"
               }
+            }
+          },
+          "additionalProperties": true
+        },
+        "limitedApplicability": {
+          "type": "object",
+          "required": [
+            "date",
+            "status",
+            "note"
+          ],
+          "properties": {
+            "date": {
+              "type": "string",
+              "format": "date"
+            },
+            "status": {
+              "type": "string",
+              "minLength": 1
+            },
+            "note": {
+              "type": "string",
+              "minLength": 1
             }
           },
           "additionalProperties": true

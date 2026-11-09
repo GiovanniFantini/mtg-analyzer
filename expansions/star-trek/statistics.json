@@ -68,21 +68,23 @@
     }
   ],
   "researchAvailability": {
-    "date": "2026-11-07",
+    "date": "2026-11-09",
     "observedWinRates": true,
-    "untappedPickOrder": "early_access_low_volume",
+    "untappedPickOrder": "experimental_only",
     "mtgMeta": "no_recorded_set_games",
     "reason": "Disponibili snapshot early access del 4 novembre, separati per Draft e Sealed; non sono dati del lancio pubblico.",
     "draftWinRates": {
-      "status": "available_early_access",
+      "status": "diagnostic_only",
       "observed": 322,
       "withWinRate": 280
     },
     "sealedWinRates": {
-      "status": "available_early_access",
+      "status": "diagnostic_only",
       "observed": 318,
       "withWinRate": 253
-    }
+    },
+    "usableObservedWinRates": false,
+    "catalogNotice": "Le WR e i tier Untapped del solo early access del 4 novembre sono esclusi dagli ordinamenti: campione selezionato e ridotto, margini molto ampi e denominatori GIH non pubblicati. I valori originali restano nei dati storici. I ranking Draft/Sealed qui proposti sono giudizi editoriali motivati, non risultati misurati. Arena apre il 10 novembre."
   },
   "draft": {
     "externalSources": {
@@ -9444,6 +9446,11 @@
               "reason": "not_listed_by_source"
             }
           ]
+        },
+        "assessmentEligibility": {
+          "status": "experimental_only",
+          "assessed": "2026-11-09",
+          "reason": "Early access selezionato, margini ampi e denominatore GIH non documentato; conservazione diagnostica, escluso dai ranking ordinari."
         }
       }
     }
@@ -17932,6 +17939,11 @@
               "reason": "not_listed_by_source"
             }
           ]
+        },
+        "assessmentEligibility": {
+          "status": "experimental_only",
+          "assessed": "2026-11-09",
+          "reason": "Early access selezionato, margini ampi e denominatore GIH non documentato; conservazione diagnostica, escluso dai ranking ordinari."
         }
       }
     }

@@ -3289,6 +3289,32 @@
         "url": "https://magic.wizards.com/en/news/feature/star-trek-release-notes",
         "retrieved": "2026-11-07",
         "context": "Controlli Oracle e limiti delle sintesi secondarie"
+      },
+      {
+        "id": "limited-editorial-20261109",
+        "publisher": "MTG Analyzer",
+        "url": "https://github.com/GiovanniFantini/mtg-analyzer/tree/main/research/star-trek-20261109",
+        "retrieved": "2026-11-09",
+        "context": "Analisi editoriale originale, contributo e revisione Opus con controlli Oracle; non fonte esterna né risultati di gioco."
+      },
+      {
+        "id": "limitedlibrary-20261109",
+        "publisher": "Limited Library",
+        "url": "https://limitedlibrary.com/sets/star-trek/",
+        "retrieved": "2026-11-09",
+        "published": "2026-11-06",
+        "coverage": 793,
+        "context": "Aggregatore secondario, solo voti espliciti; video non trascritti indipendentemente."
+      },
+      {
+        "id": "draftsim-sealed-20261109",
+        "publisher": "Draftsim",
+        "author": "Bryan Hohns (Veveil)",
+        "url": "https://draftsim.com/mtg-star-trek-sealed-guide/",
+        "retrieved": "2026-11-09",
+        "published": "2026-11-05",
+        "coverage": 135,
+        "context": "Recensione Sealed qualitativa, prima del weekend cartaceo; nessuna WR."
       }
     ],
     "notes": [
@@ -3325,9 +3351,8 @@
       "Prezzi From Cardmarket del 27 ottobre conservati: 201 carte, nessuna copertura completa delle finiture.",
       "Inclusioni EDHREC del 27 ottobre conservate, senza ridatarle o trattarle come risultati cEDH.",
       "Commander TRC in appendice separata, senza inserimento nel catalogo o nei pool Limited.",
-      "WR early access del 4 novembre: 280 carte Draft (Bronze-Platinum) e 253 Sealed (Unranked). Volume ridotto, non metagame stabilizzato.",
       "498 voti espliciti aggiuntivi tramite Limited Library; video originali collegati, non trascritti indipendentemente.",
-      "Le valutazioni editoriali separate Draft/Sealed coprono 201 comuni e non comuni; le rare e SDS non ricevono automaticamente un voto Sealed distinto."
+      "Le WR e i tier Untapped del solo early access del 4 novembre sono esclusi dagli ordinamenti: campione selezionato e ridotto, margini molto ampi e denominatori GIH non pubblicati. I valori originali restano nei dati storici. I ranking Draft/Sealed qui proposti sono giudizi editoriali motivati, non risultati misurati. Arena apre il 10 novembre."
     ],
     "automatedEvaluationsSnapshot": "research/star-trek-20261102/standard-constructed-preview.json",
     "dataAudit": {
@@ -3525,7 +3550,16 @@
       "changedScores": 2
     },
     "evidenceMigrationVersion": 1,
-    "noteMigrationVersion": 1
+    "noteMigrationVersion": 1,
+    "limitedCompletion": {
+      "date": "2026-11-09",
+      "editorialCards": 336,
+      "basicCardsNotPowerRanked": 5,
+      "additionalEditorialCards": 135,
+      "attributedGrades": 793,
+      "snapshot": "research/star-trek-20261109/coverage.json",
+      "earlyAccessExcludedFromOrdinaryRankings": true
+    }
   },
   "reviewAnalysis": {
     "date": "2026-10-22",

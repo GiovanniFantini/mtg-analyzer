@@ -1,0 +1,2220 @@
+{
+  "cards": [
+    {
+      "id": "3fdba8ee-6dfe-480d-b84a-43922229d9b4",
+      "draft": {
+        "tier": "Y",
+        "note": "Quattro mana senza effetto sul campo: rende solo se dopo il quarto turno tieni terre in mano e mana libero per giocare subito la carta esiliata. Le terre scoperte durante l'esilio vanno perse."
+      },
+      "sealed": {
+        "tier": "Y",
+        "note": "Partite più lunghe danno più landfall, ma con diciassette terre ne peschi circa una ogni due turni. Le valutazioni esterne divergono proprio su questo ritmo: senza ingressi extra resta lenta."
+      },
+      "partners": [
+        "Will Riker, First in the Field",
+        "Erica Ortegas, Plucky Pilot",
+        "Dal R'El, Augment Orphan"
+      ],
+      "usage": {
+        "role": "Carte esiliate da landfall",
+        "plan": "Dal quinto turno ogni terra giocata converte il mana residuo in una magia aggiuntiva; con cinque missioni i due rossi pagano la carta trovata.",
+        "conditions": "Servono ingressi extra di terre, come quelli di Will Riker, e carte economiche; se la magia esiliata non è pagabile quel turno, va persa.",
+        "confidence": "bassa"
+      }
+    },
+    {
+      "id": "ec763f36-3504-4bfe-8481-1a7d0bff8d8e",
+      "draft": {
+        "tier": "S",
+        "note": "Istantaneo da cinque che uccide quasi ogni creatura del formato, comprese le navi animate. Serve una tua terra da distruggere, ma la New Planet tappata la rimpiazza e attiva landfall."
+      },
+      "sealed": {
+        "tier": "S",
+        "note": "Nel Sealed le minacce grandi arrivano più spesso e sei danni le coprono. Sostituire una base con New Planet migliora uno splash dal turno successivo, non in quello del lancio."
+      },
+      "partners": [
+        "Captain Michael Burnham",
+        "Syndicate Liquidators",
+        "Cleveland Booker, Empath"
+      ],
+      "usage": {
+        "role": "Sei danni e terra sostitutiva",
+        "plan": "Risponde alla minaccia più grande a velocità istantaneo, poi la New Planet aggiunge un colore e un landfall per sostenere il gioco lungo.",
+        "conditions": "Conviene distruggere una base doppia o una terra già sfruttata, evitando di perdere un nome unico che alimenta strange new worlds.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "e8ac0742-15f5-4cf0-888f-f1c2c97fc144",
+      "draft": {
+        "tier": "S",
+        "note": "Il ciclo per due rende la carta utile anche nelle mani corte, mentre il 7/6 travolgente chiude le partite ferme. Non contarla fra i finali da sei se la ciclerai spesso."
+      },
+      "sealed": {
+        "tier": "S",
+        "note": "Nei pool lenti il corpo grande serve più spesso del ciclo, e trovare una base aiuta uno splash. Uno o due finali da sei bastano: evita di accumularli nella lista."
+      },
+      "partners": [
+        "Savvy Profiteer",
+        "Xenobotanist",
+        "U.S.S. Voyager, Lone Wanderer"
+      ],
+      "usage": {
+        "role": "Finale travolgente o ricerca base",
+        "plan": "Nei primi turni trasforma la carta in una base del colore mancante; a sei mana diventa una minaccia che obbliga a doppi blocchi.",
+        "conditions": "Rende di più con ramp rosso o verde e pochi altri sei mana; contro rimozioni economiche resta un singolo bersaglio costoso.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "45b1a19b-6a0c-4534-9106-99c2e5fc30d6",
+      "draft": {
+        "tier": "P",
+        "note": "Rimozione istantanea scalabile: a due mana uccide i corpi piccoli, a quattro arriva a sei danni. L'esilio nega Daniels, Amok Time e gli altri recuperi. Da prendere molto presto."
+      },
+      "sealed": {
+        "tier": "P",
+        "note": "Nel Sealed copre sia le minacce iniziali sia la bomba avversaria, ed è il tipo di risposta che giustifica il rosso. Non colpisce giocatori né navi non ancora animate."
+      },
+      "partners": [
+        "Ravenous Cosmozoan",
+        "Tal Shiar Analyst",
+        "Academy Instructor"
+      ],
+      "usage": {
+        "role": "Danno doppio scalabile con esilio",
+        "plan": "Lanciata in combattimento o a fine turno elimina il bloccante chiave al costo minimo necessario, liberando attacchi o stabilizzando contro una bomba.",
+        "conditions": "Il valore cresce con il mana disponibile; contro indistruttibile l'esilio non scatta, e anti-malocchio la rende inutilizzabile sul bersaglio.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "b7ea2089-abcd-4e60-8201-93801eae5084",
+      "draft": {
+        "tier": "S",
+        "note": "Il danno unilaterale all'ingresso spazza Officer, Borg 1/1 e altre pedine, poi resta un 5/4 travolgente. Contro mazzi a pedine diventa facilmente un due per uno o meglio."
+      },
+      "sealed": {
+        "tier": "S",
+        "note": "Cinque mana per un corpo che attacca bene e un effetto mai inutile, perché colpisce anche l'avversario. Contro bloccanti grandi o rimozioni resta comunque una singola minaccia."
+      },
+      "partners": [
+        "Planetary Bombardment",
+        "Vengeance Mission",
+        "Sarcophagus, Ship of the Dead"
+      ],
+      "usage": {
+        "role": "Danno globale unilaterale all'ingresso",
+        "plan": "Entra dopo uno scambio per finire creature ferite e pedine, poi il travolgere converte il vantaggio di campo in danni diretti.",
+        "conditions": "Rende al meglio contro mazzi Officer e Borg, o insieme a morti che alimentano Planetary Bombardment e Vengeance Mission.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "ed3b80eb-8915-4428-89b8-90f4278f2733",
+      "draft": {
+        "tier": "Y",
+        "note": "Il 4/3 da quattro è un corpo nella media; il valore extra arriva solo se attacchi con otto forza totale già in campo. In RW aggressivo toglie ogni turno il bloccante decisivo."
+      },
+      "sealed": {
+        "tier": "F",
+        "note": "Nei pool lenti la soglia otto arriva tardi e il 4/3 scambia con molti tre mana. Lo userei come quattro mana di riempimento, non come motivo per giocare rosso."
+      },
+      "partners": [
+        "Kirk, Commanding Officer",
+        "Cantankerous Captain",
+        "Tactical Officer"
+      ],
+      "usage": {
+        "role": "Nega un bloccante a soglia otto",
+        "plan": "Con un campo largo ogni attacco toglie il bloccante migliore, costringendo l'avversario a scambi sfavorevoli finché la pressione chiude.",
+        "conditions": "Richiede altri attaccanti grandi o molte pedine per arrivare a otto; Cantankerous Captain e Kirk condividono la stessa soglia.",
+        "confidence": "bassa"
+      }
+    },
+    {
+      "id": "0013f005-2b49-48a4-8a74-9bbdadc88c9f",
+      "draft": {
+        "tier": "S",
+        "note": "Fra i migliori due mana rossi comuni: 3/2 travolgente che scambia bene e lascia un danno utile. Ottimo nei mazzi di sacrificio, ma non da prendere sopra una rimozione."
+      },
+      "sealed": {
+        "tier": "S",
+        "note": "Anche fuori dai mazzi aggressivi lo scambio produce valore, perché il danno alla morte finisce pedine o creature ferite. Soffre contro i bloccanti con costituzione tre o quattro."
+      },
+      "partners": [
+        "Dahar Master",
+        "Planetary Bombardment",
+        "Gowron, Eager for Battle"
+      ],
+      "usage": {
+        "role": "Due mana con danno alla morte",
+        "plan": "Attacca presto con travolgere, poi la morte in scambio o sacrificio infligge un danno che uccide una pedina o chiude la partita.",
+        "conditions": "Migliore con sbocchi di sacrificio come Dahar Master e rimozioni a danno parziale; perde peso contro difese con costituzione alta.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "2cf79dd0-c9db-403e-969d-6c09e7aaa575",
+      "draft": {
+        "tier": "N",
+        "note": "Il capitolo III restituisce la terra presa al I, quindi il guadagno è un solo turno con rapidità e segnalini. Le valutazioni divergono, ma una carta spesa per un picco temporaneo resta negativa."
+      },
+      "sealed": {
+        "tier": "N",
+        "note": "Nel Sealed il turno esplosivo conta meno, e perdere una terra al quarto turno può bloccare le magie costose. Non la includerei neppure per riempire la curva."
+      },
+      "partners": [
+        "Cha'DIch Investigator",
+        "Captain Michael Burnham"
+      ],
+      "usage": {
+        "role": "Rampa temporanea e rapidità",
+        "plan": "Al terzo turno quattro mana lanciano una creatura con rapidità e segnalino; l'attacco anticipato deve compensare la terra sacrificata dopo.",
+        "conditions": "Funziona solo con molte creature da quattro e un piano veloce; sacrificare una New Planet o una terra superflua limita il danno del capitolo III.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "f1f77fb4-2c83-4cbf-894e-624abe6cd95f",
+      "draft": {
+        "tier": "S",
+        "note": "In un formato pieno di Borg, Illusioni e navi il modo distruzione è spesso una rimozione istantanea da due mana. Senza bersagli, il +3/+2 vince comunque un combattimento."
+      },
+      "sealed": {
+        "tier": "S",
+        "note": "Nel Sealed la densità di artefatti avversari è ignota, ma il trucco garantisce sempre un uso. Distruggere una nave prima che arrivi alla soglia evita molti problemi futuri."
+      },
+      "partners": [
+        "Tal Shiar Analyst",
+        "Academy Instructor",
+        "Munitions Enthusiast"
+      ],
+      "usage": {
+        "role": "Trucco +3/+2 o distruggi artefatto",
+        "plan": "Tienila per la nave o la creatura artefatto più minacciosa; in mancanza vinci uno scontro chiave e conservi il vantaggio di campo.",
+        "conditions": "Rende di più contro mazzi Borg e Spacecraft; con Tal Shiar Analyst e Academy Instructor anche il lancio come trucco genera valore extra.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "2c2fdeff-a0c6-44cb-9603-4a9865f62985",
+      "draft": {
+        "tier": "S",
+        "note": "Un mana per due danni basta contro mana dork e due mana; dopo uno scambio o un sacrificio arriva a quattro. È una stregoneria, quindi la morte va provocata prima del lancio."
+      },
+      "sealed": {
+        "tier": "S",
+        "note": "Rimozione economica utile in ogni lista rossa, anche se nel Sealed molte minacce superano quattro di costituzione. Si abbina bene ai combattimenti risolti nel tuo turno."
+      },
+      "partners": [
+        "L'Rell, Fierce Visionary",
+        "Eject the Warp Core",
+        "Munitions Enthusiast"
+      ],
+      "usage": {
+        "role": "Danno economico potenziato da morti",
+        "plan": "Attacca o sacrifica prima, poi lancia la stregoneria nella seconda fase principale per rimuovere un bloccante con costituzione quattro.",
+        "conditions": "Il sacrificio di L'Rell o il kicker di Eject the Warp Core abilitano la soglia; senza morti resta due danni contro corpi piccoli.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "fba54c2d-a664-4e4c-b9d4-e24cf2523ab9",
+      "draft": {
+        "tier": "F",
+        "note": "Due mana per un 2/2 che attacca come 3/3 nel turno della terra. Riempie la curva di RG aggressivo, ma il bonus svanisce prima dei blocchi nel turno avversario."
+      },
+      "sealed": {
+        "tier": "F",
+        "note": "Nel Sealed i 2/2 da due perdono valore rapidamente contro corpi 2/3 e 1/4. Lo includerei solo se mancano due mana giocabili nei colori scelti."
+      },
+      "partners": [
+        "Will Riker, First in the Field",
+        "Erica Ortegas, Plucky Pilot",
+        "Final Frontier"
+      ],
+      "usage": {
+        "role": "Attaccante con landfall temporaneo",
+        "plan": "Gioca la terra prima del combattimento e attacca come 3/3; con Will Riker due terre a inizio combattimento lo portano a 4/4.",
+        "conditions": "Rende solo nei primi turni o con ingressi multipli di terre; in difesa e nel gioco lungo resta un 2/2 senza testo utile.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "46ce40e9-b7fb-4f40-a7ab-f8a2234d1d63",
+      "draft": {
+        "tier": "S",
+        "note": "Tre danni istantanei a qualunque bersaglio coprono gran parte dei due e tre mana del formato e possono chiudere sul giocatore. Lo scarto facoltativo trasforma una terra in eccesso in pescata."
+      },
+      "sealed": {
+        "tier": "S",
+        "note": "Rimozione affidabile per il Sealed, anche se le bombe grandi la superano senza un combattimento prima. Il filtro rende meno dannoso il flood tardivo senza costare carte."
+      },
+      "partners": [
+        "Academy Instructor",
+        "Ravenous Cosmozoan",
+        "Tal Shiar Analyst"
+      ],
+      "usage": {
+        "role": "Tre danni istantanei con filtro",
+        "plan": "Elimina un attaccante o un motore a velocità istantaneo scartando una terra superflua; nel finale diventa danno diretto per chiudere.",
+        "conditions": "Contro costituzione quattro serve un combattimento prima; come magia non creatura alimenta Ravenous Cosmozoan e Academy Instructor.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "5cbe6066-07f8-45de-b3b4-b8590d111b0d",
+      "draft": {
+        "tier": "Y",
+        "note": "Conta solo carte non creatura e non terra nel tuo cimitero: rimozioni, trucchi, Saghe concluse, navi distrutte. Con quattro o più diventa un volante con rapidità da due mana."
+      },
+      "sealed": {
+        "tier": "Y",
+        "note": "Nel Sealed le liste hanno spesso sette o otto magie, quindi a metà partita costa tre o quattro. Senza quella densità resta un 3/3 da sei mana."
+      },
+      "partners": [
+        "Planetary Bombardment",
+        "Reckless Impulse",
+        "Test of Identity"
+      ],
+      "usage": {
+        "role": "Volante rapido scontato da magie",
+        "plan": "Usa rimozioni e magie economiche, poi lancia il 3/3 volante con rapidità per pochi mana come chiusura evasiva inattesa.",
+        "conditions": "Servono almeno otto magie non creatura economiche; beam me up esilia la carta dal cimitero e riduce lo sconto disponibile.",
+        "confidence": "bassa"
+      }
+    },
+    {
+      "id": "584cf0fd-112a-4ca6-9c0e-1f3228a7d325",
+      "draft": {
+        "tier": "Y",
+        "note": "Vale una pescata di due carte solo con curva bassa e payoff per magie non creatura. Al sesto turno con mano piena rischi di perdere una delle due carte esiliate."
+      },
+      "sealed": {
+        "tier": "F",
+        "note": "Nei pool lenti e costosi le carte esiliate scadono spesso; una pescata senza scadenza o un corpo valgono di più. Riempitivo rosso solo con curva bassa."
+      },
+      "partners": [
+        "Tal Shiar Analyst",
+        "Academy Instructor",
+        "Ravenous Cosmozoan"
+      ],
+      "usage": {
+        "role": "Due carte esiliate giocabili",
+        "plan": "Lanciata con mana avanzato rifornisce la mano di due risorse da spendere entro il turno successivo, sostenendo pressione e magie.",
+        "conditions": "Funziona con Tal Shiar Analyst e Academy Instructor; una terra esiliata può sostituire il land drop del turno.",
+        "confidence": "bassa"
+      }
+    },
+    {
+      "id": "4636afb5-453a-4f27-8916-1cbc32459ba6",
+      "draft": {
+        "tier": "N",
+        "note": "Il bonus solo di forza raramente vince i blocchi e nel tuo attacco costa tre mana. Le valutazioni esterne concordano su un livello basso: lo slot va a un corpo o a una rimozione."
+      },
+      "sealed": {
+        "tier": "N",
+        "note": "Nel Sealed i campi sono più piccoli e il trucco di massa trova meno bersagli. Neppure come difesa scontata compensa una carta che non risolve minacce."
+      },
+      "partners": [
+        "Boarding Action",
+        "Cha'DIch Investigator",
+        "Academy Instructor"
+      ],
+      "usage": {
+        "role": "Forza di squadra +2/+0",
+        "plan": "Durante un attacco avversario costa un mana e trasforma più bloccanti in uccisori, ribaltando uno scambio multiplo.",
+        "conditions": "Richiede molte pedine come quelle di Boarding Action o Cha'DIch Investigator; contro attacchi singoli il valore è minimo.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "22b86863-c992-405b-949a-bdf8859884ef",
+      "draft": {
+        "tier": "Y",
+        "note": "Tre mana per +1/+0 alle altre creature subito, anche da nave inattiva. Vale in BR e RW con pedine e morti frequenti; altrimenti è un artefatto che non blocca."
+      },
+      "sealed": {
+        "tier": "Y",
+        "note": "Le morti di entrambi i giocatori aggiungono cariche, quindi negli scambi lunghi del Sealed il volante a dieci arriva. Serve comunque un campo per sfruttare il bonus."
+      },
+      "partners": [
+        "L'Rell, Fierce Visionary",
+        "The Duras Sisters",
+        "Cha'DIch Investigator"
+      ],
+      "usage": {
+        "role": "Bonus di forza e nave da morti",
+        "plan": "Le pedine ottengono forza per scambiare o attaccare, mentre ogni morte avvicina la nave alle dieci cariche e a un volante.",
+        "conditions": "Rende con produttori di pedine come L'Rell e The Duras Sisters; la station richiede anche creature tappate, non solo morti.",
+        "confidence": "bassa"
+      }
+    },
+    {
+      "id": "e96a9f9a-9326-4f0b-98ad-23210c97299f",
+      "draft": {
+        "tier": "F",
+        "note": "Il 2/1 accelera di un turno solo verso il rosso, e in Draft conta più la pressione del ramp. Riempitivo per mazzi con quattro mana forti o con Exploratory Mission."
+      },
+      "sealed": {
+        "tier": "S",
+        "note": "Nel Sealed accelera verso finali e, con tre mana di avanzo, crea Tesori che fissano uno splash. Il corpo fragile pesa meno nelle partite lente."
+      },
+      "partners": [
+        "Exploratory Mission",
+        "Horta",
+        "Pah-Wraith"
+      ],
+      "usage": {
+        "role": "Ramp rosso e Tesori",
+        "plan": "Al terzo turno lancia un quattro mana, poi nei turni senza giocate produce Tesori che pagano colori mancanti o un finale costoso.",
+        "conditions": "Muore a qualunque danno da uno; serve una curva con payoff da quattro e cinque mana o un colore da splash.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "1b248ef5-ec57-481d-b47a-357d3867054f",
+      "draft": {
+        "tier": "F",
+        "note": "Cinque mana per un 4/4 con raggiungere e una carta da giocare entro il turno dopo. Corpo onesto ma sostituibile nei mazzi rossi che vogliono attaccare presto."
+      },
+      "sealed": {
+        "tier": "S",
+        "note": "Nel Sealed ferma volanti e attaccanti medi, e la carta esiliata è spesso giocabile il turno successivo. Buon cinque mana per liste rosse più difensive."
+      },
+      "partners": [
+        "Savvy Profiteer",
+        "Xenobotanist"
+      ],
+      "usage": {
+        "role": "Raggiungere più carta esiliata",
+        "plan": "Blocca volanti e corpi da tre, mentre la carta esiliata aggiunge una giocata nel turno seguente per mantenere il vantaggio.",
+        "conditions": "Conserva mana nel turno successivo per la carta esiliata; con Savvy Profiteer o Xenobotanist puoi usarla già nello stesso turno.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "896077f9-b26e-4964-9279-03ee284a3e89",
+      "draft": {
+        "tier": "Y",
+        "note": "L'1/1 con rapidità è debole da solo; diventa carburante utile quando un sacrificio nel tuo turno lo trasforma in Indizio, come con Automated Warfare System o Dahar Master."
+      },
+      "sealed": {
+        "tier": "N",
+        "note": "Nel Sealed i corpi 1/1 non reggono e i motori di sacrificio sono meno numerosi. Non lo includerei neppure come riempitivo della curva bassa."
+      },
+      "partners": [
+        "Automated Warfare System",
+        "Dahar Master",
+        "Gowron, Eager for Battle"
+      ],
+      "usage": {
+        "role": "Uno rapido, Indizio se muore",
+        "plan": "Sacrificalo durante il tuo turno per pagare un costo e ottenere un Indizio, convertendo un mana in due risorse future.",
+        "conditions": "Serve uno sbocco nel tuo turno: morendo in blocco nel turno avversario non investiga. Gowron gli dà un uso anche tardi.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "bca4d45d-cae4-46f3-b5ac-22fbac59fe56",
+      "draft": {
+        "tier": "F",
+        "note": "Il 3/2 da tre infligge un danno per turno al giocatore e uno in più per ogni magia non creatura. Valutazioni esterne basse e condivise: il ping non interagisce con il campo."
+      },
+      "sealed": {
+        "tier": "F",
+        "note": "Nel Sealed il danno ripetuto conta negli stalli, ma il 3/2 muore facilmente e non elimina minacce. Riempitivo nei pool rossi con molte magie economiche."
+      },
+      "partners": [
+        "Planetary Bombardment",
+        "Test of Identity",
+        "Reckless Impulse"
+      ],
+      "usage": {
+        "role": "Danno diretto ripetuto",
+        "plan": "Tappalo ogni turno per un danno e stappalo con magie non creatura, accumulando danni diretti mentre il resto del campo difende.",
+        "conditions": "Servono magie economiche come Planetary Bombardment e Test of Identity; contro mazzi veloci il tap gli toglie il ruolo di bloccante.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "a066eeb1-61fc-448b-bbab-650d672652ad",
+      "draft": {
+        "tier": "Y",
+        "note": "Cinque forza con minaccia da tre è un attacco potente, ma ogni turno di attacco costa un non terra. Con pedine e Tesori in eccesso diventa uno dei tre mana più aggressivi."
+      },
+      "sealed": {
+        "tier": "F",
+        "note": "Nel Sealed il costo ricorrente consuma il campo nelle partite lunghe. Può restare a bloccare, ma un 5/3 difensivo non giustifica davvero lo slot."
+      },
+      "partners": [
+        "Starfleet Security",
+        "Boarding Action",
+        "Tea, Earl Grey, Hot"
+      ],
+      "usage": {
+        "role": "Attaccante con minaccia e sacrificio",
+        "plan": "Attacca nei turni in cui hai pedine superflue, trasformando risorse residue in cinque danni difficili da bloccare.",
+        "conditions": "Starfleet Security sacrificato nel tuo turno investiga, le pedine di Boarding Action costano poco; senza carburante sacrifica sé stesso.",
+        "confidence": "bassa"
+      }
+    },
+    {
+      "id": "8cb700bb-daa5-4a26-bb84-e22bc11bdaff",
+      "draft": {
+        "tier": "Y",
+        "note": "Il doppio attacco su un Klingon come Targ Wrangler o Munitions Enthusiast vale un'uccisione o molti danni. Senza Klingon resta un rovistare a carte pari, poco incisivo."
+      },
+      "sealed": {
+        "tier": "F",
+        "note": "Nel Sealed i Klingon nella lista sono pochi e il modo pescata scambia solo una carta. Riempitivo per selezione, non un trucco valido su qualunque creatura."
+      },
+      "partners": [
+        "Targ Wrangler",
+        "Munitions Enthusiast",
+        "The Duras Sisters"
+      ],
+      "usage": {
+        "role": "Doppio attacco Klingon o rovistare",
+        "plan": "In combattimento dà doppio attacco a un Klingon per vincere lo scontro; altrimenti scarta una terra inutile per pescarne due.",
+        "conditions": "Servono almeno cinque o sei Klingon in lista; il modo pescata richiede una carta da scartare e non aumenta la mano netta.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "6eb9865e-513c-43c6-81e1-6ad000e9c48e",
+      "draft": {
+        "tier": "P",
+        "note": "Due mana per tre danni a qualunque bersaglio è la rimozione rossa più efficiente fra le comuni, e il rilancio da sei aggiunge un secondo uso. Da prendere molto presto."
+      },
+      "sealed": {
+        "tier": "P",
+        "note": "Nel Sealed vale già per il primo lancio, e il beam me up dà valore nel gioco lungo con molte fonti rosse. In splash conta soltanto la prima metà."
+      },
+      "partners": [
+        "Cha'DIch Investigator",
+        "Dahar Master"
+      ],
+      "usage": {
+        "role": "Tre danni con rilancio tardivo",
+        "plan": "Rimuove presto un due o tre mana chiave, poi a fine partita il rilancio dal cimitero elimina un'altra creatura o chiude sul giocatore.",
+        "conditions": "Il rilancio richiede tre rossi e una creatura da riprendere; con Cha'DIch Investigator o Dahar Master rientrano anche gli ingressi.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "37f3eda9-3242-4d62-846f-935543d8f4fd",
+      "draft": {
+        "tier": "S",
+        "note": "Un 3/3 artefatto per tre è nella media; il rilancio per quattro aggiunge un secondo corpo e permette di riusare un ingresso. Due carte di campo in una sola."
+      },
+      "sealed": {
+        "tier": "S",
+        "note": "Nel Sealed il valore di due corpi pesa di più e la pedina artefatto conta per i payoff Borg. Riprendere una pedina per il rilancio non conviene: sparisce."
+      },
+      "partners": [
+        "David and Carol Marcus, Creators",
+        "Vash, Freelance Archaeologist",
+        "Hologram Stalker"
+      ],
+      "usage": {
+        "role": "Pedina 3/3 con rilancio",
+        "plan": "Prima occupa il campo, poi dal cimitero crea un secondo 3/3 riprendendo una creatura con ingresso utile come David and Carol.",
+        "conditions": "Il rilancio richiede una tua creatura non pedina e quattro mana; l'uscita dal cimitero attiva Vash e Hologram Stalker.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "98a752ff-f041-4032-9f3f-c6c4007f10f1",
+      "draft": {
+        "tier": "S",
+        "note": "La lotta del primo capitolo è la rimozione verde più accessibile, e il terzo recupera una creatura. Brilla con tocco letale; senza un corpo grande il capitolo I è debole."
+      },
+      "sealed": {
+        "tier": "S",
+        "note": "Nel Sealed tre capitoli di valore pesano molto: rimozione, vite e una creatura persa che torna. Lotta con Moopsy e poi recuperalo dal cimitero."
+      },
+      "partners": [
+        "Moopsy",
+        "Mugato",
+        "Neelix, Moral Support"
+      ],
+      "usage": {
+        "role": "Lotta, vite e recupero creatura",
+        "plan": "Combatti con un corpo grande o letale, guadagna tre vite e recupera la creatura morta, trasformando una carta in tre effetti.",
+        "conditions": "Serve un tuo combattente vivo all'ingresso; contro risposte istantanee la lotta salta ma i capitoli successivi restano utili.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "c5a7a82e-3c13-4fa1-8bf5-bb85b2890f75",
+      "draft": {
+        "tier": "F",
+        "note": "Due mana per un 2/2 con pompaggio che costa meno con nomi diversi, una volta per turno. Le valutazioni esterne lo pongono vicino al riempitivo e concordo."
+      },
+      "sealed": {
+        "tier": "F",
+        "note": "Nel Sealed lo sconto arriva tardi e il 2/2 viene superato presto dai corpi avversari. Riempitivo solo in liste con molti nomi di terre diversi."
+      },
+      "partners": [
+        "Final Frontier",
+        "Unexplored Territory",
+        "David and Carol Marcus, Creators"
+      ],
+      "usage": {
+        "role": "Due mana con pompaggio scontato",
+        "plan": "Con quattro o cinque nomi diversi il +2/+2 costa uno o due mana, rendendolo un attaccante 4/4 o un bloccante sicuro.",
+        "conditions": "Servono Planet, anomalie o Unexplored Territory in campo; una sola attivazione per turno limita la crescita anche con mana abbondante.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "d5e9b04f-4a97-4da1-bf86-3715fc75ab23",
+      "draft": {
+        "tier": "S",
+        "note": "Ciclo base per due nei primi turni, oppure sei mana con due segnalini su qualsiasi creatura e un corpo che ignora i bloccanti piccoli. Raramente resta morta in mano."
+      },
+      "sealed": {
+        "tier": "S",
+        "note": "Nel Sealed è fra i finali verdi più affidabili: non rovina la consistenza e i segnalini attivano Phlox e Dominion Supervisor. Ne bastano una o due copie."
+      },
+      "partners": [
+        "Phlox, Unorthodox Doctor",
+        "Dominion Supervisor",
+        "Dr. Joseph M'Benga"
+      ],
+      "usage": {
+        "role": "Segnalini all'ingresso o ciclo base",
+        "plan": "Presto cerca il colore mancante; tardi entra, rinforza l'attaccante migliore e colpisce superando le pedine con forza due.",
+        "conditions": "Rende con payoff segnalini come Phlox o Dr. Joseph M'Benga; contro bloccanti con forza tre la sua evasione sparisce.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "d4030d30-4c24-458c-87a9-c2f80bb68d27",
+      "draft": {
+        "tier": "S",
+        "note": "Morso da due mana senza danno di ritorno, con la forza di due creature sommata. Con Moopsy o Mugato il tocco letale uccide qualsiasi bersaglio. Fra le prime comuni verdi."
+      },
+      "sealed": {
+        "tier": "S",
+        "note": "Nel Sealed i corpi verdi grandi rendono il morso affidabile, ma serve un tuo campo: a tavolo vuoto è carta morta. Stregoneria, quindi niente sorprese in combattimento."
+      },
+      "partners": [
+        "Moopsy",
+        "Mugato"
+      ],
+      "usage": {
+        "role": "Morso con una o due creature",
+        "plan": "Somma la forza di due creature per rimuovere un bloccante grande senza perdite, poi attacca nello spazio liberato.",
+        "conditions": "Serve almeno una tua creatura; con tocco letale basta un danno, quindi Moopsy trasforma la carta in rimozione completa.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "5b8e8ef2-2f04-4485-ae12-08f52dac81a2",
+      "draft": {
+        "tier": "S",
+        "note": "Quattro mana per un 3/4 che diventa 4/5 con il segnalino su sé stesso: corpo sopra la media verde. Il modo mana permette una seconda giocata e conta come dilemma."
+      },
+      "sealed": {
+        "tier": "S",
+        "note": "Nel Sealed il 4/5 regge molti attaccanti; i due mana di un colore servono a lanciare subito un due mana o una carta di splash nello stesso turno."
+      },
+      "partners": [
+        "Phlox, Unorthodox Doctor",
+        "Dominion Supervisor",
+        "Melkotian Adjudicator"
+      ],
+      "usage": {
+        "role": "Segnalino o due mana una tantum",
+        "plan": "Di norma si dà il segnalino per un bloccante 4/5; nei turni lunghi usa i due mana per sviluppare due magie insieme.",
+        "conditions": "I payoff segnalini e dilemma lo migliorano; il mana scompare a fine fase e non risolve una base di mana carente.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "76b7e1ee-43f0-4b56-822a-71b064c9201b",
+      "draft": {
+        "tier": "F",
+        "note": "Trucco da tre mana sotto la media, con un sacrificio di artefatto o incantesimo scelto dall'avversario. Le valutazioni esterne concordano su un livello basso: serve solo a riempire."
+      },
+      "sealed": {
+        "tier": "F",
+        "note": "Contro mazzi con poche navi il sacrificio colpisce l'artefatto meno importante. Riempitivo, migliore quando l'avversario dipende da una singola nave o Saga."
+      },
+      "partners": [
+        "Moopsy",
+        "Jett Reno, Problem Solver",
+        "Melkotian Adjudicator"
+      ],
+      "usage": {
+        "role": "Trucco travolgente o sacrificio artefatto",
+        "plan": "Su Moopsy il +3/+3 con travolgere sfrutta il tocco letale: un danno al bloccante e il resto passa al giocatore.",
+        "conditions": "Il modo sacrificio funziona solo se l'avversario controlla un unico artefatto o incantesimo non pedina davvero rilevante.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "15885e58-76a9-49fa-ae67-a0482aacd81c",
+      "draft": {
+        "tier": "S",
+        "note": "Bloccante da tre che aggiunge una terra di qualsiasi colore: ramp, fixing e landfall nella stessa carta. Con il beam me up di Final Frontier può essere ripreso e rilanciato."
+      },
+      "sealed": {
+        "tier": "S",
+        "note": "Nel Sealed è uno dei migliori ponti verso splash e finali, senza perdere un bloccante. Le copie extra non aggiungono nomi: New Planet conta una sola volta."
+      },
+      "partners": [
+        "Final Frontier",
+        "Jake Sisko, War Correspondent",
+        "Syndicate Liquidators"
+      ],
+      "usage": {
+        "role": "Bloccante con Planet multicolore",
+        "plan": "Al terzo turno rallenta gli attaccanti e accelera verso cinque mana, con il colore libero per lanciare la bomba di splash.",
+        "conditions": "La New Planet entra tappata salvo Warp Speed; Jake Sisko e Syndicate Liquidators sfruttano il landfall aggiuntivo.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "b093916c-cc0a-4b3b-9de6-8a2db53cdfe0",
+      "draft": {
+        "tier": "F",
+        "note": "Un 4/4 con cautela da quattro è sostituibile in Draft, dove le curve verdi trovano corpi con più testo. Il dilemma attiva Melkotian Adjudicator e Jett Reno."
+      },
+      "sealed": {
+        "tier": "S",
+        "note": "Nel Sealed i quattro mana solidi scarseggiano e la cautela permette di attaccare e difendere. Il modo esilio ferma un recupero avversario dal cimitero."
+      },
+      "partners": [
+        "U.S.S. Voyager, Lone Wanderer",
+        "Melkotian Adjudicator",
+        "Jett Reno, Problem Solver"
+      ],
+      "usage": {
+        "role": "Cautela con sorveglia o esilio",
+        "plan": "Attacca senza perdere la difesa e, nella seconda fase principale, resta disponibile per caricare una nave con quattro cariche.",
+        "conditions": "Meglio con navi da caricare e payoff dilemma; il modo esilio conta contro mazzi che recuperano dal cimitero.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "d151c8ed-58bf-4b82-a993-1d81f789aa0e",
+      "draft": {
+        "tier": "F",
+        "note": "Il 3/1 con segnalino su sé stesso è un 4/2 fragile; il travolgere ai corpi segnati serve solo in un mazzo segnalini. Valutazioni esterne vicine al riempitivo."
+      },
+      "sealed": {
+        "tier": "F",
+        "note": "Nel Sealed i 3/1 muoiono a ogni pedina o ping, e il travolgere senza grandi corpi segnati conta poco. Riempitivo verde da sostituire appena possibile."
+      },
+      "partners": [
+        "Phlox, Unorthodox Doctor",
+        "Syndicate Liquidators",
+        "Pure Energy"
+      ],
+      "usage": {
+        "role": "Segnalino e travolgere ai segnati",
+        "plan": "Metti il segnalino su un corpo grande e fai passare danni in eccesso sui bloccanti piccoli con travolgere.",
+        "conditions": "Serve un piano segnalini con Phlox o Pure Energy; da solo resta un tre mana fragile che muore a un danno.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "26f7e903-2a00-4878-b8b7-d5abe35c9526",
+      "draft": {
+        "tier": "Y",
+        "note": "Tre mana per una terra tappata è lento; migliora se cerchi una Planet doppia e rilanci per due riprendendo David and Carol. Utile solo in landfall o con finali costosi."
+      },
+      "sealed": {
+        "tier": "Y",
+        "note": "Nel Sealed il fixing verso uno splash con una Planet doppia vale di più, ma resta una carta che non tocca il campo. Una copia di solito basta."
+      },
+      "partners": [
+        "David and Carol Marcus, Creators",
+        "Syndicate Liquidators",
+        "Vash, Freelance Archaeologist"
+      ],
+      "usage": {
+        "role": "Ramp verso base o Planet",
+        "plan": "Porta in campo una Planet del colore di splash e fornisce due landfall in turni diversi, accelerando verso cinque e sei mana.",
+        "conditions": "Il rilancio richiede una creatura da riprendere; l'uscita dal cimitero attiva Vash. Senza payoff landfall è solo ramp lento.",
+        "confidence": "bassa"
+      }
+    },
+    {
+      "id": "81229e0a-8413-40cf-8087-9d580cbb21c3",
+      "draft": {
+        "tier": "Y",
+        "note": "Prendere un permanente fra le carte macinate lo fa uscire dal cimitero: con Vash, Hologram Stalker o Sela il valore raddoppia. Altrimenti è selezione a carte pari."
+      },
+      "sealed": {
+        "tier": "F",
+        "note": "Nel Sealed la selezione aiuta, ma una pescata a carte pari non sposta le partite. Riempitivo per liste verdi orientate al cimitero."
+      },
+      "partners": [
+        "Vash, Freelance Archaeologist",
+        "Hologram Stalker",
+        "Sela, Tal Shiar Paradox"
+      ],
+      "usage": {
+        "role": "Macina quattro, recupera permanente",
+        "plan": "Riempie il cimitero di combustibile e porta in mano un permanente fra quattro carte, attivando i payoff di uscita.",
+        "conditions": "Rende con Vash o Hologram Stalker; può mancare un permanente se la lista contiene molti istantanei e stregonerie.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "8f91e7aa-a2d4-42ed-a959-3acd621679a5",
+      "draft": {
+        "tier": "S",
+        "note": "Sei mana per recuperare un permanente e creare subito un'Illusione 3/3: due corpi e una carta. Poi ogni uscita dal cimitero genera un'altra pedina, una volta per turno."
+      },
+      "sealed": {
+        "tier": "S",
+        "note": "Nel Sealed, con partite lunghe, il motore crea un 3/3 per turno insieme a Sylvia Tilly o Cybernetic Specialist. Un cimitero vuoto toglie il valore immediato."
+      },
+      "partners": [
+        "Sylvia Tilly, Joy of Discovery",
+        "Cybernetic Specialist",
+        "Temporal Conqueror"
+      ],
+      "usage": {
+        "role": "Recupero e Illusioni da cimitero",
+        "plan": "Recupera il miglior permanente perso, prende un 3/3 e ogni turno fa uscire una carta per aggiungere una pedina al campo.",
+        "conditions": "Serve un permanente nel cimitero all'ingresso; generatori ripetibili di uscita trasformano il motore in vantaggio crescente.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "ad1d8eca-e3bf-479f-a442-bcd8c31bfe7f",
+      "draft": {
+        "tier": "Y",
+        "note": "Stappare una creatura dopo la station permette di caricare ancora nella stessa fase principale; con Jett Reno il secondo tap dà un altro innesco. Senza navi è un trucco minore."
+      },
+      "sealed": {
+        "tier": "F",
+        "note": "Nel Sealed è un trucco da un mana con segnalino permanente, utile ma privo di protezione. Riempitivo, migliore con payoff segnalini come Phlox."
+      },
+      "partners": [
+        "Jett Reno, Problem Solver",
+        "Phlox, Unorthodox Doctor",
+        "U.S.S. Voyager, Lone Wanderer"
+      ],
+      "usage": {
+        "role": "Segnalino, stappa e trucco",
+        "plan": "In fase principale stappa una creatura usata per station o per un innesco al tap, ottenendo un secondo uso e un segnalino.",
+        "conditions": "Diventare Doctor sostituisce i tipi fino a fine turno e può ridurre Federation; non salva da rimozioni né sacrifici.",
+        "confidence": "bassa"
+      }
+    },
+    {
+      "id": "f0c1c97f-b8e1-49ec-b369-3d2694c33f29",
+      "draft": {
+        "tier": "Y",
+        "note": "Il secondo landfall nello stesso turno genera un Indizio: Voyager, Will Riker e Unexplored Territory lo rendono regolare. Con un solo land drop resta un 2/2 che guadagna vite."
+      },
+      "sealed": {
+        "tier": "F",
+        "note": "Nel Sealed i doppi landfall sono rari senza Voyager o ricerche. Un 2/2 con una vita per terra è riempimento, non un motivo per giocare verde."
+      },
+      "partners": [
+        "U.S.S. Voyager, Lone Wanderer",
+        "Will Riker, First in the Field",
+        "Captain Kathryn Janeway"
+      ],
+      "usage": {
+        "role": "Vite e Indizio da doppio landfall",
+        "plan": "Fai entrare due terre nello stesso turno per creare un Indizio, convertendo gli ingressi di terre in pescate da due mana.",
+        "conditions": "Serve ripetere i doppi ingressi più volte; ogni vita guadagnata alimenta anche Neelix e Sickbay.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "89b9efc8-d1cd-4b2a-acf3-4f0dd1629167",
+      "draft": {
+        "tier": "F",
+        "note": "Il tocco letale da un mana scambia con qualsiasi attaccante, ma in Draft le curve aggressive lo superano con minaccia e travolgere. Partner ideale di Common Goal."
+      },
+      "sealed": {
+        "tier": "S",
+        "note": "Nel Sealed le bombe avversarie a terra sono frequenti e un mana per scambiarle è un ottimo affare. Il raggiungere a pagamento copre anche i volanti."
+      },
+      "partners": [
+        "Common Goal",
+        "Amok Time"
+      ],
+      "usage": {
+        "role": "Tocco letale a basso costo",
+        "plan": "Blocca il miglior attaccante avversario o fornisce danno letale a Common Goal e Amok Time, trasformandosi in rimozione.",
+        "conditions": "Muore a qualunque ping o pedina; minaccia e travolgere riducono molto il suo valore difensivo.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "eb9a3b52-62ad-467f-b62a-0273ceee48e5",
+      "draft": {
+        "tier": "S",
+        "note": "Raggiungere, cautela e tocco letale insieme coprono attacco e difesa contro terra e aria. Con Common Goal o Amok Time diventa anche una rimozione ripetibile."
+      },
+      "sealed": {
+        "tier": "S",
+        "note": "Nel Sealed ferma da solo volanti e bombe a terra, e la cautela permette di attaccare senza scoprirsi. Doppio verde: serve il verde come colore principale."
+      },
+      "partners": [
+        "Common Goal",
+        "Amok Time",
+        "Dathon and Picard at El-Adrel"
+      ],
+      "usage": {
+        "role": "Bloccante letale con raggiungere",
+        "plan": "Tiene a bada il campo avversario e intanto attacca con cautela, mentre morsi e lotte sfruttano il tocco letale.",
+        "conditions": "Richiede doppio simbolo verde; esilio, sacrifici e minaccia lo aggirano senza mai combattere.",
+        "confidence": "bassa"
+      }
+    },
+    {
+      "id": "7fba522b-a292-4d1f-9999-f787ba2d5fd1",
+      "draft": {
+        "tier": "Y",
+        "note": "Le Planet guadagnano una vita all'ingresso, quindi in un verde con molte Planet e Jake Sisko cresce quasi ogni turno. Senza fonti di vita resta un 1/1 più Food."
+      },
+      "sealed": {
+        "tier": "F",
+        "note": "Nel Sealed la crescita è lenta e il Food richiede due mana. Riempitivo che vale qualcosa solo con Dr. Beverly Crusher o Sickbay nel pool."
+      },
+      "partners": [
+        "Jake Sisko, War Correspondent",
+        "Dr. Beverly Crusher",
+        "Sickbay"
+      ],
+      "usage": {
+        "role": "Cresce a ogni guadagno vita",
+        "plan": "Ogni evento di guadagno vita, da Planet, Food o landfall, aggiunge un segnalino fino a ottenere un corpo rilevante.",
+        "conditions": "Conta il numero di eventi, non le vite guadagnate; Dr. Beverly Crusher raddoppia gli inneschi.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "08787942-456f-4c71-a821-1c90b5639ca1",
+      "draft": {
+        "tier": "F",
+        "note": "Cinque mana per un corpo con raggiungere e un Officer residuo dal cimitero. Valutazioni esterne basse e concordi: in Draft verde ci sono cinque mana migliori."
+      },
+      "sealed": {
+        "tier": "F",
+        "note": "Nel Sealed copre i volanti e lascia una pedina dopo la morte; l'esilio attiva anche Vash e Hologram Stalker. Resta un riempitivo da cinque."
+      },
+      "partners": [
+        "Vash, Freelance Archaeologist",
+        "Hologram Stalker"
+      ],
+      "usage": {
+        "role": "Raggiungere e Officer dal cimitero",
+        "plan": "Blocca i volanti e, dopo la morte, esiliato dal cimitero crea un Officer attivando i payoff di uscita.",
+        "conditions": "L'attivazione è solo a velocità stregoneria; con Vash in campo l'esilio diventa anche una pescata.",
+        "confidence": "bassa"
+      }
+    },
+    {
+      "id": "b6a21e53-6f62-4874-b9cc-84ae177a0da6",
+      "draft": {
+        "tier": "F",
+        "note": "Lampo da tre con anti-malocchio a un'altra tua creatura salva da una sola rimozione mirata; come imboscata il 3/2 scambia con due mana. Valutazioni esterne vicine al D."
+      },
+      "sealed": {
+        "tier": "F",
+        "note": "Nel Sealed proteggere la bomba conta, ma bisogna tenere tre mana aperti ogni turno. Riempitivo con un uso preciso, non una protezione affidabile."
+      },
+      "partners": [
+        "Captain Jonathan Archer",
+        "Syndicate Liquidators"
+      ],
+      "usage": {
+        "role": "Lampo con anti-malocchio temporaneo",
+        "plan": "Tieni tre mana aperti; in risposta a una rimozione mirata entra, protegge la minaccia e aggiunge un corpo al campo.",
+        "conditions": "Non ferma sacrifici o danni globali; aggiunge i tipi Kelpien e Officer per Captain Jonathan Archer e Federation.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "00f4cab8-b135-4118-8e3a-92097178abb6",
+      "draft": {
+        "tier": "F",
+        "note": "Un 4/3 da quattro che attacca come 6/5 nel turno della terra. Le valutazioni esterne lo pongono vicino al riempitivo; l'attivazione da sei è solo un rimedio al flood."
+      },
+      "sealed": {
+        "tier": "F",
+        "note": "Nel Sealed il mana sink da sei produce una terra e un landfall nei turni lenti. Corpo da quattro sostituibile ma raramente del tutto morto."
+      },
+      "partners": [
+        "Jake Sisko, War Correspondent",
+        "Will Riker, First in the Field",
+        "Syndicate Liquidators"
+      ],
+      "usage": {
+        "role": "Landfall temporaneo e Planet a sei",
+        "plan": "Gioca la terra prima di attaccare per un 6/5; a fine partita spende sei mana per una Planet che lo pompa di nuovo.",
+        "conditions": "La Planet creata dall'attivazione arriva a velocità stregoneria; in difesa nel turno avversario resta un 4/3.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "645a5619-d0b2-4153-aae0-ca2adc6f5e3d",
+      "draft": {
+        "tier": "S",
+        "note": "Il 7/5 da sei non può essere bloccato da creature artefatto, molto comuni nel formato. Le vite all'ingresso aiutano anche contro i mazzi aggressivi."
+      },
+      "sealed": {
+        "tier": "S",
+        "note": "Nel Sealed è un finale affidabile e difficile da gestire per Borg e Illusioni. Teme comunque rimozioni non artefatto e bloccanti normali."
+      },
+      "partners": [
+        "David and Carol Marcus, Creators",
+        "Final Frontier",
+        "Captain Pike, Fullness of Time"
+      ],
+      "usage": {
+        "role": "Finale non bloccabile da artefatti",
+        "plan": "A sei mana guadagna vite pari ai nomi delle terre e attacca oltre i bloccanti artefatto per chiudere in pochi turni.",
+        "conditions": "Rende contro mazzi Borg e pedine Illusione; non è protetto da magie artefatto né da abilità di fonti non artefatto.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "59a4c4cf-07b4-4009-bbea-7da7b31f09a1",
+      "draft": {
+        "tier": "Y",
+        "note": "Tre mana senza effetto immediato; diventa buono solo con produttori di pedine come Holo-Engineer o Adversary by Algorithm. Le valutazioni esterne divergono proprio sulla densità di creature successive."
+      },
+      "sealed": {
+        "tier": "F",
+        "note": "Nel Sealed arriva spesso tardi, quando le creature sono già in campo. Riempitivo per pool verdi con molte creature economiche ancora da lanciare."
+      },
+      "partners": [
+        "Holo-Engineer",
+        "Adversary by Algorithm",
+        "Phlox, Unorthodox Doctor"
+      ],
+      "usage": {
+        "role": "Segnalini a ogni creatura entrante",
+        "plan": "Dopo il lancio ogni creatura, pedine comprese, entra più grande; dal quinto ingresso ogni corpo riceve due segnalini.",
+        "conditions": "Le creature già in campo non ricevono nulla; i segnalini attivano Phlox e il travolgere di Dominion Supervisor.",
+        "confidence": "bassa"
+      }
+    },
+    {
+      "id": "d4c1dbc8-23d8-49e0-bc2d-d005e9215172",
+      "draft": {
+        "tier": "S",
+        "note": "Il sorveglia due prepara le pescate e ogni combattimento converte un mana e una carta del cimitero in un segnalino. Con Vash o Hologram Stalker diventa un motore."
+      },
+      "sealed": {
+        "tier": "S",
+        "note": "Nel Sealed il segnalino ricorrente vince gli stalli lunghi e l'esilio attiva i payoff. Attenzione a non togliere bersagli a Daniels o Amok Time."
+      },
+      "partners": [
+        "Hologram Stalker",
+        "Vash, Freelance Archaeologist",
+        "Phlox, Unorthodox Doctor"
+      ],
+      "usage": {
+        "role": "Sorveglia e segnalini da cimitero",
+        "plan": "Ogni turno esilia una carta inutile dal cimitero per un segnalino, facendo crescere l'attaccante migliore e attivando le uscite.",
+        "conditions": "Serve un cimitero pieno; i recuperi verdi e neri competono per le stesse carte da esiliare.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "2f32de5c-4d85-42bc-b1bf-f762a46e5efc",
+      "draft": {
+        "tier": "S",
+        "note": "Ogni terra dà due segnalini a una tua creatura, anche a lui stesso. Lanciato prima del land drop cresce subito; con Voyager riceve quattro segnalini in un colpo."
+      },
+      "sealed": {
+        "tier": "S",
+        "note": "Nel Sealed è fra i migliori cinque mana verdi: corpo travolgente e crescita continua. Senza terre in mano resta un 4/4 nella media."
+      },
+      "partners": [
+        "U.S.S. Voyager, Lone Wanderer",
+        "Will Riker, First in the Field",
+        "Final Frontier"
+      ],
+      "usage": {
+        "role": "Due segnalini a ogni landfall",
+        "plan": "Ogni land drop successivo aggiunge due segnalini a un attaccante, trasformando terre tardive in minacce travolgenti.",
+        "conditions": "Le terre extra di Voyager e Will Riker moltiplicano gli inneschi; serve una creatura bersaglio legale a ogni ingresso.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "306002e6-d68d-47ad-879b-e6060efebeff",
+      "draft": {
+        "tier": "S",
+        "note": "Un 2/3 da tre che restituisce una terra dal cimitero o crea un Tesoro: corpo più risorsa. La terra recuperata esce dal cimitero e attiva Vash."
+      },
+      "sealed": {
+        "tier": "S",
+        "note": "Nel Sealed evita i turni senza terre e prepara il cimitero per i recuperi. Il Tesoro, quando non trova terre, offre anche un colore extra."
+      },
+      "partners": [
+        "Vash, Freelance Archaeologist",
+        "Hologram Stalker",
+        "Sylvia Tilly, Joy of Discovery"
+      ],
+      "usage": {
+        "role": "Macina tre, recupera terra",
+        "plan": "Garantisce il prossimo land drop o un Tesoro e riempie il cimitero di combustibile per Sylvia Tilly e Hologram Stalker.",
+        "conditions": "Recupera solo terre; se il cimitero ne contiene già, ottieni la terra anziché il Tesoro per lo splash.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "101b2387-58a1-4ef9-8395-0024713e217b",
+      "draft": {
+        "tier": "B",
+        "note": "Se l'evento ammette cambi tra partite entra mirata contro Borg e navi economiche. Nel BO1 resta valutabile, perché anche le pedine artefatto a costo zero sono bersagli legali."
+      },
+      "sealed": {
+        "tier": "B",
+        "note": "Se il Sealed ammette cambi tra partite è una riserva contro WB Borg e navi da tre mana. Nel BO1 dipende dalla densità di artefatti nei pool avversari."
+      },
+      "partners": [
+        "Vash, Freelance Archaeologist",
+        "Hologram Stalker",
+        "Melkotian Adjudicator"
+      ],
+      "usage": {
+        "role": "Antiartefatto economico o esilio cimitero",
+        "plan": "A velocità istantaneo distrugge un artefatto o incantesimo con valore tre o meno, oppure esilia un bersaglio di recupero.",
+        "conditions": "Le pedine artefatto valgono zero e sono bersagli legali; esiliando dal tuo cimitero con Vash in campo peschi.",
+        "confidence": "bassa"
+      }
+    },
+    {
+      "id": "33e8904a-9285-4031-900c-0a5c8f0bf6c0",
+      "draft": {
+        "tier": "S",
+        "note": "Quattro mana per due terre in campo: due landfall nello stesso turno, ramp e fixing. Il volante a otto cariche è un secondo uso, non il motivo principale."
+      },
+      "sealed": {
+        "tier": "S",
+        "note": "Nel Sealed porta verso finali e splash con grande affidabilità. Non blocca all'ingresso, quindi conviene giocarlo dopo aver stabilizzato la curva."
+      },
+      "partners": [
+        "Syndicate Liquidators",
+        "Jake Sisko, War Correspondent",
+        "Cleveland Booker, Empath"
+      ],
+      "usage": {
+        "role": "Due terre e nave volante",
+        "plan": "All'ingresso mette due terre in campo con due landfall, poi le creature la caricano fino a un volante con cautela.",
+        "conditions": "Con Syndicate Liquidators e Jake Sisko i due ingressi valgono doppio; servono creature con forza per la station.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "5a824931-2b65-42b1-8653-d4313a6693d2",
+      "draft": {
+        "tier": "N",
+        "note": "Tre mana per mettere una terra in mano non sviluppa il campo, e far entrare stappate le Planet aiuta poco. In Draft il tempo perso pesa più del fixing."
+      },
+      "sealed": {
+        "tier": "F",
+        "note": "Nel Sealed cerca una Planet doppia per lo splash e rende subito utili le terre di Voyager e David and Carol. Riempitivo nei pool verdi multicolori."
+      },
+      "partners": [
+        "U.S.S. Voyager, Lone Wanderer",
+        "David and Carol Marcus, Creators",
+        "Final Frontier"
+      ],
+      "usage": {
+        "role": "Cerca terra, terre stappate",
+        "plan": "Trova la Planet del colore di splash e fa entrare stappate le terre successive, trasformando il ramp in mana immediato.",
+        "conditions": "L'attivazione per pescare richiede doppio blu e molti nomi; senza ramp verde l'effetto statico vale poco.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "a9df60bf-f327-4d50-ab4d-99324fc2dcfe",
+      "draft": {
+        "tier": "S",
+        "note": "Mana di qualsiasi colore dal terzo turno: ramp e fixing per uno splash ragionevole, con un corpo che blocca le pedine. Rimovibile, quindi non conta come terra certa."
+      },
+      "sealed": {
+        "tier": "S",
+        "note": "Nel Sealed colori multipli e bombe contano di più, e un dork universale li rende accessibili. Da includere quasi sempre nelle liste verdi."
+      },
+      "partners": [
+        "D'Vana Tendi, Optimistic Ensign",
+        "Species 8472",
+        "Cold-Blooded Crew"
+      ],
+      "usage": {
+        "role": "Mana di qualsiasi colore",
+        "plan": "Dal turno seguente aggiunge un mana di qualunque colore, anticipando finali da cinque e sei e pagando lo splash.",
+        "conditions": "Con D'Vana Tendi produce due mana per turno; tapparlo per mana gli toglie il ruolo di bloccante.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "5fdff691-686d-4ce0-bd12-eea676a648b4",
+      "draft": {
+        "tier": "Y",
+        "note": "Il 3/2 riceve segnalini permanenti a ogni terra: con Voyager o Will Riker diventa grande in fretta. Con un solo land drop per turno cresce lentamente."
+      },
+      "sealed": {
+        "tier": "F",
+        "note": "Nel Sealed entra spesso quando le terre in mano sono finite e cresce poco, restando un 3/2 fragile. Riempitivo verde da tre mana."
+      },
+      "partners": [
+        "U.S.S. Voyager, Lone Wanderer",
+        "Will Riker, First in the Field",
+        "Final Frontier"
+      ],
+      "usage": {
+        "role": "Segnalino permanente da landfall",
+        "plan": "Lanciato presto accumula segnalini a ogni terra, diventando un attaccante che obbliga a doppi blocchi entro il sesto turno.",
+        "conditions": "Ramp e terre extra accelerano la crescita; i segnalini attivano anche Phlox e Dominion Supervisor.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "b80879d3-5abd-47e5-8b8c-61db120854e4",
+      "draft": {
+        "tier": "Y",
+        "note": "Ogni landfall dopo l'ingresso crea un Worm 2/2 che non blocca; con Will Riker sono due a turno. Le valutazioni divergono sulla frequenza delle terre dopo il quarto turno."
+      },
+      "sealed": {
+        "tier": "Y",
+        "note": "Nel Sealed le terre arrivano lente e i Worm non difendono, quindi serve un pool con ramp e una difesa già solida. Ibrido, giocabile in mono rosso o verde."
+      },
+      "partners": [
+        "Will Riker, First in the Field",
+        "U.S.S. Voyager, Lone Wanderer",
+        "Final Frontier"
+      ],
+      "usage": {
+        "role": "Worm 2/2 da landfall",
+        "plan": "Ogni terra aggiunge un attaccante 2/2 permanente; l'attivazione da otto spinge tutta la squadra per il colpo finale.",
+        "conditions": "Voyager, Will Riker e Final Frontier moltiplicano gli ingressi; contro mazzi aggressivi i Worm non aiutano in difesa.",
+        "confidence": "bassa"
+      }
+    },
+    {
+      "id": "74b58f31-7634-4b51-a900-6fbfccfb3cd2",
+      "draft": {
+        "tier": "S",
+        "note": "Cinque mana per un corpo e una scelta: due stun neutralizzano un attaccante per due turni, due Indizi danno carte nel gioco lungo. Ibrido, entra in mono bianco o blu."
+      },
+      "sealed": {
+        "tier": "S",
+        "note": "Nel Sealed la flessibilità risolve sia le partite di tempo sia quelle di logoramento. Gli Indizi richiedono quattro mana in totale per pescare."
+      },
+      "partners": [
+        "Melkotian Adjudicator",
+        "Jett Reno, Problem Solver",
+        "Seven of Nine"
+      ],
+      "usage": {
+        "role": "Doppio stun o due Indizi",
+        "plan": "Contro pressione blocca il miglior attaccante con due stun; in stallo crea Indizi per pescare due carte nei turni seguenti.",
+        "conditions": "La scelta del modo è un dilemma per Seven of Nine e Melkotian Adjudicator; gli Indizi contano come artefatti.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "7cecf129-3df9-4ebf-b194-28d1b34faaab",
+      "draft": {
+        "tier": "S",
+        "note": "Un 3/3 da tre in RG che dà mana a ogni landfall e trasforma terre in eccesso in carte. Con Will Riker sacrifica le terre temporanee prima che spariscano."
+      },
+      "sealed": {
+        "tier": "S",
+        "note": "Nel Sealed il flood tardivo diventa pescata e le terre di Voyager pagano subito altre magie. Richiede entrambi i colori, ma il corpo regge anche da solo."
+      },
+      "partners": [
+        "Will Riker, First in the Field",
+        "U.S.S. Voyager, Lone Wanderer",
+        "Orion"
+      ],
+      "usage": {
+        "role": "Mana da landfall, pescata da terre",
+        "plan": "Il mana dei landfall paga giocate extra nello stesso turno, e le terre superflue diventano carte pagando tre.",
+        "conditions": "Le terre temporanee di Will Riker sono il carburante ideale; non sacrificare fonti necessarie alla curva.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "2e44a02f-af94-4696-b979-cdf68285c87a",
+      "draft": {
+        "tier": "S",
+        "note": "Quattro mana per un 3/1 e il recupero di una creatura: un due per uno pulito. Dal cimitero poi esce per due vite, attivando Vash. Ibrido, entra in mono nero o verde."
+      },
+      "sealed": {
+        "tier": "S",
+        "note": "Nel Sealed recuperare la creatura migliore persa vale molto, ma il 3/1 muore facilmente. Il recupero richiede una creatura già nel cimitero."
+      },
+      "partners": [
+        "Vash, Freelance Archaeologist",
+        "Hologram Stalker"
+      ],
+      "usage": {
+        "role": "Recupera creatura in mano",
+        "plan": "Dopo uno scambio riporta in mano la creatura migliore e, una volta morto, esce dal cimitero per vite e inneschi.",
+        "conditions": "Serve un bersaglio nel cimitero all'ingresso; Vash e Hologram Stalker premiano la sua uscita successiva dal cimitero.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "3b04f5b9-40d9-49aa-a38d-0f946401263c",
+      "draft": {
+        "tier": "S",
+        "note": "Mettendo il primo segnalino su sé stesso entra come 5/5 da cinque; ogni tua creatura già segnata ne riceve un altro. Ibrido, entra in mono verde o bianco."
+      },
+      "sealed": {
+        "tier": "S",
+        "note": "Nel Sealed anche il minimo, un 5/5 artefatto, è un buon corpo; con due o tre creature segnate diventa un rinforzo di squadra."
+      },
+      "partners": [
+        "Phlox, Unorthodox Doctor",
+        "Support Mission",
+        "Pure Energy"
+      ],
+      "usage": {
+        "role": "Segnalini moltiplicati all'ingresso",
+        "plan": "Entra dopo Pure Energy o Support Mission e aggiunge un segnalino a ogni corpo segnato, ribaltando le dimensioni del campo.",
+        "conditions": "Rende con molte creature già segnate; i segnalini attivano anche Phlox e Dominion Supervisor.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "03973bad-1b3c-4488-a23e-232b192c95cc",
+      "draft": {
+        "tier": "S",
+        "note": "Un 3/2 da due che alla morte lascia un 2/1 con rapidità: scambia due volte. Ibrido, entra in mono nero o rosso; ottimo carburante per sacrifici."
+      },
+      "sealed": {
+        "tier": "S",
+        "note": "Nel Sealed i due mana efficienti scarseggiano e questa carta mantiene valore anche dopo gli scambi. Esilio e rimbalzo saltano la pedina Klingon."
+      },
+      "partners": [
+        "Gowron, Eager for Battle",
+        "Test of Identity",
+        "Eject the Warp Core"
+      ],
+      "usage": {
+        "role": "Due mana che lascia Klingon",
+        "plan": "Attacca presto, scambia con un bloccante e lascia un Klingon con rapidità che continua la pressione o paga un sacrificio.",
+        "conditions": "Gowron e Test of Identity sfruttano i Klingon; l'esilio avversario nega la pedina alla morte.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "6bb42689-b169-43cb-b787-f0e348063cd6",
+      "draft": {
+        "tier": "F",
+        "note": "Il 2/4 da tre stappa una terra come un dork, ma in Draft un tre mana difensivo senza pressione è sostituibile. Con Xenobotanist o Class-F produce mana di qualsiasi colore."
+      },
+      "sealed": {
+        "tier": "S",
+        "note": "Nel Sealed blocca bene, accelera di un mana e offre sorveglia come mana sink. Ibrido, giocabile in mono verde o blu."
+      },
+      "partners": [
+        "Xenobotanist",
+        "Class-F Shuttlecraft",
+        "Jett Reno, Problem Solver"
+      ],
+      "usage": {
+        "role": "Stappa permanenti, sorveglia a pagamento",
+        "plan": "Stappa una terra o una fonte per un mana extra dal turno seguente, poi nelle fasi tarde spende il mana in sorveglia.",
+        "conditions": "Serve un turno prima del tap; stappare una creatura usata per station consente una seconda carica in fase principale.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "34a39862-c18b-4c1b-8920-207627c40934",
+      "draft": {
+        "tier": "Y",
+        "note": "Serve una non creatura prima del combattimento e una tua creatura da copiare: con Spock o Cha'DIch Investigator la copia ripete un ingresso. Valutazioni esterne basse e condivise."
+      },
+      "sealed": {
+        "tier": "F",
+        "note": "Nel Sealed la densità di magie economiche da lanciare prima del combattimento è bassa. Un 2/3 da quattro senza innesco è riempimento debole."
+      },
+      "partners": [
+        "Spock, Always Your Friend",
+        "Cha'DIch Investigator",
+        "Interstellar Effigy",
+        "Open Communications"
+      ],
+      "usage": {
+        "role": "Copia temporanea dopo non creatura",
+        "plan": "Lancia una magia economica nella prima fase, poi copia una creatura con ingresso utile per un attacco con rapidità.",
+        "conditions": "Servono magie da uno o due mana e creature con ingressi forti; la copia viene sacrificata a fine turno.",
+        "confidence": "bassa"
+      }
+    },
+    {
+      "id": "83d8e98d-ab97-40b1-820a-2d193a5ed261",
+      "draft": {
+        "tier": "S",
+        "note": "Un 2/3 da due che rovista ogni volta che si tappa, attaccando o caricando una nave. Protegge le Spacecraft solo nel tuo turno, cioè mentre le stai caricando."
+      },
+      "sealed": {
+        "tier": "S",
+        "note": "Nel Sealed il rovistare ripetuto migliora le pescate negli stalli. Richiede WU già dal secondo turno, ma resta utile anche giocato più tardi."
+      },
+      "partners": [
+        "Suurok-Class Science Vessel",
+        "Enterprise NX-01",
+        "Romulan Bird-of-Prey"
+      ],
+      "usage": {
+        "role": "Rovistare al tap, protegge navi",
+        "plan": "Tappalo ogni turno per station o attacco, filtrando le pescate e proteggendo la nave dalle risposte durante la tua fase.",
+        "conditions": "Le navi WU lo trasformano in motore; nel turno avversario le navi tornano bersagliabili da rimozioni.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "e85ad29a-ebd6-4f81-af99-556deaedbfe0",
+      "draft": {
+        "tier": "S",
+        "note": "Un 3/3 da tre in RW con carte bonus quando attacchi a otto forza totale, e un sacrificio che distrugge artefatto o incantesimo. Utile anche senza soglia raggiunta."
+      },
+      "sealed": {
+        "tier": "S",
+        "note": "Nel Sealed il sacrificio per due risolve una nave o una Saga avversaria; il motore di attacco arriva più tardi. Richiede entrambi i colori."
+      },
+      "partners": [
+        "Cantankerous Captain",
+        "Una Chin-Riley, Number One",
+        "Tactical Officer"
+      ],
+      "usage": {
+        "role": "Carte d'attacco e antiartefatto",
+        "plan": "Con campo largo ogni attacco esilia una carta giocabile nel turno; quando serve si sacrifica per togliere un artefatto chiave.",
+        "conditions": "La soglia otto conta tutte le tue creature, non solo gli attaccanti; conserva mana dopo il combattimento.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "46ba09a7-42e4-42cd-911c-71d0ade01180",
+      "draft": {
+        "tier": "S",
+        "note": "Doppia funzione: dalla mano due danni e due vite a velocità istantaneo, in campo +1/+1 alle creature artefatto, sé stesso compreso. Valutazioni esterne alte e coerenti."
+      },
+      "sealed": {
+        "tier": "S",
+        "note": "Nel Sealed il modo rimozione è sempre utile contro due e tre mana; l'anthem richiede almeno sei creature artefatto. Serve una base WB stabile."
+      },
+      "partners": [
+        "Assembly Specialist",
+        "Tenacious Drone",
+        "Collective Drone"
+      ],
+      "usage": {
+        "role": "Bonus Borg o due danni",
+        "plan": "Con molti Borg in campo potenzia la squadra; altrimenti scartalo per eliminare un bloccante piccolo e guadagnare vite.",
+        "conditions": "Il bonus richiede creature artefatto come Assembly Specialist e Tenacious Drone; il doppio simbolo WB va fissato.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "ee712451-01de-4486-9048-fafb5aa5a584",
+      "draft": {
+        "tier": "F",
+        "note": "Un 2/3 artefatto da tre con un piccolo dilemma all'ingresso: rendere imbloccabile un attaccante o sorvegliare due. Valutazioni esterne fra D+ e C+: riempitivo."
+      },
+      "sealed": {
+        "tier": "F",
+        "note": "Nel Sealed il 2/3 blocca le pedine e conta come artefatto per i Borg. Ibrido in mono blu o nero, ma raramente fra i migliori tre mana."
+      },
+      "partners": [
+        "Seven of Nine",
+        "Elim Garak, Simple Tailor",
+        "Obsidian Order Operative"
+      ],
+      "usage": {
+        "role": "Imbloccabile temporaneo o sorveglia",
+        "plan": "Rende imbloccabile l'attaccante più grande per un colpo decisivo, oppure sorveglia per preparare pescate e cimitero.",
+        "conditions": "Il dilemma attiva Seven of Nine ed Elim Garak; senza attaccanti grandi il primo modo vale poco.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "ea684e78-483c-4b89-b184-b2aeede83cc7",
+      "draft": {
+        "tier": "S",
+        "note": "Ogni combattimento produce un Klingon 2/1 con rapidità che muore a fine turno: attacco gratuito e una morte ripetuta. In BR sacrifici diventa un motore."
+      },
+      "sealed": {
+        "tier": "S",
+        "note": "Nel Sealed il 1/4 regge gli attacchi iniziali e la pedina quotidiana logora l'avversario senza costi. Richiede entrambi i colori, non è ibrido."
+      },
+      "partners": [
+        "Vengeance Mission",
+        "Gowron, Eager for Battle",
+        "Battle-Scarred Survivalist"
+      ],
+      "usage": {
+        "role": "Klingon temporaneo e sacrificio",
+        "plan": "Ogni turno attacca con il Klingon o lo sacrifica per sorvegliare, accumulando morti per Vengeance Mission e Gowron.",
+        "conditions": "La pedina muore comunque a fine turno e alimenta i payoff di morte; non difende nel turno avversario.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "b04cb333-ca7a-464f-a084-03cf8f468baf",
+      "draft": {
+        "tier": "Y",
+        "note": "Il 3/4 travolgente da quattro è un corpo nella media; la pescata richiede creature segnate che colpiscano il giocatore. In GW segnalini con evasione diventa vantaggio ripetuto."
+      },
+      "sealed": {
+        "tier": "Y",
+        "note": "Nel Sealed i campi intasati impediscono spesso il danno al giocatore. Con Cold-Blooded Crew o Sylvia Tilly il motore riparte."
+      },
+      "partners": [
+        "Pure Energy",
+        "Sylvia Tilly, Joy of Discovery",
+        "The Doctor, EMH"
+      ],
+      "usage": {
+        "role": "Pescata da danni con segnalini",
+        "plan": "Metti segnalini su attaccanti evasivi o travolgenti; ogni danno da combattimento al giocatore pesca una carta.",
+        "conditions": "Phlox stesso pesca solo se ha un segnalino; servono Pure Energy, Sylvia Tilly o The Doctor, EMH.",
+        "confidence": "bassa"
+      }
+    },
+    {
+      "id": "3c037865-d38c-48da-aee9-308975e12638",
+      "draft": {
+        "tier": "Y",
+        "note": "Quattro mana per un 2/4 che pesca a ogni dilemma: serve una lista con molte scelte modali e attivazioni ripetibili come Tal Shiar Operative. Senza, è solo un muro."
+      },
+      "sealed": {
+        "tier": "Y",
+        "note": "Nel Sealed i dilemmi sono sparsi fra carte meno coese; conta quelli effettivamente in lista prima di giocarlo. Richiede UB."
+      },
+      "partners": [
+        "Tal Shiar Operative",
+        "Consider the Prime Directive",
+        "Impossible Choice"
+      ],
+      "usage": {
+        "role": "Pesca a ogni dilemma",
+        "plan": "Ogni scelta modale aggiunge una carta, trasformando rimozioni e attacchi di Tal Shiar Operative in vantaggio continuo.",
+        "conditions": "Più modi della stessa magia contano come un solo dilemma; servono almeno sei fonti modali in lista.",
+        "confidence": "bassa"
+      }
+    },
+    {
+      "id": "bdfe5809-17d4-4239-a9ee-6accdef99035",
+      "draft": {
+        "tier": "S",
+        "note": "Un 2/2 da due che di solito pesca una non creatura fra quattro carte. In UR magie è una delle migliori giocate al secondo turno."
+      },
+      "sealed": {
+        "tier": "S",
+        "note": "Nel Sealed la densità di non creature è minore, ma trova comunque rimozioni e navi. Il doppio colore al secondo turno richiede una base stabile."
+      },
+      "partners": [
+        "Encounter the Unknown",
+        "Boarding Action",
+        "Suurok-Class Science Vessel"
+      ],
+      "usage": {
+        "role": "Cerca non creatura fra quattro",
+        "plan": "Al secondo turno sviluppa un corpo e trova una rimozione o una nave, mantenendo la mano piena nel logoramento.",
+        "conditions": "Serve almeno un terzo della lista fatto di non creature non terra; le navi inattive contano come bersagli validi.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "b61718eb-dc6a-4199-b7c7-42eccf4158e8",
+      "draft": {
+        "tier": "S",
+        "note": "Due mana per un corpo con raggiungere e cautela che cresce con i nomi diversi delle terre. Con due basi è un 2/3; con Planet e anomalie supera presto quattro."
+      },
+      "sealed": {
+        "tier": "S",
+        "note": "Nel Sealed le Planet aperte aumentano i nomi e il corpo diventa un bloccante contro volanti. UG fisso al secondo turno resta esigente."
+      },
+      "partners": [
+        "Earth, Sector 001",
+        "Unexplored Territory",
+        "David and Carol Marcus, Creators"
+      ],
+      "usage": {
+        "role": "Forza pari ai nomi terre",
+        "plan": "Aggiungi terre con nomi diversi per farlo crescere, attaccando con cautela senza perdere il blocco contro volanti.",
+        "conditions": "Le basi uguali non contano più volte; sacrificare un'anomalia o Unexplored Territory non aumenta i nomi.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "ec5a9dde-b89d-4c54-8563-4a7170f5cefd",
+      "draft": {
+        "tier": "S",
+        "note": "Il 2/4 da tre sorveglia ogni turno e pesca la prima volta che una carta lascia il tuo cimitero. Con Sylvia Tilly o Cybernetic Specialist pesca quasi ogni turno."
+      },
+      "sealed": {
+        "tier": "S",
+        "note": "Nel Sealed è un motore di vantaggio con un corpo difensivo solido. Richiede BG; i recuperi presenti nel pool alimentano le pescate."
+      },
+      "partners": [
+        "Sylvia Tilly, Joy of Discovery",
+        "Temporal Conqueror",
+        "Cybernetic Specialist"
+      ],
+      "usage": {
+        "role": "Pesca su uscite dal cimitero",
+        "plan": "Sorveglia per riempire il cimitero, poi fai uscire una carta ogni turno con esilio o recupero per pescare.",
+        "conditions": "La pescata scatta al massimo una volta per turno; servono uscite ripetibili come quelle di Sylvia Tilly.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "2ecda53d-ac24-4b28-aed8-2a5fb1449f85",
+      "draft": {
+        "tier": "Y",
+        "note": "Un 1/1 da due che cresce tappando due tuoi artefatti o creature. Indizi, Tesori e pedine artefatto pagano senza togliere attaccanti. In RW largo raddoppia la forza."
+      },
+      "sealed": {
+        "tier": "F",
+        "note": "Nel Sealed la crescita lenta toglie bloccanti e la soglia otto arriva tardi. Ibrido, ma da solo resta un riempitivo della curva."
+      },
+      "partners": [
+        "Assembly Specialist",
+        "Tea, Earl Grey, Hot",
+        "Kirk, Commanding Officer"
+      ],
+      "usage": {
+        "role": "Cresce tappando risorse",
+        "plan": "Ogni turno tappa artefatti inutilizzati per un segnalino, poi con otto forza totale raddoppia per un attacco decisivo.",
+        "conditions": "Indizi e pedine Borg sono il carburante ideale; senza travolgere un piccolo bloccante assorbe tutto il colpo.",
+        "confidence": "bassa"
+      }
+    },
+    {
+      "id": "746e494e-fdc4-415e-8a82-d35e11ebeccb",
+      "draft": {
+        "tier": "S",
+        "note": "Il 2/2 con legame vitale da tre vede la mano avversaria e tassa di due la sua carta migliore. Ibrido, entra in mono bianco o nero e conta come artefatto."
+      },
+      "sealed": {
+        "tier": "S",
+        "note": "Nel Sealed ritarda la bomba avversaria di uno o due turni e informa le tue scelte. Non è scarto definitivo: la carta resta giocabile."
+      },
+      "partners": [
+        "Locutus, the One Who Speaks",
+        "Ghost of Illyria",
+        "Miles O'Brien, Transporter Ops"
+      ],
+      "usage": {
+        "role": "Tassa una carta in mano",
+        "plan": "Esilia la minaccia più costosa dalla mano avversaria, guadagnando tempo per sviluppare e attaccare con legame vitale.",
+        "conditions": "Rientra con Ghost of Illyria o Miles O'Brien per un secondo esilio; Locutus lo potenzia come creatura artefatto.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "4ccc91f2-4d6e-4d64-b438-3d8b4361040a",
+      "draft": {
+        "tier": "F",
+        "note": "Tre mana per una fonte universale lenta: in Draft è riempimento salvo splash pianificato. Il volante a sei cariche è un uso tardivo, non immediato."
+      },
+      "sealed": {
+        "tier": "S",
+        "note": "Nel Sealed fissa uno splash senza dipendere dal verde e accelera verso i finali. A sei cariche diventa un volante con cautela."
+      },
+      "partners": [
+        "D'Vana Tendi, Optimistic Ensign",
+        "Lt. Cmdr. Geordi La Forge",
+        "Zefram Cochrane, Warp Pioneer"
+      ],
+      "usage": {
+        "role": "Fonte universale e nave",
+        "plan": "Paga i colori mancanti dal turno seguente, poi le creature la caricano a sei cariche per un volante difensivo.",
+        "conditions": "D'Vana Tendi la stappa per un secondo mana; Lt. Cmdr. Geordi La Forge raddoppia le cariche di station.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "ccd0e613-17c1-4a97-b519-de0376d596f0",
+      "draft": {
+        "tier": "N",
+        "note": "Il lancio crea due equipaggiamenti, ma servono altri quattro mana per assegnarli a due creature. Rimosso un portatore, l'altro perde l'evasione. Valutazioni esterne concordi sul livello minimo."
+      },
+      "sealed": {
+        "tier": "N",
+        "note": "Nel Sealed sette mana complessivi per rendere imbloccabili due creature costano più di un normale finale. Non lo includerei neppure come riempitivo."
+      },
+      "partners": [
+        "Assembly Specialist",
+        "Federation Resupply"
+      ],
+      "usage": {
+        "role": "Due equipaggiamenti imbloccabili",
+        "plan": "Equipaggia due creature e attacca con entrambe imbloccabili, trasformando un campo bloccato in danni diretti.",
+        "conditions": "Servono sette mana totali e due creature vive; una rimozione su un portatore interrompe subito il piano.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "9fc49a69-f80c-478f-b237-66f155c0c09a",
+      "draft": {
+        "tier": "Y",
+        "note": "Il 2/1 incolore è riempimento, ma l'abilità ripetibile fa uscire una carta dal tuo cimitero ogni turno: con Vash o Hologram Stalker diventa un motore economico."
+      },
+      "sealed": {
+        "tier": "F",
+        "note": "Nel Sealed il corpo fragile e l'abilità senza payoff valgono poco. Riempitivo incolore, utile soprattutto come creatura artefatto per i Borg."
+      },
+      "partners": [
+        "Vash, Freelance Archaeologist",
+        "Hologram Stalker",
+        "Sela, Tal Shiar Paradox"
+      ],
+      "usage": {
+        "role": "Sorveglia e svuota cimitero",
+        "plan": "Ogni turno paga uno e tap per far uscire una carta dal cimitero, attivando pescate di Vash e pedine di Hologram Stalker.",
+        "conditions": "Senza payoff di uscita l'abilità non genera vantaggio, e tapparlo toglie un bloccante nel turno avversario.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "ef5d7b38-b782-4fb0-b6cd-3da36995ab39",
+      "draft": {
+        "tier": "N",
+        "note": "Il mana paga solo artefatti e il rovistare costa due e tap: in Draft due mana senza campo sono troppo lenti. Valutazioni esterne basse e coerenti."
+      },
+      "sealed": {
+        "tier": "N",
+        "note": "Nel Sealed non fissa colori per lo splash e il rovistare non aggiunge carte nette. Una terra o un corpo occupano meglio lo slot."
+      },
+      "partners": [
+        "Assembly Specialist",
+        "Collective Drone"
+      ],
+      "usage": {
+        "role": "Mana artefatto e rovistare",
+        "plan": "Accelera creature artefatto e abilità di navi, poi nel gioco lungo filtra terre in eccesso pagando due mana.",
+        "conditions": "Serve una lista con molti artefatti da lanciare presto; non paga mai costi colorati.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "1d4163d9-ca02-4f25-9f53-01f6d7cc4b70",
+      "draft": {
+        "tier": "Y",
+        "note": "Cinque mana senza corpo, poi almeno un segnalino per combattimento, due o tre se una creatura o una Planet entrano prima. Solo con molte creature economiche compensa il turno."
+      },
+      "sealed": {
+        "tier": "Y",
+        "note": "Nel Sealed lo stallo lungo premia il segnalino ricorrente, ma una curva veloce punisce l'investimento. Incolore, adatto a liste che sanno difendersi."
+      },
+      "partners": [
+        "Neelix, Moral Support",
+        "Jake Sisko, War Correspondent",
+        "Dr. Beverly Crusher"
+      ],
+      "usage": {
+        "role": "Segnalini scalati dalle vite",
+        "plan": "Lancia creature o gioca Planet prima del combattimento per guadagnare vita e mettere più segnalini sull'attaccante evasivo.",
+        "conditions": "Neelix e Dr. Beverly Crusher moltiplicano gli eventi di vita; serve una creatura bersaglio a ogni combattimento.",
+        "confidence": "bassa"
+      }
+    },
+    {
+      "id": "6f2e8083-29af-4cdb-a2cb-216b2f3f5616",
+      "draft": {
+        "tier": "Y",
+        "note": "Due mana che si sostituiscono pescando e lasciano un artefatto da sacrificare. Con Automated Warfare System, Khan, Vengeful Heart o Eject the Warp Core diventa carburante utile."
+      },
+      "sealed": {
+        "tier": "F",
+        "note": "Nel Sealed un artefatto che pesca e poi dà vite o due danni è riempimento accettabile, ma non sviluppa il campo."
+      },
+      "partners": [
+        "Automated Warfare System",
+        "Khan, Vengeful Heart",
+        "Eject the Warp Core"
+      ],
+      "usage": {
+        "role": "Artefatto che pesca e si sacrifica",
+        "plan": "Pesca all'ingresso, poi paga un sacrificio oppure, con due mana, infligge due danni al giocatore o guadagna tre vite.",
+        "conditions": "La scelta finale è un dilemma per Seven of Nine; senza sbocchi di sacrificio vale poco oltre la pescata.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "1385679f-bdcd-4d7e-8266-1df0e36cc2da",
+      "draft": {
+        "tier": "F",
+        "note": "Un mana più uno per equipaggiare: +1/+1 e sorveglia a ogni attacco. Utile su volanti piccoli come Federation Probe, ma resta riempimento."
+      },
+      "sealed": {
+        "tier": "F",
+        "note": "Nel Sealed la selezione ripetuta aiuta negli stalli lunghi, ma il bonus di uno non cambia gli scontri contro corpi grandi. Riempitivo incolore."
+      },
+      "partners": [
+        "Federation Probe",
+        "Sylvia Tilly, Joy of Discovery"
+      ],
+      "usage": {
+        "role": "Equipaggiamento economico con sorveglia",
+        "plan": "Sul volante migliore aggiunge danno e un sorveglia a ogni attacco, migliorando le pescate durante la corsa.",
+        "conditions": "Rende su attaccanti evasivi che sopravvivono; riempie il cimitero per l'esilio di Sylvia Tilly.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "9d4d3682-e904-412d-b8ae-734962865dfb",
+      "draft": {
+        "tier": "F",
+        "note": "Lo stun all'ingresso toglie un bloccante per un turno, ma equipaggiare costa tre. Le valutazioni divergono sul peso dell'equipaggiamento; per me il costo lo tiene a riempimento."
+      },
+      "sealed": {
+        "tier": "F",
+        "note": "Nel Sealed il +3 di forza su un volante chiude, e alza anche le cariche di station. Due fasi lente: riempitivo incolore."
+      },
+      "partners": [
+        "Federation Probe",
+        "U.S.S. Cerritos, Following Up",
+        "Enterprise NX-01"
+      ],
+      "usage": {
+        "role": "Stun all'ingresso e +3 forza",
+        "plan": "Stordisce il bloccante chiave per un attacco, poi equipaggiato rende un evasivo una minaccia o carica più in fretta una nave.",
+        "conditions": "Con il portatore equipaggiato la station aggiunge tre cariche in più; il portatore non guadagna costituzione.",
+        "confidence": "bassa"
+      }
+    },
+    {
+      "id": "472eac8f-2b82-4fa9-a40c-af11ec40f19e",
+      "draft": {
+        "tier": "F",
+        "note": "Cinque mana per due 1/1 e una nave che richiede altri turni per animarsi. In Draft il tempo pesa: riempitivo incolore salvo Geordi o Zefram in lista."
+      },
+      "sealed": {
+        "tier": "S",
+        "note": "Nel Sealed due corpi subito e un volante 4/4 futuro valgono un buon cinque mana incolore, giocabile in qualsiasi pool."
+      },
+      "partners": [
+        "Lt. Cmdr. Geordi La Forge",
+        "Zefram Cochrane, Warp Pioneer",
+        "Academy Instructor"
+      ],
+      "usage": {
+        "role": "Due Officer e nave volante",
+        "plan": "Gli Officer bloccano o caricano la nave; con altre creature si raggiungono sei cariche per un volante 4/4.",
+        "conditions": "Lt. Cmdr. Geordi La Forge e Zefram Cochrane accelerano la station; Academy Instructor sfrutta gli Officer.",
+        "confidence": "bassa"
+      }
+    },
+    {
+      "id": "6a2df97a-341d-4bc4-9f5c-661b6ca78fd0",
+      "draft": {
+        "tier": "Y",
+        "note": "Cerca una base in mano e dà due cariche per turno a una nave, lasciando libere le creature. Diventa buono solo con Geordi o più navi in lista."
+      },
+      "sealed": {
+        "tier": "F",
+        "note": "Nel Sealed vale come fixing da due mana che non sviluppa il campo. Riempitivo se il pool ha navi e serve un colore aggiuntivo."
+      },
+      "partners": [
+        "Lt. Cmdr. Geordi La Forge",
+        "Suurok-Class Science Vessel",
+        "Enterprise NX-01"
+      ],
+      "usage": {
+        "role": "Cerca base e carica navi",
+        "plan": "Trova la terra mancante, poi carica le navi due cariche alla volta senza tappare creature utili al combattimento.",
+        "conditions": "Con Lt. Cmdr. Geordi La Forge le cariche raddoppiano; senza navi è solo una ricerca di terra lenta.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "79134f5e-94db-4a40-ba75-2569b839cf35",
+      "draft": {
+        "tier": "Y",
+        "note": "Doppia blu-rossa tappata: utile solo in UR o con splash di uno dei due colori. Aggiunge il nome Andoria per strange new worlds e una vita all'ingresso."
+      },
+      "sealed": {
+        "tier": "Y",
+        "note": "Nel Sealed i pool UR ne beneficiano direttamente e Final Frontier può cercarla. L'ingresso tappato pesa sulle curve di magie economiche."
+      },
+      "partners": [
+        "Spock, Always Your Friend",
+        "Suus Mahna Practitioner",
+        "Pah-Wraith"
+      ],
+      "usage": {
+        "role": "Doppia blu-rossa tappata",
+        "plan": "Fissa entrambi i colori per Spock e le magie UR, aggiungendo un nome per strange new worlds e una vita.",
+        "conditions": "Valida solo se giochi blu o rosso; troppe terre tappate rallentano i turni due e tre della curva.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "7e550295-eaf4-4962-bc52-261d7c2d71ae",
+      "draft": {
+        "tier": "Y",
+        "note": "Incolore all'inizio, poi per quattro mana con nero drena due e diventa New Planet. In Draft la fonte incolore pesa sui costi neri doppi: al massimo una copia."
+      },
+      "sealed": {
+        "tier": "Y",
+        "note": "Nel Sealed il drenaggio e il landfall tardivo valgono di più, e la New Planet ripristina un colore. Una per mazzo nero con base stabile."
+      },
+      "partners": [
+        "Gul Dukat, Colonial Prefect",
+        "The Destruction of Praxis"
+      ],
+      "usage": {
+        "role": "Incolore con drenaggio tardivo",
+        "plan": "Nel gioco lungo trasforma la terra in due punti di drenaggio e una Planet di qualsiasi colore senza perdere mana.",
+        "conditions": "Serve nero per l'attivazione; Gul Dukat raddoppia la perdita di vita avversaria in quel turno.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "93d7f6e7-b6b0-48f3-891a-73970826af3b",
+      "draft": {
+        "tier": "Y",
+        "note": "Doppia rosso-bianca per Kirk e Kira Nerys, ma RW vuole curve veloci e l'ingresso tappato costa. Una o due copie bastano nella lista."
+      },
+      "sealed": {
+        "tier": "Y",
+        "note": "Nel Sealed fornisce fixing per RW o per uno splash rosso o bianco. La vita all'ingresso non compensa il tempo perso nei turni iniziali."
+      },
+      "partners": [
+        "Kirk, Commanding Officer",
+        "Kira Nerys, Firebrand",
+        "Worf, Honor-Bound Warrior"
+      ],
+      "usage": {
+        "role": "Doppia rosso-bianca tappata",
+        "plan": "Rende lanciabili i gold RW come Kirk, aggiungendo un nome per strange new worlds e una vita.",
+        "conditions": "Gioca la terra tappata nei turni senza giocate; in RW aggressivo limitane il numero complessivo.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "aff720b4-b8ef-46ea-9a3d-e101999e6526",
+      "draft": {
+        "tier": "Y",
+        "note": "Doppia bianco-nera utile a Locutus e agli altri gold WB; Zero è ibrido e non la richiede. Conta come fixing per i doppi simboli WB."
+      },
+      "sealed": {
+        "tier": "Y",
+        "note": "Nel Sealed WB Borg la consistenza dei colori conta più del nome aggiunto. La vita all'ingresso è un piccolo bonus contro i mazzi aggressivi."
+      },
+      "partners": [
+        "Locutus, the One Who Speaks",
+        "Zero, Incorporeal Sensate",
+        "Excalbian Gamemaster"
+      ],
+      "usage": {
+        "role": "Doppia bianco-nera tappata",
+        "plan": "Paga i simboli di Locutus e degli altri gold WB, aggiungendo un nome per Excalbian Gamemaster.",
+        "conditions": "Utile solo in WB o con splash; gli ingressi tappati pesano sulla curva Borg economica.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "c75d87b0-7de9-4c50-b781-9749d67c1e07",
+      "draft": {
+        "tier": "Y",
+        "note": "Doppia verde-blu nei colori dei nomi diversi: The Traveler e Deep Space Scan ne beneficiano subito. Fra le Planet è la più legata a un archetipo."
+      },
+      "sealed": {
+        "tier": "Y",
+        "note": "Nel Sealed UG fixing e nome valgono doppio, e Final Frontier la cerca come Planet. Tappata, non aiuta le difese iniziali."
+      },
+      "partners": [
+        "The Traveler",
+        "Final Frontier",
+        "Deep Space Scan"
+      ],
+      "usage": {
+        "role": "Doppia verde-blu tappata",
+        "plan": "Fissa UG e aumenta i nomi diversi, facendo crescere The Traveler e riducendo i costi di strange new worlds.",
+        "conditions": "Serve il piano nomi o un pool UG; più copie aggiungono comunque un solo nome.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "2e0753ad-7f76-4d26-8e87-6f201378f333",
+      "draft": {
+        "tier": "Y",
+        "note": "Doppia nero-verde per Vash e il piano cimitero; Daniels è ibrido e non la richiede. Fixing utile, nessun effetto oltre la vita all'ingresso."
+      },
+      "sealed": {
+        "tier": "Y",
+        "note": "Nel Sealed BG le partite lunghe assorbono l'ingresso tappato. Final Frontier la cerca come Planet per completare i colori senza basi extra."
+      },
+      "partners": [
+        "Vash, Freelance Archaeologist",
+        "Final Frontier",
+        "Nog, Ambitious Cadet"
+      ],
+      "usage": {
+        "role": "Doppia nero-verde tappata",
+        "plan": "Paga i costi BG di Vash e dei recuperi, aggiungendo un nome per strange new worlds e una vita.",
+        "conditions": "Valida in BG o con splash; i payoff per nomi diversi sono pochi in quei colori.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "1fb736bf-c9bd-45ab-86ce-7f138f1724b2",
+      "draft": {
+        "tier": "Y",
+        "note": "Incolore che per sei mana con blu pesca due e diventa New Planet senza perdere la terra. In Draft costa colore presto, ma premia il flood."
+      },
+      "sealed": {
+        "tier": "Y",
+        "note": "Nel Sealed il vantaggio di due carte nelle partite lente è concreto; le valutazioni esterne la mettono fra le anomalie migliori. Una per mazzo blu."
+      },
+      "partners": [
+        "Deep Space Scan",
+        "Seven of Nine, Unassimilated"
+      ],
+      "usage": {
+        "role": "Incolore con pescata tardiva",
+        "plan": "Nel turno di flood converte sei mana in due carte e una Planet multicolore, mantenendo il numero di terre.",
+        "conditions": "Serve blu per l'attivazione; la New Planet aggiunge un nome solo se non ne controlli già una.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "47e3aa22-8806-408f-b93e-0d0b800866f6",
+      "draft": {
+        "tier": "Y",
+        "note": "Doppia rosso-verde per Dal R'El e i gold RG; in landfall l'ingresso tappato pesa meno perché ogni terra attiva qualcosa. Una vita inclusa."
+      },
+      "sealed": {
+        "tier": "Y",
+        "note": "Nel Sealed RG serve soprattutto per Dal R'El, che richiede entrambi i colori. Final Frontier la cerca come Planet per completare la base."
+      },
+      "partners": [
+        "Dal R'El, Augment Orphan",
+        "Cleveland Booker, Empath",
+        "Syndicate Liquidators"
+      ],
+      "usage": {
+        "role": "Doppia rosso-verde tappata",
+        "plan": "Fissa i gold RG e alimenta landfall, mentre il nome Orion aumenta strange new worlds.",
+        "conditions": "Valida solo in RG o con splash; nei turni con altre giocate l'ingresso tappato costa tempo.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "cab718af-8e6f-4766-856e-3a61ba98f94d",
+      "draft": {
+        "tier": "Y",
+        "note": "Doppia nero-rossa per L'Rell e Gowron, che richiedono entrambi i colori. In BR sacrifici l'ingresso tappato è tollerabile, ma due copie bastano."
+      },
+      "sealed": {
+        "tier": "Y",
+        "note": "Nel Sealed BR la consistenza per i gold è il punto; The Duras Sisters ibride non ne hanno bisogno. Vita all'ingresso come piccolo bonus."
+      },
+      "partners": [
+        "L'Rell, Fierce Visionary",
+        "Gowron, Eager for Battle",
+        "The Destruction of Praxis"
+      ],
+      "usage": {
+        "role": "Doppia nero-rossa tappata",
+        "plan": "Paga L'Rell e i gold BR, aggiunge il nome Qo'noS per The Destruction of Praxis e una vita.",
+        "conditions": "Valida in BR o con splash; nei mazzi veloci limita il numero di terre tappate.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "365a4644-74f4-4af9-81ab-0d328ca5edce",
+      "draft": {
+        "tier": "Y",
+        "note": "Doppia verde-bianca per Phlox e il piano segnalini; la vita all'ingresso attiva Neelix e Dr. Beverly Crusher. Fixing utile, non prioritario."
+      },
+      "sealed": {
+        "tier": "Y",
+        "note": "Nel Sealed GW i gold come Phlox richiedono entrambi i colori, mentre The Doctor, EMH è ibrido. Final Frontier la cerca come Planet."
+      },
+      "partners": [
+        "Phlox, Unorthodox Doctor",
+        "Neelix, Moral Support",
+        "Final Frontier"
+      ],
+      "usage": {
+        "role": "Doppia verde-bianca tappata",
+        "plan": "Fissa i colori GW, e ogni ingresso guadagna una vita che alimenta i payoff di vita come Neelix.",
+        "conditions": "Valida in GW o con splash; con Neelix in campo il punto vita diventa un segnalino.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "14c4ad24-7f38-409b-8ef0-341f233982da",
+      "draft": {
+        "tier": "Y",
+        "note": "Doppia blu-nera per Seven of Nine e i gold UB; Lore è ibrido. Il nome aiuta poco perché i payoff nomi sono soprattutto verdi e blu."
+      },
+      "sealed": {
+        "tier": "Y",
+        "note": "Nel Sealed UB le partite lente assorbono l'ingresso tappato e la consistenza conta per Seven of Nine. Vita all'ingresso come bonus."
+      },
+      "partners": [
+        "Seven of Nine",
+        "Lore, Positronic Provocateur",
+        "Cloak and Phaser"
+      ],
+      "usage": {
+        "role": "Doppia blu-nera tappata",
+        "plan": "Paga i simboli UB di Seven of Nine e aggiunge un nome che riduce il costo di Cloak and Phaser.",
+        "conditions": "Valida in UB o con splash; limita le terre tappate se la curva della lista è bassa.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "a4f31512-a91c-42e0-9929-5069386c3c71",
+      "draft": {
+        "tier": "Y",
+        "note": "Incolore che per cinque mana con rosso infligge due danni e diventa New Planet. Interazione tardiva che non occupa slot magia, ma solo contro corpi piccoli."
+      },
+      "sealed": {
+        "tier": "Y",
+        "note": "Nel Sealed un'interazione extra senza slot magia è utile, ma la fonte incolore pesa sui doppi rossi. Una per mazzo rosso."
+      },
+      "partners": [
+        "Captain Michael Burnham",
+        "Pah-Wraith"
+      ],
+      "usage": {
+        "role": "Incolore con due danni tardivi",
+        "plan": "A fine partita converte la terra in due danni a una creatura e una Planet multicolore con un landfall.",
+        "conditions": "Serve rosso per l'attivazione e un bersaglio legale; Captain Michael Burnham sfrutta il landfall della New Planet.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "1a28a83a-de27-4aaa-b35f-1e7075fc1e43",
+      "draft": {
+        "tier": "Y",
+        "note": "Incolore che per cinque mana con bianco crea due Officer e una New Planet. In bianco aggressivo la fonte incolore pesa più del valore tardivo."
+      },
+      "sealed": {
+        "tier": "Y",
+        "note": "Nel Sealed due corpi extra nel gioco lungo e un landfall valgono lo slot di terra. Una per mazzo bianco con molte fonti."
+      },
+      "partners": [
+        "Excalbian Gamemaster",
+        "Captain Jean-Luc Picard"
+      ],
+      "usage": {
+        "role": "Incolore con due Officer tardivi",
+        "plan": "Nel turno di flood crea due Officer per station o blocchi e una Planet di qualsiasi colore.",
+        "conditions": "Serve bianco per l'attivazione; Captain Jean-Luc Picard potenzia gli Officer creati.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "cf0d1859-699e-47d4-bc91-7c5ff61fabe9",
+      "draft": {
+        "tier": "Y",
+        "note": "Incolore che per quattro mana con verde macina quattro, prende un permanente e diventa New Planet. Con Vash o Hologram Stalker la presa attiva anche l'uscita."
+      },
+      "sealed": {
+        "tier": "Y",
+        "note": "Nel Sealed è l'anomalia più economica da attivare e trova spesso una creatura. Una per mazzo verde, attenzione ai doppi simboli."
+      },
+      "partners": [
+        "Vash, Freelance Archaeologist",
+        "Hologram Stalker",
+        "Syndicate Liquidators"
+      ],
+      "usage": {
+        "role": "Incolore con selezione tardiva",
+        "plan": "Converte la terra in un permanente dalle prime quattro carte, un cimitero più pieno e un landfall.",
+        "conditions": "Serve verde e può non trovare permanenti; Syndicate Liquidators riceve segnalini dalla New Planet.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "6e5d4bbd-4999-4acd-8775-25e02d901035",
+      "draft": {
+        "tier": "Y",
+        "note": "Fonte incolore che per uno cerca una base tappata: fixing per lo splash e un landfall extra. Con Jake Sisko attiva il secondo landfall del turno."
+      },
+      "sealed": {
+        "tier": "Y",
+        "note": "Nel Sealed fissa lo splash di un colore senza Planet. Resta incolore finché non la sacrifichi, quindi rallenta le mani con costi colorati."
+      },
+      "partners": [
+        "Jake Sisko, War Correspondent",
+        "The Traveler",
+        "Captain Michael Burnham"
+      ],
+      "usage": {
+        "role": "Terra che cerca una base",
+        "plan": "Sacrificala nel turno del land drop per due landfall nello stesso turno e il colore mancante.",
+        "conditions": "La base entra tappata; in campo conta come nome, ma sacrificarla non aumenta mai i nomi totali.",
+        "confidence": "media"
+      }
+    },
+    {
+      "id": "c7b6bc1f-9161-415e-a097-d9c8cd81d4ae",
+      "draft": {
+        "tier": "Y",
+        "note": "Doppia bianco-blu per Hemmer, che chiede entrambi i colori al secondo turno; tappata, lo ritarda se giocata proprio quel turno. Constable Odo è ibrido."
+      },
+      "sealed": {
+        "tier": "Y",
+        "note": "Nel Sealed WU con navi la consistenza dei colori vale più della vita all'ingresso. Suus Mahna Practitioner beneficia del nome aggiuntivo."
+      },
+      "partners": [
+        "Hemmer, Fixing What Is Broken",
+        "Constable Odo",
+        "Suus Mahna Practitioner"
+      ],
+      "usage": {
+        "role": "Doppia bianco-blu tappata",
+        "plan": "Fissa WU per Hemmer e i gold, aggiungendo il nome Vulcan per strange new worlds.",
+        "conditions": "Giocala al primo turno per avere Hemmer lanciabile al secondo; in seguito l'ingresso tappato pesa di più.",
+        "confidence": "media"
+      }
+    }
+  ],
+  "concerns": [
+    "La selezione contiene 100 carte, non 101: tutte coperte una sola volta, nessuna esclusa.",
+    "Mugato: i voti esterni (C+, D+/C) sembrano bassi per la linea forza e costituzione indicata nel finding precedente. Verificare P/T Oracle prima di pubblicare; le note evitano numeri e il tier S si basa sulle sole abilità.",
+    "Cold-Blooded Crew: il finding precedente citava sia un 2/2 sia un 6/6 finale. Verificare P/T base; le note evitano il numero.",
+    "Correzioni rispetto ai finding precedenti: Ravenous Cosmozoan ha un solo simbolo rosso; Unexplored Territory e le anomalie non aumentano mai i nomi totali quando sacrificate (perdono il proprio nome); Class-F Shuttlecraft subisce la debolezza da evocazione solo se animata nel turno d'ingresso.",
+    "Test of Courage: le pedine artefatto hanno valore di mana zero e sono bersagli legali, quindi il valore nel BO1 dipende dalla densità reale di artefatti, osservabile solo dopo l'apertura di Arena il 10 novembre.",
+    "Divergenze esterne nette (Exploratory Mission, The Naked Time, Support Mission, Cleveland Booker, Type-2 Phaser): il punto decisivo è spiegato nelle note, senza mediare gli autori.",
+    "Ricalibrazione: Munitions Enthusiast, Planetary Bombardment, Plasma Cascade, Common Goal, Mugato, Syndicate Liquidators, U.S.S. Voyager e The Duras Sisters scendono da P a S; in rosso P resta solo a Khaaaaaaaaaaaannn! e Transporter Malfunction.",
+    "Le dieci Planet doppie sono tutte Y in Draft e Sealed secondo il criterio indicato; non le ho differenziate per forza dell'archetipo, che senza dati resta speculativa.",
+    "Nessuna WR utilizzabile: tutti i giudizi sono editoriali pre-release. Le carte del catalogo esterne al set (ospiti o SDS) non sono state usate come partner."
+  ],
+  "modelUsage": {
+    "claude-opus-5-5": {
+      "inputTokens": 2,
+      "outputTokens": 117867,
+      "cacheReadInputTokens": 1545,
+      "cacheCreationInputTokens": 183864,
+      "webSearchRequests": 0,
+      "costUSD": 3.828569,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 79688,
+      "canonicalModel": "claude-opus-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "requestSha256": "340b32d82614da01177fd9887f662d8f52f9fec01e13d72d305291c370d45f9b",
+  "date": "2026-11-09",
+  "kind": "editorial_contribution_not_external_review"
+}

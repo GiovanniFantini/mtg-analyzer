@@ -56,7 +56,7 @@ class LimitedStudyTests(unittest.TestCase):
             self.assertIsNone(ratings[c['id']].get('score'))
             if c['set']=='SDS':
                 self.assertNotIn('limitedReview',c['prospects'])
-                self.assertNotIn('limitedAnalysis',c['prospects'])
+                self.assertEqual(c['prospects']['limitedAnalysis']['date'],'2026-11-09')
 
     def test_game_changers_and_real_sequence_references(self):
         impact=[c for c in self.cards if c['prospects'].get('limitedImpact')]
@@ -99,12 +99,12 @@ class LimitedStudyTests(unittest.TestCase):
         expansion=Expansion(FOLDER/'expansion.json')
         for mode in ['limitedReview','sealedReview']:
             output=render(expansion,mode)
-            self.assertEqual(output.count('data-lr-card '),201)
+            self.assertEqual(output.count('data-lr-card '),336)
             self.assertIn('data-lr-context="draft"',output)
             self.assertIn('data-lr-context="sealed"',output)
         self.assertEqual(render(expansion,'limitedImpact').count('class="lr-card"'),42)
         sealed=render_page(expansion,'strategy',expansion.manifest['presentation']['pages']['strategy'])
-        self.assertEqual(sealed.count('data-lr-card '),201)
+        self.assertEqual(sealed.count('data-lr-card '),336)
         self.assertIn('data-default-context="sealed"',sealed)
         self.assertTrue(expansion.availability['pickBaits']['available'])
         self.assertFalse(expansion.availability['draftTable']['available'])

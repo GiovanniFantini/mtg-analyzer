@@ -166,6 +166,30 @@
         },
         "gameOne": {
           "$ref": "#/$defs/gameCohort"
+        },
+        "assessmentEligibility": {
+          "type": "object",
+          "required": [
+            "status",
+            "reason"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "eligible",
+                "experimental_only"
+              ]
+            },
+            "reason": {
+              "type": "string",
+              "minLength": 1
+            },
+            "assessed": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          "additionalProperties": true
         }
       },
       "additionalProperties": true

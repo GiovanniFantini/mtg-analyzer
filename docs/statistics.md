@@ -12,6 +12,8 @@ Conservare per ciascuna metrica definizione, unità, fonte, data, finestra tempo
 
 Associare le righe al `catalogId` stabile. Controllare l'intero catalogo pertinente, comprese le carte ospiti, distinguendo carte osservate, carte con una specifica metrica e carte assenti. Ristampe e varianti non diventano nuove identità di gioco. Valori assenti o bloccati restano `null`, anomalie e precisione originale si conservano.
 
+Un audit esplicito può aggiungere `assessmentEligibility: {status: experimental_only, assessed: YYYY-MM-DD, reason: ...}` a uno snapshot o al ranking `untappedPickOrder`. I valori e la provenienza originali rimangono nei JSON pubblici; il catalogo li esclude dagli ordinamenti e dai filtri ordinari, compresa la vista WR compatibile. `statistics.researchAvailability.catalogNotice` spiega l'esclusione nell'interfaccia. In assenza del campo il comportamento precedente rimane valido; `eligible` ripristina l'idoneità dopo una nuova verifica documentata. Non è una soglia statistica automatica e non modifica politiche dei bot o revisioni dei replay. Uno snapshot pubblico può essere trascritto correttamente e restare inadatto a classificare le carte.
+
 Riutilizzare proprietà con lo stesso significato; aggiungere estensioni compatibili per informazioni diverse. Non mediare automaticamente servizi, popolazioni o eventi differenti e non trasformare automaticamente una WR in un voto editoriale. L’uso esplicito nei bot contestuali segue il riferimento per evento e il metodo documentato in [draft-engine.md](draft-engine.md#qualità-empirica-e-contesti-di-colore). Il contratto Draft non si applica a Sealed o Pick-Two cambiandone soltanto l'etichetta.
 
 ## Importazione Untapped
