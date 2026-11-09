@@ -1,0 +1,506 @@
+{
+  "date": "2026-11-09",
+  "sourceCommit": "f2aeb566634b22fed933b8bcc8e196e414f9c1b5",
+  "source": "Draftmancer TRKBoosterFactory",
+  "groups": {
+    "main-common": {
+      "set": "TRK",
+      "min": 1,
+      "max": 306,
+      "count": 81,
+      "rarity": "common"
+    },
+    "main-uncommon": {
+      "set": "TRK",
+      "min": 1,
+      "max": 306,
+      "count": 110,
+      "rarity": "uncommon"
+    },
+    "main-rare": {
+      "set": "TRK",
+      "min": 1,
+      "max": 306,
+      "count": 80,
+      "rarity": "rare"
+    },
+    "main-mythic": {
+      "set": "TRK",
+      "min": 1,
+      "max": 306,
+      "count": 25,
+      "rarity": "mythic"
+    },
+    "scene-uncommon": {
+      "set": "TRK",
+      "min": 338,
+      "max": 362,
+      "count": 10,
+      "rarity": "uncommon"
+    },
+    "scene-rare": {
+      "set": "TRK",
+      "min": 338,
+      "max": 362,
+      "count": 8,
+      "rarity": "rare"
+    },
+    "scene-mythic": {
+      "set": "TRK",
+      "min": 338,
+      "max": 362,
+      "count": 7,
+      "rarity": "mythic"
+    },
+    "lcars-uncommon": {
+      "set": "TRK",
+      "min": 363,
+      "max": 391,
+      "count": 7,
+      "rarity": "uncommon"
+    },
+    "lcars-rare": {
+      "set": "TRK",
+      "min": 363,
+      "max": 391,
+      "count": 14,
+      "rarity": "rare"
+    },
+    "lcars-mythic": {
+      "set": "TRK",
+      "min": 363,
+      "max": 391,
+      "count": 8,
+      "rarity": "mythic"
+    },
+    "classic-uncommon": {
+      "set": "TRK",
+      "min": 402,
+      "max": 425,
+      "count": 5,
+      "rarity": "uncommon"
+    },
+    "classic-rare": {
+      "set": "TRK",
+      "min": 402,
+      "max": 425,
+      "count": 13,
+      "rarity": "rare"
+    },
+    "classic-mythic": {
+      "set": "TRK",
+      "min": 402,
+      "max": 425,
+      "count": 6,
+      "rarity": "mythic"
+    },
+    "klingon-common": {
+      "set": "TRK",
+      "min": 426,
+      "max": 435,
+      "count": 1,
+      "rarity": "common"
+    },
+    "klingon-uncommon": {
+      "set": "TRK",
+      "min": 426,
+      "max": 435,
+      "count": 6,
+      "rarity": "uncommon"
+    },
+    "klingon-rare": {
+      "set": "TRK",
+      "min": 426,
+      "max": 435,
+      "count": 3,
+      "rarity": "rare"
+    },
+    "borderless-rare": {
+      "set": "TRK",
+      "min": 332,
+      "max": 337,
+      "count": 5,
+      "rarity": "rare"
+    },
+    "borderless-mythic": {
+      "set": "TRK",
+      "min": 332,
+      "max": 337,
+      "count": 1,
+      "rarity": "mythic"
+    },
+    "shocks": {
+      "set": "TRK",
+      "min": 392,
+      "max": 401,
+      "count": 10,
+      "rarity": "rare"
+    },
+    "duals": {
+      "set": "TRK",
+      "min": 1,
+      "max": 306,
+      "count": 10,
+      "rarity": "common"
+    },
+    "default-basic": {
+      "set": "TRK",
+      "min": 317,
+      "max": 326,
+      "count": 10
+    },
+    "holodeck-basic": {
+      "set": "TRK",
+      "min": 312,
+      "max": 316,
+      "count": 5
+    },
+    "away-basic": {
+      "set": "TRK",
+      "min": 307,
+      "max": 311,
+      "count": 5
+    },
+    "stardates": {
+      "set": "SDS",
+      "min": 1,
+      "max": 30,
+      "count": 30,
+      "rarity": "mythic"
+    }
+  },
+  "recipe": [
+    {
+      "op": "draw",
+      "id": "common",
+      "count": 7,
+      "unique": true,
+      "branches": [
+        {
+          "group": "main-common",
+          "weight": 1
+        }
+      ]
+    },
+    {
+      "op": "replace",
+      "id": "klingon-common",
+      "target": "common",
+      "chance": 0.029,
+      "branches": [
+        {
+          "group": "klingon-common",
+          "weight": 1
+        }
+      ]
+    },
+    {
+      "op": "replace",
+      "id": "stardates",
+      "target": "common",
+      "chance": 0.04,
+      "branches": [
+        {
+          "group": "stardates",
+          "weight": 1
+        }
+      ]
+    },
+    {
+      "op": "draw",
+      "id": "uncommon",
+      "branches": [
+        {
+          "group": "main-uncommon",
+          "weight": 0.7809999999999999
+        },
+        {
+          "group": "scene-uncommon",
+          "weight": 0.077
+        },
+        {
+          "group": "lcars-uncommon",
+          "weight": 0.046
+        },
+        {
+          "group": "classic-uncommon",
+          "weight": 0.046
+        },
+        {
+          "group": "klingon-uncommon",
+          "weight": 0.05
+        }
+      ],
+      "count": 3,
+      "unique": true
+    },
+    {
+      "op": "draw",
+      "id": "wildcard",
+      "branches": [
+        {
+          "group": "main-common",
+          "weight": 0.20800000000000002
+        },
+        {
+          "group": "main-uncommon",
+          "weight": 0.541
+        },
+        {
+          "group": "main-rare",
+          "weight": 0.16699999999999998
+        },
+        {
+          "group": "main-mythic",
+          "weight": 0.026000000000000002
+        },
+        {
+          "group": "klingon-uncommon",
+          "weight": 0.01
+        },
+        {
+          "group": "scene-uncommon",
+          "weight": 0.015
+        },
+        {
+          "group": "lcars-uncommon",
+          "weight": 0.01
+        },
+        {
+          "group": "klingon-common",
+          "weight": 0.002090909090909088
+        },
+        {
+          "group": "klingon-rare",
+          "weight": 0.002090909090909088
+        },
+        {
+          "group": "scene-rare",
+          "weight": 0.002090909090909088
+        },
+        {
+          "group": "scene-mythic",
+          "weight": 0.002090909090909088
+        },
+        {
+          "group": "lcars-rare",
+          "weight": 0.002090909090909088
+        },
+        {
+          "group": "lcars-mythic",
+          "weight": 0.002090909090909088
+        },
+        {
+          "group": "classic-rare",
+          "weight": 0.002090909090909088
+        },
+        {
+          "group": "classic-mythic",
+          "weight": 0.002090909090909088
+        },
+        {
+          "group": "borderless-rare",
+          "weight": 0.002090909090909088
+        },
+        {
+          "group": "borderless-mythic",
+          "weight": 0.002090909090909088
+        },
+        {
+          "group": "shocks",
+          "weight": 0.002090909090909088
+        }
+      ]
+    },
+    {
+      "op": "draw",
+      "id": "rare",
+      "branches": [
+        {
+          "group": "main-rare",
+          "weight": 0.8009999999999999
+        },
+        {
+          "group": "main-mythic",
+          "weight": 0.124
+        },
+        {
+          "group": "scene-rare",
+          "weight": 0.01
+        },
+        {
+          "group": "lcars-rare",
+          "weight": 0.018000000000000002
+        },
+        {
+          "group": "classic-rare",
+          "weight": 0.015
+        },
+        {
+          "group": "borderless-rare",
+          "weight": 0.01
+        },
+        {
+          "group": "shocks",
+          "weight": 0.013999999999999999
+        },
+        {
+          "group": "klingon-rare",
+          "weight": 0.0016000000000000228
+        },
+        {
+          "group": "scene-mythic",
+          "weight": 0.0016000000000000228
+        },
+        {
+          "group": "lcars-mythic",
+          "weight": 0.0016000000000000228
+        },
+        {
+          "group": "classic-mythic",
+          "weight": 0.0016000000000000228
+        },
+        {
+          "group": "borderless-mythic",
+          "weight": 0.0016000000000000228
+        }
+      ]
+    },
+    {
+      "op": "draw",
+      "id": "foil",
+      "branches": [
+        {
+          "group": "main-common",
+          "weight": 0.512
+        },
+        {
+          "group": "main-uncommon",
+          "weight": 0.34700000000000003
+        },
+        {
+          "group": "main-rare",
+          "weight": 0.063
+        },
+        {
+          "group": "main-mythic",
+          "weight": 0.01
+        },
+        {
+          "group": "klingon-uncommon",
+          "weight": 0.01
+        },
+        {
+          "group": "scene-uncommon",
+          "weight": 0.016
+        },
+        {
+          "group": "lcars-uncommon",
+          "weight": 0.011000000000000001
+        },
+        {
+          "group": "klingon-common",
+          "weight": 0.002818181818181813
+        },
+        {
+          "group": "klingon-rare",
+          "weight": 0.002818181818181813
+        },
+        {
+          "group": "scene-rare",
+          "weight": 0.002818181818181813
+        },
+        {
+          "group": "scene-mythic",
+          "weight": 0.002818181818181813
+        },
+        {
+          "group": "lcars-rare",
+          "weight": 0.002818181818181813
+        },
+        {
+          "group": "lcars-mythic",
+          "weight": 0.002818181818181813
+        },
+        {
+          "group": "classic-rare",
+          "weight": 0.002818181818181813
+        },
+        {
+          "group": "classic-mythic",
+          "weight": 0.002818181818181813
+        },
+        {
+          "group": "borderless-rare",
+          "weight": 0.002818181818181813
+        },
+        {
+          "group": "borderless-mythic",
+          "weight": 0.002818181818181813
+        },
+        {
+          "group": "shocks",
+          "weight": 0.002818181818181813
+        }
+      ],
+      "foil": true
+    },
+    {
+      "op": "draw",
+      "id": "land",
+      "branches": [
+        {
+          "group": "duals",
+          "weight": 0.3992015968063872
+        },
+        {
+          "group": "duals",
+          "weight": 0.0998003992015968,
+          "foil": true
+        },
+        {
+          "group": "default-basic",
+          "weight": 0.26666666666666666
+        },
+        {
+          "group": "default-basic",
+          "weight": 0.06666666666666667,
+          "foil": true
+        },
+        {
+          "group": "holodeck-basic",
+          "weight": 0.06706586826347306
+        },
+        {
+          "group": "holodeck-basic",
+          "weight": 0.016766467065868266,
+          "foil": true
+        },
+        {
+          "group": "away-basic",
+          "weight": 0.06706586826347306
+        },
+        {
+          "group": "away-basic",
+          "weight": 0.016766467065868266,
+          "foil": true
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Modello di simulazione Draftmancer, verificato sul codice sorgente indicato; non certifica le frequenze fisiche esatte o i fogli di stampa.",
+    "Adattamento dei pesi e dei gruppi del modello sorgente, non replica integrale del generatore. Draftmancer protegge dai duplicati di stampa attraverso gli slot e consuma pool di copie; questo adattamento usa buste indipendenti e unicità per identità solo dentro gli slot comuni base e non comuni. Ordine di estrazione e gestione dei duplicati sono diversi.",
+    "Le frequenze ufficiali meno dell’1% conservano quel limite nei dati published. Il modello ripartisce il residuo in parti uguali fra i rami non specificati: wildcard 2,3/11, rare 0,8/5, foil 3,1/11 punti percentuali.",
+    "Dentro ogni gruppo il modello estrae uniformemente. Le varianti grafiche possono quindi modificare le frequenze delle identità; non sono equiprobabili tutte le carte del catalogo.",
+    "Sette posizioni comuni, con sostituzioni indipendenti Klingon 2,9% e Stardates 4%; al massimo una Stardates non foil per busta. Nessuna Stardates negli slot foil o wildcard.",
+    "Tre non comuni distinte per identità e comuni base distinte per identità; le sostituzioni Klingon e gli altri slot possono ripetere una identità. Le buste sono indipendenti. Nessuna garanzia di bilanciamento colori, opzione disattivata nel modello sorgente.",
+    "Lo slot terra normalizza il totale arrotondato 100,2; foil al 20% come nel modello sorgente. Include Away Team foil come il modello e la lista degli slot ufficiale, pur restando una contraddizione con il paragrafo generale del trattamento.",
+    "Non trasferire queste aperture a un valore economico atteso del box o a percentuali di vittoria."
+  ],
+  "estimatedResidualPercentages": {
+    "wildcard": 2.299999999999997,
+    "rare": 0.8000000000000114,
+    "foil": 3.0999999999999943
+  }
+}

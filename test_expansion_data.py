@@ -6,7 +6,7 @@ import unittest
 from pathlib import Path
 from expansion_data import ROOT, Expansion, load_expansions
 from build_expansion import build
-from build_expansion import availability_notice, catalog_data, data_for_page
+from build_expansion import availability_notice, catalog_data, data_for_page, configured_routes
 from build_site import Links
 from urllib.parse import urlsplit, unquote
 
@@ -29,11 +29,19 @@ class ExpansionTests(unittest.TestCase):
         return Expansion(path)
 
     def test_incomplete_is_explicit(self):
-        preview=load_expansions()[1]
+        def incomplete(m,d):d['products']['products']['play']['collation']=None
+        preview=self.fixture(incomplete)
         self.assertTrue(preview.availability['catalog']['available'])
         self.assertFalse(preview.availability['draftTable']['available'])
         self.assertTrue(preview.data['cards']['complete'])
         self.assertTrue(any('collazione' in item.lower() for item in preview.availability['draftTable']['missing']))
+
+    def test_configured_practice_route_is_not_rewritten_to_sealed_simulator(self):
+        pages=self.source.manifest['presentation']['pages']
+        pages['simulator']['url']='sealed-simulator.html'
+        pages['practice']={'url':'simulatore.html'}
+        content='<a href="simulatore.html">Prova il mazzo</a><a href="sealed-simulator.html">Sealed</a>'
+        self.assertEqual(configured_routes(content,self.source),content)
 
     def test_bad_recipe_is_rejected(self):
         def mutate(m,d):d['products']['products']['play']['collation']['recipe'][0]['branches'][0]['weight']=.8

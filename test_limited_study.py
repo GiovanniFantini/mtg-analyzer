@@ -53,7 +53,7 @@ class LimitedStudyTests(unittest.TestCase):
             self.assertEqual(current['value'],r['value'])
             self.assertEqual(current['scaleMax'],10)
             self.assertEqual(ratings[c['id']].get('community'),old.get(c['id'],{}).get('value'))
-            self.assertIsNone(ratings[c['id']].get('score'))
+            self.assertEqual(ratings[c['id']].get('engineSource'),'draftsim-bot-20261109')
             if c['set']=='SDS':
                 self.assertNotIn('limitedReview',c['prospects'])
                 self.assertEqual(c['prospects']['limitedAnalysis']['date'],'2026-11-09')
@@ -107,7 +107,7 @@ class LimitedStudyTests(unittest.TestCase):
         self.assertEqual(sealed.count('data-lr-card '),336)
         self.assertIn('data-default-context="sealed"',sealed)
         self.assertTrue(expansion.availability['pickBaits']['available'])
-        self.assertFalse(expansion.availability['draftTable']['available'])
+        self.assertTrue(expansion.availability['draftTable']['available'])
 
 
 if __name__=='__main__':unittest.main()

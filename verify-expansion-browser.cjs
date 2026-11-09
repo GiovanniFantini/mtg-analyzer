@@ -43,9 +43,11 @@ const base=process.env.MTG_SITE_URL||'http://127.0.0.1:8871/';
   const runtime=await (await context.request.get(base+'sets/star-trek/data/runtime.json')).json();
   assert.equal(runtime.events.picktwo.picksPerTurn,2);
   assert.equal(runtime.events.picktwo.seats,4);
-  assert.equal(runtime.availability.draftTable.available,false);
+  assert.equal(runtime.availability.draftTable.available,true);
   await page.goto(base+'sets/star-trek/draft-engine.html');
-  assert.match(await page.locator('main').innerText(),/dati ancora incompleti/);assert.ok(runtime.availability.draftTable.missing.some(reason=>reason.includes('Profilo di collazione')));
+  await page.locator('#start').waitFor({state:'visible'});
+  assert.equal(runtime.availability.draftTable.missing.length,0);
+  assert.match(await page.locator('[data-collation-model]').innerText(),/Draftmancer/);
   // Replacing an incompatible Sealed record requires a verified full backup.
   const rawSealed='{"version":999,"original":"keep every field"}';
   await page.evaluate(raw=>localStorage.setItem('fra-sealed-simulator-v1',raw),rawSealed);

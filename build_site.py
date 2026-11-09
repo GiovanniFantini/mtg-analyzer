@@ -30,7 +30,7 @@ def homepage(expansions):
     tokens={'__EXPANSIONS__':''.join(cards),
             '__FEATURED_NAME__':html.escape(featured['name']) if featured else 'Le espansioni',
             '__FEATURED_CODE__':html.escape(featured['code']) if featured else '',
-            '__FEATURED_STATUS__':'ANTEPRIMA' if featured and featured.get('status')=='preview' else 'ESPANSIONE',
+            '__FEATURED_STATUS__':{'preview':'ANTEPRIMA','prerelease':'PRERELEASE'}.get(featured.get('status'),'ESPANSIONE') if featured else 'ESPANSIONE',
             '__FEATURED_LEAD__':'Il nuovo set arriva al tavolo.' if featured and featured.get('status')=='preview' else 'Esplora le carte e gli strumenti del set.',
             '__FEATURED_DATE__':html.escape(featured['date']) if featured else '',
             '__FEATURED_URL__':html.escape(route(featured,'set'),quote=True),

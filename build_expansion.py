@@ -187,7 +187,8 @@ def configured_routes(content, expansion):
             'Reality-Fracture-Discovery.html':'discovery',
             'Reality-Fracture-Sealed.html#pool':'pool','Reality-Fracture-Sealed.html#strategy':'strategy',
             'Reality-Fracture-Sealed.html#method':'method'}
-    targets={url:pages[key]['url'] for url,key in legacy.items() if key in pages}
+    configured={page['url'] for page in pages.values()}
+    targets={url:pages[key]['url'] for url,key in legacy.items() if key in pages and (url not in configured or pages[key]['url']==url)}
     if not targets:return content
     pattern=re.compile(r'([\'\"])('+ '|'.join(re.escape(url) for url in sorted(targets,key=len,reverse=True))+r')(?=[?#\'\"])')
     return pattern.sub(lambda match:match[1]+targets[match[2]],content)
@@ -276,6 +277,10 @@ def data_for_page(expansion, key):
 def render_page(expansion, key, page):
     content = confined(ROOT,page['template']).read_text(encoding='utf-8')
     content = render_tokens(content,expansion)
+    if key in ('simulator','draft-engine'):
+        event=expansion.default_event_id('sealed' if key=='simulator' else 'draft')
+        model_notice=expansion.product_for(event).get('modelNotice') if event else None
+        if model_notice:content=content.replace('<main>','<main><p class="notice" data-collation-model>'+html.escape(model_notice)+'</p>',1)
     if not expansion.availability['sentiment']['available']:
         content=re.sub(r'(<section\b[^>]*\bid="sentiment")',r'\1 hidden',content,count=1)
     data = {} if '/preview/' in page['template'] else data_for_page(expansion,key)

@@ -3315,6 +3315,20 @@
         "published": "2026-11-05",
         "coverage": 135,
         "context": "Recensione Sealed qualitativa, prima del weekend cartaceo; nessuna WR."
+      },
+      {
+        "id": "draftsim-bot-20261109",
+        "publisher": "Draftsim",
+        "url": "https://draftsim.com/TRK-pick-order/",
+        "retrieved": "2026-11-09",
+        "context": "Voti della propria simulazione Draft, scala originale 0–5; distinti dalla recensione Andrew Quinn."
+      },
+      {
+        "id": "draftmancer-collation-20261109",
+        "publisher": "Draftmancer",
+        "url": "https://github.com/Senryoku/Draftmancer/blob/f2aeb566634b22fed933b8bcc8e196e414f9c1b5/src/BoosterFactory.ts",
+        "retrieved": "2026-11-09",
+        "context": "Modello pubblico di simulazione, con stime esplicite delle frequenze non pubblicate esattamente; licenza MIT."
       }
     ],
     "notes": [
@@ -3861,5 +3875,24 @@
       ],
       "inputSha256": "6c8443d084f0e776f993c538b024ed0504e225fcca618c4d4b5d7a775a080b6b"
     }
+  },
+  "collationIntegration": {
+    "date": "2026-11-09",
+    "source": "https://github.com/Senryoku/Draftmancer/blob/f2aeb566634b22fed933b8bcc8e196e414f9c1b5/src/BoosterFactory.ts",
+    "model": "draftmancer-trk-20261109",
+    "physicalExactnessClaimed": false,
+    "ratingsSource": "https://draftsim.com/TRK-pick-order/",
+    "activePrintings": 460,
+    "printingSnapshot": "research/star-trek-integration-20261109/printings-source.json",
+    "limitations": [
+      "Modello di simulazione Draftmancer, verificato sul codice sorgente indicato; non certifica le frequenze fisiche esatte o i fogli di stampa.",
+      "Adattamento dei pesi e dei gruppi del modello sorgente, non replica integrale del generatore. Draftmancer protegge dai duplicati di stampa attraverso gli slot e consuma pool di copie; questo adattamento usa buste indipendenti e unicità per identità solo dentro gli slot comuni base e non comuni. Ordine di estrazione e gestione dei duplicati sono diversi.",
+      "Le frequenze ufficiali meno dell’1% conservano quel limite nei dati published. Il modello ripartisce il residuo in parti uguali fra i rami non specificati: wildcard 2,3/11, rare 0,8/5, foil 3,1/11 punti percentuali.",
+      "Dentro ogni gruppo il modello estrae uniformemente. Le varianti grafiche possono quindi modificare le frequenze delle identità; non sono equiprobabili tutte le carte del catalogo.",
+      "Sette posizioni comuni, con sostituzioni indipendenti Klingon 2,9% e Stardates 4%; al massimo una Stardates non foil per busta. Nessuna Stardates negli slot foil o wildcard.",
+      "Tre non comuni distinte per identità e comuni base distinte per identità; le sostituzioni Klingon e gli altri slot possono ripetere una identità. Le buste sono indipendenti. Nessuna garanzia di bilanciamento colori, opzione disattivata nel modello sorgente.",
+      "Lo slot terra normalizza il totale arrotondato 100,2; foil al 20% come nel modello sorgente. Include Away Team foil come il modello e la lista degli slot ufficiale, pur restando una contraddizione con il paragrafo generale del trattamento.",
+      "Non trasferire queste aperture a un valore economico atteso del box o a percentuali di vittoria."
+    ]
   }
 }

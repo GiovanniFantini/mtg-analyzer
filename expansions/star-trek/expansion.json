@@ -6,7 +6,7 @@
   "code": "TRK",
   "date": "9 novembre 2026",
   "description": "Tutte le carte TRK/SDS: ranking editoriali Draft e Sealed, ruolo e condizioni, recensioni attribuite. WR early access conservate come diagnostica, escluse dai ranking.",
-  "status": "preview",
+  "status": "prerelease",
   "datasets": {
     "cards": "cards.json",
     "printings": "printings.json",
@@ -226,5 +226,11 @@
   },
   "home": {
     "featured": true
+  },
+  "releasePhase": {
+    "prerelease": "2026-11-06",
+    "arena": "2026-11-10",
+    "tabletop": "2026-11-13",
+    "source": "https://magic.wizards.com/en/news/feature/collecting-star-trek"
   }
 }

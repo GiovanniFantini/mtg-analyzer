@@ -37,7 +37,7 @@ class StarTrekUpdateTests(unittest.TestCase):
   self.assertTrue(all(r['gradeType']=='explicit' for r in grades['cards']))
   self.assertTrue(all(r['gradeType']=='inferred' for r in grades['excludedInferred']))
   ratings=read('expansions/star-trek/ratings.json')['cards']
-  self.assertTrue(all(r.get('score') is None for r in ratings.values()))
+  self.assertTrue(all(r.get('score') is None or r.get('engineSource')=='draftsim-bot-20261109' for r in ratings.values()))
   for c in self.cards:
    for row in c['prospects'].get('researchNotes',[]):
     if row.get('source')=='limitedlibrary-20261107':
@@ -83,14 +83,14 @@ class StarTrekUpdateTests(unittest.TestCase):
   self.assertEqual(catalog['print_count'],sum(len(c['prints']) for c in self.cards))
   audit=read('research/star-trek-20261107/functional-input-audit.json')
   self.assertEqual(audit['changedEngineCards'],[]);self.assertEqual(audit['changedAdoptedRatings'],[])
- def test_v2_v4_replay_fingerprints_match_pre_update_baseline(self):
+ def test_v2_v4_replay_fingerprints_match_integrated_profile(self):
   from expansion_data import Expansion
   expansion=Expansion(ROOT/'expansions/star-trek/expansion.json')
-  audit=read('research/star-trek-20261107/functional-input-audit.json')
+  audit=read('research/star-trek-integration-20261109/functional-audit.json')
   for event_id,expected in audit['replayEvents'].items():
    current=expansion.draft_format(event_id)
-   self.assertEqual(current['revision'],expected['baselineRevision'])
-   self.assertEqual(current['botPolicy']['revision'],expected['baselineBotPolicyRevision'])
+   self.assertEqual(current['revision'],expected['currentRevision'])
+   self.assertEqual(current['botPolicy']['revision'],expected['currentBotPolicyRevision'])
    self.assertFalse(current['botPolicy']['empirical']['available'])
  def test_changed_reviews_keep_previous_reading_by_identity(self):
   baseline={r['catalogId']:r for r in read('research/star-trek-20261107/draftsim-review-baseline.json')['cards']}

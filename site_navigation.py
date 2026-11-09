@@ -1,6 +1,9 @@
 """Shared navigation for the static website, without nested scroll areas."""
 import re
 
+def phase_suffix(status):
+    return {'preview':' · anteprima','prerelease':' · prerelease'}.get(status,'')
+
 
 def workspace_navigation(content, catalog_url, set_name):
     """A consistent route to card search, with no format assumption."""
@@ -52,7 +55,7 @@ def shell(content, key, root=False, expansion=None, expansions=None):
             base='sets/'+item['id']+'/'
             pages=item['presentation']['pages']
             if index==0:groups.append('<div class="site-nav-group"><p>Espansioni</p>')
-            groups.append('<a href="'+base+e(pages['set']['url'],quote=True)+'">'+e(item['name'])+(' · anteprima' if item.get('status')=='preview' else '')+'</a>')
+            groups.append('<a href="'+base+e(pages['set']['url'],quote=True)+'">'+e(item['name'])+phase_suffix(item.get('status'))+'</a>')
         if expansions:groups.append('</div>')
         aside='<aside class="site-sidebar" id="site-sidebar" aria-label="Navigazione principale"><a class="site-home" href="index.html" aria-current="page">⌂ Home</a><a class="site-tournament" href="tournament.html">Gestisci un torneo Draft</a>'+''.join(groups)+'<p class="site-storage-note">Pool e carte osservate si salvano in questo browser.</p></aside>'
         return re.sub(r'<aside class="site-sidebar".*?</aside>',lambda _:aside,output,count=1,flags=re.S)
@@ -174,12 +177,12 @@ def configured_shell(content, key, expansion):
     for entry in read_json(ROOT/'expansions.json'):
         other=read_json(confined(ROOT,entry['manifest']))
         if other['id']!=expansion['id']:
-            others.append('<a href="../'+other['id']+'/'+other['presentation']['pages']['set']['url']+'">'+e(other['name'])+(' · anteprima' if other.get('status')=='preview' else '')+'</a>')
+            others.append('<a href="../'+other['id']+'/'+other['presentation']['pages']['set']['url']+'">'+e(other['name'])+phase_suffix(other.get('status'))+'</a>')
     overview_url=pages['set']['url']
     storage_note=expansion.get('storageNote','Pool e carte osservate si salvano in questo browser.')
     nav=f'''<a class="site-skip" href="#site-content">Vai al contenuto</a>
 <div class="site-bar"><a class="site-brand" href="../../index.html"><span class="site-mark" aria-hidden="true">M<span>✦</span></span><span>MTG <b>Analyzer</b></span></a><span class="site-bar-note">Il tuo tavolo di Magic</span><button class="site-menu-toggle" type="button" aria-expanded="false" aria-controls="site-sidebar">☰ Menu</button></div>
-<div class="site-backdrop" hidden></div><aside class="site-sidebar" id="site-sidebar" aria-label="Navigazione principale"><a class="site-home" href="../../index.html">⌂ Home</a><a class="site-tournament" href="../../tournament.html">Gestisci un torneo Draft</a><div class="site-set-label"><span>ESPANSIONE</span><strong>{e(expansion['name'])}<small>{e(expansion['code'])}{' · Anteprima' if expansion.get('status')=='preview' else ''}</small></strong></div>{''.join(others)}<nav>{''.join(groups)}</nav><p class="site-storage-note">{e(storage_note)}</p></aside>
+<div class="site-backdrop" hidden></div><aside class="site-sidebar" id="site-sidebar" aria-label="Navigazione principale"><a class="site-home" href="../../index.html">⌂ Home</a><a class="site-tournament" href="../../tournament.html">Gestisci un torneo Draft</a><div class="site-set-label"><span>ESPANSIONE</span><strong>{e(expansion['name'])}<small>{e(expansion['code'])}{phase_suffix(expansion.get('status'))}</small></strong></div>{''.join(others)}<nav>{''.join(groups)}</nav><p class="site-storage-note">{e(storage_note)}</p></aside>
 <div class="site-body"><nav class="site-breadcrumb" aria-label="Percorso"><a href="../../index.html">Home</a><span aria-hidden="true">/</span><a href="{e(overview_url,quote=True)}">{e(expansion['name'])}</a><span aria-hidden="true">/</span><span id="site-page-label">{e(pages[key]['label'])}</span></nav>'''
     if adapt_atlas:
         content=re.sub(r'<a class="site-skip".*?(?=<main)',lambda _:nav,content,count=1,flags=re.S)

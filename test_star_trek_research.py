@@ -41,7 +41,7 @@ class StarTrekResearchTests(unittest.TestCase):
         self.assertEqual(scores['matchedCards'], len(scores['cards']))
         ratings = read('expansions/star-trek/ratings.json')['cards']
         for rating in ratings.values():
-            self.assertIsNone(rating.get('score'))
+            self.assertTrue(rating.get('score') is None or rating.get('engineSource')=='draftsim-bot-20261109')
         reviews = read('research/star-trek-20261102/limited-reviews.json')
         expert = {r['catalogId']: r for r in reviews['cards']}
         for ident, rating in ratings.items():
@@ -151,7 +151,7 @@ class StarTrekResearchTests(unittest.TestCase):
         expansion = Expansion(ROOT / 'expansions/star-trek/expansion.json')
         for feature in ('sealedGuide', 'draftGuide', 'pickGuide', 'pickDecisions', 'draftCombos'):
             self.assertTrue(expansion.availability[feature]['available'], feature)
-        self.assertFalse(expansion.availability['draftTable']['available'])
+        self.assertTrue(expansion.availability['draftTable']['available'])
 
 
 if __name__ == '__main__':
